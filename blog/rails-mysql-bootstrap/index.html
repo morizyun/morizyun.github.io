@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rails 3.2.13/Bootstrap/Haml プロジェクト新規作成 最短ガイドだよ！ - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="<!-- google_ad_client = "ca-pub-4186413323075068"; /* bottom_burner */ google_ad_slot = "2184590598"; google_ad_width = 468; google_ad_height = 15 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/rails-mysql-bootstrap/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="Rails 3.2.13/Bootstrap/Haml プロジェクト新規作成 最短ガイドだよ！ - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="<!-- google_ad_client = "ca-pub-4186413323075068"; /* bottom_burner */ google_ad_slot = "2184590598"; google_ad_width = 468; google_ad_height = 15 &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/rails-mysql-bootstrap/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Rails 3.2.13/Bootstrap/Haml プロジェクト新規作成 最短ガイドだよ！</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-11-26T08:00:00+09:00" pubdate data-updated="true">Nov 26<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/rails-mysql-bootstrap/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/rails-mysql-bootstrap/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/rails-mysql-bootstrap/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/rails-mysql-bootstrap/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* bottom_burner */
+  google_ad_slot = "2184590598";
+  google_ad_width = 468;
+  google_ad_height = 15;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<p>Rails 3.2.13 + Bootstrap + Hamlのプロジェクト作成のフローを作成しました。</p>
+
+<p><a href="/blog/rails-mysql-bootstrap" title="fpu_tmp_1353848330.5039_237fab by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8346/8219161728_66b992a1bd.jpg" width="500" alt="fpu_tmp_1353848330.5039_237fab"></a></p>
+
+<!-- more -->
+
+
+<h2>Rails プロジェクト作成 〜 index.html確認まで</h2>
+
+<p>Railsの新規プロジェクトを作成。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails new <span class="nb">test</span>-app -d mysql --skip-test-unit --skip-bundle
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>RVMを使っている場合は、プロジェクト直下で.rvmrcを作成する。<br/></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd test</span>-app/
+</span><span class='line'><span class="nb">echo </span>ruby-1.9.3-p327 &gt; .ruby-version
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Rails用の<code>.gitignore</code>を作成します。<code>.gitignore</code>を生成するgitignore-boilerplatesを使う場合はこちら。(Macでのインストール方法は、<code>brew install gibo</code>を実行)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Mac/RubyMineを使う場合の例です、gibo --listで確認して下さい</span>
+</span><span class='line'>gibo OSX Ruby Rails RubyMine IntelliJ &gt; .gitignore
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>GitHubから<code>.gitignore</code>のテンプレートをダウンロードする場合はこちら。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://raw.github.com/github/gitignore/master/Rails.gitignore;mv Rails.gitignore .gitignore
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Gitリポジトリ作成を作成します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git init
+</span><span class='line'>git add -A
+</span><span class='line'>git commit -m <span class="s2">&quot;new project&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>Gemfile</code>を編集して、<code>bundle install</code>でGemをインストール。<br/>
+(gemは適宜カスタマイズしてください)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'>
+</span><span class='line'>gem <span class="s1">&#39;rails&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;rake&#39;</span> <span class="c"># 本番rake実行時に必要だった</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Bootstrap</span>
+</span><span class='line'>gem <span class="s1">&#39;less-rails&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;twitter-bootstrap-rails&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Compress/Sassy-Buttons/Zurui-design</span>
+</span><span class='line'>gem <span class="s1">&#39;sass-rails&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;compass-colors&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;compass-rails&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;sassy-buttons&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;zurui-sass-rails&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Font Awesome</span>
+</span><span class='line'>gem <span class="s1">&#39;font-awesome-rails&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Form Builders</span>
+</span><span class='line'>gem <span class="s1">&#39;simple_form&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;country_select&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Haml</span>
+</span><span class='line'>gem <span class="s1">&#39;haml-rails&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># jQuery/json</span>
+</span><span class='line'>gem <span class="s1">&#39;jquery-rails&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;jquery-cookie-rails&#39;</span> <span class="c"># jquery-cookie</span>
+</span><span class='line'>gem <span class="s1">&#39;json&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># MySQL</span>
+</span><span class='line'>gem <span class="s1">&#39;mysql2&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Presenter</span>
+</span><span class='line'>gem <span class="s1">&#39;active_decorator&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 定数管理</span>
+</span><span class='line'>gem <span class="s1">&#39;rails_config&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># スクレイピング</span>
+</span><span class='line'>gem <span class="s1">&#39;nokogiri&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Seed管理</span>
+</span><span class='line'>gem <span class="s1">&#39;seed-fu&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># asset取得系のログを出力しない</span>
+</span><span class='line'>gem <span class="s1">&#39;quiet_assets&#39;</span>
+</span><span class='line'>
+</span><span class='line'>group :assets <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>gem <span class="s1">&#39;coffee-rails&#39;</span>
+</span><span class='line'>  gem <span class="s1">&#39;therubyracer&#39;</span>, <span class="s2">&quot;~&gt; 0.10.2&quot;</span>
+</span><span class='line'>  gem <span class="s1">&#39;uglifier&#39;</span>
+</span><span class='line'>  gem <span class="s1">&#39;libv8&#39;</span>, <span class="s1">&#39;~&gt; 3.3.10&#39;</span>
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>group :development <span class="k">do</span>
+</span><span class='line'>  <span class="c"># ドキュメント生成</span>
+</span><span class='line'>  gem <span class="s1">&#39;yard&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># erbからhamlに変換</span>
+</span><span class='line'>  gem <span class="s1">&#39;erb2haml&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># エラー画面をわかりやすく整形してくれる</span>
+</span><span class='line'>  gem <span class="s1">&#39;better_errors&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># better_errorsの画面上にirb/pry(PERL)を表示する</span>
+</span><span class='line'>  gem <span class="s1">&#39;binding_of_caller&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># フッターにデバック情報を表示</span>
+</span><span class='line'>  gem <span class="s1">&#39;rails-footnotes&#39;</span>, <span class="s1">&#39;&gt;= 3.7.9&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># N+1問題の警告を出力</span>
+</span><span class='line'>  gem <span class="s2">&quot;bullet&quot;</span>
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>group :development, :test <span class="k">do</span>
+</span><span class='line'>  <span class="c"># Pow (Mac用のサーバです。Mac以外 or Pow以外のサーバ利用の方は不要)</span>
+</span><span class='line'>  gem <span class="s1">&#39;pow&#39;</span>
+</span><span class='line'>  gem <span class="s1">&#39;rails3-generators&#39;</span>
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>gem <span class="s1">&#39;powder&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>config/application.rb</code>の中にある<code>YourAppName::Application.configure</code>内に以下を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Set timezone</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Tokyo&#39;</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">default_timezone</span> <span class="o">=</span> <span class="ss">:local</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 日本語化</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">i18n</span><span class="o">.</span><span class="n">load_path</span> <span class="o">+=</span> <span class="no">Dir</span><span class="o">[</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;locales&#39;</span><span class="p">,</span> <span class="s1">&#39;**&#39;</span><span class="p">,</span> <span class="s1">&#39;*.{rb,yml}&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">i18n</span><span class="o">.</span><span class="n">default_locale</span> <span class="o">=</span> <span class="ss">:ja</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># generatorの設定</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">generators</span> <span class="k">do</span> <span class="o">|</span><span class="n">g</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">g</span><span class="o">.</span><span class="n">orm</span> <span class="ss">:active_record</span>
+</span><span class='line'>  <span class="n">g</span><span class="o">.</span><span class="n">template_engine</span> <span class="ss">:haml</span>
+</span><span class='line'>  <span class="c1"># scaffoldをgenerateするとDraperが自動で生成されます。</span>
+</span><span class='line'>  <span class="c1"># モデルがないとエラーが発生する可能性があるので注意してください</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># load original validator(オリジナルのバリデーターがある場合のみ)</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">+=</span> <span class="sx">%W(</span><span class="si">#{</span><span class="n">config</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sx">/lib/validators)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># libファイルの自動読み込み</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">+=</span> <span class="sx">%W(</span><span class="si">#{</span><span class="n">config</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sx">/lib)</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">+=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">config</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2">/lib/**/&quot;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>N+1問題の対策Gem Bulletの設定。<br/>
+<code>config/environments/development.rb</code>の<code>AppName::Application.configure</code>内に以下を追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>config.after_initialize <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>Bullet.enable <span class="o">=</span> <span class="nb">true</span> <span class="c"># Bulletプラグインを有効</span>
+</span><span class='line'>  Bullet.alert <span class="o">=</span> <span class="nb">true</span> <span class="c"># JavaScriptでの通知</span>
+</span><span class='line'>  Bullet.bullet_logger <span class="o">=</span> <span class="nb">true</span> <span class="c"># log/bullet.logへの出力</span>
+</span><span class='line'>  Bullet.console <span class="o">=</span> <span class="nb">true</span> <span class="c"># ブラウザのコンソールログに記録</span>
+</span><span class='line'>  Bullet.rails_logger <span class="o">=</span> <span class="nb">true</span> <span class="c"># Railsログに出力</span>
+</span><span class='line'>  Bullet.disable_browser_cache <span class="o">=</span> <span class="nb">true</span> <span class="c">#ブラウザキャッシュの無効化</span>
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>DBの作成。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake db:create <span class="nv">RAILES_ENV</span><span class="o">=</span>development
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Twitter Bootstrapのインストール。<code>application.html.haml</code>が作成されるので、<code>application.html.erb</code>を削除。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g bootstrap:layout application fluid
+</span><span class='line'>rails g bootstrap:install
+</span><span class='line'>rm -rf app/views/layouts/application.html.erb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>font-awesomeの設定を追加する。
+<code>app/assets/stylesheets/application.css</code>に以下のコードを追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="o">*=</span> <span class="nb">require</span> <span class="n">font</span><span class="o">-</span><span class="n">awesome</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Compassのインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>compass init --syntax sass
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sassy-buttonsのインストール。<code>No such framework: "sassy-buttons"</code>と言われる場合はスキップ。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>compass install sassy-buttons
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>続いてSASS(CSS)を書くための<code>base.css.sass</code>ファイルを作成。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g sass:assets base
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>base.css.sass</code>に以下を追加して、zurui-design, compass, sassy-buttonsを使えるようにする。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@import compass/utilities
+</span><span class='line'>@import compass/css3
+</span><span class='line'>@import sassy-buttons
+</span><span class='line'>@import zurui-sass
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Railsの日本語化ファイルを設定する。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml -P config/locales/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>rails_configの設定、設定用ファイルの生成。（利用方法は<a href="https://github.com/railsjedi/rails_config">railsjedi/rails_config | GitHub</a>）</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g rails_config:install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>simple formの初期設定(bootstrap対応)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g simple_form:install --bootstrap
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Apacheの場合は設定を行なって、ブラウザで表示を確認する。</p>
+
+<h2>Powを使っている場合</h2>
+
+<p>Powを使っている場合はPowへのリンクの作成。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>powder link
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>RVM環境でPowを使っている場合はプロジェクトの直下に<code>.powrc</code>を作成して以下を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> <span class="o">[</span> -f <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -f <span class="s2">&quot;.rvmrc&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">  </span><span class="nb">source</span> <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span>
+</span><span class='line'>  <span class="nb">source</span> <span class="s2">&quot;.rvmrc&quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>表示を確認する。<code>powder open</code>を実行して、ブラウザで<code>http://test-app.dev/</code>を確認。</p>
+
+<h2>scaffold表示まで</h2>
+
+<p>scaffoldを追加の前に<code>public/index.html</code>を削除。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rm -rf public/index.html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>scaffoldの作成してビューを追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rails</span> <span class="n">g</span> <span class="n">scaffold</span> <span class="n">product</span> <span class="nb">name</span> <span class="n">price</span><span class="ss">:integer</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>config/routes.rb</code>にて、ルートアクセス設定を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="s2">&quot;products#index&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>DBのマイグレーション。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rake</span> <span class="n">db</span><span class="ss">:migrate</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ブラウザでscaffordしたビューが見れることをブラウザで確認。</p>
+
+<h2>補足: open-uriでSSLをつかえるようにする</h2>
+
+<p>SSLエラー回避のために<code>config/initializers/bypass_ssl_verification_for_open_uri.rb</code>を作成して以下を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># SSLエラー回避</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;openssl&#39;</span>
+</span><span class='line'><span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_PEER</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_NONE</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意点として、この設定を行うと<code>bypass_ssl_verification_for_open_uri.rb:3: warning: already initialized constant VERIFY_PEER</code>という警告メッセージがでるようになりますが、気にしなくて良さそうです。</p>
+
+<h2>補足: ブラウザCSSのリセット</h2>
+
+<p>ブラウザにはデフォルトのCSSがセットされており、ブラウザによってデザインが変化する可能性があります。そこで、ブラウザのCSSをリセットしてくれるCSSが<a href="http://yuilibrary.com/yui/docs/cssreset/">YUI(Yahoo! User Interface Library)から提供</a>されています。<br/>
+配布がUSのサーバだと思う(レスポンスが遅くなる)ので、プロジェクト側にcssファイルをダウンロード。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget http://yui.yahooapis.com/3.8.0/build/cssreset/cssreset-min.css -P app/assets/stylesheets/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>app/assets/stylesheets/application.css.less</code>に以下のコードを追加。<br/>
+(このコードを追加する場合は<code>// = require_tree .</code>を削除して、cssを個別にインポートすること)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">/*</span> <span class="nt">1</span><span class="err">行目に置いて下さい</span>
+</span><span class='line'> <span class="o">*=</span><span class="nt">require</span> <span class="nt">cssreset-min</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>関連記事</h2>
+
+<p><strong><a href="/blog/guard-spork-rspec-tdd">RSpec/Spork/Guard/Growl/Rails 3.2.9で作る - プリチーなTDD環境！</a></strong> : モダンなTDD環境を構築して、ハッピーなテストライフをエンジョイしましょぃ！</p>
+
+<p><a href="/blog/capistrano-git-rails-deploy/">Rals3.2.9で始める Git連携Capistranoによる自動デプロイ</a> : サーバへのデプロイのプロセスにCapistranoを導入する手順です。</p>
+
+<p><strong><a href="/blog/meta-tags-sitemap-generator-rails-seo">meta-tagsとsitemap_generatorで始めるRails 3.2のSEO対策</a></strong> : Railsのお手軽SEO対策にレッツトライ。</p>
+
+<p><strong><a href="/blog/kaminari-gem-paginator-rails/">Railsの人気ページネーター Kaminariはbootstrap/hamlでも超簡単に導入可能</a></strong> : ページネーター導入の際は是非。</p>
+
+<p><strong><a href="/blog/pow-guard-rails">開発サーバをThinからPowに切り替えて開発効率アップ！ (Mac限定)</a></strong> にてPowに関する記事を載せました。サーバPowインストールがまだの方はぜひ。</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><p><a href="http://d.hatena.ne.jp/hrsth/20110616/1308229846">rvm のgemsetをおさらい（Mac でRuby） - たぐってつづる</a></p></li>
+<li><p><a href="http://naoty.hatenablog.com/entry/2012/05/20/032251">Rails開発環境 2012初夏</a></p></li>
+<li><p><a href="http://d.hatena.ne.jp/hnw/20121221">.gitignoreを作ってくれるgiboが便利すぎる - hnwの日記</a></p></li>
+<li><p><a href="http://ishikawa.r-stone.net/2011/02/rails-3-opensslsslsslerror.html">守破離でいこう!!: Rails 3 で OpenSSL::SSL::SSLError</a></p></li>
+</ul>
+
+
+<h2>変更来歴</h2>
+
+<p>11/26 12:00 Thinサーバに関する記述を追加<br/>
+11/26 14:00 Guardに関する記述を追加/Gemを見直し<br/>
+11/28 16:40 Dev/Test環境のサーバをPowに変更<br/>
+11/29 09:40 Foremanを削除、TDD関連の構築手順を別記事に<br/>
+12/03 10:00 Gemfileにyardを追加<br/>
+12/03 22:10 RSpec/FactoryGirlに関する情報をTDD記事に移動<br/>
+12/05 12:25 定数管理のGem rails_configを追加<br/>
+12/06 10:30 Gemfileにrakeを追加(本番でrake実行時必要だったため)<br/>
+12/13 12:35 Gemfileにbetter_errorsを追加<br/>
+12/19 14:50 記事のレイアウトを修正<br/>
+12/21 18:30 Gemfileに「gem &#8216;libv8&#8217;, &#8216;~> 3.11.8&#8217;」を追加<br/>
+12/23 23:40 RVM/POWを使う場合の設定を追加<br/>
+12/24 17:15 .rvmrcにgemsetの記述を追加<br/>
+12/25 09:35 gemsetに関する記述を削除<br/>
+12/27 09:40 .giboに関する記述を追加、MySQLの記述を削除<br/>
+12/27 11:00 リセットCSSに関する記述を追加<br/>
+12/27 17:05 Gemfileにrails-footnotes/quiet_assetsを追加<br/>
+01/01 20:45 Gemfileにfont-awesome-railsを追加<br/>
+01/02 10:25 SSLエラー回避の対策にenvironment.rbに記述<br/>
+01/02 12:00 draper => active_decoratorに浮気<br/>
+01/09 11:05 public/index.htmlを削除するように修正<br/>
+01/09 11:35 Gem therubyracer&#8217;, libv8&#8217;のバージョン変更<br/>
+01/22 14:10 Gem Bulletの設定が抜けていたので追加<br/>
+01/28 10:55 application.rb内のlocaleファイルの読み込み方法を変更<br/>
+01/28 11:15 補足: open-uriでSSLをつかえるようにするを編集して作成<br/>
+02/06 19:05 Bulletの設定についての記述を微調整<br/>
+02/08 16:25 BootstrapのGemを変更、compress, sassy-buttons, zurui-design-railsを使うプロセスに変更<br/>
+05/16 21:25 Rails 3.2.13環境</p>
+
+<h2>テスト環境</h2>
+
+<p>テスト環境は以下の通りです。</p>
+
+<pre>
+OS : Mac Mountain Lion(OS X 10.8)
+Ruby : 1.9.3-p327
+Rails : 3.2.13
+haml : 3.1.7
+coffee-script : 3.2.1
+Rspec : 2.12.0
+</pre>
+
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-26T08:00:00+09:00" pubdate data-updated="true">Nov 26<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bootstrap/'>Bootstrap</a>, <a class='category' href='/blog/categories/haml/'>Haml</a>, <a class='category' href='/blog/categories/mysql/'>MySQL</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/rails-mysql-bootstrap/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/rails-mysql-bootstrap/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/rails-mysql-bootstrap/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/rails-mysql-bootstrap/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/heroku-rails-postgresql/" title="Previous Post: HerokuにRails 3.2.9/Bootstrapでデプロイ 最短・簡単ガイドだよ！">&laquo; HerokuにRails 3.2.9/Bootstrapでデプロイ 最短・簡単ガイドだよ！</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/rspec-ruby-rails/" title="Next Post: 「RSpec をもっと理解したかったので、まとめを作りました」に感動してRuby 1.9.3でやってみた！">「RSpec をもっと理解したかったので、まとめを作りました」に感動してRuby 1.9.3でやってみた！ &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/rails-mysql-bootstrap/';
+        var disqus_url = 'http://morizyun.github.com/blog/rails-mysql-bootstrap/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

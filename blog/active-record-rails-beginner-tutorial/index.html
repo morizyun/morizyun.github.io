@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>RailsでデータをDBに投入する Active Record [初心者向けチュートリアル] - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="プログラム初心者な方向けに始めたRailsチュートリアルシリーズです。今回はRailsのWebアプリケーションでDBを扱う場合に便利なライブラリ『Active Record』の入門記事です。 例えば、拙著の『Nokogiri を使った Rubyスクレイピング』 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="RailsでデータをDBに投入する Active Record [初心者向けチュートリアル] - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="プログラム初心者な方向けに始めたRailsチュートリアルシリーズです。今回はRailsのWebアプリケーションでDBを扱う場合に便利なライブラリ『Active Record』の入門記事です。 例えば、拙著の『Nokogiri を使った Rubyスクレイピング』 &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">RailsでデータをDBに投入する Active Record [初心者向けチュートリアル]</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-02-16T12:25:00+09:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774146633/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774146633&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774146633&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774146633" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />プログラム初心者な方向けに始めたRailsチュートリアルシリーズです。今回はRailsのWebアプリケーションでDBを扱う場合に便利なライブラリ『<strong><a href="https://github.com/rails/rails/tree/master/activerecord">Active Record</a></strong>』の入門記事です。</p>
+
+<p>例えば、拙著の『<strong><a href="/blog/ruby-nokogiri-scraping-tutorial/">Nokogiri を使った Rubyスクレイピング</a></strong>』で取得したデータをWebサイトで表示する場合は、スクレイピングした時点でDBに入れておくのが一般的です。そうすることで、スクレイピングする処理と、表示にかかわる処理をシンプルにすることができます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>目次</h2>
+
+<p><strong>(1) <a href="#1">前提として</a></strong><br/>
+<strong>(2) <a href="#2">ActiveRecordとは？</a></strong><br/>
+<strong>(3) <a href="#3">ActiveRecordについて最初に読んでおくと良い資料</a></strong><br/>
+<strong>(4) <a href="#4">シンプルなActiveRecordの操作について</a></strong><br/>
+<strong>(5) <a href="#5">実際にコードを書いていくのに参考になりそうなサイト</a></strong><br/></p>
+
+<p><a name="1"></a></p>
+
+<h2>(1) 前提として</h2>
+
+<p>この記事は、Railsのアプリをベースに話を進めていきます。そのため、もし『<strong><a href="http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/">Rails x Herokuでアプリを作成</a></strong>』をまだ読んでおられない場合は、もし先に読んでからこの記事に戻ってきてもらえると泣いて喜んで歌って踊ります！</p>
+
+<p><a name="2"></a></p>
+
+<h2>(2) ActiveRecordとは？</h2>
+
+<p>ActiveRecordとは、データベース(DB)の種類を意識することなく、プログラミングしやすい形でDBのテーブルとのデータのやりとりを行えるようにするためのライブラリです。</p>
+
+<p>オープンソースのリレーショナル・データベースだけでもMySQL、PostgreSQL、sqlite、SQL Server,
+Sybase, Oracleなどなど様々な種類があります。各言語に合わせてプログラミングを書き直していると、膨大な手間がかかってしまう可能性があります。そういったことを最小限にしてくれるのがActiveRecordのような『<strong>[ORマッパー]</strong>』と呼ばれる仕組みです。</p>
+
+<p><a name="3"></a></p>
+
+<h2>(3) ActiveRecordについて最初に読んでおくと良い資料</h2>
+
+<p><a href="http://dotinstall.com/lessons/basic_activerecord"><img title="ActiveRecord入門 (全14回) - プログラミングならドットインストール" src="http://capture.heartrails.com/400x300/cool/1392455111640?http://dotinstall.com/lessons/basic_activerecord" alt="http://dotinstall.com/lessons/basic_activerecord" width="400" height="300" /></a></p>
+
+<p>まずは、初学者の親友ドットインストールさんの『<strong><a href="http://dotinstall.com/lessons/basic_activerecord">ActiveRecord入門 (全14回)</a></strong>』が最初に見ておくと捗ります。</p>
+
+<p><a href="http://www.techscore.com/tech/Ruby/Rails/model/activerecord/1/"><img title="2. ActiveRecord(1) | TECHSCORE(テックスコア)" src="http://capture.heartrails.com/400x300/cool/1392455114252?http://www.techscore.com/tech/Ruby/Rails/model/activerecord/1/" alt="http://www.techscore.com/tech/Ruby/Rails/model/activerecord/1/" width="400" height="300" /></a></p>
+
+<p>また、TECHSCOREさんの『<strong><a href="http://www.techscore.com/tech/Ruby/Rails/model/activerecord/1/">ActiveRecordシリーズ</a></strong>』も作成・読み込み・更新・削除(CRUD)の一連の流れを丁寧に解説してくれています！</p>
+
+<p><a name="4"></a></p>
+
+<h2>(4) シンプルなActiveRecordの操作について</h2>
+
+<h3>モデルの作成</h3>
+
+<p>ここからは実際にRailsでモデル(ActiveRecord)を作っていきながら、簡単なデータの追加と削除をやってみます。</p>
+
+<p>まずは、ActiveRecordのモデル<code>User</code>を作成するためにターミナルで次のコマンドを実行します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g model user name:string email:string
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ちなみに、<code>rails generate(g)</code>はrailsのモデルや、ビュー、コントローラ、scaffold(土台)をつくることもできます。</p>
+
+<p>このコマンドが完了すると次の2つのファイルができます。</p>
+
+<pre>
+db/migrate/xxxx_users.rb #=> UserモデルをDBのテーブルとして作成するためのファイル
+app/model/user.rb #=> Userモデル(ActiveRecord)を表す。モデルに関わる処理を書く
+</pre>
+
+
+<h3>マイグレーションファイル</h3>
+
+<p>先ほど自動で作成されたマイグレーションファイルは次のようになっていると思います。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+</span><span class='line'>      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:email</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このファイルを直接編集することも可能です。</p>
+
+<p>まずこのファイル内では抽象化されたカラムを指定します。カラムの型としては次のようなものがあります。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:string     <span class="c">#=&gt; 文字列</span>
+</span><span class='line'>:text       <span class="c">#=&gt; string読みも長い文字列</span>
+</span><span class='line'>:integer    <span class="c">#=&gt; 整数</span>
+</span><span class='line'>:float      <span class="c">#=&gt; 少数点を含む数</span>
+</span><span class='line'>:decimal    <span class="c">#=&gt; floatよみも精度の高い少数点を含む数</span>
+</span><span class='line'>:datetime   <span class="c">#=&gt; 日時</span>
+</span><span class='line'>:timestamp  <span class="c">#=&gt; より細かい日時</span>
+</span><span class='line'>:time       <span class="c">#=&gt; 日付</span>
+</span><span class='line'>:date       <span class="c">#=&gt; 日付 </span>
+</span><span class='line'>:binary　　　#<span class="o">=</span>&gt; バイナリデータ
+</span><span class='line'>:boolean    <span class="c">#=&gt; Boolean型(true or false)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>詳細は『<strong><a href="http://railsdoc.com/migration#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90(create_table">テーブルの作成 マイグレーション(migration)</a>)</strong>』がおすすめです。</p>
+
+<p>さらに、DBにテーブルを作成するために次のコマンドを実行します。もし、<code>rake db:create</code>を一度も実行していない場合は、先に実行してください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake db:migrate
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>レコードのd 作成(Create)・読み込み(Read)・更新(Update)・削除(Delete)</h3>
+
+<p>ここからはできるだけ説明を簡単にするためにrails console内で確認をしていきます。次のコマンドを実行するとrailsのコンソールが起動します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails console
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>コンソールが起動したら、次のコマンドを実行してみてください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># John Dueというユーザーを新規作成</span>
+</span><span class='line'><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">({</span><span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;John Due&#39;</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="s1">&#39;john.due@example.com&#39;</span><span class="p">})</span>
+</span><span class='line'><span class="n">user</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 登録したJohn Dueの読み込み</span>
+</span><span class='line'><span class="n">john</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="c1">#&lt;User:0x007fe6c5436b98&gt; {</span>
+</span><span class='line'>  <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">16</span> <span class="no">Feb</span> <span class="mi">2014</span> <span class="mi">11</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">34</span> <span class="no">JST</span> <span class="o">+</span><span class="mi">09</span><span class="p">:</span><span class="mo">00</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">&quot;john.due@example.com&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>        <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;John Due&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">16</span> <span class="no">Feb</span> <span class="mi">2014</span> <span class="mi">11</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">34</span> <span class="no">JST</span> <span class="o">+</span><span class="mi">09</span><span class="p">:</span><span class="mo">00</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># johnのデータを更新</span>
+</span><span class='line'><span class="n">jhon</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John Due2&quot;</span>
+</span><span class='line'><span class="n">jhon</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;jhon.due2@example.com&quot;</span>
+</span><span class='line'><span class="n">user</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 登録したJohn Dueの読み込み、データが更新されています。</span>
+</span><span class='line'><span class="n">john2</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="c1">#&lt;User:0x007fe6c5436b98&gt; {</span>
+</span><span class='line'>  <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">16</span> <span class="no">Feb</span> <span class="mi">2014</span> <span class="mi">11</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">34</span> <span class="no">JST</span> <span class="o">+</span><span class="mi">09</span><span class="p">:</span><span class="mo">00</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">&quot;john.due2@example.com&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>        <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;John Due2&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="no">Sun</span><span class="p">,</span> <span class="mi">16</span> <span class="no">Feb</span> <span class="mi">2014</span> <span class="mi">11</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">34</span> <span class="no">JST</span> <span class="o">+</span><span class="mi">09</span><span class="p">:</span><span class="mo">00</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Johnの削除</span>
+</span><span class='line'><span class="n">john2</span><span class="o">.</span><span class="n">destroy</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># もうJohnは削除済なので存在しません</span>
+</span><span class='line'><span class="n">john</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'><span class="c1">#=&gt; ActiveRecord::RecordNotFound: Couldn&#39;t find User with id=1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでデータベースからデータを作成(Create)・読み込み(Read)・更新(Update)・削除(Delete)することが出来ました。この一連の操作を頭文字をとってCRUDと呼びます。</p>
+
+<h3>Railsの処理への反映</h3>
+
+<p>これらの処理は実際にはモデルやコントローラなどに個別に記述していくことでWebアプリケーションを作成します。ここでは、CRUDの流れをわかりやすく丁寧に解説しているSpice Lifeの五十嵐さんが一橋大学での講義に使われたスライドを元にトライしてみてください。</p>
+
+<h4>Ruby on Rails講義 第20回: CRUD基礎</h4>
+
+<script async class="speakerdeck-embed" data-id="03ea2c100a540131f52962a257e402f6" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<h4>Ruby on Rails講義 第21回: New, Create</h4>
+
+<script async class="speakerdeck-embed" data-id="1410fe9025e301315c946e1ca35fb859" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<h4>Ruby on Rails講義 第22回: Model</h4>
+
+<script async class="speakerdeck-embed" data-id="71d41ff0392301311e3e2ef68c3b02b3" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<h4>Ruby on Rails講義 第24回: new&amp;create</h4>
+
+<script async class="speakerdeck-embed" data-id="e661e1701a470130214612313918079e" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<h4>Ruby on Rails講義 第25回: model</h4>
+
+<script async class="speakerdeck-embed" data-id="5093727025b80130ce0f12313d181141" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<p><a name="5"></a></p>
+
+<h3>(5) 実際にコードを書いていくのに参考になりそうなサイト</h3>
+
+<p><a href="http://railsdoc.com/"><img title="Railsドキュメント" src="http://capture.heartrails.com/400x300/cool?http://railsdoc.com/" alt="http://railsdoc.com/" width="400" height="300" /></a></p>
+
+<p>超有名なRailsの日本語リファレンス・サイト。2014/02/16時点でのRailsの最新版(4.0.2)にも対応しており、毎日確実にお世話になっています！</p>
+
+<p><a href="http://magazine.rubyist.net/?0006-RubyOnRails"><img title="Now Capturing..." src="http://capture.heartrails.com/400x300/cool?http://magazine.rubyist.net/?0006-RubyOnRails" alt="http://magazine.rubyist.net/?0006-RubyOnRails" width="400" height="300" /></a></p>
+
+<p>日本のRubyistで知らない人はいないほど有名なるびまの記事『<strong><a href="http://magazine.rubyist.net/?0006-RubyOnRails">Rubyist Magazine - RubyOnRails を使ってみる 【第 3 回】 ActiveRecord</a></strong>』は、ActiveRecordの機能についてしっかりと説明をして頂けています。ActiveRecordを基礎からしっかり理解するために是非読んで欲しい記事！</p>
+
+<h3>お願い</h3>
+
+<p>個人的に初心者向けにRuby/Railsを教える機会が増えています。この記事に関連する分野で効率的に勉強するのにおすすめな資料をご存知なら、Twitterで<strong><a href="https://twitter.com/zyunnosuke">@zyunnosuke</a></strong>にメッセージ or コメント頂けたら感激します！</p>
+
+<p>逆にこの記事を使ってトライしたら、なんか上手く動かない的な話も同じく大歓迎です。いつでもメッセージ下さい！</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-16T12:25:00+09:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gem/'>Gem</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/ruby-generalization-hitotsubashi-univ-3/" title="Previous Post: Ruby 概論のスライドが素晴らしかったのでまとめてみた(第3部)">&laquo; Ruby 概論のスライドが素晴らしかったのでまとめてみた(第3部)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/parfect-ruby-standard-library/" title="Next Post: 標準ライブラリ【パーフェクトRuby Part4】">標準ライブラリ【パーフェクトRuby Part4】 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/';
+        var disqus_url = 'http://morizyun.github.com/blog/active-record-rails-beginner-tutorial/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

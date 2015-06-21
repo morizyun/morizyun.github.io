@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Kaminari | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/kaminari/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[kaminariをBootstrap3、Rails4環境で使う！]]></title>
+    <link href="http://morizyun.github.com/blog/kaminari-gem-paginator-rails/"/>
+    <updated>2013-12-23T20:30:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/kaminari-gem-paginator-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048916599&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048916599&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048916599" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Rails 4でも不動の人気を誇るページネーター「<strong><a href="https://github.com/amatsuda/kaminari#customizing-the-pagination-helper">amatsuda/kaminari</a></strong>」をBootstrap3、Rails4環境で使うための導入手順です。びっくりするくらい簡単に導入できちゃいますよ！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>まえおき</h2>
+
+<p>この記事は、Bootstrap環境を構築済の前提で話を進めます。もし、Bootstrap環境の構築からスタートしたい場合は、拙著『<strong><a href="/blog/heroku-rails4-postgresql-introduction/">Rails4でheroku Pushまでの最短手順</a></strong>』をご参照頂ければ幸甚です！</p>
+
+<h2>Gemのインストール</h2>
+
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Pagenation&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;kaminari&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>kaminari configの設定</h2>
+
+<p>kaminariのconfig(設定)ファイルを生成。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g kaminari:config
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><code>config/initializers/kaminari_config.rb</code>を構築するサイトに合わせて各種パラメータを調整。<br/>
+パラメータの詳細は『 <strong><a href="https://github.com/amatsuda/kaminari#general-configuration-options">amatsuda/kaminari | GitHub</a></strong>』を参照。</p>
+
+<h2>Controller/Viewへの設置</h2>
+
+<p>Controllerでページネーションをするための変数を追加。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span><span class="o">.</span><span class="n">page</span> <span class="n">params</span><span class="o">[</span><span class="ss">:page</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Viewでページネーションを表示したい場所に以下のコードを追加。<br/></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="p">=</span> <span class="n">paginate</span> <span class="vi">@users</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>ベージネーションViewのテンプレート取得</h2>
+
+<p>次のコマンドを実行すると<code>/app/view/kaminari/</code>フォルダにBootstrap用のViewを生成してくれます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g kaminari:views  bootstrap
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ただしこちらは、Bootstrap2用のテンプレートっぽいです。ということで、<code>/app/view/kaminari/_paginator.html.haml</code>を次の様に編集します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="p">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">render</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nc">.pagination</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;-# ↓ ここに.pagenationを追加
+</span><span class='line'><span class="nt">%ul</span><span class="nc">.pagination</span>
+</span><span class='line'>  ...(ゴニョゴニョ)
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>ページネーターの表示カスタマイズ</h2>
+
+<p>ページネーションの文言(prevやnextなど)の変更程度であれば、<code>conifg/locales/ja.yml</code>に以下の内容を追加するだけで解決します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ja:
+</span><span class='line'>  views:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;pagination:
+</span><span class='line'>  first: <span class="s2">&quot;&amp;amp;laquo;&quot;</span>
+</span><span class='line'>  last: <span class="s2">&quot;&amp;amp;raquo;&quot;</span>
+</span><span class='line'>  previous: <span class="s2">&quot;&amp;amp;lsaquo;&quot;</span>
+</span><span class='line'>  next: <span class="s2">&quot;&amp;amp;rsaquo;&quot;</span>
+</span><span class='line'>  truncate: <span class="s2">&quot;...&quot;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>上は英語部分を外して、記号を残した場合の例です。
+これだけでもシンプルでわかりやすいですよ！</p>
+
+<p><img src="http://farm9.staticflickr.com/8477/8250145044_9193f27280_n.jpg" width="320" height="42" alt="fpu_tmp_1354804296.8519_d61bda"></p>
+
+<h2>ルーティングの設定</h2>
+
+<p><code>config/routes.rb</code>のルーティングを以下の様に変更します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>resources :my_resources <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>get <span class="s1">&#39;page/:page&#39;</span>, :action <span class="o">=</span>&gt; :index, :on <span class="o">=</span>&gt; :collection
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>このルーティングのメリットは次の通り。</p>
+
+<pre>
+* SEO的に良い、ユーザーフレンドリーである
+* params pageがURLセグメントの一部 => RailsのPageキャシュが有効に
+</pre>
+
+
+<h2>表示確認</h2>
+
+<p>ブラウザで表示を確認します。以下は今回作ったサンプルページネーションです。</p>
+
+<p><img src="http://farm9.staticflickr.com/8340/8244955784_4b2ae33c4a_n.jpg" width="320" height="44" alt="fpu_tmp_1354636719.4462_910632"></p>
+
+<h2>補足: プレゼンターDraperと共存させる場合</h2>
+
+<p>kaminariとプレゼンターのDraperを使う場合は、Draperがうまくkaminariのメソッドを呼び出せない場合があります。<br/></p>
+
+<p>その場合は、<code>config/initializers/draper.rb</code>を作成して以下を記入しておくとエラーを回避できます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Draper</span><span class="o">::</span><span class="no">CollectionDecorator</span><span class="o">.</span><span class="n">delegate</span> <span class="ss">:current_page</span><span class="p">,</span> <span class="ss">:total_pages</span><span class="p">,</span> <span class="ss">:limit_value</span><span class="p">,</span> <span class="ss">:total_count</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><strong><a href="https://github.com/drapergem/draper/issues/401">Kaminari vs Draper · Issue #401 · drapergem/draper</a></strong></p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="https://github.com/amatsuda/kaminari#customizing-the-pagination-helper">amatsuda/kaminari | GitHub</a></strong></p>
+
+<p><strong><a href="https://github.com/amatsuda/kaminari/wiki/Kaminari-recipes">Kaminari recipes | amatsuda/kaminari | GitHub wiki</a></strong></p>
+
+<p><strong><a href="http://d.hatena.ne.jp/CortYuming/20131027/p1">ささっと Rails4 + Bootstrap3 + kaminari でゲストブック作成してみるメモ - 牌語備忘録 - pygo</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>13/04/18 23:35 補足: プレゼンターDraperと共存させる場合を追加<br/>
+13/12/23 20:15 Bootstrap3、Rails4に対応<br/></p>
+]]></content>
+  </entry>
+  
+</feed>

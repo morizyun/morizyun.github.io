@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Lion | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/lion/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mac bash 初心者脱出への道！]]></title>
+    <link href="http://morizyun.github.com/blog/bashrc-mac-lion-tips/"/>
+    <updated>2012-10-29T14:00:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/bashrc-mac-lion-tips</id>
+    <content type="html"><![CDATA[<p><a href="blog/categories/lion/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8199/8219061377_bf33290779.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>MacでのBash力を高めるために、こっそりTipsを書きためていきます！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>autojumpインストール</h2>
+
+<p><code>j</code>でフォルダ名を打つと以前検索したフォルダにジャンプしてくれます。キャッチコピーは学習する<code>cd</code>らしいですw</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install autojump
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>bash設定ファイルの変更</h2>
+
+<p><code>~/.bashrc</code>を次のように変更。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>~/.bashrc  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/user/local/bin:<span class="nv">$PATH</span>
+</span><span class='line'><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">&quot;/usr/local/mysql/lib:$DYLD_LIBRARY_PATH&quot;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;alias <span class="nv">ls</span><span class="o">=</span><span class="s1">&#39;ls -la&#39;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;set editor&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;export <span class="nv">EDITOR</span><span class="o">=</span><span class="s1">&#39;vim&#39;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;バッシュ History&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;export <span class="nv">HISTSIZE</span><span class="o">=</span>10000
+</span><span class='line'><span class="nb">export </span><span class="nv">HISTCONTROL</span><span class="o">=</span>ignoredups&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Rails環境変数のセット&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;RAILS_ENV<span class="o">=</span>development
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><code>~/.bash_profile</code>を次の様に変更。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>~/.bash_profile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;同時に開けるファイル数上限&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ulimit -n 10240&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;.bashrcを毎回読み込ませる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;if <span class="o">[</span> -f ~/.bashrc <span class="o">]</span> ; <span class="k">then</span>
+</span><span class='line'>. ~/.bashrc
+</span><span class='line'><span class="k">fi</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;autojump用の設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[[</span> -s &lt;code&gt;brew --prefix&lt;/code&gt;/etc/autojump.sh <span class="o">]]</span> &amp;amp;&amp;amp; . &lt;code&gt;brew --prefix&lt;/code&gt;/etc/autojump.sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>そして、以下のコマンドを実行すると最新の設定画反映されます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.bashrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>引き続き、初心者脱出に邁進だ！</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><p><a href="http://d.hatena.ne.jp/akuwano/20121018/1350529681">mac osx で bashの補完機能を有効にした話(homebrew経由)</a></p></li>
+<li><p><a href="http://d.hatena.ne.jp/takuya_1st/20090828/1251474360">bashヒストリのダイエット。bash履歴活用まとめ</a></p></li>
+<li><p><a href="https://github.com/joelthelion/autojump">joelthelion/autojump · GitHub</a></p></li>
+</ul>
+
+
+<h2>変更来歴</h2>
+
+<p>12/06 18:05 Bash-completionの記述を削除<br/>
+12/28 08:45 autojumpを追加<br/>
+05/29 22:15 同時に開けるファイル数上限を10240に変更する記述を追加<br/></p>
+]]></content>
+  </entry>
+  
+</feed>

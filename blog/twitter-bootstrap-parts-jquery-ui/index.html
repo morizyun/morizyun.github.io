@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ひと味ちがうTwitter Bootstrapリソースまとめ、UIパーツ編 - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="Twitter-bootstrapのUIパーツをまとめたページです。素のTwitter Bootstrapにはない、かゆいところに手が届きそうなUIパーツをまとめています。 姉妹ページの『Twitter Bootstrapについてのテンプレート(レイアウト)のまとめ』もどうかよろしくおねがいします &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="ひと味ちがうTwitter Bootstrapリソースまとめ、UIパーツ編 - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="Twitter-bootstrapのUIパーツをまとめたページです。素のTwitter Bootstrapにはない、かゆいところに手が届きそうなUIパーツをまとめています。 姉妹ページの『Twitter Bootstrapについてのテンプレート(レイアウト)のまとめ』もどうかよろしくおねがいします &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">ひと味ちがうTwitter Bootstrapリソースまとめ、UIパーツ編</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-08-19T20:00:00+09:00" pubdate data-updated="true">Aug 19<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4862671063/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4862671063&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4862671063&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4862671063" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Twitter-bootstrapのUIパーツをまとめたページです。素のTwitter Bootstrapにはない、かゆいところに手が届きそうなUIパーツをまとめています。</p>
+
+<p>姉妹ページの『<strong><a href="/blog/twitter-bootstrap-templates/">Twitter Bootstrapについてのテンプレート(レイアウト)のまとめ</a></strong>』もどうかよろしくおねがいします！</p>
+
+<p>この記事は今後も新しいリソースを見つける度に順次アップデートしていく予定です！</p>
+
+<p>(08/19 20:00) 色々内容の加筆修正をしました！<br/>
+(08/20 21:00) Fuel UXを追加<br/></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>Fuel UX</h2>
+
+<p>Fuel UXはTwitter Bootstrapのウィジェットをまとめて拡張してくれるツールです。チェックボックスや、コンボボックス、データグリッド、ピルボックス、検索ボックス、スピナー、エクスプローラーっぽいツリー、ウィザードなどが追加されます。</p>
+
+<p><a href="http://exacttarget.github.io/fuelux/" title="Fuel UX"><img src="http://farm8.staticflickr.com/7317/9555254088_ba19948f6e_z.jpg" width="640" height="324" alt="Fuel UX"></a></p>
+
+<p>MoonGiftさんの記事『<strong><a href="http://www.moongift.jp/2013/06/20130624-2/">Bootstrapで物足りなく感じているウィジェットをまとめて提供「Fuel UX」|オープンソース・ソフトウェア、ITニュースを毎日紹介するエンジニア、デザイナー向けブログ</a></strong>』にはサンプル画像付きで表示されているのでこちらもオススメです！</p>
+
+<h2>LayoutIt!</h2>
+
+<p>ドラッグアンドドロップ形式でBootstrapペースのレイアウトを作成できるWebツールです。作成したら、HTML/CSSでダウンロード出来ます！</p>
+
+<p><a href="http://www.flickr.com/photos/84117399@N08/8663948047/" title="スクリーンショット 2013-04-20 14.56.54 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8239/8663948047_589866f1a0_z.jpg" width="640" height="358" alt="スクリーンショット 2013-04-20 14.56.54"></a></p>
+
+<h2>Bootsnipp.com</h2>
+
+<p>BootstrapのUIパーツを集めたサイトです。テンプレートよりも簡単に導入できるので良かったら使ってみてください！</p>
+
+<p><a href="http://bootsnipp.com/" title="bootsnipp by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8215/8421000937_f607485b33_z.jpg" width="640" height="428" alt="bootsnipp"></a></p>
+
+<h2>Twitter Bootstrap templates</h2>
+
+<p>Twitter-Bootstrapのためのテンプレート集です。無料のものと有料のものがあるようです。</p>
+
+<p><a href="http://www.bootstraptor.com/" title="Twitter Bootstrap templates"><img src="http://farm6.staticflickr.com/5532/9543420479_49debdb349_z.jpg" width="640" height="407" alt="Twitter Bootstrap templates"></a></p>
+
+<h2>Pines Notify</h2>
+
+<p>下の画像の右上に出ているような、javascriptによるノーティフィケーションを表示してくれるツールです。Webサイト上でインタラクティブなお知らせを表示する場合などに活用できそうです！</p>
+
+<p><a href="http://pinesframework.org/pnotify/" title="Pines Notify"><img src="http://farm8.staticflickr.com/7319/9546271712_0049f31a92_z.jpg" width="640" height="355" alt="Pines Notify"></a></p>
+
+<h2>bootstrap-wysihtml5</h2>
+
+<p>BootsrapにマッチしたWYSIWYGを1行で追加できるUIパーツです。</p>
+
+<p><a href="http://mindmup.github.io/bootstrap-wysiwyg/" title="bootstrap-wysihtml5"><img src="http://farm9.staticflickr.com/8511/8436028215_2a55d312b6_z.jpg" width="640" height="484" alt="bootstrap-wysihtml5"></a></p>
+
+<h2>Datepicker for Bootstrap</h2>
+
+<p>Bootsrapにマッチしたデータピッカーです。</p>
+
+<p><a href="http://www.eyecon.ro/bootstrap-datepicker/" title="Datepicker for Bootstrap"><img src="http://farm9.staticflickr.com/8325/8437130126_3c3ac3a1c8_z.jpg" width="640" height="523" alt="Datepicker for Bootstrap"></a></p>
+
+<h2>bootstrap-datetimepicker</h2>
+
+<p>Bootstrapにマッチしたデータピッカー、第２段です。</p>
+
+<p><a href="http://tarruda.github.io/bootstrap-datetimepicker/" title="bootstrap-datetimepicker"><img src="http://farm9.staticflickr.com/8250/8633088955_6273905c2c_z.jpg" width="640" height="411" alt="bootstrap-datetimepicker"></a></p>
+
+<h2>jQuery prettyCheckable</h2>
+
+<p>ラジオボタンやチェックボックスを写真のようなデザインに置き換えてくれるjQuery プラグインです。コンバージョンを意識する場合には選択肢としてありだと思います！</p>
+
+<p><a href="http://arthurgouveia.com/prettyCheckable/" title="jQuery prettyCheckable"><img src="http://farm8.staticflickr.com/7430/9543509397_226d45be58.jpg" width="326" height="500" alt="jQuery prettyCheckable"></a></p>
+
+<h2>Bootstrap Form Helpers</h2>
+
+<p>Bootstrapに最適なフォーム入力支援jQuery Pluginです。<br/>
+サポートしてくれるフォームのタイプは12種類です。</p>
+
+<p>(1) セレクトボックス<br/>
+(2) 国情報<br/>
+(3) 州(都道府県)<br/>
+(4) 通貨<br/>
+(5) 電話番号<br/>
+(6) 言語<br/>
+(7) タイムゾーン<br/>
+(8) Googleフォントの種類<br/>
+(9) Date Picker(日付)<br/>
+(10) 時刻<br/>
+(11) フォント種類<br/>
+(12) フォントのサイズ<br/></p>
+
+<p><a href="http://vincentlamanna.com/BootstrapFormHelpers/index.html" title="Bootstrap Form Helpers"><img src="http://farm9.staticflickr.com/8537/8621501394_6584b8b3b4_z.jpg" width="640" height="300" alt="Bootstrap Form Helpers"></a></p>
+
+<h2>MagicSuggest</h2>
+
+<p>BootstrapにマッチしたオートコンプリートのjQuery Pluginです。</p>
+
+<p><a href="http://nicolasbize.github.com/magicsuggest/" title="MagicSuggest"><img src="http://farm9.staticflickr.com/8531/8614173493_c48b6334e8_z.jpg" width="640" height="384" alt="MagicSuggest"></a></p>
+
+<h2>Select2</h2>
+
+<p>検索時の補完や、タグの複数選択などができるjQuery Pluginです。後発のツールだけあって、その分多機能です！</p>
+
+<p><a href="http://ivaynberg.github.io/select2/" title="Select2 3.3.2"><img src="http://farm8.staticflickr.com/7287/8737194047_d2efd35886_z.jpg" width="640" height="494" alt="Select2 3.3.2"></a></p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>Bootstro.js</h2>
+
+<p>Bootstrapにマッチしたサイトの利用手順をオーバーレイで表示してくれるjQueryです。</p>
+
+<p><a href="http://clu3.github.io/bootstro.js/" title="Bootstro.js"><img src="http://farm9.staticflickr.com/8538/8617710361_626e2b6910_z.jpg" width="640" height="433" alt="Bootstro.js"></a></p>
+
+<h2>Twitter Bootstrap Button Generator</h2>
+
+<p>Bootstrapの基本デザインをベースにしたボタンを生成できます。ベースの色合いを崩さないので、とっても使いやすそうです！</p>
+
+<p><a href="http://www.plugolabs.com/twitter-bootstrap-button-generator/" title="Twitter Bootstrap Button Generator"><img src="http://farm9.staticflickr.com/8246/8637207508_bb480bd15d_z.jpg" width="640" height="453" alt="Twitter Bootstrap Button Generator"></a></p>
+
+<h2>Bootstrap Tags</h2>
+
+<p>フォーム内でのタグの選択などに最適なjQuery Pluginです。</p>
+
+<p><a href="https://github.com/maxwells/bootstrap-tags" title="Bootstrap Tags"><img src="http://farm8.staticflickr.com/7403/9543529945_c3172c2c17_z.jpg" width="640" height="574" alt="Bootstrap Tags"></a></p>
+
+<h2>Beautiful Buttons for Twitter Bootstrappers</h2>
+
+<p>BootstrapにマッチしたCSSボタンを作ることが出来るツールです。色合いやグラデーションを簡単に調整することができます。こちらはBootsrapを拡張してオリジナリティのあるボタンが出来ます。</p>
+
+<p><a href="http://charliepark.org/bootstrap_buttons/" title="Beautiful Buttons for Twitter Bootstrappers"><img src="http://farm9.staticflickr.com/8099/8637200566_8674a72b7e_z.jpg" width="640" height="518" alt="Beautiful Buttons for Twitter Bootstrappers"></a></p>
+
+<h2>Social Buttons for Twitter Bootstrap</h2>
+
+<p>Bootstrapのデザインにマッチしたソーシャル系のボタンを作成出来ます。<br/>
+(Facebook, Twitter, GitHub, Pinterest, Linkdinなど)</p>
+
+<p><a href="http://noizwaves.github.io/bootstrap-social-buttons/" title="Social Buttons for Twitter Bootstrap"><img src="http://farm4.staticflickr.com/3757/8772517279_2192494ebe_z.jpg" width="640" height="499" alt="Social Buttons for Twitter Bootstrap"></a></p>
+
+<h2>Bootstrap Image Gallery Demo</h2>
+
+<p>Bootstrapのデザインにマッチしたイメージ・ギャラリーを作成することができます。</p>
+
+<p><a href="http://blueimp.github.io/Bootstrap-Image-Gallery/" title="Bootstrap Image Gallery Demo"><img src="http://farm4.staticflickr.com/3692/8919764135_26f12a7bfa_z.jpg" width="640" height="398" alt="Bootstrap Image Gallery Demo"></a></p>
+
+<h2>jQuery File Upload</h2>
+
+<p>jQueryによるFile アップローダーです。コレを使うメリットは、アップロード前のプレビュー表示や、プログレスバーの表示、ドラッグアンドドロップへの対応などなど。</p>
+
+<p><a href="http://www.flickr.com/photos/84117399@N08/9543565705/" title="スクリーンショット 2013-08-19 19.23.00 by morizyun, on Flickr"><img src="http://farm8.staticflickr.com/7386/9543565705_78f1335f87_z.jpg" width="640" height="406" alt="スクリーンショット 2013-08-19 19.23.00"></a></p>
+
+<h2>jquery-simplecolorpicker</h2>
+
+<p>サイトの種類次第では地味に必要になるカラーピッカーのTwitter-Bootstrap版。自分で作りこむと結構骨が折れそうなのでオススメです！</p>
+
+<p><a href="https://github.com/tkrotoff/jquery-simplecolorpicker" title="jquery-simplecolorpicker"><img src="http://farm3.staticflickr.com/2851/9546394702_b449c77941_z.jpg" width="486" height="640" alt="jquery-simplecolorpicker"></a></p>
+
+<h2>jQuery-menu-aim</h2>
+
+<p>これはBootstrap用ではないですが、狙いは面白いのでご紹介。Amazonのメニューっぽいドロップダウンメニューを提供していくれるjQueryプラグインです。</p>
+
+<p><a href="https://github.com/kamens/jQuery-menu-aim" title="jQuery-menu-aim"><img src="http://farm9.staticflickr.com/8101/8634181668_0799281a44_z.jpg" width="640" height="311" alt="jQuery-menu-aim"></a></p>
+
+<h2>BootstrapCDN</h2>
+
+<p>Twitter Bootstrapを配信してくれるCDNです。CDNを使ってサーバ負荷分散をしたい場合には選択肢としてありだと思います。</p>
+
+<p><a href="http://www.bootstrapcdn.com/" title="BootstrapCDN"><img src="http://farm8.staticflickr.com/7423/9543450147_fdc79ed452_z.jpg" width="640" height="311" alt="BootstrapCDN"></a></p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>このテーマに関連するオススメ本</h2>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4862671063/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4862671063&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4862671063&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4862671063" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="http://www.amazon.co.jp/gp/product/4862671063/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4862671063&amp;linkCode=as2&amp;tag=morizyun00-22">IAシンキング Web制作者・担当者のためのIA思考術</a></strong>』は、デザインの前段階として情報をどのように整理して見せるかをいうインフォメーションアーキテクチャ(IA)についての書籍です。見た目がどんなにきれいでも、使い勝手が悪かったり、動線が悪かったりといった問題を解決するために、デザイナさんだけでなく、Webサイトの開発に関わる全ての人に読んでほしい書籍です。</p>
+
+<br style="clear:both;"/>
+
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://inspiretrends.com/bootstrap-tools-and-generators">35 Must Have Bootstrap Tools and Generators</a></p>
+
+<h2>変更来歴</h2>
+
+<p>(04/05 15:15) Bootstrap Form Helpersを追加しました<br/>
+(04/09 15:25) jQuery-menu-aimを追加しました<br/>
+(04/09 15:40) bootstrap-datetimepickerを追加しました<br/>
+(04/10 16:20) Beautiful Buttons for Twitter Bootstrappersを追加<br/>
+(04/10 16:30) Twitter Bootstrap Button Generatorを追加<br/>
+(04/20 15:00) LayoutItを追加<br/>
+(05/14 20:25) Select2を追加<br/>
+(05/22 11:40) Social Buttons for Twitter Bootstrapを追加<br/>
+(06/02 13:55) Bootstrap Image Gallery Demoを追加<br/>
+(08/19 20:00) 色々内容の加筆修正をしました！<br/>
+(08/20 21:00) Fuel UXを追加<br/></p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-19T20:00:00+09:00" pubdate data-updated="true">Aug 19<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bootstrap/'>Bootstrap</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/disney-marketing-repeater-book-review/" title="Previous Post: ディズニー こころをつかむ 9つの秘密 [書評]">&laquo; ディズニー こころをつかむ 9つの秘密 [書評]</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/twitter-bootstrap-templates/" title="Next Post: ひと味ちがうTwitter Bootstrapの18個の無料テンプレート&有料まとめサイト">ひと味ちがうTwitter Bootstrapの18個の無料テンプレート&有料まとめサイト &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/';
+        var disqus_url = 'http://morizyun.github.com/blog/twitter-bootstrap-parts-jquery-ui/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

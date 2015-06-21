@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>devise/cancancanを使ってログイン機能を実装する [Rails 4.1] - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="最近はじめて、Rails内だけでユーザーの管理、ログインをする機能を実装しました。簡単にネットで調べた限りでは、『devise』と『cancancan』を使う方法が一番シンプルでしっくりきました。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/devise-cancan-rails-authorize/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="devise/cancancanを使ってログイン機能を実装する [Rails 4.1] - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="最近はじめて、Rails内だけでユーザーの管理、ログインをする機能を実装しました。簡単にネットで調べた限りでは、『devise』と『cancancan』を使う方法が一番シンプルでしっくりきました。 &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/devise-cancan-rails-authorize/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Devise/cancancanを使ってログイン機能を実装する [Rails 4.1]</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-02T21:55:00+09:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2014</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/devise-cancan-rails-authorize/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/devise-cancan-rails-authorize/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/devise-cancan-rails-authorize/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/devise-cancan-rails-authorize/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844335928/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844335928&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844335928&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844335928" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />最近はじめて、Rails内だけでユーザーの管理、ログインをする機能を実装しました。簡単にネットで調べた限りでは、『<strong><a href="https://github.com/plataformatec/devise">devise</a></strong>』と『<strong><a href="https://github.com/CanCanCommunity/cancancan">cancancan</a></strong>』を使う方法が一番シンプルでしっくりきました。</p>
+
+<p>こういった一般的な機能を実装するときにはRailsには本当に多様なライブラリがあるのが強みだなとつくづく感じます！</p>
+
+<p><strong>(07-02 21:55) 設定の追記やlocaleファイルのダウンロードなどを追記</strong></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>次試すメモ</h2>
+
+<p>『<strong><a href="https://github.com/mcasimir/devise-i18n-views">mcasimir/devise-i18n-views</a></strong>』で翻訳したdeviseのviewを生成できそう。次試してみます！</p>
+
+<h2>Gemのインストール</h2>
+
+<p><code>Gemfile</code>に以下のコードを追加して、<code>bundle install</code>を実行。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># User Authorization</span>
+</span><span class='line'>gem <span class="s1">&#39;devise&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;cancancan&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># form helper</span>
+</span><span class='line'>gem <span class="s1">&#39;enum_help&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>deviseの認証画面を作成</h2>
+
+<p>コンソール上で以下のコマンドを実行。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># devise用の設定ファイルの作成</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rails g devise:install
+</span><span class='line'>
+</span><span class='line'><span class="c"># deviseの認証用のviewの作成</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rails g devise:views
+</span><span class='line'>
+</span><span class='line'><span class="c"># erbからhamlに変換</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rake haml:replace_erbs
+</span><span class='line'>
+</span><span class='line'><span class="c"># 認証ユーザーの作成</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rails g devise AdminUser
+</span><span class='line'>
+</span><span class='line'><span class="c"># マイグレーション(テーブルの作成)</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rake db:migrate
+</span><span class='line'>
+</span><span class='line'><span class="c"># ログイン後の管理画面の作成</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rails g controller admin::base index
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>サインアウトをgetメソッドでできるようにdeviseの設定を書き直し。<code>vim config/initializers/devise.rb</code>を開いて次の様に変更</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>config.sign_out_via <span class="o">=</span> :delete
+</span><span class='line'><span class="c"># ↓ 下のように変更</span>
+</span><span class='line'>config.sign_out_via <span class="o">=</span> :get
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>deviseの設定</h2>
+
+<p>まずは、<code>default_url_options</code>の設定。<code>config/environments/development.rb</code>に以下を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">default_url_options</span> <span class="o">=</span> <span class="p">{</span> <span class="n">host</span><span class="p">:</span> <span class="s1">&#39;localhost:3000&#39;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次に、<code>app/views/layouts/application.html.haml</code>に以下を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">%</span><span class="nb">p</span><span class="o">.</span><span class="n">notice</span><span class="o">=</span> <span class="n">notice</span>
+</span><span class='line'><span class="o">%</span><span class="nb">p</span><span class="o">.</span><span class="n">alert</span><span class="o">=</span> <span class="n">alert</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>翻訳ファイルのダウンロード</h2>
+
+<p>以下のコマンドを実行して、日本語のlocaleファイルをダウンロード。ついでに英語のlocaleファイルも配置変え。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://raw.githubusercontent.com/tigrish/devise-i18n/master/locales/ja.yml -P config/locales/devise/
+</span><span class='line'>mv config/locales/devise.en.yml config/locales/devise/en.yml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>ルーティングの書き直し</h2>
+
+<p><code>vim config/routes.rb</code>に管理画面へのルーティングを書き直し。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 以下を削除</span>
+</span><span class='line'>namespace :admin <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>get <span class="s1">&#39;base/index&#39;</span>
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'><span class="c"># 以下を追加</span>
+</span><span class='line'>root <span class="s1">&#39;admin/base#index&#39;</span> <span class="c"># ログイン画面をルートにする</span>
+</span><span class='line'>get <span class="s1">&#39;/admin&#39;</span> <span class="o">=</span>&gt; <span class="s1">&#39;admin/base#index&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>コントローラの書き直し</h2>
+
+<p>続いて、認証ユーザーのみが<code>/admin</code>を見れるように<code>vim app/controllers/admin/base_controller.rb</code>に以下を追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>class Admin::BaseController &lt; ApplicationController
+</span><span class='line'>  <span class="c"># ↓ これを追加</span>
+</span><span class='line'>  before_filter :authenticate_admin_user!
+</span><span class='line'>
+</span><span class='line'>  def index
+</span><span class='line'>  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>動作確認</h2>
+
+<p>まずはWEBrickを起動。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rails s
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>起動したら、ブラウザで<code>http://0.0.0.0:3000</code>を起動。</p>
+
+<p><img src="https://farm8.staticflickr.com/7198/13925728699_46c7b75a4c_z.jpg" width="640" height="417" alt="スクリーンショット 2014-05-05 18.44.26"></p>
+
+<p>するとログイン画面がでるので、まずはユーザー登録のために<code>Sign up</code>を選択してユーザーを作成。ユーザーの作成が完了してログインできると、<code>Admin::Base#index</code>が表示で成功。</p>
+
+<p><img src="https://farm6.staticflickr.com/5538/13925729749_33a1768465_z.jpg" width="640" height="419" alt="スクリーンショット 2014-05-05 18.46.32"></p>
+
+<h2>ユーザーの役割を分けて権限管理</h2>
+
+<p>次に<code>AdminUser</code>にroleをつけて、権限管理をしつつcancanでログインユーザーを管理する手順です。コンソールで以下のコマンドを実行します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># AdminUserにroleを追加</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rails g migration add_role_to_admin_users role
+</span><span class='line'>
+</span><span class='line'><span class="c"># マイグレーション(テーブルの作成)</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rake db:migrate
+</span><span class='line'>
+</span><span class='line'><span class="c"># cancan用の設定を追加</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rails g cancan:ability
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>特定のroleだけが一部の情報を見れるようにする</h2>
+
+<p><code>app/models/admin_user.rb</code>に以下を追記。<br/>
+(Rails 4.1から採用された『<strong><a href="http://edgeguides.rubyonrails.org/4_1_release_notes.html#active-record-enums">enum</a></strong>』を使っています。)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>class AdminUser &lt; ActiveRecord::Base
+</span><span class='line'>  <span class="c"># Include default devise modules. Others available are:</span>
+</span><span class='line'>  <span class="c"># :confirmable, :lockable, :timeoutable and :omniauthable</span>
+</span><span class='line'>  devise :database_authenticatable, :registerable,
+</span><span class='line'>         :recoverable, :rememberable, :trackable, :validatable
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># ↓ 以下を追加</span>
+</span><span class='line'>  <span class="nv">ROLE</span> <span class="o">=</span> <span class="o">{</span>admin: <span class="s2">&quot;admin&quot;</span>, member: <span class="s2">&quot;member&quot;</span><span class="o">}</span>
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>app/models/ability.rb</code>に以下を追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>class Ability
+</span><span class='line'>  include CanCan::Ability
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># ↓ 以下を追記</span>
+</span><span class='line'>  def initialize<span class="o">(</span>user<span class="o">)</span>
+</span><span class='line'>    <span class="k">if </span>user.admin?
+</span><span class='line'>      can :admin, :all
+</span><span class='line'>    elsif user.member?
+</span><span class='line'>      can :member, :all
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>app/views/admin/base/index.html.haml</code>に以下を追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>%h1 Admin::Base#index
+</span><span class='line'>%p Find me in app/views/admin/base/index.html.haml
+</span><span class='line'>
+</span><span class='line'><span class="c"># ↓ 以下を追記</span>
+</span><span class='line'>- <span class="k">if </span>can? :admin, current_admin_user
+</span><span class='line'>  %p admin information
+</span><span class='line'>
+</span><span class='line'>- <span class="k">if </span>can? :member, current_admin_user
+</span><span class='line'>  %p member information
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>vim app/views/devise/registrations/new.html.haml</code>にroleを追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.form-inputs
+</span><span class='line'>    <span class="o">=</span> f.input :email, required: <span class="nb">true</span>, autofocus: <span class="nb">true</span>
+</span><span class='line'>    <span class="o">=</span> f.input :password, required: <span class="nb">true</span>
+</span><span class='line'>    <span class="o">=</span> f.input :password_confirmation, required: <span class="nb">true</span>
+</span><span class='line'>    <span class="c"># ↓ 以下の1行を追加</span>
+</span><span class='line'>    <span class="o">=</span> f.input :role, :include_blank <span class="o">=</span>&gt; <span class="nb">false</span>, required: <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>app/views/devise/registrations/edit.html.haml</code>にroleを追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.form-inputs
+</span><span class='line'>    <span class="o">=</span> f.input :email, required: <span class="nb">true</span>, autofocus: <span class="nb">true</span>
+</span><span class='line'>    <span class="o">=</span> f.input :password_confirmation, required: <span class="nb">false</span>
+</span><span class='line'>    <span class="o">=</span> f.input :current_password, hint: <span class="s2">&quot;we need your current password to confirm your changes&quot;</span>, required: <span class="nb">true</span>
+</span><span class='line'>    <span class="c"># ↓ 以下の1行を追加</span>
+</span><span class='line'>    <span class="o">=</span> f.input :role, :include_blank <span class="o">=</span>&gt; <span class="nb">false</span>, required: <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>app/controllers/application_controller.rb</code>でroleをストロングパラメータで受け取れるように変更。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>class ApplicationController &lt; ActionController::Base
+</span><span class='line'>  <span class="c"># ↓ 以下を追加</span>
+</span><span class='line'>  before_action :configure_permitted_parameters, <span class="k">if</span>: :devise_controller?
+</span><span class='line'>
+</span><span class='line'>  protected
+</span><span class='line'>
+</span><span class='line'>  def configure_permitted_parameters
+</span><span class='line'>    devise_parameter_sanitizer.for<span class="o">(</span>:sign_up<span class="o">)</span> &lt;&lt; :role
+</span><span class='line'>    devise_parameter_sanitizer.for<span class="o">(</span>:account_update<span class="o">)</span> &lt;&lt; :role
+</span><span class='line'>  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで<code>role = "admin"</code>のユーザーの場合は<code>admin information</code>が表示。</p>
+
+<p><img src="https://farm8.staticflickr.com/7058/14110199032_6cc985315e_z.jpg" width="570" height="335" alt="スクリーンショット 2014-05-05 21.25.16"></p>
+
+<p>これで<code>role = "member"</code>のユーザーの場合は<code>member information</code>が表示。</p>
+
+<p><img src="https://farm6.staticflickr.com/5325/13926596717_dce491d37c_z.jpg" width="566" height="351" alt="スクリーンショット 2014-05-05 21.24.43"></p>
+
+<p>便利便利。でもいろいろハマりました。勉強になったよ！</p>
+
+<h2>GitHubリポジトリ</h2>
+
+<p><strong><a href="https://github.com/morizyun/devise_cancan_sample_app">morizyun/devise_cancan_sample_app - GitHub</a></strong><br/></p>
+
+<p>今回のサンプルソースです。つっこみお願いします！</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="https://github.com/plataformatec/devise">plataformatec/devise - GitHub</a></strong></p>
+
+<p><strong><a href="http://konboi.hatenablog.com/entry/2013/01/17/103055">devise と cancan を使って権限管理可能な管理画面を作る。 (1) - @Konboi memo</a></strong></p>
+
+<p><strong><a href="http://konboi.hatenablog.com/entry/2013/01/21/203259">devise と cancan を使って権限管理可能な管理画面を作る。 (2) - @Konboi memo</a></strong></p>
+
+<p><strong><a href="http://blog.scimpr.com/2012/11/18/rails3-2%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E6%A8%A9%E9%99%90%E3%82%92%E7%B4%B0%E3%81%8B%E3%81%8F%E8%A8%AD%E5%AE%9A%EF%BD%9Edevise-cancan/">Rails3.2でユーザー権限を細かく設定～Devise + cancan | Scimpr Blog</a></strong></p>
+
+<h2>編集来歴</h2>
+
+<p>(05-05 21:25) 新規作成<br/>
+(07-02 21:55) 設定の追記やlocaleファイルのダウンロードなどを追記<br/></p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-02T21:55:00+09:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/devise-cancan-rails-authorize/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/devise-cancan-rails-authorize/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/devise-cancan-rails-authorize/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/devise-cancan-rails-authorize/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/overlay-loading-image-ajax/" title="Previous Post: Ajaxが発生したら、ローディング画像(gifアニ)をオーバーレイで表示[For Rails]">&laquo; Ajaxが発生したら、ローディング画像(gifアニ)をオーバーレイで表示[For Rails]</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/devise-customize-login-register-path/" title="Next Post: deviseのログイン・ログアウト時、登録完了後のリダイレクト先変更、ユーザー登録完了時に確認メール送付 [Rails 4.1]">deviseのログイン・ログアウト時、登録完了後のリダイレクト先変更、ユーザー登録完了時に確認メール送付 [Rails 4.1] &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/devise-cancan-rails-authorize/';
+        var disqus_url = 'http://morizyun.github.com/blog/devise-cancan-rails-authorize/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

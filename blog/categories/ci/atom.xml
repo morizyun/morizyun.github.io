@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CI | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/ci/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[無料で werckerで RspecのCI & Capistrano Deploy]]></title>
+    <link href="http://morizyun.github.com/blog/wercker-ci-rspec-capistrano-deploy-auto/"/>
+    <updated>2015-01-25T11:30:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/wercker-ci-rspec-capistrano-deploy-auto</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00R48BEEW/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00R48BEEW&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00R48BEEW&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00R48BEEW" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />プライベートなプロジェクトでもRspecをデプロイのたびに実行したくて、『<strong><a href="http://wercker.com/">wercker</a></strong>』を使い始めましてた。
+個人的には、Bitbucketのプライベートリポジトリを使って、RSpecで継続的インテグレーションしつつ、CapistranoでDeployできる
+一連のプロセスが無料でスピーディに実現できるのでプライベートプロジェクトにめっちゃオススメです！</p>
+
+<br style="clear:both;"/>
+
+
+<!-- more -->
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>競合サービスとの比較</h2>
+
+<p>無料で使いはじめることができるCIツールには、『<a href="https://circleci.com/">Circle CI</a>』や
+『<a href="https://magnum-ci.com/">Magnum CI</a>』などがありますが、日本語の情報が多く、Bitbucketのプライベートリポジトリが使える点を
+考えて、『<strong><a href="http://wercker.com/">wercker</a></strong>』を選択しました。</p>
+
+<h2>前提: アプリの環境について</h2>
+
+<p>今回は以下のアプリ構成を対象としています。</p>
+
+<pre>
+- アプリ構成
+  - Ruby 2.2.0
+  - Rails 4.2.0
+  - RSpec 3.1.0
+
+- デプロイ先のサーバー構成
+  - CentOS
+  - RVM
+
+- リモートリポジトリ
+  - Bitbucket
+</pre>
+
+
+<h2>weckerでユーザーを作成 &amp; アプリ登録</h2>
+
+<p>(1) GitHubかBitBucketにリポジトリを作ってアプリのコードをプッシュ</p>
+
+<p>(2) 『<strong><a href="http://wercker.com/">wercker</a></strong>』でユーザー登録</p>
+
+<p>(3) werckerで、GitHubかBitBucketのアカウントと連携</p>
+
+<p>(4) werckerにアプリケーションのリポジトリを登録</p>
+
+<p>(5) GitHub or BitBucket側で『<strong>werckerbot</strong>』ユーザーをコラボレーターに追加</p>
+
+<p>ユーザー登録のフローに関しては、『<strong><a href="http://blog.mah-lab.com/2014/01/08/rails-wercker-heroku-deploy/">Githubのプライベートリポジトリでも無料で使えるCI、Werckerを使ってrails newからHerokuのデプロイまでやってみる</a></strong>』
+がわかりやすくてオススメっす！</p>
+
+<h2>wercker.ymlの設定</h2>
+
+<p>werckerでは、RailsプロジェクトのRootパスに<code>wercker.yml</code>を作成すると
+そのステップにそって、スクリプトを実行することができます。</p>
+
+<p>ちなみに僕は上記の『<strong>アプリ構成</strong>』でRSpecとCapistranoでデプロイするスクリプトはこんな感じです。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>box: wercker/rvm
+</span><span class='line'>services:
+</span><span class='line'>  - wercker/postgresql
+</span><span class='line'>build:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;steps:
+</span><span class='line'>    - rvm-use:
+</span><span class='line'>        version: 2.2.0
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># A step that executes `bundle install` command</span>
+</span><span class='line'>    - bundle-install:
+</span><span class='line'>        <span class="nb">jobs</span>: 4
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># A step that prepares the database.yml using the database in services</span>
+</span><span class='line'>    - rails-database-yml:
+</span><span class='line'>        service: postgresql
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># A custom script step, name value is used in the UI</span>
+</span><span class='line'>    <span class="c"># and the code value contains the command that get executed</span>
+</span><span class='line'>    - script:
+</span><span class='line'>        name: <span class="nb">echo </span>ruby information
+</span><span class='line'>        code: |
+</span><span class='line'>            <span class="nb">echo</span> <span class="s2">&quot;ruby version $(ruby --version) running&quot;</span>
+</span><span class='line'>            <span class="nb">echo</span> <span class="s2">&quot;from location $(which ruby)&quot;</span>
+</span><span class='line'>            <span class="nb">echo</span> -p <span class="s2">&quot;gem list: $(gem list)&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c"># Add more steps here:</span>
+</span><span class='line'>    - script:
+</span><span class='line'>            name: rspec
+</span><span class='line'>            code: bundle <span class="nb">exec </span>rspec --color -f d
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;deploy:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;steps:
+</span><span class='line'>    - rvm-use:
+</span><span class='line'>        version: 2.2.0
+</span><span class='line'>    - bundle-install:
+</span><span class='line'>        <span class="nb">jobs</span>: 4
+</span><span class='line'>    - script:
+</span><span class='line'>        name: make .ssh directory
+</span><span class='line'>        code: mkdir -p <span class="s2">&quot;$HOME/.ssh&quot;</span>
+</span><span class='line'>    - create-file:
+</span><span class='line'>        name: write ssh key
+</span><span class='line'>        filename: <span class="nv">$HOME</span>/.ssh/id_rsa
+</span><span class='line'>        overwrite: <span class="nb">true</span>
+</span><span class='line'><span class="nb">        </span>hide-from-log: <span class="nb">true</span>
+</span><span class='line'><span class="nb">        </span>content: <span class="nv">$WERCKER_SSH_KEY_PRIVATE</span> <span class="c"># 独自鍵設定の場合は、$DEPLOY_KEY</span>
+</span><span class='line'>    - script:
+</span><span class='line'>        name: <span class="nb">set </span>permissions <span class="k">for </span>ssh key
+</span><span class='line'>        code: chmod 0400 <span class="nv">$HOME</span>/.ssh/id_rsa
+</span><span class='line'>    - cap:
+</span><span class='line'>        stage: <span class="nv">$WERCKER_DEPLOYTARGET_NAME</span>
+</span><span class='line'>        tasks: deploy
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>環境変数の設定</h2>
+
+<h3>(1) デプロイ用のブランチ名とターゲット名を設定</h3>
+
+<p>wercker => アプリ => Settings => Deploy Target
+に Deploy Targetで「production」を作成し、branch名「master」を
+設定してください。</p>
+
+<h3>(2) サーバーの認証鍵の設定</h3>
+
+<p>こちらは任意の設定ですが、オススメの鍵情報の設定は、『wercker => アプリ => Settings => SSH Keys』
+からwerckerデプロイ専用の鍵を作って設定する方法です。</p>
+
+<p>もし何らかの事情で独自の鍵情報を使いたい場合には、『wercker => アプリ => Settings => PIPLINE』
+に独自の環境変数<code>DEPLOY_KEY</code>(例)を作って、秘密鍵を登録しています。</p>
+
+<h2>werckerでRSpecを実行</h2>
+
+<p>あとはいつも通り、gitにソースコードをプッシュすると、自動的にwerckerでCIが実行されます。</p>
+
+<p>CIが成功すると、werckerからDEPLOYボタンが押せるようになるので、それを実行するとcapistranoのタスクを実行してくれます。</p>
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://blog.mah-lab.com/2014/01/08/rails-wercker-heroku-deploy/">Githubのプライベートリポジトリでも無料で使えるCI、Werckerを使ってrails newからHerokuのデプロイまでやってみる | mah365</a></p>
+
+<p><a href="http://milk1000cc.hatenablog.com/entry/20131130/1385810747">wercker + Capistrano で自動デプロイ - milk1000cc's blog</a></p>
+
+<p><a href="http://deeeet.com/writing/2014/10/16/wercker/">Werckerの仕組み，独自のboxとstepのつくりかた | SOTA</a></p>
+
+<p><a href="http://masutaka.net/chalow/2014-10-04-1.html">Werckerのデプロイボタンはなんだかんだ言って便利だった / マスタカの ChangeLog メモ</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Travis CI、Coveralls、Code Climate、RubyGems、Gemnasiumと連携させよう！]]></title>
+    <link href="http://morizyun.github.com/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci/"/>
+    <updated>2014-12-06T14:55:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4798139823/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798139823&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798139823&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798139823" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> RubyGemsなどのライブラリをOSSで公開した時の醍醐味として、Travis CIやCode Climateなどのコードの品質担保の仕組みを無料で使うことができるということがあります。ということで先日公開した
+『<strong><a href="https://github.com/morizyun/events_jp">events_jp</a></strong>』として公開したを今回、以下のツールに連携させてみました！</p>
+
+<pre>
+  (1) travisCI
+  (2) Coveralls
+  (3) Code Climate
+  (4) RubyGems.org
+  (5) Gemnasium
+</pre>
+
+
+
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>(1) Travis CI</h2>
+
+<p>『<strong><a href="https://travis-ci.org/">Travis CI</a></strong>』はGitHubにPushすると、
+RubyのバージョンやDBのバージョンなど複数の環境でテストを自動で実行してくれる超有名なCIサービスです。
+対応している言語は次の通りです。有名どころはほとんど対応してそう。</p>
+
+<pre>
+C、C++、Clojure、Erlang、Go、Groovy、Haskell、Java、
+JavaScript(Node.js)、Objective-C、Perl、PHP、Python、Ruby、Scala
+</pre>
+
+
+<p>まずは、『<strong><a href="https://travis-ci.org/">Travis CI</a></strong>』でGitHubアカウントでユーザー登録します。
+そして、ユーザー登録が完了したら、『<strong><a href="https://travis-ci.org/profile">Profile - Travis CI</a></strong>』で
+<code>sync now</code>して、連携許可のスイッチをONにします。</p>
+
+<p><img src="https://farm8.staticflickr.com/7581/15246024893_87baa17295_z.jpg" width="640" height="327" alt="スクリーンショット_2014-11-24_14_21_36"></p>
+
+<p>ユーザー登録したら、連携対象のプロジェクトフォルダ直下でローカルで以下のコマンドを実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;gem のインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;gem install travis&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;.travis.ymlの作成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;travis init
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><code>.travis.yml</code>が作成されたら、こんな感じで編集。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>language: ruby
+</span><span class='line'>rvm:
+</span><span class='line'>  - 2.0.0
+</span><span class='line'>  - 2.1.0
+</span><span class='line'>  - 2.1.4
+</span><span class='line'>bundler_args: --jobs<span class="o">=</span>2
+</span><span class='line'>script: bundle <span class="nb">exec </span>rspec
+</span><span class='line'>branches:
+</span><span class='line'>  only:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;- master
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>詳しい設定や編集方法はこちらがわかりやすいです。</p>
+
+<p><strong><a href="http://sue445.hatenablog.com/entry/2014/08/11/123000">githubでgemを公開する時に使いたいバッジ - くりにっき</a></strong></p>
+
+<p><strong><a href="http://docs.travis-ci.com/user/languages/ruby/">Travis CI: Building a Ruby Project</a></strong></p>
+
+<p>設定画完了したら、<code>.travis.yml</code>が正しいかをGem
+『<strong><a href="https://github.com/travis-ci/travis-lint">travis-ci/travis-lint</a></strong>』
+でチェックします。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install travis-lint
+</span><span class='line'>travis lint
+</span><span class='line'>Shell completion not installed. Would you like to like to install it now? |y| y
+</span><span class='line'>Hooray, .travis.yml looks valid :<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>設定画完了したら、<code>.travis.yml</code>などをGitHubにPushするとTravis CIがテストを開始してくれます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add .travis.yml
+</span><span class='line'>git commit -m <span class="s2">&quot;Add .travis.yml&quot;</span>
+</span><span class='line'>git push origin master&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ブラウザでtravisの結果を表示&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;travis open
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><code>travis open</code>を実行するとブラウザが開いて、travisの実行プロセス/結果を確認できます。</p>
+
+<p><img src="https://farm8.staticflickr.com/7529/15865743065_d65c8738f5_z.jpg" width="640" height="529" alt="スクリーンショット_2014-11-24_14_36_09"></p>
+
+<p>あとはその結果をバッチとしてGitHubのREADMEに貼り付けることができます。バッチのタグはTravisから取得できます！</p>
+
+<p><img src="https://farm9.staticflickr.com/8669/15863816351_451f100ae9_z.jpg" width="640" height="525" alt="スクリーンショット_2014-11-24_14_47_35"></p>
+
+<h2>(2) Coveralls</h2>
+
+<p>『<strong><a href="https://coveralls.io/r/morizyun/events_jp">Coveralls</a></strong>』は、テストのカバレッジ率を通知してくれるサービスです。
+開発をしていく過程でテストがおざなりにならないように管理できるようになります。対応している言語は次の通りです。</p>
+
+<pre>Ruby/Rails、Python、PHP、Node.js、C/C++、Scala</pre>
+
+
+<p>まずは『<strong><a href="https://coveralls.io/r/morizyun/events_jp">Coveralls</a></strong>』にログインして<code>ADD REPO</code>
+して、連携対象のリポジトリを設定します。</p>
+
+<p><img src="https://farm8.staticflickr.com/7567/15246444813_cd703f197a_z.jpg" width="640" height="500" alt="スクリーンショット_2014-11-24_15_45_20"></p>
+
+<p>設定したら、<code>Gemfile</code>に以下を追加して<code>bundle install</code>を実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;coveralls&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>あと<code>spec/spec_helper.rb</code>か、<code>test/test_helper.rb</code>に以下の設定を追記。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;CI&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;coveralls&#39;</span>
+</span><span class='line'>  <span class="no">Coveralls</span><span class="o">.</span><span class="n">wear!</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[Coveralls::SimpleCov::Formatter]</span>
+</span><span class='line'><span class="sr">  SimpleCov.start &#39;test_frameworks&#39;</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>あとはGitHubにPushして、Travis CIが実行されるとCoverallと連携してくれます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add -A
+</span><span class='line'>git commit -m <span class="s1">&#39;Add Coveralls settings&#39;</span>
+</span><span class='line'>git push origin master
+</span><span class='line'>open https://coveralls.io/r/morizyun/events_jp
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="https://farm8.staticflickr.com/7467/15680153249_49b38b7b47_z.jpg" width="640" height="428" alt="スクリーンショット_2014-11-24_15_59_36"></p>
+
+<p>『<strong><a href="https://coveralls.io/r/morizyun/events_jp">Coveralls</a></strong>』でも同じくバッチを設定することができます。
+Coveralls内の対応するリポジトリのページの右上の『<strong>BADGE URLS</strong>』をクリックしてタグをREADMEに追記します。</p>
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>(3) Code Climate</h2>
+
+<p>『<strong><a href="https://codeclimate.com">Code Climate</a></strong>』はコードの重複や複雑すぎる部分などを静的解析してくれて、
+結果を表示してくれるGemです。コードの品質を向上させるためのアドバイスをくれるサービスです！対応している言語は次の3つ。</p>
+
+<pre>Ruby, JavaScript, and PHP (beta)</pre>
+
+
+<p>『<strong><a href="https://codeclimate.com">Code Climate</a></strong>』にGitHub アカウントでログインして、Publicなレポジトリなら、
+自分のレポジトリを登録すると自動で静的解析をしてくれるので特に設定は必要ありません。
+ソースコードの中から問題がある部分をA-Dで判定してくれたり、4点満点でソースコードの品質を判定してくれたりします。</p>
+
+<p><img src="https://farm9.staticflickr.com/8670/15244005864_0b70283a68_z.jpg" width="640" height="486" alt="スクリーンショット 2014-11-24 16.26.35"></p>
+
+<p>バッチのタグも右側のバッチをクリックすると取得できるのでREADMEに追加しましょう！</p>
+
+<p><img src="https://farm9.staticflickr.com/8648/15865637742_29af11c023_z.jpg" width="640" height="443" alt="スクリーンショット_2014-11-24_16_23_44"></p>
+
+<p>もし、Codeのカバレッジも含めて連携させたい場合はまず<code>Gemfile</code>に以下のように追加します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;codeclimate-test-reporter&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>次に<code>spec/spec_helper.rb</code>か、<code>test/test_helper.rb</code>に以下の設定を追記。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;CI&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;codeclimate-test-reporter&#39;</span>
+</span><span class='line'>  <span class="no">SimpleCov</span><span class="o">.</span><span class="n">formatter</span> <span class="o">=</span> <span class="no">SimpleCov</span><span class="o">::</span><span class="no">Formatter</span><span class="o">::</span><span class="no">MultiFormatter</span><span class="o">[</span><span class="no">CodeClimate</span><span class="o">::</span><span class="no">TestReporter</span><span class="o">::</span><span class="no">Formatter</span><span class="o">]</span>
+</span><span class='line'>  <span class="no">SimpleCov</span><span class="o">.</span><span class="n">start</span> <span class="s1">&#39;test_frameworks&#39;</span>
+</span><span class='line'>  <span class="no">CodeClimate</span><span class="o">::</span><span class="no">TestReporter</span><span class="o">.</span><span class="n">start</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Codeclimateの対象レポジトリのページの右側にCodeCoverageの設定があるのでクリックすると、
+<code>CODECLIMATE_REPO_TOKEN</code>があるのでその設定を<code>.travis.ymlのscript</code>の設定を修正。<br/>
+(xxxxにTOKENを入れてください。この設定は本当は良くない気がします。もっといい方法知ってる人がいたら教えて下さい)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>script: <span class="nv">CODECLIMATE_REPO_TOKEN</span><span class="o">=</span>xxxx bundle <span class="nb">exec </span>rspec
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>これでカバレッジも含めて一括でチェックできるようになります！</p>
+
+<p><img src="https://farm9.staticflickr.com/8598/15680584277_dfa64b39d9_z.jpg" width="640" height="462" alt="スクリーンショット_2014-11-24_16_42_33"></p>
+
+<h2>(4) RubyGems.org</h2>
+
+<p>こちらもRuby限定ですが、RubyGems.orgの自分が公開しているgemのページからもバージョン情報が書かれたバッチを取得する事ができます。
+まずは右下のメニューの『Badge』をクリックして、タグを取得してREADMEに追記します。</p>
+
+<p><img src="https://farm8.staticflickr.com/7503/15863859381_2f8ced3aaf_z.jpg" width="640" height="446" alt="スクリーンショット_2014-11-24_14_56_43"></p>
+
+<p><img src="https://farm8.staticflickr.com/7495/15680093187_9f96c14f15_z.jpg" width="640" height="514" alt="スクリーンショット_2014-11-24_14_58_55"></p>
+
+<p>地味にPlugin Authorとしてテンションが上がります＾＾</p>
+
+<h2>(5) Gemnasium</h2>
+
+<p>『<strong><a href="https://gemnasium.com">Gemnasium</a></strong>』は使っているGemが最新かどうかをチェックしてくれるRuby限定のサービスです。</p>
+
+<p>使い方は『<strong><a href="https://gemnasium.com">Gemnasium</a></strong>』にGitHubアカウントでログインして、対象のレポジトリを選択して同期します。</p>
+
+<p><img src="https://farm8.staticflickr.com/7471/15865763612_e313fc4591_z.jpg" width="640" height="507" alt="スクリーンショット_2014-11-24_16_52_13"></p>
+
+<p>あとはリポジトリと同期するとGemのバージョンを判定して結果を出してくれます。</p>
+
+<p><img src="https://farm8.staticflickr.com/7525/15864414981_50c4b76a67_z.jpg" width="640" height="489" alt="スクリーンショット 2014-11-24 16.54.38"></p>
+
+<p>ちなみにバッチは右側の設定(歯車アイコン)をクリックして、タブのBadgeを選択すると取得できます。</p>
+
+<p><img src="https://farm9.staticflickr.com/8596/15865786282_798836d37a_z.jpg" width="640" height="456" alt="スクリーンショット 2014-11-24 16.58.03"></p>
+
+<h2>その他面白そうなサービス</h2>
+
+<h3><a href="https://scrutinizer-ci.com/">Scrutinizer</a></h3>
+
+<p><a href="https://scrutinizer-ci.com/"><img src="https://farm9.staticflickr.com/8568/15679017378_3004feecf9_z.jpg" width="640" height="468" alt="スクリーンショット 2014-11-24 17.22.54"></a></p>
+
+<p>CIでテストを実行してくれるだけではなく、コード解析や自動でソースコードレビューをしてくれるそうです。しかもpublicリポジトリは無料！</p>
+
+<h3><a href="https://codeship.com/">CodeShip</a></h3>
+
+<p><a href="https://codeship.com/"><img src="https://farm8.staticflickr.com/7467/15873715331_762d9399c4_z.jpg" width="640" height="499" alt="スクリーンショット 2014-11-25 21.49.47"></a></p>
+
+<p>CIやDeployをやってくれるサービス。特徴はこんな感じです！</p>
+
+<pre>
+(1) OSSなら完全無料で使える
+(2) privateリポジトリでも5リポジトリ、100回/月のbuildまで無料で実行
+(3) SlackやHipChat、メール、Campfireなどに通知を出せる
+(4) SSHでログインでき、ブラックボックスにはならない
+</pre>
+
+
+<h3><a href="http://vaddy.net/">VADDY</a></h3>
+
+<p><a href="http://vaddy.net/"><img src="https://farm8.staticflickr.com/7517/15883161945_b05b3b064f_z.jpg" width="640" height="440" alt="スクリーンショット 2014-11-26 20.45.59"></a></p>
+
+<p>このサービスは、CIツールと連携してWebサイトの脆弱性診断をしてくれるサービスです。日本発のサービスで、現在はスキャン回数無制限で無料で
+使えるようです。まずは試してみると面白そう。</p>
+
+<h3><a href="http://inch-ci.org/">Inch CI - Documentation badges</a></h3>
+
+<p><a href="http://inch-ci.org/"><img src="https://farm8.staticflickr.com/7463/15840738266_346bd57c03_z.jpg" width="640" height="609" alt="スクリーンショット 2014-11-24 17.26.17"></a></p>
+
+<p>Rubyのプロジェクト限定ですが、ソースにどれだけコメントが書かれているかを計測してくれるサービス。ある程度人気が出て
+コメントをしっかり管理するようになったら使いたいですね。</p>
+
+<h3><a href="https://semaphoreapp.com/">Semaphore</a></h3>
+
+<p><a href="https://semaphoreapp.com/"><img src="https://farm8.staticflickr.com/7580/15865950502_e33d0338a9_z.jpg" width="640" height="399" alt="スクリーンショット 2014-11-24 17.32.13"></a></p>
+
+<p>プロジェクトをタイムライン風に表示してくれたり、CI、デプロイ、通知周りをサポートしてくれるサービス。
+アクティビティなどをバッチにして表示してくれるそうです(未確認)</p>
+
+<h3><a href="https://bitdeli.com/">Analytics for GitHub - Bitdeli</a></h3>
+
+<p><a href="https://bitdeli.com/"><img src="https://farm9.staticflickr.com/8626/15840748396_fd79811be8_z.jpg" width="640" height="406" alt="スクリーンショット 2014-11-24 17.27.29"></a></p>
+
+<p>GitHubのリポジトリのアクセス解析をしてくれるサービスだそう。バッチを追加するだけなので、簡単に導入できます！</p>
+
+<h2>コマンドラインからTravisにログイン</h2>
+
+<p>コマンドラインからTravisにログインしたい場合は、以下のコマンドを実行します。(GitHubのIDとPWを利用)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>travis login --pro
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://sue445.hatenablog.com/entry/2014/08/11/123000">githubでgemを公開する時に使いたいバッジ - くりにっき</a></strong></p>
+
+<p><strong><a href="http://blog.ruedap.com/2013/09/02/travis-ci-coveralls-code-climate-github-badge">Travis CIとCoverallsとCode Climateを使ってGitHubリポジトリにバッジを付ける - アインシュタインの電話番号</a></strong></p>
+
+<p><strong><a href="https://github.com/codeclimate/ruby-test-reporter">codeclimate/ruby-test-reporter - GitHub</a></strong></p>
+
+<p><strong><a href="http://ja.ngs.io/2013/12/09/middleman-travis-ci/">Middleman Blog を Travis-CI で GitHub Pages に継続デプロイ - ja.ngs.io</a></strong></p>
+
+<p><strong><a href="http://changesworlds.com/2014/09/introduction-to-coveralls-and-github/">CoverallsのCoveralls BadgeをGitHubに表示する方法</a></strong></p>
+
+<p><strong><a href="http://azu.github.io/slide/inc/github_service/#slide1">Githubでコードを公開する時に便利なサービス</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(11-25 22:05) CodeShipを追加<br/>
+(11-26 21:20) VADDYを追加<br/>
+(12-06 14:55) 記述の微調整<br/></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rspec/Capybara/Turnipの入門記事を全力でまとめてみた - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="さっき、『
+The Rspec Book』を読み終えました。厚めの本ですが、RspecやCucumber、Webrat、Seleniumなどを活用するためのノウハウ満載で大満足でした！ ということで、この本で読んだ内容を忘れないようにするためと、その過程でRspec/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/the-rspec-book-review-rails/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="Rspec/Capybara/Turnipの入門記事を全力でまとめてみた - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="さっき、『
+The Rspec Book』を読み終えました。厚めの本ですが、RspecやCucumber、Webrat、Seleniumなどを活用するためのノウハウ満載で大満足でした！ ということで、この本で読んだ内容を忘れないようにするためと、その過程でRspec/ &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/the-rspec-book-review-rails/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Rspec/Capybara/Turnipの入門記事を全力でまとめてみた</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-08-30T16:00:00+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/the-rspec-book-review-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/the-rspec-book-review-rails/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/the-rspec-book-review-rails/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/the-rspec-book-review-rails/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798121932/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798121932&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798121932&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798121932" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />さっき、『<strong>
+<a href="http://www.amazon.co.jp/gp/product/4798121932/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798121932&amp;linkCode=as2&amp;tag=morizyun00-22">The Rspec Book</a></strong>』を読み終えました。厚めの本ですが、RspecやCucumber、Webrat、Seleniumなどを活用するためのノウハウ満載で大満足でした！ ということで、この本で読んだ内容を忘れないようにするためと、その過程でRspec/Capybaraなどのネット資料をあつめたので、まとめるためにこの記事を書きます。もし、間違いを発見した場合や他にもいいリソースがあれば、是非メッセージを願いします！</p>
+
+<p><strong>(08/30 20:15) 補足：Cucumber(Turnip) + serverspecを追加しました！</strong><br/>
+<strong>(08/30 22:45) 補足: The RSpec BookのRailsコードについてを追加しました！</strong><br/></p>
+
+<!-- more -->
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>テスト駆動開発(TDD)と振る舞い駆動開発(BDD)</h2>
+
+<p>テスト駆動開発(TDD)とは、コードを書く際に最初にテストを書き、次にテストが通る最低限のコードを書き、その後にリファクタリングしていく開発手法です。一方で振る舞い駆動開発(BDD)はTDDの発展形で、『<strong>外から見たソフトの振る舞いを自然言語で記述してテストを書く</strong>』というものです。BDDのメリットは、『振る舞い』と『実装』を分けて考えるようになるという点です。RubyではRspecが有名で、minitestも今後の進化が期待されています。</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/16873272" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"></p>
+
+<p>上のスライドは『<strong><a href="http://www.amazon.co.jp/gp/product/477415377X/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798121932&amp;linkCode=as2&amp;tag=morizyun00-22">JUnit実践入門</a></strong>』の著者の渡辺さんのスライド『<strong><a href="http://www.slideshare.net/shuji_w6e/ss">テスト駆動開発のはじめ方</a></strong>』です。テスト駆動に取り組む上での考え方や、設計のプロセスについてわかりやすく説明して頂けています。</p>
+
+<h2>受け入れテスト</h2>
+
+<p>受け入れテストとは、顧客(ユーザー)視点でのテストのことです。受け入れテストでは、「End-to-Endのテスト」を行うべきとされています。このEnd-to-Endのテストの説明は、『<a href="http://gihyo.jp/dev/serial/01/tdd/0008">第8回 テスト駆動開発の「サイクル」――まず受け入れテストで土台を作る</a>』に次のような説明があります。</p>
+
+<blockquote>
+End-to-Endのテストとは，リクエストがクライアント，たとえばブラウザから始まって，サーバ内で処理され，制御が再度クライアントのほうに返ってくるという構成のときに，リクエストを投げてレスポンスが返ってくるまでの処理をブラックボックスとして捉え，大きく機能の入り口から出口までの範囲のブラックボックステストを行うことを指します。
+</blockquote>
+
+
+<p>ちなみにRubyの受け入れテストツールとしては、cucumberが有名で、最近ではturnipが注目を集め始めています。また、Webブラウザによるテストを手助けしてくれるCapybaraも広義の受け入れテストツールの一つです。</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/14351848" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"></p>
+
+<p>このスライドは2012年9月に発売された『<strong><a href="http://www.amazon.co.jp/gp/product/4798124583/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798124583&amp;linkCode=as2&amp;tag=morizyun00-22">実践テスト駆動開発</a></strong>』の翻訳者、和智さんがデベロッパーズサミットで発表されたスライドです。スライドの内容は、ソフトウエア開発の中でテスト駆動開発を行うために、『受け入れテスト』を含めたプロセスを実施することについて述べられています。より詳細な手法については『<strong><a href="http://www.amazon.co.jp/gp/product/4798124583/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798124583&amp;linkCode=as2&amp;tag=morizyun00-22">実践テスト駆動開発</a></strong>』の中で述べられていると思うので、できるだけ早く読んでみます！</p>
+
+<h2>Rspecについて</h2>
+
+<p><a href="http://morizyun.github.io/blog/rspec-ruby-rails/" title="「RSpec をもっと理解したかったので、まとめを作りました」に感動してRuby 1.9.3でやってみた！"><img src="http://farm8.staticflickr.com/7340/9628059110_8e9849cf5d_z.jpg" width="640" height="397" alt="「RSpec をもっと理解したかったので、まとめを作りました」に感動してRuby 1.9.3でやってみた！"></a></p>
+
+<p>Rspecの導入分については、拙著『<strong><a href="http://morizyun.github.io/blog/rspec-ruby-rails/">「RSpec をもっと理解したかったので、まとめを作りました」に感動してRuby 1.9.3でやってみた！</a></strong>』が基礎を理解するのにはオススメです。</p>
+
+<p><a href="http://magazine.rubyist.net/?0021-Rspec" title="スはスペックのス 【第 1 回】 RSpec の概要と、RSpec on Rails (モデル編)"><img src="http://farm6.staticflickr.com/5499/9628075790_601394d28e_z.jpg" width="640" height="268" alt="スはスペックのス 【第 1 回】 RSpec の概要と、RSpec on Rails (モデル編)"></a></p>
+
+<p>そして、Rspecのより実践的な部分を理解するのには、『<strong><a href="http://magazine.rubyist.net/?0021-Rspec">スはスペックのス 【第 1 回】 RSpec の概要と、RSpec on Rails (モデル編)</a></strong>』がオススメっす！</p>
+
+<h2>RSpec + Capybaraを使ったテストについて</h2>
+
+<p><a href="http://www.oiax.jp/rails/rspec_capybara_primer.html" title="RSpec/Capybara入門"><img src="http://farm6.staticflickr.com/5464/9627827318_19c7397b39_z.jpg" width="640" height="471" alt="RSpec/Capybara入門"></a></p>
+
+<p>RSpec + Capybraraを使ったテストについての記事では、2013年8月から連載中の『<strong><a href="http://www.oiax.jp/rails/rspec_capybara_primer.html">RSpec/Capybara入門</a></strong>』や『<a href="http://www.oiax.jp/rails/zakkan/testing_javascript_with_rspec_and_capybara.html">RSpecとCapybaraでJavaScript/Ajaxをテストする</a>』がオススメです。セミナーや書籍を出版されているoiaxさんだけあって、説明がとってもわかりやすいです！</p>
+
+<p><a href="http://blog.livedoor.jp/sasata299/archives/51924944.html" title="Rails4 + Capybara + PhantomJS (poltergeist) なテスト環境"><img src="http://farm6.staticflickr.com/5490/9628279766_a86effbb17_z.jpg" width="640" height="388" alt="Rails4 + Capybara + PhantomJS (poltergeist) なテスト環境"></a></p>
+
+<p>さらにRSpec + Capybaraでのテストの際にseleniumではなく、ヘッドレスドライバの<strong><a href="https://github.com/ariya/phantomjs">PhantomJS</a></strong>を使う方法についてsasata299&#8217;s blogさんが『<strong><a href="http://blog.livedoor.jp/sasata299/archives/51924944.html">Rails4 + Capybara + PhantomJS (poltergeist) なテスト環境</a></strong>』でまとめられています。オススメです！</p>
+
+<h2>Cucumberの後継、『Turnip』について</h2>
+
+<p><a href="http://magazine.rubyist.net/?0042-FromCucumberToTurnip" title="エンドツーエンドテストの自動化は Cucumber から Turnip への実装者側と利用者側の接点"><img src="http://farm8.staticflickr.com/7285/9624744751_f3c7435ae0_z.jpg" width="514" height="479" alt="エンドツーエンドテストの自動化は Cucumber から Turnip への実装者側と利用者側の接点"></a></p>
+
+<p>Cucumberはその思想こそ素晴らしいですが、バージョンによる進化のスピードが速いことや、記述に必要なノウハウやスキルの高さが要求されるため、なかなか普及していません。それを踏まえて、RspecやCapybaraと互換のある<strong><a href="https://github.com/jnicklas/turnip">Turnip</a></strong>というツールが注目を集めています。この<strong><a href="https://github.com/jnicklas/turnip">Turnip</a></strong>についての入門記事『<strong><a href="http://magazine.rubyist.net/?0042-FromCucumberToTurnip">エンドツーエンドテストの自動化は Cucumber から Turnip へ</a></strong>』がオススメです！</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>補足：BDDの理解を深めよう</h2>
+
+<p><a href="http://ukstudio.jp/2011/07/02/bdd/" title="BDDについて自分なりにまとめてみたのスクリーンショット"><img src="http://farm8.staticflickr.com/7347/9627962270_fa31d85df5_z.jpg" width="640" height="366" alt="BDDについて自分なりにまとめてみたのスクリーンショット"></a></p>
+
+<p>ブログ UKSTUDIOさんの記事『<strong><a href="http://ukstudio.jp/2011/07/02/bdd/">BDDについて自分なりにまとめてみた</a></strong>』には、BDDという言葉が表している２つの意味について説明をしてくれています。僕も少し疑問に感じていた部分を説明してくれる内容だったので、もし腑に落ちないと感じている方は是非ご覧になってください。</p>
+
+<h2>補足：Cucumber(Turnip) + serverspec</h2>
+
+<p><a href="hhttp://qiita.com/sawanoboly@github/items/ced6f7f1bfe2a26943c2" title="Ruby - cucumberのstepsでserverspecをつかう"><img src="http://farm6.staticflickr.com/5329/9626189031_799d02c42b_z.jpg" width="640" height="349" alt="Ruby - cucumberのstepsでserverspecをつかう"></a></p>
+
+<p>Cucumber(Turnip)を使って構築済みサーバの確認のためにserverspecを使っているかたのQiitaの記事『<strong><a href="http://qiita.com/sawanoboly@github/items/ced6f7f1bfe2a26943c2">Ruby - cucumberのstepsでserverspecをつかう</a></strong>』を見つけたので残しておきます。この形式のメリットは、テスト結果をチームでシェアしやすい点があるようです。</p>
+
+<h2>補足: The RSpec BookのRailsコードについて</h2>
+
+<p><a href="http://qiita.com/emadurandal/items/0ed7ad242fe58403bf0e" title="「The RSpec Book」の第１９章（Railsのテスト）以降を試すには"><img src="http://farm4.staticflickr.com/3716/9630206782_8d03bb25bf_z.jpg" width="640" height="415" alt="「The RSpec Book」の第１９章（Railsのテスト）以降を試すには"></a></p>
+
+<p>The RSpec BookのRailsインストールの部分ですが、Railsのバージョン3.0.0の時点でのコードを基準としているため、08/30時点ではコードを書いても動かせません。
+<a href="https://twitter.com/emadurandal">emadurandal</a>さんがQiitaに『<strong><a href="http://qiita.com/emadurandal/items/0ed7ad242fe58403bf0e">「The RSpec Book」の第１９章（Railsのテスト）以降を試すには</a></strong>』で対処方法を書いていますので是非ご参照ください！</p>
+
+<h2>Special Thanks</h2>
+
+<p><a href="https://twitter.com/emadurandal">emadurandal</a>さんからThe RSpec BookのRailsコードについてコメントを頂きました。ありがとうございます！</p>
+
+<p><strong><a href="http://gongo.hatenablog.com/entry/2013/05/29/223218">Turnip について (1) / まずは動かす - Thanks Driven Life</a></strong></p>
+
+<p><strong><a href="http://diary.shu-cream.net/blog/2012/03/04/tapp-meets-turnip.html">Turnipを使ってtappのテストを書いた話</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(08/30 20:15) 補足：Cucumber(Turnip) + serverspecを追加<br/>
+(08/30 22:45) 補足: The RSpec BookのRailsコードについてを追加<br/></p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-30T16:00:00+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gae/'>GAE</a>, <a class='category' href='/blog/categories/seminar/'>Seminar</a>, <a class='category' href='/blog/categories/smartphone/'>SmartPhone</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/the-rspec-book-review-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/the-rspec-book-review-rails/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/the-rspec-book-review-rails/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/the-rspec-book-review-rails/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/smartphone-marketing-3-tips-book-review/" title="Previous Post: スマホで世界を狙うために知っておきたい3つのことで学んだスマホ・マーケティングの基礎">&laquo; スマホで世界を狙うために知っておきたい3つのことで学んだスマホ・マーケティングの基礎</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/create-web-service-essey-book-review/" title="Next Post: 『Webサービスのつくり方 ~「新しい」を生み出すための33のエッセイ』からアイデアを形にする方法を考える">『Webサービスのつくり方 ~「新しい」を生み出すための33のエッセイ』からアイデアを形にする方法を考える &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/the-rspec-book-review-rails/';
+        var disqus_url = 'http://morizyun.github.com/blog/the-rspec-book-review-rails/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

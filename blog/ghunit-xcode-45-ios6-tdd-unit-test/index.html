@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Objective-CのUnit Testフレームワーク GHUnitの導入手順 - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="Objecitve-CのUnit Testのフレームワークの中では、GHUnitが安定性の面でオススメなようです。ということで、GHUnitの導入にトライしたらドハマリしたので、今後のために導入の手順を残しておきます。 <!-- google_ad_client = "ca-pub- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="Objective-CのUnit Testフレームワーク GHUnitの導入手順 - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="Objecitve-CのUnit Testのフレームワークの中では、GHUnitが安定性の面でオススメなようです。ということで、GHUnitの導入にトライしたらドハマリしたので、今後のために導入の手順を残しておきます。 <!-- google_ad_client = "ca-pub- &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Objective-CのUnit Testフレームワーク GHUnitの導入手順</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-01-25T11:50:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4861008611/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4861008611&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4861008611&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4861008611" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Objecitve-CのUnit Testのフレームワークの中では、GHUnitが安定性の面でオススメなようです。ということで、GHUnitの導入にトライしたらドハマリしたので、今後のために導入の手順を残しておきます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>Objective-Cのテストフレームワーク</h2>
+
+<p>Objective-Cのテストフレームワークの比較は、<strong><a href="http://iphone-dev.g.hatena.ne.jp/laiso/20120324/1332505862">iOS 向けTDD/BDDフレームワークやモックフレームワークの現状 - laiso - iPhoneアプリ開発グループ</a></strong> がよくまとまっています。ここでの結論は、SenTestingKitが公式でサポートされており、XCode/iOSのバージョンアップして使い続けられる点でオススメとのことでした。</p>
+
+<p>一方、<strong><a href="http://tech-gym.com/2012/02/objective-c/666.html">TECH-GYM(株式会社プラスアール)さんのブログ</a></strong>では、複数のフレームワークを試して、安定していたGHUnitを使い続けておられるっぽいです。</p>
+
+<p>SenTestingKit/GHUnitを両方トライしましたが、GHUnitのほうが「テストを書きやすい」と感じたので、しばらくGHUnitを試してみたいと思っています。</p>
+
+<h2>CocoaPodsのインストール</h2>
+
+<p>拙著、<strong><a href="/blog/cocoapods-xcode-45-ios6-library-managent">Objective-Cのライブラリ管理 CocoaPods</a></strong>の手順で、CocoaPodsをインストール。</p>
+
+<h2>GHUnitのインストール〜起動まで</h2>
+
+<p>まず、XCodeを起動してプロジェクトを作成して下さい。ここではプロジェクト名を<code>sampleCocoaPods</code>とします。このプロジェクトにGHUnitのテストを作るためのターゲットを追加します。</p>
+
+<p><img src="http://farm9.staticflickr.com/8086/8425626212_91b954186d.jpg" width="500" height="419" alt="Add target GHUnit 1"></p>
+
+<p><img src="http://farm9.staticflickr.com/8331/8406969985_e1cb58b2ea_z.jpg" width="640" height="433" alt="Add target GHUnit 2"></p>
+
+<p><img src="http://farm9.staticflickr.com/8236/8407016241_aa78a01186_z.jpg" width="640" height="439" alt="Add target GHUnit 3"></p>
+
+<p>ここで一度XCodeを終了させて下さい。</p>
+
+<p>今回のプロジェクトフォルダの直下の<code>Podfile</code>に以下を追加して、<code>pod install</code>を実行。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>platform :ios, <span class="s1">&#39;6.0&#39;</span>
+</span><span class='line'>target :GHUnit <span class="k">do</span>
+</span><span class='line'><span class="k">    </span>pod <span class="s1">&#39;GHUnitIOS&#39;</span>, <span class="s1">&#39;~&gt; 0.5.6&#39;</span>
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これが完了したら、XCodeでCocoaPodsのWorkspaceを開いて下さい。</p>
+
+<p><img src="http://farm9.staticflickr.com/8358/8408476604_4ace0eece1_z.jpg" width="441" height="640" alt="スクリーンショット 2013-01-23 21.47.35"></p>
+
+<p><img src="http://farm9.staticflickr.com/8517/8407432237_bafd426ba3_c.jpg" width="800" height="316" alt="スクリーンショット 2013-01-23 22.13.53"></p>
+
+<p>コピペしやすいように下にも書いておきます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="err">@</span><span class="n">autoreleasepool</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">UIApplicationMain</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="nb">nil</span><span class="p">,</span> <span class="s">@&quot;GHUnitIOSAppDelegate&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://farm9.staticflickr.com/8188/8407438569_b1a8353829_z.jpg" width="640" height="382" alt="スクリーンショット 2013-01-23 22.17.51"></p>
+
+<p><img src="http://farm9.staticflickr.com/8509/8408540012_ecab1703ee_z.jpg" width="324" height="640" alt="スクリーンショット 2013-01-23 22.21.01"></p>
+
+<h2>GHUnitでのテスト実行まで</h2>
+
+<p>続いて実際にGHUnitでテストを書いていきます。テストは前述のTECH-GYM(株式会社プラスアール)さんのブログの<strong><a href="http://tech-gym.com/2011/08/objective-c/481.html">GHUnitを導入する | Technology-Gym</a></strong>が一番わかり易かったので、使わせていただいています。<br/></p>
+
+<p>テストをされる側のプロジェクト(sampleCocoaPods)で<code>Utility.h</code>と<code>Utility.m</code>を作成します。作成するときはターゲットに注意して下さい。
+また、継承するクラス(Subclass of)はNSObjectにして下さい。</p>
+
+<p><img src="http://farm9.staticflickr.com/8358/8409997040_e46f6280bc_c.jpg" width="800" height="691" alt="スクリーンショット 2013-01-24 8.56.56"></p>
+
+<p>テストをされる側のクラスのヘッダファイル<code>Utility.h</code>は次の通りです。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="cp">#import &lt;Foundation/Foundation.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@interface</span> <span class="nc">Utility</span> : <span class="nc">NSObject</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nl">urlencode:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">text</span><span class="p">;</span>
+</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">urldecode:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">text</span><span class="p">;</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>つづいて、実装ファイル<code>Utility.m</code>です。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="cp">#import &quot;Utility.h&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@implementation</span> <span class="nc">Utility</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">urlencode:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">text</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">CFBridgingRelease</span><span class="p">(</span><span class="n">CFURLCreateStringByAddingPercentEscapes</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,(</span><span class="n">CFStringRef</span><span class="p">)</span><span class="n">text</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,(</span><span class="n">CFStringRef</span><span class="p">)</span><span class="s">@&quot;!*&#39;();:@&amp;=+$,/?%#[]&quot;</span><span class="p">,</span><span class="n">kCFStringEncodingUTF8</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">urldecode:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">text</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">CFBridgingRelease</span><span class="p">(</span><span class="n">CFURLCreateStringByReplacingPercentEscapesUsingEncoding</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,(</span><span class="n">CFStringRef</span><span class="p">)</span> <span class="n">text</span><span class="p">,</span><span class="n">CFSTR</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">),</span><span class="n">kCFStringEncodingUTF8</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次はGHUnit側です。GHUnit側で、<code>UtilityTest.h</code>と<code>UtilityTest.m</code>を作成します。継承するクラス(Subclass of)は、<code>GHTestCase</code>にして下さい。</p>
+
+<p>ヘッダファイル<code>UtilityTest.h</code>を次のようにして下さい。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="cp">#import &lt;GHUnitIOS/GHUnit.h&gt;</span>
+</span><span class='line'><span class="cp">#import &quot;Utility.h&quot;</span>
+</span><span class='line'><span class="k">@interface</span> <span class="nc">UtilityTest</span> : <span class="nc">GHTestCase</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最後にGHUnit側の実装ファイル<code>UtilityTest.m</code>です。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="cp">#import &quot;UtilityTest.h&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@implementation</span> <span class="nc">UtilityTest</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">test_urlencode</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">url1</span> <span class="o">=</span> <span class="s">@&quot;%e3%83%86%e3%82%b9%e3%83%88%e3%81%9d%e3%81%ae%e4%b8%80&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">url1</span> <span class="o">=</span> <span class="p">[</span><span class="n">url1</span> <span class="n">uppercaseString</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">url2</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithString:</span><span class="p">[</span><span class="n">Utility</span> <span class="nl">urlencode:</span><span class="s">@&quot;テストその一&quot;</span><span class="p">]];</span>
+</span><span class='line'>    <span class="n">GHAssertEqualObjects</span><span class="p">(</span><span class="n">url1</span><span class="p">,</span> <span class="n">url2</span><span class="p">,</span> <span class="s">@&quot;match!&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">url3</span> <span class="o">=</span> <span class="s">@&quot;%e3%81%93%e3%82%8c%e3%82%82%e3%80%8c%e3%81%a6%e3%81%99%e3%81%a8%e3%80%8d%e3%81%a0%e3%81%a3%e3%81%9f%e3%82%8a&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">url3</span> <span class="o">=</span> <span class="p">[</span><span class="n">url3</span> <span class="n">uppercaseString</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">url4</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithString:</span><span class="p">[</span><span class="n">Utility</span> <span class="nl">urlencode:</span><span class="s">@&quot;これも「てすと」だったり&quot;</span><span class="p">]];</span>
+</span><span class='line'>    <span class="n">GHAssertEqualObjects</span><span class="p">(</span><span class="n">url3</span><span class="p">,</span> <span class="n">url4</span><span class="p">,</span> <span class="s">@&quot;match!&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">test_urldecode</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">url1</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithString:</span><span class="p">[</span><span class="n">Utility</span> <span class="nl">urldecode:</span><span class="s">@&quot;%e3%83%86%e3%82%b9%e3%83%88%e3%81%9d%e3%81%ae%e4%b8%80&quot;</span><span class="p">]];</span>
+</span><span class='line'>    <span class="n">url1</span> <span class="o">=</span> <span class="p">[</span><span class="n">url1</span> <span class="n">uppercaseString</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">url2</span> <span class="o">=</span> <span class="s">@&quot;テストその一&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">GHAssertEqualObjects</span><span class="p">(</span><span class="n">url1</span><span class="p">,</span> <span class="n">url2</span><span class="p">,</span> <span class="s">@&quot;match!&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">url3</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithString:</span><span class="p">[</span><span class="n">Utility</span> <span class="nl">urldecode:</span><span class="s">@&quot;%e3%81%93%e3%82%8c%e3%82%82%e3%80%8c%e3%81%a6%e3%81%99%e3%81%a8%e3%80%8d%e3%81%a0%e3%81%a3%e3%81%9f%e3%82%8a&quot;</span><span class="p">]];</span>
+</span><span class='line'>    <span class="n">url3</span> <span class="o">=</span> <span class="p">[</span><span class="n">url3</span> <span class="n">uppercaseString</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">url4</span> <span class="o">=</span> <span class="s">@&quot;これも「てすと」だったり&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">GHAssertEqualObjects</span><span class="p">(</span><span class="n">url3</span><span class="p">,</span> <span class="n">url4</span><span class="p">,</span> <span class="s">@&quot;match!&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これを<code>Run</code>すると下のような結果になると思います。</p>
+
+<p><img src="http://farm9.staticflickr.com/8074/8408953013_61df9c8908_c.jpg" width="398" height="800" alt="スクリーンショット 2013-01-24 9.22.41"></p>
+
+<p>GHUnitの導入〜テストの実行までは以上です＾＾</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>補足: 後からGHUnitをひもづける場合</h2>
+
+<p><img src="http://farm9.staticflickr.com/8190/8408059990_a09de1cfaf_z.jpg" width="426" height="640" alt="GHUnit add target"></p>
+
+<p><img src="http://farm9.staticflickr.com/8331/8406969985_e1cb58b2ea_z.jpg" width="640" height="433" alt="Add target GHUnit 2"></p>
+
+<p><img src="http://farm9.staticflickr.com/8236/8407016241_aa78a01186_z.jpg" width="640" height="439" alt="Add target GHUnit 3"></p>
+
+<p><img src="http://farm9.staticflickr.com/8516/8408493886_e535532d43_c.jpg" width="800" height="430" alt="スクリーンショット 2013-01-23 21.55.56"></p>
+
+<p><img src="http://farm9.staticflickr.com/8043/8408452204_172ea265db_c.jpg" width="800" height="400" alt="スクリーンショット 2013-01-23 20.43.16"></p>
+
+<p><img src="http://farm9.staticflickr.com/8475/8408501406_390a6ff56e_c.jpg" width="800" height="559" alt="スクリーンショット 2013-01-23 22.00.45"></p>
+
+<p>以下を追加。</p>
+
+<pre>
+-ObjC
+-all_load
+</pre>
+
+
+<h2>補足:「 Undefined symbols for architecture i386: <em>OBJC_CLASS</em> 」といったエラーが出る場合</h2>
+
+<p><strong>プロジェクト => TARGETSのGHUnit => Build Phases => Compile Sourcesにimportしたいファイル</strong>をドラッグアンドドロップしてみて下さい。</p>
+
+<h2>お願い</h2>
+
+<p>Objective-C初心者なのでお見苦しい点が多々あるかと思います。もし間違っていたり等々、お気づきの点があればツッコミをお願い致します！</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://tech-gym.com/2011/08/objective-c/481.html">GHUnitを導入する | Technology-Gym</a></p>
+
+<p><a href="http://samwize.com/2012/10/04/how-to-setup-ghunit-with-cocoapods/">How to setup GHUnit with CocoaPods - Junda Ong</a></p>
+
+<p><a href="http://kkinukawa.hatenablog.com/entry/20110416/1302943961">GHUnitの使い方（Xcode4） - k_kinukawa&#8217;s diary</a></p>
+
+<h2>テスト環境</h2>
+
+<p>テスト環境は次の通りです。バージョンが違うとインストール方法がまったく異なることがあるので、動かなければグーグル大先生にお伺いをたてて下さい。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>XCode: 4.5.2
+</span><span class='line'>iOS: 6.0
+</span><span class='line'>CocoaPods: 0.16.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>変更来歴</h2>
+
+<p>01/28 09:10 <a href="https://twitter.com/_ishkawa">@ishkawa</a>さんからコメントを頂いてPodfileを修正、QuartzCore.frameworkやlibPods.aとのヒモ付や、リンカフラグの設定はCocoaPodsが自動でやってくれるので、プロセスから外しました。(補足に残しています)</p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-25T11:50:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/cocoapods-xcode-45-ios6-library-managent/" title="Previous Post: Objective-Cのライブラリ管理 CocoaPods 【もうこれなしには戻れない】">&laquo; Objective-Cのライブラリ管理 CocoaPods 【もうこれなしには戻れない】</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/aws-epel-active-denyhosts/" title="Next Post: AWS EC2のAmazon Linux AMIでRailsサーバを立ち上げよう">AWS EC2のAmazon Linux AMIでRailsサーバを立ち上げよう &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/';
+        var disqus_url = 'http://morizyun.github.com/blog/ghunit-xcode-45-ios6-tdd-unit-test/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

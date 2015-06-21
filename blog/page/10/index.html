@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="HTTP通信でのCookieの意味について調べたのでそのメモです。今回のCookieの情報はWikipediaの説明が丁寧でわかりやすかったです。CGMコンテンツもあそこまで成熟すると教科書レベルになるんだと感心しました！ ">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/page/10/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="酒と泪とRubyとRailsと" />
+<meta property="og:description" content="HTTP通信でのCookieの意味について調べたのでそのメモです。今回のCookieの情報はWikipediaの説明が丁寧でわかりやすかったです。CGMコンテンツもあそこまで成熟すると教科書レベルになるんだと感心しました！ " />
+<meta property="og:url" content="http://morizyun.github.com/blog/page/10/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/http-access-cookie-browser/">HTTP通信 - Cookieについて</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-26T18:40:00+09:00" pubdate data-updated="true">Jul 26<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/http-access-cookie-browser/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774142042/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774142042&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774142042&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774142042" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />HTTP通信でのCookieの意味について調べたのでそのメモです。今回のCookieの情報はWikipediaの説明が丁寧でわかりやすかったです。CGMコンテンツもあそこまで成熟すると教科書レベルになるんだと感心しました！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/http-access-cookie-browser/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ohattributedlabel-uilabel-web-link-objectivec/">OHAttributedLabel - UILabelにWebページヘのリンクをつける[Cocoapods]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-25T20:30:00+09:00" pubdate data-updated="true">Jul 25<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/ohattributedlabel-uilabel-web-link-objectivec/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/ohattributedlabel-uilabel-web-link-objectivec/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8214/8259787081_bdcc3abb1d.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a>
+Objective-Cネタです。UILabelにWebページヘのリンク(link)を超簡単に設置できる、『<strong><a href="https://github.com/AliSoftware/OHAttributedLabel">OHAttributedLabel</a></strong>』の紹介です！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/ohattributedlabel-uilabel-web-link-objectivec/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/nginx-setup-sakura-vps-centos/">さくらVPS/Cent OS 6.4 Nginx導入[Railsサーバへの道]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-24T13:55:00+09:00" pubdate data-updated="true">Jul 24<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/nginx-setup-sakura-vps-centos/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4048702270/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048702270&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048702270&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048702270" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第5回はNginxの導入です。NginxはApacheと比べると歴史は浅いですがRailsで使うのもかなりメジャーになってきました。もしApacheの方が、好みの方は<strong><a href="/blog/apache-setup-sakura-vps-centos63">さくらVPS/Cent OS 6.4へのApache導入</a></strong>を試してみて下さい！</p>
+
+<p><strong>(07-10 20:30) ELB経由のnginxでクライアントのIPを取得する方法を追記</strong></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/nginx-setup-sakura-vps-centos/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/bbutton-bootstrap-faicon-flat-objectivec/">BButton 超簡単にObjective-CでBootstrapっぽいボタンが設置できる [Cocoapods]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-22T19:50:00+09:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/bbutton-bootstrap-faicon-flat-objectivec/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4839941076/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839941076&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839941076&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839941076" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Objective-Cを使っていて一番悩むのが、ほんのちょっとだけデザインをマシにしたいとおもった時にTwitter Bootstrapライクに簡単に実装できないことです。
+そんな初心者エンジニアにおすすめなCocoapodsが、『<strong><a href="https://github.com/jessesquires/BButton">BButton</a></strong>』です。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/bbutton-bootstrap-faicon-flat-objectivec/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/uitableview-uitableviewcontroller-separate-objectivec/">UITableViewとUITableViewControllerを分離する[Objecitve-C]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-21T11:40:00+09:00" pubdate data-updated="true">Jul 21<span>st</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/uitableview-uitableviewcontroller-separate-objectivec/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844364308/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844364308&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844364308&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844364308" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+UITableViewとUITableViewControllerをうまく切り離す方法に苦労していたので今後のためにメモ。Webだったら簡単な実装でもObjective-Cだと結構躓きます。もう少し入門書を読まないとなぁ。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/uitableview-uitableviewcontroller-separate-objectivec/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/JAMValidatingTextField-cocoapods-objective-c/">JAMValidatingTextField フォームの超簡単バリデーション[Cocoapods]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-20T09:05:00+09:00" pubdate data-updated="true">Jul 20<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/JAMValidatingTextField-cocoapods-objective-c/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4899774125/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4899774125&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4899774125&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4899774125" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Objective-Cで最近はまっていたのは、フォームのバリデーションをいかに簡単に、わかりやすく実装するかでした。で、Cocoapodsでめぼしいのを幾つか試してみて良かった『<strong><a href="https://github.com/jmenter/JAMValidatingTextField">JAMValidatingTextField</a></strong>』の紹介です！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/JAMValidatingTextField-cocoapods-objective-c/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/uiview-uiviewcontroller-separate-objective-c/">UIViewControllerからUIView部分を切り出す[Objective-C]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-16T19:00:00+09:00" pubdate data-updated="true">Jul 16<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/uiview-uiviewcontroller-separate-objective-c/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4800710472/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4800710472&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4800710472&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4800710472" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+UIViewControllerからViewの要素をUIViewに切り出す手順です。相当久しぶりにObjective-Cを触っていて、
+片っ端からハマりまくっていますが少しずつ、新しいことやるのはやっぱり超楽しいです！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/uiview-uiviewcontroller-separate-objective-c/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/geocoder-rails-latitude-longitude-ruby/">Geocoder 地名から緯度経度に変換 or 緯度経度から住所変換が簡単にできるgem</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-14T20:45:00+09:00" pubdate data-updated="true">Jul 14<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/geocoder-rails-latitude-longitude-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/427405019X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=427405019X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=427405019X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=427405019X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+地名から緯度経度を求めたり、緯度経度から住所登録をやる場合に便利なのが、この『<strong><a href="https://github.com/alexreisner/geocoder">alexreisner/geocoder</a></strong>』です。
+ActiveRecordと組み合わると、緯度経度を登録したら後は自動で変換を行うカラムを追加できるといったことが可能になります。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/geocoder-rails-latitude-longitude-ruby/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/no-image-jquery-javascript/">imgタグの画像がない場合にNo Imageに差し替え【jQuery/JavaScript】</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-09T19:25:00+09:00" pubdate data-updated="true">Jul 9<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/no-image-jquery-javascript/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00HE4R9H2/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00HE4R9H2&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00HE4R9H2&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00HE4R9H2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+imgタグで指定した画像がない場合にjQueryでNo Imageに差し替えるTipsです。超簡単ですが、破壊力抜群なので良かったら是非試してみてください！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/no-image-jquery-javascript/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/python-pyenv-rehash-mac-development/">Python開発環境構築 徹底解説[pyenv, Mavericks]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-07T20:20:00+09:00" pubdate data-updated="true">Jul 7<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/python-pyenv-rehash-mac-development/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873116554/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116554&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873116554&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873116554" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Pythonの統計や機械学習系ライブラリを触ってみたくって、Pythonの環境をMarvericksに構築したのでそのメモです。Pythonはほぼ初心者なので、いろいろ触ってどんどん覚えていきたい！</p>
+
+<p><strong>(03/27 23:10) Marvericks対応にアップデート</strong></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/python-pyenv-rehash-mac-development/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/11/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/9/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

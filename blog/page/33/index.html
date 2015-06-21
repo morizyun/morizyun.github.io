@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="超有名ブログ「彼女からは、おいちゃんと呼ばれています」の最先端テック記事「Rails3、Twitter Bootstrap、Bootswatch を使ったレスポンシブなエロサイト「babyshark」をリリースしました」に載っていた可変グリッドレイアウト用のjQuery 「jquery. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/page/33/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="酒と泪とRubyとRailsと" />
+<meta property="og:description" content="超有名ブログ「彼女からは、おいちゃんと呼ばれています」の最先端テック記事「Rails3、Twitter Bootstrap、Bootswatch を使ったレスポンシブなエロサイト「babyshark」をリリースしました」に載っていた可変グリッドレイアウト用のjQuery 「jquery. &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/page/33/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/jquery-vgrid-js-rails/">可変グリッドレイアウトjQuery - jquery.vgrid.jsをRailsに組み込んでみた</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-04T21:30:00+09:00" pubdate data-updated="true">Dec 4<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/jquery-vgrid-js-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/jquery-vgrid-js-rails/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8343/8243442471_83c56bf826_m.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>超有名ブログ「<a href="http://d.hatena.ne.jp/inouetakuya/">彼女からは、おいちゃんと呼ばれています</a>」の最先端テック記事「<a href="http://d.hatena.ne.jp/inouetakuya/20121117/1353145846">Rails3、Twitter Bootstrap、Bootswatch を使ったレスポンシブなエロサイト「babyshark」をリリースしました</a>」に載っていた可変グリッドレイアウト用のjQuery 「<a href="http://blog.xlune.com/2009/09/jqueryvgrid.html">jquery.vgrid.js</a>」をRailsに導入手順を作ってみました。</p>
+
+<p><a href="http://blog.xlune.com/2009/09/vgrid/" class="button big primary">デモサイト</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/jquery-vgrid-js-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/octopress-facebook-ogp-upgrade/">OctopressでFacebookシェア用にOGPを設定する</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-03T02:00:00+09:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/octopress-facebook-ogp-upgrade/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/octopress-facebook-ogp-upgrade/" title="by morizyun, on Flickr"><img src="http://farm4.staticflickr.com/3016/2516986876_28335418f7_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>OctopressにFacebookシェア用にOGPを設定する方法をまとめました。FacebookのOGPを設定すれば、Facebookでの共有時に適切な情報が表示されるようになり、シェアが広まりやすくなります。ぜひトライしてみて下さい！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/octopress-facebook-ogp-upgrade/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/octopress-table-tag-css/">Octopressでテーブルをmarkdownで編集できるようにする</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-02T23:10:00+09:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/octopress-table-tag-css/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/octopress-table-tag-css/" title="by morizyun, on Flickr"><img src="http://farm4.staticflickr.com/3120/2516987816_814c1eda3d_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Octopressにテーブル(table)をマークダウン(markdown)で編集できるようにする方法があったので書いておきます。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/octopress-table-tag-css/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/throw-catch-symbol-ruby/">ネストの深い(多重)ループを抜け出す - Rubyのthrow/catch</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-02T21:50:00+09:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/throw-catch-symbol-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/throw-catch-symbol-ruby/" title="by morizyun, on Flickr"><img src="http://farm3.staticflickr.com/2775/4141490387_1beb461cec_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Rubyの標準メソッドにthrow/catchはネストの深いループ(多重ループ)を一発で抜けだしたい場合などに使えそうなので、紹介します。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/throw-catch-symbol-ruby/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rspec-builtin-matcher-rails/">RSpecの標準matchers(マッチャー)一覧</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-02T12:30:00+09:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/rspec-builtin-matcher-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* bottom_burner */
+  google_ad_slot = "2184590598";
+  google_ad_width = 468;
+  google_ad_height = 15;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<p><a href="/blog/rspec-builtin-matcher-rails/" title="by morizyun, on Flickr"><img src="http://farm2.staticflickr.com/1125/1266711451_ae69c892b4_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>rspecの標準マッチャー(matcher)の一覧を作ってみました。できるだけ一覧を見やすくして、開発の手助けになることを目指しています。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/rspec-builtin-matcher-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rails-lib-rspec-test/">Rails 3.2のlibフォルダをRspecでテストする</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-02T12:30:00+09:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/rails-lib-rspec-test/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/rails-lib-rspec-test/" title="by morizyun, on Flickr"><img src="http://farm4.staticflickr.com/3161/2951561445_8c13940ed8_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>TDDの習得を目指してRailsのlibをRspecでテストしようとして、少し詰まったので備忘録で書いておきます。ちなみに左の写真はRSpecの生みの親のDavid Chelimskyさんですw</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/rails-lib-rspec-test/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rails-active-record-where-or-dinamic/">Rails whereで複数カラムのOR条件を作成する</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-02T01:20:00+09:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/rails-active-record-where-or-dinamic/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/rails-active-record-where-or-dinamic/" title="fpu_tmp_1354374932.2232_974aa9 by morizyun, on Flickr"><img src="http://farm3.staticflickr.com/2305/1899303123_498b30c6a1_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>RailsのActiveRecordのwhere条件で、「複数カラムのどれかに一致していればOK」という条件を作る方法です。例えば、性カラムと名カラムが別れたUserに対して、どちらでもいいので検索文字がヒットして欲しいというパターンのwhere条件です。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/rails-active-record-where-or-dinamic/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/twitpic-full-image-download-script/">Twitpicのフルサイズ画像の取得方法[Ruby][Web API]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-01T23:50:00+09:00" pubdate data-updated="true">Dec 1<span>st</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/twitpic-full-image-download-script/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/twitpic-full-image-download-script/" title="fpu_tmp_1354374932.2232_974aa9 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8057/8234232443_3600e1731e_m.jpg" width="240" height="195" alt="fpu_tmp_1354374932.2232_974aa9" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>TwitpicはTwitterの中で最も使われている写真サービスの一つですよね。公式のドキュメントには載っていない、Twitpicのフルサイズ画像を取得する方法を今日偶然発見したのでメモで残しておきます。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/twitpic-full-image-download-script/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/art-text2-mac-app-design/">Art Text2はエンジニアのためのボタン・ファビコン作成ツールだ！</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-11-30T20:00:00+09:00" pubdate data-updated="true">Nov 30<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/art-text2-mac-app-design/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>WebサイトやiPhoneアプリの開発、ブロクの運用をしているとボタンやファビコン、ロゴの作成は避けては通れないですよね。でも、デザインは苦手・・・というエンジニアに優しいMacアプリ「Art Text2」を紹介します！</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=5RItJoRDnJI" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/art-text2-mac-app-design/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/core-data-objectivec-iphone/">Objective-C CoreDataのバージョンアップ in XCode 4.5.2[iPhone]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-11-30T16:40:00+09:00" pubdate data-updated="true">Nov 30<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/core-data-objectivec-iphone/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>XCode 4.5.2でCoreDataのEntity(エンティティ)やAttribute(アトリビュート)の定義を変更した場合のバージョンアップの手順です。</p>
+
+<p><a href="/blog/core-data-objectivec-iphone/" title="fpu_tmp_1354258434.8531_8c7a0a by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8063/8230985957_6ac66ab340.jpg" width="500" height="344" alt="fpu_tmp_1354258434.8531_8c7a0a"></a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/core-data-objectivec-iphone/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/34/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/32/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

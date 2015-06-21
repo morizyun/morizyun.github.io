@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>コスパ最強なRailsサーバを妄想してみる[VPS/PaaS/クラウド] - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="<!-- google_ad_client = "ca-pub-4186413323075068"; /* bottom_burner */ google_ad_slot = "2184590598"; google_ad_width = 468; google_ad_height = 15 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/paas-vps-aws-compare/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="コスパ最強なRailsサーバを妄想してみる[VPS/PaaS/クラウド] - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="<!-- google_ad_client = "ca-pub-4186413323075068"; /* bottom_burner */ google_ad_slot = "2184590598"; google_ad_width = 468; google_ad_height = 15 &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/paas-vps-aws-compare/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">コスパ最強なRailsサーバを妄想してみる[VPS/PaaS/クラウド]</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-15T18:00:00+09:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/paas-vps-aws-compare/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/paas-vps-aws-compare/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/paas-vps-aws-compare/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/paas-vps-aws-compare/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* bottom_burner */
+  google_ad_slot = "2184590598";
+  google_ad_width = 468;
+  google_ad_height = 15;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<p><a href="/blog/paas-vps-aws-compare/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>これからRailsサービスを公開したい方に向けて、個人が使うのに最適なコストパフォーマンスに優れたクラウド/PaaS/VPSを紹介していきます。</p>
+
+<h4>変更来歴</h4>
+
+<p>(06/13 13:05) PaasにOpenShift Onlineを追加。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>クラウド</h2>
+
+<p>クラウドサーバは、アクセスが増加する夜だけサーバの能力を増強させて深夜〜朝は最低限のスペックにするといった使い方が容易にできるサーバです。反面、セットアップは自分で行う必要があり、上手に使うにはそれなりのノウハウが必要。現時点では、AWS(Amazon Web Service)が圧倒的No1なサービスです。</p>
+
+<h3>サービスの紹介 AWS(Amazon Web Service)</h3>
+
+<p><a href="http://aws.amazon.com/jp/" title="AWS"><img src="http://farm9.staticflickr.com/8224/8273465405_1ee944d8e2.jpg" width="500" height="382" alt="fpu_tmp_1355559062.9772_9d6eff"></a></p>
+
+<pre>
+マイクロインスタンス(メモリ613MB, 月750時間まで)は1年間無料
+東京リージョンなら通信での遅延はほとんどなし
+スケールアップが容易、各種サービス(Amazon RDBなど)やAPIやSDKが豊富
+サーバは初期状態からのセットアップが必要(Amazon Elastic Beanstalkなら楽かも)
+</pre>
+
+
+<h2>PaaS編</h2>
+
+<p>PaaSはサーバ側のApacheやMySQLなどの設定は予めやってくれていて、Railsのコーディングさえすればコマンド１つで公開できてしまうようなサービスを指します。また機能の拡張が比較的容易で、コーディングに専念できる点が魅力です。</p>
+
+<h3>サービスの紹介(1) Heroku</h3>
+
+<p><a href="http://www.heroku.com/" title="Heroku"><img src="http://farm9.staticflickr.com/8482/8216564804_23e4f2f0e6.jpg" width="500" height="233" alt="fpu_tmp_1353828845.2153_57ac05"></a></p>
+
+<p>Herokuの特徴はこちら。</p>
+
+<pre>
+基本機能は無料で利用できる(機能追加や、有料アドン追加が有料)
+機能拡張のアドオンが豊富(サーバ監視やデータストアなど)
+日本での人気も高いのでWebで情報が探しやすい
+サーバの設置場所がアメリカなので、Web画面の表示・遷移が少し遅い
+英語の画面や説明、エラーの解析が気にならない人向け
+</pre>
+
+
+<h3>サービスの紹介(2) MOGOK/IIJ</h3>
+
+<p><a href="http://mogok.jp/" title="MOGOK"><img src="http://farm9.staticflickr.com/8482/8273393493_dc66c8aa5b.jpg" width="500" height="359" alt="fpu_tmp_1355555562.4871_1fca84"></a></p>
+
+<pre>
+ベータ版期間で無料(2012年12月時点)
+サーバが日本なのでRailsアプリの反応がキビキビ
+すべて日本語なので操作がわかりやすい
+ベータ期間なので実験的なサービスにおすすめ
+独自ドメインは使えない(2012年12月時点)
+</pre>
+
+
+<h3>サービスの紹介(3) AppFog</h3>
+
+<p><a href="http://www.appfog.com/" title="appfog"><img src="http://farm9.staticflickr.com/8500/8274626114_aeac22c6c5.jpg" width="500" height="261" alt="fpu_tmp_1355563927.7991_87c3a0"></a></p>
+
+<pre>
+2GBメモリ/10インスタンスまでなら永久無料(MySQL/PostgreSQLは各100MB)
+自動でのスケールアップにも対応 
+サーバの設置場所が海外なので、Web画面の表示・遷移が少し遅い
+英語の画面や説明、エラーの解析が気にならない人向け
+日本語での情報が少ないので、英語での情報集めが苦にならない人向け
+</pre>
+
+
+<h3>サービスの紹介(4) OpenShift Online</h3>
+
+<p><a href="https://www.openshift.com/products/online" title="OpenShift Online"><img src="http://farm3.staticflickr.com/2867/9031227478_891476b374_z.jpg" width="440" height="640" alt="OpenShift Online"></a></p>
+
+<pre>
+512GBメモリ/1GBストレージのGearが最大3つまで無料
+自動でのスケールアップにも対応 
+サーバの設置場所が海外なので、Web画面の表示・遷移が少し遅い
+2013/06/13に一般公開されたので情報が少なめ
+</pre>
+
+
+<p>参考URL: <strong><a href="http://www.publickey1.jp/blog/13/paasopenshift_onlinejavaphprubynodejs.html">レッドハットがPaaS型クラウド「OpenShift Online」正式サービス開始。Java、PHP、Ruby、Node.jsなど多言語対応。無料プランは継続 － Publickey</a></strong></p>
+
+<h3>サービスの紹介(5) SQALE/Paperboy &amp; Co</h3>
+
+<p><a href="http://sqale.jp/" title="SQALE"><img src="http://farm9.staticflickr.com/8083/8273370923_1c37b9f45e.jpg" width="500" height="259" alt="fpu_tmp_1355554494.5153_60c383"></a></p>
+
+<p>PaperBoy &amp; CoのSQALEの特徴はこちら。</p>
+
+<pre>
+15日無料お試し期間、それ以降は月額940円(1コンテナ)
+サーバが日本なのでRailsアプリの反応がキビキビ
+SSHでの接続や無料のSSLがある
+Unicon/Nginxなので性能も上々、DBも自動バックアップ
+すべて日本語なので操作がわかりやすい
+アクセスの増加にも柔軟に対応したい(コンテナの増加も容易)
+</pre>
+
+
+<h2>VPS</h2>
+
+<p>VPS(バーチャル・プライベート・サーバ)とは簡単に言うと管理者権限のついたレンタルサーバーです。セットアップは自分で行う必要がありますが、コストパフォーマンスの面ではPaaSやクラウドより優位です。</p>
+
+<h3>サービスの紹介(1) CloudCore VPS</h3>
+
+<p><a href="http://www.cloudcore.jp/vps/" title="CloudCore VPS"><img src="http://farm9.staticflickr.com/8110/8656767761_247df02757_z.jpg" width="640" height="436" alt="CloudCore VPS"></a></p>
+
+<pre>
+メモリ量重視ならコストパフォーマンス抜群(年間契約なら6GBプランが2,415円から)
+運営会社は安心のKDDIウェブコミュニケーションズ  
+</pre>
+
+
+<h3>サービスの紹介(2) さくらVPS</h3>
+
+<p><a href="http://vps.sakura.ad.jp/" title="sakura VPS"><img src="http://farm9.staticflickr.com/8499/8273511619_d676e6a62d.jpg" width="500" height="406" alt="fpu_tmp_1355561376.519_d993cf"></a></p>
+
+<pre>
+日本で人気が高いのでWebにも情報が豊富
+選びやすい料金プラン(980円〜)、SSDプランも登場
+すべて日本語なので操作がわかりやすい、サポートも超親切
+</pre>
+
+
+<h3>サービスの紹介(3) GMO クラウドVPS</h3>
+
+<p><a href="http://vps.gmocloud.com/" title="GMO VPS"><img src="http://farm9.staticflickr.com/8204/8274584238_74b7857117.jpg" width="500" height="376" alt="fpu_tmp_1355561809.0038_59c019"></a></p>
+
+<pre>
+年間契約なら、さくらVPSより安い(2GBプランが980円から)
+GMOクラウドへの移行が容易(将来のスケールアップもわりと楽かも)
+すべて日本語なので操作がわかりやすい、電話問い合わせもある
+</pre>
+
+
+<h2>変更来歴</h2>
+
+<p>(06/13 13:05) PaasにOpenShift Onlineを追加</p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-15T18:00:00+09:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/centos/'>CentOS</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/paas-vps-aws-compare/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/paas-vps-aws-compare/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/paas-vps-aws-compare/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/paas-vps-aws-compare/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/mysql-setup-sakura-vps-centos63/" title="Previous Post: さくらVPS/Cent OS 6.3 MySQL 5.5導入[Railsサーバへの道]">&laquo; さくらVPS/Cent OS 6.3 MySQL 5.5導入[Railsサーバへの道]</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/less-change-responsive-twitter-bootsrap/" title="Next Post: Bootsrapで画面幅によってCSSの一部だけを切り替える[LESS][Twitter]">Bootsrapで画面幅によってCSSの一部だけを切り替える[LESS][Twitter] &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/paas-vps-aws-compare/';
+        var disqus_url = 'http://morizyun.github.com/blog/paas-vps-aws-compare/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

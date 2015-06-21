@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="rakeコマンドでRailsのDBをYAML形式でダンプ(dump)/ロード(load)することが出来るgem yaml_dbの紹介です。ステージング環境のDBをダンプして本番環境と置き換える場合や、HerokuへのDBデータのアップロードなどに使えます。 ludicast/yaml_db | &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/page/30/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="酒と泪とRubyとRailsと" />
+<meta property="og:description" content="rakeコマンドでRailsのDBをYAML形式でダンプ(dump)/ロード(load)することが出来るgem yaml_dbの紹介です。ステージング環境のDBをダンプして本番環境と置き換える場合や、HerokuへのDBデータのアップロードなどに使えます。 ludicast/yaml_db | &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/page/30/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/yaml-db-rubygem-rails/">Yaml_db RailsのDBをコマンド一つでYAML形式でダンプ/ロードできるRubyGem</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-20T21:00:00+09:00" pubdate data-updated="true">Dec 20<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/yaml-db-rubygem-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/yaml-db-rubygem-rails/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>rakeコマンドでRailsのDBをYAML形式でダンプ(dump)/ロード(load)することが出来るgem yaml_dbの紹介です。ステージング環境のDBをダンプして本番環境と置き換える場合や、HerokuへのDBデータのアップロードなどに使えます。</p>
+
+<p><a href="https://github.com/ludicast/yaml_db" class="button big primary">ludicast/yaml_db | GitHub</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/yaml-db-rubygem-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/markdown-sublime-text2/">Sublime Text 日本語がtabキーで改行(消える)場合の対策</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-18T13:45:00+09:00" pubdate data-updated="true">Dec 18<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/markdown-sublime-text2/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/markdown-sublime-text2/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8223/8283514062_b4c06bbecd_q.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>小ネタです。Sublime Textを使っていて日本語の推測変換をしようとTabキーを押すと途中まで入力していた日本語が消えてしまうのに悩まされていましたが、ようやく解決方法を見つけたのでメモです。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/markdown-sublime-text2/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/open-uri-timeout-ruby/">open-uriにtimeout(タイムアウト/時間制限)を追加する[Ruby]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-16T12:55:00+09:00" pubdate data-updated="true">Dec 16<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/open-uri-timeout-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/open-uri-timeout-ruby/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8209/8254162158_074340d3b9_m.jpg" width="150" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Open-URIでデータを取得する際に、一定時間以上取得できない場合に問い合わせを諦めるための制御です。ごくごくシンプルなプログラムですが、個人的によく使うのでメモ。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/open-uri-timeout-ruby/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/less-change-responsive-twitter-bootsrap/">Bootsrapで画面幅によってCSSの一部だけを切り替える[LESS][Twitter]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-16T12:35:00+09:00" pubdate data-updated="true">Dec 16<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/less-change-responsive-twitter-bootsrap/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/less-change-responsive-twitter-bootsrap/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8069/8250062954_f9859c52e8_m.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Twitter BootsrapをLESSで使われている方限定ですが、CSSの中の一部だけを切り替える方法を紹介します。例えばスマホの時だけ画像の横の空白(margin, paddingとか)を変更したい時などに使えます。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/less-change-responsive-twitter-bootsrap/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/paas-vps-aws-compare/">コスパ最強なRailsサーバを妄想してみる[VPS/PaaS/クラウド]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-15T18:00:00+09:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/paas-vps-aws-compare/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* bottom_burner */
+  google_ad_slot = "2184590598";
+  google_ad_width = 468;
+  google_ad_height = 15;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<p><a href="/blog/paas-vps-aws-compare/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>これからRailsサービスを公開したい方に向けて、個人が使うのに最適なコストパフォーマンスに優れたクラウド/PaaS/VPSを紹介していきます。</p>
+
+<h4>変更来歴</h4>
+
+<p>(06/13 13:05) PaasにOpenShift Onlineを追加。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/paas-vps-aws-compare/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mysql-setup-sakura-vps-centos63/">さくらVPS/Cent OS 6.3 MySQL 5.5導入[Railsサーバへの道]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-14T23:30:00+09:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/mysql-setup-sakura-vps-centos63/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/mysql-setup-sakura-vps-centos63/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8057/8271532174_88676a643d_m.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>さくらVPS 2GBのCentOS 6.3をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第6回はMySQLの導入です。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/mysql-setup-sakura-vps-centos63/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mysql-dump-import-recover-export/">MySQLのバックアップ/復元(ダンプ/インポート/dump/import) 基本コマンド</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-14T10:30:00+09:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/mysql-dump-import-recover-export/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* bottom_burner */
+  google_ad_slot = "2184590598";
+  google_ad_width = 468;
+  google_ad_height = 15;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<p><a href="/blog/mysql-dump-import-recover-export/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8497/8270428651_982ac61c62_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>MySQL(データベース)のバックアップ(<code>mysqldump</code>)/復元のコマンドの忘備録メモです。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/mysql-dump-import-recover-export/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/better-error-gem-rails-ruby-rack/">Railsのデバックが捗るエラー画面 Better Errors 使ってみた！</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-13T11:30:00+09:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/better-error-gem-rails-ruby-rack/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/better-error-gem-rails-ruby-rack/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8062/8268818978_3347cfd921_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Railsのエラー画面をわかりやすく表示してくれるBetter Errors(better_errors)、<a href="https://github.com/languages/Ruby">GitHubのRuby系プロジェクトの中で一ヶ月で１番Starがついてた</a>みたいです。ということで早速使ってみました！</p>
+
+<p><a href="https://github.com/charliesome/better_errors" class="button big primary">charliesome/better_errors - GitHub</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/better-error-gem-rails-ruby-rack/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mountain-lion-rails-setup-ruby-rvm-msyql/">Mountain Lion Rails 最新環境 詳解 構築手順 [Homebrew][MySQL][rvm][Pow][Ruby]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-12T19:00:00+09:00" pubdate data-updated="true">Dec 12<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/mountain-lion-rails-setup-ruby-rvm-msyql/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* bottom_burner */
+  google_ad_slot = "2184590598";
+  google_ad_width = 468;
+  google_ad_height = 15;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<p><a href="/blog/mountain-lion-rails-setup-ruby-rvm-msyql/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Mountain LionにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。
+Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/mountain-lion-rails-setup-ruby-rvm-msyql/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/free-logo-creator-generator/">無料のロゴ生成サービス「FREE LOGO CREATOR」、クオリティ高！</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-11T19:45:00+09:00" pubdate data-updated="true">Dec 11<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/free-logo-creator-generator/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/free-logo-creator-generator/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8072/8264021952_c7f386f268_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>無料のロゴ生成サービス「<a href="http://www.onlinelogomaker.com/">FREE LOGO CREATOR</a>」が思った以上にクオリティ高くって、びっくりしちゃったの紹介です。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/free-logo-creator-generator/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/31/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/29/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

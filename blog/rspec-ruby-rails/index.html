@@ -1,0 +1,989 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>「RSpec をもっと理解したかったので、まとめを作りました」に感動してRuby 1.9.3でやってみた！ - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="[Ruby][Rails] RSpec をもっと理解したかったので、まとめを作りました という偉大な記事に感動して、僕もRuby 1.9.3 でトライしてみました。Rspecは2.12.0です！ 目次 (1)RSpec はじめの一歩
+(2)stackクラスとstackクラスのRspec
+(3) &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/rspec-ruby-rails/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="「RSpec をもっと理解したかったので、まとめを作りました」に感動してRuby 1.9.3でやってみた！ - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="[Ruby][Rails] RSpec をもっと理解したかったので、まとめを作りました という偉大な記事に感動して、僕もRuby 1.9.3 でトライしてみました。Rspecは2.12.0です！ 目次 (1)RSpec はじめの一歩
+(2)stackクラスとstackクラスのRspec
+(3) &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/rspec-ruby-rails/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">「RSpec をもっと理解したかったので、まとめを作りました」に感動してRuby 1.9.3でやってみた！</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-11-27T22:00:00+09:00" pubdate data-updated="true">Nov 27<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/rspec-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/rspec-ruby-rails/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/rspec-ruby-rails/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/rspec-ruby-rails/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://d.hatena.ne.jp/takihiro/20081108/1226114504">[Ruby][Rails] RSpec をもっと理解したかったので、まとめを作りました</a></p>
+
+<p><a href="http://d.hatena.ne.jp/takihiro/20081108/1226114504" title="fpu_tmp_1354069312.7768_2a8a37 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8484/8224978323_b04717f1b9.jpg" width="500" height="281" alt="fpu_tmp_1354069312.7768_2a8a37"></a></p>
+
+<p>という偉大な記事に感動して、僕もRuby 1.9.3 でトライしてみました。Rspecは2.12.0です！</p>
+
+<!-- more -->
+
+
+<h2>目次</h2>
+
+<p><a href="#1">(1)RSpec はじめの一歩</a><br/>
+<a href="#2">(2)stackクラスとstackクラスのRspec</a><br/>
+<a href="#3">(3) before/after</a><br/>
+<a href="#4">(4) matcher（マッチャ）</a><br/>
+<a href="#5">(5) カスタムマッチャ</a><br/>
+<a href="#6">(6) サンプルソース(GitHub)</a></p>
+
+<p><a name="1"></a></p>
+
+<h2>(1)RSpec はじめの一歩</h2>
+
+<pre>
+we use RSpec to #describe Behaviour of a system using
+Examples of how #it should work.
+
+「#it がどのように work するか」を例にして、システムの
+振る舞い(動作)を説明するためにRSpecを使う
+</pre>
+
+
+<p>From <a href="http://d.hatena.ne.jp/takihiro/20081108/1226114504">[Ruby][Rails] RSpec をもっと理解したかったので、まとめを作りました</a></p>
+
+<p>Rspecの導入の説明には一番マッチします！</p>
+
+<p><a name="2"></a></p>
+
+<h2>(2)stackクラスとstackクラスのRspec</h2>
+
+<p>以下のstackクラスをテスト対象とします。</p>
+
+<figure class='code'><figcaption><span>starck.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Stack</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">EmptyError</span> <span class="o">&lt;</span> <span class="no">RuntimeError</span><span class="p">;</span> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@stack</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">pop</span>
+</span><span class='line'>    <span class="k">unless</span> <span class="n">empty?</span>
+</span><span class='line'>      <span class="vi">@stack</span><span class="o">.</span><span class="n">pop</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="k">raise</span> <span class="no">EmptyError</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">empty?</span>
+</span><span class='line'>    <span class="vi">@stack</span><span class="o">.</span><span class="n">empty?</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">size</span>
+</span><span class='line'>    <span class="vi">@stack</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このstackクラスに対するRSpec(stack_spec.rb)は次のようになります。</p>
+
+<figure class='code'><figcaption><span>stack_spec.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># -*- coding: utf-8 -*-</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rspec&#39;</span>
+</span><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;stack&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="no">Stack</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">before</span> <span class="p">{</span> <span class="vi">@stack</span> <span class="o">=</span> <span class="no">Stack</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;新規作成の場合&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">subject</span> <span class="p">{</span> <span class="vi">@stack</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">it</span><span class="p">(</span><span class="ss">:empty?</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_true</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>context は describe のエイリアスで同じ機能です。<br/>
+このdescribe/contextの一番わかり易い使い分けの説明が、<a href="http://jp.rubyist.net/magazine/?0035-RSpecInPractice#l5">改めて学ぶ RSpec</a>にあります。</p>
+
+<pre>
+* describe はテストする対象をあらわす
+* context はテストする時の状況をあらわす
+</pre>
+
+
+<p>では、このRSpecを実行します。<br/>(rspecコマンド詳細は rspec &#8211;helpで確認できます)</p>
+
+<figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rspec -fs -c stack_spec.rb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>結果はこちら。</p>
+
+<pre>
+Stack
+  新規作成の場合
+    empty?
+
+Finished in 0.00171 seconds
+1 example, 0 failures
+</pre>
+
+
+<p><a name="3"></a></p>
+
+<h2>(3) before/after</h2>
+
+<p>次のRSpecを実行するとbefore/afterの流れが分かると思います。</p>
+
+<figure class='code'><figcaption><span>before_after_spec.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># -*- coding: utf-8 -*-</span>
+</span><span class='line'>require <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'>require <span class="s1">&#39;rspec&#39;</span>
+</span><span class='line'>
+</span><span class='line'>describe <span class="s1">&#39;Level 1&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>before<span class="o">(</span>:all<span class="o">)</span>  <span class="o">{</span> puts <span class="s1">&#39;L1 - before all&#39;</span>      <span class="o">}</span>
+</span><span class='line'>  before<span class="o">(</span>:each<span class="o">)</span> <span class="o">{</span> puts <span class="s1">&#39;L1 - before each&#39;</span> <span class="o">}</span>
+</span><span class='line'>  after<span class="o">(</span>:all<span class="o">)</span>   <span class="o">{</span> puts <span class="s1">&#39;L1 - after all&#39;</span>       <span class="o">}</span>
+</span><span class='line'>  after<span class="o">(</span>:each<span class="o">)</span>  <span class="o">{</span> puts <span class="s1">&#39;L1 - after each&#39;</span>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  it<span class="o">(</span><span class="s1">&#39;body-1.1&#39;</span><span class="o">)</span> <span class="o">{</span> puts <span class="s1">&#39;body-1.1&#39;</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  describe <span class="s1">&#39;Level 2&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span>before<span class="o">(</span>:all<span class="o">)</span>  <span class="o">{</span> puts <span class="s1">&#39;L2 - before all&#39;</span>      <span class="o">}</span>
+</span><span class='line'>    before<span class="o">(</span>:each<span class="o">)</span> <span class="o">{</span> puts <span class="s1">&#39;L2 - before each&#39;</span> <span class="o">}</span>
+</span><span class='line'>    after<span class="o">(</span>:all<span class="o">)</span>   <span class="o">{</span> puts <span class="s1">&#39;L2 - after all&#39;</span>       <span class="o">}</span>
+</span><span class='line'>    after<span class="o">(</span>:each<span class="o">)</span>  <span class="o">{</span> puts <span class="s1">&#39;L2 - after each&#39;</span>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    it<span class="o">(</span><span class="s1">&#39;body-2.1&#39;</span><span class="o">)</span> <span class="o">{</span> puts <span class="s1">&#39;body-2.1&#39;</span><span class="o">}</span>
+</span><span class='line'>    it<span class="o">(</span><span class="s1">&#39;body-2.2&#39;</span><span class="o">)</span> <span class="o">{</span> puts <span class="s1">&#39;body-2.2&#39;</span><span class="o">}</span>
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  it<span class="o">(</span><span class="s1">&#39;body-1.2&#39;</span><span class="o">)</span> <span class="o">{</span> puts <span class="s1">&#39;body-1.2&#39;</span> <span class="o">}</span>
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実行結果はインデントを調整して書くと、次のようになります。</p>
+
+<pre>
+L1 - before all
+    L1 - before each
+      body-1.1
+    L1 - after each
+    L1 - before each
+      body-1.2
+    L1 - after each
+L1 - after all
+L1 - before all
+  L2 - before all
+    L1 - before each
+      L2 - before each
+        body-2.1
+      L2 - after each
+    L1 - after each
+    L1 - before each
+      L2 - before each
+        body-2.2
+      L2 - after each
+    L1 - after each
+  L2 - after all
+L1 - after all
+</pre>
+
+
+<p><a name="4"></a></p>
+
+<h2>(4) matcher（マッチャ）</h2>
+
+<p>be_true のようなメソッドを matcher（マッチャ）といいます。
+Stack クラスのRSpecに3種類のmatcherを追加します。</p>
+
+<figure class='code'><figcaption><span>starck_spec.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># -*- coding: utf-8 -*-</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rspec&#39;</span>
+</span><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;stack&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="no">Stack</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;新規作成の場合&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">before</span> <span class="p">{</span> <span class="vi">@stack</span> <span class="o">=</span> <span class="no">Stack</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">subject</span> <span class="p">{</span> <span class="vi">@stack</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">its</span><span class="p">(</span><span class="ss">:empty?</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_true</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;空の場合&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">before</span> <span class="p">{</span> <span class="vi">@stack</span> <span class="o">=</span> <span class="no">Stack</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">describe</span> <span class="s1">&#39;#size&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">subject</span> <span class="p">{</span> <span class="vi">@stack</span><span class="o">.</span><span class="n">size</span> <span class="p">}</span>
+</span><span class='line'>      <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">describe</span> <span class="s1">&#39;#pop&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">subject</span> <span class="p">{</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="vi">@stack</span><span class="o">.</span><span class="n">pop</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'>      <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">Stack</span><span class="o">::</span><span class="no">EmptyError</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">describe</span> <span class="s1">&#39;#push&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">subject</span> <span class="p">{</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="vi">@stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="no">Object</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'>      <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">change</span><span class="p">(</span><span class="vi">@stack</span><span class="p">,</span> <span class="ss">:size</span><span class="p">)</span><span class="o">.</span><span class="n">by</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ここで使われているマッチャは次の通りです。</p>
+
+<pre>
+"#size"は「==」
+"#pop"は「raise_error」
+"#push"は「change」 
+</pre>
+
+
+<p>結果はこちら。</p>
+
+<pre>
+rspec -fs -c stack_spec.rb 
+
+Stack
+  新規作成の場合
+    empty?
+      should be true
+  空の場合
+    #size
+      should == 0
+    #pop
+      should raise Stack::EmptyError
+    #push
+      should change #size
+
+Finished in 0.00388 seconds
+4 examples, 0 failures
+</pre>
+
+
+<p>RSpecの標準マッチャーを一覧にしました。<br/>
+<a href="2012-12-02-rspec-builtin-matcher-rails">RSpecの標準matchers(マッチャー)一覧</a></p>
+
+<p><a name="5"></a></p>
+
+<h2>(5) カスタムマッチャ</h2>
+
+<p>カスタムマッチャは、「自分で作成するマッチャ」です。
+カスタムマッチャを使うために、Stack クラスにRSpecを追加します。</p>
+
+<figure class='code'><figcaption><span>stack_spec.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Stack</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;オブジェクトをpushした場合&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">before</span> <span class="k">do</span>
+</span><span class='line'>      <span class="vi">@stack</span> <span class="o">=</span> <span class="no">Stack</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="vi">@obj</span> <span class="o">=</span> <span class="no">Object</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="vi">@stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="vi">@obj</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">subject</span> <span class="p">{</span> <span class="vi">@stack</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">its</span><span class="p">(</span><span class="ss">:pop</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="o">==</span> <span class="vi">@obj</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>この追加したRSpecをカスタムマッチャを使って、次のようにしていきます。</p>
+
+<figure class='code'><figcaption><span>stack_spec.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="no">Stack</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;オブジェクトをpushした場合&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">before</span> <span class="p">{</span> <span class="vi">@stack</span> <span class="o">=</span> <span class="no">Stack</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">subject</span> <span class="p">{</span> <span class="vi">@stack</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">pop_latest_pushed_value</span><span class="p">(</span><span class="no">Object</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>カスタムマッチャ&#8221;pop_latest_pushed_value&#8221;の定義(custom_stack_matchers.rb)は次の通りです。</p>
+
+<figure class='code'><figcaption><span>custom_stack_matchers.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">CustomStackMatchers</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">PopLatestPushedValue</span> <span class="c1"># (1) 専用のクラスを作成</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@expected</span> <span class="o">=</span> <span class="n">expected</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">matches?</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="c1"># (2) スペック実行時に呼ばれる。真偽値を返す。</span>
+</span><span class='line'>      <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="vi">@expected</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@popped_val</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="vi">@popped_val</span> <span class="o">==</span> <span class="vi">@expected</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">description</span>
+</span><span class='line'>      <span class="s2">&quot;pop a object, after push the object&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">failure_message</span> <span class="c1"># (3) should の失敗メッセージ</span>
+</span><span class='line'>      <span class="o">&lt;&lt;-</span><span class="no">MSG</span>
+</span><span class='line'><span class="sh">      poped value should equal latest pushed value #{@expected.inspect}, but was #{@popped_val.inspect}</span>
+</span><span class='line'><span class="no">      MSG</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">negative_failure_message</span> <span class="c1"># (4) should_not の失敗メッセージ</span>
+</span><span class='line'>      <span class="o">&lt;&lt;-</span><span class="no">MSG</span>
+</span><span class='line'><span class="sh">      poped value should not equal latest pushed value #{@expected}, but was #{@popped_val}</span>
+</span><span class='line'><span class="no">      MSG</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">pop_latest_pushed_value</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">PopLatestPushedValue</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>stack_spec.rbにカスタムマッチャを読み込むための記述を追加します。</p>
+
+<figure class='code'><figcaption><span>stack_spec.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;custom_stack_matchers&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="no">Stack</span> <span class="k">do</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">CustomStackMatchers</span>  <span class="c1"># (5) カスタムマッチャを使えるようにする</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">contet</span> <span class="s1">&#39;オブジェクトをpush した場合&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">before</span> <span class="p">{</span> <span class="no">Stack</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">subject</span> <span class="p">{</span> <span class="n">stack</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">pop_latest_pushed_value</span><span class="p">(</span><span class="no">Object</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ファイル内の複数箇所でCustomStackMatchersを利用できるように、次のように書くこともできます。</p>
+
+<figure class='code'><figcaption><span>stack_spec.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;custom_stack_matchers&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">include</span> <span class="no">CustomStackMatchers</span> <span class="c1"># (5) カスタムマッチャを使えるようにする</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="no">Stack</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">contet</span> <span class="s1">&#39;オブジェクトをpush した場合&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">before</span> <span class="p">{</span> <span class="no">Stack</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">subject</span> <span class="p">{</span> <span class="n">stack</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">pop_latest_pushed_value</span><span class="p">(</span><span class="no">Object</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>結果はこちら。</p>
+
+<pre>
+rspec -fs -c stack_spec.rb 
+
+Stack
+  新規作成の場合
+    empty?
+      should be true
+  空の場合
+    #size
+      should == 0
+    #pop
+      should raise Stack::EmptyError
+    #push
+      should change #size
+  オブジェクトをpushした場合
+    should pop a object, after push the object
+
+Finished in 0.00413 seconds
+5 examples, 0 failures
+</pre>
+
+
+<p><a name="6"></a></p>
+
+<h2>(6) ソースコード</h2>
+
+<p>今回利用したソースコードをGitHubにアップロードしました。</p>
+
+<p><a href="https://github.com/morizyun/zclip-heroku" class="button big primary">Source(GitHub)</a></p>
+
+<p>以上です。</p>
+
+<p>偉大な記事<a href="http://d.hatena.ne.jp/takihiro/20081108/1226114504">[Ruby][Rails] RSpec をもっと理解したかったので、まとめを作りました</a>と、今回この記事の掲載に快く許可をいただけたブログ作者の滝沢さんに感謝です！</p>
+
+<p>Thank you very much for your kind notification!</p>
+
+<h2>補足：RSpecの書き方、コーディング規約について</h2>
+
+<p>RSpecの書き方は、<a href="http://d.hatena.ne.jp/sinsoku/20120820/1345470914">私はRSpecでテストをこんな感じで書いてる</a>を参考にさせていただきました！</p>
+
+<p>Rubyのコーディング規約は、<a href="http://bojovs.github.com/2012/04/24/ruby-coding-style/">コーディング規約をまとめてみた (Ruby編)</a>を参考にさせていただきました！</p>
+
+<h2>補足：モック/スタブについて</h2>
+
+<p><a href="http://ginpen.com/2012/02/14/rspec-rails/">RSpecでRailsのテストをしてみるテスト。 | Ginpen.com</a></p>
+
+<p><a href="http://d.hatena.ne.jp/takihiro/20081023/1224762895">RSpec のモックとスタブについては RSpec の Mock と Stub が最初分からなかったけど、理解できたら すごい！ という気持ちになった - アントレストラクチャー 滝沢のブログ</a></p>
+
+<h2>関連するサイト</h2>
+
+<ul>
+<li><p><a href="http://jp.rubyist.net/magazine/?0035-RSpecInPractice#l5">改めて学ぶ RSpec</a> : ものすごくわかりやすくRSpecのことが書かれています。</p></li>
+<li><p><a href="http://shinsukekatsuyama.blogspot.jp/2011/07/rspec-1-it.html">RSpec 簡潔に記述する(1) it ブロックを短く書く！</a>
+: 説明がすごくわかりやすくて勉強になります。</p></li>
+</ul>
+
+
+<p><a href="http://d.hatena.ne.jp/t-wada/20100228/p1">RSpec の入門とその一歩先へ</a> : テストリファクタリングの勉強なります！</p>
+
+<ul>
+<li><a href="http://kerryb.github.com/iprug-rspec-presentation/#1">RSpecのスライド</a> : 現在精読中ですが、すごいっす。</li>
+</ul>
+
+
+<h2>テスト環境</h2>
+
+<p>テスト環境は以下の通りです。</p>
+
+<pre>
+OS : Mac Lion(OS X 10.7)
+Ruby : 1.9.3
+Rspec : 2.12.0
+</pre>
+
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-27T22:00:00+09:00" pubdate data-updated="true">Nov 27<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/rspec/'>Rspec</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/rspec-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/rspec-ruby-rails/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/rspec-ruby-rails/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/rspec-ruby-rails/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/rails-mysql-bootstrap/" title="Previous Post: Rails 3.2.13/Bootstrap/Haml プロジェクト新規作成 最短ガイドだよ！">&laquo; Rails 3.2.13/Bootstrap/Haml プロジェクト新規作成 最短ガイドだよ！</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/hatena-facebook-twitter-octopress/" title="Next Post: はてブ/Twitter/いいねなどソーシャルボタンをキレイに並べる">はてブ/Twitter/いいねなどソーシャルボタンをキレイに並べる &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/rspec-ruby-rails/';
+        var disqus_url = 'http://morizyun.github.com/blog/rspec-ruby-rails/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

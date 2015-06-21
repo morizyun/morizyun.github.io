@@ -1,0 +1,900 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Mac Marvericks Rails 最新環境 詳解 構築手順 [Homebrew][MySQL][rbenv][Ruby] - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="MarvericksにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。(あとは統計解析の勉強中なのでRやRStudio関係もインストールされますw)開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="Mac Marvericks Rails 最新環境 詳解 構築手順 [Homebrew][MySQL][rbenv][Ruby] - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="MarvericksにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。(あとは統計解析の勉強中なのでRやRStudio関係もインストールされますw)開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Mac Marvericks Rails 最新環境 詳解 構築手順 [Homebrew][MySQL][rbenv][Ruby]</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-12-22T21:10:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2014</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4800710340/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4800710340&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4800710340&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4800710340" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+MarvericksにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。(あとは統計解析の勉強中なのでRやRStudio関係もインストールされますw)開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>オススメ記事</h2>
+
+<p><strong><a href="http://www.1x1.jp/blog/2014/04/how-to-setup-application-on-osx.html">Mac OSX をクリーンインストールしてからの環境構築メモ</a></strong><br/>
+手順の書き方がよりわかりやすく、抜け漏れが少ないのがいい。</p>
+
+<p><strong><a href="http://qiita.com/syui/items/73a822970742b317aede">MacBookAirで使っている便利ツール</a></strong><br/>
+網羅的にまとめられている記事。素晴らしい。</p>
+
+<h2>XCodeのインストール</h2>
+
+<p><strong><a href="https://developer.apple.com/jp/technologies/tools/">XCode</a></strong><br/>
+Mac App StoreからXCodeをインストール。(Marvericksでは必須ではないかも)</p>
+
+<p>同じく必須ではないかもですが、コマンドラインからのライセンスの同意。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo xcodebuild -license
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Homebrewのインストール</h2>
+
+<p><strong><a href="http://mxcl.github.com/homebrew/">Homebrew</a></strong><br/>
+ターミナルに次のコマンドを入力してインストール。途中で聞かれる、XcodeのCommand Line Toolもインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>gitのインストール</h2>
+
+<p>ソースコードのバージョン管理の仕組みである『<strong><a href="http://git-scm.com/">Git</a></strong>』の初期設定のコマンドを実行。このユーザー名と、メールアドレスはgit内で使われるだけなので自由に設定してください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span><span class='line'>git config --global user.name <span class="s2">&quot;ユーザー名&quot;</span>
+</span><span class='line'>git config --global user.email email@example.com
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Gitソースコードの管理から除外するファイル<code>.gitignore</code>を作成します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global --add core.excludesfile <span class="s2">&quot;$HOME/.gitignore&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで<code>~/.gitignore</code>に常にコミットしないファイルを登録できるようになりました。</p>
+
+<p>例えばJetBrains系のアプリを使っている場合は開発フォルダに<code>/.idea/*</code>といったファイルが自動生成されます。そのような場合は、まずvimで<code>~/.gitignore</code>を開きます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.gitignore
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ファイルを開いたら、<code>/.idea/*</code>を追加します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/.idea/*
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>github用のパスワードを予め登録。<code>vi ~/.netrc</code>で以下を追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>machine github.com
+</span><span class='line'>login USERNAME
+</span><span class='line'>password PASSWORD
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Zshの設定</h2>
+
+<p>GitHubで盛り上がっている<strong><a href="https://github.com/skwp/dotfiles">skwp/dotfiles</a></strong>を手順に従ってインストール。</p>
+
+<p>次のautojumpをインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install autojump
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>vim ~/.zshrc</code>で以下の内容を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># alias</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls -la&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># autojump</span>
+</span><span class='line'><span class="o">[[</span> -s <span class="sb">`</span>brew --prefix<span class="sb">`</span>/etc/autojump.sh <span class="o">]]</span> <span class="o">&amp;&amp;</span> . <span class="sb">`</span>brew --prefix<span class="sb">`</span>/etc/autojump.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で設定を反映。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>この<code>dotfiles</code>は頻繁に変更されているようなので次のコマンドで定期的にアップデートすると捗ります！</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/.yadr
+</span><span class='line'>git pull --rebase
+</span><span class='line'>rake update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>もしcolorschemaを変更したい場合は以下のファイルの<code>colorschema</code>の部分をいじってください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.yadr/vim/settings/yadr-appearance.vim
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Homebrew Caskでインストール</h2>
+
+<p><strong><a href="http://caskroom.io/">Homebrew Cask</a></strong><br/>
+コマンドラインからアプリをインストールできるツール。今回は僕の普段インストールしているBrewfileをGitHubにあげておきました。 => <strong><a href="https://github.com/morizyun/homebrew-cask-brewfile">morizyun/homebrew-cask-brewfile</a></strong></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/morizyun/homebrew-cask-brewfile.git
+</span><span class='line'><span class="nb">cd </span>homebrew-cask-brewfile
+</span><span class='line'>brew bundle
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>iTerm2の設定</h2>
+
+<p><strong><a href="http://qiita.com/muniere/items/e6c5c48a541401ee5af3">Mac - iTerm2上で256色のvimを使う</a></strong><br/>
+iTerm2でvimの256色表示をできるようにする。</p>
+
+<h2>Sublime Text2のパッケージ追加</h2>
+
+<p><strong><a href="https://sublime.wbond.net/installation">Package Control</a></strong><br/>
+<code>View > Show Console</code>からコピペしたコードを実行。Sublime Text2に簡単にパッケージを追加できるようにするためのツール。</p>
+
+<p><strong><a href="https://github.com/ttscoff/MarkdownEditing">MarkdownEditing</a></strong><br/>
+<code>CMD+SHIFT+P > install package > MarkdownEditing</code>マークダウン用のパッケージ。これがないと生きていけないw</p>
+
+<h2>Google 日本語入力のインストール</h2>
+
+<p><strong><a href="http://www.google.co.jp/ime/">Google 日本語入力</a></strong><br/>
+僕の環境では、Homebrew Caskからだとうまくデフォルトになってくれなかったです。
+もし同様の場合はパッケージを手作業でインストールしなおしてみてください。</p>
+
+<h2>MySQLの設定</h2>
+
+<p>ここからは日本のWebサイトでよく使われているオープンソースのデータベース『<strong><a href="http://www-jp.mysql.com/">MySQL</a></strong>』の設定手順。(Homebrew Caskでインストール済)</p>
+
+<p>インストールが完了したら次のようなコメントがでます。<br/>
+(バージョンによって多少変わる可能性あり。自分の環境での表示を優先)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew info mysql
+</span><span class='line'><span class="c"># 一部抜粋</span>
+</span><span class='line'><span class="c"># To have launchd start mysql at login:</span>
+</span><span class='line'><span class="c">#    ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents</span>
+</span><span class='line'><span class="c"># Then to load mysql now:</span>
+</span><span class='line'><span class="c">#    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span>
+</span><span class='line'><span class="c"># Or, if you don&#39;t want/need launchctl, you can just run:</span>
+</span><span class='line'><span class="c">#    mysql.server start</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次にMySQLを起動時に自動でSTARTさせるための設定をします。<br/>
+まず、以下のコマンドを実行して自動起動用plistをコピー。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次にコピーしたplistは常に起動するように設定されているので、stopで終了できるように修正します。
+まずは以下のコマンドでファイルをvimで開きます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ファイルを開いたら<code><true/></code>となっている部分を<code><false/></code>に変更します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>  &lt;key&gt;KeepAlive&lt;/key&gt;
+</span><span class='line'>  &lt;<span class="nb">false</span>/&gt;
+</span><span class='line'>  &lt;key&gt;Program&lt;/key&gt;
+</span><span class='line'>  &lt;string&gt;/usr/local/bin/mysqld_safe&lt;/string&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次に、自動起動の設定をします。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>もしplistを修正して再読み込みさせたい場合は以下のコマンドを実行してください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次にmysqlのroot(管理者)のパスワードとTestDBの削除等を対話形式で行います。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql_secure_installation
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以下は僕の設定です。</p>
+
+<pre>
+Set root password?(rootパスワード設定) => N
+Remove anonymous users?(匿名ユーザー削除) => Y
+Disallow root login remotely?(remote connectは許可しない) => Y
+Remove test database and access to it?(テストDB削除) => Y
+Reload privilege tables now?(権限リロード) => Y
+</pre>
+
+
+<p>ちなみに、HerokuのデフォルトDBである『<strong>PostgreSQL</strong>』を試してみたい場合は拙著『<strong><a href="http://morizyun.github.io/blog/postgresql-mac-centos-rails/">Mac MountainLionへのPostgreSQLの導入手順</a></strong>』を見ながらインストールしてみてください。(時間ができたらMabericksで動作確認してタイトル直しますw)</p>
+
+<h2>rbenvの設定</h2>
+
+<p>まずは、「<strong><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems</a></strong>」をインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとは、デフォルトでインストールするgemを追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundler
+</span><span class='line'>rails
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次コマンドを実行して、vimで<code>~/.zshrc</code>を開きます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ファイルを開いたら次の内容を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if </span>which rbenv &gt; /dev/null; <span class="k">then </span><span class="nb">eval</span> <span class="s2">&quot;$(rbenv init -)&quot;</span>; <span class="k">fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function </span>gem<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/gem <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;i&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uninstall&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uni&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>
+</span><span class='line'><span class="k">    </span>rbenv rehash
+</span><span class='line'>  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function </span>bundle<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/bundle <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;update&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>
+</span><span class='line'><span class="k">    </span>rbenv rehash
+</span><span class='line'>  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$HOME/.rbenv/shims:$PATH&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>編集が完了したらターミナルで次のコマンドを実行。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次にインストール可能なRubyのバージョンをチェック。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rbenv install -l
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最新のRuby(2.1.0など)をインストール。(xxx-dev, xxx-rc1などは開発版などのため除外)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rbenv install 2.1.0
+</span><span class='line'>rbenv rehash
+</span><span class='line'>rbenv global 2.1.0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記のコマンドの完了後、<code>ruby -v</code>を実行して<code>2.1.0</code>などの結果が帰ってくれば成功。</p>
+
+<p>さらに<code>bundle exec</code>を省略するために『<strong><a href="https://github.com/ianheggie/rbenv-binstubs">rbenv-binstubs</a></strong>』をインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/.rbenv/plugins
+</span><span class='line'><span class="nb">cd</span> ~/.rbenv/plugins
+</span><span class='line'>git clone git://github.com/ianheggie/rbenv-binstubs.git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次に以下のコードを実行。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/.bundle
+</span><span class='line'>vim ~/.bundle/config
+</span><span class='line'><span class="c"># ↓ を追加</span>
+</span><span class='line'>BUNDLE_BIN: bin
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで設定は完了です。一点注意点としては、今後は新しいプロジェクトを作成したら次のコマンドを実行する必要があります。ついつい忘れがちになるので注意が必要かも。<br/>
+(<code>path/to/project</code>はプロジェクトのフォルダを表しています)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>path/to/project
+</span><span class='line'>bundle install --binstubs<span class="o">=</span>bundle_bin
+</span><span class='line'>rbenv rehash
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Railsのインストール</h2>
+
+<p>ここまで本当にお疲れ様でした。ということで本題のRailsのインストールをします。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>コマンドの完了後に、<code>rails -v</code>を実行してエラーが出なければ成功です。</p>
+
+<p>この先、HerokuにPushするようなアプリを作ってみたい場合は</p>
+
+<p>初心者な方向けには、『<strong><a href="/blog/beginner-rails-heroku-tutorial">Rails x Heroku 完全初心者向け チュートリアル</a></strong>』がおすすめです。</p>
+
+<p>Railsを触ったことがある人には、拙著『<strong><a href="/blog/heroku-rails4-postgresql-introduction/">Rails4でheroku Pushまでの最短手順</a></strong>』を試してみて頂ければ幸いです。</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>Tips集</h2>
+
+<h3>Rictyのインストール</h3>
+
+<p><strong><a href="/blog/ricty-font-homebrew-mac/">プログラムに最適なフォント『Ricty』を超簡単にインストール</a></strong><br/>
+プログラミングに最適なFont Rictyをインストール。</p>
+
+<h3>Macの基本設定</h3>
+
+<p>コンピュータ名をを変更。</p>
+
+<pre>
+アプリケーション　>システム環境設定　>共有　>コンピュタ名　>(変更)
+</pre>
+
+
+<h3>Pythonのインストール</h3>
+
+<p><strong><a href="/blog/python-pyenv-rehash-mac-development/">Python開発環境構築 徹底解説</a></strong><br/>
+凄くシンプルなインストール手順ですが良かったらぜひ！</p>
+
+<h2>Mountain Lion => Marvericksへのアップグレード</h2>
+
+<p>Homebrew周りでアップグレードした時のメモ。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>xcodebuild -license
+</span><span class='line'>xcode-select --install
+</span><span class='line'>
+</span><span class='line'><span class="c"># warningがなくなるまで対応</span>
+</span><span class='line'>brew doctor
+</span><span class='line'>
+</span><span class='line'><span class="c"># brew側formulaのアップデート</span>
+</span><span class='line'>brew update
+</span><span class='line'>
+</span><span class='line'><span class="c"># インストールアプリのアップデート</span>
+</span><span class='line'>brew upgrade
+</span><span class='line'>
+</span><span class='line'><span class="c"># それでもダメなら再インストール</span>
+</span><span class='line'>brew uninstall &lt;dependency-name&gt; <span class="o">&amp;&amp;</span> brew install &lt;dependency-name&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>ImageMagick/Rmagickのインストール</h2>
+
+<p>ImageMagick/Rmagick周りでハマったのでメモ。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew uninstall pkgconfig <span class="o">&amp;&amp;</span> brew install pkgconfig
+</span><span class='line'>brew uninstall libtool <span class="o">&amp;&amp;</span> brew install libtool
+</span><span class='line'>brew uninstall libpng <span class="o">&amp;&amp;</span> brew install libpng
+</span><span class='line'>brew uninstall libjpg <span class="o">&amp;&amp;</span> brew install libjpg
+</span><span class='line'>brew uninstall imagemagick <span class="o">&amp;&amp;</span> brew install imagemagick --build-from-source
+</span><span class='line'><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span>/usr/local/Cellar/imagemagick/6.8.8-9/lib/pkgconfig/ bundle install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://mizchi.hatenablog.com/entry/2014/03/02/090517">エンジニア Mac アプリ 環境 おすすめ - mizchi&#8217;s blog</a></strong></p>
+
+<p><strong><a href="http://jameshalsall.co.uk/posts/upgrading-homebrew-packages-on-osx-mavericks">James Halsall</a></strong></p>
+
+<p><strong><a href="https://gist.github.com/imaz/4036786">rbenv に変更した後 bundle install できない件</a></strong></p>
+
+<p><strong><a href="http://kazuph.hateblo.jp/entry/2012/09/20/002332">githubにpushするときのパスワード入力を省略する - 僕の車輪の再発明</a></strong></p>
+
+<p><strong><a href="http://efcl.info/2013/1215/res3542/">Mac OSXでR言語(+RStudio)をhomebrewでインストール</a></strong></p>
+
+<p><strong><a href="http://qiita.com/hal_sk/items/dec2b142926af0ef2464">OSX - Mountain Lion にアップグレードしたら homebrew が動かなくなった場合の対処 - Qiita</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(03/28 07:40) RStudioに関するスクリプトを追加<br/>
+(09/27 14:55) rbenv-default-gemsの記述を追加<br/>
+(12/22 21:10) Homebrewのインストールコマンドを修正<br/></p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-22T21:10:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac-osx/'>Mac OSX</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/redis-coloud-heroku-rails4-redis-object/" title="Previous Post: redis-objects/redis-namespace Redisを便利に使うためのGem紹介!">&laquo; redis-objects/redis-namespace Redisを便利に使うためのGem紹介!</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/thor-shell-command-easy-ruby-gem/" title="Next Post: thor Rubyで簡単にshellコマンドが作れる！">thor Rubyで簡単にshellコマンドが作れる！ &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/';
+        var disqus_url = 'http://morizyun.github.com/blog/marvericks-rails-setup-ruby-rvm-msyql/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

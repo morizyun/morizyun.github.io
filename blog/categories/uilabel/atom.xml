@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: UILabel | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/uilabel/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[OHAttributedLabel - UILabelにWebページヘのリンクをつける[Cocoapods]]]></title>
+    <link href="http://morizyun.github.com/blog/ohattributedlabel-uilabel-web-link-objectivec/"/>
+    <updated>2014-07-25T20:30:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/ohattributedlabel-uilabel-web-link-objectivec</id>
+    <content type="html"><![CDATA[<p><a href="blog/categories/uilabel/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8214/8259787081_bdcc3abb1d.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a>
+Objective-Cネタです。UILabelにWebページヘのリンク(link)を超簡単に設置できる、『<strong><a href="https://github.com/AliSoftware/OHAttributedLabel">OHAttributedLabel</a></strong>』の紹介です！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>サンプル画像</h2>
+
+<p>こんな感じのボタンを簡単に設置できます！</p>
+
+<p><img src="http://farm9.staticflickr.com/8214/8259787081_bdcc3abb1d.jpg" style="height: 400px;"/></p>
+
+<h2>コードのサンプル</h2>
+
+<h3>Podfileへの追記</h3>
+
+<p><code>Podfile</code>に以下の内容を追記して、<code>pod install</code>を実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="s1">&#39;OHAttributedLabel&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>OHAttributedLabelの実装</h2>
+
+<p>続いて、Webリンクをはるために<code>.m(実装ファイル)</code>にOHAttributedLabelを設置します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">import</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">OHAttributedLabel</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">super</span> <span class="n">viewDidLoad</span><span class="p">];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="c1">// リンクを付加するOHAttributedLabel</span>
+</span><span class='line'>  <span class="n">OHAttributedLabel</span> <span class="o">*</span><span class="n">sampleLabel</span> <span class="o">=</span> <span class="p">[[</span><span class="n">OHAttributedLabel</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithFrame:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">)];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">sampleLabel</span> <span class="nl">setText:</span><span class="s">@&quot;これがヤフーへのリンクです。&quot;</span><span class="p">];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="n">NSRange</span> <span class="n">linkRange</span> <span class="o">=</span> <span class="p">[</span><span class="n">sampleLabel</span><span class="p">.</span><span class="n">text</span> <span class="nl">rangeOfString:</span><span class="s">@&quot;ヤフー&quot;</span><span class="p">];</span>
+</span><span class='line'>  <span class="n">NSURL</span> <span class="o">*</span><span class="n">linkUrl</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURL</span> <span class="nl">URLWithString:</span><span class="s">@&quot;http://www.yahoo.co.jp/&quot;</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">sampleLabel</span> <span class="nl">addCustomLink:</span><span class="n">linkUrl</span> <span class="nl">inRange:</span><span class="n">linkRange</span><span class="p">];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="c1">// リンクをつけた文字列の色を変更</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">sampleLabel</span> <span class="nl">setLinkColor:</span><span class="p">[</span><span class="n">UIColor</span> <span class="n">greenColor</span><span class="p">]];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="c1">// リンクをつけた文字列にアンダーラインを付けないようにする</span>
+</span><span class='line'>  <span class="n">sampleLabel</span><span class="p">.</span><span class="n">underlineLinks</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview:</span><span class="n">sampleLabel</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></li>
+</ul>
+
+
+<p>実行すると、ヤフーの部分をクリックするとSafariが起動して、ヤフーを表示してくれます。</p>
+
+<p><img src="http://farm9.staticflickr.com/8214/8259787081_bdcc3abb1d.jpg" style="height: 400px;"/></p>
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://eikatou.net/blog/2012/08/ios_rich_uilabel_1/">iOS開発：UILabelでリッチにテキスト表示（OHAttributedLabel）</a></p>
+
+<h2>変更来歴</h2>
+
+<p>(07/25 20:15) 全面書き直し</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[UILabelの文字を点滅[Objective-C]]]></title>
+    <link href="http://morizyun.github.com/blog/uilabel-blink-objectivec/"/>
+    <updated>2012-12-08T01:00:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/uilabel-blink-objectivec</id>
+    <content type="html"><![CDATA[<p><a href="blog/categories/uilabel/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8068/8252883788_c0d8f7a070_m.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Objective-Cネタです。UILabelの文字を点滅をトライしてみました。<br/>ググって探したのですが、スマートな方法が見つけられず・・・力技ですので、お見苦しいかも。もしもっといい方法があればぜひコメントをお願いします！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>実装方法</h2>
+
+<p>白 &lt;=> 赤 に変化するUILabelのサンプルです。
+点滅の方法としては、赤 &lt;=> 白　の色の変化を時間とともに少しずつ行なっています。</p>
+
+<p><code>.h(ヘッダファイル)</code>は以下の通り。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>.h(ヘッダファイル)  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="k">@interface</span> <span class="nc">ViewController</span> : <span class="nc">UIViewController</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">UILabel</span> <span class="o">*</span><span class="n">bLabel</span><span class="p">;</span>
+</span><span class='line'><span class="kt">BOOL</span> <span class="n">needBlink</span><span class="p">;</span>
+</span><span class='line'><span class="kt">float</span> <span class="n">blinkTextExceptRedDelta</span><span class="p">;</span>
+</span><span class='line'><span class="kt">float</span> <span class="n">blinkTextExceptRedNum</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><code>.m(実装ファイル)</code>は以下の通り。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>.m(実装ファイル)  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span>
+</span><span class='line'><span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="p">[</span><span class="n">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+</span><span class='line'><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">setBackgroundColor:</span><span class="p">[</span><span class="n">UIColor</span> <span class="n">blackColor</span><span class="p">]];</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">blinkTextExceptRedNum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="c1">//赤以外の色の初期値</span>
+</span><span class='line'><span class="n">blinkTextExceptRedDelta</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span> <span class="c1">// 色変化の割合</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">needBlink</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'><span class="n">bLabel</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UILabel</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'><span class="n">bLabel</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+</span><span class='line'><span class="p">[</span><span class="n">bLabel</span> <span class="nl">setTextAlignment:</span><span class="n">NSTextAlignmentCenter</span><span class="p">];</span>
+</span><span class='line'><span class="p">[</span><span class="n">bLabel</span> <span class="nl">setBackgroundColor:</span><span class="p">[</span><span class="n">UIColor</span> <span class="n">clearColor</span><span class="p">]];</span>
+</span><span class='line'><span class="p">[</span><span class="n">bLabel</span> <span class="nl">setTextColor:</span><span class="p">[</span><span class="n">UIColor</span> <span class="n">redColor</span><span class="p">]];</span>
+</span><span class='line'><span class="n">bLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">@&quot;test&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview:</span><span class="n">bLabel</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 文字の点滅処理</span>
+</span><span class='line'><span class="p">[</span><span class="n">NSTimer</span> <span class="nl">scheduledTimerWithTimeInterval:</span><span class="mf">0.05</span> <span class="nl">target:</span><span class="n">self</span> <span class="nl">selector:</span><span class="k">@selector</span><span class="p">(</span><span class="n">blinkUILabel</span><span class="p">)</span> <span class="nl">userInfo:</span><span class="nb">nil</span> <span class="nl">repeats:</span><span class="n">NO</span><span class="p">];</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// 文字の点滅処理</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">blinkUILabel</span>
+</span><span class='line'><span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="p">(</span><span class="n">needBlink</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">//赤以外の色の値</span>
+</span><span class='line'>    <span class="kt">float</span> <span class="n">newExceptRedNum</span> <span class="o">=</span> <span class="n">blinkTextExceptRedNum</span> <span class="o">+</span> <span class="n">blinkTextExceptRedDelta</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 赤以外の色が0未満か1より大になる場合は、反転させる</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">newExceptRedNum</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">newExceptRedNum</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mf">1.0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">blinkTextExceptRedDelta</span> <span class="o">=</span> <span class="n">blinkTextExceptRedDelta</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">blinkTextExceptRedNum</span> <span class="o">=</span> <span class="n">blinkTextExceptRedNum</span> <span class="o">+</span> <span class="n">blinkTextExceptRedDelta</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">blinkTextExceptRedNum</span> <span class="o">=</span> <span class="n">newExceptRedNum</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="c1">// この部分を変更すれば希望の色への変化も実現できると思います</span>
+</span><span class='line'>    <span class="n">UIColor</span> <span class="o">*</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nl">colorWithRed:</span><span class="mf">1.0</span> <span class="nl">green:</span><span class="n">blinkTextExceptRedNum</span> <span class="nl">blue:</span><span class="n">blinkTextExceptRedNum</span> <span class="nl">alpha:</span><span class="mf">1.0</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">[</span><span class="n">bLabel</span> <span class="nl">setTextColor:</span> <span class="n">color</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview:</span><span class="n">bLabel</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">[</span><span class="n">NSTimer</span> <span class="nl">scheduledTimerWithTimeInterval:</span><span class="mf">0.05</span> <span class="nl">target:</span><span class="n">self</span> <span class="nl">selector:</span><span class="k">@selector</span><span class="p">(</span><span class="n">blinkUILabel</span><span class="p">)</span> <span class="nl">userInfo:</span><span class="nb">nil</span> <span class="nl">repeats:</span><span class="n">NO</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillDisappear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">blinkd</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="c1">// 点滅を終了させる</span>
+</span><span class='line'>  <span class="n">needBlink</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

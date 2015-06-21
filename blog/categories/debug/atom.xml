@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Debug | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/debug/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Railsのデバックが捗るエラー画面 Better Errors 使ってみた！]]></title>
+    <link href="http://morizyun.github.com/blog/better-error-gem-rails-ruby-rack/"/>
+    <updated>2012-12-13T11:30:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/better-error-gem-rails-ruby-rack</id>
+    <content type="html"><![CDATA[<p><a href="blog/categories/debug/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8062/8268818978_3347cfd921_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Railsのエラー画面をわかりやすく表示してくれるBetter Errors(better_errors)、<a href="https://github.com/languages/Ruby">GitHubのRuby系プロジェクトの中で一ヶ月で１番Starがついてた</a>みたいです。ということで早速使ってみました！</p>
+
+<p><a href="https://github.com/charliesome/better_errors" class="button big primary">charliesome/better_errors - GitHub</a></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>Better Errorsとは？</h2>
+
+<p><strong><a href="https://github.com/charliesome/better_errors">Better Errors</a></strong>はRack(RailsとかSinatraとか)のエラー画面をデバックしやすい形に整形してくれるGemです。</p>
+
+<p>このGemの特徴は次の3つです。</p>
+
+<pre>
+* 綺麗なUI
+* わかりやすいエラーメッセージ
+* ブラウザからのirb(PERL)によるdebugが可能
+</pre>
+
+
+<p>インストールは、Gemfileに以下の行を追加して<code>bundle install</code>するだけです。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># エラー画面をわかりやすく整形してくれる</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;better_errors&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # better_errorsの画面上にirb/</span><span class="n">pry</span><span class="p">(</span><span class="no">PERL</span><span class="p">)</span><span class="err">を表示する</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;binding_of_caller&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>綺麗なUI</h2>
+
+<p>下が通常のRailsのエラーメッセージ、ちょっと味気ないですよね。</p>
+
+<p><img src="http://farm9.staticflickr.com/8501/8268839748_d49761a9ff.jpg" width="500" height="463" alt="fpu_tmp_1355365827.7806_137037"></p>
+
+<p>これが、<code>Better Errors</code>を入れると次のようになります。</p>
+
+<p><img src="http://farm9.staticflickr.com/8068/8268957446_8f21bf485f_c.jpg" width="800" height="442" alt="fpu_tmp_1355369413.1479_0ed703"></p>
+
+<h3>エラーメッセージ/trace情報</h3>
+
+<p>必要な情報をうまく表示してくれているのでエラーを追いやすいです。</p>
+
+<h3>irb(rails c) - デバック画面</h3>
+
+<p>ブラウザからのirb(PERL)によるdebugが可能なので、ここはどうなってるんだっけというのもターミナルを表示しなくてもすぐ確認できます。</p>
+
+<h3>request時のパラメータ/変数の中身</h3>
+
+<p>今まで地道にloggerとかを仕込んで確認していたrequest時のパラメータや変数の中身も画面から簡単に追えるようになっています。</p>
+
+<h2>つまり、デバックが捗る</h2>
+
+<p>これなら、GitHubberな方々が注目する理由もわかります！、もしチャンスがあれば是非チャレンジしてみてください。</p>
+
+<p><a href="https://github.com/charliesome/better_errors" class="button big primary">charliesome/better_errors - GitHub</a></p>
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://el.jibun.atmarkit.co.jp/rails/2012/12/rails.html">Rails4に間に合うか、REPL付きエラー画面「Better Errors」がイイ感じ</a></p>
+]]></content>
+  </entry>
+  
+</feed>

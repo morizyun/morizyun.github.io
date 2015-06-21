@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: acrive_support | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/acrive-support/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[公開中のFacebook EventをGraph APIから取得する]]></title>
+    <link href="http://morizyun.github.com/blog/facebook-event-api-ruby-fb_graph/"/>
+    <updated>2013-12-31T17:25:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/facebook-event-api-ruby-fb_graph</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4797370904/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797370904&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797370904&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797370904" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />最近Facebook Eventでイベントを立ち上げて、参加者に連絡をとるようなことが一般的になってきました。IT勉強会系でもFacebook Eventを活用する機会が少しずつ増えてきている用に思えます。</p>
+
+<p>ということでFacebookのGraph APIからOpenなFacebook Eventを取得するためのRubyスクリプトを作成したので備忘録メモ共有です！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>Gemのインストール</h2>
+
+<p>まずは、Facebook Graph APIへのAccessをサポートしてくれるGem　『<strong><a href="https://github.com/nov/fb_graph">nov/fb_graph</a></strong>』の導入です。</p>
+
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Facebook Graph API&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;fb_graph&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Facebookのアクセストークンの種類</h2>
+
+<p>Facebookのアクセストークンで特に馴染みが深いのは、次の２つ。</p>
+
+<ol>
+    <li>Facebookのユーザーに紐付いたトークン。有効期限が1~2時間のものと、60日間のものがある</li>
+    <li>Facebook アプリに紐づくAccess Token。有効期限が1~2時間のものと、60日間のものがある</li>    
+</ol>
+
+
+<h2>Facebookアプリの登録</h2>
+
+<p>アクセストークンを取得するためにはその前にFacebookアプリの<code>App ID, アプリのシークレットキー</code>が必要。</p>
+
+<p>ということで、<strong><a href="https://developers.facebook.com/apps">Facebook Developers</a></strong>からFacebookアプリの<strong><code>App ID, アプリのシークレットキー</code></strong>を取得。</p>
+
+<h2>Facebookのアクセストークの取得</h2>
+
+<p>Userアクセストークンは『<strong><a href="https://developers.facebook.com/tools/explorer/">Graph API Explorer</a></strong>』から取得できます。Userアクセストークンは、「アクセストークンを取得」 => 「Select Permissions」でパーミッションを指定することができます。</p>
+
+<p><a href="https://developers.facebook.com/tools/explorer/?method=GET&amp;path=100002399430009%3Ffields%3Did%2Cname"><img src="http://farm4.staticflickr.com/3780/11663346164_c8f47eee4c_z.jpg"></a></p>
+
+<p>このままだとアクセストークンの期間が短いので、有効期限を60日間に延長します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>https://graph.facebook.com/oauth/access_token?grant_type<span class="o">=</span>fb_exchange_token&amp;amp;client_id<span class="o">=</span>&lt;App ID&gt;&amp;amp;client_secret<span class="o">=</span>&amp;lt;アプリのシークレットキー&gt;&amp;amp;fb_exchange_token<span class="o">=</span>&lt;Graph API Explorerで取得したアクセストークン&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>このURLにブラウザでアクセスすると、有効期限が60日のアクセストークンが取得できます。</p>
+
+<h2>Facebook Graph APIから公開Eventを取得。</h2>
+
+<p>ようやくFacebook Graph APIにアクセスするためのアクセストークンを取得できました。</p>
+
+<p>ということで、早速Rubyスクリプトからアクセス。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Eventを検索するためのキーワード&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">keyword</span> <span class="o">=</span> <span class="s2">&quot;ハッカソン&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;上で取得したFacebook Userのアクセストークン&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;xxxx&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Facebook Eventの公開されているイベントを検索 (sinceは未来のeventに限定する条件)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">events</span> <span class="o">=</span> <span class="no">FbGraph</span><span class="o">::</span><span class="no">Event</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">access_token</span><span class="p">:</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">since</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">to_i</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Eventの詳細情報の取得&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">events</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;detail = FbGraph::Event.fetch(event.identifier, access_token: access_token)</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr"># 公開されているイベントのみ</span>
+</span><span class='line'><span class="sr">if detail.privacy == &quot;OPEN&quot;</span>
+</span><span class='line'><span class="sr">    # detail をゴニョゴニョ</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ということで、Facebook Eventがますます身近になりそうです！</p>
+
+<h2>所感</h2>
+
+<p>Facebookのアクセストークンまわりは昔から何度もトライしていますが、未だにちゃんと理解しきれていないです。もし間違っている部分にお気づきの方がいれば、ぜひコメント下さい＾＾</p>
+
+<h2>おまけ：Facebookアプリに紐づくアクセストークンの取得</h2>
+
+<p>Facebookアプリに紐づくアクセストークンは、『<strong><a href="https://developers.facebook.com/tools/access_token">Access Token Tool</a></strong>』から取得できます。</p>
+
+<p><a href="https://developers.facebook.com/tools/access_token"><img src="http://farm3.staticflickr.com/2862/11663312154_6f81ea466e_z.jpg"></a></p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://komasaru.github.io/blog/2013/08/29/facebook-api-access-token/">Facebook API - アクセストークン！ - mk-mode BLOG</a></strong></p>
+
+<p><strong><a href="http://stackoverflow.com/questions/4125191/search-facebook-events-and-pagination-graph-api">Search Facebook events and pagination (Graph API) - Stack Overflow</a></strong></p>
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby の require と ActiveSupportの自動requireについて]]></title>
+    <link href="http://morizyun.github.com/blog/ruby-require-active_support-load/"/>
+    <updated>2013-12-29T10:50:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/ruby-require-active_support-load</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774158798/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158798&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158798&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774158798" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />完全に時代から取り残されていますが、今更ながらに『<strong><a href="http://www.amazon.co.jp/gp/product/4774158798/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774158798&amp;linkCode=as2&amp;tag=morizyun00-22">パーフェクト Ruby</a></strong>』を読んでいます。</p>
+
+<p>その中で、Rubyの<code>require</code>についてつい忘れがちになるので、備忘録メモを残しておきます。</p>
+
+<p>またRailsのActiveSupportで自動requireしてくれる機能についても、Rubyスクリプトから簡単に書けそうなので、こちらも合わせて共有です。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>Rubyの標準ライブラリとか、外部ファイルの読み込み</h2>
+
+<p>Rubyの標準ライブラリとか、外部ファイルを読み込む場合。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;ローカルファイルのrequireは、&#39;./</span><span class="s1">&#39;と書くべき&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;require &#39;</span><span class="o">.</span><span class="n">/hoge</span><span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Special Thanks</h3>
+
+<p>Ruby 1.9.2からは、ロードパスにカレントディレクトリが含まれなくなったそうなので、require './' としたほうがいいそうです。さっきハマってました。。。</p>
+
+<p><strong><a href="http://blog.ruedap.com/2011/05/31/ruby-require-load-path">Rubyでrbファイルをrequireするときはドットを打つと良さそう - アインシュタインの電話番号</a></strong></p>
+
+<h2>実行ファイル絡みた相対パスで require</h2>
+
+<p>実行ファイル絡みた相対パスで require する場合は、<code>require_relative</code>とします。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;my_library&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>$LOAD_PATHを追加</h2>
+
+<p>requireでは、<code>$LOAD_PATH</code>に登録されている探索パスから検索します。ということで、<code>$LOAD_PATH</code>にパスを追加すると、<code>require</code>するときに相対パスにすることができます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h2&gt;実行ファイルのあるディレクトリを$LOAD_PATHに追加&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="vg">$LOAD_PATH</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="no">FILE</span><span class="o">&lt;</span><span class="sr">/strong&gt;)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>RubyでActiveSupportの自動requireを使う</h2>
+
+<p>RailsのActiveSupportがやってくれる自動requireを、Rubyスクリプト内で実行する方法がかなり便利そうだったので共有！</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/dependencies&#39;</span>
+</span><span class='line'><span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Dependencies</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="s2">&quot;/path/to/my_library&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>これで、<code> /path/to/my_library</code>以下にあるファイルを自動でRequireしてくれるそうです。</p>
+
+<h3>Special Thanks</h3>
+
+<p><strong><a href="http://blog.mirakui.com/entry/20100924/active_support">RailsじゃなくてもActiveSupportの自動require機能を使う - 昼メシ物語</a></strong></p>
+
+<h2>所感</h2>
+
+<p>Rubyスクリプトを書く上で、基礎中の基礎だと思いますが今までちゃんと理解できていませんでした。ちゃんと理解してRubyスクリプトをしっかり使えるようになりたい！</p>
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+]]></content>
+  </entry>
+  
+</feed>

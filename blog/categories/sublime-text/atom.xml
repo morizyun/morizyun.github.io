@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sublime Text | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/sublime-text/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime Text 日本語がtabキーで改行(消える)場合の対策]]></title>
+    <link href="http://morizyun.github.com/blog/markdown-sublime-text2/"/>
+    <updated>2012-12-18T13:45:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/markdown-sublime-text2</id>
+    <content type="html"><![CDATA[<p><a href="blog/categories/sublime-text/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8223/8283514062_b4c06bbecd_q.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>小ネタです。Sublime Textを使っていて日本語の推測変換をしようとTabキーを押すと途中まで入力していた日本語が消えてしまうのに悩まされていましたが、ようやく解決方法を見つけたのでメモです。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>設定の見直し</h2>
+
+<p>Sublime Textを開いて、<code>Sublime Text2 => Preferences => Key Binding – Default</code>をクリックすると、キーバインドの設定ファイルが開きます。</p>
+
+<p><img src="http://farm9.staticflickr.com/8346/8282450989_26c6fd33ba.jpg" width="500" height="331" alt="fpu_tmp_1355805830.2887_434214"></p>
+
+<p>このファイルの<code>93-99行目</code>を以下のようにコメントアウトします。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>//  <span class="o">{</span> “keys”: <span class="o">[</span><span class="s2">&quot;tab&quot;</span><span class="o">]</span>, “command”: “insert_best_completion”, “args”: <span class="o">{</span>“default”: “<span class="se">\t</span>”, “exact”: <span class="nb">true</span><span class="o">}</span> <span class="o">}</span>,
+</span><span class='line'>//  <span class="o">{</span> “keys”: <span class="o">[</span><span class="s2">&quot;tab&quot;</span><span class="o">]</span>, “command”: “insert_best_completion”, “args”: <span class="o">{</span>“default”: “<span class="se">\t</span>”, “exact”: <span class="nb">false</span><span class="o">}</span>,
+</span><span class='line'>//   “context”:
+</span><span class='line'>//   <span class="o">[</span>
+</span><span class='line'>//   <span class="o">{</span> <span class="s2">&quot;key&quot;</span>: <span class="s2">&quot;setting.tab_completion&quot;</span>, <span class="s2">&quot;operator&quot;</span>: <span class="s2">&quot;equal&quot;</span>, <span class="s2">&quot;operand&quot;</span>: <span class="nb">true</span> <span class="o">}</span>
+</span><span class='line'>//   <span class="o">]</span>
+</span><span class='line'>//  <span class="o">}</span>,
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>保存して再起動したら、日本語の推測変換をしても消えなくなりました。<br/>
+ただ弊害もあってsublime側のコード補完をtabで選択できなくなります。トレードオフですが、僕のようにテキストが主の場合には消えないほうが助かると思います。</p>
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://www.barasu.org/pc/mac/9315.html">SUBLIME TEXT 2の日本語入力でTABを有効化する</a></p>
+]]></content>
+  </entry>
+  
+</feed>

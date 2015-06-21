@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>【書評: 統計学がわかる 回帰分析・因子分析編】回帰分析の便利さに触れられます！ - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="この本のシリーズ本の『統計学がわかる』がすごくわかりやすかったので、その続きの本『統計学がわかる 回帰分析・因子分析編』を読みました。 こちらの本もアイスクリーム屋さんの店長と店員を軸に、テンポよく回帰分析を中心に勉強する事ができます。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="【書評: 統計学がわかる 回帰分析・因子分析編】回帰分析の便利さに触れられます！ - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="この本のシリーズ本の『統計学がわかる』がすごくわかりやすかったので、その続きの本『統計学がわかる 回帰分析・因子分析編』を読みました。 こちらの本もアイスクリーム屋さんの店長と店員を軸に、テンポよく回帰分析を中心に勉強する事ができます。 &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">【書評: 統計学がわかる 回帰分析・因子分析編】回帰分析の便利さに触れられます！</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-03-24T08:45:00+09:00" pubdate data-updated="true">Mar 24<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774137073/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774137073&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774137073&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774137073" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />この本のシリーズ本の『<strong><a href="/blog/statistics-understand-first-book-review/">統計学がわかる</a></strong>』がすごくわかりやすかったので、その続きの本『<strong><a href="http://www.amazon.co.jp/gp/product/4774137073/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774137073&amp;linkCode=as2&amp;tag=morizyun00-22">統計学がわかる 回帰分析・因子分析編</a></strong>』を読みました。</p>
+
+<p>こちらの本もアイスクリーム屋さんの店長と店員を軸に、テンポよく回帰分析を中心に勉強する事ができます。この本の中で特に参考になった点をピックアップしてマトメていきます！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>第１章：散布図と相関</h2>
+
+<h3>ポイント</h3>
+
+<pre>
+* 散布図はデータの散らばり具合やデータ同士の関係を表す
+* 散布図には、正の相関、負の相関、無相関のパターンがある
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 2) 散布図</span>
+</span><span class='line'>score &lt;- c<span class="o">(</span>440, 448, 455, 460, 473, 485, 489, 500, 512, 518, 528, 550, 582, 569, 585, 593, 620, 650, 690<span class="o">)</span>
+</span><span class='line'>seiseki &lt;- c<span class="o">(</span>1.57, 1.83, 2.05, 1.14, 2.73, 1.65, 2.02, 2.98, 1.79, 2.63, 2.08, 2.15, 3.44, 3.05, 3.19, 3.42, 3.87, 3.00, 3.12<span class="o">)</span>
+</span><span class='line'>plot<span class="o">(</span>score, seiseki<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://farm3.staticflickr.com/2838/13349736775_3c3dd9e589.jpg" width="413" height="439" alt="Rplot"></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 3) 散布図から読み取れること</span>
+</span><span class='line'><span class="c">#=&gt; 散布図に相関があるように見える</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>第２章：相関係数</h2>
+
+<h3>ポイント</h3>
+
+<pre>
+相関係数 = 偏差席の平均 / (標準偏差X*標準偏差Y)
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 1) 相関係数</span>
+</span><span class='line'>score &lt;- c<span class="o">(</span>440, 448, 455, 460, 473, 485, 489, 500, 512, 518, 528, 550, 582, 569, 585, 593, 620, 650, 690<span class="o">)</span>
+</span><span class='line'>seiseki &lt;- c<span class="o">(</span>1.57, 1.83, 2.05, 1.14, 2.73, 1.65, 2.02, 2.98, 1.79, 2.63, 2.08, 2.15, 3.44, 3.05, 3.19, 3.42, 3.87, 3.00, 3.12<span class="o">)</span>
+</span><span class='line'>cor<span class="o">(</span>score, seiseki<span class="o">)</span> <span class="c">#=&gt; 0.7617977</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 2) 相関係数から言えること</span>
+</span><span class='line'><span class="c">#=&gt; 強い相関がある。入試点数が高い人ほど、成績が高い傾向がある</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>第３章：無相関検定</h2>
+
+<h3>確認テスト</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 1) 無作為抽出された場合どのようなことが言えるか？</span>
+</span><span class='line'>score &lt;- c<span class="o">(</span>440, 448, 455, 460, 473, 485, 489, 500, 512, 518, 528, 550, 582, 569, 585, 593, 620, 650, 690<span class="o">)</span>
+</span><span class='line'>seiseki &lt;- c<span class="o">(</span>1.57, 1.83, 2.05, 1.14, 2.73, 1.65, 2.02, 2.98, 1.79, 2.63, 2.08, 2.15, 3.44, 3.05, 3.19, 3.42, 3.87, 3.00, 3.12<span class="o">)</span>
+</span><span class='line'>cor<span class="o">(</span>score, seiseki<span class="o">)</span> <span class="c">#=&gt; 0.7617977</span>
+</span><span class='line'><span class="c">#=&gt; 0.575 &lt; 0.76なので、「母集団の相関係数が0」が棄却。相関がある。</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 2) (1)の結果をわかりやすい言葉で説明</span>
+</span><span class='line'><span class="c">#=&gt; 入学試験の点数と学業成績の間には偶然ではない何らかの相関がある</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>第４章：回帰直線</h2>
+
+<h3>ポイント</h3>
+
+<pre>
+データとの差(残差)が最小となるところに引いた線を「回帰直線」と呼ぶ
+回帰直線の傾き = 相関係数 * (yの標準偏差/xの標準偏差)
+回帰直線のy切片 = yの平均 - (傾き*xの平均)
+回帰直線はデータを推測するのに利用される
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>score &lt;- c<span class="o">(</span>440, 448, 455, 460, 473, 485, 489, 500, 512, 518, 528, 550, 582, 569, 585, 593, 620, 650, 690<span class="o">)</span>
+</span><span class='line'>seiseki &lt;- c<span class="o">(</span>1.57, 1.83, 2.05, 1.14, 2.73, 1.65, 2.02, 2.98, 1.79, 2.63, 2.08, 2.15, 3.44, 3.05, 3.19, 3.42, 3.87, 3.00, 3.12<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 1) 回帰直線</span>
+</span><span class='line'>dat &lt;- data.frame<span class="o">(</span>score, seiseki<span class="o">)</span>
+</span><span class='line'>result &lt;- glm<span class="o">(</span>seiseki~score, <span class="nv">data</span><span class="o">=</span>dat, <span class="nv">family</span><span class="o">=</span>gaussian<span class="o">)</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>
+</span><span class='line'><span class="c"># Call:</span>
+</span><span class='line'><span class="c">#   glm(formula = seiseki ~ score, family = gaussian, data = dat)</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># Deviance Residuals: </span>
+</span><span class='line'><span class="c">#   Min        1Q    Median        3Q       Max  </span>
+</span><span class='line'><span class="c"># -0.77362  -0.45589   0.01319   0.35065   0.74367  </span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># Coefficients:</span>
+</span><span class='line'><span class="c">#   Estimate Std. Error t value Pr(&gt;|t|)    </span>
+</span><span class='line'><span class="c"># (Intercept) -1.797487   0.896221  -2.006 0.061081 .  </span>
+</span><span class='line'><span class="c"># score        0.008068   0.001664   4.849 0.000151 ***</span>
+</span><span class='line'><span class="c">#   ---</span>
+</span><span class='line'><span class="c">#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># (Dispersion parameter for gaussian family taken to be 0.2577129)</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># Null deviance: 10.4396  on 18  degrees of freedom</span>
+</span><span class='line'><span class="c"># Residual deviance:  4.3811  on 17  degrees of freedom</span>
+</span><span class='line'><span class="c"># AIC: 32.044</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># Number of Fisher Scoring iterations: 2</span>
+</span><span class='line'><span class="c">#=&gt; 傾きは0.008068、切片は-1.797487</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 2) 400、500、600、700点の予測値</span>
+</span><span class='line'><span class="c"># 400点 =&gt; 0.008068*400 -1.797 #=&gt; 1.4302</span>
+</span><span class='line'><span class="c"># 500点 =&gt; 0.008068*500 -1.797 #=&gt; 2.2327</span>
+</span><span class='line'><span class="c"># 600点 =&gt; 0.008068*600 -1.797 #=&gt; 3.0438</span>
+</span><span class='line'><span class="c"># 700点 =&gt; 0.008068*700 -1.797 #=&gt; 3.8506</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>第５章: 偏相関</h2>
+
+<h3>ポイント</h3>
+
+<pre>
+偏相関 => 変数a, b, yが3つあるとき、変数bと変数yの相関から変数aの影響を取り除いたもの
+偏相関係数 => (r_by - (r_ay * r_ab))/(sqrt(1-r_ay^2)*sqrt(1-r_ab^2))
+偏相関を言い換えると => 第三の変数との残差同士の相関
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 第５章</span>
+</span><span class='line'>score &lt;- c<span class="o">(</span>440, 448, 455, 460, 473, 485, 489, 500, 512, 518, 528, 550, 582, 569, 585, 593, 620, 650, 690<span class="o">)</span>
+</span><span class='line'>seiseki &lt;- c<span class="o">(</span>1.57, 1.83, 2.05, 1.14, 2.73, 1.65, 2.02, 2.98, 1.79, 2.63, 2.08, 2.15, 3.44, 3.05, 3.19, 3.42, 3.87, 3.00, 3.12<span class="o">)</span>
+</span><span class='line'>hyotei &lt;- c<span class="o">(</span>5.7, 6.8, 6.2, 5.5, 6.0, 7.3, 7.6, 7.3, 5.6, 7.6, 6.5, 7.8, 6.8, 7.5, 8.2, 7.8, 7.5, 7.2, 8.8<span class="o">)</span>
+</span><span class='line'>dat &lt;- data.frame<span class="o">(</span>score, seiseki, hyotei<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 1) 各組み合わせの相関係数</span>
+</span><span class='line'>cor<span class="o">(</span>score, seiseki<span class="o">)</span>  <span class="c">#=&gt; 0.7617977</span>
+</span><span class='line'>cor<span class="o">(</span>score, hyotei<span class="o">)</span>   <span class="c">#=&gt; 0.6908645</span>
+</span><span class='line'>cor<span class="o">(</span>seiseki, hyotei<span class="o">)</span> <span class="c">#=&gt; 0.6072251</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 2) 偏相関係数 =&gt; http://aoki2.si.gunma-u.ac.jp/R/partial-cor.html</span>
+</span><span class='line'><span class="nb">source</span><span class="o">(</span><span class="s2">&quot;http://aoki2.si.gunma-u.ac.jp/R/src/partial_cor.R&quot;</span>, <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;euc-jp&quot;</span><span class="o">)</span>
+</span><span class='line'>partial.cor<span class="o">(</span>dat<span class="o">)</span>
+</span><span class='line'><span class="c"># Var 1     Var 2     Var 3</span>
+</span><span class='line'><span class="c"># Var 1        NA 0.5958705 0.4435168</span>
+</span><span class='line'><span class="c"># Var 2 0.5958705        NA 0.1727862</span>
+</span><span class='line'><span class="c"># Var 3 0.4435168 0.1727862        NA</span>
+</span><span class='line'><span class="c">#=&gt; Var1(score), Var2(seiseki)は、0.5958705</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 3) </span>
+</span><span class='line'><span class="c"># scoreとseisekiの相関係数は0.762</span>
+</span><span class='line'><span class="c"># hyoteiの影響を取り除いた偏相関係数は0.596</span>
+</span><span class='line'><span class="c"># hyoteiの影響を取り除いてもscore, seisekiには中程度の相関がある</span>
+</span><span class='line'><span class="c"># =&gt; 有意水準1%の限界値0.575よりも偏相関係数0.596が大きいので、有意な相関がある</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Special Thanks</h3>
+
+<p><strong><a href="http://aoki2.si.gunma-u.ac.jp/R/partial-cor.html">R &#8211; 偏相関係数</a></strong></p>
+
+<h2>第６章：重回帰</h2>
+
+<h3>ポイント</h3>
+
+<pre>
+偏回帰係数 => 偏相関の回帰直線の傾き
+単回帰 => 1つの説明変数で独立変数(別の変数)を予測するモデル
+重回帰 => 2つ以上の説明変数で独立変数(別の変数)を予測するモデル
+重相関係数 => 実測値と重回帰モデルによる予測値の相関関係
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>score &lt;- c<span class="o">(</span>440, 448, 455, 460, 473, 485, 489, 500, 512, 518, 528, 550, 582, 569, 585, 593, 620, 650, 690<span class="o">)</span>
+</span><span class='line'>seiseki &lt;- c<span class="o">(</span>1.57, 1.83, 2.05, 1.14, 2.73, 1.65, 2.02, 2.98, 1.79, 2.63, 2.08, 2.15, 3.44, 3.05, 3.19, 3.42, 3.87, 3.00, 3.12<span class="o">)</span>
+</span><span class='line'>hyotei &lt;- c<span class="o">(</span>5.7, 6.8, 6.2, 5.5, 6.0, 7.3, 7.6, 7.3, 5.6, 7.6, 6.5, 7.8, 6.8, 7.5, 8.2, 7.8, 7.5, 7.2, 8.8<span class="o">)</span>
+</span><span class='line'>dat &lt;- data.frame<span class="o">(</span>score, seiseki, hyotei<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 1) 重回帰モデルの式</span>
+</span><span class='line'><span class="c">#=&gt; 学業成績 = a*評定平均 + b*入試点数 + c</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 2)  重回帰モデルの算出</span>
+</span><span class='line'>result &lt;- glm<span class="o">(</span>seiseki~score+hyotei, <span class="nv">data</span> <span class="o">=</span> dat, <span class="nv">family</span><span class="o">=</span>gaussian<span class="o">)</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>
+</span><span class='line'><span class="c"># Call:</span>
+</span><span class='line'><span class="c">#   glm(formula = seiseki ~ score + hyotei, family = gaussian, data = dat)</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># Deviance Residuals: </span>
+</span><span class='line'><span class="c">#   Min        1Q    Median        3Q       Max  </span>
+</span><span class='line'><span class="c"># -0.69843  -0.36003  -0.05394   0.31981   0.77518  </span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># Coefficients:</span>
+</span><span class='line'><span class="c">#   Estimate Std. Error t value Pr(&gt;|t|)   </span>
+</span><span class='line'><span class="c"># (Intercept) -2.094111   1.003309  -2.087  0.05322 . </span>
+</span><span class='line'><span class="c"># score        0.006935   0.002337   2.968  0.00907 **</span>
+</span><span class='line'><span class="c">#   hyotei       0.128121   0.182587   0.702  0.49295   </span>
+</span><span class='line'><span class="c"># ---</span>
+</span><span class='line'><span class="c">#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># (Dispersion parameter for gaussian family taken to be 0.265645)</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># Null deviance: 10.4396  on 18  degrees of freedom</span>
+</span><span class='line'><span class="c"># Residual deviance:  4.2503  on 16  degrees of freedom</span>
+</span><span class='line'><span class="c"># AIC: 33.468</span>
+</span><span class='line'><span class="c"># </span>
+</span><span class='line'><span class="c"># Number of Fisher Scoring iterations: 2</span>
+</span><span class='line'><span class="c">#=&gt; a = 0.006935, b = 0.128121, c = -2.094111</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 3) 重相関係数 =&gt; http://aoki2.si.gunma-u.ac.jp/R/multiple-cor.html</span>
+</span><span class='line'><span class="nb">source</span><span class="o">(</span><span class="s2">&quot;http://aoki2.si.gunma-u.ac.jp/R/src/multiple_cor.R&quot;</span>, <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;euc-jp&quot;</span><span class="o">)</span>
+</span><span class='line'>multiple.cor<span class="o">(</span>dat<span class="o">)</span>
+</span><span class='line'><span class="c"># score   seiseki    hyotei </span>
+</span><span class='line'><span class="c"># 0.8141785 0.7699771 0.7020678</span>
+</span><span class='line'><span class="c">#=&gt; 0.7699771</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Speical Thanks</h3>
+
+<p><strong><a href="http://aoki2.si.gunma-u.ac.jp/R/multiple-cor.html">R &#8211; 重相関係数</a></strong></p>
+
+<h2>第７章：多変量データ</h2>
+
+<h3>ポイント</h3>
+
+<pre>
+多変量データ => 沢山のデータからなる変数
+相関行列 => 変数どう押しの相関係数を整理した表
+</pre>
+
+
+<h2>第８章：因子分析</h2>
+
+<pre>
+因子分析 => 多変量データを分析する手法の一つ。多くの観測変数を分析することで、観測変数に影響をあたえる共通要因を求める
+因子負荷 => 観測変数に対して共通因子がどれくらいの強さで影響をあたえるかを示したもの
+因子得点 => それぞれのケースが、各因子に対してどれくらいの重みを持っているかを計算したもの
+</pre>
+
+
+<h2>おすすめサイト</h2>
+
+<p><strong><a href="http://aoki2.si.gunma-u.ac.jp/R/">R による統計処理</a></strong><br/>
+いろんな統計入門系のサイトを見ていると、かなり評判がいいのがこちらのサイト。少しずつこなしたい！</p>
+
+<p><strong><a href="http://mo161.soci.ous.ac.jp/@d/DoDStat/DataList/indexj.html">データセット一覧 : DoDStat@d</a></strong><br/>
+より複雑なデータ・セットがあるので、いろんな解析の勉強をするときに使ってみたい。</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-24T08:45:00+09:00" pubdate data-updated="true">Mar 24<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/statistics/'>statistics</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/statistics-understand-first-book-review/" title="Previous Post: 【書評: 統計学がわかる】統計学初心者が統計学の面白さに触れられます！">&laquo; 【書評: 統計学がわかる】統計学初心者が統計学の面白さに触れられます！</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/vagrant-centos-php53-cakephp/" title="Next Post: VagrantでCentOS/Chef/MySQL/phpMyAdmin/PHP 5.3/CakePHP2.4.5 開発環境を整備">VagrantでCentOS/Chef/MySQL/phpMyAdmin/PHP 5.3/CakePHP2.4.5 開発環境を整備 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/';
+        var disqus_url = 'http://morizyun.github.com/blog/statistics-understand-regression-analysis-first-book/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

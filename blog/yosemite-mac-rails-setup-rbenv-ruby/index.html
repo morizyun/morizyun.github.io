@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Mac Yosemite Rails 最新環境 詳解 構築手順 [Homebrew][rbenv][Ruby] - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="遅まきながら、Mac YosemiteにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。
+開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！ <!-- google_ad_client = "ca-pub- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="Mac Yosemite Rails 最新環境 詳解 構築手順 [Homebrew][rbenv][Ruby] - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="遅まきながら、Mac YosemiteにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。
+開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！ <!-- google_ad_client = "ca-pub- &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Mac Yosemite Rails 最新環境 詳解 構築手順 [Homebrew][rbenv][Ruby]</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2015-03-08T15:40:00+09:00" pubdate data-updated="true">Mar 8<span>th</span>, 2015</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4800710685/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4800710685&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4800710685&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4800710685" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+遅まきながら、Mac YosemiteにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。
+開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>XCodeのインストール</h2>
+
+<p><strong><a href="https://developer.apple.com/jp/technologies/tools/">XCode</a></strong><br/>
+Mac App StoreからXCodeをインストール。</p>
+
+<p>必須ではないかもですが、コマンドラインからのライセンスの同意。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo xcodebuild -license
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Homebrewのインストール</h2>
+
+<p><strong><a href="http://mxcl.github.com/homebrew/">Homebrew</a></strong><br/>
+ターミナルに次のコマンドを入力してインストール。途中で聞かれる、XcodeのCommand Line Toolもインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Oh-my-zshのインストール</h2>
+
+<p>次にzshを適度にカスタマイズしてくれる<strong><a href="https://github.com/robbyrussell/oh-my-zsh">robbyrussell/oh-my-zsh</a></strong>
+をインストールします。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>gitのインストール</h2>
+
+<p>ソースコードのバージョン管理の仕組みである『<strong><a href="http://git-scm.com/">Git</a></strong>』の初期設定のコマンドを実行。このユーザー名と、メールアドレスはgit内で使われるだけなので自由に設定してください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span><span class='line'>git config --global user.name <span class="s2">&quot;ユーザー名&quot;</span>
+</span><span class='line'>git config --global user.email email@example.com
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Gitソースコードの管理から共通して除外したいファイルを指定するための
+設定を記述する<code>.gitignore</code>を作成&amp;登録します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># gitignore自動生成をしてくれるツール</span>
+</span><span class='line'>brew install gibo
+</span><span class='line'>
+</span><span class='line'><span class="c"># JetBrainsとMacの不要なファイルを登録</span>
+</span><span class='line'>gibo JetBrains OSX &gt; .gitignore
+</span><span class='line'>
+</span><span class='line'><span class="c"># gitに登録</span>
+</span><span class='line'>git config --global --add core.excludesfile <span class="s2">&quot;$HOME/.gitignore&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで<code>~/.gitignore</code>に常にコミットしないファイルが登録されました。</p>
+
+<p>github用のパスワードを予め登録。<code>vi ~/.netrc</code>で以下を追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>machine github.com
+</span><span class='line'>login USERNAME
+</span><span class='line'>password PASSWORD
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>autojumpのインストール</h2>
+
+<p>次のautojumpをインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install autojump
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>vim ~/.zshrc</code>で以下の内容を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># alias</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls -la&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># autojump</span>
+</span><span class='line'><span class="o">[[</span> -s <span class="sb">`</span>brew --prefix<span class="sb">`</span>/etc/autojump.sh <span class="o">]]</span> <span class="o">&amp;&amp;</span> . <span class="sb">`</span>brew --prefix<span class="sb">`</span>/etc/autojump.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で設定を反映。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>アプリのインストール</h2>
+
+<h3><a href="http://www.iterm2.com/#/section/home">iTerm2 - Mac OS Terminal Replacement</a></h3>
+
+<p><a href="http://www.iterm2.com/#/section/home" title="iTerm2"><img src="http://farm6.staticflickr.com/5469/9656599733_2a426ddd97.jpg" width="500" height="168" alt="iTerm2"></a></p>
+
+<p>標準のターミナルに比べて多機能。ただし、β版はカナリ冒険しているので安定板を使うことをお勧めします。</p>
+
+<h3><a href="https://atom.io">Atom</a></h3>
+
+<p>GitHubが出しているハックできるエディタです。着実に使いやすくなってきています！</p>
+
+<h3><a href="http://www.google.co.jp/intl/ja/chrome/browser/">Chrome</a></h3>
+
+<p>言わずと知れたGoogle謹製のブラウザー。Dev Toolがないと生きていけない。</p>
+
+<h3><a href="http://www.google.co.jp/ime/">Google 日本語入力</a></h3>
+
+<p>同じく、Google製の日本語入力ツール。無料では間違いなく最強だと思います。</p>
+
+<h3><a href="https://evernote.com/intl/jp/">Evernote</a></h3>
+
+<p>クラウドでいつでもどこでも最新のノートが見れるアプリ。容量の大きなデータを保存しなければ、無料で十分使えます。</p>
+
+<h3><a href="https://www.dropbox.com/home">Dropbox</a></h3>
+
+<p>クラウドでいつでもどこでもファイルを保存・閲覧できるアプリ。<br/>ローカルフォルダ感覚でほとんど意識せずに使えるのは本当に素晴らしいです！</p>
+
+<h3><a href="https://www.jetbrains.com/ruby/">RubyMine</a></h3>
+
+<p>Ruby on Rails用のIDE(統合開発管理ツール)です。個人利用版は$99(約12,000円)ですが、体験版は1ヶ月無料(機能制限なし)なので良かったら試してみてください。</p>
+
+<h3><a href="http://stereopsis.com/flux/">f.lux</a></h3>
+
+<p>ディスプレイの色温度を昼/夜で調節してくれるアプリ。個人的にJIN PCメガネをずっと買おうと思ってたので助かる！</p>
+
+<h3><a href="https://itunes.apple.com/jp/app/dash-docs-snippets/id458034879">Dash</a></h3>
+
+<p>ほぼ有料ソフト($20)ですが、インストールする価値は十分にあります。
+主要なライブラリ、フレームワークの API リファレンスをまとめて検索・閲覧できます。</p>
+
+<h3><a href="http://blog.boastr.net/">BetterTouchTool</a></h3>
+
+<p>Macでキーボードでのウィンドウ操作をしたいときに便利なツール。使いはじめると手放せなくなります！</p>
+
+<h3><a href="http://www.sourcetreeapp.com/">SourceTree</a></h3>
+
+<p>gitなどのバージョン管理の仕組みをGUIで表示してくれるツール。手放せなくなっています。</p>
+
+<h3><a href="http://mattpatenaude.com/">COLORS</a></h3>
+
+<p>Macのネイティブのカラーピッカー、画面上の色を抽出してくれます。最近の必須アイテムです。</p>
+
+<h2>gemインストールの設定</h2>
+
+<p><code>gem install</code>で不要なドキュメントをインストールしないように<code>vim .gemrc</code>
+として以下を記入。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>install: --no-document
+</span><span class='line'>update: --no-document
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>rbenvのインストール</h2>
+
+<p><code>rbenv</code>と<code>ruby-build</code>をインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># rbenv / ruby-build / rbenv-gem-rehash をインストール</span>
+</span><span class='line'>brew install rbenv ruby-build rbenv-gem-rehash
+</span><span class='line'>
+</span><span class='line'><span class="c"># rbenvを使うときにデフォルトでgemを追加してくれるツールを追加</span>
+</span><span class='line'>git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
+</span><span class='line'>
+</span><span class='line'><span class="c"># デフォルトでインストールするgemを追記</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;bundler\nrails&#39;</span> ~/.rbenv/default-gems
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次コマンドを実行して、vimで<code>~/.zshrc</code>を開きます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ファイルを開いたら次の内容を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if </span>which rbenv &gt; /dev/null; <span class="k">then </span><span class="nb">eval</span> <span class="s2">&quot;$(rbenv init -)&quot;</span>; <span class="k">fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function </span>gem<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/gem <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;i&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uninstall&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uni&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>
+</span><span class='line'><span class="k">    </span>rbenv rehash
+</span><span class='line'>  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function </span>bundle<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/bundle <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;update&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>
+</span><span class='line'><span class="k">    </span>rbenv rehash
+</span><span class='line'>  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$HOME/.rbenv/shims:$PATH&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>編集が完了したらターミナルで次のコマンドを実行。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次にインストール可能なRubyのバージョンをチェック。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rbenv install -l
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最新のRuby(2.2.0など)をインストール。(xxx-dev, xxx-rc1などは開発版などのため除外)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 一番最新のRuby(ここでは2.2.0)をインストール</span>
+</span><span class='line'>rbenv install 2.2.0
+</span><span class='line'>
+</span><span class='line'><span class="c"># globalで使うRubyのバージョン(2.2.0)を指定</span>
+</span><span class='line'>rbenv global 2.2.0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>PostgreSQLのインストール</h2>
+
+<p>拙著、<strong><a href="/blog/postgresql-mac-centos-rails/">Mac MountainLion/CentOS 6.4へのPostgreSQL 9.2の導入手順</a></strong>がオススメです！</p>
+
+<h2>Railsのインストール</h2>
+
+<p>ここまで本当にお疲れ様でした。ということで本題のRailsのインストールをします。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>コマンドの完了後に、<code>rails -v</code>を実行してエラーが出なければ成功です。</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>Tips集</h2>
+
+<h3>Rictyのインストール</h3>
+
+<p><strong><a href="/blog/ricty-font-homebrew-mac/">プログラムに最適なフォント『Ricty』を超簡単にインストール</a></strong><br/>
+プログラミングに最適なFont Rictyをインストール。</p>
+
+<h3>Macの基本設定</h3>
+
+<p>コンピュータ名をを変更。</p>
+
+<pre>
+アプリケーション　>システム環境設定　>共有　>コンピュタ名　>(変更)
+</pre>
+
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://www.1x1.jp/blog/2014/04/how-to-setup-application-on-osx.html">Mac OSX をクリーンインストールしてからの環境構築メモ</a></strong><br/></p>
+
+<p><strong><a href="http://qiita.com/syui/items/73a822970742b317aede">MacBookAirで使っている便利ツール</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(2015/02/26 21:45) 新規作成
+(2015-03-08 15:40) .gemrcの追記</p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-08T15:40:00+09:00" pubdate data-updated="true">Mar 8<span>th</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac-osx/'>Mac OSX</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/prototype-smartphone-practice-book-review/" title="Previous Post: 初めてのスマホアプリ開発に！プロトタイピング 実践ガイド[書評]">&laquo; 初めてのスマホアプリ開発に！プロトタイピング 実践ガイド[書評]</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/zero-to-onepeter-thiel-book-review/" title="Next Post: ゼロ・トゥ・ワン 君はゼロから何を生み出せるか[書評]">ゼロ・トゥ・ワン 君はゼロから何を生み出せるか[書評] &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/';
+        var disqus_url = 'http://morizyun.github.com/blog/yosemite-mac-rails-setup-rbenv-ruby/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

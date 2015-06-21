@@ -1,0 +1,918 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Capistrano 3系でRails4.1のデプロイ[rbenv][rvm][ruby2.1] - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="今やデプロイツールのデファクトスタンダードとなった『Capistrano3』。stagingやproductionといった複数環境へのデプロイを標準で対応していたり、bundleやmigration、unicornとの連携なども抜群です。 かなり乗り遅れてしまいましたが、最近ようやくRails4. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="Capistrano 3系でRails4.1のデプロイ[rbenv][rvm][ruby2.1] - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="今やデプロイツールのデファクトスタンダードとなった『Capistrano3』。stagingやproductionといった複数環境へのデプロイを標準で対応していたり、bundleやmigration、unicornとの連携なども抜群です。 かなり乗り遅れてしまいましたが、最近ようやくRails4. &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Capistrano 3系でRails4.1のデプロイ[rbenv][rvm][ruby2.1]</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2015-01-18T12:20:00+09:00" pubdate data-updated="true">Jan 18<span>th</span>, 2015</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844333755/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844333755&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844333755&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844333755" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />今やデプロイツールのデファクトスタンダードとなった『<strong><a href="http://capistranorb.com/">Capistrano3</a></strong>』。stagingやproductionといった複数環境へのデプロイを標準で対応していたり、bundleやmigration、unicornとの連携なども抜群です。</p>
+
+<p>かなり乗り遅れてしまいましたが、最近ようやくRails4.1をcapistrano3系でデプロイしました。ずっとHerokuやPaaSにばっかり頼っていたのでちょこちょことハマって苦労しました。今後忘れないための忘備録メモっす！</p>
+
+<p>rbenv, rvmの両方に対応しました。オリジナルのcapコマンドの作り方も書きました！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>前提条件</h2>
+
+<p>今回の環境では次のような環境を想定しています。</p>
+
+<pre>
+# Webサーバ
+(1) unicorn
+
+# Rubyのバージョン管理
+(2-A) rbenv
+(2-B) rvm
+
+# Cron DSL
+(3) whenever
+</pre>
+
+
+<p><code>rbenv</code>と<code>rvm</code>の両方を使う機会があったので忘備録も兼ねて書いておきます。</p>
+
+<h2>staging/production環境のデータベースの準備</h2>
+
+<p>デプロイ先のDBの接続用ユーザーとデータベースを作成するために、以下のコマンドをstaging環境とproduction環境で実行します。</p>
+
+<h3>MySQLの場合</h3>
+
+<p>こちらはMySQLを使う場合の手順です。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql -u root -p
+</span><span class='line'>
+</span><span class='line'><span class="c"># 新規ユーザーを作成する場合</span>
+</span><span class='line'>GRANT ALL PRIVILEGES ON database_name.* TO user_name@localhost IDENTIFIED BY <span class="s1">&#39;user_password&#39;</span>;
+</span><span class='line'>
+</span><span class='line'><span class="c"># 既存のユーザーに権限を追加する場合</span>
+</span><span class='line'>GRANT ALL PRIVILEGES ON database_name.* TO user_name@localhost;
+</span><span class='line'>
+</span><span class='line'>CREATE DATABASE database_name;
+</span><span class='line'>FLUSH PRIVILEGES;
+</span><span class='line'><span class="nb">exit</span>
+</span><span class='line'>
+</span><span class='line'>mysql -u user_name -p
+</span><span class='line'>SHOW DATABASES;
+</span><span class='line'>&gt; +--------------------------+
+</span><span class='line'>&gt; | Database                 |
+</span><span class='line'>&gt; +--------------------------+
+</span><span class='line'>&gt; | information_schema       |
+</span><span class='line'>&gt; | database_name            | <span class="c">#&lt;= DBの作成成功</span>
+</span><span class='line'>&gt; +--------------------------+
+</span><span class='line'><span class="nb">exit</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>PostgreSQLの場合</h3>
+
+<p>こちらは、PostgreSQLを使う場合の手順です。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># postgreユーザーになる</span>
+</span><span class='line'>sudo su -
+</span><span class='line'>su - postgres
+</span><span class='line'>
+</span><span class='line'><span class="c"># パスワード付きのユーザーを作成する</span>
+</span><span class='line'>createuser -s <span class="o">[</span>ユーザー名<span class="o">]</span> -P
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>GitHubまわりの準備</h2>
+
+<p>GitHubで管理しているプライベートなリポジトリを使う場合には、ubuntu 12.04にデプロイするときにdeploy keyの設定が必要でした。</p>
+
+<pre>
+# サーバ側でやること
+1) GitHubのリポジトリにアクセスするための公開鍵・秘密鍵を生成
+cd ~
+ssh-keygen -t rsa -C test@example.com
+
+# GitHub側でやること
+1) 対象のリポジトリのページへ移動
+2) Settingsへ移動
+3) Deploy keysへ移動
+4) Add Deploy Keysで公開鍵を登録
+</pre>
+
+
+<h2>Gemfileの追加</h2>
+
+<h3>rbenvを使う場合</h3>
+
+<p><code>Gemfile</code>に次のGemを追加して、<code>bundle install</code>を実行。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;whenever&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span> <span class="c1"># cronを使う場合のみ</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:deployment</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.2.1&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano-rails&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano-rbenv&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano-bundler&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano3-unicorn&#39;</span> <span class="c1"># unicornを使っている場合のみ</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>rvmを使う場合</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;whenever&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span> <span class="c1"># cronを使う場合のみ</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:deployment</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.2.1&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano-rails&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rvm1-capistrano3&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano-bundler&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano3-unicorn&#39;</span> <span class="c1"># unicornを使っている場合のみ</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Capistranoの設定ファイルを生成</h2>
+
+<p>以下のコマンドでCapistranoの設定ファイル<code>deploy.rb</code>らを生成。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>cap install <span class="nv">STAGES</span><span class="o">=</span>staging,production
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Capfileの設定</h2>
+
+<p><code>Capfile</code>を以下のように変更</p>
+
+<h3>rbenvを使う場合</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/setup&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/deploy&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/rails&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/rails/assets&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/rails/migrations&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/rbenv&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/bundler&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano3/unicorn&#39;</span> <span class="c1"># unicornを使っている場合のみ</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;whenever/capistrano&#39;</span> <span class="c1"># wheneverを使っている場合のみ</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;lib/capistrano/tasks/*.rake&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">r</span><span class="o">|</span> <span class="n">import</span> <span class="n">r</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>rvmを使う場合</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/setup&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/deploy&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/rails&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/rails/assets&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/rails/migrations&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rvm1/capistrano3&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/bundler&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano3/unicorn&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;whenever/capistrano&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;lib/capistrano/tasks/*.rake&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">r</span><span class="o">|</span> <span class="n">import</span> <span class="n">r</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Capistrano 共通のデプロイ設定</h2>
+
+<p>まず、共通のデプロイ情報を<code>deploy.rb</code>に記入していきます。</p>
+
+<h3>rbenvを使う場合</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">lock</span> <span class="s1">&#39;3.2.1&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s1">&#39;APP_NAME&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:repo_url</span><span class="p">,</span> <span class="s1">&#39;git@github.com:xxxx.git&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s1">&#39;/server/rails/path/to&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:keep_releases</span><span class="p">,</span> <span class="mi">5</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rbenv_type</span><span class="p">,</span> <span class="ss">:system</span> <span class="c1"># :system or :user</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rbenv_ruby</span><span class="p">,</span> <span class="s1">&#39;2.1.2&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rbenv_prefix</span><span class="p">,</span> <span class="s2">&quot;RBENV_ROOT=</span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:rbenv_path</span><span class="p">)</span><span class="si">}</span><span class="s2"> RBENV_VERSION=</span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:rbenv_ruby</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:rbenv_path</span><span class="p">)</span><span class="si">}</span><span class="s2">/bin/rbenv exec&quot;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rbenv_map_bins</span><span class="p">,</span> <span class="sx">%w{rake gem bundle ruby rails}</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rbenv_roles</span><span class="p">,</span> <span class="ss">:all</span> <span class="c1"># default value</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:linked_dirs</span><span class="p">,</span> <span class="sx">%w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:unicorn_pid</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/tmp/pids/unicorn.pid&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:bundle_jobs</span><span class="p">,</span> <span class="mi">4</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:whenever_identifier</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">{</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:application</span><span class="p">)</span><span class="si">}</span><span class="s2">_</span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:stage</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">after</span> <span class="s1">&#39;deploy:publishing&#39;</span><span class="p">,</span> <span class="s1">&#39;deploy:restart&#39;</span>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:restart</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">invoke</span> <span class="s1">&#39;unicorn:restart&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>rvmを使う場合</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rvm1/capistrano3&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;whenever/capistrano&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">lock</span> <span class="s1">&#39;3.2.1&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s1">&#39;APP_NAME&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:repo_url</span><span class="p">,</span> <span class="s1">&#39;git@github.com:xxxx.git&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s1">&#39;/server/rails/path/to&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:keep_releases</span><span class="p">,</span> <span class="mi">5</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rvm_type</span><span class="p">,</span> <span class="ss">:system</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rvm1_ruby_version</span><span class="p">,</span> <span class="s1">&#39;2.1.2&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:linked_dirs</span><span class="p">,</span> <span class="sx">%w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:unicorn_pid</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/tmp/pids/unicorn.pid&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:bundle_jobs</span><span class="p">,</span> <span class="mi">4</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:whenever_identifier</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">{</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:application</span><span class="p">)</span><span class="si">}</span><span class="s2">_</span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:stage</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">after</span> <span class="s1">&#39;deploy:publishing&#39;</span><span class="p">,</span> <span class="s1">&#39;deploy:restart&#39;</span>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:restart</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">invoke</span> <span class="s1">&#39;unicorn:restart&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>環境別のデプロイ設定</h2>
+
+<p>次に環境ごとに異なる設定を<code>config/deploy/staging.rb(production.rb)</code>に記述していきます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">set</span> :branch, <span class="s1">&#39;master&#39;</span>
+</span><span class='line'>
+</span><span class='line'>role :app, %w<span class="o">{</span>USER_NAME@IP_ADDRESS<span class="o">}</span>
+</span><span class='line'>role :web, %w<span class="o">{</span>USER_NAME@IP_ADDRESS<span class="o">}</span>
+</span><span class='line'>role :db,  %w<span class="o">{</span>USER_NAME@IP_ADDRESS<span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>server <span class="s1">&#39;IP_ADDRESS&#39;</span>, user: <span class="s1">&#39;USER_NAME&#39;</span>, roles: %w<span class="o">{</span>web app db<span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">set</span> :ssh_options, <span class="o">{</span>
+</span><span class='line'>    keys: <span class="o">[</span>File.expand_path<span class="o">(</span><span class="s1">&#39;/key/path/to/&#39;</span><span class="o">)]</span>,
+</span><span class='line'>    forward_agent: <span class="nb">true</span>,
+</span><span class='line'>    auth_methods: %w<span class="o">(</span>publickey<span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>wheneverの設定</h2>
+
+<p>サーバ側のcronの設定をコードで簡単に管理できるwheneverは、『<strong><a href="http://morizyun.github.io/blog/whenever-gem-rails-ruby-capistrano/">Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.1]</a></strong>』を参考に設定！</p>
+
+<h2>BitBucket/Github(gitリポジトリ)の設定</h2>
+
+<p>ここはBitBucket/Githubなどでプライベートなgit リポジトリを使っている場合について書きます。</p>
+
+<p>プライベートなリポジトリを使う方法はいくつかありますが、そのうちの一つの方法として、デプロイ先
+のサーバーに<code>id_rsa / id_rsa.pub</code>を作成して、公開鍵側をBitBucket/Githubに
+登録する方法があります。</p>
+
+<p>この方法を使う場合のSSH鍵の作成、登録は、拙著
+『<strong><a href="http://morizyun.github.io/blog/ssh-key-bitbucket-github/">SSH認証キーをBitbucket/GitHubに設定しよう！</a></strong>』
+に詳しく書いています！</p>
+
+<h2>デプロイ前のチェックリスト・準備</h2>
+
+<pre>
+* deploy.rb, staging.rb, production.rbのパラメータをすべて設定したかチェック
+* ステージングDB、本番DBの設定をdatabase.ymlに追加しているか？
+* デプロイ用Gitリポジトリのブランチが最新の状態か？
+</pre>
+
+
+<p>上のチェックが完了したら、capコマンドで設定を確認。<br/>
+(フォルダの生成等も行ってくれます)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># stagingのチェック</span>
+</span><span class='line'>cap staging deploy:check
+</span><span class='line'>
+</span><span class='line'><span class="c"># productionのチェック</span>
+</span><span class='line'>cap production deploy:check
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>デプロイ手順</h2>
+
+<p>デプロイに必要なディレクトリを生成して、デプロイを実行。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># stagingへのデプロイ</span>
+</span><span class='line'>cap staging deploy
+</span><span class='line'>
+</span><span class='line'><span class="c"># productionへのデプロイ</span>
+</span><span class='line'>cap production deploy
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>オリジナルのcapコマンドの作り方</h2>
+
+<p>Capistranoを使うとサーバに入ってちょっとしたコマンドを実行するといったこともcapコマンド化できます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>namespace :sample <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>desc <span class="s1">&#39;do some rake task&#39;</span>
+</span><span class='line'>    task :do_some_rake_task <span class="k">do</span>
+</span><span class='line'><span class="k">      </span><span class="nv">rvm_prefix</span> <span class="o">=</span> <span class="s2">&quot;#{fetch(:rvm1_auto_script_path)}/rvm-auto.sh #{fetch(:rvm1_ruby_version)}&quot;</span>
+</span><span class='line'>      on roles<span class="o">(</span>:all<span class="o">)</span> <span class="k">do</span> |h|
+</span><span class='line'>        execute <span class="s2">&quot;cd #{current_path} &amp;&amp; #{rvm_prefix} bundle exec rake RAILS_ENV=production do_some_rake_task&quot;</span>
+</span><span class='line'>      end
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Apache/Nginxの設定</h2>
+
+<p>Apacheのバーチャルホストの設定ファイル(<code>sudo vim /etc/http/conf.d/vhost.conf</code>など)を<strong><a href="/blog/apache-virtualhost-conf-passenger/">Apache VirtualHostの設定</a></strong>を参考に編集。</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>deploy時にブランチを選択したい場合</h2>
+
+<p><code>set :branck, 'master'</code>の部分を以下のように書き直し。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ask</span> <span class="ss">:branch</span><span class="p">,</span> <span class="nb">proc</span> <span class="p">{</span> <span class="sb">`git rev-parse --abbrev-ref HEAD`</span><span class="o">.</span><span class="n">chomp</span> <span class="p">}</span><span class="o">.</span><span class="n">call</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>unicorn restartがうまくいかない場合</h2>
+
+<p>僕は最近100発100中でこれにハマります。あまりに僕が学習能力なくって泣きそうorz&#8230;</p>
+
+<p><strong><a href="http://qiita.com/tachiba/items/7eef03cce6a917a957dc">UnicornにUSR2シグナル送っても無視される（Bundler::GemfileNotFound）</a></strong></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before_fork</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="p">,</span> <span class="n">worker</span><span class="o">|</span>
+</span><span class='line'>  <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;BUNDLE_GEMFILE&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;Gemfile&#39;</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RAILS_ROOT&#39;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>unicornで<code>BUNDLE_GEMFILE</code>の場所はちゃんと設定したほうがいいっす！</p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://threetreeslight.com/post/68344998681/capistrano-3-x-rails">capistrano 3.x系を使ってrailsをデプロイ | iii ThreeTreesLight</a></strong></p>
+
+<p><strong><a href="http://yss44.hatenablog.com/entry/2013/12/01/150215">Capistrano3で快適デプロイ生活!! - Less is Best</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(2014-04-25 23:00) 新規作成<br/>
+(2014-07-08 20:40) rvm対応<br/>
+(2014-07-10 20:00) wheneverの記述を追記<br/>
+(2014-11-02 11:55) github/bitbucket周りの設定<br/>
+(2014-11-22 10:05) オリジナルのcapコマンドの作り方を追加<br/>
+(2014-12-16 22:10) bundle install のjobsオプションを追加<br/>
+(2015-01-18 12:20) posgreSQL用の設定手順を追記<br/></p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-18T12:20:00+09:00" pubdate data-updated="true">Jan 18<span>th</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gem/'>Gem</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/postgresql-mac-centos-rails/" title="Previous Post: Mac MountainLion/CentOS 6.4へのPostgreSQL 9.2の導入手順">&laquo; Mac MountainLion/CentOS 6.4へのPostgreSQL 9.2の導入手順</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/meta-tags-sitemap-generator-rails-seo/" title="Next Post: meta-tagsとsitemap_generatorで始めるRails 4.1時代のSEO対策">meta-tagsとsitemap_generatorで始めるRails 4.1時代のSEO対策 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/';
+        var disqus_url = 'http://morizyun.github.com/blog/capistrano3-rails-deploy-multi-rbenv/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

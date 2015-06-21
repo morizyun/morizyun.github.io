@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Guard | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/guard/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[開発サーバをThinからPowに切り替えて開発効率アップ！ (Mac限定)]]></title>
+    <link href="http://morizyun.github.com/blog/pow-guard-rails/"/>
+    <updated>2012-11-28T16:40:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/pow-guard-rails</id>
+    <content type="html"><![CDATA[<p><a href="blog/categories/guard/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8209/8225589647_c2f4413b3b.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>「小さなチーム、大きな仕事」でおなじみの <a href="http://37signals.com/">37 signails</a>が開発した「設定が不要なRails &amp; Rackサーバ Pow」を使いはじめました！
+このPowを使うメリットは、</p>
+
+<pre>
+* コマンド一つでPowサーバにRailsアプリへのリンクを作れる
+* LAN内にあるスマホ/タブレットから開発中のURLにアクセスできる
+</pre>
+
+
+<p>ちなみにこちらはMac限定です。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>Pow インストール</h2>
+
+<p>Powのインストールは以下のコマンドのみ。もし、万一エラーが出るようなら<a href="https://github.com/37signals/pow">37signals/pow GitHub</a>を確認してみてください。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl get.pow.cx | sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Powderのインストール</h2>
+
+<p>Powのコマンド入力支援してくれる<a href="https://github.com/Rodreegez/powder">Powder</a>をインストール。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install powder
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Powへのリンクの作成</h2>
+
+<p>Rails/Rackアプリのフォルダで以下を入力するとpowへのリンクを作成できます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>powder link&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Your application is now available at http://app_folder_name.dev/
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+
+<p>ブラウザで<code>http://app_folder_name.dev/</code>にアクセスするか、<code>powder open</code>と入力するとアプリが表示されます。その他のpowderのコマンドについては、下にまとめています。</p>
+
+<h2>LAN内のスマホ/タブレットからアプリにアクセス</h2>
+
+<p>pow + xip.ioによって、LAN内のスマホ/タブレットからアプリに簡単にアクセスすることができます。
+まず、Mac側のローカルIPを確認。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ifconfig
+</span><span class='line'>...&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;    inet 192.168.24.99
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;...
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>次にスマホ/タブレットのブラウザから、<code>http://app_folder_name.192.168.24.99.xip.io/</code>にアクセスするとアプリを表示することができます。</p>
+
+<p><img src="http://farm9.staticflickr.com/8209/8248634603_c789a905f0.jpg" width="334" height="500" alt="fpu_tmp_1354787673.3801_44e45e"></p>
+
+<h2>Guard::Powのインストール</h2>
+
+<p>Railsには、config/environment.rbなど再起動しないと反映されないファイルが幾つかあります。
+これをGem Guardで監視して変更があった場合には、自動でPowが再起動されるようにします。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install guard-pow
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Guardファイルの設定</h2>
+
+<p>Guardはファイル変更を監視して、サーバの再起動やテストの実行などを行なってくれるGemです。詳細は「<a href="/blog/guard-spork-rspec-tdd">RSpec/Spork/Guard/Growl/Rails 3.2.9で作る - プリチーなTDD環境！</a>」をご覧ください。</p>
+
+<p>ここからはGuardとの連携方法について説明します。</p>
+
+<p>まず、Guardfileを生成/更新します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>guard init pow
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>このコマンドを実行すると以下のようにプロジェクト直下のGuardfileが更新されます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Guardfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="s1">&#39;pow&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.powrc&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.powenv&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.rvmrc&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;Gemfile&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;Gemfile.lock&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;config/application.rb&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;config/environment.rb&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{&lt;sup&gt;config/environments/.*.rb$}</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
+</span><span class='line'><span class="sr">  watch(%r{&lt;sup&gt;config/ini</span><span class="n">tializers</span><span class="o">/.</span><span class="n">*</span><span class="o">.</span><span class="n">rb</span><span class="err">$</span><span class="p">})</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>これでGuardがファイルを監視して、変更があった場合には Powを自動で更新してくれます。</p>
+
+<h2>補足: localhostでアクセスするリンク先の設定</h2>
+
+<p><code>localhost</code>でアクセスするリンク先は以下のコマンドで設定できます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -s /app/path/to/ ~/.pow/default
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>補足: Pow-RVMの連携 Rubyのバージョンを指定する</h2>
+
+<p>もし、Powでリンクを張ったプロジェクトのRVMのバージョンを指定したい場合は、まずプロジェクトの直下に<code>.rvmrc</code>を作成して以下を登録。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm 1.9.3
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>次に同じくプロジェクトの直下に<code>.powrc</code>を作成して以下を追加。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> <span class="o">[</span> -f <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span> <span class="o">]</span> &amp;amp;&amp;amp; <span class="o">[</span> -f <span class="s2">&quot;.rvmrc&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">  </span><span class="nb">source</span> <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span>
+</span><span class='line'>  <span class="nb">source</span> <span class="s2">&quot;.rvmrc&quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>RVM関連の設定詳細は<a href="http://pow.cx/manual.html#section_2.3.2">公式ページの2.3.2 Specifying Ruby Versions with RVM</a>を参照。</p>
+
+<h2>補足: Powを使っていて Error starting application(Error: Response was not received)が発生する場合</h2>
+
+<p>Mac/homebrew/Powの環境で、<code>Error starting application(Error: Response was not received)</code>がある一定の確率で出る場合は、Nokogiriのインストール方法に問題がある可能性があります。</p>
+
+<p>Nokogiriを削除して、<a href="http://nokogiri.org/tutorials/installing_nokogiri.html">Nokogiri公式のインストール方法</a>で再イントールしてください。</p>
+
+<p>参考ソース(タイトルからはわかりにくいですがPowについてのトラブルっぽいです):
+<a href="http://stackoverflow.com/questions/7106707/rails-local-server-shutdown-problem">nginx - Rails (local) server shutdown problem - Stack Overflow</a></p>
+
+<h2>補足: Powderのコマンド一覧</h2>
+
+<p>使いそうなコマンドをピックアップしました。詳細は<a href="https://github.com/Rodreegez/powder">Rodreegez / powder | GitHub</a>にあります。</p>
+
+<pre>
+powder link
+
+=> current_dirのシンボリックリンクを作成
+</pre>
+
+
+
+
+<pre>
+powder link [bacon]
+
+=> ファイル名指定のシンボリックリンクを作成
+</pre>
+
+
+
+
+<pre>
+powder remove
+
+=> シンボリックリンクを削除
+</pre>
+
+
+
+
+<pre>
+powder open
+
+=> ブラウザでcurrent_dirのアプリを表示
+</pre>
+
+
+
+
+<pre>
+powder list
+
+=> ~/.powのシンボリックリンク一覧を出す
+</pre>
+
+
+
+
+<pre>
+powder applog
+
+=> アプリのログを tail -f で出力
+</pre>
+
+
+
+
+<pre>
+powder restart
+
+=> サーバ Pow の再起動
+</pre>
+
+
+
+
+<pre>
+powder cleanup
+
+=> アクセス出来ないアプリへのリンクを削除
+</pre>
+
+
+
+
+<pre>
+powder update
+
+=> Pow のアップデート
+</pre>
+
+
+<h2>補足: Powのアンインストール</h2>
+
+<p>もし何らかの事情でPowをアンインストールしたくなった場合は以下のコマンドを実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl get.pow.cx/uninstall.sh | sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>アンインストールの詳細は<a href="http://pow.cx/manual.html#section_1.2">公式ページの1.2 Uninstalling Pow</a>を参照。</p>
+
+<h2>関連記事</h2>
+
+<p><strong> <a href="/blog/rails-mysql-bootstrap">Rails 3.2.9/Bootstrap/Haml プロジェクト新規作成 最短ガイドだよ！</a> </strong> にてGuardの設定/ブラウザのオートリロードの方法などを載せています。</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><p><a href="https://github.com/37signals/pow">37signals / pow | GitHub</a></p></li>
+<li><p><a href="https://github.com/Rodreegez/powder">Rodreegez / powder | GitHub</a></p></li>
+<li><p><a href="http://marutanm.hatenablog.com/entry/20110607/p1">Pow使うならPowder入れておくだァーッ！</a></p></li>
+<li><p><a href="http://higelog.brassworks.jp/?p=1847">Guard::PowでPowを更に快適に使う</a></p></li>
+<li><p><a href="http://naoty.hatenablog.com/entry/2012/08/08/101448">Rails開発環境 2012夏</a></p></li>
+</ul>
+
+
+<h2>変更来歴</h2>
+
+<p>12/06 pow + xip.ioの説明を追加。コマンド一覧の位置を変更。別途説明を追加。<br/>
+12/16 11:30 pow + xip.ioのアドレスがまちがっていたので修正<br/>
+12/18 19:00 補足: Powを使っていて Error starting application(Error: Response was not received)が発生する場合を追加<br/>
+12/18 20:40 補足: Powのアンインストールを追加<br/>
+12/18 20:45 補足: Pow-RVMの連携 Rubyのバージョンを指定するを追加<br/>
+01/15 20:50 補足: localhostでアクセスするリンク先の設定を追加<br/></p>
+
+<h2>テスト環境</h2>
+
+<p>テスト環境は以下の通りです。</p>
+
+<pre>
+OS : Mac Lion(OS X 10.7)
+Ruby : 1.9.3
+Rails : 3.2.9
+haml : 3.1.7
+coffee-script : 3.2.1
+Rspec : 2.12.0
+</pre>
+
+]]></content>
+  </entry>
+  
+</feed>

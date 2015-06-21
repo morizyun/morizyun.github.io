@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: XCode | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.com/blog/categories/xcode/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.com/"/>
+  <updated>2015-06-21T18:39:51+09:00</updated>
+  <id>http://morizyun.github.com/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Objective-C CoreDataのバージョンアップ in XCode 4.5.2[iPhone]]]></title>
+    <link href="http://morizyun.github.com/blog/core-data-objectivec-iphone/"/>
+    <updated>2012-11-30T16:40:00+09:00</updated>
+    <id>http://morizyun.github.com/blog/core-data-objectivec-iphone</id>
+    <content type="html"><![CDATA[<p>XCode 4.5.2でCoreDataのEntity(エンティティ)やAttribute(アトリビュート)の定義を変更した場合のバージョンアップの手順です。</p>
+
+<p><a href="blog/categories/xcode/atom.xml" title="fpu_tmp_1354258434.8531_8c7a0a by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8063/8230985957_6ac66ab340.jpg" width="500" height="344" alt="fpu_tmp_1354258434.8531_8c7a0a"></a></p>
+
+<!-- more -->
+
+
+<h2>バージョンアップ手順</h2>
+
+<p>XCode 4.5.2のメニューバーの "Editor" => "Add Model Version..." を選択。</p>
+
+<p><img src="http://farm9.staticflickr.com/8488/8231020781_0ce0dbc72e.jpg" width="500" height="214" alt="fpu_tmp_1354260160.7808_03bfd1"></p>
+
+<p>新しいバージョンの名前と、ベースになるバージョンを選択。</p>
+
+<p><img src="http://farm9.staticflickr.com/8484/8232087818_cd0d0d93c7.jpg" width="500" height="341" alt="fpu_tmp_1354260376.3633_2de694"></p>
+
+<p>新しいバージョンがCore Dataの配下に出来ます。</p>
+
+<p><img src="http://farm9.staticflickr.com/8068/8231039077_503264e179.jpg" width="500" height="419" alt="fpu_tmp_1354261145.9921_22faa1"></p>
+
+<p>新しいバージョンのEntity(エンティティ)やAttribute(アトリビュート)を変更します。</p>
+
+<p><img src="http://farm9.staticflickr.com/8480/8231037537_dd8e062595_c.jpg" width="800" height="314" alt="fpu_tmp_1354261061.4791_593ce0"></p>
+
+<p>わかると本当に簡単な作業ですが、うまく検索ワードを見つけられずに随分ハマりました。</p>
+
+<p>もっといい方法やわかりやすい説明、間違い等あれば連絡下さい！熱烈大歓迎です！</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/5372479/xcode-4-core-data-model-version-set-current-version">Xcode 4, Core Data Model Version - Set Current Version</a></p></li>
+<li><p><a href="https://developer.apple.com/jp/devcenter/ios/library/documentation/iPhoneCoreData01.pdf">iOS Core Dataチュート
+リアル</a></p></li>
+<li><p><a href="http://developer.apple.com/library/mac/#documentation/cocoa/conceptual/CoreDataVersioning/Articles/Introduction.html">Core Data Model Versioning and Data Migration</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

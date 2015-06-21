@@ -1,0 +1,553 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>アルゴリズムの勉強: オリジナルの数値フォーマットの加算[AOJ 1137][Ruby/Python][文字列操作] - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="引き続きプログラミングの基礎体力づくりと、Pythonの勉強を兼ねてアルゴリズムを勉強中です。今回は『カッコが閉じているかのチェック』について勉強しました。AIZU Online Judgeで対応している問題は、『Numeral System』です。ごくごく初歩的な問題ですが、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="アルゴリズムの勉強: オリジナルの数値フォーマットの加算[AOJ 1137][Ruby/Python][文字列操作] - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="引き続きプログラミングの基礎体力づくりと、Pythonの勉強を兼ねてアルゴリズムを勉強中です。今回は『カッコが閉じているかのチェック』について勉強しました。AIZU Online Judgeで対応している問題は、『Numeral System』です。ごくごく初歩的な問題ですが、 &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">アルゴリズムの勉強: オリジナルの数値フォーマットの加算[AOJ 1137][Ruby/Python][文字列操作]</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-05-08T23:50:00+09:00" pubdate data-updated="true">May 8<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4048869574/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048869574&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048869574&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048869574" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />引き続きプログラミングの基礎体力づくりと、Pythonの勉強を兼ねてアルゴリズムを勉強中です。今回は『<strong>カッコが閉じているかのチェック</strong>』について勉強しました。AIZU Online Judgeで対応している問題は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1137&amp;lang=jp">Numeral System</a></strong>』です。ごくごく初歩的な問題ですが、いかに戦略を立てて素早く解くかを意識するとまた楽しくなってきます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>サンプル問題(AOJ)</h2>
+
+<p><strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1137&amp;lang=jp">Numeral System</a></strong><br/>
+Aizu Online Judge。&#8221;m&#8221;，&#8221;c&#8221;，&#8221;x&#8221;，&#8221;i&#8221; の4個の文字と &#8220;2&#8221;，&#8221;3&#8221;，&#8221;4&#8221;，&#8221;5&#8221;，&#8221;6&#8221;，&#8221;7&#8221;，&#8221;8&#8221;，&#8221;9&#8221; の8個の数字を 使った整数値の新しいフォーマットの加算と結果表示をする。</p>
+
+<h2>Rubyのサンプルソース</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">DICT</span> <span class="o">=</span> <span class="o">{</span> <span class="s1">&#39;m&#39;</span> <span class="o">=</span>&gt; 1000, <span class="s1">&#39;c&#39;</span> <span class="o">=</span>&gt; 100, <span class="s1">&#39;x&#39;</span> <span class="o">=</span>&gt; 10, <span class="s1">&#39;i&#39;</span> <span class="o">=</span>&gt; 1 <span class="o">}</span>.freeze
+</span><span class='line'>
+</span><span class='line'>def mcxi_to_digit<span class="o">(</span>s<span class="o">)</span>
+</span><span class='line'>  <span class="nv">sum</span> <span class="o">=</span> 0
+</span><span class='line'>  DICT.each <span class="k">do</span> |k, v|
+</span><span class='line'>    <span class="k">if </span>s.include?<span class="o">(</span>k<span class="o">)</span>
+</span><span class='line'>      <span class="k">if </span>s<span class="o">[</span>s.index<span class="o">(</span>k<span class="o">)</span>-1<span class="o">]</span> &gt;<span class="o">=</span> <span class="s1">&#39;2&#39;</span> and s<span class="o">[</span>s.index<span class="o">(</span>k<span class="o">)</span>-1<span class="o">]</span> &lt;<span class="o">=</span> <span class="s1">&#39;9&#39;</span>
+</span><span class='line'>        sum +<span class="o">=</span> s<span class="o">[</span>s.index<span class="o">(</span>k<span class="o">)</span>-1<span class="o">]</span>.to_i * v
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'><span class="k">        </span>sum +<span class="o">=</span> v
+</span><span class='line'>      end
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>  <span class="k">return </span>sum
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>def digit_to_mcxi<span class="o">(</span>n<span class="o">)</span>
+</span><span class='line'>  <span class="nv">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  DICT.to_a.map <span class="k">do</span> |k, v|
+</span><span class='line'>    <span class="nv">val</span> <span class="o">=</span> n/v
+</span><span class='line'>    <span class="nv">n</span> <span class="o">=</span> n%v
+</span><span class='line'>    <span class="k">if </span>val &gt;<span class="o">=</span> 2
+</span><span class='line'>      str +<span class="o">=</span> <span class="s2">&quot;#{val}#{k}&quot;</span>
+</span><span class='line'>    elsif <span class="nv">val</span> <span class="o">==</span> 1
+</span><span class='line'>      str +<span class="o">=</span> k
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>  <span class="k">return </span>str
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'><span class="nv">n</span> <span class="o">=</span> gets.to_i
+</span><span class='line'>n.times <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>a, <span class="nv">b</span> <span class="o">=</span> gets.chomp.split<span class="o">(</span><span class="s1">&#39; &#39;</span><span class="o">)</span>
+</span><span class='line'>  <span class="nv">sum</span> <span class="o">=</span> mcxi_to_digit<span class="o">(</span>a<span class="o">)</span> + mcxi_to_digit<span class="o">(</span>b<span class="o">)</span>
+</span><span class='line'>  puts digit_to_mcxi<span class="o">(</span>sum<span class="o">)</span>
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Pythonのサンプルソース</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>def mxciToDegit<span class="o">(</span>s<span class="o">)</span>:
+</span><span class='line'>  <span class="nv">dict</span> <span class="o">=</span> <span class="o">{</span><span class="s1">&#39;m&#39;</span>: 1000, <span class="s1">&#39;c&#39;</span>: 100, <span class="s1">&#39;x&#39;</span>: 10, <span class="s1">&#39;i&#39;</span>: 1<span class="o">}</span>
+</span><span class='line'>  <span class="nv">sum</span> <span class="o">=</span> 0
+</span><span class='line'>  <span class="k">for </span>c in dict:
+</span><span class='line'>    <span class="k">if </span>c in s:
+</span><span class='line'>      <span class="k">if</span> <span class="s2">&quot;2&quot;</span> &lt;<span class="o">=</span> s<span class="o">[</span>s.index<span class="o">(</span>c<span class="o">)</span>-1<span class="o">]</span> &lt;<span class="o">=</span> <span class="s2">&quot;9&quot;</span>:
+</span><span class='line'>        sum +<span class="o">=</span> int<span class="o">(</span>s<span class="o">[</span>s.index<span class="o">(</span>c<span class="o">)</span>-1<span class="o">])</span>*dict<span class="o">[</span>c<span class="o">]</span>
+</span><span class='line'>      <span class="k">else</span>:
+</span><span class='line'>        sum +<span class="o">=</span> dict<span class="o">[</span>c<span class="o">]</span>
+</span><span class='line'>  <span class="k">return </span>sum
+</span><span class='line'>
+</span><span class='line'><span class="nv">n</span> <span class="o">=</span> int<span class="o">(</span>raw_input<span class="o">())</span>
+</span><span class='line'><span class="k">for </span>i in range<span class="o">(</span>n<span class="o">)</span>:
+</span><span class='line'>  a, <span class="nv">b</span> <span class="o">=</span> raw_input<span class="o">()</span>.split<span class="o">()</span>
+</span><span class='line'>  <span class="nv">sum</span> <span class="o">=</span> mxciToDegit<span class="o">(</span>a<span class="o">)</span> + mxciToDegit<span class="o">(</span>b<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">st</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>  <span class="nv">list</span> <span class="o">=((</span>1000, <span class="s2">&quot;m&quot;</span><span class="o">)</span>, <span class="o">(</span>100, <span class="s2">&quot;c&quot;</span><span class="o">)</span>, <span class="o">(</span>10, <span class="s2">&quot;x&quot;</span><span class="o">)</span>, <span class="o">(</span>1, <span class="s2">&quot;i&quot;</span><span class="o">))</span>
+</span><span class='line'>  <span class="k">for </span>d, c in list:
+</span><span class='line'>    <span class="nv">val</span> <span class="o">=</span> sum/d
+</span><span class='line'>    <span class="k">if </span>val &gt;<span class="o">=</span> 2:
+</span><span class='line'>      st +<span class="o">=</span> str<span class="o">(</span>val<span class="o">)</span> + c
+</span><span class='line'>    <span class="k">elif </span><span class="nv">val</span> <span class="o">==</span> 1:
+</span><span class='line'>      st +<span class="o">=</span> c
+</span><span class='line'>    <span class="nv">sum</span> <span class="o">=</span> sum%d
+</span><span class='line'>  print st
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Aizu Online Judgeのサンプルソース</h2>
+
+<p>当面はAOJを解きながら、アルゴリズムの再勉強をしていくつもりです。Ruby/PythonでのAOJの回答は下のリポジトリに保存しておきます。もしツッコミとかあれば是非＾＾</p>
+
+<p><strong><a href="https://github.com/morizyun/aoj-ruby-python">morizyun/aoj-ruby-python - GitHub</a></strong></p>
+
+<h2>最近解いたAOJの問題</h2>
+
+<p><strong><a href="/blog/categories/AOJ/">AOJタグのついた最近解いた問題一覧</a></strong></p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-08T23:50:00+09:00" pubdate data-updated="true">May 8<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/aoj/'>AOJ</a>, <a class='category' href='/blog/categories/algorithm/'>Algorithm</a>, <a class='category' href='/blog/categories/python/'>Python</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/文字列操作/'>文字列操作</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/the-balance-of-the-world-algorithm-aoj-1173/" title="Previous Post: アルゴリズムの勉強: カッコが閉じているかチェック[AOJ 1173][Ruby/Python][文字列操作]">&laquo; アルゴリズムの勉強: カッコが閉じているかチェック[AOJ 1173][Ruby/Python][文字列操作]</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/card-game-algorithm-aoj-0060/" title="Next Post: アルゴリズムの勉強: カードゲームの判定[AOJ 0060][Ruby/Python/c++]">アルゴリズムの勉強: カードゲームの判定[AOJ 0060][Ruby/Python/c++] &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/';
+        var disqus_url = 'http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

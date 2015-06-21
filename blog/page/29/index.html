@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="Flickr APIを簡単に扱うことができるgem Flickrawの紹介です。今回は例として、Webサイトから画像をダウンロードして、その画像を指定サイズにリサイズ＆トリミングして、Flickrにアップロードするまでの流れを作ってみます。 Flickraw ">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/page/29/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="酒と泪とRubyとRailsと" />
+<meta property="og:description" content="Flickr APIを簡単に扱うことができるgem Flickrawの紹介です。今回は例として、Webサイトから画像をダウンロードして、その画像を指定サイズにリサイズ＆トリミングして、Flickrにアップロードするまでの流れを作ってみます。 Flickraw " />
+<meta property="og:url" content="http://morizyun.github.com/blog/page/29/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/flickraw-image-resize-gem-ruby/">[Gem] FlickrawでFlickrに画像を簡単アップロード/ダウンロード [Rails]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-01-01T18:50:00+09:00" pubdate data-updated="true">Jan 1<span>st</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/flickraw-image-resize-gem-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/flickraw-image-resize-gem-ruby/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Flickr APIを簡単に扱うことができるgem Flickrawの紹介です。今回は例として、Webサイトから画像をダウンロードして、その画像を指定サイズにリサイズ＆トリミングして、Flickrにアップロードするまでの流れを作ってみます。</p>
+
+<p><a href="http://hanklords.github.com/flickraw/" title="flickraw" class="button big primary">Flickraw</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/flickraw-image-resize-gem-ruby/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mini_fb-gem-ruby-rails/">[Gem] Fql Facebookのいいね数(like数)の取得に是非！ [Rails]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-01-01T10:00:00+09:00" pubdate data-updated="true">Jan 1<span>st</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/mini_fb-gem-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/mini_fb-gem-ruby-rails/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Facebookのいいね数(like数)を取得する時に活躍してくれるRubyGem <code>Fql</code>の紹介です。Facebook系のGemではkoalaがメジャーですが、FQLをちょっと実行したいだけのときにはFqlもいいと思います！(当初mini_fbを紹介していましたが、Fqlを試していてこちらのほうが簡単だったので変更しました)</p>
+
+<p><a href="https://github.com/mcls/fql" title="mcls/fql" class="button big primary">mcls/fql · GitHub</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/mini_fb-gem-ruby-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/webmock-rspec-gem-ruby-rails/">[Gem] Webmock RSpecのWebアクセスのモックを作成してくれる超便利Gem [Rails]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-31T13:00:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/webmock-rspec-gem-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/webmock-rspec-gem-ruby-rails/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>WebからデータをダウンロードするプログラムのRspecで、Webにいちいちアクセスしたくない場合に重宝するのが、「webmock」です。これを使えばある時点のデータを使えるので、テスト結果が更新されて変わるような事態を防ぐことができます！</p>
+
+<p><a href="https://github.com/bblimke/webmock" title="webmock" class="button big primary">bblimke/webmock · GitHub</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/webmock-rspec-gem-ruby-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/static_model-gem-ruby-rails/">[Gem] Static_model yamlファイルを読み込んでActiveRecordのように扱う [Rails]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-30T23:50:00+09:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/static_model-gem-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/static_model-gem-ruby-rails/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>yamlで定義したデータを読み込んでActiveRecordのクラスのようにデータを扱うことができるGem「static_model」の紹介です。</p>
+
+<p><a href="http://code.quirkey.com/static_model/" title="static_model" class="button big primary">static_model</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/static_model-gem-ruby-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/exception_notification-gem-ruby-rails/">[Gem] Exception_notification Gmailでエラーを通知させる設定手順 [Rails]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-29T19:30:00+09:00" pubdate data-updated="true">Dec 29<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/exception_notification-gem-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/exception_notification-gem-ruby-rails/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>exception_notificationはRailsでエラーが発生した時にメールで通知をしてくれるGemです。このGemをGmailを使ってエラーを通知するように設定しました！</p>
+
+<p><a href="https://github.com/smartinez87/exception_notification" title="smartinez87/exception_notification · GitHub" class="button big primary">smartinez87/exception_notification · GitHub</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/exception_notification-gem-ruby-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/SmillaEnlarger-mac-app-image-enlarge/">SmillaEnlarger Jpg/png画像を美しく拡大 [Mac App]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-27T23:00:00+09:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/SmillaEnlarger-mac-app-image-enlarge/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/SmillaEnlarger-mac-app-image-enlarge/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Macアプリで、jpeg/png画像を荒くせずに綺麗に拡大してくれるフリー(無料)ソフト SmillaEnlargerを紹介します。</p>
+
+<p><a href="http://sourceforge.jp/projects/sfnet_imageenlarger/" title="SmillaEnlarger" class="button big primary">SmillaEnlarger</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/SmillaEnlarger-mac-app-image-enlarge/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rails-footnotes-gem-ruby/">Rails-footnotes デバックで見たい情報をフッターに表示してくれるGem [Rails]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-27T16:30:00+09:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/rails-footnotes-gem-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/rails-footnotes-gem-ruby/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>RailsでアプリでViewを作成している途中で、paramsの結果や問い合わせSQLをフッターに表示してくれるGem rails-footnotesの紹介です。以前、CakePHP 1.3の開発をしている時に類似の情報が表示されていて、結構助かりました！</p>
+
+<p><a href="https://github.com/josevalim/rails-footnotes" title="josevalim/rails-footnotes · GitHub" class="button big primary">josevalim/rails-footnotes · GitHub</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/rails-footnotes-gem-ruby/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/yslow-speed-up-rails-server-centos/">YSlowはWebサイトの速度改善を提案するアドオン☆Rails 3.2アプリで試してみた！</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-23T11:30:00+09:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/yslow-speed-up-rails-server-centos/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/yslow-speed-up-rails-server-centos/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8494/8297892171_a60d77a761_q.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>今話題の「<a href="http://www.slideshare.net/SumiKoichiro/1-15709348?utm_medium=twitter&amp;amp;utm_source=dlvr.it">スタートアップ向け！1人日でできるサービスの高速化方法と成果</a>」に乗っていたアプリのスピード改善を提案してくれる「<a href="http://developer.yahoo.com/yslow/">YSlow</a>」を試してみました！ちなみにこのアドオンはアメリカのYahooが無料で提供しています。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/yslow-speed-up-rails-server-centos/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/search-form-rails-bootstrap/">Rails 3.2.9とBootstrapで作るシンプルな検索機能のテンプレ</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-22T21:50:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/search-form-rails-bootstrap/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/search-form-rails-bootstrap/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Rails 3.2.9とTwitter Bootstrapをつかったアプリに検索機能をつけました。個人的忘備録で、手順のメモを書いておきます。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/search-form-rails-bootstrap/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/backstretch-javascript-full-image/">BACKSTRETCH 写真をWebページの背景全画面に表示[jQuery Plogin]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-20T21:45:00+09:00" pubdate data-updated="true">Dec 20<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/backstretch-javascript-full-image/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/backstretch-javascript-full-image/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8343/8243442471_83c56bf826_q.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Webページの背景全画面に写真を表示してくれるjQuery Plugin「BACKSTRETCH」の紹介です。自動でリサイズしてくれたり、幾つかのエフェクトを加えることができます。特定のブロックの背景だけを写真にすることも可能です。</p>
+
+<p><a href="http://srobbin.com/jquery-plugins/backstretch/" class="button big primary">Backstretch</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/backstretch-javascript-full-image/">続きを読む</a>
+    </footer>
+  
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/30/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/28/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

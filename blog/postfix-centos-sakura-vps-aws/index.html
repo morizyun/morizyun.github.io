@@ -1,0 +1,929 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>さくらVPSのCentOS 6.3にメールサーバ Postfix/Dovecotをインストール - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="さくらVPSのCentOS 6.3にメールサーバをPostfixで構築する手順です。メールサーバは安定して運用するのが、なかなか大変でハードルは高いと聞きますが、だからこそ運用スキルを高めるためにチャレンジしてみます！ この記事は、CentOS 6. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="さくらVPSのCentOS 6.3にメールサーバ Postfix/Dovecotをインストール - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="さくらVPSのCentOS 6.3にメールサーバをPostfixで構築する手順です。メールサーバは安定して運用するのが、なかなか大変でハードルは高いと聞きますが、だからこそ運用スキルを高めるためにチャレンジしてみます！ この記事は、CentOS 6. &hellip;" />
+<meta property="og:url" content="http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/" />
+<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="http://house.hack-a-thon.jp/" target="_blank">ハッカソンハウス</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">さくらVPSのCentOS 6.3にメールサーバ Postfix/Dovecotをインストール</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-01-30T16:40:00+09:00" pubdate data-updated="true">Jan 30<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="/blog/postfix-centos-sakura-vps-aws/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8057/8271532174_88676a643d_m.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>さくらVPSのCentOS 6.3にメールサーバをPostfixで構築する手順です。メールサーバは安定して運用するのが、なかなか大変でハードルは高いと聞きますが、だからこそ運用スキルを高めるためにチャレンジしてみます！</p>
+
+<p>この記事は、<strong><a href="/blog/centos63-sakura-vps-rails-setup-guide/">CentOS 6.3にRailsサーバを構築する手順</a></strong>の中の記事の一つです。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>前置き</h2>
+
+<p>さくらVPSのCentOSはpostfixがプリインストールされており、sendmailは入っていないのを前提にしています。もし、sendmailがインストールされて、postfixがインストールされていない環境の場合は以下を入力。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># postfixのインストール</span>
+</span><span class='line'>sudo yum install postfix
+</span><span class='line'>
+</span><span class='line'><span class="c"># sendmailを停止</span>
+</span><span class='line'>sudo /etc/rc.d/init.d/sendmail stop
+</span><span class='line'>
+</span><span class='line'><span class="c"># sendmailの自動起動を停止</span>
+</span><span class='line'>sudo chkconfig sendmail off
+</span><span class='line'>
+</span><span class='line'><span class="c"># 設定内容を確認</span>
+</span><span class='line'>chkconfig --list sendmail
+</span><span class='line'>
+</span><span class='line'><span class="c"># デフォルトMTAの変更</span>
+</span><span class='line'>alternatives --config mta
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>オレオレ証明書の作成</h2>
+
+<p>今回は自分のために使うサーバなので、オレオレ証明書を作成します。
+きちんとしたサービスを提供する場合は、証明書を購入したほうが良さそうです。</p>
+
+<p>以後、<code>example.com</code>は自分のドメイン、<code>user_name</code>はユーザー名に読み替えて下さい。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /etc/pki/tls/certs
+</span><span class='line'>sudo make server.key
+</span><span class='line'>&gt; Enter pass phrase:# 任意のパスフレーズを入力
+</span><span class='line'>&gt; Verifying - Enter pass phrase:# パスフレーズを再入力
+</span><span class='line'>
+</span><span class='line'>sudo openssl rsa -in server.key -out server.key
+</span><span class='line'>&gt; Enter pass phrase <span class="k">for </span>server.key:# パスフレーズを再入力
+</span><span class='line'>
+</span><span class='line'>sudo make server.csr
+</span><span class='line'>&gt; Country Name <span class="o">(</span>2 letter code<span class="o">)</span> <span class="o">[</span>XX<span class="o">]</span>: <span class="o">[</span>空白でエンターキー<span class="o">]</span>
+</span><span class='line'>&gt; State or Province Name <span class="o">(</span>full name<span class="o">)</span> <span class="o">[]</span>: <span class="o">[</span>空白でエンターキー<span class="o">]</span>
+</span><span class='line'>&gt; Locality Name <span class="o">(</span>eg, city<span class="o">)</span> <span class="o">[</span>Default City<span class="o">]</span>: <span class="o">[</span>空白でエンターキー<span class="o">]</span>
+</span><span class='line'>&gt; Organization Name <span class="o">(</span>eg, company<span class="o">)</span> <span class="o">[</span>Default Company Ltd<span class="o">]</span>: <span class="o">[</span>空白でエンターキー<span class="o">]</span>
+</span><span class='line'>&gt; Organizational Unit Name <span class="o">(</span>eg, section<span class="o">)</span> <span class="o">[]</span>: <span class="o">[</span>空白でエンターキー<span class="o">]</span>
+</span><span class='line'>&gt; Common Name <span class="o">(</span>eg, your name or your server<span class="err">&#39;</span>s hostname<span class="o">)</span> <span class="o">[]</span>: *.example.com
+</span><span class='line'>&gt; Email Address <span class="o">[]</span>: <span class="o">[</span>空白でエンターキー<span class="o">]</span>
+</span><span class='line'>A challenge password <span class="o">[]</span>: <span class="o">[</span>空白でエンターキー<span class="o">]</span>
+</span><span class='line'>An optional company name <span class="o">[]</span>: <span class="o">[</span>空白でエンターキー<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>sudo openssl x509 -in server.csr -out server.crt -req -signkey server.key -days 3650
+</span><span class='line'>sudo chmod 400 server.*
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで次の3つのファイルが作成されていれば成功です。</p>
+
+<pre>
+server.crt
+server.der
+server.key
+</pre>
+
+
+<p>ここで使ったパスフレーズはあとから使うのでメモっておいて下さい。</p>
+
+<h2>Postfixの設定</h2>
+
+<p>Postfixの設定を行う。<code>sudo vim /etc/postfix/main.cf</code>で設定ファイルを編集。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># (追加)</span>
+</span><span class='line'><span class="nv">myhostname</span> <span class="o">=</span> mail.example.com
+</span><span class='line'><span class="nv">mydomain</span> <span class="o">=</span> example.com
+</span><span class='line'><span class="nv">myorigin</span> <span class="o">=</span> <span class="nv">$mydomain</span>
+</span><span class='line'><span class="nv">home_mailbox</span> <span class="o">=</span> Maildir/
+</span><span class='line'>
+</span><span class='line'><span class="c"># メールサーバの隠蔽する設定を追加</span>
+</span><span class='line'><span class="nv">smtpd_banner</span> <span class="o">=</span> <span class="nv">$myhostname</span> ESMTP unknown
+</span><span class='line'>
+</span><span class='line'><span class="c"># 受信メールサイズの制限の設定を追加</span>
+</span><span class='line'><span class="nv">message_size_limit</span> <span class="o">=</span> 10485760
+</span><span class='line'>
+</span><span class='line'><span class="c"># SMTP-Auth 系の設定追加</span>
+</span><span class='line'><span class="nv">disable_vrfy_command</span> <span class="o">=</span> yes
+</span><span class='line'><span class="nv">smtpd_sasl_auth_enable</span> <span class="o">=</span> yes
+</span><span class='line'><span class="nv">broken_sasl_auth_clients</span> <span class="o">=</span> yes
+</span><span class='line'><span class="nv">smtpd_sasl_security_options</span> <span class="o">=</span> noanonymous
+</span><span class='line'><span class="nv">smtpd_sasl_local_domain</span> <span class="o">=</span> <span class="nv">$myhostname</span>
+</span><span class='line'><span class="nv">smtpd_sender_restrictions</span> <span class="o">=</span> reject_unknown_sender_domain
+</span><span class='line'><span class="nv">smtpd_client_restrictions</span> <span class="o">=</span> permit_mynetworks,reject_unknown_client,permit
+</span><span class='line'><span class="nv">smtpd_recipient_restrictions</span> <span class="o">=</span> permit_mynetworks,permit_sasl_authenticated,reject_unauth_destination
+</span><span class='line'>
+</span><span class='line'><span class="c"># TLS を利用するための設定、先ほど作った自己証明書を指定する</span>
+</span><span class='line'><span class="nv">smtpd_tls_cert_file</span> <span class="o">=</span> /etc/pki/tls/certs/server.crt
+</span><span class='line'><span class="nv">smtpd_tls_key_file</span> <span class="o">=</span> /etc/pki/tls/certs/server.key
+</span><span class='line'><span class="nv">smtpd_use_tls</span> <span class="o">=</span> yes
+</span><span class='line'>
+</span><span class='line'><span class="c"># (変更)</span>
+</span><span class='line'><span class="c"># 外部からのメール受信を許可するように変更</span>
+</span><span class='line'><span class="nv">inet_interfaces</span> <span class="o">=</span> all
+</span><span class='line'>
+</span><span class='line'><span class="c"># プロトコルをipv4に限定するように変更</span>
+</span><span class='line'><span class="nv">inet_protocols</span> <span class="o">=</span> ipv4
+</span><span class='line'>
+</span><span class='line'><span class="c"># 自ドメイン宛メールを受信できるようにする</span>
+</span><span class='line'><span class="nv">mydestination</span> <span class="o">=</span> <span class="nv">$myhostname</span>, localhost.<span class="nv">$mydomain</span>, localhost, <span class="nv">$mydomain</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>submission ポートを使って送信するための設定</h2>
+
+<p>submission ポートを使って送信するための設定を行う。<code>sudo vim /etc/postfix/master.cf</code>でファイルを開いて以下のコメントアウトを外す。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>submission inet n       -       n       -       -       smtpd
+</span><span class='line'>  -o <span class="nv">smtpd_tls_security_level</span><span class="o">=</span>encrypt
+</span><span class='line'>  -o <span class="nv">smtpd_sasl_auth_enable</span><span class="o">=</span>yes
+</span><span class='line'>  -o <span class="nv">smtpd_client_restrictions</span><span class="o">=</span>permit_sasl_authenticated,reject
+</span><span class='line'>  -o <span class="nv">milter_macro_daemon_name</span><span class="o">=</span>ORIGINATING
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>saslauthd(SMTP-Auth)の設定</h2>
+
+<p>saslauthd(SMTP-Auth)の設定を行う。<code>sudo vim /etc/sasl2/smtpd.conf</code>でファイルを開いて次のように書き換え。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pwcheck_method: auxprop
+</span><span class='line'>auxprop_plugin: sasldb
+</span><span class='line'>mech_list: plain login
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>SMTP-Authのためのsaslauthdを起動</h2>
+
+<p>認証用のSMTP-Authのためのsaslauthdを起動します。また、自動機能の設定も行います。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/rc.d/init.d/saslauthd start
+</span><span class='line'>sudo chkconfig saslauthd on
+</span><span class='line'>chkconfig --list saslauthd
+</span><span class='line'>&gt; saslauthd         0:off   1:off   2:on    3:on    4:on    5:on    6:off <span class="c">#&lt;= で設定成功</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>Dovecotのインストール</h2>
+
+<p>Dovecotをインストール。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum -y install dovecot
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Dovecotの設定</h2>
+
+<p>次にSSLを使えるようにする。<code>sudo vim /etc/dovecot/conf.d/10-ssl.conf</code>でファイルを編集。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># (変更)</span>
+</span><span class='line'><span class="c"># SSL証明書</span>
+</span><span class='line'><span class="nv">ssl_cert</span> <span class="o">=</span> &lt;/etc/pki/tls/certs/server.crt
+</span><span class='line'><span class="nv">ssl_key</span> <span class="o">=</span> &lt;/etc/pki/tls/certs/server.key
+</span><span class='line'>
+</span><span class='line'><span class="c"># (追記)</span>
+</span><span class='line'><span class="nv">ssl</span> <span class="o">=</span> yes
+</span><span class='line'><span class="nv">ssl_key_password</span> <span class="o">=</span> <span class="s2">&quot;前述の証明書作成時のパスフレーズ&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>さらに受信の際の認証。<code>sudo vim /etc/dovecot/conf.d/10-auth.conf</code>でファイルを開いて次の設定を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">auth_mechanisms</span> <span class="o">=</span> plain login
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次はポートの設定。<code>sudo vim /etc/dovecot/conf.d/10-master.conf</code>でファイルを開いて、コメントアウトを取り外す。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>service imap-login <span class="o">{</span>
+</span><span class='line'>  inet_listener imap <span class="o">{</span>
+</span><span class='line'>    <span class="nv">port</span> <span class="o">=</span> 143
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  inet_listener imaps <span class="o">{</span>
+</span><span class='line'>    <span class="nv">port</span> <span class="o">=</span> 993
+</span><span class='line'>    <span class="nv">ssl</span> <span class="o">=</span> yes
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>service pop3-login <span class="o">{</span>
+</span><span class='line'>  inet_listener pop3 <span class="o">{</span>
+</span><span class='line'>    <span class="nv">port</span> <span class="o">=</span> 110
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  inet_listener pop3s <span class="o">{</span>
+</span><span class='line'>    <span class="nv">port</span> <span class="o">=</span> 995
+</span><span class='line'>    <span class="nv">ssl</span> <span class="o">=</span> yes
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>さらに設定。<code>sudo vim /etc/dovecot/conf.d/10-mail.conf</code>でファイルを開いて以下の内容を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">mail_location</span> <span class="o">=</span> maildir:~/Maildir
+</span><span class='line'><span class="nv">valid_chroot_dirs</span> <span class="o">=</span> /home
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dovecotの設定を行う。<code>sudo vim /etc/dovecot/dovecot.conf</code>で設定ファイルを開いて以下を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">listen</span> <span class="o">=</span> *
+</span><span class='line'>
+</span><span class='line'><span class="nv">protocols</span> <span class="o">=</span> imap pop3 lmtp
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Maildir形式のメールボックスを作成</h2>
+
+<p>新規ユーザ追加時に、ホームディレクトリにMaildir形式のメールボックスを作成するようにする。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo mkdir -p /etc/skel/Maildir/<span class="o">{</span>new,cur,tmp<span class="o">}</span>　
+</span><span class='line'>sudo chmod -R 700 /etc/skel/Maildir/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>メールアドレスの追加</h2>
+
+<h3>新規ユーザーを追加する場合</h3>
+
+<p>メールアドレスを追加していきます。まずユーザーを追加します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo useradd -s /sbin/nologin user_name
+</span><span class='line'>
+</span><span class='line'><span class="c"># IMAP/POPのパスワードになります</span>
+</span><span class='line'>sudo passwd user_name
+</span><span class='line'>
+</span><span class='line'><span class="c"># STMPのパスワードになります</span>
+</span><span class='line'>sudo saslpasswd2 -u mail.example.com user_name
+</span><span class='line'>
+</span><span class='line'><span class="c"># 設定の確認</span>
+</span><span class='line'>sudo sasldblistusers2
+</span><span class='line'>&gt; user_name@mail.example.com: userPassword
+</span><span class='line'>
+</span><span class='line'>sudo chgrp postfix /etc/sasldb2 <span class="c">#認証DBの所有権変更</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>もしSMTP-Auth用ユーザ名、パスワードを削除する場合はこちら。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo saslpasswd2 -d user_name -u example.com
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>既存ユーザーのメールアドレスを設定する</h3>
+
+<p>SMTP-Auth用ユーザ／パスワードの登録。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo mkdir /home/user_name/Maildir
+</span><span class='line'>sudo chmod 700 /home/user_name/Maildir
+</span><span class='line'>sudo chown user_name:user_group /home/user_name/Maildir
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Postfixを起動</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/rc.d/init.d/postfix start
+</span><span class='line'>sudo chkconfig postfix on
+</span><span class='line'>chkconfig --list postfix
+</span><span class='line'>&gt; postfix         0:off   1:off   2:on    3:on    4:on    5:on    6:off <span class="c">#&lt;= で設定成功</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Dovecotを起動する</h2>
+
+<p>以下のコマンドを実行するとDovocotが起動します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/rc.d/init.d/dovecot start
+</span><span class='line'>sudo chkconfig dovecot on
+</span><span class='line'>chkconfig --list dovecot
+</span><span class='line'>&gt; dovecot         0:off   1:off   2:on    3:on    4:on    5:on
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>iptablesの設定</h2>
+
+<p>Postfixのメールを送受信できるようにiptablesを設定。
+<code>sudo vim /etc/sysconfig/iptables</code>を実行して、以下を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># smtp/smtps</span>
+</span><span class='line'>-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 25 -j ACCEPT
+</span><span class='line'>-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 465 -j ACCEPT
+</span><span class='line'>-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 587 -j ACCEPT
+</span><span class='line'>
+</span><span class='line'><span class="c"># pop3</span>
+</span><span class='line'>-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 110 -j ACCEPT
+</span><span class='line'>-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 995 -j ACCEPT
+</span><span class='line'>
+</span><span class='line'><span class="c"># imap</span>
+</span><span class='line'>-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 143 -j ACCEPT
+</span><span class='line'>-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 993 -j ACCEPT
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo service iptables restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>もし、iptablesの設定をしていない場合は拙著、「<strong><a href="/blog/iptable-sakura-vps-centos63/">さくらVPS/Cent OS 6.3 iptableの設定[Railsサーバへの道][セキュリティ]</a></strong>」を良かったら使って下さい。</p>
+
+<h2>DNS の設定</h2>
+
+<p>DNSは次の様に設定してください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>a mail.example.com IPアドレス
+</span><span class='line'>mx mail.example.com. 10
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>メールの送受信テスト</h2>
+
+<p>以上で設定は完了です。</p>
+
+<p><code>/var/log/maillog</code>がPostfix/Devocotのログファイルです。
+これを見ながら、メールの送受信ができるかテストしてみて下さい。エラーが出るようであれば、Google先生にご質問下さいまし＾＾</p>
+
+<h2>トラブルシューティング: rootに届く場合</h2>
+
+<p><code>sudo vim /etc/aliases</code>でファイルを開いて転送される設定になっていないか確認してください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>受信ユーザ:        postmaster
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>となってたりしたら、その行を<strong>コメントアウト</strong>して下さい。</p>
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>余談</h2>
+
+<p>SSL証明書をもし購入する場合はこちらがおすすめです！</p>
+
+<ul>
+<li><p><a href="http://www.e-ssldirect.com/">1,030円/年で取得できるRapidSSL</a></p></li>
+<li><p><a href="http://www.kyoji-kuzunoha.com/2012/05/free-ssl-install.html">無料で取得できるStartSSL</a></p></li>
+</ul>
+
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://d.hatena.ne.jp/katsuren/20120505/1336243329">CentOS6.2 でメールサーバーを構築した - 俺の成長日記</a></p>
+
+<p><a href="http://fedorasrv.com/postfix.shtml">メールサーバー構築(Postfix+Dovecot) - Fedoraで自宅サーバー構築</a></p>
+
+<p><a href="http://kajuhome.com/postfix.shtml#n06">はじめての自宅サーバ構築 - Fedora/CentOS - メールサーバ(SMTP)の構築(Postfix)</a></p>
+
+<p><a href="http://nb-tech.doorblog.jp/archives/51673388.html">プログラミング日誌 :: linux+postfixのメールサーバでメールをrootが受信してしまう場合の対応</a></p>
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4839955212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839955212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839955212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839955212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798141380/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798141380&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798141380&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798141380" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00GSHI04M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00GSHI04M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00GSHI04M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00GSHI04M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00XKGB2K8/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00XKGB2K8&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00XKGB2K8&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00XKGB2K8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798043761/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798043761&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798043761&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798043761" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798021180/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798021180&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798021180&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798021180" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4897979838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897979838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822277364/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822277364&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822277364&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822277364" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774173444/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774173444&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774173444&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774173444" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-30T16:40:00+09:00" pubdate data-updated="true">Jan 30<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gem/'>Gem</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/aws-epel-active-denyhosts/" title="Previous Post: AWS EC2のAmazon Linux AMIでRailsサーバを立ち上げよう">&laquo; AWS EC2のAmazon Linux AMIでRailsサーバを立ち上げよう</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/sound-bgm-se-objective-c/" title="Next Post: Objective-C で効果音(SE, BGM)を鳴らす[iPhone/iPad]">Objective-C で効果音(SE, BGM)を鳴らす[iPhone/iPad] &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://meeting.blue' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/';
+        var disqus_url = 'http://morizyun.github.com/blog/postfix-centos-sakura-vps-aws/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
