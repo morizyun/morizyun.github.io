@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ansible | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/ansible/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/ansible/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[さくらVPS&AWS&VULTR EC2/CentOS 6.5へのRailsサーバ構築手順！[Ruby]]]></title>
-    <link href="http://morizyun.github.com/blog/centos63-sakura-vps-rails-setup-guide/"/>
+    <link href="http://morizyun.github.io/blog/centos63-sakura-vps-rails-setup-guide/"/>
     <updated>2015-03-16T10:10:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/centos63-sakura-vps-rails-setup-guide</id>
+    <id>http://morizyun.github.io/blog/centos63-sakura-vps-rails-setup-guide</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4798038164/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798038164&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798038164&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798038164" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 さくらVPS/AWS EC2/VULTRのCentOS 6.5にRailsサーバを構築するための手順をまとめました。
 Railsの簡単なサーバーの構築から、各種ミドルウェアの導入まで少しずつ充実してきたかなと思います。
@@ -169,9 +169,9 @@ Railsの簡単なサーバーの構築から、各種ミドルウェアの導入
   
   <entry>
     <title type="html"><![CDATA[AWS/VULTR + AnsibleでベーシックなRailsサーバを簡単構築]]></title>
-    <link href="http://morizyun.github.com/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos/"/>
+    <link href="http://morizyun.github.io/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos/"/>
     <updated>2014-11-02T17:10:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos</id>
+    <id>http://morizyun.github.io/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00JWM4W2E/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00JWM4W2E&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00JWM4W2E&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00JWM4W2E" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 Ansibleはサーバー構築時の手順をコードにできるOSSです。今回は最近構築した自分のサーバのコード『<strong><a href="https://github.com/morizyun/centos_ansible_rails">morizyun/centos_ansible_rails - GitHub</a></strong>』を紹介します。</p>
 
@@ -346,9 +346,9 @@ Ansibleはサーバー構築時の手順をコードにできるOSSです。今�
   
   <entry>
     <title type="html"><![CDATA[Vagrant/AWS + AnsibleでCentOS/Nginx/MySQL/RVM/Ruby2.1.2環境を構築]]></title>
-    <link href="http://morizyun.github.com/blog/vagrant-ansible-rails-rvm-nginx-mysql/"/>
+    <link href="http://morizyun.github.io/blog/vagrant-ansible-rails-rvm-nginx-mysql/"/>
     <updated>2014-07-31T12:00:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/vagrant-ansible-rails-rvm-nginx-mysql</id>
+    <id>http://morizyun.github.io/blog/vagrant-ansible-rails-rvm-nginx-mysql</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00JWM4W2E/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00JWM4W2E&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00JWM4W2E&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00JWM4W2E" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 久々にVagrantでRails鯖を構築する必要があったので、勉強がてらAnsibleで作ってみました。Chefに比べるとシンプルで学習コストが低いのが素敵です。
 でもChefにせよ、Ansibleにせよ、ハマリポイントがしっかり用意されていて、ちょっと手こずりました。もうちょっとフレキシブルに書けるようになりたい！</p>

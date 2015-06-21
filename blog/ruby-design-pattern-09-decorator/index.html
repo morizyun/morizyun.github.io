@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/">
+  <link rel="canonical" href="http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/">
   <link rel="shortcut icon" href="/favicon.ico">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -50,8 +50,8 @@
   <meta property="og:title" content="デコレータ Ruby 2.0.0 デザインパターン速攻習得[Decorator][Design Pattern] - 酒と泪とRubyとRailsと" />
 <meta property="og:description" content="GoFのデザインパターン(Design Pattern)の一つ、デコレータ(Decorator)をRubyのサンプルコードで紹介します。 デコレータは、既存のオブジェクトに対して簡単に機能の追加をするためのパターンです。
 デコレータパターンを使うと、レイヤ状に機能を積み重ねて、 &hellip;" />
-<meta property="og:url" content="http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/" />
-<meta property="og:image" content="http://morizyun.github.com/images/default_ogp_image.png" />
+<meta property="og:url" content="http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/" />
+<meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
 <meta property="og:site_name" content="酒と泪とRubyとRailsと" />
 <meta property="og:locale" content="ja_JP" />
@@ -81,7 +81,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:morizyun.github.com" />
+    <input type="hidden" name="q" value="site:morizyun.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -124,15 +124,15 @@
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
-      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li class="twitter">
       
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/" >Tweet</a>
       
     </li>
     <li class="facebook">
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/"></div>
     </li>
   </ul>
 </span>
@@ -577,19 +577,19 @@ Decorator: 基本的なオブジェクトにレイヤ状に機能を追加する
     <ul class="social" style="margin-left: 0;">
         <li class="hatena">
             
-            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
             
         </li>
         <li class="twitter">
             
                 
-                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/" data-via="zyunnosuke" data-counturl="http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/" >Tweet</a>
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/" >Tweet</a>
                 
             
         </li>
         <li class="facebook">
             
-            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/"></div>
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/"></div>
             
         </li>
     </ul>
@@ -708,8 +708,8 @@ Decorator: 基本的なオブジェクトにレイヤ状に機能を追加する
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/';
-        var disqus_url = 'http://morizyun.github.com/blog/ruby-design-pattern-09-decorator/';
+        var disqus_identifier = 'http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/';
+        var disqus_url = 'http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/';
         var disqus_script = 'embed.js';
       
     (function () {

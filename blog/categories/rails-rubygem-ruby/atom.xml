@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails RubyGem Ruby | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/rails-rubygem-ruby/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/rails-rubygem-ruby/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails 3.2.9とBootstrapで作るシンプルな検索機能のテンプレ]]></title>
-    <link href="http://morizyun.github.com/blog/search-form-rails-bootstrap/"/>
+    <link href="http://morizyun.github.io/blog/search-form-rails-bootstrap/"/>
     <updated>2012-12-22T21:50:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/search-form-rails-bootstrap</id>
+    <id>http://morizyun.github.io/blog/search-form-rails-bootstrap</id>
     <content type="html"><![CDATA[<p><a href="blog/categories/rails-rubygem-ruby/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Rails 3.2.9とTwitter Bootstrapをつかったアプリに検索機能をつけました。個人的忘備録で、手順のメモを書いておきます。</p>
 
 <!-- more -->
@@ -167,9 +167,9 @@
   
   <entry>
     <title type="html"><![CDATA[yaml_db RailsのDBをコマンド一つでYAML形式でダンプ/ロードできるRubyGem]]></title>
-    <link href="http://morizyun.github.com/blog/yaml-db-rubygem-rails/"/>
+    <link href="http://morizyun.github.io/blog/yaml-db-rubygem-rails/"/>
     <updated>2012-12-20T21:00:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/yaml-db-rubygem-rails</id>
+    <id>http://morizyun.github.io/blog/yaml-db-rubygem-rails</id>
     <content type="html"><![CDATA[<p><a href="blog/categories/rails-rubygem-ruby/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>rakeコマンドでRailsのDBをYAML形式でダンプ(dump)/ロード(load)することが出来るgem yaml_dbの紹介です。ステージング環境のDBをダンプして本番環境と置き換える場合や、HerokuへのDBデータのアップロードなどに使えます。</p>
 
 <p><a href="https://github.com/ludicast/yaml_db" class="button big primary">ludicast/yaml_db | GitHub</a></p>

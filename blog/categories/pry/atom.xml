@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Pry | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/pry/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/pry/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Pryが真の力を発揮してくれる19個のコマンドとコマンドの自作方法[Rails]]]></title>
-    <link href="http://morizyun.github.com/blog/pry-command-rails-ruby/"/>
+    <link href="http://morizyun.github.io/blog/pry-command-rails-ruby/"/>
     <updated>2014-04-16T20:55:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/pry-command-rails-ruby</id>
+    <id>http://morizyun.github.io/blog/pry-command-rails-ruby</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00AT1E76S/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00AT1E76S&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00AT1E76S&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00AT1E76S" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />開発の効率を大きく向上してくれるgem Pryをさらに使いこなすための便利なコマンド19個をまとめてみました。標準のコマンドをしっかり理解してPryの使いこなしを目指します！</p>
 
 <p><strong>(04/16 20:55) オススメの記事を追加 その2</strong></p>
@@ -500,9 +500,9 @@ Pryの基本中の基本のコマンドですが超便利・超重要です！</
   
   <entry>
     <title type="html"><![CDATA[Pryの秘めた力を最大限引き出す4つの拡張機能[Rails]]]></title>
-    <link href="http://morizyun.github.com/blog/pry-tips-rails-ruby/"/>
+    <link href="http://morizyun.github.io/blog/pry-tips-rails-ruby/"/>
     <updated>2013-01-22T13:55:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/pry-tips-rails-ruby</id>
+    <id>http://morizyun.github.io/blog/pry-tips-rails-ruby</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774154881/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774154881&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774154881&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774154881" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsを開発する上で欠かせない、<code>rails console</code>の強化版gem Pryをさらに強化するための拡張機能の紹介です。Pryは単に<code>rails c</code>だけではなく、デバックやドキュメント調査、スタックのチェック、テーブルの中身のチェックなどを強力にサポートしてくれます！</p>
 
 <!-- more -->
@@ -856,9 +856,9 @@ Pryの基本中の基本のコマンドですが超便利・超重要です！</
   
   <entry>
     <title type="html"><![CDATA[RSpec/Spork/Guard/Growl/Rails 3.2.11で作る - プリチーなTDD環境！]]></title>
-    <link href="http://morizyun.github.com/blog/guard-spork-rspec-tdd/"/>
+    <link href="http://morizyun.github.io/blog/guard-spork-rspec-tdd/"/>
     <updated>2012-11-29T01:30:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/guard-spork-rspec-tdd</id>
+    <id>http://morizyun.github.io/blog/guard-spork-rspec-tdd</id>
     <content type="html"><![CDATA[<p><a href="blog/categories/pry/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8339/8240550113_9fab04bc18_m.jpg" width="200" height="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>「ぷりちー」なRailsのTDD環境をオレオレ定義してみました！</p>

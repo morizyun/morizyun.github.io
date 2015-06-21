@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 文字列操作 | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/文字列操作/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/文字列操作/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[アルゴリズムの勉強: オリジナルの数値フォーマットの加算[AOJ 1137][Ruby/Python][文字列操作]]]></title>
-    <link href="http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137/"/>
+    <link href="http://morizyun.github.io/blog/numeral-system-algorithm-aoj-1137/"/>
     <updated>2014-05-08T23:50:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/numeral-system-algorithm-aoj-1137</id>
+    <id>http://morizyun.github.io/blog/numeral-system-algorithm-aoj-1137</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4048869574/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048869574&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048869574&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048869574" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />引き続きプログラミングの基礎体力づくりと、Pythonの勉強を兼ねてアルゴリズムを勉強中です。今回は『<strong>カッコが閉じているかのチェック</strong>』について勉強しました。AIZU Online Judgeで対応している問題は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1137&amp;lang=jp">Numeral System</a></strong>』です。ごくごく初歩的な問題ですが、いかに戦略を立てて素早く解くかを意識するとまた楽しくなってきます。</p>
 
 <!-- more -->
@@ -229,9 +229,9 @@ Aizu Online Judge。"m"，"c"，"x"，"i" の4個の文字と "2"，"3"，"4"，
   
   <entry>
     <title type="html"><![CDATA[アルゴリズムの勉強: カッコが閉じているかチェック[AOJ 1173][Ruby/Python][文字列操作]]]></title>
-    <link href="http://morizyun.github.com/blog/the-balance-of-the-world-algorithm-aoj-1173/"/>
+    <link href="http://morizyun.github.io/blog/the-balance-of-the-world-algorithm-aoj-1173/"/>
     <updated>2014-05-08T08:30:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/the-balance-of-the-world-algorithm-aoj-1173</id>
+    <id>http://morizyun.github.io/blog/the-balance-of-the-world-algorithm-aoj-1173</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4121504895/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4121504895&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4121504895&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4121504895" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />引き続きプログラミングの基礎体力づくりと、Pythonの勉強を兼ねてアルゴリズムを勉強中です。今回は『<strong>カッコが閉じているかのチェック</strong>』について勉強しました。AIZU Online Judgeで対応している問題は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1173&amp;lang=jp">The Balance of the World</a></strong>』です。パズル問題ですが、空き時間が10分あれば十分に解けるお手軽問題なので、もしお時間があれば是非！</p>
 
 <p>また、AOJは他の人の回答を気軽に読む事ができます。かなり小さなプログラムなので、可読性と処理の高速性の両立の勉強には持って来いです＾＾</p>
@@ -383,9 +383,9 @@ Aizu Online Judge。与えられる文字列は，丸括弧(“( )”)と角括�
   
   <entry>
     <title type="html"><![CDATA[アルゴリズムの勉強: 共通部分文字列をカウント[AOJ 528][Ruby/Python][文字列操作]]]></title>
-    <link href="http://morizyun.github.com/blog/intersectional-string-counter-algorithm-aoj-528/"/>
+    <link href="http://morizyun.github.io/blog/intersectional-string-counter-algorithm-aoj-528/"/>
     <updated>2014-05-07T23:10:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/intersectional-string-counter-algorithm-aoj-528</id>
+    <id>http://morizyun.github.io/blog/intersectional-string-counter-algorithm-aoj-528</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4844332015/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844332015&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844332015&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844332015" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />引き続きプログラミングの基礎体力づくりと、Pythonの勉強を兼ねてアルゴリズムを勉強中です。今回は『<strong>共通部分文字列をカウントする方法</strong>』について勉強しました。AIZU Online Judgeで対応している問題は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0528">Common Sub-String</a></strong>』です。アルゴリズムというよりは頭の体操的なパズル問題ですが、ある程度速度の早いプログラムを書くのには工夫が必要だなと痛感しています。</p>
 
 <!-- more -->

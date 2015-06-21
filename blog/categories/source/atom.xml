@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Source | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/source/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/source/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ネストの深い(多重)ループを抜け出す - Rubyのthrow/catch]]></title>
-    <link href="http://morizyun.github.com/blog/throw-catch-symbol-ruby/"/>
+    <link href="http://morizyun.github.io/blog/throw-catch-symbol-ruby/"/>
     <updated>2012-12-02T21:50:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/throw-catch-symbol-ruby</id>
+    <id>http://morizyun.github.io/blog/throw-catch-symbol-ruby</id>
     <content type="html"><![CDATA[<p><a href="blog/categories/source/atom.xml" title="by morizyun, on Flickr"><img src="http://farm3.staticflickr.com/2775/4141490387_1beb461cec_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>Rubyの標準メソッドにthrow/catchはネストの深いループ(多重ループ)を一発で抜けだしたい場合などに使えそうなので、紹介します。</p>

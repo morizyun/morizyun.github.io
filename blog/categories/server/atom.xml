@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Server | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/server/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/server/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[VULTR 日本リージョン/MEM 768MB/SSD 15GB VPS $5/月！ Rails鯖のためのAnsibleコードあり]]></title>
-    <link href="http://morizyun.github.com/blog/VULTR-server-ssd-vps-easy-to-use/"/>
+    <link href="http://morizyun.github.io/blog/VULTR-server-ssd-vps-easy-to-use/"/>
     <updated>2014-12-06T15:50:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/VULTR-server-ssd-vps-easy-to-use</id>
+    <id>http://morizyun.github.io/blog/VULTR-server-ssd-vps-easy-to-use</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00M3OEPEI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00M3OEPEI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00M3OEPEI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00M3OEPEI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 開発をやっている中で、ネットワークに寄っては独自ドメインを使いたい！となります。そんな時に時間単位で借りれてカジュアルに使える
 『<strong><a href="http://www.vultr.com/?ref=6808408">VPS VULTR</a></strong>』を今回はじめて借りてみました！</p>
@@ -211,9 +211,9 @@
   
   <entry>
     <title type="html"><![CDATA[さくらVPS/entOS 6.4 Passengerのインストール手順 [Apache][Railsサーバへの道]]]></title>
-    <link href="http://morizyun.github.com/blog/passenger-install-apache-ruby-rails/"/>
+    <link href="http://morizyun.github.io/blog/passenger-install-apache-ruby-rails/"/>
     <updated>2013-09-24T07:20:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/passenger-install-apache-ruby-rails</id>
+    <id>http://morizyun.github.io/blog/passenger-install-apache-ruby-rails</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4798126136/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798126136&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798126136&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798126136" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第8回はPassengerの導入です。PassengerとはRailsのアプリケーションサーバの１つで、Apacheと組合せて使う方式はそれなりの時間が立って、熟れているのでネットでの情報も豊富です！</p>
 
@@ -419,9 +419,9 @@ Server(さくらVPS 2G SSD):
   
   <entry>
     <title type="html"><![CDATA[さくらVPS/CentOS 6.4へのRVMのインストール手順 [Ruby 2.0.0][Railsサーバへの道]]]></title>
-    <link href="http://morizyun.github.com/blog/rvm-install-centos-ruby-rails/"/>
+    <link href="http://morizyun.github.io/blog/rvm-install-centos-ruby-rails/"/>
     <updated>2013-09-24T06:45:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/rvm-install-centos-ruby-rails</id>
+    <id>http://morizyun.github.io/blog/rvm-install-centos-ruby-rails</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/482223472X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=482223472X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=482223472X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=482223472X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第7回はRVM(Ruby Version Management)をインストールする手順です。RVMはRubyのバージョンを管理してくれる仕組みで一つのサーバで複数のバージョンのRubyを使う可能性がある場合に使うとオススメなツールです。</p>
 
@@ -647,9 +647,9 @@ Server(さくらVPS 2G SSD):
   
   <entry>
     <title type="html"><![CDATA[YSlowはWebサイトの速度改善を提案するアドオン☆Rails 3.2アプリで試してみた！]]></title>
-    <link href="http://morizyun.github.com/blog/yslow-speed-up-rails-server-centos/"/>
+    <link href="http://morizyun.github.io/blog/yslow-speed-up-rails-server-centos/"/>
     <updated>2012-12-23T11:30:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/yslow-speed-up-rails-server-centos</id>
+    <id>http://morizyun.github.io/blog/yslow-speed-up-rails-server-centos</id>
     <content type="html"><![CDATA[<p><a href="blog/categories/server/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8494/8297892171_a60d77a761_q.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>今話題の「<a href="http://www.slideshare.net/SumiKoichiro/1-15709348?utm_medium=twitter&amp;amp;utm_source=dlvr.it">スタートアップ向け！1人日でできるサービスの高速化方法と成果</a>」に乗っていたアプリのスピード改善を提案してくれる「<a href="http://developer.yahoo.com/yslow/">YSlow</a>」を試してみました！ちなみにこのアドオンはアメリカのYahooが無料で提供しています。</p>
 
 <!-- more -->
@@ -810,9 +810,9 @@ ETagsの設定(トラフィックを抑えるように設定する)
   
   <entry>
     <title type="html"><![CDATA[開発サーバをThinからPowに切り替えて開発効率アップ！ (Mac限定)]]></title>
-    <link href="http://morizyun.github.com/blog/pow-guard-rails/"/>
+    <link href="http://morizyun.github.io/blog/pow-guard-rails/"/>
     <updated>2012-11-28T16:40:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/pow-guard-rails</id>
+    <id>http://morizyun.github.io/blog/pow-guard-rails</id>
     <content type="html"><![CDATA[<p><a href="blog/categories/server/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8209/8225589647_c2f4413b3b.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>「小さなチーム、大きな仕事」でおなじみの <a href="http://37signals.com/">37 signails</a>が開発した「設定が不要なRails &amp; Rackサーバ Pow」を使いはじめました！

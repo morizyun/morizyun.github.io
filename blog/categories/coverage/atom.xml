@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Coverage | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/coverage/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/coverage/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Travis CI、Coveralls、Code Climate、RubyGems、Gemnasiumと連携させよう！]]></title>
-    <link href="http://morizyun.github.com/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci/"/>
+    <link href="http://morizyun.github.io/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci/"/>
     <updated>2014-12-06T14:55:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci</id>
+    <id>http://morizyun.github.io/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4798139823/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798139823&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798139823&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798139823" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> RubyGemsなどのライブラリをOSSで公開した時の醍醐味として、Travis CIやCode Climateなどのコードの品質担保の仕組みを無料で使うことができるということがあります。ということで先日公開した
 『<strong><a href="https://github.com/morizyun/events_jp">events_jp</a></strong>』として公開したを今回、以下のツールに連携させてみました！</p>
 

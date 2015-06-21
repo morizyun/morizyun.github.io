@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: GAE | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/gae/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/gae/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rspec/Capybara/Turnipの入門記事を全力でまとめてみた]]></title>
-    <link href="http://morizyun.github.com/blog/the-rspec-book-review-rails/"/>
+    <link href="http://morizyun.github.io/blog/the-rspec-book-review-rails/"/>
     <updated>2013-08-30T16:00:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/the-rspec-book-review-rails</id>
+    <id>http://morizyun.github.io/blog/the-rspec-book-review-rails</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4798121932/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798121932&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798121932&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798121932" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />さっき、『<strong>
 <a href="http://www.amazon.co.jp/gp/product/4798121932/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798121932&amp;linkCode=as2&amp;tag=morizyun00-22">The Rspec Book</a></strong>』を読み終えました。厚めの本ですが、RspecやCucumber、Webrat、Seleniumなどを活用するためのノウハウ満載で大満足でした！ ということで、この本で読んだ内容を忘れないようにするためと、その過程でRspec/Capybaraなどのネット資料をあつめたので、まとめるためにこの記事を書きます。もし、間違いを発見した場合や他にもいいリソースがあれば、是非メッセージを願いします！</p>
 
@@ -146,9 +146,9 @@ End-to-Endのテストとは，リクエストがクライアント，たとえ�
   
   <entry>
     <title type="html"><![CDATA[Google Cloud EndPointsの勉強会@Google Japanに参加しました]]></title>
-    <link href="http://morizyun.github.com/blog/google-app-engine-seminar/"/>
+    <link href="http://morizyun.github.io/blog/google-app-engine-seminar/"/>
     <updated>2013-08-28T21:30:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/google-app-engine-seminar</id>
+    <id>http://morizyun.github.io/blog/google-app-engine-seminar</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4798127914/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798127914&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798127914&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798127914" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />08/28に六本木ヒルズで開催された『<a href="http://atnd.org/event/rainbowappsgoogle">Google App Engine を使ったスマホアプリ サーバーサイド開発入門セミナー</a>』に行ってきました。<strong>Google App Engine</strong>やバックエンド REST APIための<strong>Google Cloud Endpoints</strong>の紹介などが聞けたので、早速紹介します！</p>
 
 <br style="clear: both;"/>

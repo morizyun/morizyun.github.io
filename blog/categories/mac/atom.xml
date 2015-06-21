@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Mac | 酒と泪とRubyとRailsと]]></title>
-  <link href="http://morizyun.github.com/blog/categories/mac/atom.xml" rel="self"/>
-  <link href="http://morizyun.github.com/"/>
-  <updated>2015-06-21T18:39:51+09:00</updated>
-  <id>http://morizyun.github.com/</id>
+  <link href="http://morizyun.github.io/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2015-06-21T18:41:59+09:00</updated>
+  <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MongoDBをMac Yosemiteにインストール]]></title>
-    <link href="http://morizyun.github.com/blog/mongodb-install-setup-mac/"/>
+    <link href="http://morizyun.github.io/blog/mongodb-install-setup-mac/"/>
     <updated>2015-03-16T10:00:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/mongodb-install-setup-mac</id>
+    <id>http://morizyun.github.io/blog/mongodb-install-setup-mac</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00ITFOFLS/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00ITFOFLS&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00ITFOFLS&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00ITFOFLS" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 MongoDBはドキュメント思考のデータベース(NoSQLの一種)です。
 開発の初期段階で、RailsでMongoDB/mongoidを使うとスキーマが固まっていない段階でDBを意識せずに開発が進められます。
@@ -182,9 +182,9 @@ MongoDBはドキュメント思考のデータベース(NoSQLの一種)です。
   
   <entry>
     <title type="html"><![CDATA[プログラムに最適なフォント『Ricty』を超簡単にインストール[Mac限定]]]></title>
-    <link href="http://morizyun.github.com/blog/ricty-font-homebrew-mac/"/>
+    <link href="http://morizyun.github.io/blog/ricty-font-homebrew-mac/"/>
     <updated>2015-02-26T08:50:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/ricty-font-homebrew-mac</id>
+    <id>http://morizyun.github.io/blog/ricty-font-homebrew-mac</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4844363433/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844363433&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844363433&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844363433" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />プログラムを読みやすいことで有名なフォント『<strong>Ricty</strong>』をHomebrewで簡単にインストールするための手順です。Homebrewでのインストールは一瞬なので、もしまだ使ったことがなければぜひトライしてみて下さい。</p>
 
 <!-- more -->
@@ -312,9 +312,9 @@ Yosemiteな方は事前に以下のパッケージをインストールしてく
   
   <entry>
     <title type="html"><![CDATA[Mac MountainLion/CentOS 6.4へのPostgreSQL 9.2の導入手順]]></title>
-    <link href="http://morizyun.github.com/blog/postgresql-mac-centos-rails/"/>
+    <link href="http://morizyun.github.io/blog/postgresql-mac-centos-rails/"/>
     <updated>2015-01-18T11:30:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/postgresql-mac-centos-rails</id>
+    <id>http://morizyun.github.io/blog/postgresql-mac-centos-rails</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00B73U7OI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00B73U7OI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00B73U7OI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00B73U7OI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />MySQLと並ぶオープンソースのRDBMS、『PostgreSQL』の導入手順です。海外ではHerokuやEngine Yardが標準のDBをPostgreSQLにしていたりと人気が高いので、使えるようになっておいて、損はないと思います！</p>
 
 <!-- more -->
@@ -856,9 +856,9 @@ connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
   
   <entry>
     <title type="html"><![CDATA[CentOS/Mac OSXへのRedis導入手順 - memcacheライクなKey-Value方式と、永続化対応のインメモリDB]]></title>
-    <link href="http://morizyun.github.com/blog/redis-mac-centos-rails/"/>
+    <link href="http://morizyun.github.io/blog/redis-mac-centos-rails/"/>
     <updated>2014-12-22T20:05:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/redis-mac-centos-rails</id>
+    <id>http://morizyun.github.io/blog/redis-mac-centos-rails</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873115930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873115930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873115930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873115930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />memcachedライクなKey-Value方式と、永続化対応のインメモリDB『<strong><a href="http://redis.io/">Redis</a></strong>』をMac OSXや、CentOSに導入する手順です。Redisを効率的に活用して、さらにRailsアプリを高速化しちゃいましょう＾＾</p>
 
 <!-- more -->
@@ -1013,9 +1013,9 @@ connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
   
   <entry>
     <title type="html"><![CDATA[Python開発環境構築 徹底解説[pyenv, Mavericks]]]></title>
-    <link href="http://morizyun.github.com/blog/python-pyenv-rehash-mac-development/"/>
+    <link href="http://morizyun.github.io/blog/python-pyenv-rehash-mac-development/"/>
     <updated>2014-07-07T20:20:00+09:00</updated>
-    <id>http://morizyun.github.com/blog/python-pyenv-rehash-mac-development</id>
+    <id>http://morizyun.github.io/blog/python-pyenv-rehash-mac-development</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873116554/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116554&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873116554&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873116554" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Pythonの統計や機械学習系ライブラリを触ってみたくって、Pythonの環境をMarvericksに構築したのでそのメモです。Pythonはほぼ初心者なので、いろいろ触ってどんどん覚えていきたい！</p>
 
 <p><strong>(03/27 23:10) Marvericks対応にアップデート</strong></p>
