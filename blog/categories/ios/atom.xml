@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T19:10:24+09:00</updated>
+  <updated>2015-07-05T19:13:00+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -46,30 +46,7 @@
 
 <h2>Swiftで UIAlertController を呼び出す</h2>
 
-<p>```
-var alertController = UIAlertController(title: "sample title", message: "sample message", preferredStyle: .Alert)</p>
-
-<p>// ボタン 1を作成
-let firstAction = UIAlertAction(title: "button 1", style: .Default) {
-  action in println("button 1 が押されました")
-}</p>
-
-<p>// ボタン 2を作成
-let secondAction = UIAlertAction(title: "button 2", style: .Default) {
-  action in println("ボタン 2 が押されました")
-}</p>
-
-<p>// ボタンを配置
-alertController.addAction(firstAction)
-alertController.addAction(secondAction)</p>
-
-<p>// アラートを表示
-// 通常の ViewController で呼び出す場合
-presentViewController(alertController, animated: true, completion: nil)</p>
-
-<p>// AppDelegate で呼び出す場合
-// self.window!.rootViewController!.presentViewController(alertController, animated: true, completion: nil)
-```</p>
+<p>Liquid error: ClassNotFound: no lexer for alias 'swift' found</p>
 
 <br style="clear:both;"/>
 

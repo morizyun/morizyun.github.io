@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T19:10:24+09:00</updated>
+  <updated>2015-07-05T19:13:00+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -47,53 +47,7 @@
 
 <h2>Swiftで UIAlertController を呼び出す</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>var alertController = UIAlertController(title: "sample title", message: "sample message", preferredStyle: .Alert)
-</span><span class='line'>
-</span><span class='line'>// ボタン 1を作成
-</span><span class='line'>let firstAction = UIAlertAction(title: "button 1", style: .Default) {
-</span><span class='line'>  action in println("button 1 が押されました")
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>// ボタン 2を作成
-</span><span class='line'>let secondAction = UIAlertAction(title: "button 2", style: .Default) {
-</span><span class='line'>  action in println("ボタン 2 が押されました")
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>// ボタンを配置
-</span><span class='line'>alertController.addAction(firstAction)
-</span><span class='line'>alertController.addAction(secondAction)
-</span><span class='line'>
-</span><span class='line'>// アラートを表示
-</span><span class='line'>// 通常の ViewController で呼び出す場合
-</span><span class='line'>presentViewController(alertController, animated: true, completion: nil)
-</span><span class='line'>
-</span><span class='line'>// AppDelegate で呼び出す場合
-</span><span class='line'>// self.window!.rootViewController!.presentViewController(alertController, animated: true, completion: nil)</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p>Liquid error: ClassNotFound: no lexer for alias &#8216;swift&#8217; found</p>
 
 <br style="clear:both;"/>
 
