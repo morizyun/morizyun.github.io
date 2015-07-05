@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Session | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/session/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -29,19 +29,7 @@ Webサービスに関するセキュリティについて基礎をちゃんと�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>セッションとは</h2>
 
@@ -97,9 +85,9 @@ DBよりも高速に処理できるが、複数サーバの環境では一箇所
 <p>これを防ぐためにログイン時にセッションを破棄して新しいセッションを生成することです。
 Railsであれば以下のコマンドを実行すればセッションを破棄することができます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">reset_session</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+reset_session
+{% endcodeblock %}</p>
 
 <h2>セッションに有効期限をつける</h2>
 
@@ -130,19 +118,7 @@ Railsであれば以下のコマンドを実行すればセッションを破棄
 </pre>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <p><strong><a href="http://thinkit.co.jp/free/tech/9/2/1.html">[ThinkIT] 第2回：セッション管理 (1/4)</a></strong></p>
 

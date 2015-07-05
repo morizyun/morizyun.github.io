@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -26,19 +26,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>プリンシパル</h2>
 
@@ -67,21 +55,15 @@
 </ul>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 例)</span>
-</span><span class='line'><span class="nx">TcpConnectionSimulator</span><span class="p">(</span>
-</span><span class='line'>  <span class="mi">500</span><span class="p">,</span>  <span class="err">/&lt;em&gt; Kbps &lt;/em&gt;/</span>
-</span><span class='line'>  <span class="mi">80</span><span class="p">,</span>   <span class="err">/&lt;em&gt; millisecs latency &lt;/em&gt;/</span>
-</span><span class='line'>  <span class="mi">200</span><span class="p">,</span>  <span class="err">/&lt;em&gt; jitter &lt;/em&gt;/</span>
-</span><span class='line'>  <span class="mi">1</span>     <span class="o">/&lt;</span><span class="nx">em</span><span class="o">&gt;</span> <span class="nx">packet</span> <span class="nx">loss</span> <span class="o">&lt;</span><span class="sr">/em&gt;/</span>
-</span><span class='line'><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:javascript %}
+// 例)
+TcpConnectionSimulator(
+  500,  /<em> Kbps </em>/
+  80,   /<em> millisecs latency </em>/
+  200,  /<em> jitter </em>/
+  1     /<em> packet loss </em>/
+)
+{% endcodeblock %}</p>
 
 <ul>
 <li>並び順に<strong>一貫した</strong>ルールを持つ(アルファベット順、種類別、重要度など)</li>
@@ -142,19 +124,7 @@
 </ul>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 ]]></content>
   </entry>
   

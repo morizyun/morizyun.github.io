@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ssl | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ssl/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -27,56 +27,41 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>　サーバに mod_ssl を導入</h2>
 
 <p>サーバ側で以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum -y install mod_ssl
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+yum -y install mod_ssl
+{% endcodeblock %}</p>
 
 <h2>秘密鍵を作成</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo su -
-</span><span class='line'>mkdir /etc/nginx/ssl/
-</span><span class='line'><span class="nb">cd</span> /etc/nginx/ssl
-</span><span class='line'>openssl genrsa -des3 -out server.key 2048
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo su -
+mkdir /etc/nginx/ssl/
+cd /etc/nginx/ssl
+openssl genrsa -des3 -out server.key 2048
+{% endcodeblock %}</p>
 
 <h2>秘密鍵からCSRを作成</h2>
 
 <p>以下のコマンドを実行。パスフレーズや国名を答えていく。ドメインやメールアドレスは正確に書くこと。
 <code>Enter</code>を押すとスキップ。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>openssl req -new -key server.key -out server.csr
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+openssl req -new -key server.key -out server.csr
+{% endcodeblock %}</p>
 
 <h2>CSRをコピペ</h2>
 
 <p>server.csrを以下のコマンドで画面に表示してコピー。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>cat server.csr
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cat server.csr
+{% endcodeblock %}</p>
 
 <p>この情報はSSLを購入後に貼り付けます。</p>
 
@@ -93,25 +78,20 @@
 
 <p>pemは次のようなイメージで作成します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>-----BEGIN CERTIFICATE-----
-</span><span class='line'>サーバ証明書のxxxxx
-</span><span class='line'>-----END CERTIFICATE-----
-</span><span class='line'>-----BEGIN CERTIFICATE-----
-</span><span class='line'>中間証明書のxxxxx
-</span><span class='line'>-----END CERTIFICATE-----
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+-----BEGIN CERTIFICATE-----
+サーバ証明書のxxxxx
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+中間証明書のxxxxx
+-----END CERTIFICATE-----
+{% endcodeblock %}</p>
 
 <p>このままだとパスフレーズが残っていて、nginxノリスタートとかでいちいち聞かれちゃうので以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>openssl rsa -in cert.withpass.pem -out cert.pem
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+openssl rsa -in cert.withpass.pem -out cert.pem
+{% endcodeblock %}</p>
 
 <p>これでパスフレーズを入力すると、パスフレーズなしのpemが生成されます。</p>
 
@@ -119,33 +99,24 @@
 
 <p><code>nginx.conf</code>に以下の様に書くと設定できます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
-</span><span class='line'>  listen 443 default ssl;
-</span><span class='line'>  server_name example.com;
-</span><span class='line'>  root /var/rails/example.com;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  ssl on;
-</span><span class='line'>  ssl_certificate /etc/nginx/ssl/server.crt;
-</span><span class='line'>  ssl_certificate_key /etc/nginx/ssl/server.key;
-</span><span class='line'>  location / <span class="o">{</span> proxy_pass http://127.0.0.1:5001; <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+server {
+  listen 443 default ssl;
+  server_name example.com;
+  root /var/rails/example.com;</p>
+
+<p>  ssl on;
+  ssl_certificate /etc/nginx/ssl/server.crt;
+  ssl_certificate_key /etc/nginx/ssl/server.key;
+  location / { proxy_pass http://127.0.0.1:5001; }
+}
+{% endcodeblock %}</p>
 
 <p>設定画完了したら、以下のコマンドでnginxを再起動。(For CentOS)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/init.d/nginx restart
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo /etc/init.d/nginx restart
+{% endcodeblock %}</p>
 
 <h2>あとがき</h2>
 
@@ -155,19 +126,7 @@
 
 <p><strong><a href="http://plus.vc/web_service/6480/">RapidSSLを取得して、nginx+apacheサーバーで設定する方法 | PLUS</a></strong></p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 ]]></content>
   </entry>
   
@@ -184,19 +143,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Cookieの概要</h2>
 
@@ -235,19 +182,7 @@
 
 <p>クッキーでセッション管理を行う場合、第三者がセッションIDを獲得した場合、「<strong>なりすまし</strong>」を行う事ができる。この対策としては、HTTPS(SSL)通信を行い、CookieにSecure属性をつけることである。</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

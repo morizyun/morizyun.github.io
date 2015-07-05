@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Facebook | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/facebook/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://morizyun.github.io/blog/octopress-facebook-ogp-upgrade/"/>
     <updated>2012-12-03T02:00:00+09:00</updated>
     <id>http://morizyun.github.io/blog/octopress-facebook-ogp-upgrade</id>
-    <content type="html"><![CDATA[<p><a href="blog/categories/facebook/atom.xml" title="by morizyun, on Flickr"><img src="http://farm4.staticflickr.com/3016/2516986876_28335418f7_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm4.staticflickr.com/3016/2516986876_28335418f7_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>OctopressにFacebookシェア用にOGPを設定する方法をまとめました。FacebookのOGPを設定すれば、Facebookでの共有時に適切な情報が表示されるようになり、シェアが広まりやすくなります。ぜひトライしてみて下さい！</p>
 
@@ -32,70 +32,43 @@
 
 <p><code>source/_include/facebook_like.html</code>のローケルが<code>en_US</code>となっていた場合は、<code>ja_JP</code>に修正。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_include/facebook_like.html  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;fb-root&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script&gt;</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span><span class="k">return</span><span class="p">;}</span>
-</span><span class='line'>  <span class="nx">js</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">js</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;//connect.facebook.net/ja_JP/all.js#appId=212934732101925&amp;xfbml=1&quot;</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">fjs</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span><span class="p">);</span>
-</span><span class='line'><span class="p">}(</span><span class="nb">document</span><span class="p">,</span> <span class="s1">&#39;script&#39;</span><span class="p">,</span> <span class="s1">&#39;facebook-jssdk&#39;</span><span class="p">));</span><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock source/_include/facebook_like.html lang:html %}</p>
+
+<div id="fb-root"></div>
+
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<p>{% endcodeblock %}</p>
 
 <h2>OGPの設定</h2>
 
 <p><code>_config.yml</code>にFacebook投稿時の画像となるog:imageのデフォルトの画像パスを登録</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>default_ogp_image: 画像のパス
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock _config.yml lang:bash %}
+default_ogp_image: 画像のパス
+{% endcodeblock %}</p>
 
 <p><code>source/_include/custom/facebook_ogp.html</code>に次のコードを書く。<br/>(バックスラッシュは取り除いて下さい)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_include/custom/facebook_ogp.html  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;og:title&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;\{\{ page.title \}\} - \{\{ site.title \}\}&quot;</span> /&gt;
-</span><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;og:description&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;\{\{ description | strip_html | condense_spaces | truncate:150 \}\}&quot;</span> /&gt;
-</span><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;og:url&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;\{\{ canonical \}\}&quot;</span> /&gt;
-</span><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;og:image&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;\{\{ site.url \}\}\{\{ site.default_ogp_image \}\}&quot;</span> /&gt;
-</span><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;og:author&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;\{\{ site.author \}\}&quot;</span> /&gt;
-</span><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;og:site_name&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;\{\{ site.title \}\}&quot;</span> /&gt;
-</span><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;og:locale&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;\{\{ site.facebook_locale \}\}&quot;</span> /&gt;
-</span><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;og:type&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;article&quot;</span> /&gt;
-</span><span class='line'>&lt;meta <span class="nv">property</span><span class="o">=</span><span class="s2">&quot;fb:app_id&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;212934732101925&quot;</span> /&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock source/_include/custom/facebook_ogp.html lang:bash %}
+<meta property="og:title" content="{% if page.title %}\{\{ page.title \}\} - {% endif %}\{\{ site.title \}\}" />
+<meta property="og:description" content="\{\{ description | strip_html | condense_spaces | truncate:150 \}\}" />
+<meta property="og:url" content="\{\{ canonical \}\}" />
+<meta property="og:image" content="{% if page.ogp_image %}\{\{ page.ogp_image \}\}{% else %}\{\{ site.url \}\}\{\{ site.default_ogp_image \}\}{% endif %}" />
+<meta property="og:author" content="\{\{ site.author \}\}" />
+<meta property="og:site_name" content="\{\{ site.title \}\}" />
+<meta property="og:locale" content="\{\{ site.facebook_locale \}\}" />
+<meta property="og:type" content="{% if page.index %}blog{% else %}article{% endif %}" />
+<meta property="fb:app_id" content="212934732101925" />
+{% endcodeblock %}</p>
 
 <h2>設定をFacebookのデバッカでチェック</h2>
 

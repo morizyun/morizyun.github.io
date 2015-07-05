@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haml | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/haml/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,19 +18,7 @@
     <link href="http://morizyun.github.io/blog/rails-mysql-bootstrap/"/>
     <updated>2012-11-26T08:00:00+09:00</updated>
     <id>http://morizyun.github.io/blog/rails-mysql-bootstrap</id>
-    <content type="html"><![CDATA[<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* bottom_burner */
-  google_ad_slot = "2184590598";
-  google_ad_width = 468;
-  google_ad_height = 15;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div>
+    <content type="html"><![CDATA[<p>{% include custom/google_ads_text.html %}
 Rails 3.2.13 + Bootstrap + Hamlのプロジェクト作成のフローを作成しました。</p>
 
 <p><a href="http://morizyun.github.io/blog/rails-mysql-bootstrap" title="fpu_tmp_1353848330.5039_237fab by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8346/8219161728_66b992a1bd.jpg" width="500" alt="fpu_tmp_1353848330.5039_237fab"></a></p>
@@ -42,396 +30,253 @@ Rails 3.2.13 + Bootstrap + Hamlのプロジェクト作成のフローを作成�
 
 <p>Railsの新規プロジェクトを作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails new <span class="nb">test</span>-app -d mysql --skip-test-unit --skip-bundle
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rails new test-app -d mysql --skip-test-unit --skip-bundle
+{% endcodeblock %}</p>
 
 <p>RVMを使っている場合は、プロジェクト直下で.rvmrcを作成する。<br/></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd test</span>-app/
-</span><span class='line'><span class="nb">echo </span>ruby-1.9.3-p327 &gt; .ruby-version
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cd test-app/
+echo ruby-1.9.3-p327 > .ruby-version
+{% endcodeblock %}</p>
 
 <p>Rails用の<code>.gitignore</code>を作成します。<code>.gitignore</code>を生成するgitignore-boilerplatesを使う場合はこちら。(Macでのインストール方法は、<code>brew install gibo</code>を実行)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Mac/RubyMineを使う場合の例です、gibo --listで確認して下さい&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gibo OSX Ruby Rails RubyMine IntelliJ &gt; .gitignore
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>Mac/RubyMineを使う場合の例です、gibo --listで確認して下さい</h1>
+
+<p>gibo OSX Ruby Rails RubyMine IntelliJ > .gitignore
+{% endcodeblock %}</p>
 
 <p>GitHubから<code>.gitignore</code>のテンプレートをダウンロードする場合はこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://raw.github.com/github/gitignore/master/Rails.gitignore;mv Rails.gitignore .gitignore
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+wget https://raw.github.com/github/gitignore/master/Rails.gitignore;mv Rails.gitignore .gitignore
+{% endcodeblock %}</p>
 
 <p>Gitリポジトリ作成を作成します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git init
-</span><span class='line'>git add -A
-</span><span class='line'>git commit -m <span class="s2">&quot;new project&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git init
+git add -A
+git commit -m "new project"
+{% endcodeblock %}</p>
 
 <p><code>Gemfile</code>を編集して、<code>bundle install</code>でGemをインストール。<br/>
 (gemは適宜カスタマイズしてください)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;rails&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;rake&#39;</span> <span class="c"># 本番rake実行時に必要だった&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Bootstrap&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;less-rails&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;twitter-bootstrap-rails&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Compress/Sassy-Buttons/Zurui-design&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;sass-rails&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;compass-colors&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;compass-rails&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;sassy-buttons&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;zurui-sass-rails&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Font Awesome&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;font-awesome-rails&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Form Builders&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;simple_form&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;country_select&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Haml&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;haml-rails&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;jQuery/json&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;jquery-rails&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;jquery-cookie-rails&#39;</span> <span class="c"># jquery-cookie</span>
-</span><span class='line'>gem <span class="s1">&#39;json&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;MySQL&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;mysql2&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Presenter&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;active_decorator&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;定数管理&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;rails_config&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;スクレイピング&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;nokogiri&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Seed管理&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;seed-fu&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;asset取得系のログを出力しない&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;quiet_assets&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;group :assets <span class="k">do</span>
-</span><span class='line'><span class="k">  </span>gem <span class="s1">&#39;coffee-rails&#39;</span>
-</span><span class='line'>  gem <span class="s1">&#39;therubyracer&#39;</span>, <span class="s2">&quot;~&gt; 0.10.2&quot;</span>
-</span><span class='line'>  gem <span class="s1">&#39;uglifier&#39;</span>
-</span><span class='line'>  gem <span class="s1">&#39;libv8&#39;</span>, <span class="s1">&#39;~&gt; 3.3.10&#39;</span>
-</span><span class='line'>end&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;group :development <span class="k">do</span>
-</span><span class='line'>  <span class="c"># ドキュメント生成</span>
-</span><span class='line'>  gem <span class="s1">&#39;yard&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># erbからhamlに変換</span>
-</span><span class='line'>  gem <span class="s1">&#39;erb2haml&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># エラー画面をわかりやすく整形してくれる</span>
-</span><span class='line'>  gem <span class="s1">&#39;better_errors&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># better_errorsの画面上にirb/pry(PERL)を表示する</span>
-</span><span class='line'>  gem <span class="s1">&#39;binding_of_caller&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># フッターにデバック情報を表示</span>
-</span><span class='line'>  gem <span class="s1">&#39;rails-footnotes&#39;</span>, <span class="s1">&#39;&gt;= 3.7.9&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># N+1問題の警告を出力</span>
-</span><span class='line'>  gem <span class="s2">&quot;bullet&quot;</span>
-</span><span class='line'>end&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;group :development, :test <span class="k">do</span>
-</span><span class='line'>  <span class="c"># Pow (Mac用のサーバです。Mac以外 or Pow以外のサーバ利用の方は不要)</span>
-</span><span class='line'>  gem <span class="s1">&#39;pow&#39;</span>
-</span><span class='line'>  gem <span class="s1">&#39;rails3-generators&#39;</span>
-</span><span class='line'>end&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;powder&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+source 'https://rubygems.org'</p>
+
+<p>gem 'rails'
+gem 'rake' # 本番rake実行時に必要だった</p>
+
+<h1>Bootstrap</h1>
+
+<p>gem 'less-rails'
+gem 'twitter-bootstrap-rails'</p>
+
+<h1>Compress/Sassy-Buttons/Zurui-design</h1>
+
+<p>gem 'sass-rails'
+gem 'compass-colors'
+gem 'compass-rails'
+gem 'sassy-buttons'
+gem 'zurui-sass-rails'</p>
+
+<h1>Font Awesome</h1>
+
+<p>gem 'font-awesome-rails'</p>
+
+<h1>Form Builders</h1>
+
+<p>gem 'simple_form'
+gem 'country_select'</p>
+
+<h1>Haml</h1>
+
+<p>gem 'haml-rails'</p>
+
+<h1>jQuery/json</h1>
+
+<p>gem 'jquery-rails'
+gem 'jquery-cookie-rails' # jquery-cookie
+gem 'json'</p>
+
+<h1>MySQL</h1>
+
+<p>gem 'mysql2'</p>
+
+<h1>Presenter</h1>
+
+<p>gem 'active_decorator'</p>
+
+<h1>定数管理</h1>
+
+<p>gem 'rails_config'</p>
+
+<h1>スクレイピング</h1>
+
+<p>gem 'nokogiri'</p>
+
+<h1>Seed管理</h1>
+
+<p>gem 'seed-fu'</p>
+
+<h1>asset取得系のログを出力しない</h1>
+
+<p>gem 'quiet_assets'</p>
+
+<p>group :assets do
+  gem 'coffee-rails'
+  gem 'therubyracer', "~> 0.10.2"
+  gem 'uglifier'
+  gem 'libv8', '~> 3.3.10'
+end</p>
+
+<p>group :development do
+  # ドキュメント生成
+  gem 'yard'</p>
+
+<p>  # erbからhamlに変換
+  gem 'erb2haml'</p>
+
+<p>  # エラー画面をわかりやすく整形してくれる
+  gem 'better_errors'</p>
+
+<p>  # better_errorsの画面上にirb/pry(PERL)を表示する
+  gem 'binding_of_caller'</p>
+
+<p>  # フッターにデバック情報を表示
+  gem 'rails-footnotes', '>= 3.7.9'</p>
+
+<p>  # N+1問題の警告を出力
+  gem "bullet"
+end</p>
+
+<p>group :development, :test do
+  # Pow (Mac用のサーバです。Mac以外 or Pow以外のサーバ利用の方は不要)
+  gem 'pow'
+  gem 'rails3-generators'
+end</p>
+
+<p>gem 'powder'
+{% endcodeblock %}</p>
 
 <p><code>config/application.rb</code>の中にある<code>YourAppName::Application.configure</code>内に以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Set timezone&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Tokyo&#39;</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">default_timezone</span> <span class="o">=</span> <span class="ss">:local</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;日本語化&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">i18n</span><span class="o">.</span><span class="n">load_path</span> <span class="o">+=</span> <span class="no">Dir</span><span class="o">[</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;locales&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;em&gt;*&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/em&gt;.{rb,yml}&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">i18n</span><span class="o">.</span><span class="n">default_locale</span> <span class="o">=</span> <span class="ss">:ja</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;generatorの設定&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">generators</span> <span class="k">do</span> <span class="o">|</span><span class="n">g</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">g</span><span class="o">.</span><span class="n">orm</span> <span class="ss">:active_record</span>
-</span><span class='line'>  <span class="n">g</span><span class="o">.</span><span class="n">template_engine</span> <span class="ss">:haml</span>
-</span><span class='line'>  <span class="c1"># scaffoldをgenerateするとDraperが自動で生成されます。</span>
-</span><span class='line'>  <span class="c1"># モデルがないとエラーが発生する可能性があるので注意してください</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;load original validator(オリジナルのバリデーターがある場合のみ)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">+=</span> <span class="sx">%W(</span><span class="si">#{</span><span class="n">config</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sx">/lib/validators)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;libファイルの自動読み込み&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">+=</span> <span class="sx">%W(</span><span class="si">#{</span><span class="n">config</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sx">/lib)</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">+=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">config</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2">/lib/**/&quot;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>Set timezone</h1>
+
+<p>config.time_zone = 'Tokyo'
+config.active_record.default_timezone = :local</p>
+
+<h1>日本語化</h1>
+
+<p>config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '<em>*', '</em>.{rb,yml}').to_s]
+config.i18n.default_locale = :ja</p>
+
+<h1>generatorの設定</h1>
+
+<p>config.generators do |g|
+  g.orm :active_record
+  g.template_engine :haml
+  # scaffoldをgenerateするとDraperが自動で生成されます。
+  # モデルがないとエラーが発生する可能性があるので注意してください
+end</p>
+
+<h1>load original validator(オリジナルのバリデーターがある場合のみ)</h1>
+
+<p>config.autoload_paths += %W(#{config.root}/lib/validators)</p>
+
+<h1>libファイルの自動読み込み</h1>
+
+<p>config.autoload_paths += %W(#{config.root}/lib)
+config.autoload_paths += Dir["#{config.root}/lib/**/"]
+{% endcodeblock %}</p>
 
 <p>N+1問題の対策Gem Bulletの設定。<br/>
 <code>config/environments/development.rb</code>の<code>AppName::Application.configure</code>内に以下を追記。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>config.after_initialize <span class="k">do</span>
-</span><span class='line'><span class="k">  </span>Bullet.enable <span class="o">=</span> <span class="nb">true</span> <span class="c"># Bulletプラグインを有効</span>
-</span><span class='line'>  Bullet.alert <span class="o">=</span> <span class="nb">true</span> <span class="c"># JavaScriptでの通知</span>
-</span><span class='line'>  Bullet.bullet_logger <span class="o">=</span> <span class="nb">true</span> <span class="c"># log/bullet.logへの出力</span>
-</span><span class='line'>  Bullet.console <span class="o">=</span> <span class="nb">true</span> <span class="c"># ブラウザのコンソールログに記録</span>
-</span><span class='line'>  Bullet.rails_logger <span class="o">=</span> <span class="nb">true</span> <span class="c"># Railsログに出力</span>
-</span><span class='line'>  Bullet.disable_browser_cache <span class="o">=</span> <span class="nb">true</span> <span class="c">#ブラウザキャッシュの無効化</span>
-</span><span class='line'>end
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+config.after_initialize do
+  Bullet.enable = true # Bulletプラグインを有効
+  Bullet.alert = true # JavaScriptでの通知
+  Bullet.bullet_logger = true # log/bullet.logへの出力
+  Bullet.console = true # ブラウザのコンソールログに記録
+  Bullet.rails_logger = true # Railsログに出力
+  Bullet.disable_browser_cache = true #ブラウザキャッシュの無効化
+end
+{% endcodeblock %}</p>
 
 <p>DBの作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake db:create <span class="nv">RAILES_ENV</span><span class="o">=</span>development
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rake db:create RAILES_ENV=development
+{% endcodeblock %}</p>
 
 <p>Twitter Bootstrapのインストール。<code>application.html.haml</code>が作成されるので、<code>application.html.erb</code>を削除。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g bootstrap:layout application fluid
-</span><span class='line'>rails g bootstrap:install
-</span><span class='line'>rm -rf app/views/layouts/application.html.erb
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rails g bootstrap:layout application fluid
+rails g bootstrap:install
+rm -rf app/views/layouts/application.html.erb
+{% endcodeblock %}</p>
 
 <p>font-awesomeの設定を追加する。
 <code>app/assets/stylesheets/application.css</code>に以下のコードを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="o">*=</span> <span class="nb">require</span> <span class="n">font</span><span class="o">-</span><span class="n">awesome</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+ *= require font-awesome
+{% endcodeblock %}</p>
 
 <p>Compassのインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>compass init --syntax sass
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bundle exec compass init --syntax sass
+{% endcodeblock %}</p>
 
 <p>Sassy-buttonsのインストール。<code>No such framework: "sassy-buttons"</code>と言われる場合はスキップ。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>compass install sassy-buttons
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bundle exec compass install sassy-buttons
+{% endcodeblock %}</p>
 
 <p>続いてSASS(CSS)を書くための<code>base.css.sass</code>ファイルを作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g sass:assets base
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rails g sass:assets base
+{% endcodeblock %}</p>
 
 <p><code>base.css.sass</code>に以下を追加して、zurui-design, compass, sassy-buttonsを使えるようにする。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>@import compass/utilities
-</span><span class='line'>@import compass/css3
-</span><span class='line'>@import sassy-buttons
-</span><span class='line'>@import zurui-sass
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+@import compass/utilities
+@import compass/css3
+@import sassy-buttons
+@import zurui-sass
+{% endcodeblock %}</p>
 
 <p>Railsの日本語化ファイルを設定する。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml -P config/locales/
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml -P config/locales/
+{% endcodeblock %}</p>
 
 <p>rails_configの設定、設定用ファイルの生成。（利用方法は<a href="https://github.com/railsjedi/rails_config">railsjedi/rails_config | GitHub</a>）</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g rails_config:install
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rails g rails_config:install
+{% endcodeblock %}</p>
 
 <p>simple formの初期設定(bootstrap対応)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g simple_form:install --bootstrap
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rails g simple_form:install --bootstrap
+{% endcodeblock %}</p>
 
 <p>Apacheの場合は設定を行なって、ブラウザで表示を確認する。</p>
 
@@ -439,21 +284,18 @@ Rails 3.2.13 + Bootstrap + Hamlのプロジェクト作成のフローを作成�
 
 <p>Powを使っている場合はPowへのリンクの作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>powder link
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+powder link
+{% endcodeblock %}</p>
 
 <p>RVM環境でPowを使っている場合はプロジェクトの直下に<code>.powrc</code>を作成して以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> <span class="o">[</span> -f <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span> <span class="o">]</span> &amp;amp;&amp;amp; <span class="o">[</span> -f <span class="s2">&quot;.rvmrc&quot;</span> <span class="o">]</span>; <span class="k">then</span>
-</span><span class='line'><span class="k">  </span><span class="nb">source</span> <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span>
-</span><span class='line'>  <span class="nb">source</span> <span class="s2">&quot;.rvmrc&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+if [ -f "$rvm_path/scripts/rvm" ] &amp;&amp; [ -f ".rvmrc" ]; then
+  source "$rvm_path/scripts/rvm"
+  source ".rvmrc"
+fi
+{% endcodeblock %}</p>
 
 <p>表示を確認する。<code>powder open</code>を実行して、ブラウザで<code>http://test-app.dev/</code>を確認。</p>
 
@@ -461,27 +303,27 @@ Rails 3.2.13 + Bootstrap + Hamlのプロジェクト作成のフローを作成�
 
 <p>scaffoldを追加の前に<code>public/index.html</code>を削除。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rm -rf public/index.html
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rm -rf public/index.html
+{% endcodeblock %}</p>
 
 <p>scaffoldの作成してビューを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rails</span> <span class="n">g</span> <span class="n">scaffold</span> <span class="n">product</span> <span class="nb">name</span> <span class="n">price</span><span class="ss">:integer</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+rails g scaffold product name price:integer
+{% endcodeblock %}</p>
 
 <p><code>config/routes.rb</code>にて、ルートアクセス設定を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="s2">&quot;products#index&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+root :to => "products#index"
+{% endcodeblock %}</p>
 
 <p>DBのマイグレーション。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rake</span> <span class="n">db</span><span class="ss">:migrate</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock  lang:ruby %}
+rake db:migrate
+{% endcodeblock %}</p>
 
 <p>ブラウザでscaffordしたビューが見れることをブラウザで確認。</p>
 
@@ -489,19 +331,13 @@ Rails 3.2.13 + Bootstrap + Hamlのプロジェクト作成のフローを作成�
 
 <p>SSLエラー回避のために<code>config/initializers/bypass_ssl_verification_for_open_uri.rb</code>を作成して以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;SSLエラー回避&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;openssl&#39;</span>
-</span><span class='line'><span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_PEER</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_NONE</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>SSLエラー回避</h1>
+
+<p>require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+{% endcodeblock %}</p>
 
 <p>注意点として、この設定を行うと<code>bypass_ssl_verification_for_open_uri.rb:3: warning: already initialized constant VERIFY_PEER</code>という警告メッセージがでるようになりますが、気にしなくて良さそうです。</p>
 
@@ -510,18 +346,17 @@ Rails 3.2.13 + Bootstrap + Hamlのプロジェクト作成のフローを作成�
 <p>ブラウザにはデフォルトのCSSがセットされており、ブラウザによってデザインが変化する可能性があります。そこで、ブラウザのCSSをリセットしてくれるCSSが<a href="http://yuilibrary.com/yui/docs/cssreset/">YUI(Yahoo! User Interface Library)から提供</a>されています。<br/>
 配布がUSのサーバだと思う(レスポンスが遅くなる)ので、プロジェクト側にcssファイルをダウンロード。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget http://yui.yahooapis.com/3.8.0/build/cssreset/cssreset-min.css -P app/assets/stylesheets/
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+wget http://yui.yahooapis.com/3.8.0/build/cssreset/cssreset-min.css -P app/assets/stylesheets/
+{% endcodeblock %}</p>
 
 <p><code>app/assets/stylesheets/application.css.less</code>に以下のコードを追加。<br/>
 (このコードを追加する場合は<code>// = require_tree .</code>を削除して、cssを個別にインポートすること)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">/&lt;</span><span class="nt">em</span><span class="o">&gt;</span> <span class="nt">1</span><span class="err">行目に置いて下さい</span>
-</span><span class='line'> <span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;=</span><span class="nt">require</span> <span class="nt">cssreset-min</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:css %}
+/<em> 1行目に置いて下さい
+ </em>=require cssreset-min
+{% endcodeblock %}</p>
 
 <h2>関連記事</h2>
 
@@ -626,69 +461,53 @@ Rspec : 2.12.0
 
 <p>任意でrailsのアップデートを実行します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvmsudo gem update rails
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+rvmsudo gem update rails
+{% endcodeblock %}</p>
 
 <p>gem herokuをインストールします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install <span class="s1">&#39;heroku&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+gem install 'heroku'
+{% endcodeblock %}</p>
 
 <p>アカウント作成時に使ったメールアドレスとパスワードを事前に設定します。
 これによってデプロイのたびに、パスワードを聞かれるのを防ぎます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">heroku</span> <span class="n">keys</span><span class="ss">:add</span>
-</span><span class='line'><span class="no">Enter</span> <span class="n">your</span> <span class="no">Heroku</span> <span class="n">credentials</span><span class="o">.</span>
-</span><span class='line'><span class="no">Email</span><span class="p">:</span> <span class="n">email</span><span class="vi">@example</span><span class="o">.</span><span class="n">com</span>
-</span><span class='line'><span class="no">Password</span><span class="p">:</span> <span class="n">your</span><span class="o">-</span><span class="n">password</span>
-</span><span class='line'><span class="no">Uploading</span> <span class="n">ssh</span> <span class="kp">public</span> <span class="n">key</span> <span class="sr">/Users/</span><span class="n">joe</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:ruby %}
+heroku keys:add
+Enter your Heroku credentials.
+Email: email@example.com
+Password: your-password
+Uploading ssh public key /Users/joe/.ssh/id_rsa.pub
+{% endcodeblock %}</p>
 
 <h2>Rails プロジェクト作成 〜 index.html表示まで</h2>
 
 <p>Railsの新規プロジェクトを作成します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails new <span class="nb">test</span>-app --skip-test-unit -d postgresql
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+rails new test-app --skip-test-unit -d postgresql
+{% endcodeblock %}</p>
 
 <p>Gitリポジトリ作成を作成します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git init
-</span><span class='line'>git add -A
-</span><span class='line'>git commit -m <span class="s2">&quot;create new project&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+git init
+git add -A
+git commit -m "create new project"
+{% endcodeblock %}</p>
 
 <p>herokuコマンドを使って、heroku上にアプリケーションを作成します。
 (test-appだとすでに使われてて動かないので、使われてなさそうな名前がいいっすよ〜)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku create <span class="nb">test</span>-app --stack cedar&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Creating <span class="nb">test</span>-app... <span class="k">done</span>, stack is cedar
-</span><span class='line'>http://test-app.herokuapp.com/ | git@heroku.com:test-app.git
-</span><span class='line'>Git remote heroku added <span class="c"># &amp;lt;= こうなっていれば成功</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock コンソール lang:bash %}
+heroku create test-app --stack cedar</p>
+
+<blockquote><p>Creating test-app... done, stack is cedar
+http://test-app.herokuapp.com/ | git@heroku.com:test-app.git
+Git remote heroku added # &lt;= こうなっていれば成功
+{% endcodeblock %}</p></blockquote>
 
 <p>http://test-app.herokuapp.com/ をブラウザで表示されることを確認。</p>
 
@@ -697,440 +516,271 @@ Rspec : 2.12.0
 <p>gemfileを編集して、プロジェクトに任意のGemを追加。
 (gemは適宜カスタマイズしてください)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>gemfile  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
-</span><span class='line'>ruby <span class="s2">&quot;1.9.3&quot;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;rails&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Bootstrap&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;less-rails&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;less-rails-bootstrap&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Form Builders&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;simple_form&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;country_select&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Haml&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;haml-rails&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;jQuery/json&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;jquery-rails&#39;</span>
-</span><span class='line'>gem <span class="s1">&#39;jquery-cookie-rails&#39;</span> <span class="c"># jquery-cookie</span>
-</span><span class='line'>gem <span class="s1">&#39;json&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Presenter&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;draper&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Thin&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;thin&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;group :assets <span class="k">do</span>
-</span><span class='line'><span class="k">  </span>gem <span class="s1">&#39;coffee-rails&#39;</span>
-</span><span class='line'>  gem <span class="s1">&#39;therubyracer&#39;</span>
-</span><span class='line'>  gem <span class="s1">&#39;uglifier&#39;</span>
-</span><span class='line'>end&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;group :development <span class="k">do</span>
-</span><span class='line'>  <span class="c"># 環境変数をロードして複数のプロセスを実行する作業を自動化</span>
-</span><span class='line'>  gem <span class="s1">&#39;foreman&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># viewやcssの変更を監視してブラウザを自動的にリロードする</span>
-</span><span class='line'>  gem <span class="s1">&#39;guard-livereload&#39;</span>
-</span><span class='line'>  gem <span class="s1">&#39;em-websocket&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># デバッガー</span>
-</span><span class='line'>  gem <span class="s1">&#39;pry-rails&#39;</span>
-</span><span class='line'>end&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;group :development, :test <span class="k">do</span>
-</span><span class='line'><span class="k">  </span>gem <span class="s1">&#39;mysql2&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># Rspec</span>
-</span><span class='line'>  gem <span class="s1">&#39;rspec-rails&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># FactoryGirl</span>
-</span><span class='line'>  gem <span class="s1">&#39;factory_girl_rails&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># 設定をロードしたサーバーによってテストを高速化</span>
-</span><span class='line'>  gem <span class="s1">&#39;spork&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># ファイルの変更を検知する。OSX用</span>
-</span><span class='line'>  gem <span class="s1">&#39;rb-fsevent&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># テスト結果をGrowlで通知する</span>
-</span><span class='line'>  gem <span class="s1">&#39;growl&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># ファイルの変更を監視してテストを自動化</span>
-</span><span class='line'>  gem <span class="s1">&#39;guard-rspec&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  <span class="c"># 設定ファイルの変更を監視してテストサーバーを再起動</span>
-</span><span class='line'>  gem <span class="s1">&#39;guard-spork&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  gem <span class="s1">&#39;rails3-generators&#39;</span>, :git <span class="o">=</span>&gt; <span class="s1">&#39;https://github.com/neocoin/rails3-generators.git&#39;</span>
-</span><span class='line'>end&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;group :postgres <span class="k">do</span>
-</span><span class='line'><span class="k">  </span>gem <span class="s1">&#39;pg&#39;</span>
-</span><span class='line'>end
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock gemfile lang:bash %}
+source 'https://rubygems.org'
+ruby "1.9.3"</p>
+
+<p>gem 'rails'</p>
+
+<h1>Bootstrap</h1>
+
+<p>gem 'less-rails'
+gem 'less-rails-bootstrap'</p>
+
+<h1>Form Builders</h1>
+
+<p>gem 'simple_form'
+gem 'country_select'</p>
+
+<h1>Haml</h1>
+
+<p>gem 'haml-rails'</p>
+
+<h1>jQuery/json</h1>
+
+<p>gem 'jquery-rails'
+gem 'jquery-cookie-rails' # jquery-cookie
+gem 'json'</p>
+
+<h1>Presenter</h1>
+
+<p>gem 'draper'</p>
+
+<h1>Thin</h1>
+
+<p>gem 'thin'</p>
+
+<p>group :assets do
+  gem 'coffee-rails'
+  gem 'therubyracer'
+  gem 'uglifier'
+end</p>
+
+<p>group :development do
+  # 環境変数をロードして複数のプロセスを実行する作業を自動化
+  gem 'foreman'</p>
+
+<p>  # viewやcssの変更を監視してブラウザを自動的にリロードする
+  gem 'guard-livereload'
+  gem 'em-websocket'</p>
+
+<p>  # デバッガー
+  gem 'pry-rails'
+end</p>
+
+<p>group :development, :test do
+  gem 'mysql2'</p>
+
+<p>  # Rspec
+  gem 'rspec-rails'</p>
+
+<p>  # FactoryGirl
+  gem 'factory_girl_rails'</p>
+
+<p>  # 設定をロードしたサーバーによってテストを高速化
+  gem 'spork'</p>
+
+<p>  # ファイルの変更を検知する。OSX用
+  gem 'rb-fsevent'</p>
+
+<p>  # テスト結果をGrowlで通知する
+  gem 'growl'</p>
+
+<p>  # ファイルの変更を監視してテストを自動化
+  gem 'guard-rspec'</p>
+
+<p>  # 設定ファイルの変更を監視してテストサーバーを再起動
+  gem 'guard-spork'</p>
+
+<p>  gem 'rails3-generators', :git => 'https://github.com/neocoin/rails3-generators.git'
+end</p>
+
+<p>group :postgres do
+  gem 'pg'
+end
+{% endcodeblock %}</p>
 
 <p>Gemをインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+bundle install
+{% endcodeblock %}</p>
 
 <p>config/application.rbの設定です。<br/>(class Application &lt; Rails::Application内に追記してください)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/application.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;LESS&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">app_generators</span><span class="o">.</span><span class="n">stylesheet_engine</span> <span class="ss">:less</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">less</span><span class="o">.</span><span class="n">paths</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2">/lib/less/protractor/stylesheets&quot;</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">less</span><span class="o">.</span><span class="n">compress</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">compress</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">initialize_on_precompile</span><span class="o">=</span><span class="kp">false</span> <span class="c1"># herokuでasset:precomileエラー対策&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Set</span> <span class="n">timezone</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;config.time_zone = &#39;Tokyo&#39;</span>
-</span><span class='line'><span class="sr">config.active_record.default_timezone = :local&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">日本語化</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;config.i18n.default_locale = :ja&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">generator</span><span class="err">の設定</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;config.generators do |g|</span>
-</span><span class='line'><span class="sr">  g.orm :active_record</span>
-</span><span class='line'><span class="sr">  g.template_engine :haml</span>
-</span><span class='line'><span class="sr">  g.test_framework  :rspec, :fixture =&gt; true</span>
-</span><span class='line'><span class="sr">  g.fixture_replacement :factory_girl, :dir =&gt; &quot;spec/</span><span class="n">factories</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">end&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;h1&gt;load original validator(オリジナルのバリデーターがある場合のみ)&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;config.autoload_paths += %W(</span><span class="si">#{</span><span class="n">config</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2">/lib/validators)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock config/application.rb lang:ruby %}</p>
+
+<h1>LESS</h1>
+
+<p>config.app_generators.stylesheet_engine :less
+config.less.paths &lt;&lt; "#{Rails.root}/lib/less/protractor/stylesheets"
+config.less.compress = true
+config.assets.compress = true
+config.assets.initialize_on_precompile=false # herokuでasset:precomileエラー対策</p>
+
+<h1>Set timezone</h1>
+
+<p>config.time_zone = 'Tokyo'
+config.active_record.default_timezone = :local</p>
+
+<h1>日本語化</h1>
+
+<p>config.i18n.default_locale = :ja</p>
+
+<h1>generatorの設定</h1>
+
+<p>config.generators do |g|
+  g.orm :active_record
+  g.template_engine :haml
+  g.test_framework  :rspec, :fixture => true
+  g.fixture_replacement :factory_girl, :dir => "spec/factories"
+end</p>
+
+<h1>load original validator(オリジナルのバリデーターがある場合のみ)</h1>
+
+<p>config.autoload_paths += %W(#{config.root}/lib/validators)
+{% endcodeblock %}</p>
 
 <p>Herokuのタイムゾーン設定。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku config:add <span class="nv">TZ</span><span class="o">=</span>Asia/Tokyo
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+heroku config:add TZ=Asia/Tokyo
+{% endcodeblock %}</p>
 
 <p>application.cssを削除して、lessファイルを生成</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">rm</span> <span class="nt">-rf</span> <span class="nt">app</span><span class="o">/</span><span class="nt">assets</span><span class="o">/</span><span class="nt">stylesheets</span><span class="o">/</span><span class="nt">application</span><span class="nc">.css</span>
-</span><span class='line'><span class="nt">rails</span> <span class="nt">generate</span> <span class="nt">less</span><span class="nd">:assets</span> <span class="nt">application</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:css %}
+rm -rf app/assets/stylesheets/application.css
+rails generate less:assets application
+{% endcodeblock %}</p>
 
 <p>bootstrapのcssを読み込むように設定を追加する。
 app/assets/stylesheets/application.css.lessに以下んコードを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app/assets/stylesheets/application.css.less  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">//</span> <span class="o">=</span> <span class="n">require_tree</span> <span class="o">.</span>
-</span><span class='line'><span class="vi">@import</span> <span class="s2">&quot;twitter/bootstrap&quot;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock app/assets/stylesheets/application.css.less lang:ruby %}
+// = require_tree .
+@import "twitter/bootstrap";
+{% endcodeblock %}</p>
 
 <p>bootstrapのjavascriptを読み込むようにするために、app/assets/javascripts/application.jsに以下のコードを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app/assets/javascripts/application.js  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">//</span><span class="o">=</span> <span class="nb">require</span> <span class="n">twitter</span><span class="o">/</span><span class="n">bootstrap</span>
-</span><span class='line'><span class="sr">//</span><span class="o">=</span> <span class="nb">require</span> <span class="n">jquery</span><span class="o">.</span><span class="n">cookie</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;$(document).ready(function(){&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock app/assets/javascripts/application.js lang:ruby %}
+//= require twitter/bootstrap
+//= require jquery.cookie</p>
+
+<p>$(document).ready(function(){</p>
+
+<p>});
+{% endcodeblock %}</p>
 
 <p>application.html.erbファイルをhamlにファイル名を変更。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mv app/views/layouts/application.html.erb app/views/layouts/application.html.haml
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+mv app/views/layouts/application.html.erb app/views/layouts/application.html.haml
+{% endcodeblock %}</p>
 
 <p>application.html.hamlの中身もhaml形式にする。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>application.html.haml  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nn">!!! 5</span>
-</span><span class='line'><span class="nt">%html</span>
-</span><span class='line'>  <span class="nt">%head</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;%title TEST_APP
-</span><span class='line'><span class="p">=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">:media</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="s2">&quot;all&quot;</span>
-</span><span class='line'><span class="p">=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span>
-</span><span class='line'><span class="p">=</span> <span class="n">csrf_meta_tags</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  %body&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;= yield
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock application.html.haml lang:haml %}
+!!! 5
+%html
+  %head</p>
+
+<pre><code>%title TEST_APP
+= stylesheet_link_tag "application", :media =&gt; "all"
+= javascript_include_tag "application"
+= csrf_meta_tags
+</code></pre>
+
+<p>  %body</p>
+
+<pre><code>= yield
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>Railsの日本語化ファイルを設定する。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml
-</span><span class='line'>mv ja.yml config/locales/ja.yml
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml
+mv ja.yml config/locales/ja.yml
+{% endcodeblock %}</p>
 
 <p>simple formの初期設定(bootstrap対応)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails generate simple_form:install --bootstrap
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+rails generate simple_form:install --bootstrap
+{% endcodeblock %}</p>
 
 <p>railsへのrspecのインストールと雛形を作成</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails generate rspec:install
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+rails generate rspec:install
+{% endcodeblock %}</p>
 
 <p>rspecの設定ファイル"spec/spec_helper.rb"を修正(コメントアウトする)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>spec/spec_helper.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;config.fixture_path = &quot;</span><span class="si">#{</span><span class="o">::</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sr">/s</span><span class="n">pec</span><span class="o">/</span><span class="n">fixtures</span><span class="s2">&quot;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;h1&gt;config.use_transactional_fixtures = true&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock spec/spec_helper.rb lang:ruby %}</p>
+
+<h1>config.fixture_path = "#{::Rails.root}/spec/fixtures"</h1>
+
+<h1>config.use_transactional_fixtures = true</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p>scaffoldを追加の前にpublic/index.htmlをリネーム(無効化する)。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mv public/index.html public/_____index.html
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+mv public/index.html public/_____index.html
+{% endcodeblock %}</p>
 
 <p>scaffoldの作成してビューを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rails</span> <span class="n">g</span> <span class="n">scaffold</span> <span class="n">product</span> <span class="nb">name</span> <span class="n">price</span><span class="ss">:integer</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:ruby %}
+rails g scaffold product name price:integer
+{% endcodeblock %}</p>
 
 <p>config/routes.rbにて、ルートアクセス設定を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/routes.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="s2">&quot;products#index&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock config/routes.rb lang:ruby %}
+root :to => "products#index"
+{% endcodeblock %}</p>
 
 <p>Herokuでthinが動くようにする。
 プロジェクト直下にProcfileを新規作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Procfile  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>web: bundle <span class="nb">exec </span>rails server thin -p <span class="nv">$PORT</span> -e <span class="nv">$RACK_ENV</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Procfile lang:bash %}
+web: bundle exec rails server thin -p $PORT -e $RACK_ENV
+{% endcodeblock %}</p>
 
 <p>設定画反映されたかチェック。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>foreman check&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;valid procfile detected <span class="o">(</span>web<span class="o">)</span> ← 成功
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock コンソール lang:bash %}
+foreman check</p>
+
+<blockquote><p>valid procfile detected (web) ← 成功
+{% endcodeblock %}</p></blockquote>
 
 <p>$RACK_ENVをセットするファイルを作成
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;RACK_ENV=development&quot;</span> &gt;&gt;.env
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock コンソール lang:bash %}
+echo "RACK_ENV=development" >>.env
+{% endcodeblock %}</p>
 
 <p>gitに.envが記録されないようにする。
 プロジェクト直下の.gitignoreに以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>.gitignore  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>.env
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock .gitignore lang:bash %}
+.env
+{% endcodeblock %}</p>
 
 <p>Herokuへのアプリのデプロイ => DBのマイグレーション。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">git</span> <span class="n">add</span> <span class="o">.</span> <span class="o">-</span><span class="n">A</span>
-</span><span class='line'><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;add scafford&quot;</span>
-</span><span class='line'><span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span> <span class="n">master</span>
-</span><span class='line'><span class="n">heroku</span> <span class="n">run</span> <span class="n">rake</span> <span class="n">db</span><span class="ss">:migrate</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:ruby %}
+git add . -A
+git commit -m "add scafford"
+git push heroku master
+heroku run rake db:migrate
+{% endcodeblock %}</p>
 
 <p>ブラウザでscaffordしたビューが見れることを確認。
 デプロイまでの最短ガイドは以上っす。</p>
@@ -1153,78 +803,48 @@ app/assets/stylesheets/application.css.lessに以下んコードを追加。</p>
 
 <p>とした場合の設定です。環境に合わせて調整を。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/database.yml  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">development</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">adapter</span><span class="p">:</span> <span class="n">mysql2</span>
-</span><span class='line'>  <span class="n">encoding</span><span class="p">:</span> <span class="n">utf8</span>
-</span><span class='line'>  <span class="n">reconnect</span><span class="p">:</span> <span class="kp">false</span>
-</span><span class='line'>  <span class="n">database</span><span class="p">:</span> <span class="nb">test</span><span class="o">-</span><span class="n">app_development</span>
-</span><span class='line'>  <span class="n">pool</span><span class="p">:</span> <span class="mi">5</span>
-</span><span class='line'>  <span class="n">username</span><span class="p">:</span> <span class="n">root</span>
-</span><span class='line'>  <span class="n">password</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">socket</span><span class="p">:</span> <span class="sr">/var/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql</span><span class="o">.</span><span class="n">sock</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;test:</span>
-</span><span class='line'><span class="sr">  adapter: mysql2</span>
-</span><span class='line'><span class="sr">  encoding: utf8</span>
-</span><span class='line'><span class="sr">  reconnect: false</span>
-</span><span class='line'><span class="sr">  database: test-app_test</span>
-</span><span class='line'><span class="sr">  pool: 5</span>
-</span><span class='line'><span class="sr">  username: root</span>
-</span><span class='line'><span class="sr">  password:</span>
-</span><span class='line'><span class="sr">  socket: /</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql</span><span class="o">.</span><span class="n">sock</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;production:</span>
-</span><span class='line'><span class="sr">  adapter: postgresql</span>
-</span><span class='line'><span class="sr">  encoding: unicode</span>
-</span><span class='line'><span class="sr">  database: test-app_production</span>
-</span><span class='line'><span class="sr">  pool: 5</span>
-</span><span class='line'><span class="sr">  username:</span>
-</span><span class='line'><span class="sr">  password:</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock config/database.yml lang:ruby %}
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: test-app_development
+  pool: 5
+  username: root
+  password:
+  socket: /var/lib/mysql/mysql.sock</p>
+
+<p>test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: test-app_test
+  pool: 5
+  username: root
+  password:
+  socket: /var/lib/mysql/mysql.sock</p>
+
+<p>production:
+  adapter: postgresql
+  encoding: unicode
+  database: test-app_production
+  pool: 5
+  username:
+  password:
+{% endcodeblock %}</p>
 
 <p>DBの作成を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake db:create <span class="nv">RAILES_ENV</span><span class="o">=</span><span class="s1">&#39;development&#39;</span>
-</span><span class='line'>rake db:create <span class="nv">RAILES_ENV</span><span class="o">=</span><span class="s1">&#39;test&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+rake db:create RAILES_ENV='development'
+rake db:create RAILES_ENV='test'
+{% endcodeblock %}</p>
 
 <p>サーバプロセスを起動する。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>foreman start
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+foreman start
+{% endcodeblock %}</p>
 
 <p>http://0.0.0.0:5000/_____index.htmlを表示してDBに接続されていることを確認する。</p>
 
@@ -1232,89 +852,50 @@ app/assets/stylesheets/application.css.lessに以下んコードを追加。</p>
 
 <p>Heroku コマンド一覧</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;herokuへのログイン&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku login
-</span><span class='line'>Email: email@example.com
-</span><span class='line'>Password: your-password&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;アプリの作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku create&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;マイグレーション&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku run rake db:migrate&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;アプリのデプロイ&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;git add . -A
-</span><span class='line'>git commit -m <span class="s2">&quot;add function&quot;</span>
-</span><span class='line'>git push heroku master&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;環境変数のセット&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku config:add <span class="nv">USERNAME</span><span class="o">=</span>admin <span class="nv">PASSWORD</span><span class="o">=</span>xxx&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ログ確認&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku logs -t&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;heroku プロセス情報の表示&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku ps&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;heroku 環境変数の表示&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku config
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}</p>
+
+<h1>herokuへのログイン</h1>
+
+<p>heroku login
+Email: email@example.com
+Password: your-password</p>
+
+<h1>アプリの作成</h1>
+
+<p>heroku create</p>
+
+<h1>マイグレーション</h1>
+
+<p>heroku run rake db:migrate</p>
+
+<h1>アプリのデプロイ</h1>
+
+<p>git add . -A
+git commit -m "add function"
+git push heroku master</p>
+
+<h1>環境変数のセット</h1>
+
+<p>heroku config:add USERNAME=admin PASSWORD=xxx</p>
+
+<h1>ログ確認</h1>
+
+<p>heroku logs -t</p>
+
+<h1>heroku プロセス情報の表示</h1>
+
+<p>heroku ps</p>
+
+<h1>heroku 環境変数の表示</h1>
+
+<p>heroku config
+{% endcodeblock %}</p>
 
 <p>既存モデルのRspec雛形を作成するコマンド。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails generate rspec:model products
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+rails generate rspec:model products
+{% endcodeblock %}</p>
 
 <p>テスト環境は以下の通りです。</p>
 
@@ -1359,66 +940,47 @@ coffee-script : 3.2.1
 
 <p><a href="http://www.steamdev.com/zclip/">jQuery ZeroClipboard</a>からjquery pluginとswfファイルをダウンロード。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>app/assets/javascripts/
-</span><span class='line'>wget http://www.steamdev.com/zclip/js/jquery.zclip.min.js
-</span><span class='line'><span class="nb">cd </span>app/app/assets/images/
-</span><span class='line'>wget http://zeroclipboard.googlecode.com/svn-history/r10/trunk/ZeroClipboard.swf
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock コンソール lang:bash %}
+cd app/assets/javascripts/
+wget http://www.steamdev.com/zclip/js/jquery.zclip.min.js
+cd app/app/assets/images/
+wget http://zeroclipboard.googlecode.com/svn-history/r10/trunk/ZeroClipboard.swf
+{% endcodeblock %}</p>
 
 <h2>(2) jQuery ZeroClipboardのjsファイルの読込設定</h2>
 
 <p>application.jsに以下を追記して、jquery.zclip.min.jsを読み込むようにする。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app/assets/javascripts/application.js  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">//</span><span class="o">=</span> <span class="nb">require</span> <span class="n">jquery</span>
-</span><span class='line'><span class="sr">//</span><span class="o">=</span> <span class="nb">require</span> <span class="n">jquery</span><span class="o">.</span><span class="n">zclip</span><span class="o">.</span><span class="n">min</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock app/assets/javascripts/application.js lang:ruby %}
+//= require jquery
+//= require jquery.zclip.min
+{% endcodeblock %}</p>
 
 <h2>(3) viewファイルにペーストするデータとボタンを表示</h2>
 
 <p>viewファイルに貼り付けるコードを表示するフォーム(任意)と、貼り付けボタンを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>viewファイル  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nt">%textarea</span><span class="nf">#paste_item</span><span class="p">=</span> <span class="vi">@paste_item</span> <span class="o">-</span><span class="c1">#ここに任意のデータを載せる</span>
-</span><span class='line'><span class="nt">%button</span><span class="nf">#set_clipboard</span> クリップボードに貼付ける
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock viewファイル lang:haml %}
+%textarea#paste_item= @paste_item -#ここに任意のデータを載せる
+%button#set_clipboard クリップボードに貼付ける
+{% endcodeblock %}</p>
 
 <h2>(4) viewファイルにペーストするデータとボタンを表示</h2>
 
 <p>ボタンを押すとtextareaからクリップボードにコピーされるように、
 coffeescriptに以下を追記。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>coffeescriptファイル  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="o">-&gt;</span>
-</span><span class='line'>  <span class="c1"># ボタンを押したら、textareaからクリップボードにデータをコピーする</span>
-</span><span class='line'>  <span class="err">$</span><span class="p">(</span><span class="s2">&quot;button#set_clipboard&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">zclip</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;path: &quot;/</span><span class="n">assets</span><span class="o">/</span><span class="no">ZeroClipboard</span><span class="o">.</span><span class="n">swf</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">copy: -&amp;gt;</span>
-</span><span class='line'><span class="s2">  $(&quot;</span><span class="n">textarea</span><span class="c1">#paste_item&quot;).html()</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock coffeescriptファイル lang:ruby %}
+$ ->
+  # ボタンを押したら、textareaからクリップボードにデータをコピーする
+  $("button#set_clipboard").zclip</p>
+
+<pre><code>path: "/assets/ZeroClipboard.swf"
+copy: -&gt;
+  $("textarea#paste_item").html()
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h2>参考サイト</h2>
 

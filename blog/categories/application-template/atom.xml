@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Application Template | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/application-template/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -37,106 +37,63 @@ Application templateとは、Railsプロジェクトの時に必要になる定�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>事前準備</h2>
 
 <p>まずは、手元のRubyとRailsを最新にしてください。ここではhomebrew経由のrbenvのアップデート手順を書きます。すでに手元の<code>rbenv/ruby</code>が最新ならスキップしてください。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;homebrew 自体のアップデート&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">brew</span> <span class="n">upgrade</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;ruby-buildのアップデート&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">brew</span> <span class="n">update</span> <span class="n">ruby</span><span class="o">-</span><span class="n">build</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;rbenvのrubyのインストール (x.x.xは最新)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">rbenv</span> <span class="n">install</span> <span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>homebrew 自体のアップデート</h1>
+
+<p>brew upgrade</p>
+
+<h1>ruby-buildのアップデート</h1>
+
+<p>brew update ruby-build</p>
+
+<h1>rbenvのrubyのインストール (x.x.xは最新)</h1>
+
+<p>rbenv install x.x.x
+{% endcodeblock %}</p>
 
 <p>次に<code>rails</code>もアップデートします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;railsのインストール&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem install rails&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;インストール済ならアップデート&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem update rails
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>railsのインストール</h1>
+
+<p>gem install rails</p>
+
+<h1>インストール済ならアップデート</h1>
+
+<p>gem update rails
+{% endcodeblock %}</p>
 
 <p>あと、gitignoreの生成ツール『<strong><a href="https://github.com/simonwhitaker/gibo">simonwhitaker/gibo</a></strong>』を使って<code>.gitignore</code>を生成していますので良ければぜひ！</p>
 
 <p>Macな人は以下のコマンドを実行するだけでインストールできるので、めっちゃお勧めです。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install gibo
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+brew install gibo
+{% endcodeblock %}</p>
 
 <h2>Application Templateの使い方</h2>
 
 <p>使い方は以下のコマンドを実行するだけ。<br/>
 (アプリ名の<code>test_app</code>はハイフンNGっす[修正トライ中...])</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;PostgreSQL&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rails new test_app --database<span class="o">=</span>postgresql --skip-test-unit --skip-bundle -m https://raw.github.com/morizyun/rails4_template/master/app_template.rb&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;MySQL&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rails new test_app --database<span class="o">=</span>mysql --skip-test-unit --skip-bundle -m https://raw.github.com/morizyun/rails4_template/master/app_template.rb
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>PostgreSQL</h1>
+
+<p>rails new test_app --database=postgresql --skip-test-unit --skip-bundle -m https://raw.github.com/morizyun/rails4_template/master/app_template.rb</p>
+
+<h1>MySQL</h1>
+
+<p>rails new test_app --database=mysql --skip-test-unit --skip-bundle -m https://raw.github.com/morizyun/rails4_template/master/app_template.rb
+{% endcodeblock %}</p>
 
 <p>とするとモダンなアプリをインストールしてくれます。</p>
 
@@ -173,19 +130,7 @@ Application templateとは、Railsプロジェクトの時に必要になる定�
 
 <p><a href="https://github.com/morizyun/rails4_template"><img title="Now Capturing..." src="http://capture.heartrails.com/400x300/cool?https://github.com/morizyun/rails4_template" alt="https://github.com/morizyun/rails4_template" width="400" height="300" /></a></p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>変更来歴</h2>
 

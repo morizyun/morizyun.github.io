@@ -4,7 +4,7 @@
   <title><![CDATA[Category: aws | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/aws/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -30,19 +30,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>目次</h2>
 
@@ -92,25 +80,21 @@
 
 <p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;fog&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+gem 'fog'
+{% endcodeblock %}</p>
 
 <h2>5) アップローダー(xxx_uploader.rb)の実装</h2>
 
 <p><code>uploaders/xxx_uploader.rb</code>を以下のように変更。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">storage</span> <span class="ss">:file</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;↓ 以下のように変更&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">storage</span> <span class="ss">:fog</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+storage :file</p>
+
+<h1>↓ 以下のように変更</h1>
+
+<p>storage :fog
+{% endcodeblock %}</p>
 
 <h2>6) carrierwave 設定ファイルの実装</h2>
 
@@ -122,89 +106,45 @@
 
 <p><code>config.fog_directory</code>や<code>config.asset_host</code>には、S3のバケットの名前を入れる。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">CarrierWave</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">fog_credentials</span> <span class="o">=</span> <span class="p">{</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;  :provider               =&amp;gt; &#39;AWS&#39;,</span>
-</span><span class='line'><span class="sr">  :aws_access_key_id      =&amp;gt; &#39;ACCESS_KEY&#39;,</span>
-</span><span class='line'><span class="sr">  :aws_secret_access_key  =&amp;gt; &#39;SECRET_KEY&#39;,</span>
-</span><span class='line'><span class="sr">  :region                 =&amp;gt; &#39;REGION&#39;,</span>
-</span><span class='line'><span class="sr">  :path_style             =&amp;gt; true,</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  }&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">config</span><span class="o">.</span><span class="n">fog_public</span>     <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">fog_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;public, max-age=86400&#39;</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  case Rails.env&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">when</span> <span class="s1">&#39;production&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">fog_directory</span> <span class="o">=</span> <span class="s1">&#39;example.com&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">asset_host</span> <span class="o">=</span> <span class="s1">&#39;https://s3-ap-northeast-1.amazonaws.com/example.com&#39;</span>
-</span><span class='line'><span class="k">when</span> <span class="s1">&#39;staging&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">fog_directory</span> <span class="o">=</span> <span class="s1">&#39;stg.example.com&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">asset_host</span> <span class="o">=</span> <span class="s1">&#39;https://s3-ap-northeast-1.amazonaws.com/stg.example.com&#39;</span>
-</span><span class='line'><span class="k">when</span> <span class="s1">&#39;development&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">fog_directory</span> <span class="o">=</span> <span class="s1">&#39;dev.example.com&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">asset_host</span> <span class="o">=</span> <span class="s1">&#39;https://s3-ap-northeast-1.amazonaws.com/dev.example.com&#39;</span>
-</span><span class='line'><span class="k">when</span> <span class="s1">&#39;test&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">fog_directory</span> <span class="o">=</span> <span class="s1">&#39;test.example.com&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">asset_host</span> <span class="o">=</span> <span class="s1">&#39;https://s3-ap-northeast-1.amazonaws.com/test.example.com&#39;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+CarrierWave.configure do |config|
+  config.fog_credentials = {</p>
+
+<pre><code>  :provider               =&gt; 'AWS',
+  :aws_access_key_id      =&gt; 'ACCESS_KEY',
+  :aws_secret_access_key  =&gt; 'SECRET_KEY',
+  :region                 =&gt; 'REGION',
+  :path_style             =&gt; true,
+</code></pre>
+
+<p>  }</p>
+
+<p>  config.fog_public     = true
+  config.fog_attributes = {'Cache-Control' => 'public, max-age=86400'}</p>
+
+<p>  case Rails.env</p>
+
+<pre><code>when 'production'
+  config.fog_directory = 'example.com'
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/example.com'
+when 'staging'
+  config.fog_directory = 'stg.example.com'
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/stg.example.com'
+when 'development'
+  config.fog_directory = 'dev.example.com'
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/dev.example.com'
+when 'test'
+  config.fog_directory = 'test.example.com'
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/test.example.com'
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <p>これで画像がS3にアップロードされるようになるはずデス！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

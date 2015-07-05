@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Twitter | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/twitter/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -30,19 +30,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>ソースコード</h2>
 
@@ -52,230 +40,129 @@
 
 <p>今回はこのソースを<code>tweetscan.rb</code>とします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;mysql2&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;json&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;Bundler.require&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;twitter/json_stream&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;TwitterのAPIキー情報を環境変数から取得&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">TWITTER_CONSUMER_KEY</span>        <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_CONSUMER_KEY&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="no">TWITTER_CONSUMER_SECRET</span>     <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_CONSUMER_SECRET&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="no">TWITTER_OAUTH_TOKEN</span>         <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_OAUTH_TOKEN&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="no">TWITTER_OAUTH_TOKEN_SECRET</span>  <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_OAUTH_TOKEN_SECRET&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="no">FOLLOWS</span>                     <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FOLLOWS&#39;</span><span class="o">]&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;DBへの接続情報を環境変数から取得&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">DB_HOSTNAME</span>   <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DB_HOSTNAME&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="no">DB_USER_NAME</span>  <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DB_USER_NAME&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="no">DB_PASSWORD</span>   <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="no">DB_NAME</span>       <span class="o">||=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DB_NAME&#39;</span><span class="o">]&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;EventMachine::run {</span>
-</span><span class='line'><span class="sr">  stream = Twitter::JSONStream.connect(&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="ss">:path</span>    <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="s2">&quot;/1.1/statuses/filter.json?follow=</span><span class="si">#{</span><span class="no">FOLLOWS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="ss">:oauth</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">{</span>
-</span><span class='line'>  <span class="ss">:consumer_key</span>    <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">TWITTER_CONSUMER_KEY</span><span class="p">,</span>
-</span><span class='line'>  <span class="ss">:consumer_secret</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">TWITTER_CONSUMER_SECRET</span><span class="p">,</span>
-</span><span class='line'>  <span class="ss">:access_key</span>      <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">TWITTER_OAUTH_TOKEN</span><span class="p">,</span>
-</span><span class='line'>  <span class="ss">:access_secret</span>   <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">TWITTER_OAUTH_TOKEN_SECRET</span>
-</span><span class='line'><span class="p">},</span>
-</span><span class='line'><span class="ss">:ssl</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  stream.each_item do |item|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vg">$stdout</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;item: </span><span class="si">#{</span><span class="n">item</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">flush</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># MySQLへ接続(Postgresなどを使う場合は適宜変更)</span>
-</span><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Mysql2</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:host</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">DB_HOSTNAME</span><span class="p">,</span> <span class="ss">:username</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">DB_USER_NAME</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">DB_PASSWORD</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="ss">:database</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">DB_NAME</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Tweetのjsonをパース</span>
-</span><span class='line'><span class="n">tw_json</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># DBに格納するためにエンコーディング</span>
-</span><span class='line'><span class="n">user_id</span>                         <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;user&#39;</span><span class="o">][</span><span class="s1">&#39;id_str&#39;</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="n">user_name</span>                       <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;user&#39;</span><span class="o">][</span><span class="s1">&#39;name&#39;</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="n">user_screen_name</span>                <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;user&#39;</span><span class="o">][</span><span class="s1">&#39;screen_name&#39;</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="n">user_image</span>                      <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;user&#39;</span><span class="o">][</span><span class="s1">&#39;profile_image_url&#39;</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="n">user_description</span>                <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;user&#39;</span><span class="o">][</span><span class="s1">&#39;description&#39;</span><span class="o">]</span><span class="p">)</span> <span class="k">rescue</span> <span class="kp">nil</span>
-</span><span class='line'><span class="n">text</span>                            <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;text&#39;</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="n">post_media_url</span>                  <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;entities&#39;</span><span class="o">][</span><span class="s1">&#39;media&#39;</span><span class="o">].</span><span class="n">first</span><span class="o">[</span><span class="s1">&#39;media_url&#39;</span><span class="o">]</span><span class="p">)</span> <span class="k">rescue</span> <span class="kp">nil</span>
-</span><span class='line'><span class="n">twitter_status_id</span>               <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;id_str&#39;</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="n">twitter_reply_status_id</span>         <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;in_reply_to_status_id_str&#39;</span><span class="o">]</span><span class="p">)</span> <span class="k">rescue</span> <span class="kp">nil</span>
-</span><span class='line'><span class="n">twitter_reply_user_id</span>           <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;in_reply_to_user_id_str&#39;</span><span class="o">]</span><span class="p">)</span>   <span class="k">rescue</span> <span class="kp">nil</span>
-</span><span class='line'><span class="n">twitter_reply_user_screen_name</span>  <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">tw_json</span><span class="o">[</span><span class="s1">&#39;in_reply_to_screen_name&#39;</span><span class="o">]</span><span class="p">)</span>   <span class="k">rescue</span> <span class="kp">nil</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># tweetsテーブルに書き込み</span>
-</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;INSERT INTO tweets (user_id, user_name, user_screen_name, text, post_media_url, user_image, user_description, twitter_status_id, twitter_reply_status_id, twitter_reply_user_id, twitter_reply_user_screen_name, updated_at, created_at) VALUES (&#39;</span><span class="si">#{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">user_name</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">user_screen_name</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">text</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">post_media_url</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">user_image</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">user_description</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">twitter_status_id</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">twitter_reply_status_id</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">twitter_reply_user_id</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="n">twitter_reply_user_screen_name</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s2">&#39;)&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># MySQLとの接続を解除</span>
-</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">close</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  stream.on_error do |message|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vg">$stdout</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;error: </span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">flush</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  # 再接続は書いていないです。書いて教えてくださいw</span>
-</span><span class='line'><span class="sr">  stream.on_reconnect do |timeout, retries|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vg">$stdout</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;reconnecting in: </span><span class="si">#{</span><span class="n">timeout</span><span class="si">}</span><span class="s2"> seconds</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">flush</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  stream.on_max_reconnects do |timeout, retries|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vg">$stdout</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;Failed after </span><span class="si">#{</span><span class="n">retries</span><span class="si">}</span><span class="s2"> failed reconnects</span><span class="se">\n</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">flush</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'rubygems'
+require 'bundler'
+require 'mysql2'
+require 'json'</p>
+
+<p>Bundler.require</p>
+
+<p>require 'twitter/json_stream'</p>
+
+<h1>TwitterのAPIキー情報を環境変数から取得</h1>
+
+<p>TWITTER_CONSUMER_KEY        ||= ENV['TWITTER_CONSUMER_KEY']
+TWITTER_CONSUMER_SECRET     ||= ENV['TWITTER_CONSUMER_SECRET']
+TWITTER_OAUTH_TOKEN         ||= ENV['TWITTER_OAUTH_TOKEN']
+TWITTER_OAUTH_TOKEN_SECRET  ||= ENV['TWITTER_OAUTH_TOKEN_SECRET']
+FOLLOWS                     ||= ENV['FOLLOWS']</p>
+
+<h1>DBへの接続情報を環境変数から取得</h1>
+
+<p>DB_HOSTNAME   ||= ENV['DB_HOSTNAME']
+DB_USER_NAME  ||= ENV['DB_USER_NAME']
+DB_PASSWORD   ||= ENV['DB_PASSWORD']
+DB_NAME       ||= ENV['DB_NAME']</p>
+
+<p>EventMachine::run {
+  stream = Twitter::JSONStream.connect(</p>
+
+<pre><code>:path    =&gt; "/1.1/statuses/filter.json?follow=#{FOLLOWS}",
+:oauth =&gt; {
+  :consumer_key    =&gt; TWITTER_CONSUMER_KEY,
+  :consumer_secret =&gt; TWITTER_CONSUMER_SECRET,
+  :access_key      =&gt; TWITTER_OAUTH_TOKEN,
+  :access_secret   =&gt; TWITTER_OAUTH_TOKEN_SECRET
+},
+:ssl =&gt; true
+</code></pre>
+
+<p>  )</p>
+
+<p>  stream.each_item do |item|</p>
+
+<pre><code>$stdout.print "item: #{item}\n"
+$stdout.flush
+
+# MySQLへ接続(Postgresなどを使う場合は適宜変更)
+client = Mysql2::Client.new(:host =&gt; DB_HOSTNAME, :username =&gt; DB_USER_NAME, :password =&gt; DB_PASSWORD || '', :database =&gt; DB_NAME)
+
+# Tweetのjsonをパース
+tw_json = JSON.parse(item)
+
+# DBに格納するためにエンコーディング
+user_id                         = client.escape(tw_json['user']['id_str'])
+user_name                       = client.escape(tw_json['user']['name'])
+user_screen_name                = client.escape(tw_json['user']['screen_name'])
+user_image                      = client.escape(tw_json['user']['profile_image_url'])
+user_description                = client.escape(tw_json['user']['description']) rescue nil
+text                            = client.escape(tw_json['text'])
+post_media_url                  = client.escape(tw_json['entities']['media'].first['media_url']) rescue nil
+twitter_status_id               = client.escape(tw_json['id_str'])
+twitter_reply_status_id         = client.escape(tw_json['in_reply_to_status_id_str']) rescue nil
+twitter_reply_user_id           = client.escape(tw_json['in_reply_to_user_id_str'])   rescue nil
+twitter_reply_user_screen_name  = client.escape(tw_json['in_reply_to_screen_name'])   rescue nil
+
+# tweetsテーブルに書き込み
+client.query("INSERT INTO tweets (user_id, user_name, user_screen_name, text, post_media_url, user_image, user_description, twitter_status_id, twitter_reply_status_id, twitter_reply_user_id, twitter_reply_user_screen_name, updated_at, created_at) VALUES ('#{user_id}', '#{user_name}', '#{user_screen_name}', '#{text}', '#{post_media_url}', '#{user_image}', '#{user_description}', '#{twitter_status_id}', '#{twitter_reply_status_id}', '#{twitter_reply_user_id}', '#{twitter_reply_user_screen_name}', '#{Time.now}', '#{Time.now}')")
+
+# MySQLとの接続を解除
+client.close
+</code></pre>
+
+<p>  end</p>
+
+<p>  stream.on_error do |message|</p>
+
+<pre><code>$stdout.print "error: #{message}\n"
+$stdout.flush
+</code></pre>
+
+<p>  end</p>
+
+<p>  # 再接続は書いていないです。書いて教えてくださいw
+  stream.on_reconnect do |timeout, retries|</p>
+
+<pre><code>$stdout.print "reconnecting in: #{timeout} seconds\n"
+$stdout.flush
+</code></pre>
+
+<p>  end</p>
+
+<p>  stream.on_max_reconnects do |timeout, retries|</p>
+
+<pre><code>$stdout.print "Failed after #{retries} failed reconnects\n"
+$stdout.flush
+</code></pre>
+
+<p>  end
+}
+{% endcodeblock %}</p>
 
 <h2>foremanをつかったプロセス管理</h2>
 
 <p>今回のソースはforemanを使っています。<code>Gemfile</code>に以下のコードを追加して<code>bundle install</code>を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;プロセス管理&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;foreman&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>プロセス管理</h1>
+
+<p>gem 'foreman'
+{% endcodeblock %}</p>
 
 <p>次にforeman用の設定ファイル<code>Procfile</code>を作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>tweetscan: bundle <span class="nb">exec </span>ruby tweetscan.rb
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+tweetscan: bundle exec ruby tweetscan.rb
+{% endcodeblock %}</p>
 
 <p>これで設定は完了です。以下のコードを実行するとプロセスがスタートして、Twitter Streamの監視を始めます。<br/>
 ただし現時点では、Twitterのキー情報やDBへの接続情報が登録されていないので失敗します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>foreman start
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+foreman start
+{% endcodeblock %}</p>
 
 <h2>Twitterのキー情報の取得と環境変数への登録</h2>
 
@@ -286,15 +173,12 @@
 
 <p>登録したら環境変数にTwitterキーを登録します。まずはローカルへのキー情報の登録です。foremanで管理しているプロセスでは、<code>.env</code>ファイルに環境変数にしたい情報を書き込むと勝手に読み込んでくれます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">TWITTER_CONSUMER_KEY</span><span class="o">=</span>xxx
-</span><span class='line'><span class="nv">TWITTER_CONSUMER_SECRET</span><span class="o">=</span>xxx
-</span><span class='line'><span class="nv">TWITTER_OAUTH_TOKEN</span><span class="o">=</span>xxx
-</span><span class='line'><span class="nv">TWITTER_OAUTH_TOKEN_SECRET</span><span class="o">=</span>xxx
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+TWITTER_CONSUMER_KEY=xxx
+TWITTER_CONSUMER_SECRET=xxx
+TWITTER_OAUTH_TOKEN=xxx
+TWITTER_OAUTH_TOKEN_SECRET=xxx
+{% endcodeblock %}</p>
 
 <p>こういった面倒な手順をふむ理由は、キー情報が第三者に使われると悪いことをされる可能性があるからです。(<code>.env</code>はgitignore☆)</p>
 
@@ -305,23 +189,19 @@
 <p>では、Herokuにソースコードをデプロイ。<br/>
 (このまえにソースはローカルでgitにコミットしておいてください)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku create heroku-twitterscan --stack cedar
-</span><span class='line'>git push heroku master
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku create heroku-twitterscan --stack cedar
+git push heroku master
+{% endcodeblock %}</p>
 
 <p>続いて、環境変数にTwitterのキー情報やDBへの接続情報、APIの引数などを登録。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku config:set <span class="nv">TWITTER_CONSUMER_KEY</span><span class="o">=</span>xxx
-</span><span class='line'>heroku config:set <span class="nv">TWITTER_CONSUMER_SECRET</span><span class="o">=</span>xxx
-</span><span class='line'>heroku config:set <span class="nv">TWITTER_OAUTH_TOKEN</span><span class="o">=</span>xxx
-</span><span class='line'>heroku config:set <span class="nv">TWITTER_OAUTH_TOKEN_SECRET</span><span class="o">=</span>xxx
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku config:set TWITTER_CONSUMER_KEY=xxx
+heroku config:set TWITTER_CONSUMER_SECRET=xxx
+heroku config:set TWITTER_OAUTH_TOKEN=xxx
+heroku config:set TWITTER_OAUTH_TOKEN_SECRET=xxx
+{% endcodeblock %}</p>
 
 <p>ちなみに、HerokuのDBの作成手順などは拙著の以下の記事などがオススメです。</p>
 
@@ -331,21 +211,21 @@
 
 <p>ということで<code>twitterscan.rb</code>のプロセスを起動！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku scale <span class="nv">twitterscan</span><span class="o">=</span>1
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku scale twitterscan=1
+{% endcodeblock %}</p>
 
 <p>以下のコマンドでプロセスが起動しているか、確認できます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku ps
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku ps
+{% endcodeblock %}</p>
 
 <p>ツイート結果はログからも確認できます！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku logs --tail
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku logs --tail
+{% endcodeblock %}</p>
 
 <p>ということでHerokuの無料枠でTweetをチェックして、DBに格納までする手順でした。
 こちらはGitHubでもソースコードを公開しておきます。</p>
@@ -354,19 +234,7 @@
 
 <p>エンジニア経験浅いので、是非色々とツッコミを頂ければ幸いです。よろしくお願いします！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CI | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ci/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T10:34:25+09:00</updated>
+  <updated>2015-07-05T18:40:53+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,19 +28,7 @@
 <!-- more -->
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>競合サービスとの比較</h2>
 
@@ -89,121 +77,64 @@
 
 <p>ちなみに僕は上記の『<strong>アプリ構成</strong>』でRSpecとCapistranoでデプロイするスクリプトはこんな感じです。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>box: wercker/rvm
-</span><span class='line'>services:
-</span><span class='line'>  - wercker/postgresql
-</span><span class='line'>build:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;steps:
-</span><span class='line'>    - rvm-use:
-</span><span class='line'>        version: 2.2.0
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># A step that executes `bundle install` command</span>
-</span><span class='line'>    - bundle-install:
-</span><span class='line'>        <span class="nb">jobs</span>: 4
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># A step that prepares the database.yml using the database in services</span>
-</span><span class='line'>    - rails-database-yml:
-</span><span class='line'>        service: postgresql
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># A custom script step, name value is used in the UI</span>
-</span><span class='line'>    <span class="c"># and the code value contains the command that get executed</span>
-</span><span class='line'>    - script:
-</span><span class='line'>        name: <span class="nb">echo </span>ruby information
-</span><span class='line'>        code: |
-</span><span class='line'>            <span class="nb">echo</span> <span class="s2">&quot;ruby version $(ruby --version) running&quot;</span>
-</span><span class='line'>            <span class="nb">echo</span> <span class="s2">&quot;from location $(which ruby)&quot;</span>
-</span><span class='line'>            <span class="nb">echo</span> -p <span class="s2">&quot;gem list: $(gem list)&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># Add more steps here:</span>
-</span><span class='line'>    - script:
-</span><span class='line'>            name: rspec
-</span><span class='line'>            code: bundle <span class="nb">exec </span>rspec --color -f d
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;deploy:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;steps:
-</span><span class='line'>    - rvm-use:
-</span><span class='line'>        version: 2.2.0
-</span><span class='line'>    - bundle-install:
-</span><span class='line'>        <span class="nb">jobs</span>: 4
-</span><span class='line'>    - script:
-</span><span class='line'>        name: make .ssh directory
-</span><span class='line'>        code: mkdir -p <span class="s2">&quot;$HOME/.ssh&quot;</span>
-</span><span class='line'>    - create-file:
-</span><span class='line'>        name: write ssh key
-</span><span class='line'>        filename: <span class="nv">$HOME</span>/.ssh/id_rsa
-</span><span class='line'>        overwrite: <span class="nb">true</span>
-</span><span class='line'><span class="nb">        </span>hide-from-log: <span class="nb">true</span>
-</span><span class='line'><span class="nb">        </span>content: <span class="nv">$WERCKER_SSH_KEY_PRIVATE</span> <span class="c"># 独自鍵設定の場合は、$DEPLOY_KEY</span>
-</span><span class='line'>    - script:
-</span><span class='line'>        name: <span class="nb">set </span>permissions <span class="k">for </span>ssh key
-</span><span class='line'>        code: chmod 0400 <span class="nv">$HOME</span>/.ssh/id_rsa
-</span><span class='line'>    - cap:
-</span><span class='line'>        stage: <span class="nv">$WERCKER_DEPLOYTARGET_NAME</span>
-</span><span class='line'>        tasks: deploy
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+box: wercker/rvm
+services:
+  - wercker/postgresql
+build:</p>
+
+<pre><code>steps:
+    - rvm-use:
+        version: 2.2.0
+
+    # A step that executes `bundle install` command
+    - bundle-install:
+        jobs: 4
+
+    # A step that prepares the database.yml using the database in services
+    - rails-database-yml:
+        service: postgresql
+
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+        name: echo ruby information
+        code: |
+            echo "ruby version $(ruby --version) running"
+            echo "from location $(which ruby)"
+            echo -p "gem list: $(gem list)"
+
+    # Add more steps here:
+    - script:
+            name: rspec
+            code: bundle exec rspec --color -f d
+</code></pre>
+
+<p>deploy:</p>
+
+<pre><code>steps:
+    - rvm-use:
+        version: 2.2.0
+    - bundle-install:
+        jobs: 4
+    - script:
+        name: make .ssh directory
+        code: mkdir -p "$HOME/.ssh"
+    - create-file:
+        name: write ssh key
+        filename: $HOME/.ssh/id_rsa
+        overwrite: true
+        hide-from-log: true
+        content: $WERCKER_SSH_KEY_PRIVATE # 独自鍵設定の場合は、$DEPLOY_KEY
+    - script:
+        name: set permissions for ssh key
+        code: chmod 0400 $HOME/.ssh/id_rsa
+    - cap:
+        stage: $WERCKER_DEPLOYTARGET_NAME
+        tasks: deploy
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h2>環境変数の設定</h2>
 
@@ -227,19 +158,7 @@
 
 <p>CIが成功すると、werckerからDEPLOYボタンが押せるようになるので、それを実行するとcapistranoのタスクを実行してくれます。</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -278,19 +197,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>(1) Travis CI</h2>
 
@@ -312,57 +219,34 @@ JavaScript(Node.js)、Objective-C、Perl、PHP、Python、Ruby、Scala
 
 <p>ユーザー登録したら、連携対象のプロジェクトフォルダ直下でローカルで以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;gem のインストール&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem install travis&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;.travis.ymlの作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;travis init
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>gem のインストール</h1>
+
+<p>gem install travis</p>
+
+<h1>.travis.ymlの作成</h1>
+
+<p>travis init
+{% endcodeblock %}</p>
 
 <p><code>.travis.yml</code>が作成されたら、こんな感じで編集。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>language: ruby
-</span><span class='line'>rvm:
-</span><span class='line'>  - 2.0.0
-</span><span class='line'>  - 2.1.0
-</span><span class='line'>  - 2.1.4
-</span><span class='line'>bundler_args: --jobs<span class="o">=</span>2
-</span><span class='line'>script: bundle <span class="nb">exec </span>rspec
-</span><span class='line'>branches:
-</span><span class='line'>  only:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;- master
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+language: ruby
+rvm:
+  - 2.0.0
+  - 2.1.0
+  - 2.1.4
+bundler_args: --jobs=2
+script: bundle exec rspec
+branches:
+  only:</p>
+
+<pre><code>- master
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>詳しい設定や編集方法はこちらがわかりやすいです。</p>
 
@@ -374,33 +258,24 @@ JavaScript(Node.js)、Objective-C、Perl、PHP、Python、Ruby、Scala
 『<strong><a href="https://github.com/travis-ci/travis-lint">travis-ci/travis-lint</a></strong>』
 でチェックします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install travis-lint
-</span><span class='line'>travis lint
-</span><span class='line'>Shell completion not installed. Would you like to like to install it now? |y| y
-</span><span class='line'>Hooray, .travis.yml looks valid :<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+gem install travis-lint
+travis lint
+Shell completion not installed. Would you like to like to install it now? |y| y
+Hooray, .travis.yml looks valid :)
+{% endcodeblock %}</p>
 
 <p>設定画完了したら、<code>.travis.yml</code>などをGitHubにPushするとTravis CIがテストを開始してくれます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add .travis.yml
-</span><span class='line'>git commit -m <span class="s2">&quot;Add .travis.yml&quot;</span>
-</span><span class='line'>git push origin master&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ブラウザでtravisの結果を表示&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;travis open
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git add .travis.yml
+git commit -m "Add .travis.yml"
+git push origin master</p>
+
+<h1>ブラウザでtravisの結果を表示</h1>
+
+<p>travis open
+{% endcodeblock %}</p>
 
 <p><code>travis open</code>を実行するとブラウザが開いて、travisの実行プロセス/結果を確認できます。</p>
 
@@ -425,62 +300,39 @@ JavaScript(Node.js)、Objective-C、Perl、PHP、Python、Ruby、Scala
 
 <p>設定したら、<code>Gemfile</code>に以下を追加して<code>bundle install</code>を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;coveralls&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+group :test do
+  gem 'coveralls', require: false
+end
+{% endcodeblock %}</p>
 
 <p>あと<code>spec/spec_helper.rb</code>か、<code>test/test_helper.rb</code>に以下の設定を追記。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;CI&#39;</span><span class="o">]</span>
-</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;coveralls&#39;</span>
-</span><span class='line'>  <span class="no">Coveralls</span><span class="o">.</span><span class="n">wear!</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[Coveralls::SimpleCov::Formatter]</span>
-</span><span class='line'><span class="sr">  SimpleCov.start &#39;test_frameworks&#39;</span>
-</span><span class='line'><span class="sr">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+if ENV['CI']
+  require 'coveralls'
+  Coveralls.wear!</p>
+
+<p>  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[Coveralls::SimpleCov::Formatter]
+  SimpleCov.start 'test_frameworks'
+end
+{% endcodeblock %}</p>
 
 <p>あとはGitHubにPushして、Travis CIが実行されるとCoverallと連携してくれます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add -A
-</span><span class='line'>git commit -m <span class="s1">&#39;Add Coveralls settings&#39;</span>
-</span><span class='line'>git push origin master
-</span><span class='line'>open https://coveralls.io/r/morizyun/events_jp
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git add -A
+git commit -m 'Add Coveralls settings'
+git push origin master
+open https://coveralls.io/r/morizyun/events_jp
+{% endcodeblock %}</p>
 
 <p><img src="https://farm8.staticflickr.com/7467/15680153249_49b38b7b47_z.jpg" width="640" height="428" alt="スクリーンショット_2014-11-24_15_59_36"></p>
 
 <p>『<strong><a href="https://coveralls.io/r/morizyun/events_jp">Coveralls</a></strong>』でも同じくバッチを設定することができます。
 Coveralls内の対応するリポジトリのページの右上の『<strong>BADGE URLS</strong>』をクリックしてタグをREADMEに追記します。</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>(3) Code Climate</h2>
 
@@ -502,37 +354,30 @@ Coveralls内の対応するリポジトリのページの右上の『<strong>BAD
 
 <p>もし、Codeのカバレッジも含めて連携させたい場合はまず<code>Gemfile</code>に以下のように追加します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;codeclimate-test-reporter&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+group :test do
+  gem 'codeclimate-test-reporter', require: false
+end
+{% endcodeblock %}</p>
 
 <p>次に<code>spec/spec_helper.rb</code>か、<code>test/test_helper.rb</code>に以下の設定を追記。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;CI&#39;</span><span class="o">]</span>
-</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;codeclimate-test-reporter&#39;</span>
-</span><span class='line'>  <span class="no">SimpleCov</span><span class="o">.</span><span class="n">formatter</span> <span class="o">=</span> <span class="no">SimpleCov</span><span class="o">::</span><span class="no">Formatter</span><span class="o">::</span><span class="no">MultiFormatter</span><span class="o">[</span><span class="no">CodeClimate</span><span class="o">::</span><span class="no">TestReporter</span><span class="o">::</span><span class="no">Formatter</span><span class="o">]</span>
-</span><span class='line'>  <span class="no">SimpleCov</span><span class="o">.</span><span class="n">start</span> <span class="s1">&#39;test_frameworks&#39;</span>
-</span><span class='line'>  <span class="no">CodeClimate</span><span class="o">::</span><span class="no">TestReporter</span><span class="o">.</span><span class="n">start</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+if ENV['CI']
+  require 'codeclimate-test-reporter'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[CodeClimate::TestReporter::Formatter]
+  SimpleCov.start 'test_frameworks'
+  CodeClimate::TestReporter.start
+end
+{% endcodeblock %}</p>
 
 <p>Codeclimateの対象レポジトリのページの右側にCodeCoverageの設定があるのでクリックすると、
 <code>CODECLIMATE_REPO_TOKEN</code>があるのでその設定を<code>.travis.ymlのscript</code>の設定を修正。<br/>
 (xxxxにTOKENを入れてください。この設定は本当は良くない気がします。もっといい方法知ってる人がいたら教えて下さい)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>script: <span class="nv">CODECLIMATE_REPO_TOKEN</span><span class="o">=</span>xxxx bundle <span class="nb">exec </span>rspec
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+script: CODECLIMATE_REPO_TOKEN=xxxx bundle exec rspec
+{% endcodeblock %}</p>
 
 <p>これでカバレッジも含めて一括でチェックできるようになります！</p>
 
@@ -618,23 +463,11 @@ Coveralls内の対応するリポジトリのページの右上の『<strong>BAD
 
 <p>コマンドラインからTravisにログインしたい場合は、以下のコマンドを実行します。(GitHubのIDとPWを利用)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>travis login --pro
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+travis login --pro
+{% endcodeblock %}</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 
