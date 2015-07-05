@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Bootstrap | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/bootstrap/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T18:40:53+09:00</updated>
+  <updated>2015-07-05T19:08:25+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>格安でクオリティの高いBootstrap Theme</h2>
 
@@ -71,7 +83,19 @@ Bootsrap3のテンプレートがメインでマトメらているサイト。�
 <p><strong><a href="http://www.bootstrapcdn.com/">Bootstrap CDN</a></strong><br/>
 BootstrapのCDNサイト。サイトにアップロードしなくても使えるので、いろいろ応用がききそう！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>変更来歴</h2>
 
@@ -102,12 +126,15 @@ BootstrapのCDNサイト。サイトにアップロードしなくても使え�
 
 <p>一応イメージが湧くようにコードを書いておきます。Bootstrap/Bootswatch/Font-Awesomeを使えるようにします。<code>app/view/layouts/application.haml</code>の場合はこちら。</p>
 
-<p>{% codeblock lang:bash %}
-%link{:href=>"//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", :rel=>"stylesheet"}
-%script{:src=>"//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"}
-%link{:href=>"//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css", :rel=>"stylesheet"}
-%link{:href=>"//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css", :rel=>"stylesheet"}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>%link<span class="o">{</span>:href<span class="o">=</span>&gt;<span class="s2">&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css&quot;</span>, :rel<span class="o">=</span>&gt;<span class="s2">&quot;stylesheet&quot;</span><span class="o">}</span>
+</span><span class='line'>%script<span class="o">{</span>:src<span class="o">=</span>&gt;<span class="s2">&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js&quot;</span><span class="o">}</span>
+</span><span class='line'>%link<span class="o">{</span>:href<span class="o">=</span>&gt;<span class="s2">&quot;//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css&quot;</span>, :rel<span class="o">=</span>&gt;<span class="s2">&quot;stylesheet&quot;</span><span class="o">}</span>
+</span><span class='line'>%link<span class="o">{</span>:href<span class="o">=</span>&gt;<span class="s2">&quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css&quot;</span>, :rel<span class="o">=</span>&gt;<span class="s2">&quot;stylesheet&quot;</span><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これを使う場合の問題としては、海外のCDNっぽくってレスポンスがやや悪かったり、たまに落ちてうまくテーマが表示されなくなってしまう点です。さっと試したいときにおすすめです。</p>
 
@@ -117,22 +144,30 @@ BootstrapのCDNサイト。サイトにアップロードしなくても使え�
 
 <p><code>Gemfile</code>に以下のGemを追加して、<code>bundle install</code>を実行。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>Twitter Bootstrap</h1>
-
-<p>gem 'twitter-bootswatch-rails', '~> 3.1.1'
-gem 'twitter-bootswatch-rails-helpers'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Twitter Bootstrap&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;twitter-bootswatch-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.1.1&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;twitter-bootswatch-rails-helpers&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>続いてターミナルで以下のコマンドを実行すると自動でよしなにやってくれます。<br/>
 (<code>readable</code>の部分はbootswatchのテーマ名です)</p>
 
-<p>{% codeblock lang:bash %}
-rails g bootswatch:install readable
-rails g bootswatch:import readable
-rails g bootswatch:layout readable
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g bootswatch:install readable
+</span><span class='line'>rails g bootswatch:import readable
+</span><span class='line'>rails g bootswatch:layout readable
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>あとは出来上がったerb(haml)とcss、javascriptを<code>app/views/layouts/application.haml(erb).html</code>に移植して使うなり、デフォルト側にコピーして使うなりすれば簡単に使えるようになります！</p>
 
@@ -174,20 +209,25 @@ rails g bootswatch:layout readable
 
 <p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>Pagenation</h1>
-
-<p>gem 'kaminari'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Pagenation&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;kaminari&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>kaminari configの設定</h2>
 
 <p>kaminariのconfig(設定)ファイルを生成。</p>
 
-<p>{% codeblock lang:bash %}
-rails g kaminari:config
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g kaminari:config
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>config/initializers/kaminari_config.rb</code>を構築するサイトに合わせて各種パラメータを調整。<br/>
 パラメータの詳細は『 <strong><a href="https://github.com/amatsuda/kaminari#general-configuration-options">amatsuda/kaminari | GitHub</a></strong>』を参照。</p>
@@ -196,54 +236,75 @@ rails g kaminari:config
 
 <p>Controllerでページネーションをするための変数を追加。</p>
 
-<p>{% codeblock lang:ruby %}
-@users = User.order(:name).page params[:page]
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span><span class="o">.</span><span class="n">page</span> <span class="n">params</span><span class="o">[</span><span class="ss">:page</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Viewでページネーションを表示したい場所に以下のコードを追加。<br/></p>
 
-<p>{% codeblock lang:haml %}
-= paginate @users
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="p">=</span> <span class="n">paginate</span> <span class="vi">@users</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>ベージネーションViewのテンプレート取得</h2>
 
 <p>次のコマンドを実行すると<code>/app/view/kaminari/</code>フォルダにBootstrap用のViewを生成してくれます。</p>
 
-<p>{% codeblock lang:bash %}
-rails g kaminari:views  bootstrap
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g kaminari:views  bootstrap
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ただしこちらは、Bootstrap2用のテンプレートっぽいです。ということで、<code>/app/view/kaminari/_paginator.html.haml</code>を次の様に編集します。</p>
 
-<p>{% codeblock lang:haml %}
-= paginator.render do
-  .pagination</p>
-
-<pre><code>-# ↓ ここに.pagenationを追加
-%ul.pagination
-  ...(ゴニョゴニョ)
-</code></pre>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="p">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">render</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nc">.pagination</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;-# ↓ ここに.pagenationを追加
+</span><span class='line'><span class="nt">%ul</span><span class="nc">.pagination</span>
+</span><span class='line'>  ...(ゴニョゴニョ)
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>ページネーターの表示カスタマイズ</h2>
 
 <p>ページネーションの文言(prevやnextなど)の変更程度であれば、<code>conifg/locales/ja.yml</code>に以下の内容を追加するだけで解決します。</p>
 
-<p>{% codeblock lang:bash %}
-ja:
-  views:</p>
-
-<pre><code>pagination:
-  first: "&amp;laquo;"
-  last: "&amp;raquo;"
-  previous: "&amp;lsaquo;"
-  next: "&amp;rsaquo;"
-  truncate: "..."
-</code></pre>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ja:
+</span><span class='line'>  views:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;pagination:
+</span><span class='line'>  first: <span class="s2">&quot;&amp;amp;laquo;&quot;</span>
+</span><span class='line'>  last: <span class="s2">&quot;&amp;amp;raquo;&quot;</span>
+</span><span class='line'>  previous: <span class="s2">&quot;&amp;amp;lsaquo;&quot;</span>
+</span><span class='line'>  next: <span class="s2">&quot;&amp;amp;rsaquo;&quot;</span>
+</span><span class='line'>  truncate: <span class="s2">&quot;...&quot;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>上は英語部分を外して、記号を残した場合の例です。
 これだけでもシンプルでわかりやすいですよ！</p>
@@ -254,11 +315,13 @@ ja:
 
 <p><code>config/routes.rb</code>のルーティングを以下の様に変更します。</p>
 
-<p>{% codeblock lang:bash %}
-resources :my_resources do
-  get 'page/:page', :action => :index, :on => :collection
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>resources :my_resources <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>get <span class="s1">&#39;page/:page&#39;</span>, :action <span class="o">=</span>&gt; :index, :on <span class="o">=</span>&gt; :collection
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>このルーティングのメリットは次の通り。</p>
 
@@ -280,9 +343,9 @@ end
 
 <p>その場合は、<code>config/initializers/draper.rb</code>を作成して以下を記入しておくとエラーを回避できます。</p>
 
-<p>{% codeblock lang:ruby %}
-Draper::CollectionDecorator.delegate :current_page, :total_pages, :limit_value, :total_count
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Draper</span><span class="o">::</span><span class="no">CollectionDecorator</span><span class="o">.</span><span class="n">delegate</span> <span class="ss">:current_page</span><span class="p">,</span> <span class="ss">:total_pages</span><span class="p">,</span> <span class="ss">:limit_value</span><span class="p">,</span> <span class="ss">:total_count</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><strong><a href="https://github.com/drapergem/draper/issues/401">Kaminari vs Draper · Issue #401 · drapergem/draper</a></strong></p>
 
@@ -323,7 +386,19 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h1>無料のテンプレート</h1>
 
@@ -403,7 +478,19 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 
 <p><a href="ttp://www.oswt.co.uk/free_bootstrap_templates/" title="スクリーンショット 2013-01-27 22.29.47 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8233/8419129251_cbdc2fff23_z.jpg" width="640" height="426" alt="スクリーンショット 2013-01-27 22.29.47"></a></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>名前不明</h2>
 
@@ -487,7 +574,19 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 
 <p><a href="http://expo.getbootstrap.com/" title="Bootstrap Expo"><img src="http://farm9.staticflickr.com/8087/8531565352_4af8d4bdfc_c.jpg" width="640" alt="Bootstrap Expo"></a></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>このテーマに関連するオススメ本</h2>
 
@@ -531,7 +630,19 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Fuel UX</h2>
 
@@ -621,7 +732,19 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 
 <p><a href="http://ivaynberg.github.io/select2/" title="Select2 3.3.2"><img src="http://farm8.staticflickr.com/7287/8737194047_d2efd35886_z.jpg" width="640" height="494" alt="Select2 3.3.2"></a></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Bootstro.js</h2>
 
@@ -684,7 +807,19 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 
 <p><a href="http://www.bootstrapcdn.com/" title="BootstrapCDN"><img src="http://farm8.staticflickr.com/7423/9543450147_fdc79ed452_z.jpg" width="640" height="311" alt="BootstrapCDN"></a></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>このテーマに関連するオススメ本</h2>
 

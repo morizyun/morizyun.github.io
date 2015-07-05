@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Debug | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/debug/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T18:40:53+09:00</updated>
+  <updated>2015-07-05T19:08:25+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://morizyun.github.io/blog/better-error-gem-rails-ruby-rack/"/>
     <updated>2012-12-13T11:30:00+09:00</updated>
     <id>http://morizyun.github.io/blog/better-error-gem-rails-ruby-rack</id>
-    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8062/8268818978_3347cfd921_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+    <content type="html"><![CDATA[<p><a href="blog/categories/debug/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8062/8268818978_3347cfd921_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>Railsのエラー画面をわかりやすく表示してくれるBetter Errors(better_errors)、<a href="https://github.com/languages/Ruby">GitHubのRuby系プロジェクトの中で一ヶ月で１番Starがついてた</a>みたいです。ということで早速使ってみました！</p>
 
@@ -30,7 +30,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Better Errorsとは？</h2>
 
@@ -47,15 +59,21 @@
 
 <p>インストールは、Gemfileに以下の行を追加して<code>bundle install</code>するだけです。</p>
 
-<p>{% codeblock lang:ruby %}
-group :development do
-  # エラー画面をわかりやすく整形してくれる
-  gem 'better_errors'</p>
-
-<p>  # better_errorsの画面上にirb/pry(PERL)を表示する
-  gem 'binding_of_caller'
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># エラー画面をわかりやすく整形してくれる</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;better_errors&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # better_errorsの画面上にirb/</span><span class="n">pry</span><span class="p">(</span><span class="no">PERL</span><span class="p">)</span><span class="err">を表示する</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;binding_of_caller&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>綺麗なUI</h2>
 

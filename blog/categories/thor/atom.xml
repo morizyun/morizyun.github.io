@@ -4,7 +4,7 @@
   <title><![CDATA[Category: thor | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/thor/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T18:40:53+09:00</updated>
+  <updated>2015-07-05T19:08:25+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -27,176 +27,307 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>インストール手順</h2>
 
 <p>いつもどおり<code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行してください。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>command-line interfaces</h1>
-
-<p>gem 'thor'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;command-line interfaces&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;thor&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もしくはコマンドライン上で以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-gem install thor
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install thor
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>基本的な使い方</h2>
 
 <p><code>testest</code>を作成して以下コードを記述します。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>!/usr/bin/env ruby</h1>
-
-<h1>coding: utf-8</h1>
-
-<p>require 'rubygems'
-require 'thor'</p>
-
-<p>class Command &lt; Thor
-  default_command :example</p>
-
-<p>  desc 'example', 'an example task'
-  option :file, type: :string, aliases: '-f', desc: 'Delete the file after parsing it'
-  def example</p>
-
-<pre><code>puts "executing! argument is #{options[:file]}!"
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>Command.start
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;!/us</span><span class="n">r</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">ruby</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;coding: utf-8&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;thor&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Command &amp;lt; Thor</span>
+</span><span class='line'><span class="sr">  default_command :example&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">desc</span> <span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;an example task&#39;</span>
+</span><span class='line'>  <span class="n">option</span> <span class="ss">:file</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="ss">:string</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="s1">&#39;Delete the file after parsing it&#39;</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">example</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &quot;executing! argument is </span><span class="si">#{</span><span class="n">options</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="si">}</span><span class="sr">!&quot;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Command</span><span class="o">.</span><span class="n">start</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>早速作成したコマンドを実行してみます！</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>初回のみ実行権限を付与</h1>
-
-<p>chmod a+x testest</p>
-
-<p>./testest -f sample.file</p>
-
-<h1>=> executing! argument is sample.file!</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;初回のみ実行権限を付与&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;chmod a+x testest&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;./testest -f sample.file&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; executing! argument is sample.file!&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>引数とオプションの追加</h2>
 
 <p>先ほどのコマンドに引数と、オプションを足してみます。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>!/usr/bin/env ruby</h1>
-
-<h1>coding: utf-8</h1>
-
-<p>require 'rubygems'
-require 'thor'</p>
-
-<p>class Command &lt; Thor
-  default_command :example</p>
-
-<p>  desc 'example', 'an example task'
-  option :file, type: :string, aliases: '-f', desc: 'Delete the file after parsing it'
-  method_option :delete, aliases: '-d', desc: 'Delete the file after parsing it'
-  def example</p>
-
-<pre><code>if options[:delete]
-  puts "executing! argument is #{options[:file]} and delete option is true!"
-else
-  puts "executing! argument is #{options[:file]} and delete option is false!"
-end
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>Command.start
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;!/us</span><span class="n">r</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">ruby</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;coding: utf-8&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;thor&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Command &amp;lt; Thor</span>
+</span><span class='line'><span class="sr">  default_command :example&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">desc</span> <span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;an example task&#39;</span>
+</span><span class='line'>  <span class="n">option</span> <span class="ss">:file</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="ss">:string</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="s1">&#39;Delete the file after parsing it&#39;</span>
+</span><span class='line'>  <span class="n">method_option</span> <span class="ss">:delete</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="s1">&#39;Delete the file after parsing it&#39;</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">example</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;if options[:delete]</span>
+</span><span class='line'><span class="sr">  puts &quot;executing! argument is </span><span class="si">#{</span><span class="n">options</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="si">}</span><span class="sr"> and delete option is true!&quot;</span>
+</span><span class='line'><span class="sr">else</span>
+</span><span class='line'><span class="sr">  puts &quot;executing! argument is </span><span class="si">#{</span><span class="n">options</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="si">}</span><span class="sr"> and delete option is false!&quot;</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Command</span><span class="o">.</span><span class="n">start</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>では先ほど作ったコマンドを実行してみます。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>-d(--delete) オプションを付けない場合</h1>
-
-<p>./testest -f 'sample.file'</p>
-
-<h1>=> executing! argument is sample.file and delete option is false!</h1>
-
-<h1>-d(--delete) オプションを付ける場合</h1>
-
-<p>./testest -f 'sample.file' -d</p>
-
-<h1>=> executing! argument is sample.file and delete option is true!</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;-d<span class="o">(</span>--delete<span class="o">)</span> オプションを付けない場合&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;./testest -f <span class="s1">&#39;sample.file&#39;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; executing! argument is sample.file and delete option is <span class="nb">false</span>!&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;-d<span class="o">(</span>--delete<span class="o">)</span> オプションを付ける場合&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;./testest -f <span class="s1">&#39;sample.file&#39;</span> -d&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; executing! argument is sample.file and delete option is <span class="nb">true</span>!&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Railsの環境情報を取得</h2>
 
 <p>Railsの環境情報を使ったコマンドも簡単に作成できます。</p>
 
-<p>{% codeblock lang:ruby %}
-class Example &lt; Thor
-  include Thor::Actions
-  desc "init_example", " you can write some description"
-  method_options :force => :boolean, :aliases => "-f"
-  def init_example</p>
-
-<pre><code># Railsの環境情報を読み込み
-require './config/environment'
-
-if options[:force]
-  if yes?("WARN: Are u sure ?",:yellow)
-    delete_sql = "truncate examples"
-    say "delete all datas from examples ... ", :red
-    ActiveRecord::Base.connection.execute(delete_sql)
-  else
-    say "Cancel!", :red
-    return
-  end
-end
-
-#TODO
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Example</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Thor</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Thor</span><span class="o">::</span><span class="no">Actions</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;init_example&quot;</span><span class="p">,</span> <span class="s2">&quot; you can write some description&quot;</span>
+</span><span class='line'>  <span class="n">method_options</span> <span class="ss">:force</span> <span class="o">=&gt;</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">:aliases</span> <span class="o">=&gt;</span> <span class="s2">&quot;-f&quot;</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">init_example</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;# Railsの環境情報を読み込み</span>
+</span><span class='line'><span class="sr">require &#39;./</span><span class="n">config</span><span class="o">/</span><span class="n">environment</span><span class="err">&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:force</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">yes?</span><span class="p">(</span><span class="s2">&quot;WARN: Are u sure ?&quot;</span><span class="p">,</span><span class="ss">:yellow</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">delete_sql</span> <span class="o">=</span> <span class="s2">&quot;truncate examples&quot;</span>
+</span><span class='line'>    <span class="n">say</span> <span class="s2">&quot;delete all datas from examples ... &quot;</span><span class="p">,</span> <span class="ss">:red</span>
+</span><span class='line'>    <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">delete_sql</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">say</span> <span class="s2">&quot;Cancel!&quot;</span><span class="p">,</span> <span class="ss">:red</span>
+</span><span class='line'>    <span class="k">return</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#TODO</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Namespaceを付け足す</h2>
 
 <p>thorを使いこなす過程でNamespaceが欲しくなるかもです。そんな場合はこちら。</p>
 
-<p>{% codeblock lang:bash %}
-module Sinatra
-  class App &lt; Thor</p>
-
-<pre><code>namespace :myapp
-def install
-  # task code
-end
-# other tasks
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>module Sinatra
+</span><span class='line'>  class App &amp;lt; Thor&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;namespace :myapp
+</span><span class='line'>def install
+</span><span class='line'>  <span class="c"># task code</span>
+</span><span class='line'>end
+</span><span class='line'><span class="c"># other tasks</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ちなみに、実行コマンドは以下の通りです。</p>
 
-<p>{% codeblock lang:bash %}
-thor myapp:install
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>thor myapp:install
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Thor GitHub Wiki</h2>
 
@@ -204,7 +335,19 @@ thor myapp:install
 
 <p><strong><a href="https://github.com/erikhuda/thor/wiki">Home erikhuda/thor Wiki - GitHub</a></strong></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 

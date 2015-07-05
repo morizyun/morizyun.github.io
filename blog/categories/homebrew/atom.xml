@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Homebrew | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/homebrew/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T18:40:53+09:00</updated>
+  <updated>2015-07-05T19:08:25+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -29,79 +29,137 @@ MongoDBはドキュメント思考のデータベース(NoSQLの一種)です。
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>MongoDBをインストール手順</h2>
 
 <p>Homebrewのアップデート。</p>
 
-<p>{% codeblock lang:bash %}
-brew update
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>mongodbのインストール。</p>
 
-<p>{% codeblock lang:bash %}
-brew install mongodb
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install mongodb
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>自動起動設定。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>起動スクリプトのシンボリックリンク追加</h1>
-
-<p>ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents</p>
-
-<h1>自動起動をさせたい場合はこちら</h1>
-
-<p>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist</p>
-
-<h1>もし自動起動をしたくない場合に手動で起動する場合はこちら</h1>
-
-<p>mongod --config /usr/local/etc/mongod.conf
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;起動スクリプトのシンボリックリンク追加&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;自動起動をさせたい場合はこちら&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;もし自動起動をしたくない場合に手動で起動する場合はこちら&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mongod --config /usr/local/etc/mongod.conf
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>mongodbの動作確認。</p>
 
-<p>{% codeblock lang:bash %}
-mongo</p>
-
-<blockquote><p>MongoDB shell version: 3.0.0
-connecting to: test
-Welcome to the MongoDB shell.
-For interactive help, type "help".
-For more comprehensive documentation, see
-  http://docs.mongodb.org/
-Questions? Try the support group
-  http://groups.google.com/group/mongodb-user</p>
-
-<p>{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mongo&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;MongoDB shell version: 3.0.0
+</span><span class='line'>connecting to: <span class="nb">test</span>
+</span><span class='line'>Welcome to the MongoDB shell.
+</span><span class='line'>For interactive <span class="nb">help</span>, <span class="nb">type</span> <span class="s2">&quot;help&quot;</span>.
+</span><span class='line'>For more comprehensive documentation, see
+</span><span class='line'>  http://docs.mongodb.org/
+</span><span class='line'>Questions? Try the support group
+</span><span class='line'>  http://groups.google.com/group/mongodb-user&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <p>dbの切り替え。</p>
 
-<p>{% codeblock lang:bash %}
-use mydb</p>
-
-<blockquote><p>switched to db mydb
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>use mydb&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;switched to db mydb
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <p>データの登録テスト。</p>
 
-<p>{% codeblock lang:bash %}
-j = { name : "mongo" };</p>
-
-<blockquote><p>{ "name" : "mongo" }</p></blockquote>
-
-<p>db.things.save(j);
-db.things.find();</p>
-
-<blockquote><p>{ "_id" : ObjectId("503ae94fb29f5c1529443919"), "name" : "mongo" }
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">j</span> <span class="o">=</span> <span class="o">{</span> name : <span class="s2">&quot;mongo&quot;</span> <span class="o">}</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;<span class="o">{</span> <span class="s2">&quot;name&quot;</span> : <span class="s2">&quot;mongo&quot;</span> <span class="o">}</span>&lt;/p&gt;&lt;/blockquote&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;db.things.save<span class="o">(</span>j<span class="o">)</span>;
+</span><span class='line'>db.things.find<span class="o">()</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;<span class="o">{</span> <span class="s2">&quot;_id&quot;</span> : ObjectId<span class="o">(</span><span class="s2">&quot;503ae94fb29f5c1529443919&quot;</span><span class="o">)</span>, <span class="s2">&quot;name&quot;</span> : <span class="s2">&quot;mongo&quot;</span> <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <p>シンプル &amp; 便利！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>補足</h2>
 
@@ -150,180 +208,262 @@ Ruby on RailsなどのRackベースのアプリに組み込めます。</p>
 
 <p>続いて、Carrierwaveを動かすために、ローカルテスト用にImageMagickをインストール(Mac Homebrewの場合)。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-brew install imagemagick
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install imagemagick
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Rails プロジェクト作成</h2>
 
 <p>プロジェクトを作成する。今回はmongoidを利用するので、ActiveRecordをスキップ(-Oオプションを付ける)する。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-rails new test-app --skip-test-unit -O
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails new <span class="nb">test</span>-app --skip-test-unit -O
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Gitリポジトリ作成を作成します。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-git init
-git add -A
-git commit -m "create new project"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git init
+</span><span class='line'>git add -A
+</span><span class='line'>git commit -m <span class="s2">&quot;create new project&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Gemfileファイルに以下のGemを追加</p>
 
-<p>{% codeblock Gemfile lang:ruby %}
-ruby '1.9.3'</p>
-
-<h1>Haml</h1>
-
-<p>gem 'haml-rails'</p>
-
-<h1>Mongoid</h1>
-
-<p>gem 'mongoid'
-gem 'bson_ext'
-gem 'origin'
-gem 'moped'
-gem 'rmagick', :require => 'RMagick'
-gem 'carrierwave'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Gemfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ruby</span> <span class="s1">&#39;1.9.3&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Haml&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;haml-rails&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Mongoid&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;mongoid&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;bson_ext&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;origin&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;moped&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rmagick&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="s1">&#39;RMagick&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;carrierwave&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;carrierwave-mongoid&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="s1">&#39;carrierwave/mongoid&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Gemfileの設定を反映。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-bundle install
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle install
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>mongoDBに接続するための設定を作成</h2>
 
-<p>{% codeblock コンソール lang:bash %}
-rails generate mongoid:config
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails generate mongoid:config
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>config/mongoid.ymlでProductionの設定をします。
 こちらは後で使う<a href="/blog/2012-10-16-mongolab-mongodb-mongoid-rails">Heroku アドオンMongoLab</a>用の設定です。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-production:
-  uri: &lt;%= ENV['MONGOLAB_URI'] %>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>production:
+</span><span class='line'>  uri: &amp;lt;%<span class="o">=</span> ENV<span class="o">[</span><span class="s1">&#39;MONGOLAB_URI&#39;</span><span class="o">]</span> %&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Carrierwaveの設定</h2>
 
 <p>application.rbの更新。</p>
 
-<p>{% codeblock config/initializers/carrierwave.rb lang:ruby %}
-CarrierWave.configure do |config|
-  config.storage = :grid_fs
-  config.grid_fs_connection = Mongoid.database
-  config.grid_fs_access_url = "/images"
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/initializers/carrierwave.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">CarrierWave</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="ss">:grid_fs</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">grid_fs_connection</span> <span class="o">=</span> <span class="no">Mongoid</span><span class="o">.</span><span class="n">database</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">grid_fs_access_url</span> <span class="o">=</span> <span class="s2">&quot;/images&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>アップローダー/Scaffoldの修正</h2>
 
 <p>アップローダーのひな形の生成。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-rails g scaffold article title:string
-rails g uploader thumbnail
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g scaffold article title:string
+</span><span class='line'>rails g uploader thumbnail
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>モデルファイル「app/model/article.rb」に以下を追加。</p>
 
-<p>{% codeblock app/model/article.rb lang:bash %}
-include Mongoid::Timestamps
-mount_uploader :thumbnail, ThumbnailUploader
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app/model/article.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>include Mongoid::Timestamps
+</span><span class='line'>mount_uploader :thumbnail, ThumbnailUploader
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>アップローダーファイル「app/uploader/thumbnail_uploader.rb」の修正。</p>
 
-<p>{% codeblock app/uploader/thumbnail_uploader.rb lang:bash %}
-require "digest/md5"
-class ThumbnailUploader &lt; CarrierWave::Uploader::Base
-  include CarrierWave::RMagick # コメントを解除</p>
-
-<p>  storage :grid_fs</p>
-
-<p>  def store_dir</p>
-
-<pre><code>"images/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-</code></pre>
-
-<p>  end</p>
-
-<p>  version :mini do</p>
-
-<pre><code>process :resize_to_limit =&gt; [200, 200]
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app/uploader/thumbnail_uploader.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>require <span class="s2">&quot;digest/md5&quot;</span>
+</span><span class='line'>class ThumbnailUploader &amp;lt; CarrierWave::Uploader::Base
+</span><span class='line'>  include CarrierWave::RMagick <span class="c"># コメントを解除&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  storage :grid_fs&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  def store_dir&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;<span class="s2">&quot;images/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}&quot;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  version :mini <span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;process :resize_to_limit <span class="o">=</span>&amp;gt; <span class="o">[</span>200, 200<span class="o">]</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>コントローラファイル「add/controller/articles_controller.rb」の修正。</p>
 
-<p>{% codeblock add/controller/articles_controller.rb lang:ruby %}
-class ApplicationController &lt; ActionController::Base
-  protect_from_forgery</p>
-
-<p>  def image</p>
-
-<pre><code>gridfs_path = env["PATH_INFO"].gsub("/images/", "")
-begin
-  gridfs_file = Mongo::GridFileSystem.new(Mongoid.database).open(gridfs_path, 'r')
-  self.response_body = gridfs_file.read
-  self.content_type = gridfs_file.content_type
-rescue
-  self.status = :file_not_found
-  self.content_type = 'text/plain'
-  self.response_body = ''
-end
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>add/controller/articles_controller.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">protect_from_forgery</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def image&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">gridfs_path</span> <span class="o">=</span> <span class="n">env</span><span class="o">[</span><span class="s2">&quot;PATH_INFO&quot;</span><span class="o">].</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&quot;/images/&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="n">gridfs_file</span> <span class="o">=</span> <span class="no">Mongo</span><span class="o">::</span><span class="no">GridFileSystem</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Mongoid</span><span class="o">.</span><span class="n">database</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">gridfs_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">response_body</span> <span class="o">=</span> <span class="n">gridfs_file</span><span class="o">.</span><span class="n">read</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="n">gridfs_file</span><span class="o">.</span><span class="n">content_type</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="ss">:file_not_found</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s1">&#39;text/plain&#39;</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">response_body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Viewファイル「app/views/articles/_form.html.haml」の修正。</p>
 
-<p>{% codeblock app/views/articles/_form.html.haml lang:ruby %}
-= image_tag( @article.thumbnail_url ) if @article.thumbnail?
-= f.file_field :thumbnail
-= f.hidden_field :thumbnail_cache
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app/views/articles/_form.html.haml  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">=</span> <span class="n">image_tag</span><span class="p">(</span> <span class="vi">@article</span><span class="o">.</span><span class="n">thumbnail_url</span> <span class="p">)</span> <span class="k">if</span> <span class="vi">@article</span><span class="o">.</span><span class="n">thumbnail?</span>
+</span><span class='line'><span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">file_field</span> <span class="ss">:thumbnail</span>
+</span><span class='line'><span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">hidden_field</span> <span class="ss">:thumbnail_cache</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Viewファイル「app/views/pages/show.html.haml」の修正。</p>
 
 <p>vim app/views/pages/show.html.haml
-{% codeblock コンソール lang:bash %}
-= image_tag( @article.thumbnail_url(:mini))
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">=</span> image_tag<span class="o">(</span> @article.thumbnail_url<span class="o">(</span>:mini<span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>routeファイルを修正。</p>
 
-<p>{% codeblock config/routes.rb lang:ruby %}
-root :to => "articles#index"
-match "/images/uploads/*path" => "application#image" #thumbnail画像
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/routes.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="s2">&quot;articles#index&quot;</span>
+</span><span class='line'><span class="n">match</span> <span class="s2">&quot;/images/uploads/*path&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;application#image&quot;</span> <span class="c1">#thumbnail画像</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>HerokuにPush</h2>
 
 <p>今回はHerokuとMongoDBのアドオン"MongoLab"を追加します。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-git add -A
-git commit -m "add scaffold/uploader"
-heroku create test-app --stack cedar
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add -A
+</span><span class='line'>git commit -m <span class="s2">&quot;add scaffold/uploader&quot;</span>
+</span><span class='line'>heroku create <span class="nb">test</span>-app --stack cedar
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>MongoLabのAddonを追加。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-heroku addons:add mongolab:starter
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku addons:add mongolab:starter
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>結果をブラウザで確認。</p>
 
