@@ -234,7 +234,41 @@ UIActionSheetがiOS8でdeprecatedになりましたが、この『<strong><a hre
 
 <p>「日付 + 時間を選択するUIPickerView」はこちら。</p>
 
-<p>Liquid error: ClassNotFound: no lexer for alias &#8216;swift&#8217; found</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// 年月日時分を登録するUIPickerViewの表示、データ登録
+</span><span class='line'>@IBAction func DatePickerClicked(sender: UIButton) {
+</span><span class='line'>  var datePicker = ActionSheetDatePicker(title: nil, datePickerMode: UIDatePickerMode.DateAndTime, selectedDate: NSDate(), doneBlock: {
+</span><span class='line'>    picker, value, index in
+</span><span class='line'>    println("value = \(value)")
+</span><span class='line'>    println("index = \(index)")
+</span><span class='line'>    println("picker = \(picker)")
+</span><span class='line'>    return
+</span><span class='line'>  }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!.superview)
+</span><span class='line'>
+</span><span class='line'>  let secondsInWeek: NSTimeInterval = 7 * 24 * 60 * 60;
+</span><span class='line'>  datePicker.minimumDate = NSDate(timeInterval: -secondsInWeek, sinceDate: NSDate())
+</span><span class='line'>  datePicker.maximumDate = NSDate(timeInterval: secondsInWeek, sinceDate: NSDate())
+</span><span class='line'>  datePicker.minuteInterval = 5
+</span><span class='line'>
+</span><span class='line'>  datePicker.showActionSheetPicker()
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
 
 <p>作成された「日付 + 時間を選択するUIPickerView」はこちら。</p>
 

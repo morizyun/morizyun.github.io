@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T19:13:00+09:00</updated>
+  <updated>2015-07-05T19:17:17+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Swift UIAlertController の初心者向け 使い方ガイド]]></title>
     <link href="http://morizyun.github.io/blog/swift-alertcontroller-snipet-ios-iphone-apple/"/>
-    <updated>2015-07-05T18:40:00+09:00</updated>
+    <updated>2015-07-05T19:10:00+09:00</updated>
     <id>http://morizyun.github.io/blog/swift-alertcontroller-snipet-ios-iphone-apple</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/479813578X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=479813578X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=479813578X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=479813578X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 なかなか時間がとれていませんが、Swiftの勉強をしている中でiOS8から、「UIAlertView」が deprecated(廃止予定) になったことを知りました。
@@ -47,7 +47,53 @@
 
 <h2>Swiftで UIAlertController を呼び出す</h2>
 
-<p>Liquid error: ClassNotFound: no lexer for alias &#8216;swift&#8217; found</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var alertController = UIAlertController(title: "sample title", message: "sample message", preferredStyle: .Alert)
+</span><span class='line'>
+</span><span class='line'>// ボタン 1を作成
+</span><span class='line'>let firstAction = UIAlertAction(title: "button 1", style: .Default) {
+</span><span class='line'>  action in println("button 1 が押されました")
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>// ボタン 2を作成
+</span><span class='line'>let secondAction = UIAlertAction(title: "button 2", style: .Default) {
+</span><span class='line'>  action in println("ボタン 2 が押されました")
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>// ボタンを配置
+</span><span class='line'>alertController.addAction(firstAction)
+</span><span class='line'>alertController.addAction(secondAction)
+</span><span class='line'>
+</span><span class='line'>// アラートを表示
+</span><span class='line'>// 通常の ViewController で呼び出す場合
+</span><span class='line'>presentViewController(alertController, animated: true, completion: nil)
+</span><span class='line'>
+</span><span class='line'>// AppDelegate で呼び出す場合
+</span><span class='line'>// self.window!.rootViewController!.presentViewController(alertController, animated: true, completion: nil)</span></code></pre></td></tr></table></div></figure>
+
+
+
 
 <br style="clear:both;"/>
 
@@ -2463,7 +2509,41 @@ UIActionSheetがiOS8でdeprecatedになりましたが、この『<strong><a hre
 
 <p>「日付 + 時間を選択するUIPickerView」はこちら。</p>
 
-<p>Liquid error: ClassNotFound: no lexer for alias &#8216;swift&#8217; found</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// 年月日時分を登録するUIPickerViewの表示、データ登録
+</span><span class='line'>@IBAction func DatePickerClicked(sender: UIButton) {
+</span><span class='line'>  var datePicker = ActionSheetDatePicker(title: nil, datePickerMode: UIDatePickerMode.DateAndTime, selectedDate: NSDate(), doneBlock: {
+</span><span class='line'>    picker, value, index in
+</span><span class='line'>    println("value = \(value)")
+</span><span class='line'>    println("index = \(index)")
+</span><span class='line'>    println("picker = \(picker)")
+</span><span class='line'>    return
+</span><span class='line'>  }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!.superview)
+</span><span class='line'>
+</span><span class='line'>  let secondsInWeek: NSTimeInterval = 7 * 24 * 60 * 60;
+</span><span class='line'>  datePicker.minimumDate = NSDate(timeInterval: -secondsInWeek, sinceDate: NSDate())
+</span><span class='line'>  datePicker.maximumDate = NSDate(timeInterval: secondsInWeek, sinceDate: NSDate())
+</span><span class='line'>  datePicker.minuteInterval = 5
+</span><span class='line'>
+</span><span class='line'>  datePicker.showActionSheetPicker()
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
 
 <p>作成された「日付 + 時間を選択するUIPickerView」はこちら。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ActionSheetPicker | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/actionsheetpicker/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-07-05T19:13:00+09:00</updated>
+  <updated>2015-07-05T19:17:17+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -126,7 +126,28 @@ UIActionSheetがiOS8でdeprecatedになりましたが、この『<strong><a hre
 
 <p>「日付 + 時間を選択するUIPickerView」はこちら。</p>
 
-<p>Liquid error: ClassNotFound: no lexer for alias 'swift' found</p>
+<p>```
+// 年月日時分を登録するUIPickerViewの表示、データ登録
+@IBAction func DatePickerClicked(sender: UIButton) {
+  var datePicker = ActionSheetDatePicker(title: nil, datePickerMode: UIDatePickerMode.DateAndTime, selectedDate: NSDate(), doneBlock: {</p>
+
+<pre><code>picker, value, index in
+println("value = \(value)")
+println("index = \(index)")
+println("picker = \(picker)")
+return
+</code></pre>
+
+<p>  }, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!.superview)</p>
+
+<p>  let secondsInWeek: NSTimeInterval = 7 * 24 * 60 * 60;
+  datePicker.minimumDate = NSDate(timeInterval: -secondsInWeek, sinceDate: NSDate())
+  datePicker.maximumDate = NSDate(timeInterval: secondsInWeek, sinceDate: NSDate())
+  datePicker.minuteInterval = 5</p>
+
+<p>  datePicker.showActionSheetPicker()
+}
+```</p>
 
 <p>作成された「日付 + 時間を選択するUIPickerView」はこちら。</p>
 
