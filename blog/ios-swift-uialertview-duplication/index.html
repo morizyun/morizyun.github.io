@@ -186,7 +186,7 @@ Swiftで、UIAlertViewControllerを複数呼び出すと以下の様なエラー
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>// UIAlertController を作成
-</span><span class='line'>var alertController: UIAlertController = LocalNotificationService.createAlertController(notification: notification)
+</span><span class='line'>var alertController = UIAlertController(title: "タイトル", message: "メッセージ", preferredStyle: .Alert)
 </span><span class='line'>
 </span><span class='line'>// すでにアラートが表示されている場合は、それを親 ViewController にする
 </span><span class='line'>var baseView: UIViewController = self.window!.rootViewController!
