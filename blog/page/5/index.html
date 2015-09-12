@@ -9,8 +9,8 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="『Everyday Rails - RSpecによるRailsテスト入門』
-が、RSpec3に対応したとの噂を聞いて1年ぶりに読み直しました。この書籍は著者や訳者さんが、しっかりとアップデートを続けてくれているので、最新の入門チュートリアル &hellip;">
+  <meta name="description" content="GoFのデザインパターン(Design Pattern)のオブザーバー(Observer)のRubyコードを使った紹介記事です。 次の条件を満たす場合にオブザーバーパターンを使います。 * オブジェクトの状態が変化する可能性がある
+* 変化したことを他のオブジェクトに通知する必要がある 例としては &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -48,8 +48,8 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="『Everyday Rails - RSpecによるRailsテスト入門』
-が、RSpec3に対応したとの噂を聞いて1年ぶりに読み直しました。この書籍は著者や訳者さんが、しっかりとアップデートを続けてくれているので、最新の入門チュートリアル &hellip;" />
+<meta property="og:description" content="GoFのデザインパターン(Design Pattern)のオブザーバー(Observer)のRubyコードを使った紹介記事です。 次の条件を満たす場合にオブザーバーパターンを使います。 * オブジェクトの状態が変化する可能性がある
+* 変化したことを他のオブジェクトに通知する必要がある 例としては &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/5/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -97,6 +97,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-design-pattern-03-Observer/">オブザーバー Ruby 2.0.0 デザインパターン速攻習得[Observer][Design Pattern]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2015-01-16T20:50:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2015</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-design-pattern-03-Observer/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4894712857/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4894712857&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4894712857&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="200" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4894712857" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />GoFのデザインパターン(Design Pattern)のオブザーバー(Observer)のRubyコードを使った紹介記事です。</p>
+
+<p>次の条件を満たす場合にオブザーバーパターンを使います。</p>
+
+<pre>
+* オブジェクトの状態が変化する可能性がある
+* 変化したことを他のオブジェクトに通知する必要がある
+</pre>
+
+
+<p>例としては、Aで起きたイベントをB, Cが知る必要が有る場合などです。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/ruby-design-pattern-03-Observer/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -561,61 +618,6 @@ Application templateとは、Railsプロジェクトの時に必要になる定�
   
     <footer>
       <a rel="full-article" href="/blog/octopress-gitpage-minimum-install-guide/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/library-source-code-reading-acctive-support/">ソースコード・リーディングしよう！[GemJam][ActiveSupport]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2014-12-28T12:10:00+09:00" pubdate data-updated="true">Dec 28<span>th</span>, 2014</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/library-source-code-reading-acctive-support/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00DT4DY0M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00DT4DY0M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00DT4DY0M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00DT4DY0M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-<strong><a href="https://twitter.com/h5y1m141">@h5y1m141</a></strong>さんに誘って頂いて、
-<strong><a href="https://twitter.com/hitomi_tw">@hitomi_tw</a></strong>さんや
-<strong><a href="http://qiita.com/shiro615">shiro615</a></strong>さんと一緒に、RubyGemsのソースコードリーディング勉強会『<strong>GemJam</strong>』を行いました。</p>
-
-<p>今回は最近仕事でソースコードを読む時間が増えてきて、苦労していたのでソースコード・リーディングのモチベーションアップやコツを調べつつ、いつもRailsでお世話になっていた『<strong><a href="https://github.com/rails/rails/tree/master/activesupport">ActiveSupport</a></strong>』
-のソースコードリーディングに挑戦してみました。</p>
-
-<p><strong>(12/28 12:10) 勉強会のアウトプットを更新しました。全員アウトプットしたのは素晴らしいです</strong></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/library-source-code-reading-acctive-support/">続きを読む</a>
     </footer>
   
 
