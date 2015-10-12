@@ -4,7 +4,7 @@
   <title><![CDATA[Category: meteor | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/meteor/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-10-12T16:03:22+09:00</updated>
+  <updated>2015-10-12T16:19:11+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -65,7 +65,7 @@
 
 <p>MacのMeteorのインストール手順はこれだけ。</p>
 
-<p><code>javascript
+<p><code>bash
 curl https://install.meteor.com/ | sh
 </code></p>
 
@@ -73,7 +73,7 @@ curl https://install.meteor.com/ | sh
 
 <p>公式チュートリアルがすごく良く出来ているので今回は、サンプルアプリができた時にHerokuにプッシュする手順を書いておきます。</p>
 
-<p>```javascript</p>
+<p>```bash</p>
 
 <h1>サンプルアプリの作成(チュートリアルを作成済の場合は省略)</h1>
 
@@ -134,7 +134,7 @@ git commit -m "Sample todos app!"</p>
 
 <p>触り始めたばかりですが、サンプルが結構充実しているので、サンプルを見ながらMeteorの実装を勉強していきたいと思います！</p>
 
-<p>```javascript
+<p>```bash
 meteor create --list
 Available examples:
   clock

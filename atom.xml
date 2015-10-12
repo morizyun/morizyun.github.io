@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-10-12T16:03:22+09:00</updated>
+  <updated>2015-10-12T16:19:11+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -67,7 +67,7 @@
 <p>MacのMeteorのインストール手順はこれだけ。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">curl</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//install.meteor.com/ | sh</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl https://install.meteor.com/ | sh
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -107,38 +107,38 @@
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">#</span> <span class="err">サンプルアプリの作成</span><span class="p">(</span><span class="err">チュートリアルを作成済の場合は省略</span><span class="p">)</span>
-</span><span class='line'><span class="nx">meteor</span> <span class="nx">create</span> <span class="o">--</span><span class="nx">example</span> <span class="nx">todos</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># サンプルアプリの作成(チュートリアルを作成済の場合は省略)</span>
+</span><span class='line'>meteor create --example todos
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="err">アプリのプロジェクトフォルダに移動</span>
-</span><span class='line'><span class="nx">cd</span> <span class="nx">todos</span>
+</span><span class='line'><span class="c"># アプリのプロジェクトフォルダに移動</span>
+</span><span class='line'><span class="nb">cd </span>todos
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="nx">git</span> <span class="err">リポジトリの作成</span>
-</span><span class='line'><span class="nx">git</span> <span class="nx">init</span>
+</span><span class='line'><span class="c"># git リポジトリの作成</span>
+</span><span class='line'>git init
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="nx">git</span> <span class="nx">first</span> <span class="nx">commit</span><span class="o">!</span>
-</span><span class='line'><span class="nx">git</span> <span class="nx">add</span> <span class="p">.</span> <span class="o">-</span><span class="nx">A</span>
-</span><span class='line'><span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Sample todos app!&quot;</span>
+</span><span class='line'><span class="c"># git first commit!</span>
+</span><span class='line'>git add . -A
+</span><span class='line'>git commit -m <span class="s2">&quot;Sample todos app!&quot;</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="err">一番人気の</span><span class="nx">buildpack</span><span class="err">はこちら</span> <span class="o">=&gt;</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//devcenter.heroku.com/articles/third-party-buildpacks</span>
-</span><span class='line'><span class="err">#</span> <span class="err">一番人気の</span><span class="nx">buildpack</span><span class="err">は、残念ながら</span><span class="nx">node</span><span class="p">.</span><span class="nx">js</span><span class="err">のバージョンが少し古いので今回は</span><span class="nx">fork</span><span class="err">したものを利用</span>
-</span><span class='line'><span class="err">#</span> <span class="p">(</span><span class="mf">0.10</span><span class="p">.</span><span class="mi">40</span><span class="err">が必要だか、</span><span class="mf">0.10</span><span class="p">.</span><span class="mi">36</span><span class="err">が指定されている</span><span class="p">)</span>
-</span><span class='line'><span class="nx">heroku</span> <span class="nx">create</span> <span class="o">--</span><span class="nx">buildpack</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//github.com/TFarla/heroku-buildpack-meteor.git</span>
+</span><span class='line'><span class="c"># 一番人気のbuildpackはこちら =&gt; https://devcenter.heroku.com/articles/third-party-buildpacks</span>
+</span><span class='line'><span class="c"># 一番人気のbuildpackは、残念ながらnode.jsのバージョンが少し古いので今回はforkしたものを利用</span>
+</span><span class='line'><span class="c"># (0.10.40が必要だか、0.10.36が指定されている)</span>
+</span><span class='line'>heroku create --buildpack https://github.com/TFarla/heroku-buildpack-meteor.git
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="nx">mongolab</span><span class="err">のアドオンを追加</span>
-</span><span class='line'><span class="nx">heroku</span> <span class="nx">addons</span><span class="o">:</span><span class="nx">create</span> <span class="nx">mongolab</span><span class="o">:</span><span class="nx">sandbox</span>
+</span><span class='line'><span class="c"># mongolabのアドオンを追加</span>
+</span><span class='line'>heroku addons:create mongolab:sandbox
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="nx">MongoDB</span><span class="err">の</span><span class="nx">URL</span><span class="err">を設定</span>
-</span><span class='line'><span class="nx">heroku</span> <span class="nx">config</span><span class="o">:</span><span class="nx">add</span> <span class="nx">MONGO_URL</span><span class="o">=&lt;</span><span class="nx">insert_value_of_MONGOLAB_URI_here</span><span class="o">&gt;</span>
+</span><span class='line'><span class="c"># MongoDBのURLを設定</span>
+</span><span class='line'>heroku config:add <span class="nv">MONGO_URL</span><span class="o">=</span>&lt;insert_value_of_MONGOLAB_URI_here&gt;
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="nx">MongoDB</span><span class="err">のルート</span><span class="nx">URL</span><span class="err">を設定</span>
-</span><span class='line'><span class="nx">heroku</span> <span class="nx">config</span><span class="o">:</span><span class="nx">add</span> <span class="nx">ROOT_URL</span><span class="o">=&lt;</span><span class="nx">insert_url_created_above_here</span><span class="o">&gt;</span>
+</span><span class='line'><span class="c"># MongoDBのルートURLを設定</span>
+</span><span class='line'>heroku config:add <span class="nv">ROOT_URL</span><span class="o">=</span>&lt;insert_url_created_above_here&gt;
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="mi">1</span><span class="err">つの</span><span class="nx">dyno</span><span class="err">で動かすための設定</span>
-</span><span class='line'><span class="nx">heroku</span> <span class="nx">labs</span><span class="o">:</span><span class="nx">enable</span> <span class="nx">http</span><span class="o">-</span><span class="nx">session</span><span class="o">-</span><span class="nx">affinity</span>
+</span><span class='line'><span class="c"># 1つのdynoで動かすための設定</span>
+</span><span class='line'>heroku labs:enable http-session-affinity
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="nx">Heroku</span> <span class="err">に</span> <span class="nx">deploy</span>
-</span><span class='line'><span class="nx">git</span> <span class="nx">push</span> <span class="nx">heroku</span> <span class="nx">master</span>
+</span><span class='line'><span class="c"># Heroku に deploy</span>
+</span><span class='line'>git push heroku master
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -167,18 +167,18 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">meteor</span> <span class="nx">create</span> <span class="o">--</span><span class="nx">list</span>
-</span><span class='line'><span class="nx">Available</span> <span class="nx">examples</span><span class="o">:</span>
-</span><span class='line'>  <span class="nx">clock</span>
-</span><span class='line'>  <span class="nx">leaderboard</span>
-</span><span class='line'>  <span class="nx">localmarket</span>
-</span><span class='line'>  <span class="nx">simple</span><span class="o">-</span><span class="nx">todos</span>
-</span><span class='line'>  <span class="nx">simple</span><span class="o">-</span><span class="nx">todos</span><span class="o">-</span><span class="nx">angular</span>
-</span><span class='line'>  <span class="nx">simple</span><span class="o">-</span><span class="nx">todos</span><span class="o">-</span><span class="nx">react</span>
-</span><span class='line'>  <span class="nx">todos</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>meteor create --list
+</span><span class='line'>Available examples:
+</span><span class='line'>  clock
+</span><span class='line'>  leaderboard
+</span><span class='line'>  localmarket
+</span><span class='line'>  simple-todos
+</span><span class='line'>  simple-todos-angular
+</span><span class='line'>  simple-todos-react
+</span><span class='line'>  todos
 </span><span class='line'>
-</span><span class='line'><span class="err">#</span> <span class="err">こんな感じでサンプルソースを取得できます！</span>
-</span><span class='line'><span class="nx">meteor</span> <span class="nx">create</span> <span class="nx">clock</span>
+</span><span class='line'><span class="c"># こんな感じでサンプルソースを取得できます！</span>
+</span><span class='line'>meteor create clock
 </span></code></pre></td></tr></table></div></figure>
 
 
