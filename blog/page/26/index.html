@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="Railsでページキャッシュを使うとrails内の処理をスキップして、htmlを直接表示します。ということで、PC用のページとスマホ用のページでURLを分けている場合にスマホ用のページにjavascriptを使ってリダイレクトする方法を書きます。 ">
+  <meta name="description" content="Railsの超便利なメソッドの一つpluckですが、実はRailsのデフォルトでは単一行でしか実行できないそうです。ということで複数カラムにpluckできるgem『multipluck』の紹介です！ 追記です。Rails 4からは標準で搭載されるらしいです。なのでRails 3限定です！ ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="Railsでページキャッシュを使うとrails内の処理をスキップして、htmlを直接表示します。ということで、PC用のページとスマホ用のページでURLを分けている場合にスマホ用のページにjavascriptを使ってリダイレクトする方法を書きます。 " />
+<meta property="og:description" content="Railsの超便利なメソッドの一つpluckですが、実はRailsのデフォルトでは単一行でしか実行できないそうです。ということで複数カラムにpluckできるgem『multipluck』の紹介です！ 追記です。Rails 4からは標準で搭載されるらしいです。なのでRails 3限定です！ " />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/26/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/multi-pluck-ruby-rails/">Railsのpluckを複数カラムに使えるように拡張するgem Multipluck</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-03-31T21:00:00+09:00" pubdate data-updated="true">Mar 31<span>st</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/multi-pluck-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774155934/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048702181&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774155934&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774155934" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsの超便利なメソッドの一つpluckですが、実はRailsのデフォルトでは単一行でしか実行できないそうです。ということで複数カラムにpluckできるgem『<strong><a href="https://github.com/hanzq/multipluck">multipluck</a></strong>』の紹介です！</p>
+
+<p>追記です。Rails 4からは標準で搭載されるらしいです。なのでRails 3限定です！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/multi-pluck-ruby-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -515,53 +564,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/state_machine-gem-ruby-rails/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/tapp-gem-debug-ruby-rails/">printデバックが強烈に捗るGem Tapp</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-02-23T15:55:00+09:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/tapp-gem-debug-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/477415489X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=477415489X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=477415489X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=477415489X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Ruby/Rails内でメソッドチェーンの途中の値をデバックしたい事ってありませんか？そんな時の最適なソリューションが、『<strong><a href="https://github.com/esminc/tapp">tapp</a></strong>』です！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/tapp-gem-debug-ruby-rails/">続きを読む</a>
     </footer>
   
 

@@ -9,7 +9,8 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="読みやすいコードは、一緒にコーディングするチームのためだけではなく、自分のためにもとても重要です。今回は「読みやすいコード」を書くための要素をまとめてみました！ <!-- google_ad_client = "ca-pub-4186413323075068"; /* &hellip;">
+  <meta name="description" content="読みやすいコードは、一緒にコーディングするチームのためだけではなく、
+自分のためにもとても重要です。今回は「読みやすいコード」を書くための要素をまとめてみました！ <!-- google_ad_client = "ca-pub-4186413323075068"; /* &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +48,8 @@
 
 
   <meta property="og:title" content="読みやすいコーディングの心得[リーダブルコード] - 酒と泪とRubyとRailsと" />
-<meta property="og:description" content="読みやすいコードは、一緒にコーディングするチームのためだけではなく、自分のためにもとても重要です。今回は「読みやすいコード」を書くための要素をまとめてみました！ <!-- google_ad_client = "ca-pub-4186413323075068"; /* &hellip;" />
+<meta property="og:description" content="読みやすいコードは、一緒にコーディングするチームのためだけではなく、
+自分のためにもとても重要です。今回は「読みやすいコード」を書くための要素をまとめてみました！ <!-- google_ad_client = "ca-pub-4186413323075068"; /* &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/readable-code-good-programing/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -117,7 +119,7 @@
 
 
 
-        <time datetime="2013-01-11T01:25:00+09:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
+        <time datetime="2015-10-18T09:50:00+09:00" pubdate data-updated="true">Oct 18<span>th</span>, 2015</time>
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
@@ -140,7 +142,8 @@
   </header>
 
 
-<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873115655/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873115655&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873115655&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873115655" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />読みやすいコードは、一緒にコーディングするチームのためだけではなく、自分のためにもとても重要です。今回は「読みやすいコード」を書くための要素をまとめてみました！</p>
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873115655/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873115655&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873115655&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873115655" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />読みやすいコードは、一緒にコーディングするチームのためだけではなく、
+自分のためにもとても重要です。今回は「読みやすいコード」を書くための要素をまとめてみました！</p>
 
 <!-- more -->
 
@@ -163,31 +166,45 @@
 </div>
 
 
-<h2>プリンシパル</h2>
+<h2>一番大切にすべきことは読みやすさ</h2>
 
-<p>コードは理解しやすさが<strong>とても大切</strong>。なぜならコーディングでは、コードを書く時間よりもコードを読む時間の方が多いから。見た瞬間に何をしているかを理解できれば効率はずっと良くなる。</p>
+<p>プログラミングでは、コードを書く時間よりもコードを読む時間の方が多くなります。
+複数人で開発をしていると他人の書いたコードを読むことも増えるでしょう。
+だから、コードは理解しやすさはプログラマーが最も大切にすべき指標の一つです。</p>
 
-<p>ループやロジックをシンプルに保つ。コードの<strong>読み手が立ち止まらない</strong>ように細心の注意を払う。読み手を助け、自分のバグを防ぐことができる。</p>
+<p>プログラミングが読みやすければ、こんなメリットがあります。</p>
 
-<p><strong>テスト大切</strong>。他のプログラマが安心してテストの追加・変更ができるようにテストコードを読みやすくする。</p>
+<pre>
+- 他の人がコード読みやすくなって、開発する時間が増える
+- コードの読み間違いが減って、バグを生み出しにくくなる
+</pre>
+
 
 <h2>名前で他の人が最短時間で理解できるようにコードを書く</h2>
 
 <ul>
-<li>モージュール名、クラス名、変数名を<strong>短いコメントと考えて</strong>情報を埋め込む</li>
-<li>相手に意図を伝えるために名前は具体的にする。<strong>読み違え</strong>を防ぐ</li>
-<li>エンティティの<strong>目的や値</strong>が明確になるようにする</li>
-<li>変数名に<strong>値の単位や制限、危険・注意を喚起する情報</strong>を載せる</li>
-<li>変数の<strong>スコープ</strong>を意識する。スコープの大きな変数には長い名前をつける</li>
-<li>プロジェクトや言語の規約を守る。*フォーマットをうまく活用する**</li>
+<li>モージュール名・クラス名・変数名を <strong>短いコメントと考えて</strong> 情報を埋め込む</li>
+<li>相手に意図を伝えるために名前には、 <strong>明確な単語</strong> を選ぶ</li>
+<li>エンティティの <strong>目的や値</strong> が明確になるようにする</li>
+<li>変数名に <strong>値の単位や制限、危険・注意を喚起する情報</strong> を載せる</li>
+<li>変数の <strong>スコープ(影響範囲)</strong> を意識する。スコープの大きな変数には長い名前をつける</li>
+<li>プロジェクトや言語の規約を守る。 <strong>フォーマットをうまく活用する</strong></li>
 </ul>
 
 
 <h2>一貫性のあるやり方で「整形」する</h2>
 
-<ul>
-<li>コードの列を揃える(<strong>縦に揃える</strong>)、<strong>適切な位置で改行</strong>する</li>
-</ul>
+<p>一貫性のあるやり方でレイアウトを揃えると、他人がソースコードをずっと理解しやすくなる。
+例えば次のようなことである。</p>
+
+<pre>
+* 縦の線を真っ直ぐにする(列を整列させる)
+* 適切な位置で改行する
+* 並び順に一貫したルールを持つ(アルファベット順、種類別、重要度など)
+* 空行を使ってコードを論理的な段落(似ているグループ)に分ける
+</pre>
+
+
 
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -207,31 +224,30 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>並び順に<strong>一貫した</strong>ルールを持つ(アルファベット順、種類別、重要度など)</li>
-<li>空行を使ってコードを<strong>論理的な段落、似ているグループ</strong>に分ける</li>
-</ul>
+<h2>コメントは書き手の意図を読み手に知らせるためにある</h2>
 
-
-<h2>コメントは読み手に意図を知らせるためにある</h2>
+<p>コメントは書き手の意図を読み手に伝えるための重要な情報の一つです。
+プロジェクトの規模や、言語の特性によってコメントの量は変わりますが、
+大切なことは、「<strong>読み手の立場</strong>」に立ってコメントを残すことだと思います。</p>
 
 <ul>
-<li>コードを書いている時の<strong>自分の考え</strong>を記録する</li>
-<li><strong>コードの欠陥・ハマりそうな罠</strong>を知らせる(TODO/FIXME/HACK/XXXなど)</li>
-<li>読む人が<strong>質問</strong>しそうなことを書いておく</li>
-<li>全体像を<strong>要約</strong>したコメントを残す</li>
-<li>コメントの曖昧さを排除する、動作を明確に記述する(<strong>実例</strong>を残す)</li>
+<li>コードからわかることをコメントに書かない</li>
+<li>コードを書いている時の <strong>自分の考え</strong> を記録する</li>
+<li><strong>コードの欠陥・ハマりそうな罠</strong> を知らせる(TODO/FIXME/HACK/XXXなど)</li>
+<li>読む人が <strong>質問</strong> しそうなことを書いておく</li>
+<li>全体像を <strong>要約</strong> したコメントを残す</li>
+<li>コメントの曖昧さを排除する、動作を明確に記述する( <strong>実例</strong> を残す)</li>
 </ul>
 
 
 <h2>制御フローを読みやすくする</h2>
 
 <ul>
-<li>条件式は左側に<strong>変化する</strong>値、右側にあまり<strong>変化しない</strong>値を置く</li>
-<li>基本は、if/elseを使う。三項演算子は<strong>簡潔</strong>になる時だけ使う</li>
-<li>関数からできる限り<strong>早く返す</strong></li>
-<li>ネストを<strong>浅くする</strong>ことで、読み手の負荷を減らす</li>
-<li>巨大な式は<strong>分割</strong>して、読み手が1つ1つ飲み込めるようにする</li>
+<li>条件式は左側に <strong>変化する</strong> 値、右側にあまり <strong>変化しない</strong> 値を置く</li>
+<li>基本は、if/elseを使う。三項演算子は <strong>簡潔</strong> になる時だけ使う</li>
+<li>関数からできる限り <strong>早く返す</strong></li>
+<li>ネストを <strong>浅くする</strong> ことで、読み手の負荷を減らす</li>
+<li>巨大な式は <strong>分割</strong> して、読み手が1つ1つ飲み込めるようにする</li>
 </ul>
 
 
@@ -239,32 +255,38 @@
 
 <ul>
 <li>コードの理解を助けない邪魔な変数は作らない</li>
-<li>変数の<strong>スコープを小さくする</strong>(変数が見えるコードの行数をできるだけ短くする)</li>
-<li>変数を操作する場所をできるだけ減らす</li>
+<li>変数の <strong>スコープを小さくする</strong> (変数が見えるコードの行数をできるだけ短くする)</li>
+<li>変数を操作する場所をできるだけ減らす(イミュータブルはトラブルになる傾向が少ない)</li>
 </ul>
 
 
 <h2>読みやすさを意識したリファクタリング</h2>
 
 <ul>
-<li><strong>ライブラリ</strong>(標準ライブラリ、APIやパッケージ)を有効に活用する</li>
-<li>ロジックを<strong>簡単な言葉</strong>で説明できるようなコードにする</li>
-<li><strong>一度に1つのことだけ処理する</strong>ように関数(クラス)を分割する</li>
-<li>できるだけコードを<strong>小さく保つ</strong>、必要になるまで作らない(You Ain&#8217;t Gonna Need It./YAGNI)</li>
-<li><strong>汎用的なコード</strong>を独立したライブラリにすることで、プロジェクトを小さく保つ</li>
+<li><strong>ライブラリ</strong> (標準ライブラリ、APIやパッケージ)を有効に活用する</li>
+<li>ロジックを <strong>簡単な言葉</strong> で説明できるようなコードにする</li>
+<li><strong>一度に1つのことだけ処理する</strong> ように関数(クラス)を分割する</li>
+<li>できるだけコードを <strong>小さく保つ</strong> 、必要になるまで作らない(You Ain&#8217;t Gonna Need It./YAGNI)</li>
+<li><strong>汎用的なコード</strong> を独立したライブラリにすることで、プロジェクトを小さく保つ</li>
 </ul>
 
 
 <h2>テストを読みやすくする</h2>
 
 <ul>
-<li><strong>テストにやさしいコードを設計</strong>する</li>
-<li>テストコードは<strong>最小</strong>に保つ</li>
-<li><strong>バグの発見・修正</strong>が容易になるように、エラーメッセージを読みやすくする</li>
-<li>コードを完全にテストする最も<strong>単純</strong>な入力をテストに使う</li>
+<li><strong>テストにやさしいコードを設計</strong> する</li>
+<li>テストコードもメンテナンスコストがかかる。だから、テストコードは必要なテストだけにする</li>
+<li><strong>バグの発見・修正</strong> が容易になるように、エラーメッセージを読みやすくする</li>
+<li>コードを効果的にテストする最も<strong>単純</strong>な入力をテストに使う</li>
 <li>テストの関数に<strong>名前</strong>をつけて、何をテストしているかわかるようにする</li>
 </ul>
 
+
+<h2>コードを読みやすく保ち続ける</h2>
+
+<p>本書に書いてあることと少し逆行しますが、プロジェクトが将来どんなふうに進むかを
+意識してコードが「読みやすくあり続ける」ために設計・実装を行っていきたいです。
+そうすることで開発しやすいコードが保ち続けられると思います！</p>
 
 <div>
   <script type="text/javascript"><!--
@@ -314,12 +336,12 @@
   
 
 
-<time datetime="2013-01-11T01:25:00+09:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
+<time datetime="2015-10-18T09:50:00+09:00" pubdate data-updated="true">Oct 18<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/programming/'>Programming</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+    <a class='category' href='/blog/categories/programming/'>Programming</a>
   
 </span>
 
@@ -350,10 +372,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/capistrano-localhost-multi-deploy/" title="Previous Post: Capistrano2系 複数環境へのデプロイ[localhostへのデプロイ][Rails]">&laquo; Capistrano2系 複数環境へのデプロイ[localhostへのデプロイ][Rails]</a>
+        <a class="basic-alignment left" href="/blog/meteor-heroku-deployment-tips/" title="Previous Post: JSフレームワーク Meteor 入門 & Heroku デプロイまで">&laquo; JSフレームワーク Meteor 入門 & Heroku デプロイまで</a>
       
-      
-        <a class="basic-alignment right" href="/blog/distinct-hash-active-record/" title="Next Post: Active Record ３つのTipsを紹介 [Distinctの実行、結果を配列/Hashで受け取る]">Active Record ３つのTipsを紹介 [Distinctの実行、結果を配列/Hashで受け取る] &raquo;</a>
       
     </p>
   </footer>
