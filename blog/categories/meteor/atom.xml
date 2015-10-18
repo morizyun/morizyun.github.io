@@ -4,7 +4,7 @@
   <title><![CDATA[Category: meteor | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/meteor/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-10-18T09:52:02+09:00</updated>
+  <updated>2015-10-18T13:03:18+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -69,6 +69,8 @@
 curl https://install.meteor.com/ | sh
 </code></p>
 
+<p>(もしかしたら Node.jsとか、MongoDBのセットアップが必要かも知れません...)</p>
+
 <h2>Heroku への公開</h2>
 
 <p>公式チュートリアルがすごく良く出来ているので今回は、サンプルアプリができた時にHerokuにプッシュする手順を書いておきます。</p>
@@ -124,17 +126,7 @@ git commit -m "Sample todos app!"</p>
 <p>これで、2015/10/12時点ではうまくいきました。多分、Meteorは頻繁にアップデートがあると思うので動かなかったら、
 <a href="https://twitter.com/zyunnosuke">@zunnosuke</a>に声をかけてください！</p>
 
-<h2>オススメの勉強法</h2>
-
-<h3>Meteor パッケージの紹介</h3>
-
-<ul>
-<li><strong><a href="http://qiita.com/n-oshiro/items/580a58d29514c0f6b7a0">個人的にMeteorでよく使うパッケージのチートシート - Qiita</a></strong></li>
-<li><strong><a href="https://atmospherejs.com/">Atmosphere (パッケージの検索サイト)</a></strong></li>
-</ul>
-
-
-<h3>サンプルソース</h3>
+<h2>Meteorのサンプルソース</h2>
 
 <p>触り始めたばかりですが、サンプルが結構充実しているので、サンプルを見ながらMeteorの実装を勉強していきたいと思います！</p>
 
@@ -151,8 +143,55 @@ Available examples:
 
 <h1>こんな感じでサンプルソースを取得できます！</h1>
 
-<p>meteor create clock
+<p>meteor create clock</p>
+
+<h1>github にはここにあります。</h1>
+
+<p>https://github.com/meteor/meteor/tree/devel/examples
 ```</p>
+
+<p>その他 GitHubで気になったリポジトリです。今度じっくり読んでみます。</p>
+
+<ul>
+<li><a href="https://github.com/DiscoverMeteor/Microscope">DiscoverMeteor/Microscope (電子書籍 Discover Meteorのサンプルソース)</a></li>
+<li><a href="https://github.com/lpatmo/cb">lpatmo/cb (オンライン勉強会の告知サイト)</a></li>
+<li><a href="https://github.com/meteorclub/crater.io">meteorclub/crater.io (Meteor, React, Nodeのソーシャルブックマークサイト)</a></li>
+</ul>
+
+
+<h2>リンク集</h2>
+
+<ul>
+<li>リンク集
+
+<ul>
+<li><strong><a href="https://github.com/ericdouglas/Meteor-Learning">ericdouglas/Meteor-Learning - GitHub</a></strong></li>
+</ul>
+</li>
+<li>ノウハウ集
+
+<ul>
+<li><ul>
+<li><strong><a href="https://github.com/oortcloud/unofficial-meteor-faq">非公式FAQ (英語、少し情報が古めです)</a></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>PodCast
+
+<ul>
+<li><strong><a href="https://meteorjs.club/">Meteor Club (英語ですが、MeteorのPodcastを配信)</a></strong></li>
+</ul>
+</li>
+<li>パッケージの調査
+
+<ul>
+<li><strong><a href="https://atmospherejs.com/">Atmosphere (パッケージの検索サイト)</a></strong></li>
+<li><strong><a href="http://qiita.com/n-oshiro/items/580a58d29514c0f6b7a0">個人的にMeteorでよく使うパッケージのチートシート - Qiita</a></strong></li>
+</ul>
+</li>
+</ul>
+
 
 <br style="clear:both;"/>
 
@@ -174,6 +213,7 @@ Available examples:
 <h2>Speical Thanks</h2>
 
 <ul>
+<li><strong><a href="http://d.hatena.ne.jp/naoya/20120422/1335109615">Meteor.js - naoyaのはてなダイアリー</a></strong></li>
 <li><strong><a href="http://qiita.com/tadfmac/items/a63bb85e5cfb12bbbfc8">JavaScript超初心者向け Meteor メモ (1)</a></strong></li>
 <li><strong><a href="http://qiita.com/kobarei/items/c2df840bc02391e907a1">MeteorをHerokuにデプロイする</a></strong></li>
 </ul>
