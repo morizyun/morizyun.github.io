@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="今回は、『二股に分かれている容器にボールを入れる』問題です。 二股にわかれた容器に番号のついたボールを番号の大小関係の制約を守って並べていく問題です。 これはどれだけ問題をシンプルに考えられるかという点の思考が必要になるので、難しい戦略を考えるのとは別の思考が必要で、これはこれで面白かったです！ ">
+  <meta name="description" content="今回は、『AOJ 10029 - ソートアルゴリズム(クイックソート、マージソート)』についての記事です。 勉強のためにクイックソートと、マージソートを書いてみました。一般的にはマージソートよりもクイックソートの方が高速です。しかし、AOJで実際にプログラムを書いて実感しましたが、『 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="今回は、『二股に分かれている容器にボールを入れる』問題です。 二股にわかれた容器に番号のついたボールを番号の大小関係の制約を守って並べていく問題です。 これはどれだけ問題をシンプルに考えられるかという点の思考が必要になるので、難しい戦略を考えるのとは別の思考が必要で、これはこれで面白かったです！ " />
+<meta property="og:description" content="今回は、『AOJ 10029 - ソートアルゴリズム(クイックソート、マージソート)』についての記事です。 勉強のためにクイックソートと、マージソートを書いてみました。一般的にはマージソートよりもクイックソートの方が高速です。しかし、AOJで実際にプログラムを書いて実感しましたが、『 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/13/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/quick-sort-merge-sort-algorithm-aoj-10029/">アルゴリズムの勉強: クイックソート、マージソート[AOJ 10029][Ruby]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-06-22T08:50:00+09:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/quick-sort-merge-sort-algorithm-aoj-10029/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4775991280/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4775991280&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4775991280&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4775991280" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />今回は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=10029">AOJ 10029 - ソートアルゴリズム(クイックソート、マージソート)</a></strong>』についての記事です。</p>
+
+<p>勉強のためにクイックソートと、マージソートを書いてみました。一般的にはマージソートよりもクイックソートの方が高速です。しかし、AOJで実際にプログラムを書いて実感しましたが、『<strong>クイックソートのアルゴリズムはソート対象によって計算量が変わる</strong>』ので、計算量が安定しているという意味では、マージソートの方が優れていることを知りました。でもそれ以上に、Rubyの実装の方が安定かつ高速なので、普段からプラットフォームの恩恵にあずかっていることを実感しました！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/quick-sort-merge-sort-algorithm-aoj-10029/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -529,53 +578,6 @@ pubyやpythonならほんとうに簡単に解けてしまうんですが、c言
   
     <footer>
       <a rel="full-article" href="/blog/intersectional-string-counter-algorithm-aoj-528/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/breadth-first-search-algorithm-aoj-129/">アルゴリズムの勉強: 幅優先探索[Ruby/Python][AOJ 129]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2014-05-06T22:10:00+09:00" pubdate data-updated="true">May 6<span>th</span>, 2014</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/breadth-first-search-algorithm-aoj-129/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4048869558/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048869558&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048869558&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048869558" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />プログラミングの基礎固めと、Pythonの勉強を兼ねてアルゴリズムを勉強中です。今回は『<strong><a href="http://ja.wikipedia.org/wiki/%E5%B9%85%E5%84%AA%E5%85%88%E6%8E%A2%E7%B4%A2">幅優先探索</a></strong>』を勉強しました。AIZU Online Judgeで対応している問題は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0121">Seven Puzzle</a></strong>』です。基礎的なアルゴリズムのはずですが、ちゃんと組み込むのにかなり苦労しました。また複数言語を勉強しているおかげで、より効率的な組み方をいろんな言語で考えられるのは楽しいですね＾＾</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/breadth-first-search-algorithm-aoj-129/">続きを読む</a>
     </footer>
   
 
