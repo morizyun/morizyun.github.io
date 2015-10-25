@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-10-25T10:44:25+09:00</updated>
+  <updated>2015-10-25T11:01:01+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -16,9 +16,9 @@
   <entry>
     <title type="html"><![CDATA[rbenv を update して最新のRuby バージョンをインストール[Homebrew]]]></title>
     <link href="http://morizyun.github.io/blog/rbenv-update-brew-new-ruby-version/"/>
-    <updated>2015-10-25T10:45:00+09:00</updated>
+    <updated>2015-10-25T11:00:00+09:00</updated>
     <id>http://morizyun.github.io/blog/rbenv-update-brew-new-ruby-version</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117194/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117194&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117194&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117194" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />MacでRuby/Railsの開発をしていると定期的にローカルのRubyのバージョンアップをする事になります。
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117437&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117437" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />MacでRuby/Railsの開発をしていると定期的にローカルのRubyのバージョンアップをする事になります。
 Homebrewでrbenv, rbenv-buildをインストールしている環境で最新の Ruby バージョンをインストールするための手順をたまに困るのでメモしておきます。</p>
 
 <!-- more -->
@@ -42,7 +42,7 @@ Homebrewでrbenv, rbenv-buildをインストールしている環境で最新の
 </div>
 
 
-
+<h2>rbenv-buildのアップデート手順</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -81,7 +81,7 @@ Homebrewでrbenv, rbenv-buildをインストールしている環境で最新の
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>rbenvのインストール手順</h2>
+<h2>rbenvの新規インストール手順</h2>
 
 <p>Macへのrbenvのインストールがまだの場合はこちらをご覧ください。</p>
 
