@@ -10,7 +10,7 @@
 
   
   <meta name="description" content="
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第4回はCentOSへのipv6の停止/日本語化/denyhostsのインストールです。セキュリティの強化と日本語対応をごった煮にしてみましたw ">
+さくらVPS 2GB SSDのCentOS 6.4にApacheを導入するための手順です。Apacheは最もメジャーなWebサーバの一つで、競合にはNginxがあります。Webサーバはミッション・クリティカルなので、エンジニアさんの慣れた方をチョイスして下さい。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,7 +49,7 @@
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
 <meta property="og:description" content="
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第4回はCentOSへのipv6の停止/日本語化/denyhostsのインストールです。セキュリティの強化と日本語対応をごった煮にしてみましたw " />
+さくらVPS 2GB SSDのCentOS 6.4にApacheを導入するための手順です。Apacheは最もメジャーなWebサーバの一つで、競合にはNginxがあります。Webサーバはミッション・クリティカルなので、エンジニアさんの慣れた方をチョイスして下さい。 " />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/23/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -97,6 +97,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/apache-setup-sakura-vps-centos63/">さくらVPS/Cent OS 6.4 Apache 2.2導入[Railsサーバへの道]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-09-22T15:10:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/apache-setup-sakura-vps-centos63/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774154083/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774154083&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774154083&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774154083" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+さくらVPS 2GB SSDのCentOS 6.4にApacheを導入するための手順です。Apacheは最もメジャーなWebサーバの一つで、競合にはNginxがあります。Webサーバはミッション・クリティカルなので、エンジニアさんの慣れた方をチョイスして下さい。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/apache-setup-sakura-vps-centos63/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -539,55 +587,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/kindle-book-1-minion-sell-review-book/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/scrum-agile-xp-book-review/">SCRUM/アジャイル開発の入門資料を全力でまとめてみた</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-09-01T13:00:00+09:00" pubdate data-updated="true">Sep 1<span>st</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/scrum-agile-xp-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798129712&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798129712" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="/blog/agile-samurai-review-book/">アジャイルサムライ－達人開発者への道－</a></strong>』に続いて、アジャイル開発のバイブル的書籍『<strong><a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798129712&amp;linkCode=as2&amp;tag=morizyun00-22">SCRUM BOOT CAMP</a></strong>』を読みました。SCRUMの実践的な知識を漫画をおりまぜながら、本当にわかりやすく書いている良本でした。これから何度も読み直して、アジャイルの習得に努めます！</p>
-
-<p>ということで、今回は書籍を読む過程であつめたSCRUMやアジャイル開発に関するスライドやPDF、ブログ記事などをまとめていきます！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/scrum-agile-xp-book-review/">続きを読む</a>
     </footer>
   
 
