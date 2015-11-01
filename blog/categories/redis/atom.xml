@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Redis | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/redis/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T10:46:09+09:00</updated>
+  <updated>2015-11-01T10:47:17+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -16,12 +16,12 @@
   <entry>
     <title type="html"><![CDATA[Railsのマスタ的なModelのキャッシュについて[Redis]]]></title>
     <link href="http://morizyun.github.io/blog/model-master-cache-rails-redis/"/>
-    <updated>2015-11-01T10:30:00+09:00</updated>
+    <updated>2015-11-01T10:45:00+09:00</updated>
     <id>http://morizyun.github.io/blog/model-master-cache-rails-redis</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117437&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117437" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsで中規模なサイトを作っていく上で
 避けて通れないのが、増えてきたモデルを適切にキャッシュする仕組みのように思えます。</p>
 
-<p>特に変更が少ないマスタ的なテーブルに対して、『多対多』でassosiationがある場合などは、
+<p>特に変更が少ないマスタ的なテーブルに対して、『多対多』で<code>関連付け(アソシエーション: association)</code>がある場合などは、
 それなりのSQLの発行コストになる事があります。そこを適切にキャッシュすることでDBへの負荷が減り、
 ユーザーへのレスポンスが改善されると思います。</p>
 
