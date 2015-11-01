@@ -390,7 +390,7 @@ Railsすごいな&#8230; (一部の環境でArelまでしかキャッシュさ�
 </span><span class='line'>    <span class="no">CACHE_EXPIRE_IN</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">freeze</span> <span class="c1"># キャッシュを保持する時間</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="c1"># キャッシュされた値を取得するメソッドが呼び出されたタイミングで、</span>
-</span><span class='line'>    <span class="c1"># そのメソッドが定義されていない場合のみ、このメソッドを呼び出す</span>
+</span><span class='line'>    <span class="c1"># そのメソッドが定義されていない場合のみ、メソッドを定義する</span>
 </span><span class='line'>    <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="nb">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
 </span><span class='line'>      <span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="nb">self</span><span class="o">::</span><span class="no">CACHED_COLUMNS</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">is_cached_method?</span><span class="p">(</span><span class="nb">method</span><span class="p">)</span>
 </span><span class='line'>        <span class="n">define_singleton_method</span> <span class="nb">method</span> <span class="k">do</span> <span class="o">|</span><span class="n">arg_id</span><span class="o">|</span>

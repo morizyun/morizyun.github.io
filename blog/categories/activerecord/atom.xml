@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ActiveRecord | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/activerecord/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T10:42:13+09:00</updated>
+  <updated>2015-11-01T10:43:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -200,7 +200,7 @@ Railsすごいな... (一部の環境でArelまでしかキャッシュされな
 <pre><code>CACHE_EXPIRE_IN = 1.hour.freeze # キャッシュを保持する時間
 
 # キャッシュされた値を取得するメソッドが呼び出されたタイミングで、
-# そのメソッドが定義されていない場合のみ、このメソッドを呼び出す
+# そのメソッドが定義されていない場合のみ、メソッドを定義する
 def method_missing(method, *args, &amp;block)
   if defined?(self::CACHED_COLUMNS) &amp;&amp; is_cached_method?(method)
     define_singleton_method method do |arg_id|
