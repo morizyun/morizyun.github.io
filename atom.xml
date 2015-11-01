@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T10:47:17+09:00</updated>
+  <updated>2015-11-01T10:48:22+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -76,7 +76,7 @@ Redisに<code>xxx</code>というキーがない場合は中の処理を実行�
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">array</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;xxx&#39;</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'>  <span class="o">[</span><span class="s2">&quot;hoge&quot;</span><span class="p">,</span> <span class="s2">&quot;fuuuga&quot;</span><span class="o">]</span> <span class="c1"># 実際は重い処理</span>
+</span><span class='line'>  <span class="o">[</span><span class="s2">&quot;hoge&quot;</span><span class="p">,</span> <span class="s2">&quot;fuga&quot;</span><span class="o">]</span> <span class="c1"># 実際には重い処理</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'><span class="nb">puts</span> <span class="n">array</span><span class="o">.</span><span class="n">to_s</span> <span class="c1">#=&gt; [&quot;hoge&quot;, &quot;fuga&quot;]</span>
 </span><span class='line'>
