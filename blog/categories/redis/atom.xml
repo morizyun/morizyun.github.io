@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Redis | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/redis/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T10:53:48+09:00</updated>
+  <updated>2015-11-01T10:55:34+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -242,9 +242,9 @@ end
 ```</p>
 
 <p>でこれを使うモデルでは <code>CACHED_COLUMNS</code> を追加するとき、
-もしくは、キャッシュを呼び出すメソッド 使うときは必ず RSpec 書くって運用はどうでしょう？</p>
+もしくは、キャッシュを呼び出すメソッド 使うときは必ずテスト(<code>RSpec</code>)書くって運用はどうでしょう？</p>
 
-<p>この辺りの運用でよりいいプラクティスとかあればぜひ教えてほしいです＞＜</p>
+<p>この辺りの実装でよりいいプラクティスとかあればぜひ教えてほしいです＞＜</p>
 
 <br style="clear:both;"/>
 
