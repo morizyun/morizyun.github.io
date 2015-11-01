@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T10:48:22+09:00</updated>
+  <updated>2015-11-01T10:53:48+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -239,6 +239,8 @@ Railsすごいな&#8230; (一部の環境でArelまでしかキャッシュさ�
 <span class='line-number'>57</span>
 <span class='line-number'>58</span>
 <span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># キャッシュ制御に関するモジュール</span>
 </span><span class='line'><span class="c1">#</span>
 </span><span class='line'><span class="c1"># ■ 背景・目的</span>
@@ -259,6 +261,8 @@ Railsすごいな&#8230; (一部の環境でArelまでしかキャッシュさ�
 </span><span class='line'>  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">module</span> <span class="nn">ClassMethods</span>
+</span><span class='line'>    <span class="no">CACHE_EXPIRE_IN</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">freeze</span> <span class="c1"># キャッシュをクリアする秒数</span>
+</span><span class='line'>
 </span><span class='line'>    <span class="c1"># キャッシュされた値を取得するメソッドが呼び出されたタイミングで、</span>
 </span><span class='line'>    <span class="c1"># そのメソッドが定義されていない場合のみ、メソッドを定義する</span>
 </span><span class='line'>    <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="nb">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
@@ -275,7 +279,7 @@ Railsすごいな&#8230; (一部の環境でArelまでしかキャッシュさ�
 </span><span class='line'>
 </span><span class='line'>    <span class="c1"># キャッシュされたハッシュ</span>
 </span><span class='line'>    <span class="k">def</span> <span class="nf">cached_hash</span>
-</span><span class='line'>      <span class="no">Rails</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;/models/cache_support/</span><span class="si">#{</span><span class="nb">self</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">underscore</span><span class="si">}</span><span class="s2">/cached_hash&quot;</span><span class="p">,</span> <span class="n">expires_in</span><span class="p">:</span> <span class="mi">1</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>      <span class="no">Rails</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;/models/cache_support/</span><span class="si">#{</span><span class="nb">self</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">underscore</span><span class="si">}</span><span class="s2">/cached_hash&quot;</span><span class="p">,</span> <span class="n">expires_in</span><span class="p">:</span> <span class="no">CACHE_EXPIRE_IN</span><span class="p">)</span> <span class="k">do</span>
 </span><span class='line'>        <span class="nb">self</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="o">*</span><span class="n">cached_columns</span><span class="p">)</span>
 </span><span class='line'>            <span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="no">Hash</span><span class="o">[*</span><span class="n">cached_columns</span><span class="o">.</span><span class="n">zip</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="o">]</span> <span class="p">}</span>
 </span><span class='line'>            <span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">[</span><span class="n">_</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">,</span> <span class="n">_</span><span class="o">.</span><span class="n">except</span><span class="p">(</span><span class="ss">:id</span><span class="p">)</span><span class="o">]</span> <span class="p">}</span><span class="o">.</span><span class="n">to_h</span>
