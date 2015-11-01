@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Meteor | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/meteor/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T17:29:26+09:00</updated>
+  <updated>2015-11-01T17:34:19+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -53,10 +53,11 @@
 
 <h2>Meteor Package promise の導入</h2>
 
-<p>パッケージを導入。</p>
+<p>パッケージを導入。(ejsonもいるっぽいです)</p>
 
 <p><code>bash
 meteor add deanius:promise
+meteor add ejson
 </code></p>
 
 <p>次にclient側のjsに以下の処理を追加。</p>
