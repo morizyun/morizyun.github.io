@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T10:59:58+09:00</updated>
+  <updated>2015-11-01T11:05:12+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -103,8 +103,7 @@ Redisに<code>xxx</code>というキーがない場合は中の処理を実行�
 
 <h2>ActiveRecord::Relation.to_a (一回呼び出して)のキャッシュ</h2>
 
-<p>いよいよ本題です。よく使うけど大したレコード数ではないデータだったり、特定のカラム(nameとか)
-が欲しいだけだったりする場合に、<code>ActiveRecord::Relation.to_a</code>ってやるとキャッシュできるか試してみました。</p>
+<p>いよいよ本題です。まずは、<code>ActiveRecord::Relation.to_a</code>ってやるとキャッシュできるか試してみました。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
