@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Redis | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/redis/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T10:44:40+09:00</updated>
+  <updated>2015-11-01T10:46:09+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -197,9 +197,7 @@ Railsすごいな... (一部の環境でArelまでしかキャッシュされな
 
 <p>  module ClassMethods</p>
 
-<pre><code>CACHE_EXPIRE_IN = 1.hour.freeze # キャッシュを保持する時間
-
-# キャッシュされた値を取得するメソッドが呼び出されたタイミングで、
+<pre><code># キャッシュされた値を取得するメソッドが呼び出されたタイミングで、
 # そのメソッドが定義されていない場合のみ、メソッドを定義する
 def method_missing(method, *args, &amp;block)
   if defined?(self::CACHED_COLUMNS) &amp;&amp; is_cached_method?(method)
@@ -215,7 +213,7 @@ end
 
 # キャッシュされたハッシュ
 def cached_hash
-  Rails.cache.fetch("/models/cache_support/#{self.to_s.underscore}/cached_hash", expires_in: CACHE_EXPIRE_IN) do
+  Rails.cache.fetch("/models/cache_support/#{self.to_s.underscore}/cached_hash", expires_in: 1.hour) do
     self.pluck(*cached_columns)
         .map { |_| Hash[*cached_columns.zip(_).flatten] }
         .map { |_| [_[:id], _.except(:id)] }.to_h
