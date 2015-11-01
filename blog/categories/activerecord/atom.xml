@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ActiveRecord | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/activerecord/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T10:43:37+09:00</updated>
+  <updated>2015-11-01T10:44:40+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -123,7 +123,7 @@ Railsすごいな... (一部の環境でArelまでしかキャッシュされな
 <ul>
 <li>ActiveRecord、まじ洗練されててすごい。でもその分、レコード数、カラム数が多くなるとオブジェクトの生成コストつらい気がする</li>
 <li>パフォーマンス保つためにも できるだけ SQL は発行したくないよね</li>
-<li>仮に N+1 をさけて、include しても DB側のSQLのコストはそれなりに高いと思う(index次第だけど)
+<li>仮に N+1 をさけて、include しても DB側のSQLのコストはそれなりに高い(index次第だけど)
 
 <ul>
 <li>SQLの発行コストや発生頻度は常に意識する必要がある</li>
@@ -241,7 +241,7 @@ end
 end
 ```</p>
 
-<p>でこれを使うモデルでは CACHED_COLUMNS を追加するとき、
+<p>でこれを使うモデルでは <code>CACHED_COLUMNS</code> を追加するとき、
 もしくは、キャッシュを呼び出すメソッド 使うときは必ず RSpec 書くって運用はどうでしょう？</p>
 
 <p>この辺りの運用でよりいいプラクティスとかあればぜひ教えてほしいです＞＜</p>
