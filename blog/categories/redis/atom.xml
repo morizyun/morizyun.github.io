@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Redis | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/redis/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-01T17:48:26+09:00</updated>
+  <updated>2015-11-08T10:10:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Railsのマスタ的なModelのキャッシュについて[Redis]]]></title>
     <link href="http://morizyun.github.io/blog/model-master-cache-rails-redis/"/>
-    <updated>2015-11-01T10:45:00+09:00</updated>
+    <updated>2015-11-08T10:10:00+09:00</updated>
     <id>http://morizyun.github.io/blog/model-master-cache-rails-redis</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00SF6JN4K/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00SF6JN4K&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00SF6JN4K&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00SF6JN4K" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsで中規模なサイトを作っていく上で
 避けて通れないのが、増えてきたモデルを適切にキャッシュする仕組みのように思えます。</p>
@@ -165,83 +165,155 @@ Railsすごいな... (一部の環境でArelまでしかキャッシュされな
 
 <h1>■ 背景・目的</h1>
 
-<h1>- ActiveRecord便利なんだけど name 取得だけなのに SQLを発行しすぎな気がする</h1>
+<h1>- ActiveRecord便利なんだけど name とるだけなのに SQLを発行しすぎとか気になるます</h1>
 
-<h1>- model自体に大したレコード数がない場合 &amp; 特定の値を取りだけの場合、</h1>
-
-<h1>=> この機能を使って Redis にキャッシュしましょう</h1>
-
-<h1>=> 上の条件を満たさない場合は使わない方が幸せだと思います</h1>
+<h1>- model自体に大したレコード数がない場合は、この機能を使ってキャッシュしましょう</h1>
 
 <p>#</p>
 
 <h1>■ 制約条件</h1>
 
-<h1>- id(Integer) のないテーブルでは使えません</h1>
+<h1>- id のないテーブルでは使えません</h1>
 
-<h1>- キャッシュは CACHE_EXPIRE_IN (1時間) でクリアされます</h1>
+<h1>- キャッシュは1時間でクリアされます</h1>
+
+<p>#</p>
+
+<h1>■ お願い</h1>
+
+<h1>- 定期的な更新があるようなデータを取り扱う場合は、after_save / after_destroy とかで、</h1>
+
+<h1>キャッシュをクリアする機構を取り付けてください</h1>
 
 <p>#</p>
 
 <h1>■ 使い方</h1>
 
-<h1>- (1) Model にこのモジュールを include</h1>
+<h1>△ 前提</h1>
 
-<h1>- (2) キャッシュしたいカラムを CACHED_COLUMNS = %i(xxx) とmodelに定義</h1>
+<h1>- Model にこのモジュールを include</h1>
 
-<h1>- (3) Class.cached_xxx_of(id) って呼び出す</h1>
+<p>#</p>
 
-<p>module CacheSupport
+<h1>△ キャッシュから特定のcolumn(xxx)の値を取得する</h1>
+
+<h1>- Class.cached_xxx_of(id) って呼び出す</h1>
+
+<p>#</p>
+
+<h1>△ キャッシュから特定id の ActiveRecord を取得する</h1>
+
+<h1>- Class.cached_record_of(id) って呼び出す</h1>
+
+<p>#</p>
+
+<h1>△ キャッシュから全レコード(ActiveRecord) を取得する</h1>
+
+<h1>- Class.cached_all_records って呼び出す</h1>
+
+<p>#
+module CacheSupport
   extend ActiveSupport::Concern</p>
 
 <p>  module ClassMethods</p>
 
-<pre><code>CACHE_EXPIRE_IN = 1.hour.freeze # キャッシュをクリアする秒数
-
-# キャッシュされた値を取得するメソッドが呼び出されたタイミングで、
-# そのメソッドが定義されていない場合のみ、メソッドを定義する
-def method_missing(method, *args, &amp;block)
-  if defined?(self::CACHED_COLUMNS) &amp;&amp; is_cached_method?(method)
-    define_singleton_method method do |arg_id|
-      column = method.to_s.scan(/^cached_(.+)_of$/).flatten.first
-      cached_hash[arg_id.to_i].try(:fetch, column.to_sym)
+<pre><code># ------------------------------------------------------------------
+# Public Class Methods
+# ------------------------------------------------------------------
+# キャッシュされた値を取得するメソッド(cached_xxx_of)を必要なタイミングで動的に生成
+def method_missing(method_name, *args, &amp;block)
+  if cache_method?(method_name)
+    define_singleton_method(method_name) do |arg_id|
+      column = method_name.to_s.scan(/^cached_(.*)_of$/).flatten.first
+      refresh_cache! if need_refresh? # キャッシュを更新
+      Rails.cache.fetch(cache_key_record(arg_id)).try(column.to_sym)
     end
-    public_send(method, args.first)
+    public_send(method_name, *args)
   else
     super
   end
 end
 
-# キャッシュされたハッシュ
-def cached_hash
-  Rails.cache.fetch("/models/cache_support/#{self.to_s.underscore}/cached_hash", expires_in: CACHE_EXPIRE_IN) do
-    self.pluck(*cached_columns)
-        .map { |_| Hash[*cached_columns.zip(_).flatten] }
-        .map { |_| [_[:id], _.except(:id)] }.to_h
-  end
+# Logic for this method MUST match that of the detection in method_missing
+# - http://docs.ruby-lang.org/ja/2.2.0/method/Object/i/respond_to_missing=3f.html
+# - https://robots.thoughtbot.com/always-define-respond-to-missing-when-overriding
+# @return [Boolean]
+def respond_to_missing?(method_name, include_private = false)
+  cache_method?(method_name) || super
+end
+
+# キャッシュされたレコードを返すメソッド
+def cached_record_of(id)
+  refresh_cache! if need_refresh? # キャッシュを更新
+  Rails.cache.fetch(cache_key_record(id))
+end
+
+# 全てのレコードを返すメソッド
+def cached_all_records
+  refresh_cache! if need_refresh? # キャッシュを更新
+  ids = Rails.cache.read(cache_key_ids)
+  cache_keys = ids.map { |id| cache_key_record(id) }
+  Rails.cache.read_multi(*cache_keys).values
 end
 
 private
-# キャッシュするカラムのリスト
-def cached_columns
-  self::CACHED_COLUMNS.dup.map(&amp;:to_sym).push(:id)
+# ------------------------------------------------------------------
+# Private Class Methods
+# ------------------------------------------------------------------
+# キャッシュを設定
+def refresh_cache!
+  # レコード単位のキャッシュ
+  self.all.each do |record|
+    Rails.cache.write(cache_key_record(record.id), record)
+  end
+
+  # idの配列をキャッシュ
+  Rails.cache.write(cache_key_ids, self.pluck(:id))
 end
 
-# キャッシュされている カラム を呼び出すメソッドなら true , 違えば false を返す
-def is_cached_method?(method)
-  self::CACHED_COLUMNS.each do |col|
+# キャッシュすべきなら true、キャッシュすべきでないなら false
+def need_refresh?
+  key = "/models/cache_support/need_refresh?/#{self.to_s.underscore}"
+  if Rails.cache.exist?(key, expires_in: 1.hour)
+    return false
+  else
+    Rails.cache.write(key, 1, expires_in: 1.hour)
+    return true
+  end
+end
+
+# キャッシュした値を取得するメソッドなら true, 異なれば false
+def cache_method?(method)
+  column_names.each do |col|
     return true if "cached_#{col}_of" == method.to_s
   end
   false
 end
+
+# レコード単位のキャッシュ名
+def cache_key_record(id)
+  "/models/cache_support/cache_key_record/#{self.to_s.underscore}/#{id}"
+end
+
+# id一覧のキャッシュ名
+def cache_key_ids
+  "/models/cache_support/cache_key_ids/#{self.to_s.underscore}"
+end
 </code></pre>
 
-<p>  end
-end
+<p>  end # ClassMethods
+end # CacheSupport
 ```</p>
 
-<p>でこれを使うモデルでは <code>CACHED_COLUMNS</code> を追加するとき、
-もしくは、キャッシュを呼び出すメソッド 使うときは必ずテスト(<code>RSpec</code>)書くって運用はどうでしょう？</p>
+<p>11/8に少し更新をしました。</p>
+
+<pre>
+- カラムを限定する仕組みを取りの時期ました。チームでの使いやすさを重視しました。
+- ハッシュではなく、ActiveRecordにしました。ActiveRecordに戻すコストはかかりますが、使いやすさ重視です。
+- キャッシュをレコード単位に変更しました。RedisのIOとハッシュに戻す部分のコストが大きかったので減らすのが目的です。
+- 全レコードを一括で取得するメソッドを追加しました。Rails.cache.read_multi 便利。
+</pre>
+
 
 <p>この辺りの実装でよりいいプラクティスとかあればぜひ教えてほしいです＞＜</p>
 
