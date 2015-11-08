@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="Railsのルーティングを確認するのは、rake routesですが処理が重くで表示されるまでに数秒かかったりします。(My PCが遅いだけかもw)そんな困ったを解決してくれるのが、『sextant』です。 ">
+  <meta name="description" content="RspecでWebアクセスをするクラスをテストする際にモックの機能を提供してくれるので有名なのが『webmock』です。ただアクセスするWebサイトの数が増えると、webmock用のデータ作成や管理が面倒になってしまいがちです。そんな時に助けてくれるのが、『VCR』です。 ちなみにこのGemは、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="Railsのルーティングを確認するのは、rake routesですが処理が重くで表示されるまでに数秒かかったりします。(My PCが遅いだけかもw)そんな困ったを解決してくれるのが、『sextant』です。 " />
+<meta property="og:description" content="RspecでWebアクセスをするクラスをテストする際にモックの機能を提供してくれるので有名なのが『webmock』です。ただアクセスするWebサイトの数が増えると、webmock用のデータ作成や管理が面倒になってしまいがちです。そんな時に助けてくれるのが、『VCR』です。 ちなみにこのGemは、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/28/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/webmock-vcr-gem-rails/">VCRを使うとRSpecのwebmockの作成が超絶楽になった！</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-02-18T14:00:00+09:00" pubdate data-updated="true">Feb 18<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/webmock-vcr-gem-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873114454/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873114454&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873114454&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873114454" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />RspecでWebアクセスをするクラスをテストする際にモックの機能を提供してくれるので有名なのが『<strong><a href="https://github.com/bblimke/webmock">webmock</a></strong>』です。ただアクセスするWebサイトの数が増えると、webmock用のデータ作成や管理が面倒になってしまいがちです。そんな時に助けてくれるのが、『<strong><a href="https://github.com/vcr/vcr">VCR</a></strong>』です。</p>
+
+<p>ちなみにこのGemは、アジャイル/TDD系で有名なHIROCASTERさんのブログ『<strong><a href="http://hiroki.jp/2013/02/14/6669/">webmockとvcrを利用してHTTPのmockを作成する | Act as Professional - hiroki.jp</a></strong>』を見て初めて知りました〜＾＾</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/webmock-vcr-gem-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -521,55 +570,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/sound-bgm-se-objective-c/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/postfix-centos-sakura-vps-aws/">さくらVPSのCentOS 6.3にメールサーバ Postfix/Dovecotをインストール</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-01-30T16:40:00+09:00" pubdate data-updated="true">Jan 30<span>th</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/postfix-centos-sakura-vps-aws/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="/blog/postfix-centos-sakura-vps-aws/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8057/8271532174_88676a643d_m.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>さくらVPSのCentOS 6.3にメールサーバをPostfixで構築する手順です。メールサーバは安定して運用するのが、なかなか大変でハードルは高いと聞きますが、だからこそ運用スキルを高めるためにチャレンジしてみます！</p>
-
-<p>この記事は、<strong><a href="/blog/centos63-sakura-vps-rails-setup-guide/">CentOS 6.3にRailsサーバを構築する手順</a></strong>の中の記事の一つです。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/postfix-centos-sakura-vps-aws/">続きを読む</a>
     </footer>
   
 

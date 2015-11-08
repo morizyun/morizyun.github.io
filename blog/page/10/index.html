@@ -9,8 +9,8 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="位置情報を使うようなサービスで、ある緯度経度を中心として、その場所から一定距離の範囲内の緯度経度を持つレコードを抽出したいといったユースケースがあると思います。
-そんな時にもGem『alexreisner/geocoder』がめっちゃ便利だったので共有です。 「 &hellip;">
+  <meta name="description" content="iOSアプリを開発して、テストユーザーに配布をするのに便利なのが『TestFlight』です。
+今回はIPAを配布するときの手順のところで結構ハマったので、今後のためにハマらないようにするためのメモです！ ちなみに、このやり方は先日『TimeTicket』で「@happy_ryo」 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -48,8 +48,8 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="位置情報を使うようなサービスで、ある緯度経度を中心として、その場所から一定距離の範囲内の緯度経度を持つレコードを抽出したいといったユースケースがあると思います。
-そんな時にもGem『alexreisner/geocoder』がめっちゃ便利だったので共有です。 「 &hellip;" />
+<meta property="og:description" content="iOSアプリを開発して、テストユーザーに配布をするのに便利なのが『TestFlight』です。
+今回はIPAを配布するときの手順のところで結構ハマったので、今後のためにハマらないようにするためのメモです！ ちなみに、このやり方は先日『TimeTicket』で「@happy_ryo」 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/10/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -97,6 +97,60 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/testflight-user-test-provisioning-distribustion/">TestFlight でIPAを作る手順のメモ [Objetive-C]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-08-12T23:45:00+09:00" pubdate data-updated="true">Aug 12<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/testflight-user-test-provisioning-distribustion/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00JNTZ89W/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00JNTZ89W&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00JNTZ89W&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00JNTZ89W" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+iOSアプリを開発して、テストユーザーに配布をするのに便利なのが『<strong><a href="https://testflightapp.com">TestFlight</a></strong>』です。
+今回はIPAを配布するときの手順のところで結構ハマったので、今後のためにハマらないようにするためのメモです！</p>
+
+<p>ちなみに、このやり方は先日『<strong><a href="https://www.timeticket.jp/inbox">TimeTicket</a></strong>』で「<strong><a href="https://twitter.com/happy_ryo">@happy_ryo</a></strong>」さんにお時間を頂いてコードレビューをしている過程で教えていただいた方法です。
+ずっと一人で開発していたので、２時間ほんとうに色々とTipsを教えて頂きました。めっちゃ、ありがとうございました！</p>
+
+<p>「<strong><a href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/">アルバイトを10秒で探せるiPhone/Androidアプリ Short.Works</a></strong>」のアプリの配布に大活躍する予定でっす！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/testflight-user-test-provisioning-distribustion/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -550,54 +604,6 @@ Objective-Cを触っていて、最近良くこのあたりの挙動にはまっ
   
     <footer>
       <a rel="full-article" href="/blog/ssl-store-nginx-conf-webapp-introduction/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/zoho-mail-original-domain-pop-smtp-free/">Zoho Mail 無料で独自ドメインのメールの送受信をスタートできる[pop/stmp付き]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2014-07-30T09:45:00+09:00" pubdate data-updated="true">Jul 30<span>th</span>, 2014</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/zoho-mail-original-domain-pop-smtp-free/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4822262960/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822262960&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822262960&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822262960" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-独自ドメインのメールを無料(有料もあり)でホストできる『<strong><a href="https://www.zoho.com/">Zoho Mail</a></strong>』の紹介です。Google Appが有料になったので、最近めちゃくちゃお世話になっています。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/zoho-mail-original-domain-pop-smtp-free/">続きを読む</a>
     </footer>
   
 

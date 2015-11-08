@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="GoFのデザインパターン(Design Pattern)のアダプタ(Adapter) をRubyによるサンプルコードで紹介します。 アダプタは既存のインタフェースとの橋渡しをするためのデザインパターンです。 アダプタは現実世界の変換コネクタのようなものです。 &hellip;">
+  <meta name="description" content="GoFのデザインパターン(Design Pattern)のプロキシ(Proxy)をRubyのサンプルコードで紹介します。 プロクシパターンは1つのオブジェクトに複数の関心事がある場合にそれを分離するために用います。例えば、オブジェクトの本質的な目的とは異なる「 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="GoFのデザインパターン(Design Pattern)のアダプタ(Adapter) をRubyによるサンプルコードで紹介します。 アダプタは既存のインタフェースとの橋渡しをするためのデザインパターンです。 アダプタは現実世界の変換コネクタのようなものです。 &hellip;" />
+<meta property="og:description" content="GoFのデザインパターン(Design Pattern)のプロキシ(Proxy)をRubyのサンプルコードで紹介します。 プロクシパターンは1つのオブジェクトに複数の関心事がある場合にそれを分離するために用います。例えば、オブジェクトの本質的な目的とは異なる「 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/33/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-design-pattern-08-proxy/">プロキシ Ruby 2.0.0 デザインパターン速攻習得[Proxy][Design Pattern]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-09T12:05:00+09:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-design-pattern-08-proxy/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4894712857/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4894712857&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4894712857&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="200" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4894712857" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+GoFのデザインパターン(Design Pattern)のプロキシ(Proxy)をRubyのサンプルコードで紹介します。</p>
+
+<p>プロクシパターンは1つのオブジェクトに複数の関心事がある場合にそれを分離するために用います。例えば、オブジェクトの本質的な目的とは異なる「セキュリティ要件やトランザクション管理など」を切り離して実装することができます。</p>
+
+<p>サッカーが専門の「サッカー選手」と、チームとの交渉や契約が専門の「代理人」のような関係です。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/ruby-design-pattern-08-proxy/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -566,57 +618,6 @@ GoFのデザインパターン(Design Pattern)のストラテジー(Strategy)の
   
     <footer>
       <a rel="full-article" href="/blog/twitter-bootsrap-modal/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/git-gitignore-github/">GitHubの.gitignoreテンプレート(多数のフレームワークに対応)</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2012-12-06T13:25:00+09:00" pubdate data-updated="true">Dec 6<span>th</span>, 2012</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/git-gitignore-github/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="/blog/git-gitignore-github/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8347/8250062770_8e6b8160cc_m.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
-
-<p>恥ずかしながら、GitHubに<code>.gitignore</code>のテンプレートがあることを今日知りました。各フレームワーク分それぞれのテンプレートがあるので、自分の環境似あわせてチョイスできます。これは捗りますね！</p>
-
-<p><a href="https://github.com/github/gitignore" class="button big primary">GitHub/gitignore</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/git-gitignore-github/">続きを読む</a>
     </footer>
   
 
