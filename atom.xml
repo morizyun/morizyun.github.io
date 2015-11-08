@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-08T15:00:52+09:00</updated>
+  <updated>2015-11-08T23:09:34+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -153,6 +153,19 @@ Railsって「Railsチュートリアル」には書いてないのに覚えな�
 <li><a href="http://railsguides.jp/i18n.html">Rails国際化(I18n) API | Rails ガイド</a></li>
 <li><a href="http://morizyun.github.io/blog/i18n-english-rails-ruby-many-languages/">Railsの多言語化対応 i18nのやり方を整理してみた！</a></li>
 <li><a href="http://ruby-rails.hatenadiary.com/entry/20150226/1424937175">Railsのi18nの基本的な使い方まとめ - Rails Webook</a></li>
+</ul>
+
+
+<h3>N+1問題の対策 - Bullet</h3>
+
+<p>RailsのActiveRecord(findやwhere)は便利ですが、DB(SQL)の側から見ると
+非効率的なクエリを発生させることがあります。
+これを監視して警告を出してくれるのが、『<strong><a href="https://github.com/flyerhzm/bullet">Gem Bullet</a></strong>』です。
+このGemを入れておくと開発環境で N+1が発生した時に警告を出してくれます。</p>
+
+<ul>
+<li><a href="http://www.techscore.com/blog/2012/12/25/rails%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E7%B4%B9%E4%BB%8B-n1%E5%95%8F%E9%A1%8C%E3%82%92%E6%A4%9C%E5%87%BA%E3%81%99%E3%82%8B%E3%80%8Cbullet%E3%80%8D/">Railsライブラリ紹介: N+1問題を検出する「bullet」</a></li>
+<li><a href="http://morizyun.github.io/blog/speed-up-rails-bullet/">[Rails 高速化] ページキャッシュ、N+1対策、SQLチューニング</a></li>
 </ul>
 
 
