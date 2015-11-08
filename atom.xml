@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-08T23:10:47+09:00</updated>
+  <updated>2015-11-08T23:21:25+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -160,7 +160,7 @@ Railsって「Railsチュートリアル」には書いてないのに覚えな�
 
 <p>RailsのActiveRecord(findやwhere)は便利ですが、DB(SQL)の側から見ると
 非効率的なクエリを発生させることがあります。
-これを監視して警告を出してくれるのが、『<strong><a href="https://github.com/flyerhzm/bullet">Gem Bullet</a></strong>』です。
+これを監視してくれるのが、『<strong><a href="https://github.com/flyerhzm/bullet">Gem Bullet</a></strong>』です。
 このGemを入れておくと開発環境で N+1が発生した時に警告を出してくれます。</p>
 
 <ul>
