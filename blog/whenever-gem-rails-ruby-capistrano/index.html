@@ -117,7 +117,7 @@
 
 
 
-        <time datetime="2014-11-02T15:25:00+09:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2014</time>
+        <time datetime="2015-11-15T17:15:00+09:00" pubdate data-updated="true">Nov 15<span>th</span>, 2015</time>
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
@@ -284,6 +284,22 @@ script: scriptの実行
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>Corntabへの設定</h2>
+
+<p>crontab に設定する際のコマンドは以下のとおり。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># wheneverの設定更新
+</span><span class='line'>RAILS_ENV=development bundle exec whenever --update-crontab
+</span><span class='line'>
+</span><span class='line'># crontabの設定削除
+</span><span class='line'>RAILS_ENV=development bundle exec whenever --clear-crontab</span></code></pre></td></tr></table></div></figure>
+
+
 <p>詳しい設定方法はGitHubの公式ページへ。</p>
 
 <p><a href="https://github.com/javan/whenever" title="javan/whenever · GitHub" class="button big primary">javan/whenever · GitHub</a></p>
@@ -325,7 +341,8 @@ script: scriptの実行
 (13/01/08 23:50) 「補足：複数環境でwheneverを使いたい場合&#8230;」を修正<br/>
 (14/04/23 22:20) Rails4.1対応、全面書き直し！<br/>
 (14/07-10 20:15) 環境ごとにcronの設定を切り替える方法を追記<br/>
-(14/11-02 15:25) capistranoで環境ごとに処理を振り分ける方法がrvmのパスが変わってうまく動かなくなったので一度削除<br/></p>
+(14/11-02 15:25) capistranoで環境ごとに処理を振り分ける方法がrvmのパスが変わってうまく動かなくなったので一度削除<br/>
+(15/11-15 17:15) wheneverコマンドの記述を追加<br/></p>
 </div>
 
   <div>
@@ -360,7 +377,7 @@ script: scriptの実行
   
 
 
-<time datetime="2014-11-02T15:25:00+09:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2014</time>
+<time datetime="2015-11-15T17:15:00+09:00" pubdate data-updated="true">Nov 15<span>th</span>, 2015</time>
       
 
 <span class="categories">
@@ -396,10 +413,8 @@ script: scriptの実行
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/rakutenc-technology-conference-2014/" title="Previous Post: Rakuten Technology Conference 2014 に行ってきたよ！">&laquo; Rakuten Technology Conference 2014 に行ってきたよ！</a>
+        <a class="basic-alignment left" href="/blog/acts-as-taggable-on-gem-rails/" title="Previous Post: acts-as-taggable-onでつくるタグクラウド＆効率的なタグ管理【Rails4.2 x Ruby2.2】">&laquo; acts-as-taggable-onでつくるタグクラウド＆効率的なタグ管理【Rails4.2 x Ruby2.2】</a>
       
-      
-        <a class="basic-alignment right" href="/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos/" title="Next Post: AWS/VULTR + AnsibleでベーシックなRailsサーバを簡単構築">AWS/VULTR + AnsibleでベーシックなRailsサーバを簡単構築 &raquo;</a>
       
     </p>
   </footer>
