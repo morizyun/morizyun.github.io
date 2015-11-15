@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-15T17:21:06+09:00</updated>
+  <updated>2015-11-15T17:44:44+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -16,9 +16,9 @@
   <entry>
     <title type="html"><![CDATA[Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.2]]]></title>
     <link href="http://morizyun.github.io/blog/whenever-gem-rails-ruby-capistrano/"/>
-    <updated>2015-11-15T17:15:00+09:00</updated>
+    <updated>2015-11-15T17:35:00+09:00</updated>
     <id>http://morizyun.github.io/blog/whenever-gem-rails-ruby-capistrano</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00MALTGDY/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00MALTGDY&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00MALTGDY&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00MALTGDY" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />wheneverはcrontab管理ライブラリです。導入はすごく簡単ですし、RailsやCapistranoとの連携もスムーズで楽ちんです！定期実行するような処理がある場合はぜひご検討ください！</p>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B016QEE30G/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B016QEE30G&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B016QEE30G&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B016QEE30G" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />wheneverはcrontab管理ライブラリです。導入はすごく簡単ですし、RailsやCapistranoとの連携もスムーズで楽ちんです！定期実行するような処理がある場合はぜひご検討ください！</p>
 
 <p><a href="https://github.com/javan/whenever" title="javan/whenever · GitHub" class="button big primary">javan/whenever · GitHub</a></p>
 
@@ -203,6 +203,12 @@ script: scriptの実行
 
 
 <p>あとは<code>cap deploy</code>のたびにcrontabをアプデートしてくれます。</p>
+
+<h2>capistrano/wheneverで環境ごとに設定を変更したい場合</h2>
+
+<p>以下の記事を見ながら設定すれば出来る気がします<sup>^</sup></p>
+
+<p><strong><a href="http://qiita.com/zaru/items/348c126a205a2e48b4d6">Rails - Wheneverで環境ごとにschedule内容を変更する</a></strong></p>
 
 <h2>Special Thanks</h2>
 
