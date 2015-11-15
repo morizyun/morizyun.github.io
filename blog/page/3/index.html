@@ -9,7 +9,9 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="プロダクトを作る時にFacebookやTwitter、GitHubのログイン機能を組み込むのはかなり普通に必要になってきました。そんな時にすごく便利なのが、この「minimum-omniauth-scaffold」です。 実際にハッカソンの中で初めて使いましたが、10〜 &hellip;">
+  <meta name="description" content="Rails/Rubyで大量のデータを一括で新規登録・更新スクリプト
+を書く場合は、ActiveRecordは生成コストが高くて、必ずしも向いていません。そんな状況での利用にオススメなのが、この
+『upsert』というGemです。 このGemがサポートしているデータベースは、MySQL、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +49,9 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="プロダクトを作る時にFacebookやTwitter、GitHubのログイン機能を組み込むのはかなり普通に必要になってきました。そんな時にすごく便利なのが、この「minimum-omniauth-scaffold」です。 実際にハッカソンの中で初めて使いましたが、10〜 &hellip;" />
+<meta property="og:description" content="Rails/Rubyで大量のデータを一括で新規登録・更新スクリプト
+を書く場合は、ActiveRecordは生成コストが高くて、必ずしも向いていません。そんな状況での利用にオススメなのが、この
+『upsert』というGemです。 このGemがサポートしているデータベースは、MySQL、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/3/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +99,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/upsert-ruby-gem-bulk-insert-upsert-postgresql/">「Upsert」 大量のデータを一括でInsert/UpdateするGem！</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2015-06-14T18:10:00+09:00" pubdate data-updated="true">Jun 14<span>th</span>, 2015</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/upsert-ruby-gem-bulk-insert-upsert-postgresql/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00YG8PXLI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00YG8PXLI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00YG8PXLI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00YG8PXLI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Rails/Rubyで大量のデータを一括で新規登録・更新スクリプト
+を書く場合は、ActiveRecordは生成コストが高くて、必ずしも向いていません。そんな状況での利用にオススメなのが、この
+『<strong><a href="https://github.com/seamusabshere/upsert">upsert</a></strong>』というGemです。</p>
+
+<p>このGemがサポートしているデータベースは、<code>MySQL、PostgreSQL、SQLite3</code>です。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/upsert-ruby-gem-bulk-insert-upsert-postgresql/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -565,57 +620,6 @@ Webサービスに関するセキュリティについて基礎をちゃんと�
   
     <footer>
       <a rel="full-article" href="/blog/connection-pooling-database-db-postgresql/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ios-human-interface-guidelines-apple-iphone-app/">AppleのiOSヒューマン・デザイン・ガイドライン読んだ！iPhone App開発者必読！</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2015-03-28T08:55:00+09:00" pubdate data-updated="true">Mar 28<span>th</span>, 2015</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ios-human-interface-guidelines-apple-iphone-app/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/477417064X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=477417064X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=477417064X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=477417064X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Appleが出しているiOSのデザインのガイドライン資料『<strong><a href="https://developer.apple.com/jp/documentation/UserExperience/Conceptual/MobileHIG/BasicsPart/BasicsPart.html">iOSヒューマンインターフェイスガイドライン</a></strong>』を読みました！</p>
-
-<p>公式のドキュメントだけど、端的でわかりやすいのでiPhoneアプリを開発する人にはぜひ読んでほしいドキュメントです。</p>
-
-<p>この資料に書かれているところで特に参考になる点を俺得メモで書きました！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/ios-human-interface-guidelines-apple-iphone-app/">続きを読む</a>
     </footer>
   
 
