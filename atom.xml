@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-15T19:40:37+09:00</updated>
+  <updated>2015-11-18T20:43:46+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,484 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[メタプログラミング Ruby 第2版 / 第4章 ブロック[勉強メモ]]]></title>
+    <link href="http://morizyun.github.io/blog/meta-programing-ruby-book-review-chapter4-block/"/>
+    <updated>2015-11-18T20:40:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/meta-programing-ruby-book-review-chapter4-block</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117437&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117437" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />メタプログラミングRubyを読んでいます。完全自分用のメモ記事です。
+第4章で特に参考になった部分を中心に書いています。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>4章 ブロック</h2>
+
+<h3>ブロックの基礎</h3>
+
+<p>メソッドに block を渡して、簡単に実行させることができます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">a_method</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">yield</span> <span class="k">if</span> <span class="nb">block_given?</span>
+</span><span class='line'>  <span class="s1">&#39;ブロックがありません&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">a_method</span> <span class="c1">#=&gt; ブロックがありません</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">a_method</span> <span class="p">{</span> <span class="s1">&#39;ブロックがあります！&#39;</span> <span class="p">}</span> <span class="c1">#=&gt; ブロックがあります！</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>用語: クロージャー</h3>
+
+<p>『<a href="http://language-and-engineering.hatenablog.jp/entry/20101118/p1">Rubyの動かないコード （初級編） ブロックとクロージャの性質 - 主に言語とシステム開発に関して</a>』
+の説明が非常に分かりやすかったので、お借りしました。まずはクロージャの説明。</p>
+
+<pre>
+- クロージャの外の(より広いスコープで定義された)変数はクロージャの中からでも参照可能
+- クロージャの中で定義された変数はクロージャの外からは参照できない。
+</pre>
+
+
+<p>これってつまりはブロックと同じようなものということ。</p>
+
+<pre>
+- Rubyのブロックは、ブロック定義時のコンテキスト(変数とか)を保持する
+- Rubyのブロック内で宣言された変数は、ブロック内でのみ参照可能な変数となる
+</pre>
+
+
+<h3>instance_eval</h3>
+
+<p><code>instance_eval</code>は、渡されたブロックをレシーバのインスタンスの元で実行します。
+private メソッドや@vなどのインスタンス変数にもアクセスできます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyClass</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@v</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">obj</span> <span class="o">=</span> <span class="no">MyClass</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">obj</span><span class="o">.</span><span class="n">instance_eval</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="nb">self</span> <span class="c1">#=&gt; &lt;MyClass:0x007ff9f89dcde0&gt;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="vi">@v</span> <span class="c1">#=&gt; 1</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>instance_exec</h3>
+
+<p>次の例は<code>instance_eval</code> だと、Cのインスタンス変数にしかアクセス出来ないが、
+<code>instance_exec</code> を使えば ブロックに引数を渡せます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">C</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@x</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">D</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">twisted_method</span>
+</span><span class='line'>    <span class="vi">@y</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="n">C</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">instance_eval</span> <span class="p">{</span> <span class="s2">&quot;@x : </span><span class="si">#{</span><span class="vi">@x</span><span class="si">}</span><span class="s2">, @y : </span><span class="si">#{</span><span class="vi">@y</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">D</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">twisted_method</span> <span class="c1">#=&gt; @x : 1, @y :</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">E</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">twisted_method</span>
+</span><span class='line'>    <span class="vi">@y</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span class='line'>    <span class="n">C</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">instance_exec</span> <span class="p">(</span><span class="vi">@y</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">y</span><span class="o">|</span> <span class="s2">&quot;@x : </span><span class="si">#{</span><span class="vi">@x</span><span class="si">}</span><span class="s2">, @y : </span><span class="si">#{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="n">E</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">twisted_method</span> <span class="c1">#=&gt; @x : 1, @y : 2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Procオブジェクト</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">inc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">}</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">inc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># =&gt; 3</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># lambdaの別記法</span>
+</span><span class='line'><span class="n">inc2</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">inc2</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#=&gt; 1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>＆修飾</h3>
+
+<p>ブロックを引数として渡したい場合によく使うのが <code>&amp;修飾</code>。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">math</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">yield</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">do_math</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">math</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># block を Proc(オブジェクト)に変換して渡す</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">do_math</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="p">}</span> <span class="c1">#=&gt; 5</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Procをブロックに戻す</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="n">greeting</span><span class="p">)</span>
+</span><span class='line'>  <span class="s2">&quot;</span><span class="si">#{</span><span class="n">greeting</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="k">yield</span><span class="si">}</span><span class="s2">!&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="nb">proc</span> <span class="p">{</span> <span class="s2">&quot;Bill&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">my_method</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">my_proc</span><span class="p">)</span> <span class="c1">#=&gt; &quot;Hello Bill!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>あとで評価の例</h3>
+
+<p><code>highline</code> は lambdaを渡すと、それをユーザーが質問に回答した後に実行してくれる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;highline&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">hl</span> <span class="o">=</span> <span class="no">HighLine</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">friends</span> <span class="o">=</span> <span class="n">hl</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;友達を入力してください&#39;</span><span class="p">,</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="p">})</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;友達一覧：</span><span class="si">#{</span><span class="n">friends</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># =&gt; 友達を入力してください</span>
+</span><span class='line'><span class="c1"># &lt;= hoge,fuga</span>
+</span><span class='line'><span class="c1"># =&gt; 友達一覧：[&quot;hoge&quot;, &quot;fuga&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Procとlambdaの差</h3>
+
+<p>Procとlambdaは次のような違いがある。lambdaのほうがメソッドに挙動が近いので、
+特別な事情がない限りはlambdaを使うほうが良さそう。</p>
+
+<pre>
+- Proc
+  - Procが定義されたスコープから戻る
+  - 引数が少なかったり、多すぎた場合によしなに処理をしてくれる
+- lambda
+  - return した場合、単に lambdaから戻る
+  - 引数の数が異なるとArgumentErrorを出す
+</pre>
+
+
+<h3>はじめてのDSL</h3>
+
+<p>DSLの初歩を実践してみる。まずは <code>redflag.rb</code> を作成する。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@setups</span> <span class="o">&lt;&lt;</span> <span class="n">block</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">event</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@events</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="n">description</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="n">block</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="vi">@setups</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="vi">@events</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="nb">load</span> <span class="s1">&#39;event.rb&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="vi">@events</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|</span>
+</span><span class='line'>  <span class="vi">@setups</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">setup</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">setup</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;ALERT: </span><span class="si">#{</span><span class="n">event</span><span class="o">[</span><span class="ss">:description</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">event</span><span class="o">[</span><span class="ss">:condition</span><span class="o">].</span><span class="n">call</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次に <code>event.rb</code> を作成する。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">setup</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;空の高さを設定&#39;</span>
+</span><span class='line'>  <span class="vi">@sky_height</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">setup</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;山の高さを設定&#39;</span>
+</span><span class='line'>  <span class="vi">@mountains_height</span> <span class="o">=</span> <span class="mi">200</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">event</span> <span class="s1">&#39;空が落ちてくる&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@sky_height</span> <span class="o">&lt;</span> <span class="mi">300</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">event</span> <span class="s1">&#39;空が近づいている&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@sky_height</span> <span class="o">&lt;</span> <span class="vi">@mountains_height</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">event</span> <span class="s1">&#39;もうダメだ....手遅れになってしまった...&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@sky_height</span> <span class="o">&lt;</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で実行すると次のような結果になる。</p>
+
+<pre>
+#=> 空の高さを設定
+#=> 山の高さを設定
+#=> ALERT: 空が落ちてくる
+#=> 空の高さを設定
+#=> 山の高さを設定
+#=> ALERT: 空が近づいている
+#=> 空の高さを設定
+#=> 山の高さを設定
+</pre>
+
+
+<p>期待する挙動はしているが、実質的なグローバル変数があり、他の仕組みに影響を与えてしまう可能性がある。</p>
+
+<h2>グローバル変数を排除した実装</h2>
+
+<p>グローバル変数を排除して、クリーンルームを使って実装したのがこちら。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">lambda</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">setups</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="n">events</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Kernel</span><span class="o">.</span><span class="n">send</span> <span class="ss">:define_method</span><span class="p">,</span> <span class="ss">:setup</span> <span class="k">do</span> <span class="o">|&amp;</span><span class="n">block</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">setups</span> <span class="o">&lt;&lt;</span> <span class="n">block</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Kernel</span><span class="o">.</span><span class="n">send</span> <span class="ss">:define_method</span><span class="p">,</span> <span class="ss">:event</span> <span class="k">do</span> <span class="o">|</span><span class="n">description</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">events</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="n">description</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="n">block</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Kernel</span><span class="o">.</span><span class="n">send</span> <span class="ss">:define_method</span><span class="p">,</span> <span class="ss">:each_setup</span> <span class="k">do</span> <span class="o">|&amp;</span><span class="n">block</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">setups</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">setup</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">block</span><span class="o">.</span><span class="n">call</span> <span class="n">setup</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="no">Kernel</span><span class="o">.</span><span class="n">send</span> <span class="ss">:define_method</span><span class="p">,</span> <span class="ss">:each_event</span> <span class="k">do</span> <span class="o">|&amp;</span><span class="n">block</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">events</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">block</span><span class="o">.</span><span class="n">call</span> <span class="n">event</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="p">}</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">load</span> <span class="s1">&#39;4.6.event.rb&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">each_event</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">env</span> <span class="o">=</span> <span class="no">Object</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="n">each_setup</span> <span class="k">do</span> <span class="o">|</span><span class="n">setup</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">env</span><span class="o">.</span><span class="n">instance_eval</span> <span class="o">&amp;</span><span class="n">setup</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;ALERT: </span><span class="si">#{</span><span class="n">event</span><span class="o">[</span><span class="ss">:description</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">env</span><span class="o">.</span><span class="n">instance_eval</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">event</span><span class="o">[</span><span class="ss">:condition</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 空の高さを設定</span>
+</span><span class='line'><span class="c1"># 山の高さを設定</span>
+</span><span class='line'><span class="c1"># ALERT: 空が落ちてくる</span>
+</span><span class='line'><span class="c1"># 空の高さを設定</span>
+</span><span class='line'><span class="c1"># 山の高さを設定</span>
+</span><span class='line'><span class="c1"># ALERT: 空が近づいている</span>
+</span><span class='line'><span class="c1"># 空の高さを設定</span>
+</span><span class='line'><span class="c1"># 山の高さを設定</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MacでSSHポートフォワーディング管理 Coccinellida & ローカルでrails console実行してサーバDBに接続]]></title>
@@ -4044,84 +4522,6 @@ iOS Simulator -> Hardware -> Keyboard ->「Connect Hardware Keyboard」のチェ
 <p><strong><a href="http://tnakamura.hatenablog.com/entry/2014/10/20/how_to_use_the_cocoapods_in_swift">Swift で CocoaPods を使う - present</a></strong></p>
 
 <p><strong><a href="http://paranishian.hateblo.jp/entry/xcode/keyboard-not-showing-in-ios-simulator">iOSシミュレータでキーボードが表示されない - paranitips</a></strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Realm Swift/objective-C/Android用のデータベース]]></title>
-    <link href="http://morizyun.github.io/blog/realm-swift-database-ios-smartphone/"/>
-    <updated>2015-06-21T18:40:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/realm-swift-database-ios-smartphone</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4797371145/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797371145&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797371145&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797371145" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Swiftやobjective-Cなどを使ったiOSのアプリ開発や、
-Javaを使ったAndroid開発で使えるローカルデータベースとして最近人気がある『<strong><a href="https://realm.io/jp/">Realm</a></strong>』の紹介です。</p>
-
-<p>今回はまだ触り始めたばかりであまり知見もないので、紹介記事へのリンクをメインにします。</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div>
-
-
-<h2>Realmの特徴</h2>
-
-<pre>
-* 使い方が簡単
-* ゼロコピーの設計なので速い
-* iOS、Androidでクロスプラットフォーム
-</pre>
-
-
-<h2>リンク集</h2>
-
-<h3>公式ドキュメント</h3>
-
-<p><strong><a href="https://realm.io/jp/docs/swift/latest/">Swift Docs - Realm is a mobile database: a replacement for SQLite &amp; Core Data</a></strong></p>
-
-<p>公式ドキュメント。日本人のコミッターもいるそうで、とにかくドキュメントがわかりやすいのも特徴の一つ。</p>
-
-<h3>Realm for Swift まとめ完全版</h3>
-
-<p><strong><a href="http://qiita.com/okitsutakatomo/items/9134c5fa8bd4384a2acf">Realm for Swift まとめ完全版</a></strong></p>
-
-<p>これだけ読んでも簡単な使い方ならわかるほどクオリティの高いまとめ。素晴らしすぎる。</p>
-
-<h3>Realmを使ってデータ管理</h3>
-
-<p><strong><a href="http://qiita.com/jtemplej/items/0443571fdbffbcea3e7f">Objective-C - Realmを使ってデータ管理【Swift編】-その2- - Qiita</a></strong><br/>
-<strong><a href="http://qiita.com/jtemplej/items/10ed4bc0cc6519682e6e">iOS - Realmを使ってデータ管理【Swift編】-その3- - Qiita</a></strong></p>
-
-<p>こちらもQiitaの記事ですが、Realmを使ってデータ管理するときに使いそうな細かいTipsが書かれている。Qiita素敵！</p>
-
-<div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div>
-
 ]]></content>
   </entry>
   
