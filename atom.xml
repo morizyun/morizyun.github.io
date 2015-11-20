@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-20T11:35:18+09:00</updated>
+  <updated>2015-11-20T17:44:47+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -101,7 +101,7 @@
 
 
 <p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。
-(<code>host</code>がなかった場合、localのsocketを探しに行ってしまうので、必ずhostはつけてください)</p>
+(<code>host</code>がなかった場合、localのsocketを探しに行ってしまうので、必ずhostは設定してください)</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>RAILS_ENV=remote bundle exec rails console</span></code></pre></td></tr></table></div></figure>
