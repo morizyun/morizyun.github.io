@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SSH | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ssh/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-20T10:19:44+09:00</updated>
+  <updated>2015-11-20T10:23:26+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -118,6 +118,14 @@ RAILS_ENV=remote bundle exec rails console
 <li><a href="http://qiita.com/ron214_ron/items/aa273baff030e253ae96">rails consoleにて、dbをproductionに接続する。 - Qiita</a></li>
 <li><a href="http://nob-on-the-boat.blogspot.jp/2010/03/ssh.html">No One Better: SSHポートフォワーディング</a></li>
 <li><a href="http://qiita.com/YusukeHigaki/items/9bd0c21fbcc47e12b5c1">postgresqlを他ホストからもつなげるようにする - Qiita</a></li>
+</ul>
+
+
+<h2>変更来歴</h2>
+
+<ul>
+<li>2015-11-15 19:30 新規作成</li>
+<li>2015-11-20 10:20 Coccinellida => SSH Tunnel Manager に変更</li>
 </ul>
 
 ]]></content>
