@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>MacでSSHポートフォワーディング管理 SSH Tunnel Manager & ローカルでrails console実行してサーバDBに接続 - 酒と泪とRubyとRailsと</title>
+  <title>MacでSSHポートフォワーディング管理 Coccinellida & ローカルでrails console実行してサーバDBに接続 - 酒と泪とRubyとRailsと</title>
   <meta name="author" content="morizyun">
 
   
   <meta name="description" content="最近借りているサーバーのDBに安全につなぐ方法はないものかと
 物色している家庭でSSHポートフォワーディングの便利さをようやく理解しました(恥ずかしながら)。 この便利さを自作アプリとかでも応用できるようにMacの起動時に自動で接続して、それを維持し続けるようにしてくれる無料アプリ
-『SSH &hellip;">
+『 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -48,10 +48,10 @@
   </script>
 
 
-  <meta property="og:title" content="MacでSSHポートフォワーディング管理 SSH Tunnel Manager & ローカルでrails console実行してサーバDBに接続 - 酒と泪とRubyとRailsと" />
+  <meta property="og:title" content="MacでSSHポートフォワーディング管理 Coccinellida & ローカルでrails console実行してサーバDBに接続 - 酒と泪とRubyとRailsと" />
 <meta property="og:description" content="最近借りているサーバーのDBに安全につなぐ方法はないものかと
 物色している家庭でSSHポートフォワーディングの便利さをようやく理解しました(恥ずかしながら)。 この便利さを自作アプリとかでも応用できるようにMacの起動時に自動で接続して、それを維持し続けるようにしてくれる無料アプリ
-『SSH &hellip;" />
+『 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/portforwading-coccinellida-mac-app-ssh-tunnel/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -102,7 +102,7 @@
   
   <header>
     
-      <h1 class="entry-title">MacでSSHポートフォワーディング管理 SSH Tunnel Manager & ローカルでrails console実行してサーバDBに接続</h1>
+      <h1 class="entry-title">MacでSSHポートフォワーディング管理 Coccinellida & ローカルでrails console実行してサーバDBに接続</h1>
     
     
     
@@ -121,7 +121,7 @@
 
 
 
-        <time datetime="2015-11-20T10:20:00+09:00" pubdate data-updated="true">Nov 20<span>th</span>, 2015</time>
+        <time datetime="2015-11-20T11:30:00+09:00" pubdate data-updated="true">Nov 20<span>th</span>, 2015</time>
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
@@ -148,7 +148,7 @@
 物色している家庭でSSHポートフォワーディングの便利さをようやく理解しました(恥ずかしながら)。</p>
 
 <p>この便利さを自作アプリとかでも応用できるようにMacの起動時に自動で接続して、それを維持し続けるようにしてくれる無料アプリ
-『<strong><a href="http://projects.tynsoe.org/en/stm/">SSH Tunnel Manager</a></strong>』
+『<strong><a href="http://coccinellida.sourceforge.net/">Coccinellida - Simple SSH Tunnel Manager for Mac OS X</a></strong>』
 (正確にはそのためのterminalコマンドを設定できる)を見つけたので紹介です。</p>
 
 <!-- more -->
@@ -180,21 +180,24 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>ssh ログイン名@経由サーバ -L 自分のポート:目的サーバ:目的サーバのポート</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>SSH Tunnel Managerを使った設定方法</h2>
+<h2>Coccinellidaを使った設定方法</h2>
 
 <p>基本的には次のことをすればいいです。</p>
 
 <ul>
-<li><strong><a href="http://projects.tynsoe.org/en/stm/">SSH Tunnel Manager</a> からアプリをダウンロード</strong></li>
-<li>ターミナルと同様の設定をアプリで行う(auto connectを有効にする)</li>
+<li><strong><a href="http://coccinellida.sourceforge.net/">Coccinellida - Simple SSH Tunnel Manager for Mac OS X</a> からアプリをダウンロード</strong></li>
+<li>ターミナルと同様の設定をアプリで行う
+
+<ul>
+<li>不明な点がある場合 => <strong><a href="http://eye4brain.sakura.ne.jp/wp/blog/2015/03/07/osx%E3%81%A7coccinellida%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ssh%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AF%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/">OSXでCoccinellidaを使ってSSHポートフォワーディングする</a></strong></li>
+</ul>
+</li>
 <li>System preference => ユーザーとグループ => ログイン時に自動起動するアプリに追加</li>
 </ul>
 
 
 <p>これでlocalhostのポートをサーバー内のDBのポートと同じように扱う事ができるようになります。
 (SSHを使っているので安全に接続、データをやり取りできるはず)</p>
-
-<p>※ Coccinellidaを最初紹介していたんですが、僕の環境(Yosemite ?)では途中で固まってしまったので、無料のSSH Tunnel Managerに変更しました。</p>
 
 <h2>RailsコンソールからサーバーDBに接続する場合</h2>
 
@@ -211,7 +214,6 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>remote:
 </span><span class='line'>  adapter: postgresql
 </span><span class='line'>  encoding: unicode
@@ -219,12 +221,10 @@
 </span><span class='line'>  pool: 5
 </span><span class='line'>  username: &lt;ユーザー名&gt;
 </span><span class='line'>  password: &lt;パスワード&gt;
-</span><span class='line'>  host: localhost
 </span><span class='line'>  port: ＜ポートフォワーディングしているport番号＞</span></code></pre></td></tr></table></div></figure>
 
 
-<p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。
-(<code>host</code>を省略するとローカルのソケットを探しに行ってしまいます。かならず<code>host: localhost</code>を設定してください)</p>
+<p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>RAILS_ENV=remote bundle exec rails console</span></code></pre></td></tr></table></div></figure>
@@ -253,17 +253,10 @@
 <h2>Special Thanks</h2>
 
 <ul>
+<li><a href="http://eye4brain.sakura.ne.jp/wp/blog/2015/03/07/osx%E3%81%A7coccinellida%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ssh%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AF%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/">OSXでCoccinellidaを使ってSSHポートフォワーディングする | eye4brain</a></li>
 <li><a href="http://qiita.com/ron214_ron/items/aa273baff030e253ae96">rails consoleにて、dbをproductionに接続する。 - Qiita</a></li>
 <li><a href="http://nob-on-the-boat.blogspot.jp/2010/03/ssh.html">No One Better: SSHポートフォワーディング</a></li>
 <li><a href="http://qiita.com/YusukeHigaki/items/9bd0c21fbcc47e12b5c1">postgresqlを他ホストからもつなげるようにする - Qiita</a></li>
-</ul>
-
-
-<h2>変更来歴</h2>
-
-<ul>
-<li>2015-11-15 19:30 新規作成</li>
-<li>2015-11-20 10:20 Coccinellida => SSH Tunnel Manager に変更</li>
 </ul>
 
 </div>
@@ -300,7 +293,7 @@
   
 
 
-<time datetime="2015-11-20T10:20:00+09:00" pubdate data-updated="true">Nov 20<span>th</span>, 2015</time>
+<time datetime="2015-11-20T11:30:00+09:00" pubdate data-updated="true">Nov 20<span>th</span>, 2015</time>
       
 
 <span class="categories">

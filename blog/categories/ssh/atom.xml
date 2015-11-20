@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SSH | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ssh/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-20T10:23:26+09:00</updated>
+  <updated>2015-11-20T11:30:31+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -14,15 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[MacでSSHポートフォワーディング管理 SSH Tunnel Manager & ローカルでrails console実行してサーバDBに接続]]></title>
+    <title type="html"><![CDATA[MacでSSHポートフォワーディング管理 Coccinellida & ローカルでrails console実行してサーバDBに接続]]></title>
     <link href="http://morizyun.github.io/blog/portforwading-coccinellida-mac-app-ssh-tunnel/"/>
-    <updated>2015-11-20T10:20:00+09:00</updated>
+    <updated>2015-11-20T11:30:00+09:00</updated>
     <id>http://morizyun.github.io/blog/portforwading-coccinellida-mac-app-ssh-tunnel</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117313/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117313&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117313&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117313" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />最近借りているサーバーのDBに安全につなぐ方法はないものかと
 物色している家庭でSSHポートフォワーディングの便利さをようやく理解しました(恥ずかしながら)。</p>
 
 <p>この便利さを自作アプリとかでも応用できるようにMacの起動時に自動で接続して、それを維持し続けるようにしてくれる無料アプリ
-『<strong><a href="http://projects.tynsoe.org/en/stm/">SSH Tunnel Manager</a></strong>』
+『<strong><a href="http://coccinellida.sourceforge.net/">Coccinellida - Simple SSH Tunnel Manager for Mac OS X</a></strong>』
 (正確にはそのためのterminalコマンドを設定できる)を見つけたので紹介です。</p>
 
 <!-- more -->
@@ -53,21 +53,24 @@
 ssh ログイン名@経由サーバ -L 自分のポート:目的サーバ:目的サーバのポート
 </code></p>
 
-<h2>SSH Tunnel Managerを使った設定方法</h2>
+<h2>Coccinellidaを使った設定方法</h2>
 
 <p>基本的には次のことをすればいいです。</p>
 
 <ul>
-<li><strong><a href="http://projects.tynsoe.org/en/stm/">SSH Tunnel Manager</a> からアプリをダウンロード</strong></li>
-<li>ターミナルと同様の設定をアプリで行う(auto connectを有効にする)</li>
+<li><strong><a href="http://coccinellida.sourceforge.net/">Coccinellida - Simple SSH Tunnel Manager for Mac OS X</a> からアプリをダウンロード</strong></li>
+<li>ターミナルと同様の設定をアプリで行う
+
+<ul>
+<li>不明な点がある場合 => <strong><a href="http://eye4brain.sakura.ne.jp/wp/blog/2015/03/07/osx%E3%81%A7coccinellida%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ssh%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AF%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/">OSXでCoccinellidaを使ってSSHポートフォワーディングする</a></strong></li>
+</ul>
+</li>
 <li>System preference => ユーザーとグループ => ログイン時に自動起動するアプリに追加</li>
 </ul>
 
 
 <p>これでlocalhostのポートをサーバー内のDBのポートと同じように扱う事ができるようになります。
 (SSHを使っているので安全に接続、データをやり取りできるはず)</p>
-
-<p>※ Coccinellidaを最初紹介していたんですが、僕の環境(Yosemite ?)では途中で固まってしまったので、無料のSSH Tunnel Managerに変更しました。</p>
 
 <h2>RailsコンソールからサーバーDBに接続する場合</h2>
 
@@ -84,12 +87,10 @@ remote:
   pool: 5
   username: &lt;ユーザー名&gt;
   password: &lt;パスワード&gt;
-  host: localhost
   port: ＜ポートフォワーディングしているport番号＞
 </code></p>
 
-<p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。
-(<code>host</code>を省略するとローカルのソケットを探しに行ってしまいます。かならず<code>host: localhost</code>を設定してください)</p>
+<p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。</p>
 
 <p><code>
 RAILS_ENV=remote bundle exec rails console
@@ -115,17 +116,10 @@ RAILS_ENV=remote bundle exec rails console
 <h2>Special Thanks</h2>
 
 <ul>
+<li><a href="http://eye4brain.sakura.ne.jp/wp/blog/2015/03/07/osx%E3%81%A7coccinellida%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6ssh%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AF%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/">OSXでCoccinellidaを使ってSSHポートフォワーディングする | eye4brain</a></li>
 <li><a href="http://qiita.com/ron214_ron/items/aa273baff030e253ae96">rails consoleにて、dbをproductionに接続する。 - Qiita</a></li>
 <li><a href="http://nob-on-the-boat.blogspot.jp/2010/03/ssh.html">No One Better: SSHポートフォワーディング</a></li>
 <li><a href="http://qiita.com/YusukeHigaki/items/9bd0c21fbcc47e12b5c1">postgresqlを他ホストからもつなげるようにする - Qiita</a></li>
-</ul>
-
-
-<h2>変更来歴</h2>
-
-<ul>
-<li>2015-11-15 19:30 新規作成</li>
-<li>2015-11-20 10:20 Coccinellida => SSH Tunnel Manager に変更</li>
 </ul>
 
 ]]></content>
