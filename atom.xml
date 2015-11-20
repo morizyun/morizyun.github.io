@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-20T11:33:26+09:00</updated>
+  <updated>2015-11-20T11:35:18+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -88,6 +88,7 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>remote:
 </span><span class='line'>  adapter: postgresql
 </span><span class='line'>  encoding: unicode
@@ -95,10 +96,12 @@
 </span><span class='line'>  pool: 5
 </span><span class='line'>  username: &lt;ユーザー名&gt;
 </span><span class='line'>  password: &lt;パスワード&gt;
-</span><span class='line'>  port: ＜ポートフォワーディングしているport番号＞</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>  port: ＜ポートフォワーディングしているport番号＞
+</span><span class='line'>  host: localhost</span></code></pre></td></tr></table></div></figure>
 
 
-<p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。</p>
+<p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。
+(<code>host</code>がなかった場合、localのsocketを探しに行ってしまうので、必ずhostはつけてください)</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>RAILS_ENV=remote bundle exec rails console</span></code></pre></td></tr></table></div></figure>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SSH | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ssh/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-20T11:33:26+09:00</updated>
+  <updated>2015-11-20T11:35:18+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -88,9 +88,11 @@ remote:
   username: &lt;ユーザー名&gt;
   password: &lt;パスワード&gt;
   port: ＜ポートフォワーディングしているport番号＞
+  host: localhost
 </code></p>
 
-<p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。</p>
+<p>たったのこれだけ、あとは普通にローカルで以下のコマンドを実行するとリモートのDBにつないで好き勝手できます。
+(<code>host</code>がなかった場合、localのsocketを探しに行ってしまうので、必ずhostはつけてください)</p>
 
 <p><code>
 RAILS_ENV=remote bundle exec rails console
