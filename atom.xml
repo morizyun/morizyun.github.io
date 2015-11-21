@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-20T17:44:47+09:00</updated>
+  <updated>2015-11-21T21:12:51+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -595,7 +595,11 @@ private メソッドや@vなどのインスタンス変数にもアクセスで�
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>サンプルソース</h2>
 
+<p>何かの役に立つこともあるかもなので、リポジトリも公開しておきます。</p>
+
+<p><strong><a href="https://github.com/morizyun/meta_programming_ruby2">morizyun/meta_programming_ruby2 - GitHub</a></strong></p>
 
 <br style="clear:both;"/>
 
@@ -1206,6 +1210,12 @@ script: scriptの実行
 
 <p>ゴーストメソッドの最大の問題点は、本物のメソッドではないという点だ。
 振る舞いはメソッドなのに、 <code>Object#methods</code> に含まれないのだ。</p>
+
+<h2>サンプルソース</h2>
+
+<p>何かの役に立つこともあるかもなので、リポジトリも公開しておきます。</p>
+
+<p><strong><a href="https://github.com/morizyun/meta_programming_ruby2">morizyun/meta_programming_ruby2 - GitHub</a></strong></p>
 
 <br style="clear:both;"/>
 
@@ -2259,6 +2269,12 @@ Railsすごいな&#8230; (一部の環境でArelまでしかキャッシュさ�
 <li>インスタンス変数は常にselfのインスタンス変数とみなされる</li>
 </ul>
 
+
+<h2>サンプルソース</h2>
+
+<p>何かの役に立つこともあるかもなので、リポジトリも公開しておきます。</p>
+
+<p><strong><a href="https://github.com/morizyun/meta_programming_ruby2">morizyun/meta_programming_ruby2 - GitHub</a></strong></p>
 
 <br style="clear:both;"/>
 

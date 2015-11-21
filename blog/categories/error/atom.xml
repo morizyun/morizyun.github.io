@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Error | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/error/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-11-20T17:44:47+09:00</updated>
+  <updated>2015-11-21T21:12:51+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -170,7 +170,7 @@
 
 <h2>開発環境での確認方法</h2>
 
-<p>Gemをインストールしたら、<code>http_status_checker</code>をコマンドラインから呼び出す事ができます。</p>
+<p><code>config/environments/development.rb</code>に以下を追記したら、開発環境でエラーが出た際にrambulanceのエラー画面が表示されます。</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
