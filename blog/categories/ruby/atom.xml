@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-05T21:00:31+09:00</updated>
+  <updated>2015-12-13T10:00:50+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,225 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RailsエンジニアのためのSQLチューニング速習会@wantedlyに行ってきた！]]></title>
+    <link href="http://morizyun.github.io/blog/sql-speedup-explain-rails/"/>
+    <updated>2015-12-13T10:00:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/sql-speedup-explain-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00P0UR1RU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00P0UR1RU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00P0UR1RU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00P0UR1RU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="http://wantedly.connpass.com/event/23794/">RailsエンジニアのためのSQLチューニング速習会 - connpass</a></strong>』に参加してきました。オフィスが超綺麗で感動しました！</p>
+
+<p>あとこの記事は、<strong><a href="http://qiita.com/advent-calendar/2015/m3">エムスリー Advent Calendar 2015 - Qiita</a></strong>の13日目です。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+
+<h2>スライド</h2>
+
+<p>Wantedlyの <strong><a href="https://twitter.com/minami7o">@minami7o</a></strong> さんの発表スライドです。</p>
+
+<iframe src="http://morizyun.github.io//www.slideshare.net/slideshow/embed_code/key/hzRuN7dqFFk2nj" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
+
+
+<h2>説明用のブランチ</h2>
+
+<p>勉強会で共有されたテストデータを使えるGitHubのブランチです。</p>
+
+<p><strong><a href="https://github.com/south37/sql-tuning">south37/sql-tuning - GitHub</a></strong></p>
+
+<p><code>ruby
+git clone git@github.com:south37/sql-tuning.git
+cd sql-tuning
+bin/rake db:create
+pg_restore -j 4 --verbose --no-acl --no-owner -d sql-tuning-dev db.dump
+</code></p>
+
+<h2>ActiveRecord::Base.explain</h2>
+
+<p>ActiveRecord::Baseに<code>#explain</code>があることを知らなかったです。<code>#explain</code>超便利！</p>
+
+<p>```
+[1] pry(main)> Job.joins(:company).group('companies.country').where('companies.id &lt; 1000').select('companies.country', 'COUNT(jobs.id)').explain
+  Job Load (10.3ms)  SELECT companies.country, COUNT(jobs.id) FROM "jobs" INNER JOIN "companies" ON "companies"."id" = "jobs"."company_id" WHERE (companies.id &lt; 1000) GROUP BY companies.country
+=> EXPLAIN for: SELECT companies.country, COUNT(jobs.id) FROM "jobs" INNER JOIN "companies" ON "companies"."id" = "jobs"."company_id" WHERE (companies.id &lt; 1000) GROUP BY companies.country</p>
+
+<pre><code>                                          QUERY PLAN
+</code></pre>
+
+<hr />
+
+<p> HashAggregate  (cost=1184.79..1191.12 rows=634 width=16)
+   Group Key: companies.country
+   ->  Hash Join  (cost=54.28..1159.79 rows=5000 width=16)</p>
+
+<pre><code>     Hash Cond: (jobs.company_id = companies.id)
+     -&gt;  Seq Scan on jobs  (cost=0.00..868.00 rows=50000 width=8)
+     -&gt;  Hash  (cost=41.78..41.78 rows=1000 width=16)
+           -&gt;  Index Scan using companies_pkey on companies  (cost=0.29..41.78 rows=1000 width=16)
+                 Index Cond: (id &lt; 1000)
+</code></pre>
+
+<p>(8 rows)
+```</p>
+
+<p>ちなみにEXPLAINとは、与えられた文に対して、PostgreSQLプランナが生成する実行計画を表示するための命令です。</p>
+
+<p>実行計画とは、問い合わせ文が参照するテーブル（複数の場合もある）をスキャンする方法（単純なシーケンススキャン、インデックススキャンなど）複数のテーブルを参照する場合に、各テーブルから取り出した行を結合するために使用されます。</p>
+
+<h2>実行計画のコストの見方</h2>
+
+<p>Explainでのコストの見方はこちら。</p>
+
+<iframe src="http://morizyun.github.io//www.slideshare.net/slideshow/embed_code/key/hzRuN7dqFFk2nj?startSlide=11" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
+
+
+<h2>indexの仕組み</h2>
+
+<p>「B-tree index」とは、バランスド・ツリーインデックスの略です。
+ソートアルゴリズムや二分木の進化版的なアルゴリズムだそうです。
+一部のブランチが成長しすぎて、計算量が増えないように再編成(バランシング)する仕組みをもっています。
+これにより、常に高い検索性能を保つことができるそうです。</p>
+
+<h2>indexが効かないパターン</h2>
+
+<pre>
+- indexを貼ったカラムに演算(`lower`と演算子を使う場合、ただし後述の方法なら貼れる)
+- 絞り込み条件のゆるいwhere (デフォルトだと4/1以下に絞り込まれる必要がある)
+  - HDDへのランダムアクセスとシーケンシャルアクセスの速度差が原因
+</pre>
+
+
+<h2>index利用のデメリット</h2>
+
+<pre>
+- indexの更新に時間がかかる
+- PostgreSQLのカラム更新を高速化するための仕組みの「HOT」が効かない
+</pre>
+
+
+<p>ちなみに「HOT(Heap Only Tuple)」とは、「インデックスを持たない、ヒープのみのタプル」だそうです。
+(1)不要なインデックスの更新を行なわないことによる更新処理コストの削減や、(2)ガベージの自動回収
+といったことをサポートしてくれます。</p>
+
+<h2>インデックスの種類</h2>
+
+<pre>
+- Unique Indexes : 重複した値を許可しないようなインデックス
+- Multicolumn Indexes : 2つ以上のカラムに対するインデックス
+- Indexes on Expressions
+  - 関数などの返り値を key として index を作る事ができる
+</pre>
+
+
+<h2>JOIN のアルゴリズム</h2>
+
+<pre>
+- Nested Loop Join (遅い)
+  - テーブル1とテーブル2に対してすべての組み合わせを試す
+  - テーブル2にindexがあれば早くなる
+- Hash Join
+  - テーブル2に対して、1度フルスキャンしてHashMapを作る
+  - テーブル2の全レコードをメモリにのせる必要がある
+- Merge Join (早い)
+  - ソート済のテーブル1とテーブル2に対して一度だけフルスキャン
+  - JOINに使うカラムにはindexを貼る
+</pre>
+
+
+<h2>データ集約</h2>
+
+<pre>
+- Group Aggregate
+  - 入力されたデータをグループキーでソート後、各グループを順に処理
+- Hash Aggregate
+  - グループキーをkeyとする、一時的なHash Tableを作成する
+</pre>
+
+
+<h2>sortもindexをはるべき</h2>
+
+<ul>
+<li>予めindexを貼っておくとソートされた状態でデータが保持されている</li>
+<li><code>ORDER BY</code>でsortを実施するときにはindexされたカラムを使おう</li>
+</ul>
+
+
+<h2>その他 PostgreSQLの特徴的機能</h2>
+
+<pre>
+- JSON型
+  - json型とjsonb型がある
+  - jsonb型を基本で使うべきだが、すごいきたないデータの場合json型になる
+- Hstore型
+  - key, valueのペアを一つのカラムに保存可能
+- Materialized View
+  - キャッシュされたView。高速化は期待できるが手動でRefreshする必要がある
+- Stored Procedure (PL/pgSQL)
+  - PostgreSQLで実行可能なfunctionを定義可能。
+</pre>
+
+
+<h2>その他勉強になったこと</h2>
+
+<ul>
+<li>データの分布 = 「統計情報」が大事</li>
+<li>SerializeよりはJSONのほうがいいかも</li>
+<li>PostgreSQL - indexの利用状況を閲覧できる - pg_stat_user_indexes</li>
+<li><strong><a href="https://github.com/grosser/bitfields">grosser/bitfields</a></strong></li>
+</ul>
+
+
+<h2>まとめ</h2>
+
+<pre>
+- SQLの実行児に選ばれる実行計画は、indexの有無や統計情報(データの量・分布)に依存
+- 適切なschema, index, queryの選択によって、高速化しよう
+- WHERE, JOIN,ORDER BY, GROUP BYのkeyにはindex
+- JOINの前に絞り込めるだけ絞り込む
+- JSON Typeなどもケースバイケースで
+</pre>
+
+
+<h2>最後に</h2>
+
+<p>懇親会で、ピザやビールを大量あってお腹いっぱいになれました。
+めっちゃ有りがたかったです！</p>
+
+<br style="clear:both;"/>
+
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[メタプログラミング Ruby 第2版 / 第6章 コードを記述するコード[勉強メモ]]]></title>
@@ -1074,227 +1293,6 @@ end
 
 <p>ゴーストメソッドの最大の問題点は、本物のメソッドではないという点だ。
 振る舞いはメソッドなのに、 <code>Object#methods</code> に含まれないのだ。</p>
-
-<h2>サンプルソース</h2>
-
-<p>何かの役に立つこともあるかもなので、リポジトリも公開しておきます。</p>
-
-<p><strong><a href="https://github.com/morizyun/meta_programming_ruby2">morizyun/meta_programming_ruby2 - GitHub</a></strong></p>
-
-<br style="clear:both;"/>
-
-
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[メタプログラミング Ruby 第2版 / 第2章 オブジェクトモデル[勉強メモ]]]></title>
-    <link href="http://morizyun.github.io/blog/meta-programing-ruby-book-chapter2-review/"/>
-    <updated>2015-10-30T21:00:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/meta-programing-ruby-book-chapter2-review</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117437&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117437" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />メタプログラミングRubyを読んでいます。完全自分用のメモ記事です。
-第2章で特に参考になった部分を中心に書いています。</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
-
-<h2>メタプログラミングとは</h2>
-
-<p>コードを記述するためのコードを書くことである</p>
-
-<h2>2章</h2>
-
-<h3>オープンクラス</h3>
-
-<p>```ruby
-require "monetize"</p>
-
-<p>standard_price = 100.to_money('USD')
-standard_price.format #=> $100.00
-```</p>
-
-<p>とある場合、 <code>to_money</code> は以下のように <code>Numeric</code> クラスを拡張して実装されている。</p>
-
-<p>```ruby
-class Numeric
-  def to_money(currency = nil)</p>
-
-<pre><code>Monetize.from_numeric(self, currency || Money.default_currency)
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<p>Rubyは標準クラスでも気軽に拡張できる。これをモンキーパッチと呼ぶ。
-しかし例えば拡張したメソッドが標準クラスのメソッドだった場合、その影響範囲が大きくなってしまう。
-モンキーパッチの代替案としては、<code>Refinements</code> などを使うことである。</p>
-
-<h3>Classの親クラスは Module</h3>
-
-<p><code>ruby
-Class.superclass #=&gt; Module
-</code></p>
-
-<p>Class はオブジェクトの生成やクラスを継承するためのインスタンスメソッド new, allocate superclass を追加したモジュールである。</p>
-
-<h3>load と require の違い</h3>
-
-<pre>
-- load => loadはコードを実行するために使う。呼び出す度にファイルを実行する
-- require => requireはライブラリをインポートするために使う。ファイルは一度しか読み込まない。
-</pre>
-
-
-<h3>モジュールの継承関係</h3>
-
-<p>継承チェーンはクラスからスーパークラスに向かって進む。
-それだけではなく、継承チェーンにはモジュールも含まれる。</p>
-
-<p>```ruby
-module M1
-  def my_method</p>
-
-<pre><code>'M1#my_method()'
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>module M2
-  def my_method_second</p>
-
-<pre><code>'M2#my_method_second()'
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>class C
-  include M1
-  prepend M2
-end</p>
-
-<p>class D &lt; C; end</p>
-
-<h1>継承関係を見るメソッド</h1>
-
-<p>puts D.ancestors.to_s # => [D, M2, C, M1, Object, Kernel, BasicObject]
-```</p>
-
-<p>このようにM1やKernelなどのModuleも継承関係に含まれている事がわかる。</p>
-
-<p>ちなみに、モジュールがすでにチェーンに存在していた場合は、2回目の挿入を無視する。
-(何度も継承チェーンに同じオブジェクトが含まれることはない)</p>
-
-<h3>Rubyにおける private について</h3>
-
-<p>```ruby
-class C
-  def public_method_no_self</p>
-
-<pre><code>private_method
-</code></pre>
-
-<p>  end</p>
-
-<p>  def public_method_with_self</p>
-
-<pre><code>self.private_method
-</code></pre>
-
-<p>  end</p>
-
-<p>  private</p>
-
-<p>  def private_method</p>
-
-<pre><code>'called private method'
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>puts C.new.public_method_no_self</p>
-
-<p>puts C.new.public_method_with_self
-```</p>
-
-<h3>Refinementsについて</h3>
-
-<p>module で限定されたスコープの中でのみ、Stringを限定して拡張できる。</p>
-
-<p>```ruby
-module StringExtensions
-  refine String do</p>
-
-<pre><code>def reverse
-  'esrever'
-end
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>module Strings
-  using StringExtensions</p>
-
-<p>  puts 'my_string'.reverse #=> esrever
-end</p>
-
-<p>puts 'my_string'.reverse #=> gnirts_ym
-```</p>
-
-<p>これにより、モンキーパッチで発生するようなグローバルな変更を避けることができる。
-ただし、<code>Refinements</code>は新しい機能で、将来挙動が変わる可能性がある。
-そのことを理解したうえで、プログラムを書くべきである。</p>
-
-<h3>まとめ</h3>
-
-<ul>
-<li>オブジェクトは複数のインスタンス変数とクラスへのリンクで構成</li>
-<li>インスタンス目ドッドはオブジェクトの Class に住んでいる</li>
-<li>クラスは Class クラスのオブジェクトである。クラスは単なる定数である</li>
-<li>Class は Module のサブクラスである</li>
-<li>Module は基本的にはメソッドをまとめたものである</li>
-<li>クラスは new でインスタンス化したり、 superclass で階層構造を作ったりできる</li>
-<li>クラスはそれぞれ、BasicObject まで続く継承チェーンを持っている</li>
-<li>クラスにモジュールをinclude(prepend)すると、そのクラスの継承チェーンの真上(下)にモジュールが挿入される</li>
-<li>メソッドを呼び出すときには、レシーバがselfになる</li>
-<li>モジュール(あるいはクラス)を定義するときには、そのモジュールがselfになる</li>
-<li>インスタンス変数は常にselfのインスタンス変数とみなされる</li>
-</ul>
-
 
 <h2>サンプルソース</h2>
 
