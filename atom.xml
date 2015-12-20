@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-20T18:42:34+09:00</updated>
+  <updated>2015-12-20T18:48:30+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://morizyun.github.io/blog/aws-iam-basic-amazon-web-service/"/>
     <updated>2015-12-20T18:40:00+09:00</updated>
     <id>http://morizyun.github.io/blog/aws-iam-basic-amazon-web-service</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117437&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117437" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />ちょっとマニアックですが、AWSのIAMやSTSについてどういうものかを調べたので、完全俺得メモです。
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774176737/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774176737&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774176737&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774176737" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />ちょっとマニアックですが、AWSのIAMやSTSについてどういうものかを調べたので、完全俺得メモです。
 理解が間違ってそうなところがあればぜひ twitterとかで突っ込んでくださいw</p>
 
 <!-- more -->
@@ -149,6 +149,10 @@
 <p>ちなみに、興味をもったキッカケの記事。これは確かにすごい便利そう。</p>
 
 <p><strong><a href="http://qiita.com/seratch@github/items/53b53f143d64f16486bb">Rails - AWS 管理コンソールを社内認証と SSO 化させる #m3dev - Qiita</a></strong></p>
+
+<h2>次読む記事</h2>
+
+<p><strong><a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html">Creating a URL that Enables Federated Users to Access the AWS Management Console (Custom Federation Broker) - AWS Identity and Access Management</a></strong></p>
 
 <br style="clear:both;"/>
 
