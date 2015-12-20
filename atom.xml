@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-20T18:48:30+09:00</updated>
+  <updated>2015-12-20T19:08:17+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -77,7 +77,7 @@
 - AWS コマンドラインツール
   - AWS Command Line Interface (AWS CLI)
     - AWS サービスを管理するための統合ツール
-    - https://github.com/aws/aws-cli
+    - **[aws/aws-cli - GitHub](https://github.com/aws/aws-cli)**
   - AWS Tools for Windows PowerShell
     - Windows PowerShell スクリプト環境でAWSサービスを管理できる
 - AWS SDK
@@ -93,14 +93,14 @@
 <li>AWS マネジメントコンソールを使用し、AWS アカウントの下でユーザーを作成して、そのアクセス許可
 
 <ul>
-<li>http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/getting-started.html</li>
+<li><strong><a href="http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/getting-started.html">使用を開始する - AWS Identity and Access Management</a></strong></li>
 </ul>
 </li>
 <li>使用している認証システと AWS の間での ID フェデレーション。ユーザーに対して、アクセストークンを発行
 
 <ul>
-<li>http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_temp.html</li>
-<li>AWS Security Token Service(STS) API の詳細 => http://docs.aws.amazon.com/STS/latest/APIReference/</li>
+<li><strong><a href="http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_temp.html">http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_temp.html</a></strong></li>
+<li>AWS Security Token Service(STS) API の詳細 => <strong><a href="http://docs.aws.amazon.com/STS/latest/APIReference/">Welcome - AWS Security Token Service</a></strong></li>
 </ul>
 </li>
 <li>IAM を使用して、他の AWS アカウントにアクセス許可を付与する方法</li>
