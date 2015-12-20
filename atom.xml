@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-13T10:24:23+09:00</updated>
+  <updated>2015-12-20T18:39:31+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,163 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AWSの IAM & STS の基礎知識]]></title>
+    <link href="http://morizyun.github.io/blog/aws-iam-basic-amazon-web-service/"/>
+    <updated>2015-12-20T18:40:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/aws-iam-basic-amazon-web-service</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117437&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117437" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />ちょっとマニアックですが、AWSのIAMやSTSについてどういうものかを調べたので、そのメモ。
+あまりにマニアックなので、完全俺得記事です。あと、理解が間違ってそうなところがあればぜひ教えてほしい。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+
+<h2>IAM とは？</h2>
+
+<p><strong><a href="http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/introduction.html">IAM とは - AWS Identity and Access Management</a></strong></p>
+
+<p>IAMとは「<strong>AWS Identity and Access Management</strong>」の略で、AWSのアカウントが持つ権限を一部他人に付与できる仕組み。</p>
+
+<h2>IAM の機能</h2>
+
+<p>機能としては次のようなものがある。</p>
+
+<pre>
+- AWS アカウントへのアクセスの共有できる
+  - 他の人に「自分のAWS」のリソース管理や利用のための権限を付与
+- アクセス権限を詳細に設定できる
+  - どのリソースをどこまで利用できるかといったことを細く設定できる
+- 多要素認証（MFA）
+  - パスワード/アクセスキー以外にも、特別に設定されたデバイスからのコードの入力も必要にすることができる
+- ID フェデレーション
+  - 他の認証に基づいたユーザーに対して、自分のAWSアカウントに対して一時的なアクセス権を付与できる
+- 保証のための ID 情報
+  - IAM IDに基づいたログを AWS CloudTrail で残すことができる
+- 多くの AWS サービスと連携
+  - 数多くの AWS サービスがIAMと連携している
+</pre>
+
+
+<h2>IAM へのアクセス</h2>
+
+<p>次のいずれかの方法でIAMを使うことができます。</p>
+
+<pre>
+- AWS マネジメントコンソール
+- AWS コマンドラインツール
+  - AWS Command Line Interface (AWS CLI)
+    - AWS サービスを管理するための統合ツール
+    - https://github.com/aws/aws-cli
+  - AWS Tools for Windows PowerShell
+    - Windows PowerShell スクリプト環境でAWSサービスを管理できる
+- AWS SDK
+  - Java、Python、Ruby、.NET、iOS、Android などのライブラリとサンプルコードで構成された ソフトウェア開発キット(SDK)
+- IAM HTTPS API
+  - サービスに HTTPS リクエストを直接発行できる IAM HTTPS API
+</pre>
+
+
+<h2>IAMの ユースケース</h2>
+
+<ul>
+<li>AWS マネジメントコンソールを使用し、AWS アカウントの下でユーザーを作成して、そのアクセス許可
+
+<ul>
+<li>http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/getting-started.html</li>
+</ul>
+</li>
+<li>使用している認証システと AWS の間での ID フェデレーション。ユーザーに対して、アクセストークンを発行
+
+<ul>
+<li>http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_temp.html</li>
+<li>AWS Security Token Service(STS) API の詳細 => http://docs.aws.amazon.com/STS/latest/APIReference/</li>
+</ul>
+</li>
+<li>IAM を使用して、他の AWS アカウントにアクセス許可を付与する方法</li>
+</ul>
+
+
+<h2>Security Token Service(STS)</h2>
+
+<p>STSとは、AWS Security Token Serviceの略。AWSリソースへのアクセスを制御できる一時的な セキュリティ認証情報を持つ、信頼されたユーザーを作成・提供するための仕組みです。</p>
+
+<p><strong><a href="http://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_credentials_temp.html">一時的セキュリティ認証情報 - AWS Identity and Access Management</a></strong></p>
+
+<p>IAMユーザーが使用できる長期的なアクセス情報と似ているが違いは次の点。</p>
+
+<pre>
+- 使用期限が短い (数分〜数時間で設定できる)
+- 一時的セキュリティ認証情報はユーザーとともに保存されることはなく、ユーザーのリクエストに応じて動的に生成される
+</pre>
+
+
+<p>このSTSを使うメリットは次の通り。</p>
+
+<pre>
+- 一時的に使うアプリに対して、長期のセキュリティ情報を配布しなくていい
+- AWS の ID を定義せずに AWS リソースへのアクセスを提供できる
+</pre>
+
+
+<h2>フェデレーションとは</h2>
+
+<p>フェデレーションは「組織間の結合という意味」。フェデレーションとは、イントラネットを超えて
+他社のシステムやアプリケーション、サービスとの間でシングルサインオン(SSO)やWebサービスの
+処理結果をほかのサービスに受け渡す技術、もしくはそれを実現する考えのことである。</p>
+
+<p><strong><a href="http://www.itmedia.co.jp/enterprise/articles/0708/31/news010_3.html">ID管理をスッキリさせるIAMのお役立ち度：“フェデレーション”が企業間連携の今後を変える</a></strong></p>
+
+<h2>認証フェデレーション</h2>
+
+<p>ウェブ ID フェデレーションとは、Facebook、Googleアカウントを利用して、ユーザーにサインインしてもらうことができる。
+その認証情報をSTSによってAWSアカウントのリソースを使うための一時的なアクセス権に変換できる。</p>
+
+<p>ウェブ ID フェデレーションを使用すると、アプリケーションで IAM ユーザーアクセスキーのような長期的なセキュリティ認証情報を配布する必要がないので、AWS アカウントの安全性の維持に役立ちます。</p>
+
+<h2>あとがき</h2>
+
+<p>ちなみに、興味をもったキッカケの記事。これは確かにすごい便利そう。</p>
+
+<p><strong><a href="http://qiita.com/seratch@github/items/53b53f143d64f16486bb">Rails - AWS 管理コンソールを社内認証と SSO 化させる #m3dev - Qiita</a></strong></p>
+
+<br style="clear:both;"/>
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RailsエンジニアのためのSQLチューニング速習会@wantedlyに行ってきた！]]></title>
@@ -4725,222 +4882,6 @@ JSは不得手なので、アドバイスをくれる同僚がいるのはほん
 <li><strong><a href="https://ja.wikipedia.org/wiki/%E4%BE%9D%E5%AD%98%E6%80%A7%E3%81%AE%E6%B3%A8%E5%85%A5">依存性の注入 - Wikipedia</a></strong></li>
 <li><strong><a href="http://itpro.nikkeibp.co.jp/free/ITPro/OPINION/20050216/156274/?ST=develop&amp;P=2">Java開発を変える最新の設計思想「Dependency Injection（DI）」とは：ITpro</a></strong></li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ぼくのかんがえたさいきょうのRailsファースト・ガイド]]></title>
-    <link href="http://morizyun.github.io/blog/rails-beginner-first-step-guide/"/>
-    <updated>2015-07-20T14:00:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/rails-beginner-first-step-guide</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873113679/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873113679&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873113679&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873113679" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />すみません、タイトルは釣りです。
-Webプログラマの実務経験ないけど、Railsの勉強始めました的な人にお会いする機会が何度かあって、
-僕ができることって無いかなぁと思って考えた文章です。教えることは下手なので、「もっといい方法があるよ」
-といった方がもしいらっしゃったら、ぜひアドバイスもらえるとめっちゃ嬉しかったりします。</p>
-
-<p>これからしばらくは「初めてのプログラムはRailsです」といった方が増えるのかもと思います。
-そういった人たちがプログラムを楽しいと思ってもらえるようになると嬉しいっす。</p>
-
-<p><strong>(2015-07-20 14:00) 質問を頂けたので書籍リストを追加</strong></p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div>
-
-
-<h2>＜セクション１＞ 1日目-11日目 まずは触ってみる</h2>
-
-<p>プログラミングに触ったことがない人や、大学の授業しかプログラムやったことがない人向けのセクションです。
-すでに別の言語をやったことがある人はスキップしてください。</p>
-
-<h3>大切なこと</h3>
-
-<p>「プログラミングを楽しむこと」多分、これより大切なことなんて無いと思います。
-この段階では、わからないこと、ハマったことは無視していいと思います。
-とにかくちょっとさわってみて、こんなのもあるんだなぁくらいで</p>
-
-<h3>基本的な流れ</h3>
-
-<ul>
-<li>dotinstallを見て、見たことを元にRailsアプリを変更して、使ってみる。</li>
-<li>その日に覚えたことをブログやQiitaにアップする。</li>
-</ul>
-
-
-<h3>やること</h3>
-
-<h4>(1日目) 環境構築</h4>
-
-<h5>1日分の目標をたてることの大切さを知る</h5>
-
-<p><strong><a href="http://gigazine.net/news/20130911-180-websites/">プログラミング経験ゼロだが180日で180個のウェブサイトを作るプロジェクトがゴールまであとわずかに</a></strong></p>
-
-<p>まさに継続は力なりという素敵なお話。プログラム初心者の人はぜひ真似して欲しいっす。</p>
-
-<h5>環境構築</h5>
-
-<p><strong><a href="http://morizyun.github.io/blog/yosemite-mac-rails-setup-rbenv-ruby/">Mac Yosemite Rails 最新環境 詳解 構築手順</a></strong></p>
-
-<p>環境構築に躓いたり、windowsの人はCloud9を使ってください。
-ニーズあれば、Cloud9の使い方も記事にしますんで、<strong><a href="https://twitter.com/zyunnosuke">Twitter - @zyunnosuke</a></strong>に教えてください。</p>
-
-<h5>RubyMine をインストール(全部入りでとにかく楽)</h5>
-
-<p><strong><a href="https://www.jetbrains.com/ruby/">Ruby on Rails IDE :: JetBrains RubyMine</a></strong></p>
-
-<p>ちょっとお高いエディタですが、めっちゃ便利です。
-1ヶ月間は無料で利用できるので、まずは触ってみてください。</p>
-
-<h5>Kobitoで自分が覚えたメモを書く</h5>
-
-<p><strong><a href="http://kobito.qiita.com/">Kobito - Qiita</a></strong></p>
-
-<p>無料で、超簡単にQiitaに記事をアップできるようになります！</p>
-
-<h4>(2日目) herokuでアプリを作ってみる</h4>
-
-<p><strong><a href="http://morizyun.github.io/blog/heroku-rails4-postgresql-introduction/">Rails4でheroku Pushまでの詳細手順</a></strong></p>
-
-<h4>(3日目)  HTMLの基礎を知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_html_v3">HTML入門 (全24回) - プログラミングならドットインストール</a></strong></p>
-
-<h4>(4日目) CSSの基礎を知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_css_v3">CSS入門 (全22回) - プログラミングならドットインストール</a></strong></p>
-
-<h4>(5日目) Rubyの基礎を知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_ruby_v2">Ruby入門 (全23回) - プログラミングならドットインストール</a></strong></p>
-
-<h4>(6日目) Railsの基礎を知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_rails_v2">Ruby on Rails 4入門 (全28回) - プログラミングならドットインストール</a></strong></p>
-
-<h4>(7日目) Unixコマンドの基礎を知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_unix">UNIXコマンド入門 (一般ユーザー編) (全16回) - プログラミングならドットインストール</a></strong></p>
-
-<h4>(8日目) Gitの基礎を知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_git">git入門 (全22回) - プログラミングならドットインストール</a></strong></p>
-
-<h4>(9日目) Herokuを知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_heroku">Heroku入門 (全12回) - プログラミングならドットインストール</a></strong></p>
-
-<h4>(10日目) ActiveRecordを知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_activerecord">ActiveRecord入門 (全14回) - プログラミングならドットインストール</a></strong></p>
-
-<h4>(11日目) JavaScriptの基礎を知る</h4>
-
-<p><strong><a href="http://dotinstall.com/lessons/basic_javascript_v2">JavaScript入門 (全24回) - プログラミングならドットインストール</a></strong></p>
-
-<h2>＜セクション２＞ 12日目以降で大切なこと</h2>
-
-<p>Railsの雰囲気がふわっとわかったくらいの人向けのセクションです。</p>
-
-<h3>大切なこと</h3>
-
-<h4>実現できる小さな目標と報酬を得る</h4>
-
-<p>1日の単位で実現できる小さな目標を立てて、それを達成すること。
-1日で目標を達成したら、しっかり自分を褒めてあげてください。
-可能なら小さな報酬を与えて、喜びを感じるサイクルを作ってください。</p>
-
-<h4>Web開発の基礎知識を埋めていくこと</h4>
-
-<p>Web開発の基礎知識を埋めていくと、詰まる確率が圧倒的に減ります。
-ただし、無理して全部理解しようとしないこと。わからない部分は
-必要になって覚えれば十分です。斜め読みしながら進めてください。</p>
-
-<h3>やること</h3>
-
-<p>以下のことにチャレンジしてみてください。</p>
-
-<ul>
-<li>自分の作りたいものを決めて、1日で作れるものを作る</li>
-<li>斜め読みでいいのでRailsチュートリアルを読む
-
-<ul>
-<li><strong><a href="http://railstutorial.jp/">Ruby on Rails チュートリアル：実例を使って Rails を学ぼう</a></strong></li>
-</ul>
-</li>
-<li>以下の本を斜め読みながら少しずつ知識を埋めていく
-
-<ul>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/4873113679/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4873113679&amp;linkCode=as2&amp;tag=morizyun00-22">初めてのRuby</a></strong></li>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/B00P0UR1CA/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B00P0UR1CA&amp;linkCode=as2&amp;tag=morizyun00-22">パーフェクトRuby</a></strong></li>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/4774164100/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774164100&amp;linkCode=as2&amp;tag=morizyun00-22">Ruby on Rails 4 アプリケーションプログラミング</a></strong></li>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/4798109339/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798109339&amp;linkCode=as2&amp;tag=morizyun00-22">UNIXの絵本</a></strong></li>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/4774142042/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774142042&amp;linkCode=as2&amp;tag=morizyun00-22">Webを支える技術 -HTTP、URI、HTML、そしてREST</a></strong></li>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/B00ENEGXUU/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B00ENEGXUU&amp;linkCode=as2&amp;tag=morizyun00-22">Linuxシステム実践入門</a></strong></li>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/4798120340/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798120340&amp;linkCode=as2&amp;tag=morizyun00-22">インターネット技術の絵本</a></strong></li>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/4798105163/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798105163&amp;linkCode=as2&amp;tag=morizyun00-22">TCP/IPの絵本 ネットワークっておもしろい!</a></strong></li>
-<li><strong><a href="http://www.amazon.co.jp/gp/product/B00EESW7K0/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B00EESW7K0&amp;linkCode=as2&amp;tag=morizyun00-22">HTTPの教科書</a></strong></li>
-</ul>
-</li>
-<li>このあたりの記事を見ながら、リンクを斜め読みしてみてください。
-
-<ul>
-<li><strong><a href="http://morizyun.github.io/blog/html-css-javascript-biginner/">HTML/CSS/JavaScript 初歩の初歩</a></strong></li>
-<li><strong><a href="http://morizyun.github.io/blog/git-biginner-web-develop/">git 初心者のための資料まとめ</a></strong></li>
-<li><strong><a href="http://morizyun.github.io/blog/javascript-learning-tech-yourself_01/">JavaScript 徹底入門のための資料＆書籍まとめ</a></strong></li>
-<li><strong><a href="http://morizyun.github.io/blog/css3-html-front-coding-book-review/">HTML&amp;CSS フロントエンド 何度も読み直したい資料・ツールまとめ</a></strong></li>
-</ul>
-</li>
-</ul>
-
-
-<p>もし上記の本をこなして、飽きてきたら <strong><a href="https://twitter.com/zyunnosuke">Twitter - @zyunnosuke</a></strong>にメッセージしてください。
-知りたいことに合わせて、初心者向けの本を紹介していきます。</p>
-
-<h2>＜セクション３＞ 自分の作りたいものを作る</h2>
-
-<p>自分や周りが使えるとほんのちょっと役に立ちそうな、できるだけ簡単なRailsアプリを作ってみてください。
-こういったことを繰り返しながら、わからないことを少しずつググるといいかなと思います。
-あとは、こういうことをもう少し詳しく知りたいと思えるようになったら、Amazonで評価の高い「入門書」を読んでみてください。
-書籍って少しお高めなんですが、読んでおくと後でハマる確率が減るし、時間が節約になるんでもし可能なら是非。</p>
-
-<h2>あとがき</h2>
-
-<p>7/19に開催された<strong><a href="http://geekgarage.connpass.com/event/17518/">ギークガレージもくもく会</a></strong>でこの記事を書きました。
-刺激を受けて、楽しかったです！ギークガレージいいところ！</p>
-
-<br style="clear:both;"/>
-
-
-<div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div>
 
 ]]></content>
   </entry>

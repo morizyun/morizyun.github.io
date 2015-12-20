@@ -9,8 +9,8 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="『RailsエンジニアのためのSQLチューニング速習会 - connpass』に参加してきました。すごく勉強になったので、
-その時のメモです。@minami7o さんありがとうございました！ あとこの記事は、エムスリー Advent Calendar 2015 - Qiitaの13日目です。 ">
+  <meta name="description" content="ちょっとマニアックですが、AWSのIAMやSTSについてどういうものかを調べたので、そのメモ。
+あまりにマニアックなので、完全俺得記事です。あと、理解が間違ってそうなところがあればぜひ教えてほしい。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -48,8 +48,8 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="『RailsエンジニアのためのSQLチューニング速習会 - connpass』に参加してきました。すごく勉強になったので、
-その時のメモです。@minami7o さんありがとうございました！ あとこの記事は、エムスリー Advent Calendar 2015 - Qiitaの13日目です。 " />
+<meta property="og:description" content="ちょっとマニアックですが、AWSのIAMやSTSについてどういうものかを調べたので、そのメモ。
+あまりにマニアックなので、完全俺得記事です。あと、理解が間違ってそうなところがあればぜひ教えてほしい。 " />
 <meta property="og:url" content="http://morizyun.github.io/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -97,6 +97,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/aws-iam-basic-amazon-web-service/">AWSの IAM & STS の基礎知識</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2015-12-20T18:40:00+09:00" pubdate data-updated="true">Dec 20<span>th</span>, 2015</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/aws-iam-basic-amazon-web-service/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117437&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117437" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />ちょっとマニアックですが、AWSのIAMやSTSについてどういうものかを調べたので、そのメモ。
+あまりにマニアックなので、完全俺得記事です。あと、理解が間違ってそうなところがあればぜひ教えてほしい。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/aws-iam-basic-amazon-web-service/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -537,61 +585,6 @@ Railsって「Railsチュートリアル」には書いてないのに覚えな�
   
     <footer>
       <a rel="full-article" href="/blog/ruby-rails-non-beginner-guide-book/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/model-master-cache-rails-redis/">Railsのマスタ的なModelのキャッシュについて[Redis]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2015-11-08T10:10:00+09:00" pubdate data-updated="true">Nov 8<span>th</span>, 2015</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/model-master-cache-rails-redis/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00SF6JN4K/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00SF6JN4K&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00SF6JN4K&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00SF6JN4K" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsで中規模なサイトを作っていく上で
-避けて通れないのが、増えてきたモデルを適切にキャッシュする仕組みのように思えます。</p>
-
-<p>特に変更が少ないマスタ的なテーブルに対して、『多対多』で<code>関連付け(アソシエーション: association)</code>がある場合などは、
-それなりのSQLの発行コストになる事があります。そこを適切にキャッシュすることでDBへの負荷が減り、
-ユーザーへのレスポンスが改善されると思います。</p>
-
-<p>今回は、最近実装しているキャッシュの方法について、紹介したいと思います。
-(というか偉い人、ぜひいい方法教えて下さい＞＜)</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/model-master-cache-rails-redis/">続きを読む</a>
     </footer>
   
 
