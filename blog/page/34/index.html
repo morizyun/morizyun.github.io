@@ -9,10 +9,8 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="
-GoFのデザインパターン(Design Pattern)のイーテレータ(Iterator
-)のRubyコードを使った紹介記事です。 イーテレーターパターンは次のような場合に使います。 * 要素の集まったオブジェクト(配列など)にアクセスする
-* 集合の要素に順にアクセスする必要がある ">
+  <meta name="description" content="GoFのデザインパターン(Design Pattern)のコマンド(Command
+)のRubyコードを使った紹介記事です。 コマンドデザインパターンは、あるオブジェクトに対してコマンドを送ることでそのオブジェクトのメソッドを呼び出すことです。 例えば、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -50,10 +48,8 @@ GoFのデザインパターン(Design Pattern)のイーテレータ(Iterator
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="
-GoFのデザインパターン(Design Pattern)のイーテレータ(Iterator
-)のRubyコードを使った紹介記事です。 イーテレーターパターンは次のような場合に使います。 * 要素の集まったオブジェクト(配列など)にアクセスする
-* 集合の要素に順にアクセスする必要がある " />
+<meta property="og:description" content="GoFのデザインパターン(Design Pattern)のコマンド(Command
+)のRubyコードを使った紹介記事です。 コマンドデザインパターンは、あるオブジェクトに対してコマンドを送ることでそのオブジェクトのメソッドを呼び出すことです。 例えば、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/34/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -101,6 +97,58 @@ GoFのデザインパターン(Design Pattern)のイーテレータ(Iterator
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-design-pattern-06-command/">コマンド Ruby 2.0.0 デザインパターン速攻習得[Command][Design Pattern]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-09T00:45:00+09:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-design-pattern-06-command/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4894712857/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4894712857&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4894712857&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="200" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4894712857" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />GoFのデザインパターン(Design Pattern)のコマンド(Command
+)のRubyコードを使った紹介記事です。</p>
+
+<p>コマンドデザインパターンは、あるオブジェクトに対してコマンドを送ることでそのオブジェクトのメソッドを呼び出すことです。</p>
+
+<p>例えば、ファイルシステムの実装は知らなくてもユーザーはファイルの追加、削除といったコマンドを実行できます。これもコマンドパターンの一つです。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/ruby-design-pattern-06-command/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -571,68 +619,6 @@ GoFのデザインパターン(Design Pattern)のストラテジー(Strategy)の
   
     <footer>
       <a rel="full-article" href="/blog/capistrano-git-rails-deploy/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/meta-tags-sitemap-generator-rails-seo/">meta-tagsとsitemap_generatorで始めるRails 3.2のSEO対策</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2012-12-05T11:05:00+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2012</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/meta-tags-sitemap-generator-rails-seo/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="/blog/meta-tags-sitemap-generator-rails-seo/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14_m.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
-
-<p>RailsのSEO対策をしてくれるRubyGemの紹介です。</p>
-
-<pre>
-meta-tags : メタタグ / open graphタグ / headerのtitleの管理
-sitemap_generator : サイトマップを生成してくれる
-</pre>
-
-
-<p>どちらも簡単に導入できて、機能は充実しているので是非試してみて下さい。</p>
-
-<br style="clear:both;"/>
-
-
-<p><a href="https://github.com/kpumuk/meta-tags" class="button big primary">meta-tags GitHub</a><a href="https://github.com/kjvarga/sitemap_generator" class="button big primary">sitemap_generator GitHub</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/meta-tags-sitemap-generator-rails-seo/">続きを読む</a>
     </footer>
   
 

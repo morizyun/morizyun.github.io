@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="遅ればせながら、Objective-Cのライブラリ管理をしてくれるCocoaPodsを知りました。Ruby GemのBundlerのObjective-C版です。外部のライブラリをプロジェクトに設定するときの面倒臭い設定を自動でやってくれる、素晴らしいツールです。 ">
+  <meta name="description" content="Objecitve-CのUnit Testのフレームワークの中では、GHUnitが安定性の面でオススメなようです。ということで、GHUnitの導入にトライしたらドハマリしたので、今後のために導入の手順を残しておきます。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="遅ればせながら、Objective-Cのライブラリ管理をしてくれるCocoaPodsを知りました。Ruby GemのBundlerのObjective-C版です。外部のライブラリをプロジェクトに設定するときの面倒臭い設定を自動でやってくれる、素晴らしいツールです。 " />
+<meta property="og:description" content="Objecitve-CのUnit Testのフレームワークの中では、GHUnitが安定性の面でオススメなようです。ということで、GHUnitの導入にトライしたらドハマリしたので、今後のために導入の手順を残しておきます。 " />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/30/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ghunit-xcode-45-ios6-tdd-unit-test/">Objective-CのUnit Testフレームワーク GHUnitの導入手順</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-01-25T11:50:00+09:00" pubdate data-updated="true">Jan 25<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ghunit-xcode-45-ios6-tdd-unit-test/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4861008611/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4861008611&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4861008611&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4861008611" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Objecitve-CのUnit Testのフレームワークの中では、GHUnitが安定性の面でオススメなようです。ということで、GHUnitの導入にトライしたらドハマリしたので、今後のために導入の手順を残しておきます。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/ghunit-xcode-45-ios6-tdd-unit-test/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -562,55 +609,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/twitter-bot-ruby-rails/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/topsy-gem-ruby-rails/">[Gem] Topsy TwitterへのURLのポスト数取得に是非！ [Rails]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-01-02T22:00:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/topsy-gem-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="/blog/topsy-gem-ruby-rails/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>TwitterへのURLのpost数(ツイート数)を取得する時に活躍してくれるRubyGem <code>topsy</code>の紹介です。TwitterのAPIは回数制限がとっても厳しいので、Twitterの情報を取得するときにはTopsy.comのAPIを使うこのGemがオススメっす。</p>
-
-<p><a href="https://github.com/pengwynn/topsy" title="pengwynn/topsy · GitHub" class="button big primary">pengwynn/topsy · GitHub</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/topsy-gem-ruby-rails/">続きを読む</a>
     </footer>
   
 
