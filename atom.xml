@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-26T19:55:20+09:00</updated>
+  <updated>2015-12-26T19:56:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -192,6 +192,19 @@ Callback URL : http://www.example.com/callback (公開するときはコール�
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>viewを作成</h2>
+
+<p><code>app/views/top/index.html.haml</code>にボタンを設置します。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">=</span> <span class="n">form_tag</span> <span class="n">tweet_path</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">=</span> <span class="n">text_area_tag</span> <span class="ss">:text</span>
+</span><span class='line'>  <span class="o">=</span> <span class="n">submit_tag</span> <span class="s1">&#39;ツイートする&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h2>routesに以下を追加</h2>
 
 <p>ルーティング情報を追加します。</p>
@@ -206,19 +219,6 @@ Callback URL : http://www.example.com/callback (公開するときはコール�
 </span><span class='line'>  <span class="c1"># tweet</span>
 </span><span class='line'>  <span class="n">post</span> <span class="s1">&#39;/top/tweet&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;top#tweet&#39;</span><span class="p">,</span> <span class="n">as</span><span class="p">:</span> <span class="ss">:tweet</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>ボタンを作成</h2>
-
-<p><code>app/views/top/index.html.haml</code>にボタンを設置します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">=</span> <span class="n">form_tag</span> <span class="n">tweet_path</span> <span class="k">do</span>
-</span><span class='line'>  <span class="o">=</span> <span class="n">text_area_tag</span> <span class="ss">:text</span>
-</span><span class='line'>  <span class="o">=</span> <span class="n">submit_tag</span> <span class="s1">&#39;ツイートする&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

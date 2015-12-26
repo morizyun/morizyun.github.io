@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-26T19:55:20+09:00</updated>
+  <updated>2015-12-26T19:56:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -166,6 +166,16 @@ redirect_to root_path, notice: 'ツイートしました！'
 end
 ```</p>
 
+<h2>viewを作成</h2>
+
+<p><code>app/views/top/index.html.haml</code>にボタンを設置します。</p>
+
+<p><code>
+= form_tag tweet_path do
+  = text_area_tag :text
+  = submit_tag 'ツイートする'
+</code></p>
+
 <h2>routesに以下を追加</h2>
 
 <p>ルーティング情報を追加します。</p>
@@ -177,16 +187,6 @@ Rails.application.routes.draw do
   # tweet
   post '/top/tweet' =&gt; 'top#tweet', as: :tweet
 end
-</code></p>
-
-<h2>ボタンを作成</h2>
-
-<p><code>app/views/top/index.html.haml</code>にボタンを設置します。</p>
-
-<p><code>
-= form_tag tweet_path do
-  = text_area_tag :text
-  = submit_tag 'ツイートする'
 </code></p>
 
 <h2>実行確認</h2>
