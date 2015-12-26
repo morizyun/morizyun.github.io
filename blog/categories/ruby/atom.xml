@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-26T19:59:47+09:00</updated>
+  <updated>2015-12-26T20:04:58+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -86,7 +86,7 @@ bundle install --jobs=4 --path=vendor/bundle
 
 <p>Ruby Gemライブラリをインターネットから持ってきて、自動でローカルに保存します。</p>
 
-<h2>OmniAuth用のScaffold</h2>
+<h2>Twitter認証用のScaffold</h2>
 
 <p>以下のコマンドを実行して、OmniAuth用のScaffoldを作成。</p>
 
@@ -168,12 +168,21 @@ end
 
 <h2>viewを作成</h2>
 
-<p><code>app/views/top/index.html.haml</code>にボタンを設置します。</p>
+<p><code>app/views/top/index.html.haml</code> にフォームを設置します。</p>
 
 <p><code>
 = form_tag tweet_path do
   = text_area_tag :text
   = submit_tag 'ツイートする'
+</code></p>
+
+<p>あと念のため、今回は facebook / githubのログインは削除します。</p>
+
+<p><code>app/views/layouts/application.html.haml</code> の以下を削除してください。</p>
+
+<p><code>
+= link_to 'Facebook', '/auth/facebook'
+= link_to 'GitHub',   '/auth/github'
 </code></p>
 
 <h2>routesに以下を追加</h2>

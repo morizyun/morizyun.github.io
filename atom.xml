@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-26T19:59:47+09:00</updated>
+  <updated>2015-12-26T20:04:58+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -92,7 +92,7 @@
 
 <p>Ruby Gemライブラリをインターネットから持ってきて、自動でローカルに保存します。</p>
 
-<h2>OmniAuth用のScaffold</h2>
+<h2>Twitter認証用のScaffold</h2>
 
 <p>以下のコマンドを実行して、OmniAuth用のScaffoldを作成。</p>
 
@@ -194,7 +194,7 @@ Callback URL : http://www.example.com/callback (公開するときはコール�
 
 <h2>viewを作成</h2>
 
-<p><code>app/views/top/index.html.haml</code>にボタンを設置します。</p>
+<p><code>app/views/top/index.html.haml</code> にフォームを設置します。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -202,6 +202,17 @@ Callback URL : http://www.example.com/callback (公開するときはコール�
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">=</span> <span class="n">form_tag</span> <span class="n">tweet_path</span> <span class="k">do</span>
 </span><span class='line'>  <span class="o">=</span> <span class="n">text_area_tag</span> <span class="ss">:text</span>
 </span><span class='line'>  <span class="o">=</span> <span class="n">submit_tag</span> <span class="s1">&#39;ツイートする&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あと念のため、今回は facebook / githubのログインは削除します。</p>
+
+<p><code>app/views/layouts/application.html.haml</code> の以下を削除してください。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">=</span> <span class="n">link_to</span> <span class="s1">&#39;Facebook&#39;</span><span class="p">,</span> <span class="s1">&#39;/auth/facebook&#39;</span>
+</span><span class='line'><span class="o">=</span> <span class="n">link_to</span> <span class="s1">&#39;GitHub&#39;</span><span class="p">,</span>   <span class="s1">&#39;/auth/github&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
