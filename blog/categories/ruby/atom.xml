@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-26T20:04:58+09:00</updated>
+  <updated>2015-12-26T20:11:34+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -70,7 +70,8 @@
 
 <h2>Gemfileに以下を追加</h2>
 
-<p>プロジェクト直下のGemfileを開いて以下を追加して下さい。</p>
+<p>プロジェクト直下のGemfileを開いて以下を追加して下さい。
+(minimum-omniauth-scaffold は最後に補足を書いています)</p>
 
 <p><code>ruby
 gem 'twitter'
@@ -216,6 +217,15 @@ bundle exec rails s
 <p><img src="https://farm6.staticflickr.com/5669/23980479635_befe85ce67.jpg" width="500" height="162"></p>
 
 <p>とツイートできました。(※ 実話です！)</p>
+
+<h2>(補足) minimum-omniauth-scaffold について</h2>
+
+<p>今回使ったRubyGemの <strong><a href="https://github.com/shu0115/minimum-omniauth-scaffold">shu0115/minimum-omniauth-scaffold</a></strong>
+は、Facebook/Twitter/GitHubのアカウントを使ったログイン機能のscaffoldを提供してくれるGemです。</p>
+
+<p>すごく便利なのでFacebook/Twitter/GitHubのアカウントを使ったログイン機能を実装したいときは、是非試してみてください。</p>
+
+<p>ちなみに、拙著の紹介記事は、『<strong><a href="/blog/minimum-omniauth-scaffold/">「minimum-omniauth-scaffold」 Facebook/Twitter/GitHubログインを高速実装！</a></strong>』もおすすめです！</p>
 
 <br style="clear:both;"/>
 
