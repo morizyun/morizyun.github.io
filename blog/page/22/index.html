@@ -9,7 +9,8 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="短期間でプロダクトを作ってそのまま運用するのに最適なHeroku。最近サラリーマンになって自由な時間が減ったので、Herokuで時間を節約して開発に集中できる特徴に感動して、最近もっぱらHerokuのエラーと格闘する毎日ですw ということで、 &hellip;">
+  <meta name="description" content="Herokuの超優良アドオンの一つであるMongoLabは、HerokuでMongoDBを0.5GBまで無料で使えるアドオンです。公式のPostgreSQLの無料枠が1万レコードまで
+なのでかなり太っ腹なサービスです。 今回は久々にMongoLabを触ったので、ついでにRails 4 x Ruby &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +48,8 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="短期間でプロダクトを作ってそのまま運用するのに最適なHeroku。最近サラリーマンになって自由な時間が減ったので、Herokuで時間を節約して開発に集中できる特徴に感動して、最近もっぱらHerokuのエラーと格闘する毎日ですw ということで、 &hellip;" />
+<meta property="og:description" content="Herokuの超優良アドオンの一つであるMongoLabは、HerokuでMongoDBを0.5GBまで無料で使えるアドオンです。公式のPostgreSQLの無料枠が1万レコードまで
+なのでかなり太っ腹なサービスです。 今回は久々にMongoLabを触ったので、ついでにRails 4 x Ruby &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/22/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +97,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mongolab-mongodb-mongoid-rails/">Herokuの超優良アドオン MongoLabを Rails 4.0 X Ruby 2.1環境で使う！</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-12-28T20:00:00+09:00" pubdate data-updated="true">Dec 28<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/mongolab-mongodb-mongoid-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Herokuの超優良アドオンの一つであるMongoLabは、HerokuでMongoDBを0.5GBまで無料で使えるアドオンです。公式のPostgreSQLの無料枠が1万レコードまで
+なのでかなり太っ腹なサービスです。</p>
+
+<p><img src="http://farm9.staticflickr.com/8207/8221004350_8482265b9d.jpg" width="500" height="311" alt="fpu_tmp_1353937227.5696_c84f0e"></p>
+
+<p>今回は久々にMongoLabを触ったので、ついでにRails 4 x Ruby 2.1での動作確認がてら記事をリニュアールしました！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/mongolab-mongodb-mongoid-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -554,55 +608,6 @@ Youtube動画をiframeでサイトに埋め込む時に、最適なサイズに�
   
     <footer>
       <a rel="full-article" href="/blog/json-builder-rabl-active-model-seriarizer/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mail-template-html-gallery/">無料で使えるHTMLメールのテンプレート いろいろ！</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-11-14T22:00:00+09:00" pubdate data-updated="true">Nov 14<span>th</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/mail-template-html-gallery/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4839938296/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839938296&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839938296&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839938296" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />無料のHTMLメールのテンプレートを探してみたところ、いろいろ見つかったので忘備録で書いておきます。今風のレスポンシブなデザインやスマホ、タブレットに対応したHTMLテンプレートもありました！</p>
-
-<p><strong>11/14 『32 Responsive Email Templates』を追加</strong><br/></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/mail-template-html-gallery/">続きを読む</a>
     </footer>
   
 
