@@ -9,7 +9,8 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="GoFのデザインパターン(Design Pattern)のプロキシ(Proxy)をRubyのサンプルコードで紹介します。 プロクシパターンは1つのオブジェクトに複数の関心事がある場合にそれを分離するために用います。例えば、オブジェクトの本質的な目的とは異なる「 &hellip;">
+  <meta name="description" content="GoFのデザインパターン(Design Pattern)の一つ、デコレータ(Decorator)をRubyのサンプルコードで紹介します。 デコレータは、既存のオブジェクトに対して簡単に機能の追加をするためのパターンです。
+デコレータパターンを使うと、レイヤ状に機能を積み重ねて、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +48,8 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="GoFのデザインパターン(Design Pattern)のプロキシ(Proxy)をRubyのサンプルコードで紹介します。 プロクシパターンは1つのオブジェクトに複数の関心事がある場合にそれを分離するために用います。例えば、オブジェクトの本質的な目的とは異なる「 &hellip;" />
+<meta property="og:description" content="GoFのデザインパターン(Design Pattern)の一つ、デコレータ(Decorator)をRubyのサンプルコードで紹介します。 デコレータは、既存のオブジェクトに対して簡単に機能の追加をするためのパターンです。
+デコレータパターンを使うと、レイヤ状に機能を積み重ねて、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/34/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +97,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-design-pattern-09-decorator/">デコレータ Ruby 2.0.0 デザインパターン速攻習得[Decorator][Design Pattern]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-09T13:30:00+09:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-design-pattern-09-decorator/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4894712857/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4894712857&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4894712857&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="200" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4894712857" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />GoFのデザインパターン(Design Pattern)の一つ、デコレータ(Decorator)をRubyのサンプルコードで紹介します。</p>
+
+<p>デコレータは、既存のオブジェクトに対して簡単に機能の追加をするためのパターンです。
+デコレータパターンを使うと、レイヤ状に機能を積み重ねて、必要な機能を持つオブジェクトを作ることができます。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/ruby-design-pattern-09-decorator/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -568,56 +620,6 @@ GoFのデザインパターン(Design Pattern)のストラテジー(Strategy)の
   
     <footer>
       <a rel="full-article" href="/blog/doubutsu-qr-matome-release/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/twitter-bootsrap-modal/">Bootsrapでモーダル表示 HTML/HAMLテンプレート</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2012-12-06T22:55:00+09:00" pubdate data-updated="true">Dec 6<span>th</span>, 2012</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/twitter-bootsrap-modal/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="/blog/twitter-bootsrap-modal/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8069/8250062954_f9859c52e8_m.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
-
-<p>Twitter Bootsrapでモーダル表示 HTML/HAMLテンプレートを作ってみました。
-もしTwitterブートストラップでモーダルを作る際には、試してみて下さい！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/twitter-bootsrap-modal/">続きを読む</a>
     </footer>
   
 
