@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HTML | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/html/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-28T23:28:44+09:00</updated>
+  <updated>2015-12-30T20:26:52+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,19 +28,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h1>導入編</h1>
 
@@ -134,19 +122,7 @@ CSSの要点が詰まっている。やや中級者向けの内容なので、�
 
 <p>Mac限定ですが、Qiitaは<strong><a href="http://kobito.qiita.com/ja">Kobito</a></strong>というMacアプリがあり、メモを気軽に公開できます。Macな人で自分でブログを始める前の練習でQiitaにアップするのはすごくいい方法だと思います！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>お願い事項</h2>
 
@@ -183,19 +159,7 @@ CSSの要点が詰まっている。やや中級者向けの内容なので、�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>[動画] ドットインストール JavaScript入門</h2>
 
@@ -213,47 +177,31 @@ CSSの要点が詰まっている。やや中級者向けの内容なので、�
 
 <p>いろいろ試していて忘れがちなので忘備録。クラスのメソッド的な定義の仕方。まずは連想配列内に定義する方法。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">john</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">sayName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; Due&quot;</span><span class="p">);</span> <span class="p">}</span>
-</span><span class='line'><span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">john</span><span class="p">.</span><span class="nx">sayName</span><span class="p">();</span> <span class="c1">//=&gt; John Due</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:javascript %}
+var john = {
+  name: "John",
+  sayName: function() { console.log(this.name + " Due"); }
+};</p>
+
+<p>john.sayName(); //=> John Due
+{% endcodeblock %}</p>
 
 <p>次はコンストラクタっぽいオブジェクトを定義して、そのオブジェクトの<code>prototype</code>にメソッドを定義する方法。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// コンストラクタ</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">Girl</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'><span class="c1">// prototypeにメソッドを定義</span>
-</span><span class='line'><span class="nx">Girl</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">sayAge</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;My age is &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="c1">// オブジェクトを生成して、sayAgeメソッドを呼び出し</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">sadako</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Girl</span><span class="p">(</span><span class="s1">&#39;Sadako&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
-</span><span class='line'><span class="nx">sadako</span><span class="p">.</span><span class="nx">sayAge</span><span class="p">();</span>  <span class="c1">//=&gt; My age is 12</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:javascript %}
+// コンストラクタ
+var Girl = function(name, age) {
+  this.name = name;
+  this.age = age;
+};
+// prototypeにメソッドを定義
+Girl.prototype = {
+  sayAge: function() { console.log("My age is " + this.age); }
+}
+// オブジェクトを生成して、sayAgeメソッドを呼び出し
+var sadako = new Girl('Sadako', 12);
+sadako.sayAge();  //=> My age is 12
+{% endcodeblock %}</p>
 
 <h2>[SLIDE] 最強オブジェクト指向言語 JavaScript 再入門</h2>
 
@@ -294,97 +242,53 @@ CSSの要点が詰まっている。やや中級者向けの内容なので、�
 
 <p>ちなみにサンプルとしてはこんなかんじです。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kr">class</span> <span class="nx">Dog</span>
-</span><span class='line'>  <span class="err">#</span> <span class="err">コンストラクタ</span>
-</span><span class='line'>  <span class="nx">constructor</span><span class="o">:</span> <span class="p">(</span><span class="err">@</span><span class="nx">name</span><span class="p">)</span> <span class="o">-&gt;&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="nx">Public</span> <span class="err">メソッド</span>
-</span><span class='line'>  <span class="nx">action_public</span><span class="o">:</span> <span class="p">(</span><span class="nx">verb</span><span class="p">)</span> <span class="o">-&gt;&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s2">&quot;#{verb} #{@name} (public).&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">call_action_private</span><span class="o">:</span> <span class="p">(</span><span class="nx">verb</span><span class="p">)</span> <span class="o">-&gt;&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">action_private</span><span class="p">(</span><span class="nx">verb</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="nx">Private</span> <span class="err">メソッド</span>
-</span><span class='line'>  <span class="nx">action_private</span> <span class="o">=</span> <span class="p">(</span><span class="nx">verb</span><span class="p">)</span> <span class="o">-&gt;&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s2">&quot;#{verb} #{@name} (private).&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="err">@</span><span class="nx">var1</span><span class="o">:</span> <span class="s2">&quot;a&quot;</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">Dog</span><span class="p">.</span><span class="nx">var1</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span><span class="p">;</span>
-</span><span class='line'>  <span class="err">@</span><span class="nx">var2</span><span class="o">=</span> <span class="s2">&quot;b&quot;</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">Dog</span><span class="p">.</span><span class="nx">var2</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">var3</span><span class="o">:</span> <span class="s2">&quot;c&quot;</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">Dog</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">var3</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">var4</span><span class="o">=</span> <span class="s2">&quot;d&quot;</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">var4</span> <span class="o">=</span> <span class="s2">&quot;d&quot;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Dog</span><span class="err">を継承した</span><span class="nx">Labrador</span><span class="err">クラス</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kr">class</span> <span class="nx">Labrador</span> <span class="kr">extends</span> <span class="nx">Dog</span>
-</span><span class='line'>  <span class="nx">action</span><span class="o">:</span> <span class="p">(</span><span class="nx">verb</span><span class="p">)</span> <span class="o">-&gt;&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="err">#基底クラスのメンバ呼び出し</span>
-</span><span class='line'><span class="nx">alert</span> <span class="s2">&quot;#{verb} #{@name}.&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hana</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span> <span class="s2">&quot;Hana&quot;</span>
-</span><span class='line'><span class="nx">Hana</span><span class="p">.</span><span class="nx">action_public</span><span class="p">(</span><span class="s1">&#39;Running&#39;</span><span class="p">)</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">Running</span> <span class="nx">Hana</span> <span class="p">(</span><span class="kr">public</span><span class="p">).</span>
-</span><span class='line'><span class="nx">Hana</span><span class="p">.</span><span class="nx">action_private</span><span class="p">(</span><span class="s1">&#39;Running&#39;</span><span class="p">)</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nb">Error</span> <span class="nx">no</span> <span class="nx">method</span> <span class="s1">&#39;action_private&#39;</span>
-</span><span class='line'><span class="nx">Hana</span><span class="p">.</span><span class="nx">action_action_private</span><span class="p">(</span><span class="s1">&#39;Running&#39;</span><span class="p">)</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">Running</span> <span class="p">(</span><span class="kr">private</span><span class="p">).</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hana</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span> <span class="s2">&quot;Hana&quot;</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">Dog</span><span class="p">.</span><span class="nx">var1</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">a</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">Dog</span><span class="p">.</span><span class="nx">var2</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">b</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">Hana</span><span class="p">.</span><span class="nx">var3</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="nx">c</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">Hana</span><span class="p">.</span><span class="nx">var4</span> <span class="err">#</span><span class="o">=&gt;</span> <span class="kc">undefined</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:javascript %}
+class Dog
+  # コンストラクタ
+  constructor: (@name) -></p>
+
+<p>  # Public メソッド
+  action_public: (verb) -></p>
+
+<pre><code>console.log "#{verb} #{@name} (public)."
+</code></pre>
+
+<p>  call_action_private: (verb) -></p>
+
+<pre><code>action_private(verb)
+</code></pre>
+
+<p>  # Private メソッド
+  action_private = (verb) -></p>
+
+<pre><code>console.log "#{verb} #{@name} (private)."
+</code></pre>
+
+<p>  @var1: "a" #=> Dog.var1 = "a";
+  @var2= "b" #=> Dog.var2 = "b";
+  var3: "c" #=> Dog.prototype.var3 = "c";
+  var4= "d" #=> var4 = "d"</p>
+
+<h1>Dogを継承したLabradorクラス</h1>
+
+<p>class Labrador extends Dog
+  action: (verb) -></p>
+
+<pre><code>#基底クラスのメンバ呼び出し
+alert "#{verb} #{@name}."
+</code></pre>
+
+<p>Hana = new Dog "Hana"
+Hana.action_public('Running') #=> Running Hana (public).
+Hana.action_private('Running') #=> Error no method 'action_private'
+Hana.action_action_private('Running') #=> Running (private).</p>
+
+<p>Hana = new Dog "Hana"
+console.log Dog.var1 #=> a
+console.log Dog.var2 #=> b
+console.log Hana.var3 #=> c
+console.log Hana.var4 #=> undefined
+{% endcodeblock %}</p>
 
 <p>変数の定義などは、まだまだ理解できていないので忘備録のメモ書きです！</p>
 
@@ -409,51 +313,29 @@ encodeURIComponent() #=> URIで特殊な意味を持つ文字(;, :, /とか)も�
 
 <p>幾つか備忘録のTipsです。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 複数プロパティの変更</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#type&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="s1">&#39;fontsize&#39;</span> <span class="o">:</span> <span class="s1">&#39;50px&#39;</span><span class="p">,</span>
-</span><span class='line'><span class="s1">&#39;background-color&#39;</span> <span class="o">:</span> <span class="s1">&#39;#ae5e9b&#39;</span><span class="p">,</span>
-</span><span class='line'><span class="s1">&#39;color&#39;</span> <span class="o">:</span> <span class="s1">&#39;ebc000&#39;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">})</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// メソッドチェーン</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#type&#39;</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="err">#</span> <span class="nx">hogehoge</span><span class="p">...</span>
-</span><span class='line'><span class="p">})</span>
-</span><span class='line'><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseout&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="err">#</span> <span class="nx">fugafuga</span><span class="p">...</span>
-</span><span class='line'><span class="p">})</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:javascript %}
+// 複数プロパティの変更
+$('#type').css({</p>
+
+<pre><code>'fontsize' : '50px',
+'background-color' : '#ae5e9b',
+'color' : 'ebc000'
+</code></pre>
+
+<p>})</p>
+
+<p>// メソッドチェーン
+$('#type')</p>
+
+<pre><code>.on('mouseover', function(){
+    # hogehoge...
+})
+.on('mouseout', function(){
+    # fugafuga...
+})
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h2>JavaScriptの習熟度を上げるための勉強フロー</h2>
 
@@ -484,19 +366,7 @@ encodeURIComponent() #=> URIで特殊な意味を持つ文字(;, :, /とか)も�
 
 <p>ネットでおすすめのサイト・資料があればぜひ教えて下さい。また、書籍は他にもJavaScript系の本を２冊購入しています。読み進んでいったら、紹介していきます。</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>変更来歴</h2>
 

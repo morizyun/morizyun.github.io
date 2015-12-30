@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OpenSource | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/opensource/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-28T23:28:44+09:00</updated>
+  <updated>2015-12-30T20:26:52+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -26,19 +26,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>DISOURSEとは？</h2>
 
@@ -66,9 +54,9 @@
 
 <p>以下のコマンドを実行して、<code>DISCOURSE</code>のコードをclone。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/discourse/discourse.git
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git clone git://github.com/discourse/discourse.git
+{% endcodeblock %}</p>
 
 <h3>(5) DISCOURSEの環境構築</h3>
 
@@ -76,99 +64,60 @@
 
 <p>production環境、及びpostgreSQLのユーザーを作成する場合はこの記事の最後の方に補足を書いていますので、良かったら先に読んでみて下さい。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;database.ymlの準備&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;mv config/database.yml.sample config/database.yml&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;redis.ymlの準備&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;mv config/redis.yml.sample config/redis.yml&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Gemのインストール&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bundle install&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;DBの作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bundle <span class="nb">exec </span>rake db:create:all&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;マイグレーション&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake db:migrate&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;DBのテスト環境の準備&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake db:test:prepare&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;seedファイル<span class="o">(</span>初期データ<span class="o">)</span>の読み込み&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake db:seed_fu&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;seedファイルの代わりにdev環境でサンプルデータを読み込む場合&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;wget http://www.discourse.org/vms/dev-discourse-seed.sql
-</span><span class='line'>psql -d discourse_development &amp;lt; dev-discourse-seed.sql&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;RSpecでテストを実行して動作確認&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bundle <span class="nb">exec </span>rspec
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>database.ymlの準備</h1>
+
+<p>mv config/database.yml.sample config/database.yml</p>
+
+<h1>redis.ymlの準備</h1>
+
+<p>mv config/redis.yml.sample config/redis.yml</p>
+
+<h1>Gemのインストール</h1>
+
+<p>bundle install</p>
+
+<h1>DBの作成</h1>
+
+<p>bundle exec rake db:create:all</p>
+
+<h1>マイグレーション</h1>
+
+<p>rake db:migrate</p>
+
+<h1>DBのテスト環境の準備</h1>
+
+<p>rake db:test:prepare</p>
+
+<h1>seedファイル(初期データ)の読み込み</h1>
+
+<p>rake db:seed_fu</p>
+
+<h1>seedファイルの代わりにdev環境でサンプルデータを読み込む場合</h1>
+
+<p>wget http://www.discourse.org/vms/dev-discourse-seed.sql
+psql -d discourse_development &lt; dev-discourse-seed.sql</p>
+
+<h1>RSpecでテストを実行して動作確認</h1>
+
+<p>bundle exec rspec
+{% endcodeblock %}</p>
 
 <h3>(6) サーバの起動</h3>
 
 <p>webrickをサーバにする場合は下のコマンドを実行して、<code>http://localhost:3000</code>をブラウザで開く。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rails server
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bundle exec rails server
+{% endcodeblock %}</p>
 
 <p>もし、Powを使う場合は、Gemfileに<code>gem 'powder'</code>を追加して<code>bundle</code>を実行。そして、以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>powder link
-</span><span class='line'>powder open
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+powder link
+powder open
+{% endcodeblock %}</p>
 
 <p>これで、Discouseを起動出来ると思います！</p>
 
@@ -176,41 +125,27 @@
 
 <p><code>config/database.yml</code>にPostgreSQLのユーザーとパスワードを追加する手順です。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ユーザーの作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;createuser -P <span class="o">[</span>Railsの実行ユーザーと同名<span class="o">]</span> -s&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;<span class="o">[</span>パスワードを設定<span class="o">]</span>&lt;/p&gt;&lt;/blockquote&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;データベースの作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;createdb <span class="o">[</span>データベース名<span class="o">]</span> -O <span class="o">[</span>Railsの実行ユーザーと同名<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>ユーザーの作成</h1>
+
+<p>createuser -P [Railsの実行ユーザーと同名] -s</p>
+
+<blockquote><p>[パスワードを設定]</p></blockquote>
+
+<h1>データベースの作成</h1>
+
+<p>createdb [データベース名] -O [Railsの実行ユーザーと同名]
+{% endcodeblock %}</p>
 
 <p>続いて、<code>config/database.yml</code>にユーザーの設定を追加する設定例です。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">username</span><span class="p">:</span> <span class="o">[</span><span class="no">Rails</span><span class="err">の実行ユーザーと同名</span><span class="o">]</span>
-</span><span class='line'>  <span class="n">password</span><span class="p">:</span> <span class="o">[</span><span class="err">パスワード</span><span class="o">]</span>
-</span><span class='line'><span class="n">host_names</span><span class="p">:</span>
-</span><span class='line'>  <span class="o">-</span> <span class="s2">&quot;[ホスト名]&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+  username: [Railsの実行ユーザーと同名]
+  password: [パスワード]
+host_names:
+  - "[ホスト名]"
+{% endcodeblock %}</p>
 
 <h2>補足: production環境の場合</h2>
 
@@ -218,75 +153,46 @@
 
 <p>まず、以下のコマンドを実行して<code>secret_token</code>を生成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake secret&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;<span class="s2">&quot;生成されたsecret-token&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+rake secret</p>
+
+<blockquote><p>"生成されたsecret-token"
+{% endcodeblock %}</p></blockquote>
 
 <p>続いて、<code>vim config/initializers/ecret_token.rb</code>で以下を変更。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;変更前&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span> <span class="o">||</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span>
-</span><span class='line'>  <span class="no">Discourse</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_token</span> <span class="o">=</span> <span class="s2">&quot;secret_token&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;変更後&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span> <span class="o">||</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span> <span class="o">||</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">prodcution?</span>
-</span><span class='line'>  <span class="no">Discourse</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_token</span> <span class="o">=</span> <span class="s2">&quot;生成されたsecret_tokenをセット&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>変更前</h1>
+
+<p>if Rails.env.test? || Rails.env.development?
+  Discourse::Application.config.secret_token = "secret_token"</p>
+
+<h1>変更後</h1>
+
+<p>if Rails.env.test? || Rails.env.development? || Rails.env.prodcution?
+  Discourse::Application.config.secret_token = "生成されたsecret_tokenをセット"
+{% endcodeblock %}</p>
 
 <p>さらに、assetのコンパイルも必要。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rake assets:precompile <span class="nv">RAILS_ENV</span><span class="o">=</span>production
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bundle exec rake assets:precompile RAILS_ENV=production
+{% endcodeblock %}</p>
 
 <h2>補足:ソースを最新状態にする</h2>
 
 <p>DISCOURSEはコードがものすごい勢いで開発されています。そのため、独自の変更をしていない場合は、定期的にソースを最新状態にアップデートすることをオススメします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git reset --hard HEAD
-</span><span class='line'>git pull
-</span><span class='line'>bundle
-</span><span class='line'>bundle <span class="nb">exec </span>rake db:migrate <span class="nv">RAILS_ENV</span><span class="o">=</span>production
-</span><span class='line'>bundle <span class="nb">exec </span>rake assets:precompile <span class="nv">RAILS_ENV</span><span class="o">=</span>production
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git reset --hard HEAD
+git pull
+bundle
+bundle exec rake db:migrate RAILS_ENV=production
+bundle exec rake assets:precompile RAILS_ENV=production
+{% endcodeblock %}</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

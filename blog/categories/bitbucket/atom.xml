@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Bitbucket | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/bitbucket/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-28T23:28:44+09:00</updated>
+  <updated>2015-12-30T20:26:52+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -30,19 +30,7 @@
 <!-- more -->
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>どんな目的の訪問者に来て欲しいページかを考える</h2>
 
@@ -146,19 +134,7 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>変更来歴</h2>
 
@@ -191,19 +167,7 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>目次</h2>
 
@@ -237,45 +201,31 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 <p>GitHubのOctopressリポジトリから、最新のOctopressのソースコードを取得。<br/>
 (usernameのところには自分のユーザー名を入れてください)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:imathis/octopress.git username.github.io
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git clone git@github.com:imathis/octopress.git username.github.io
+{% endcodeblock %}</p>
 
 <h2>(3) GitHubへのdeploy設定</h2>
 
 <p>bundlerとGemfile内のgemのインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>username.github.io&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;bundlerが入っていない人向け、bundlerのインストール&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem install bundler&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Gemfileに書かれたgemをインストール&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bundle install --path vendor/bundle --jobs<span class="o">=</span>4&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;GitHub Pagesに表示するための設定&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bundle <span class="nb">exec </span>rake setup_github_pages
-</span><span class='line'>Enter the <span class="nb">read</span>/write url <span class="k">for </span>your repository: git@github.com: username/username.github.com.git
-</span><span class='line'>Repository url: <span class="c">#&amp;lt;= GitHubのリポジトリを登録</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cd username.github.io</p>
+
+<h1>bundlerが入っていない人向け、bundlerのインストール</h1>
+
+<p>gem install bundler</p>
+
+<h1>Gemfileに書かれたgemをインストール</h1>
+
+<p>bundle install --path vendor/bundle --jobs=4</p>
+
+<h1>GitHub Pagesに表示するための設定</h1>
+
+<p>bundle exec rake setup_github_pages
+Enter the read/write url for your repository: git@github.com: username/username.github.com.git
+Repository url: #&lt;= GitHubのリポジトリを登録
+{% endcodeblock %}</p>
 
 <h2>(4) Octopressのブログ初期設定</h2>
 
@@ -284,29 +234,19 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 
 <p>ここでは、ブログのメイン設定を担当する<code>_config.yml</code>の設定項目の説明を翻訳しておきます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>url:                <span class="c"># RSSに記載するためのブログURL</span>
-</span><span class='line'>title:              <span class="c"># HTMLのヘッダとタイトルタグに使うブログのタイトル</span>
-</span><span class='line'>subtitle:           <span class="c"># HTMLのヘッダ部分に表示するブログのサブタイトル</span>
-</span><span class='line'>author:             <span class="c"># コピーライトやメタタグなどに使うブログの著者情報</span>
-</span><span class='line'>simple_search:      <span class="c"># ブログ内の検索機能におけるサーチエンジン</span>
-</span><span class='line'>description:        <span class="c"># デフォルトのメタタグ内descriptionの内容</span>
-</span><span class='line'>date_format:        <span class="c"># 日付のフォーマット(Ruby&#39;s date strftime syntax)</span>
-</span><span class='line'>subscribe_rss:      <span class="c"># ブログのRSSのURL(デフォルトは /atom.xml)</span>
-</span><span class='line'>subscribe_email:    <span class="c"># e-mailを使ったブログの購読のためのURL</span>
-</span><span class='line'>category_feeds:     <span class="c"># カテゴリ単位でのRSSを許可するか？ (デフォルトはfalse)</span>
-</span><span class='line'>email:              <span class="c"># RSSのためのメールアドレス(必要な場合のみ)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+url:                # RSSに記載するためのブログURL
+title:              # HTMLのヘッダとタイトルタグに使うブログのタイトル
+subtitle:           # HTMLのヘッダ部分に表示するブログのサブタイトル
+author:             # コピーライトやメタタグなどに使うブログの著者情報
+simple_search:      # ブログ内の検索機能におけるサーチエンジン
+description:        # デフォルトのメタタグ内descriptionの内容
+date_format:        # 日付のフォーマット(Ruby's date strftime syntax)
+subscribe_rss:      # ブログのRSSのURL(デフォルトは /atom.xml)
+subscribe_email:    # e-mailを使ったブログの購読のためのURL
+category_feeds:     # カテゴリ単位でのRSSを許可するか？ (デフォルトはfalse)
+email:              # RSSのためのメールアドレス(必要な場合のみ)
+{% endcodeblock %}</p>
 
 <h2>(5) Bitbucketでのリポジトリ作成/設定</h2>
 
@@ -314,55 +254,44 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 
 <p><a href="https://bitbucket.org/repo/create" title="Bitbucket create new repository"><img src="http://farm9.staticflickr.com/8486/8213207229_b03ec7f47d_b.jpg" width="1024" height="594" alt="Bitbucket create new repository"></a></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git remote add bitbucket git@bitbucket.org:username/username.github.io.git
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git remote add bitbucket git@bitbucket.org:username/username.github.io.git
+{% endcodeblock %}</p>
 
 <h2>(6) Octopressの記事作成</h2>
 
 <p>以下のコマンドを実行。ここでのtitleはパーマネントリンクにも使われるので英語で。<br/>
 (記事の中では日本語のタイトルをつける事ができます)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rake new_post
-</span><span class='line'>Enter a title <span class="k">for </span>your post: <span class="c">#&amp;lt;= postのタイトルを聞かれるので入力</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bundle exec rake new_post
+Enter a title for your post: #&lt;= postのタイトルを聞かれるので入力
+{% endcodeblock %}</p>
 
 <p><code>source/_post/YYYY-MM-DD-title.markdown</code>というファイルが出来上がります。</p>
 
 <p>下は、作成されたファイルの初期状態です。</p>
 
-<h2><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/h2&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;layout: post</span>
-</span><span class='line'><span class="sr">title: &quot;post title&quot;</span>
-</span><span class='line'><span class="sr">date: YYYY-MM-DD hh:mm</span>
-</span><span class='line'><span class="sr">comments: true&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">categories</span><span class="p">:</span> <span class="o">[</span><span class="n">category1</span><span class="p">,</span> <span class="o">.</span><span class="n">.</span><span class="o">.]&lt;</span><span class="sr">/h2&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;body....</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<h2>{% codeblock lang:ruby %}</h2>
+
+<p>layout: post
+title: "post title"
+date: YYYY-MM-DD hh:mm
+comments: true</p>
+
+<h2>categories: [category1, ...]</h2>
+
+<p>body....
+{% endcodeblock %}</p>
 
 <p>日本とのタイトルを付けたい場合はここで、titleのところに日本語を入力してください。
 あとは、Markdownなり、htmlなりで記事を作成。</p>
 
 <p>以下の命令を実行して、ブラウザで<code>http://localhost:4000/</code>にアクセスすると、ローカルのプレビューを見ることができます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake preview
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rake preview
+{% endcodeblock %}</p>
 
 <h2>(7) Octopressのテーマ変更</h2>
 
@@ -373,23 +302,16 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 
 <p>今回は例として、テーマ名「oct2」を適用する手順を書いていきます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:bijumon/oct2.git .themes/oct2
-</span><span class='line'>bundle <span class="nb">exec </span>rake install<span class="o">[</span><span class="s1">&#39;oct2&#39;</span><span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 失敗する場合は、bundle <span class="nb">exec </span>rake install<span class="o">[</span><span class="s1">&#39;oct2&#39;</span><span class="o">]</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;A theme is already installed, proceeding will overwrite existing files. Are you sure? <span class="o">[</span>y/n<span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bundle <span class="nb">exec </span>rake preview
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git clone git@github.com:bijumon/oct2.git .themes/oct2
+bundle exec rake install['oct2']</p>
+
+<h1>=> 失敗する場合は、bundle exec rake install['oct2']</h1>
+
+<p>A theme is already installed, proceeding will overwrite existing files. Are you sure? [y/n]</p>
+
+<p>bundle exec rake preview
+{% endcodeblock %}</p>
 
 <h2>(8) 独自ドメインの設定</h2>
 
@@ -404,61 +326,42 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 <p>次に、ローカル側で以下のコマンドを実行してCNAMEファイルを作成。<br/>
 (<code>example.com</code>の部分は自分のドメイン名にして下さい)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s1">&#39;example.com&#39;</span> &gt;&gt; <span class="nb">source</span>/CNAME
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+echo 'example.com' >> source/CNAME
+{% endcodeblock %}</p>
 
 <h2>(9) GitPageへの記事のアップ</h2>
 
 <p>GitHub Pagesに記事をアップするために、deploy。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake gen_deploy
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rake gen_deploy
+{% endcodeblock %}</p>
 
 <h2>(10) BitbucketへのソースコードのPush</h2>
 
 <p>最後にBitbucket側にソースコード管理のためにPush。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add -A
-</span><span class='line'>git commit <span class="s2">&quot;add post&quot;</span>
-</span><span class='line'>git push -u bitbucket <span class="nb">source</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git add -A
+git commit "add post"
+git push -u bitbucket source
+{% endcodeblock %}</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>おまけ：チームでブログを管理する方法</h2>
 
 <p>あるブログをチームで管理する事になったので、その手順も合わせて記載します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>1<span class="o">)</span> GitHubでリポジトリを開き、Settings <span class="o">=</span>&gt; Collaborators に共同管理者を追加
-</span><span class='line'><span class="o">(</span>2<span class="o">)</span> Bitbucketのリポジトリのadmin<span class="o">(</span>設定マーク<span class="o">)</span> <span class="o">=</span>&gt; アクセス管理 <span class="o">=</span>&gt; 共同管理者を追加
-</span><span class='line'><span class="o">(</span>3<span class="o">)</span> Bitbucketのリポジトリのデータを取得<span class="o">(</span>git clone<span class="o">)</span>
-</span><span class='line'><span class="o">(</span>4<span class="o">)</span> bundle <span class="nb">exec </span>rake generate &amp;amp;&amp;amp; rake <span class="nv">preview</span> <span class="o">=</span>&gt; ブラウザでhttp://0.0.0.0:4000/を開く
-</span><span class='line'><span class="o">(</span>5<span class="o">)</span> <span class="nb">source</span>/_post内のxxx.markdownファイルがブログ記事なので編集 <span class="o">=</span>&gt; ブラウザで表示確認
-</span><span class='line'><span class="o">(</span>6<span class="o">)</span> 編集が完了したらターミナルで git add . &amp;amp;&amp;amp; git commit -m <span class="s2">&quot;set article&quot;</span> &amp;amp;&amp;amp; rake gen_deploy &amp;amp;&amp;amp; git push -u bitbucket <span class="nb">source</span> でデプロイ完了
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+(1) GitHubでリポジトリを開き、Settings => Collaborators に共同管理者を追加
+(2) Bitbucketのリポジトリのadmin(設定マーク) => アクセス管理 => 共同管理者を追加
+(3) Bitbucketのリポジトリのデータを取得(git clone)
+(4) bundle exec rake generate &amp;&amp; rake preview => ブラウザでhttp://0.0.0.0:4000/を開く
+(5) source/_post内のxxx.markdownファイルがブログ記事なので編集 => ブラウザで表示確認
+(6) 編集が完了したらターミナルで git add . &amp;&amp; git commit -m "set article" &amp;&amp; rake gen_deploy &amp;&amp; git push -u bitbucket source でデプロイ完了
+{% endcodeblock %}</p>
 
 <p>ちなみにマークダウンの書き方はこちらがオススメ<br/>
 <strong><a href="http://ja.wikipedia.org/wiki/Markdown">Markdown - Wikipedia</a></strong></p>
@@ -500,19 +403,7 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 <!-- more -->
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>流れ</h2>
 
@@ -540,11 +431,10 @@ SEOの書籍はこれまでいくつか読んできましたが、ここまで�
 
 <p>コンソールでSSH Keyを作成するコマンドはこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/.ssh
-</span><span class='line'>ssh-keygen -t rsa -C <span class="nb">test</span>@example.com
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cd ~/.ssh
+ssh-keygen -t rsa -C test@example.com
+{% endcodeblock %}</p>
 
 <p>鍵の生成が完了したら2つのファイルができます。</p>
 
@@ -556,9 +446,9 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>秘密鍵の<code>id_rsa</code>のセキュリティを強化するために以下のコマンドを実行します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod 600 id_rsa
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+chmod 600 id_rsa
+{% endcodeblock %}</p>
 
 <p>鍵作成は以上です。</p>
 
@@ -566,31 +456,23 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>鍵の管理を簡単にするために、~/.ssh/configに設定を追加します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.ssh/config
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vim ~/.ssh/config
+{% endcodeblock %}</p>
 
 <p>~/.ssh/configのファイルの末尾に以下の内容を追加してください。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>Host bitbucket.org
-</span><span class='line'>  HostName bitbucket.org
-</span><span class='line'>  IdentityFile ~/.ssh/id_rsa
-</span><span class='line'>  User git&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Host github
-</span><span class='line'>  HostName github.com
-</span><span class='line'>  IdentityFile ~/.ssh/id_rsa
-</span><span class='line'>  User git
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+Host bitbucket.org
+  HostName bitbucket.org
+  IdentityFile ~/.ssh/id_rsa
+  User git</p>
+
+<p>Host github
+  HostName github.com
+  IdentityFile ~/.ssh/id_rsa
+  User git
+{% endcodeblock %}</p>
 
 <h2>(3) Bitbucketへの公開鍵の登録</h2>
 
@@ -606,9 +488,9 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>ssh keyファイルをクリップボードにコピーするために、コンソールで以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>pbcopy &amp;lt; ~/.ssh/id_rsa.pub
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+pbcopy &lt; ~/.ssh/id_rsa.pub
+{% endcodeblock %}</p>
 
 <p>Label名を管理しやすい名前で登録。bitbuketのkeyのフォームにクリップボードから貼り付け => add keyをクリック。</p>
 
@@ -630,9 +512,9 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>フォームのTitleにssh keyの名前をセットして、コンソールで以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>pbcopy &amp;lt; ~/.ssh/id_rsa.pub
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+pbcopy &lt; ~/.ssh/id_rsa.pub
+{% endcodeblock %}</p>
 
 <p>このコマンドでコンソールからクリップボードにsshキーの中身がコピーされます。
 そして、keyのところにクリップボードから貼り付け => add keyをクリック。</p>
@@ -641,19 +523,7 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>これで、ssh keyをGitHubに登録できました。</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>補足: GitHubで複数アカウントにssh接続するための手順</h2>
 
@@ -663,11 +533,10 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>毎回忘れるのでメモ。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod 700 ~/.ssh
-</span><span class='line'>chmod 600 ~/.ssh/id_rsa
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/id_rsa
+{% endcodeblock %}</p>
 
 <h2>このテーマに関連するオススメ本</h2>
 

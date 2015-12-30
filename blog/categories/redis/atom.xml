@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Redis | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/redis/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-28T23:28:44+09:00</updated>
+  <updated>2015-12-30T20:26:52+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -34,19 +34,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>前提条件: RailsからRedisにキャッシュ</h2>
 
@@ -320,19 +308,7 @@ end # CacheSupport
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -361,19 +337,7 @@ end # CacheSupport
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>DBの需要な機能</h2>
 
@@ -496,19 +460,7 @@ Sorted Set: スコア付き集合
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 ]]></content>
   </entry>
   
@@ -525,131 +477,86 @@ Sorted Set: スコア付き集合
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>CentOS 6.xへのインストール</h2>
 
 <p>まずは、CentOS 6.xにyumをつかってRedisをインストールする前にEPELを追加。追加済の場合はスキップ。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum --enablerepo<span class="o">=</span>epel -y install redis
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo yum --enablerepo=epel -y install redis
+{% endcodeblock %}</p>
 
 <p>Redisを起動。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/init.d/redis start
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo /etc/init.d/redis start
+{% endcodeblock %}</p>
 
 <p>次に動作確認してみます。<code>redis-cli</code>でRedisに接続できます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>redis-cli&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;set <span class="s1">&#39;test&#39;</span> 10
-</span><span class='line'>OK
-</span><span class='line'>get <span class="s1">&#39;test&#39;</span>
-</span><span class='line'><span class="s2">&quot;10&quot;</span>
-</span><span class='line'><span class="nb">exit</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+redis-cli</p>
+
+<blockquote><p>set 'test' 10
+OK
+get 'test'
+"10"
+exit
+{% endcodeblock %}</p></blockquote>
 
 <p>さらにサーバの起動時にRedisが起動するように設定します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chkconfig redis on
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo chkconfig redis on
+{% endcodeblock %}</p>
 
 <p>自動起動の設定が成功したか確認。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chkconfig --list | grep redis&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;redis           0:off   1:off   2:on    3:on    4:on    5:on    6:off <span class="c">#&amp;lt;= となっていれば成功</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+chkconfig --list | grep redis</p>
+
+<blockquote><p>redis           0:off   1:off   2:on    3:on    4:on    5:on    6:off #&lt;= となっていれば成功
+{% endcodeblock %}</p></blockquote>
 
 <h2>Macへのインストール(Homebrew)</h2>
 
 <p>Macの『<a href="http://mxcl.github.com/homebrew/">Homebrew</a>』をつかってのインストール手順はこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install redis&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;<span class="o">==</span>&gt; Downloading http://redis.googlecode.com/files/redis-2.6.7.tar.gz
-</span><span class='line'>Already downloaded: /Library/Caches/Homebrew/redis-2.6.7.tar.gz
-</span><span class='line'><span class="o">==</span>&gt; make -C /private/tmp/redis-KHTm/redis-2.6.7/src <span class="nv">CC</span><span class="o">=</span><span class="nv">cc</span>
-</span><span class='line'><span class="o">==</span>&gt; Caveats
-</span><span class='line'>You should reload redis:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
-</span><span class='line'>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;/usr/local/Cellar/redis/2.6.7: 9 files, 744K, built in 2 seconds
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+brew install redis</p>
+
+<blockquote><p>==> Downloading http://redis.googlecode.com/files/redis-2.6.7.tar.gz
+Already downloaded: /Library/Caches/Homebrew/redis-2.6.7.tar.gz
+==> make -C /private/tmp/redis-KHTm/redis-2.6.7/src CC=cc
+==> Caveats
+You should reload redis:</p>
+
+<pre><code>launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+</code></pre>
+
+<p>/usr/local/Cellar/redis/2.6.7: 9 files, 744K, built in 2 seconds
+{% endcodeblock %}</p></blockquote>
 
 <p>Macの起動時にRedisが自動起動するように設定。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
-</span><span class='line'>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+{% endcodeblock %}</p>
 
 <p>redisの接続確認はこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>redis-cli
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+redis-cli
+{% endcodeblock %}</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

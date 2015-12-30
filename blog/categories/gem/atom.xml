@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GEM | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/gem/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-28T23:28:44+09:00</updated>
+  <updated>2015-12-30T20:26:52+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -27,19 +27,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>rbenv-default-gemsのインストール手順</h2>
 
@@ -47,17 +35,16 @@
 
 <p>ということで、rbenv-default-gemsをインストールします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+$ git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
+{% endcodeblock %}</p>
 
 <p>でもって常時インストールしたいgemを<code> ~/.rbenv/default-gems</code>に追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">bundler</span>
-</span><span class='line'><span class="n">rails</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+bundler
+rails
+{% endcodeblock %}</p>
 
 <p>あとは、(例)<code>rbenv install 2.1.3</code>とかってコマンドを実行すると自動で「bundlerとrails」がインストールされます。</p>
 
@@ -65,71 +52,34 @@
 
 <p>今回は、Ruby 2.1.2から2.1.3にアップデートするで例を書いてみます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Homebrew自体のアップデート&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>brew update&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ruby-buildのアップデート&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>brew upgrade ruby-build&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ruby 2.1.3のインストール&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>rbenv install 2.1.3&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Downloading ruby-2.1.3.tar.gz...
-</span><span class='line'>-&gt; http://dqw8nmjcqpjn7.cloudfront.net/0818beb7b10ce9a058cd21d85cfe1dcd233e98b7342d32e9a5d4bebe98347f01
-</span><span class='line'>Installing ruby-2.1.3...
-</span><span class='line'>Installed ruby-2.1.3 to /Users/komji/.rbenv/versions/2.1.3&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Fetching: bundler-1.7.3.gem <span class="o">(</span>100%<span class="o">)</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; とこんなかんじで予め設定しておいたgemがインストールされていきます&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>Homebrew自体のアップデート</h1>
+
+<p>$ brew update</p>
+
+<h1>ruby-buildのアップデート</h1>
+
+<p>$ brew upgrade ruby-build</p>
+
+<h1>ruby 2.1.3のインストール</h1>
+
+<p>$ rbenv install 2.1.3</p>
+
+<blockquote><p>Downloading ruby-2.1.3.tar.gz...
+-> http://dqw8nmjcqpjn7.cloudfront.net/0818beb7b10ce9a058cd21d85cfe1dcd233e98b7342d32e9a5d4bebe98347f01
+Installing ruby-2.1.3...
+Installed ruby-2.1.3 to /Users/komji/.rbenv/versions/2.1.3</p>
+
+<p>Fetching: bundler-1.7.3.gem (100%)</p>
+
+<h1>=> とこんなかんじで予め設定しておいたgemがインストールされていきます</h1>
+
+<p>{% endcodeblock %}</p></blockquote>
 
 <p>地味に面倒くさいところなので助かります！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 ]]></content>
   </entry>
   

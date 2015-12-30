@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GitHub | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-28T23:28:44+09:00</updated>
+  <updated>2015-12-30T20:26:52+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -33,19 +33,7 @@
 <!-- more -->
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>流れ</h2>
 
@@ -73,11 +61,10 @@
 
 <p>コンソールでSSH Keyを作成するコマンドはこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/.ssh
-</span><span class='line'>ssh-keygen -t rsa -C <span class="nb">test</span>@example.com
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cd ~/.ssh
+ssh-keygen -t rsa -C test@example.com
+{% endcodeblock %}</p>
 
 <p>鍵の生成が完了したら2つのファイルができます。</p>
 
@@ -89,9 +76,9 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>秘密鍵の<code>id_rsa</code>のセキュリティを強化するために以下のコマンドを実行します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod 600 id_rsa
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+chmod 600 id_rsa
+{% endcodeblock %}</p>
 
 <p>鍵作成は以上です。</p>
 
@@ -99,31 +86,23 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>鍵の管理を簡単にするために、~/.ssh/configに設定を追加します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.ssh/config
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vim ~/.ssh/config
+{% endcodeblock %}</p>
 
 <p>~/.ssh/configのファイルの末尾に以下の内容を追加してください。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>Host bitbucket.org
-</span><span class='line'>  HostName bitbucket.org
-</span><span class='line'>  IdentityFile ~/.ssh/id_rsa
-</span><span class='line'>  User git&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Host github
-</span><span class='line'>  HostName github.com
-</span><span class='line'>  IdentityFile ~/.ssh/id_rsa
-</span><span class='line'>  User git
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+Host bitbucket.org
+  HostName bitbucket.org
+  IdentityFile ~/.ssh/id_rsa
+  User git</p>
+
+<p>Host github
+  HostName github.com
+  IdentityFile ~/.ssh/id_rsa
+  User git
+{% endcodeblock %}</p>
 
 <h2>(3) Bitbucketへの公開鍵の登録</h2>
 
@@ -139,9 +118,9 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>ssh keyファイルをクリップボードにコピーするために、コンソールで以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>pbcopy &amp;lt; ~/.ssh/id_rsa.pub
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+pbcopy &lt; ~/.ssh/id_rsa.pub
+{% endcodeblock %}</p>
 
 <p>Label名を管理しやすい名前で登録。bitbuketのkeyのフォームにクリップボードから貼り付け => add keyをクリック。</p>
 
@@ -163,9 +142,9 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>フォームのTitleにssh keyの名前をセットして、コンソールで以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>pbcopy &amp;lt; ~/.ssh/id_rsa.pub
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+pbcopy &lt; ~/.ssh/id_rsa.pub
+{% endcodeblock %}</p>
 
 <p>このコマンドでコンソールからクリップボードにsshキーの中身がコピーされます。
 そして、keyのところにクリップボードから貼り付け => add keyをクリック。</p>
@@ -174,19 +153,7 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>これで、ssh keyをGitHubに登録できました。</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>補足: GitHubで複数アカウントにssh接続するための手順</h2>
 
@@ -196,11 +163,10 @@ id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
 
 <p>毎回忘れるのでメモ。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod 700 ~/.ssh
-</span><span class='line'>chmod 600 ~/.ssh/id_rsa
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/id_rsa
+{% endcodeblock %}</p>
 
 <h2>このテーマに関連するオススメ本</h2>
 
