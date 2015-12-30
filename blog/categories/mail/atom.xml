@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mail | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/mail/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -29,7 +29,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>使い方</h2>
 
@@ -39,23 +51,37 @@
 
 <p>あとはその設定をRails側に書き込みます。<code>config/initializers/mailtrap.rb</code>などに以下のように書きます。</p>
 
-<p>{% codeblock lang:ruby %}
-if Rails.env.development?
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {</p>
-
-<pre><code>:user_name =&gt; 'xxxx',
-:password =&gt; 'xxxx',
-:address =&gt; 'xxxx',
-:domain =&gt; 'xxxx',
-:port =&gt; 'xxxx',
-:authentication =&gt; :cram_md5,
-:enable_starttls_auto =&gt; true
-</code></pre>
-
-<p>  }
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">delivery_method</span> <span class="o">=</span> <span class="ss">:smtp</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;:user_name =&amp;gt; &#39;xxxx&#39;,</span>
+</span><span class='line'><span class="sr">:password =&amp;gt; &#39;xxxx&#39;,</span>
+</span><span class='line'><span class="sr">:address =&amp;gt; &#39;xxxx&#39;,</span>
+</span><span class='line'><span class="sr">:domain =&amp;gt; &#39;xxxx&#39;,</span>
+</span><span class='line'><span class="sr">:port =&amp;gt; &#39;xxxx&#39;,</span>
+</span><span class='line'><span class="sr">:authentication =&amp;gt; :cram_md5,</span>
+</span><span class='line'><span class="sr">:enable_starttls_auto =&amp;gt; true</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  }</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>メールの送信後</h2>
 
@@ -65,7 +91,19 @@ end
 
 <p>これは開発には欠かせないっす！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 
@@ -90,7 +128,19 @@ end
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>32 Responsive Email Templates</h2>
 

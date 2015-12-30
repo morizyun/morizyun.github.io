@@ -9,7 +9,9 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="最近はじめて、Rails内だけでユーザーの管理、ログインをする機能を実装しました。簡単にネットで調べた限りでは、『devise』と『cancancan』を使う方法が一番シンプルでしっくりきました。 &hellip;">
+  <meta name="description" content="『devise』のミニTipsを3つ紹介します。 (1) ログイン・ログアウト時のリダイレクト先の変更
+(2) ユーザー登録完了後にメールアドレスの確認をする
+(3) ユーザー登録完了後のリダイレクト先の変更 今までログイン機能を持たせてきたアプリではたいてい設定する項目なので、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +49,9 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="最近はじめて、Rails内だけでユーザーの管理、ログインをする機能を実装しました。簡単にネットで調べた限りでは、『devise』と『cancancan』を使う方法が一番シンプルでしっくりきました。 &hellip;" />
+<meta property="og:description" content="『devise』のミニTipsを3つ紹介します。 (1) ログイン・ログアウト時のリダイレクト先の変更
+(2) ユーザー登録完了後にメールアドレスの確認をする
+(3) ユーザー登録完了後のリダイレクト先の変更 今までログイン機能を持たせてきたアプリではたいてい設定する項目なので、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/14/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +99,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/devise-customize-login-register-path/">Deviseのログイン・ログアウト時、登録完了後のリダイレクト先変更、ユーザー登録完了時に確認メール送付 [Rails 4.1]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-07-05T08:35:00+09:00" pubdate data-updated="true">Jul 5<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/devise-customize-login-register-path/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774164100/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774164100&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774164100&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774164100" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="https://github.com/plataformatec/devise">devise</a></strong>』のミニTipsを3つ紹介します。</p>
+
+<pre>
+(1) ログイン・ログアウト時のリダイレクト先の変更
+(2) ユーザー登録完了後にメールアドレスの確認をする
+(3) ユーザー登録完了後のリダイレクト先の変更
+</pre>
+
+
+<p>今までログイン機能を持たせてきたアプリではたいてい設定する項目なので、忘備録がてらのメモです。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/devise-customize-login-register-path/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -552,57 +613,6 @@ mobyletteのメリットは、特定のUser-Agentを指定してmobileかPC表�
   
     <footer>
       <a rel="full-article" href="/blog/ball-algorithm-aoj-0033/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/the-number-of-island-algorithm-aoj-0067/">アルゴリズムの勉強: 島の数を数える[AOJ 0067][Ruby/Python/c++]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2014-05-13T08:05:00+09:00" pubdate data-updated="true">May 13<span>th</span>, 2014</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/the-number-of-island-algorithm-aoj-0067/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797329734/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797329734&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797329734&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797329734" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />最近アルゴリズム勉強・Python/C++の勉強のためにAizu Online Judge(AOJ)を継続しています。今回は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0067">島の数を数える</a></strong>』問題です。</p>
-
-<p>0と1で表されたmap上の島の数を数える問題です。</p>
-
-<p>今回は戦略を思いつかずに、かなり試行錯誤をしました。ただ、こういう問題を通して柔軟な発想と、効率的なアルゴリズムの仕組みを学んでいきたいと思います！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/the-number-of-island-algorithm-aoj-0067/">続きを読む</a>
     </footer>
   
 

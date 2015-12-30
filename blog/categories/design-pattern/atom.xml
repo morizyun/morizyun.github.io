@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Design Pattern | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/design-pattern/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>ソースコードを使ったAbstract Factoryの説明</h2>
 
@@ -58,88 +70,167 @@
 
 <p>まず、アヒル(Duckクラス)とカエル(Frogクラス)は次のようになります。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>アヒル</h1>
-
-<p>class Duck
-  def initialize(name)</p>
-
-<pre><code>@name = name
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 食べる(eat)
-  def eat</p>
-
-<pre><code>puts "アヒル #{@name} は食事中です"
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>カエル</h1>
-
-<p>class Frog
-  def initialize(name)</p>
-
-<pre><code>@name = name
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 食べる(eat)
-  def eat</p>
-
-<pre><code>puts "カエル #{@name} は食事中です"
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;アヒル&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Duck</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@name = name</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 食べる(eat)</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">eat</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &quot;アヒル </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="sr"> は食事中です&quot;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">カエル</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Frog</span>
+</span><span class='line'><span class="sr">  def initialize(name)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # 食べる(eat)</span>
+</span><span class='line'><span class="sr">  def eat&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="s2">&quot;カエル </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2"> は食事中です&quot;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>一方、藻(Algaeクラス)とスイレン(WaterLilyクラス)のは次のようになります。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>植物/藻</h1>
-
-<p>class Algae
-  def initialize(name)</p>
-
-<pre><code>@name = name
-</code></pre>
-
-<p>  end</p>
-
-<p>  def grow</p>
-
-<pre><code>puts "藻 #{@name} は成長中です"
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>植物/スイレン</h1>
-
-<p>class WaterLily
-  def initialize(name)</p>
-
-<pre><code>@name = name
-</code></pre>
-
-<p>  end</p>
-
-<p>  def grow</p>
-
-<pre><code>puts "スイレン #{@name} は成長中です"
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;植物/</span><span class="err">藻</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Algae</span>
+</span><span class='line'><span class="sr">  def initialize(name)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def grow&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="s2">&quot;藻 </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2"> は成長中です&quot;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;植物/</span><span class="err">スイレン</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class WaterLily</span>
+</span><span class='line'><span class="sr">  def initialize(name)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def grow&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="s2">&quot;スイレン </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2"> は成長中です&quot;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に池を作成する前に、「池の環境の制約」について考えます。</p>
 
@@ -163,126 +254,241 @@ end</p>
 
 <p>ということで、ソースコードはこちら。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>池の生態系を作る (Abstract Factory)</h1>
-
-<p>class OrganismFactory
-  def initialize(number_animals, number_plants)</p>
-
-<pre><code>@animals = []
-# 池の動物を定義する
-number_animals.times do |i|
-  animal = new_animal("動物 #{i}")
-  @animals &lt;&lt; animal
-end
-
-@plants = []
-# 池の植物を定義する
-number_plants.times do |i|
-  plant = new_plant("植物 #{i}")
-  @plants &lt;&lt; plant
-end
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 植物についてのオブジェクトを返す
-  def get_plants</p>
-
-<pre><code>@plants
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 動物についてのオブジェクトを返す
-  def get_animals</p>
-
-<pre><code>@animals
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>カエル(Frog)と藻(Algae)の生成を行う (Concrete Factory)</h1>
-
-<p>class FrogAndAlgaeFactory &lt; OrganismFactory
-  private</p>
-
-<p>  def new_animal(name)</p>
-
-<pre><code>Frog.new(name)
-</code></pre>
-
-<p>  end</p>
-
-<p>  def new_plant(name)</p>
-
-<pre><code>Algae.new(name)
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>アヒル(Duck)とスイレン(WaterLily)の生成を行う(Concrete Factory)</h1>
-
-<p>class DuckAndWaterLilyFactory &lt; OrganismFactory
-  private</p>
-
-<p>  def new_animal(name)</p>
-
-<pre><code>Duck.new(name)
-</code></pre>
-
-<p>  end</p>
-
-<p>  def new_plant(name)</p>
-
-<pre><code>WaterLily.new(name)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;池の生態系を作る (Abstract Factory)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">OrganismFactory</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">number_animals</span><span class="p">,</span> <span class="n">number_plants</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@animals = []</span>
+</span><span class='line'><span class="sr"># 池の動物を定義する</span>
+</span><span class='line'><span class="sr">number_animals.times do |i|</span>
+</span><span class='line'><span class="sr">  animal = new_animal(&quot;動物 </span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="sr">&quot;)</span>
+</span><span class='line'><span class="sr">  @animals &amp;lt;&amp;lt; animal</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">@plants = []</span>
+</span><span class='line'><span class="sr"># 池の植物を定義する</span>
+</span><span class='line'><span class="sr">number_plants.times do |i|</span>
+</span><span class='line'><span class="sr">  plant = new_plant(&quot;植物 </span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="sr">&quot;)</span>
+</span><span class='line'><span class="sr">  @plants &amp;lt;&amp;lt; plant</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 植物についてのオブジェクトを返す</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">get_plants</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@plants</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 動物についてのオブジェクトを返す</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">get_animals</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@animals</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">カエル</span><span class="p">(</span><span class="no">Frog</span><span class="p">)</span><span class="err">と藻</span><span class="p">(</span><span class="no">Algae</span><span class="p">)</span><span class="err">の生成を行う</span> <span class="p">(</span><span class="no">Concrete</span> <span class="no">Factory</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class FrogAndAlgaeFactory &amp;lt; OrganismFactory</span>
+</span><span class='line'><span class="sr">  private&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">new_animal</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;Frog.new(name)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">new_plant</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;Algae.new(name)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">アヒル</span><span class="p">(</span><span class="no">Duck</span><span class="p">)</span><span class="err">とスイレン</span><span class="p">(</span><span class="no">WaterLily</span><span class="p">)</span><span class="err">の生成を行う</span><span class="p">(</span><span class="no">Concrete</span> <span class="no">Factory</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class DuckAndWaterLilyFactory &amp;lt; OrganismFactory</span>
+</span><span class='line'><span class="sr">  private&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">new_animal</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;Duck.new(name)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">new_plant</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;WaterLily.new(name)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>上のプログラムを実行した結果を載せておきます。</p>
 
-<p>{% codeblock lang:ruby %}
-factory = FrogAndAlgaeFactory.new(4,1)
-animals = factory.get_animals
-animals.each { |animal| animal.eat }</p>
-
-<h1>=> カエル 動物 0 は食事中です</h1>
-
-<h1>=> カエル 動物 1 は食事中です</h1>
-
-<h1>=> カエル 動物 2 は食事中です</h1>
-
-<h1>=> カエル 動物 3 は食事中です</h1>
-
-<p>plants = factory.get_plants
-plants.each { |plant| plant.grow }</p>
-
-<h1>=> 藻 植物 0 は成長中です</h1>
-
-<p>factory = DuckAndWaterLilyFactory.new(3,2)
-animals = factory.get_animals
-animals.each { |animal| animal.eat }</p>
-
-<h1>=> アヒル 動物 0 は食事中です</h1>
-
-<h1>=> アヒル 動物 1 は食事中です</h1>
-
-<h1>=> アヒル 動物 2 は食事中です</h1>
-
-<p>plants = factory.get_plants
-plants.each { |plant| plant.grow }</p>
-
-<h1>=> スイレン 植物 0 は成長中です</h1>
-
-<h1>=> スイレン 植物 1 は成長中です</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">factory</span> <span class="o">=</span> <span class="no">FrogAndAlgaeFactory</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="n">animals</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get_animals</span>
+</span><span class='line'><span class="n">animals</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">animal</span><span class="o">|</span> <span class="n">animal</span><span class="o">.</span><span class="n">eat</span> <span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; カエル 動物 0 は食事中です&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="err">カエル</span> <span class="err">動物</span> <span class="mi">1</span> <span class="err">は食事中です</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; カエル 動物 2 は食事中です&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="err">カエル</span> <span class="err">動物</span> <span class="mi">3</span> <span class="err">は食事中です</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;plants = factory.get_plants</span>
+</span><span class='line'><span class="sr">plants.each { |plant| plant.grow }&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="err">藻</span> <span class="err">植物</span> <span class="mi">0</span> <span class="err">は成長中です</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;factory = DuckAndWaterLilyFactory.new(3,2)</span>
+</span><span class='line'><span class="sr">animals = factory.get_animals</span>
+</span><span class='line'><span class="sr">animals.each { |animal| animal.eat }&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="err">アヒル</span> <span class="err">動物</span> <span class="mi">0</span> <span class="err">は食事中です</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; アヒル 動物 1 は食事中です&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="err">アヒル</span> <span class="err">動物</span> <span class="mi">2</span> <span class="err">は食事中です</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;plants = factory.get_plants</span>
+</span><span class='line'><span class="sr">plants.each { |plant| plant.grow }&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="err">スイレン</span> <span class="err">植物</span> <span class="mi">0</span> <span class="err">は成長中です</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; スイレン 植物 1 は成長中です&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>矛盾のない組み合わせて、オブジェクトを生成できた事がわかります。</p>
 
@@ -357,7 +563,19 @@ Product: ConcreteFactoryによって生成される側のオブジェクト
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>オブザーバーとは？</h2>
 
@@ -404,80 +622,143 @@ TaxMan(具体オブザーバ２)：税金の請求書の発行を行う
 
 <p>こちらが、Employeeクラスの実装です。</p>
 
-<p>{% codeblock lang:ruby %}
-require 'observer'
-class Employee
-  include Observable # Observerとして働く</p>
-
-<p>  attr_reader :name, :title, :salary</p>
-
-<p>  def initialize(name, title, salary)</p>
-
-<pre><code>@name = name
-@title = title
-@salary = salary
-add_observer(Payroll.new)
-add_observer(TaxMan.new)
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 給与をセットして、ConcreteObserverに通知する
-  def salary=(new_salary)</p>
-
-<pre><code>@salary = new_salary
-changed
-notify_observers(self)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;observer&#39;</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Employee</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Observable</span> <span class="c1"># Observerとして働く&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="kp">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:salary</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def initialize(name, title, salary)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+</span><span class='line'><span class="vi">@title</span> <span class="o">=</span> <span class="n">title</span>
+</span><span class='line'><span class="vi">@salary</span> <span class="o">=</span> <span class="n">salary</span>
+</span><span class='line'><span class="n">add_observer</span><span class="p">(</span><span class="no">Payroll</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="n">add_observer</span><span class="p">(</span><span class="no">TaxMan</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # 給与をセットして、ConcreteObserverに通知する</span>
+</span><span class='line'><span class="sr">  def salary=(new_salary)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@salary</span> <span class="o">=</span> <span class="n">new_salary</span>
+</span><span class='line'><span class="n">changed</span>
+</span><span class='line'><span class="n">notify_observers</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に給与の小切手の発行を行うPayrollクラスと、税金の請求書の発行を行うTaxManクラスを作成します。これらは具体オブザーバ(ConcreteObserver)にあたります。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>給与の小切手の発行を行う</h1>
-
-<p>class Payroll
-  def update(changed_employee)</p>
-
-<pre><code>puts "彼の給料は#{changed_employee.salary}になりました！#{changed_employee.title}のために新しい小切手を切ります。"
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>税金の請求書の発行を行う</h1>
-
-<p>class TaxMan
-  def update(changed_employee)</p>
-
-<pre><code>puts "#{changed_employee.name}に新しい税金の請求書を送ります"
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;給与の小切手の発行を行う&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Payroll</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">changed_employee</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &quot;彼の給料は</span><span class="si">#{</span><span class="n">changed_employee</span><span class="o">.</span><span class="n">salary</span><span class="si">}</span><span class="sr">になりました！</span><span class="si">#{</span><span class="n">changed_employee</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="sr">のために新しい小切手を切ります。&quot;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">税金の請求書の発行を行う</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class TaxMan</span>
+</span><span class='line'><span class="sr">  def update(changed_employee)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">changed_employee</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">に新しい税金の請求書を送ります&quot;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>コーディングは以上です。では結果を確認します。</p>
 
-<p>{% codeblock lang:ruby %}
-john = Employee.new('John', 'Senior Vice President', 5000)
-john.salary = 6000</p>
-
-<h1>=> 彼の給料は6000になりました！Senior Vice Presidentのために新しい小切手を切ります。</h1>
-
-<h1>=> Johnに新しい税金の請求書を送ります</h1>
-
-<p>john.salary = 7000</p>
-
-<h1>=> 彼の給料は7000になりました！Senior Vice Presidentのために新しい小切手を切ります。</h1>
-
-<h1>=> Johnに新しい税金の請求書を送ります</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">john</span> <span class="o">=</span> <span class="no">Employee</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Senior Vice President&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+</span><span class='line'><span class="n">john</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="mi">6000</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 彼の給料は6000になりました！Senior Vice Presidentのために新しい小切手を切ります。&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="no">John</span><span class="err">に新しい税金の請求書を送ります</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;john.salary = 7000&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="err">彼の給料は</span><span class="mi">7000</span><span class="err">になりました！</span><span class="no">Senior</span> <span class="no">Vice</span> <span class="no">President</span><span class="err">のために新しい小切手を切ります。</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; Johnに新しい税金の請求書を送ります&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>johnのsalary(給与)を変更するとObservableによってPayrollクラスと、TaxManクラスの<code>update</code>メソッドが連動して動いていることがわかります。</p>
 
@@ -533,7 +814,19 @@ john.salary = 6000</p>
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>デザインパターンの重要要素</h2>
 
@@ -613,7 +906,19 @@ john.salary = 6000</p>
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>インタープリタとは？</h2>
 
@@ -635,28 +940,49 @@ john.salary = 6000</p>
 
 <p>まずは、すべてのファイル検索のベースとなる最も単純なクラスを作成します。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>命令・抽象的な表現(AbstractExpression)</h1>
-
-<h1>Expression: 共通するコードを持つ</h1>
-
-<p>class Expression
-  def |(other)</p>
-
-<pre><code>Or.new(self, other)
-</code></pre>
-
-<p>  end</p>
-
-<p>  def &amp;(other)</p>
-
-<pre><code>And.new(self, other)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;命令・抽象的な表現(AbstractExpression)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Expression</span><span class="p">:</span> <span class="err">共通するコードを持つ</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Expression</span>
+</span><span class='line'><span class="sr">  def |(other)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="no">Or</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def &amp;amp;(other)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="no">And</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>続いて、すべてのファイル名を返す<code>Allクラス</code>を作成します。
 <code>evaluateメソッド</code>の概要は次の通りです。</p>
@@ -667,235 +993,439 @@ end
 </ul>
 
 
-<p>{% codeblock lang:ruby %}
-require "find"</p>
-
-<h1>終端となる表現(構造木の葉) (TerminalExpression)</h1>
-
-<h1>All: すべてのファイルを返す</h1>
-
-<p>class All &lt; Expression
-  def evaluate(dir)</p>
-
-<pre><code>results= []
-Find.find(dir) do |p|
-  next unless File.file?(p)
-  results &lt;&lt; p
-end
-results
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;find&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;終端となる表現(構造木の葉) (TerminalExpression)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">All</span><span class="p">:</span> <span class="err">すべてのファイルを返す</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class All &amp;lt; Expression</span>
+</span><span class='line'><span class="sr">  def evaluate(dir)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">results</span><span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="no">Find</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">next</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">file?</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">results</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="nb">p</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">results</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>続いて、与えられたパターンとマッチするすべてのファイル名を返す<code>FileNameクラス</code>を作成します。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>終端となる表現(構造木の葉) (TerminalExpression)</h1>
-
-<h1>FileName: 与えられたパターンとマッチするすべてのファイル名を返す</h1>
-
-<p>class FileName &lt; Expression
-  def initialize(pattern)</p>
-
-<pre><code>@pattern = pattern
-</code></pre>
-
-<p>  end</p>
-
-<p>  def evaluate(dir)</p>
-
-<pre><code>results= []
-Find.find(dir) do |p|
-  next unless File.file?(p)
-  # File.basename =&gt; ファイルパスからファイル名だけを抽出
-  name = File.basename(p)
-  # File.fnmatch =&gt; ファイル名がパターンにマッチした場合のみtrueを返す
-  results &lt;&lt; p if File.fnmatch(@pattern, name)
-end
-results
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;終端となる表現(構造木の葉) (TerminalExpression)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">FileName</span><span class="p">:</span> <span class="err">与えられたパターンとマッチするすべてのファイル名を返す</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class FileName &amp;lt; Expression</span>
+</span><span class='line'><span class="sr">  def initialize(pattern)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@pattern</span> <span class="o">=</span> <span class="n">pattern</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def evaluate(dir)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">results</span><span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="no">Find</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">next</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">file?</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1"># File.basename =&amp;gt; ファイルパスからファイル名だけを抽出</span>
+</span><span class='line'>  <span class="nb">name</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1"># File.fnmatch =&amp;gt; ファイル名がパターンにマッチした場合のみtrueを返す</span>
+</span><span class='line'>  <span class="n">results</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="nb">p</span> <span class="k">if</span> <span class="no">File</span><span class="o">.</span><span class="n">fnmatch</span><span class="p">(</span><span class="vi">@pattern</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">results</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>更に、指定したファイルサイズより大きいファイルを返す<code>Biggerクラス</code>を作成します。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>終端となる表現(構造木の葉) (TerminalExpression)</h1>
-
-<h1>Bigger: 指定したファイルサイズより大きいファイルを返す</h1>
-
-<p>class Bigger &lt; Expression
-  def initialize(size)</p>
-
-<pre><code>@size = size
-</code></pre>
-
-<p>  end</p>
-
-<p>  def evaluate(dir)</p>
-
-<pre><code>results = []
-Find.find(dir) do |p|
-  next unless File.file?(p)
-  results &lt;&lt; p if( File.size(p) &gt; @size)
-end
-results
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;終端となる表現(構造木の葉) (TerminalExpression)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Bigger</span><span class="p">:</span> <span class="err">指定したファイルサイズより大きいファイルを返す</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Bigger &amp;lt; Expression</span>
+</span><span class='line'><span class="sr">  def initialize(size)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@size</span> <span class="o">=</span> <span class="n">size</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def evaluate(dir)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">results</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="no">Find</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">next</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">file?</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">results</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="nb">p</span> <span class="k">if</span><span class="p">(</span> <span class="no">File</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="vi">@size</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">results</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>書込可能なファイルを返す<code>Writableクラス</code>は次のようになります。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>終端となる表現(構造木の葉) (TerminalExpression)</h1>
-
-<h1>Writable: 書込可能なファイルを返す</h1>
-
-<p>class Writable &lt; Expression
-  def evaluate(dir)</p>
-
-<pre><code>results = []
-Find.find(dir) do |p|
-  next unless File.file?(p)
-  results &lt;&lt; p if( File.writable?(p) )
-end
-results
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;終端となる表現(構造木の葉) (TerminalExpression)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Writable</span><span class="p">:</span> <span class="err">書込可能なファイルを返す</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Writable &amp;lt; Expression</span>
+</span><span class='line'><span class="sr">  def evaluate(dir)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">results</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="no">Find</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">next</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">file?</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">results</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="nb">p</span> <span class="k">if</span><span class="p">(</span> <span class="no">File</span><span class="o">.</span><span class="n">writable?</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span> <span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">results</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ここで、「書込ができないファイル」を探せるように、<code>Writable</code>を否定できる<code>Notクラス</code>を作ります。<code>Notクラス</code>は、<code>Biggerクラス</code>にも適用できるので、指定したファイルサイズより小さいファイルを探せるようになります。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>終端以外の表現(構造木の節) NonterminalExpression</h1>
-
-<p>class Not &lt; Expression
-  def initialize(expression)</p>
-
-<pre><code>@expression = expression
-</code></pre>
-
-<p>  end</p>
-
-<p>  def evaluate(dir)</p>
-
-<pre><code>All.new.evaluate(dir) - @expression.evaluate(dir)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;終端以外の表現(構造木の節) NonterminalExpression&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Not</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Expression</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@expression = expression</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;All.new.evaluate(dir) - @expression.evaluate(dir)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>最後に2つのファイル検索式を「Or」、「And」で結合するクラスを作ります。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>終端以外の表現(構造木の節) NonterminalExpression</h1>
-
-<h1>Or: 2ファイル検索式をORで結合する</h1>
-
-<p>class Or &lt; Expression
-  def initialize(expression1, expression2)</p>
-
-<pre><code>@expression1 = expression1
-@expression2 = expression2
-</code></pre>
-
-<p>  end</p>
-
-<p>  def evaluate(dir)</p>
-
-<pre><code>result1 = @expression1.evaluate(dir)
-result2 = @expression2.evaluate(dir)
-(result1 + result2).sort.uniq
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>終端以外の表現(構造木の節) NonterminalExpression</h1>
-
-<h1>And: 2ファイル検索式をANDで結合する</h1>
-
-<p>class And &lt; Expression
-  def initialize(expression1, expression2)</p>
-
-<pre><code>@expression1 = expression1
-@expression2 = expression2
-</code></pre>
-
-<p>  end</p>
-
-<p>  def evaluate(dir)</p>
-
-<pre><code>result1 = @expression1.evaluate(dir)
-result2 = @expression2.evaluate(dir)
-(result1 &amp; result2)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;終端以外の表現(構造木の節) NonterminalExpression&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Or</span><span class="p">:</span> <span class="mi">2</span><span class="err">ファイル検索式を</span><span class="no">OR</span><span class="err">で結合する</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Or &amp;lt; Expression</span>
+</span><span class='line'><span class="sr">  def initialize(expression1, expression2)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@expression1</span> <span class="o">=</span> <span class="n">expression1</span>
+</span><span class='line'><span class="vi">@expression2</span> <span class="o">=</span> <span class="n">expression2</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def evaluate(dir)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">result1</span> <span class="o">=</span> <span class="vi">@expression1</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+</span><span class='line'><span class="n">result2</span> <span class="o">=</span> <span class="vi">@expression2</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="n">result1</span> <span class="o">+</span> <span class="n">result2</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">uniq</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;終端以外の表現(構造木の節) NonterminalExpression&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">And</span><span class="p">:</span> <span class="mi">2</span><span class="err">ファイル検索式を</span><span class="no">AND</span><span class="err">で結合する</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class And &amp;lt; Expression</span>
+</span><span class='line'><span class="sr">  def initialize(expression1, expression2)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@expression1</span> <span class="o">=</span> <span class="n">expression1</span>
+</span><span class='line'><span class="vi">@expression2</span> <span class="o">=</span> <span class="n">expression2</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def evaluate(dir)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">result1</span> <span class="o">=</span> <span class="vi">@expression1</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+</span><span class='line'><span class="n">result2</span> <span class="o">=</span> <span class="vi">@expression2</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="n">result1</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">result2</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>上のコードを使ってファイルを検索した結果を下に載せました。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>===========================================</h1>
-
-<p>complex_expression1 = And.new(FileName.new('<em>.mp3'), FileName.new('big</em>'))
-puts complex_expression1.evaluate('13_test_data')</p>
-
-<h1>=> 13_test_data/big.mp3</h1>
-
-<h1>=> 13_test_data/big2.mp3</h1>
-
-<p>complex_expression2 = Bigger.new(1024)
-puts complex_expression2.evaluate('13_test_data')</p>
-
-<h1>=> 13_test_data/big.mp3</h1>
-
-<h1>=> 13_test_data/big2.mp3</h1>
-
-<h1>=> 13_test_data/subdir/other.mp3</h1>
-
-<p>complex_expression3 = FileName.new('<em>.mp3') &amp; FileName.new('big</em>')
-puts complex_expression3.evaluate('13_test_data')</p>
-
-<h1>=> 13_test_data/big.mp3</h1>
-
-<h1>=> 13_test_data/big2.mp3</h1>
-
-<p>complex_expression4 = All.new
-puts complex_expression4.evaluate('13_test_data')</p>
-
-<h1>=> 13_test_data/big.mp3</h1>
-
-<h1>=> 13_test_data/big2.mp3</h1>
-
-<h1>=> 13_test_data/small.mp3</h1>
-
-<h1>=> 13_test_data/small1.txt</h1>
-
-<h1>=> 13_test_data/small2.txt</h1>
-
-<h1>=> 13_test_data/subdir/other.mp3</h1>
-
-<h1>=> 13_test_data/subdir/small.jpg</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;===========================================&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">complex_expression1</span> <span class="o">=</span> <span class="no">And</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">FileName</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;&lt;em&gt;.mp3&#39;</span><span class="p">),</span> <span class="no">FileName</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;big&lt;/em&gt;&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">complex_expression1</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="s1">&#39;13_test_data&#39;</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/</span><span class="n">big</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/</span><span class="n">big2</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;complex_expression2 = Bigger.new(1024)</span>
+</span><span class='line'><span class="sr">puts complex_expression2.evaluate(&#39;13_test_data&#39;)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="mi">13</span><span class="n">_test_data</span><span class="o">/</span><span class="n">big</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/</span><span class="n">big2</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/su</span><span class="n">bdir</span><span class="o">/</span><span class="n">other</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;complex_expression3 = FileName.new(&#39;&lt;em&gt;.mp3&#39;) &amp;amp; FileName.new(&#39;big&lt;/em</span><span class="o">&gt;</span><span class="s1">&#39;)</span>
+</span><span class='line'><span class="s1">puts complex_expression3.evaluate(&#39;</span><span class="mi">13</span><span class="n">_test_data</span><span class="s1">&#39;)&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;h1&gt;=&gt; 13_test_data/big.mp3&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;h1&gt;=&gt; 13_test_data/big2.mp3&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;complex_expression4 = All.new</span>
+</span><span class='line'><span class="s1">puts complex_expression4.evaluate(&#39;</span><span class="mi">13</span><span class="n">_test_data</span><span class="err">&#39;</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/</span><span class="n">big</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/</span><span class="n">big2</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/sm</span><span class="n">all</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/sm</span><span class="n">all1</span><span class="o">.</span><span class="n">txt</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/sm</span><span class="n">all2</span><span class="o">.</span><span class="n">txt</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/su</span><span class="n">bdir</span><span class="o">/</span><span class="n">other</span><span class="o">.</span><span class="n">mp3</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 13_test_data/su</span><span class="n">bdir</span><span class="o">/</span><span class="n">small</span><span class="o">.</span><span class="n">jpg</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>このように単純なインタープリタでも十分にファイル検索を実現できていることがわかります。</p>
 
@@ -946,7 +1476,19 @@ puts complex_expression4.evaluate('13_test_data')</p>
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>ビルダーとは？</h2>
 
@@ -967,21 +1509,35 @@ puts complex_expression4.evaluate('13_test_data')</p>
 まず、具体ビルダー(ConcreteBuilder)として、砂糖水クラスを作ります。
 この砂糖水クラスでは、砂糖と水の量を変数として持ちます。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>SugarWater： 砂糖水クラス (ConcreteBuilder：ビルダーの実装部分)</h1>
-
-<p>class SugarWater
-  attr_accessor :water, :sugar
-  def initialize(water, sugar)</p>
-
-<pre><code>@water = water
-@sugar = sugar
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;SugarWater： 砂糖水クラス (ConcreteBuilder：ビルダーの実装部分)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">SugarWater</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:water</span><span class="p">,</span> <span class="ss">:sugar</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">water</span><span class="p">,</span> <span class="n">sugar</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@water = water</span>
+</span><span class='line'><span class="sr">@sugar = sugar</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にBuilderとして、<code>SugarWaterBuilderクラス</code>を作ります。
 このクラスは砂糖水を作るためのインターフェイスと考えることができます。
@@ -994,86 +1550,151 @@ result: 砂糖水の状態を返す
 </pre>
 
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>SugarWaterBuilder: 砂糖水を生成するためのインターフェイス (Builder)</h1>
-
-<p>class SugarWaterBuilder
-  def initialize</p>
-
-<pre><code>@sugar_water = SugarWater.new(0,0)
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 砂糖を加える
-  def add_sugar(sugar_amount)</p>
-
-<pre><code>@sugar_water.sugar += sugar_amount
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 水を加える
-  def add_water(water_amount)</p>
-
-<pre><code>@sugar_water.water += water_amount
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 砂糖水の状態を返す
-  def result</p>
-
-<pre><code>@sugar_water
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;SugarWaterBuilder: 砂糖水を生成するためのインターフェイス (Builder)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">SugarWaterBuilder</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@sugar_water = SugarWater.new(0,0)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 砂糖を加える</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_sugar</span><span class="p">(</span><span class="n">sugar_amount</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@sugar_water.sugar += sugar_amount</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 水を加える</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_water</span><span class="p">(</span><span class="n">water_amount</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@sugar_water.water += water_amount</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 砂糖水の状態を返す</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">result</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@sugar_water</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>最後に砂糖水を作るための作成過程(cook)のメソッドを持つ、<code>Directorクラス</code>を作ります。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>Director： 砂糖水の作成過程を取り決める</h1>
-
-<p>class Director
-  def initialize(builder)</p>
-
-<pre><code>@builder = builder
-</code></pre>
-
-<p>  end
-  # 砂糖水の作成過程を定義する
-  def cook</p>
-
-<pre><code>@builder.add_water(150)
-@builder.add_sugar(90)
-@builder.add_water(300)
-@builder.add_sugar(35)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Director： 砂糖水の作成過程を取り決める&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Director</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@builder = builder</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">  # 砂糖水の作成過程を定義する</span>
+</span><span class='line'><span class="sr">  def cook&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@builder</span><span class="o">.</span><span class="n">add_water</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</span><span class='line'><span class="vi">@builder</span><span class="o">.</span><span class="n">add_sugar</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class='line'><span class="vi">@builder</span><span class="o">.</span><span class="n">add_water</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span><span class='line'><span class="vi">@builder</span><span class="o">.</span><span class="n">add_sugar</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>このプログラムを呼び出します。これで砂糖水を生成することができます。</p>
 
-<p>{% codeblock lang:ruby %}
-builder = SugarWaterBuilder.new
-director = Director.new(builder)
-director.cook
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">builder</span> <span class="o">=</span> <span class="no">SugarWaterBuilder</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">director</span> <span class="o">=</span> <span class="no">Director</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+</span><span class='line'><span class="n">director</span><span class="o">.</span><span class="n">cook</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>この実行結果の砂糖水は次のようになりました。</p>
 
-<p>{% codeblock lang:ruby %}
-p builder.result</p>
-
-<h1>=> &lt;SugarWater:0x007fc773085bc8 @water=450, @sugar=125></h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="n">builder</span><span class="o">.</span><span class="n">result</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; &amp;lt;SugarWater:0x007fc773085bc8 @water=450, @sugar=125&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>このようにBuilder側に作業を担当してもらい、Director側に作業過程を担当してもらうことで、オブジェクトの生成が柔軟にできるイメージを持てたと思います。</p>
 
@@ -1081,56 +1702,100 @@ p builder.result</p>
 
 <p>サンプル１では砂糖水を作成するだけでしたが、サンプル２では塩水も作成できるようにします。まず、塩水の<code>SaltWaterクラス</code>を追加します。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>SaltWater 塩水クラス (ConcreteBuilder：ビルダーの実装部分)</h1>
-
-<p>class SaltWater
-  attr_accessor :water, :salt
-  def initialize(water, salt)</p>
-
-<pre><code>@water = water
-@salt = salt
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 素材(塩)を加える
-  def add_material(salt_amount)</p>
-
-<pre><code>@salt += salt_amount
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;SaltWater 塩水クラス (ConcreteBuilder：ビルダーの実装部分)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">SaltWater</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:water</span><span class="p">,</span> <span class="ss">:salt</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">water</span><span class="p">,</span> <span class="n">salt</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@water = water</span>
+</span><span class='line'><span class="sr">@salt = salt</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 素材(塩)を加える</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_material</span><span class="p">(</span><span class="n">salt_amount</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@salt += salt_amount</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>続いて砂糖水クラスを変更します。
 素材を追加するクラスを塩水クラスと共通するために、メソッド名を<code>add_material</code>にします。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>SugarWater： 砂糖水クラス (ConcreteBuilder：ビルダーの実装部分)</h1>
-
-<p>class SugarWater
-  attr_accessor :water, :sugar
-  def initialize(water, sugar)</p>
-
-<pre><code>@water = water
-@sugar = sugar
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 素材(砂糖)を加える
-  def add_material(sugar_amount)</p>
-
-<pre><code>@sugar += sugar_amount
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;SugarWater： 砂糖水クラス (ConcreteBuilder：ビルダーの実装部分)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">SugarWater</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:water</span><span class="p">,</span> <span class="ss">:sugar</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">water</span><span class="p">,</span> <span class="n">sugar</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@water = water</span>
+</span><span class='line'><span class="sr">@sugar = sugar</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 素材(砂糖)を加える</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_material</span><span class="p">(</span><span class="n">sugar_amount</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@sugar += sugar_amount</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>続いてBuilderの変更を行います。変更点は次の２点です。</p>
 
@@ -1140,95 +1805,170 @@ end
 </ul>
 
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>SugarWaterBuilder： 加工した水を生成するためのインターフェイス(Builder)</h1>
-
-<p>class WaterWithMaterialBuilder
-  def initialize(class_name)</p>
-
-<pre><code>@water_with_material = class_name.new(0,0)
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 素材を入れる
-  def add_material(material_amount)</p>
-
-<pre><code>@water_with_material.add_material(material_amount)
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 水を加える
-  def add_water(water_amount)</p>
-
-<pre><code>@water_with_material.water += water_amount
-</code></pre>
-
-<p>  end</p>
-
-<p>  # 加工水の状態を返す
-  def result</p>
-
-<pre><code>@water_with_material
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;SugarWaterBuilder： 加工した水を生成するためのインターフェイス(Builder)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">WaterWithMaterialBuilder</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">class_name</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@water_with_material = class_name.new(0,0)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 素材を入れる</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_material</span><span class="p">(</span><span class="n">material_amount</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@water_with_material.add_material(material_amount)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 水を加える</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_water</span><span class="p">(</span><span class="n">water_amount</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@water_with_material.water += water_amount</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 加工水の状態を返す</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">result</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@water_with_material</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>最後にDirectorクラスです。こちらもadd_sugarメソッドを<code>add_materialメソッド</code>に変更しています。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>Director： 加工水の作成過程を取り決める</h1>
-
-<p>class Director
-  def initialize(builder)</p>
-
-<pre><code>@builder = builder
-</code></pre>
-
-<p>  end
-  def cook</p>
-
-<pre><code>@builder.add_water(150)
-@builder.add_material(90)
-@builder.add_water(300)
-@builder.add_material(35)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Director： 加工水の作成過程を取り決める&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Director</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;@builder = builder</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">  def cook&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@builder</span><span class="o">.</span><span class="n">add_water</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</span><span class='line'><span class="vi">@builder</span><span class="o">.</span><span class="n">add_material</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class='line'><span class="vi">@builder</span><span class="o">.</span><span class="n">add_water</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span><span class='line'><span class="vi">@builder</span><span class="o">.</span><span class="n">add_material</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>変更したソースでの結果を確認します。
 まず砂糖水の生成です。サンプルソース1と同様の結果になりました。</p>
 
-<p>{% codeblock lang:ruby %}
-builder = WaterWithMaterialBuilder.new(SugarWater)
-director = Director.new(builder)
-director.cook</p>
-
-<p>p builder.result</p>
-
-<h1>=> #&lt;SugarWater:0x007fc773085bc8 @water=450, @sugar=125></h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">builder</span> <span class="o">=</span> <span class="no">WaterWithMaterialBuilder</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">SugarWater</span><span class="p">)</span>
+</span><span class='line'><span class="n">director</span> <span class="o">=</span> <span class="no">Director</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+</span><span class='line'><span class="n">director</span><span class="o">.</span><span class="n">cook</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;p builder.result&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="c1">#&amp;lt;SugarWater:0x007fc773085bc8 @water=450, @sugar=125&gt;&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>続いて、塩水の生成です。塩水が生成されていることがわかります。</p>
 
-<p>{% codeblock lang:ruby %}
-builder = WaterWithMaterialBuilder.new(SaltWater)
-director = Director.new(builder)
-director.cook</p>
-
-<p>p builder.result</p>
-
-<h1>#&lt;SaltWater:0x007f92cc103ba8 @water=450, @salt=125></h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">builder</span> <span class="o">=</span> <span class="no">WaterWithMaterialBuilder</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">SaltWater</span><span class="p">)</span>
+</span><span class='line'><span class="n">director</span> <span class="o">=</span> <span class="no">Director</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+</span><span class='line'><span class="n">director</span><span class="o">.</span><span class="n">cook</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;p builder.result&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="c1">#&amp;lt;SaltWater:0x007f92cc103ba8 @water=450, @salt=125&gt;&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>このサンプルソースはGitHubにも置いています。</p>
 

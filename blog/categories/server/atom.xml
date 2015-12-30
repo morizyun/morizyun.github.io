@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Server | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/server/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>まずはVULTRの「いいところ」</h2>
 
@@ -61,52 +73,97 @@
 
 <p>ここではさっき作ったユーザー作成〜SSHログインの設定をひと通りやってくれるスクリプトを貼っておきます。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>!/bin/sh</h1>
-
-<h1>=============</h1>
-
-<h1>Create User</h1>
-
-<h1>=============</h1>
-
-<h1>user_name は適宜変更</h1>
-
-<p>useradd user_name -G wheel</p>
-
-<h1>passw0rd は適宜変更</h1>
-
-<p>echo 'user_name:passw0rd' > /home/user_name/tmp_pass
-chpasswd &lt; /home/user_name/tmp_pass</p>
-
-<h1>=============</h1>
-
-<h1>Settings SSH Key</h1>
-
-<h1>=============</h1>
-
-<p>mkdir -p /home/user_name/.ssh</p>
-
-<h1>xxxにsshの公開鍵を貼り付け</h1>
-
-<p>echo ssh-rsa xxxx admin@example.com > /home/user_name/.ssh/authorized_keys
-chmod 700 /home/user_name/.ssh/authorized_keys
-chmod 700 /home/user_name/.ssh
-chown user_name.user_name -R /home/user_name/.ssh</p>
-
-<h1>=============</h1>
-
-<h1>SSH Support</h1>
-
-<h1>=============</h1>
-
-<p>echo 'SU_WHEEL_ONLY yes' >> /etc/login.defs
-echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
-echo 'PermitRootLogin no' >> /etc/ssh/sshd_config
-echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config
-/etc/init.d/sshd restart
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;!/bin/sh&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=============</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Create User&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=============</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;user_name は適宜変更&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;useradd user_name -G wheel&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;passw0rd は適宜変更&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;echo <span class="s1">&#39;user_name:passw0rd&#39;</span> &gt; /home/user_name/tmp_pass
+</span><span class='line'>chpasswd &amp;lt; /home/user_name/tmp_pass&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=============</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Settings SSH Key&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=============</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mkdir -p /home/user_name/.ssh&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;xxxにsshの公開鍵を貼り付け&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;echo ssh-rsa xxxx admin@example.com &gt; /home/user_name/.ssh/authorized_keys
+</span><span class='line'>chmod 700 /home/user_name/.ssh/authorized_keys
+</span><span class='line'>chmod 700 /home/user_name/.ssh
+</span><span class='line'>chown user_name.user_name -R /home/user_name/.ssh&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=============</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;SSH Support&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=============</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;echo <span class="s1">&#39;SU_WHEEL_ONLY yes&#39;</span> &gt;&gt; /etc/login.defs
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;%wheel ALL=(ALL) ALL&#39;</span> &gt;&gt; /etc/sudoers
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;PermitRootLogin no&#39;</span> &gt;&gt; /etc/ssh/sshd_config
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;PasswordAuthentication no&#39;</span> &gt;&gt; /etc/ssh/sshd_config
+</span><span class='line'>/etc/init.d/sshd restart
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>シェル・スクリプトは殆どやったこと無いので、もっといい方法知ってる人がいれば是非コメント下さい！</p>
 
@@ -127,7 +184,19 @@ echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config
 
 <p>もし立ち上げ方がわかりにくい場合はコメント頂ければ詳細な解説を書きマス！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 
@@ -154,48 +223,60 @@ echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Passengerのインストール手順</h2>
 
 <p>gem install時にドキュメント生成を行わないようにする。<br/>
 <code>vim ~/.gemrc</code>に以下の項目を追加。</p>
 
-<p>{% codeblock lang:bash %}
-gem: --no-rdoc --no-ri
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem: --no-rdoc --no-ri
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>RVM環境の場合はpassengerのインストール前にgemsetをgrobalにする。</p>
 
-<p>{% codeblock lang:bash %}
-rvm gemset use global
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm gemset use global
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>gem passengerをインストール。</p>
 
-<p>{% codeblock lang:bash %}
-gem install passenger
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install passenger
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>passengerのapacheモジュールのインストール。</p>
 
-<p>{% codeblock lang:bash %}
-passenger-install-apache2-module
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>passenger-install-apache2-module
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>インストールが完了したら、以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-passenger-install-apache2-module --snippet
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>passenger-install-apache2-module --snippet
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h1>Passengerの設定</h1>
 
 <p>以下のコマンドを実行すると、</p>
 
-<p>{% codeblock lang:bash %}
-passenger-install-apache2-module --snippet
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>passenger-install-apache2-module --snippet
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>apacheとの連携に必要な設定が次のように出力されます。</p>
 
@@ -209,52 +290,79 @@ PassengerDefaultRuby /usr/local/rvm/wrappers/ruby-2.0.0-p247@global/ruby
 
 <p><code>sudo vim /etc/httpd/conf.d/passnger.conf</code>で以下の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Passengerの基本設定</h1>
-
-<p>LoadModule passenger_module /usr/local/rvm/gems/ruby-2.0.0-p247@global/gems/passenger-4.0.18/buildout/apache2/mod_passenger.so
-PassengerRoot /usr/local/rvm/gems/ruby-2.0.0-p247@global/gems/passenger-4.0.18
-PassengerDefaultRuby /usr/local/rvm/wrappers/ruby-2.0.0-p247@global/ruby</p>
-
-<h1>Passengerが追加するHTTPヘッダを削除するための設定</h1>
-
-<p>Header always unset "X-Powered-By"
-Header always unset "X-Rack-Cache"
-Header always unset "X-Content-Digest"
-Header always unset "X-Runtime"</p>
-
-<h1>必要に応じてPassengerのチューニングのための設定を追加</h1>
-
-<p>PassengerMaxPoolSize 20
-PassengerMaxInstancesPerApp 4
-PassengerPoolIdleTime 3600
-PassengerHighPerformance on
-PassengerStatThrottleRate 10
-RailsSpawnMethod smart
-RailsAppSpawnerIdleTime 86400
-PassengerMaxPreloaderIdleTime 0
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Passengerの基本設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;LoadModule passenger_module /usr/local/rvm/gems/ruby-2.0.0-p247@global/gems/passenger-4.0.18/buildout/apache2/mod_passenger.so
+</span><span class='line'>PassengerRoot /usr/local/rvm/gems/ruby-2.0.0-p247@global/gems/passenger-4.0.18
+</span><span class='line'>PassengerDefaultRuby /usr/local/rvm/wrappers/ruby-2.0.0-p247@global/ruby&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Passengerが追加するHTTPヘッダを削除するための設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Header always <span class="nb">unset</span> <span class="s2">&quot;X-Powered-By&quot;</span>
+</span><span class='line'>Header always <span class="nb">unset</span> <span class="s2">&quot;X-Rack-Cache&quot;</span>
+</span><span class='line'>Header always <span class="nb">unset</span> <span class="s2">&quot;X-Content-Digest&quot;</span>
+</span><span class='line'>Header always <span class="nb">unset</span> <span class="s2">&quot;X-Runtime&quot;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;必要に応じてPassengerのチューニングのための設定を追加&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;PassengerMaxPoolSize 20
+</span><span class='line'>PassengerMaxInstancesPerApp 4
+</span><span class='line'>PassengerPoolIdleTime 3600
+</span><span class='line'>PassengerHighPerformance on
+</span><span class='line'>PassengerStatThrottleRate 10
+</span><span class='line'>RailsSpawnMethod smart
+</span><span class='line'>RailsAppSpawnerIdleTime 86400
+</span><span class='line'>PassengerMaxPreloaderIdleTime 0
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Apacheの文法チェックです。</p>
 
-<p>{% codeblock lang:bash %}
-apachectl configtest</p>
-
-<blockquote><p>sintax ok &lt;= と出れば成功。
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apachectl configtest&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;sintax ok &amp;lt;<span class="o">=</span> と出れば成功。
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <p>以下でApacheを再起動してブラウザで表示確認。</p>
 
-<p>{% codeblock lang:bash %}
-sudo /etc/rc.d/init.d/httpd restart
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/rc.d/init.d/httpd restart
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もし本番環境の場合は、<code>vim ~/.bashrc</code>で以下を追加。</p>
 
-<p>{% codeblock lang:bash %}
-RAILS_ENV=production
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>production
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>source ~/.bashrc</code>を実行して設定を反映。</p>
 
@@ -266,12 +374,16 @@ RAILS_ENV=production
 
 <p>Apacheのバーチャルホストの設定ファイル(<code>sudo vim /etc/http/conf.d/vhost.conf</code>など)を<strong><a href="/blog/apache-virtualhost-conf-passenger/">Apache VirtualHostの設定</a></strong>を参考に編集。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-apachectl -t</p>
-
-<blockquote><p>Syntax OK
-touch tmp/restart.txt
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apachectl -t&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Syntax OK
+</span><span class='line'>touch tmp/restart.txt
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <h2>Special Thanks</h2>
 
@@ -319,48 +431,64 @@ Server(さくらVPS 2G SSD):
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>パッケージのインストール</h2>
 
 <p>もしまだならEPELリポジトリを追加。</p>
 
-<p>{% codeblock lang:bash %}
-sudo rpm -ivh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rpm -ivh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>必要なパッケージをインストール。</p>
 
-<p>{% codeblock lang:bash %}
-sudo yum -y install curl curl-devel gcc gcc-c++ git openssl-devel httpd-devel readline-devel tk-devel make zlib-devel libffi-devel
-sudo yum --enablerepo=epel -y install libyaml-devel
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum -y install curl curl-devel gcc gcc-c++ git openssl-devel httpd-devel readline-devel tk-devel make zlib-devel libffi-devel
+</span><span class='line'>sudo yum --enablerepo<span class="o">=</span>epel -y install libyaml-devel
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>RVMのインストール手順</h2>
 
 <p>rvmをインストール。</p>
 
-<p>{% codeblock lang:bash %}
-sudo bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo bash -s stable &amp;lt; &amp;lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer <span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 * sudoをつけるとマルチユーザーにインストール(/usr/local/rvm)
 * sudoを外すと使っているユーザーにインストール(~/.rvm/)</p>
 
 <p>rvmグループを作成してrootを追加する。</p>
 
-<p>{% codeblock lang:bash %}
-sudo usermod -a -G rvm root
-sudo gpasswd -a USER_NAME rvm
-sudo gpasswd -a apache rvm
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo usermod -a -G rvm root
+</span><span class='line'>sudo gpasswd -a USER_NAME rvm
+</span><span class='line'>sudo gpasswd -a apache rvm
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 * <code>USER_NAME</code>にはrvmを使うユーザー(ログインユーザー)を追加。</p>
 
 <p>ここでOSの再起動をして下さい。そして、rvmの読込とrvmを最新バージョンに更新。</p>
 
-<p>{% codeblock lang:bash %}
-source /etc/profile.d/rvm.sh
-rvm get head
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> /etc/profile.d/rvm.sh
+</span><span class='line'>rvm get head
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>rvm requirements</code></p>
 
@@ -368,59 +496,64 @@ rvm get head
 
 <p>OSを再起動。</p>
 
-<p>{% codeblock lang:bash %}
-sudo reboot
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo reboot
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Ruby 2.0.0のインストール。<br/></p>
 
-<p>{% codeblock lang:bash %}
-rvm install 2.0.0
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm install 2.0.0
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Ruby 2.0.0 をデフォルトに設定。</p>
 
-<p>{% codeblock lang:bash %}
-rvm use 2.0.0 --default
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm use 2.0.0 --default
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>RVMの設定確認。</p>
 
-<p>{% codeblock lang:bash %}
-rvm list
-=* ruby-2.0.0-p247 [ x86_64 ] # &lt;= となっていれば成功
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm <span class="nv">list</span>
+</span><span class='line'><span class="o">=</span>* ruby-2.0.0-p247 <span class="o">[</span> x86_64 <span class="o">]</span> <span class="c"># &amp;lt;= となっていれば成功</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>今後<code>.rvmrc</code>が設置されたフォルダでは設定を自動で許可するようにする。
 <code>vim /etc/rvmrc</code>に以下の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}
-rvm_trust_rvmrcs_flag=1
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">rvm_trust_rvmrcs_flag</span><span class="o">=</span>1
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>bundlerをインストールして動作確認。</p>
 
-<p>{% codeblock lang:bash %}
-gem install bundler --no-ri --no-rdoc</p>
-
-<blockquote><p>Successfully installed bundler-1.2.3
-1 gem installed &lt;= で成功
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install bundler --no-ri --no-rdoc&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Successfully installed bundler-1.2.3
+</span><span class='line'>1 gem installed &amp;lt;<span class="o">=</span> で成功
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <h2>エラー対策1: mkdir: ディレクトリ `/usr/local/rvm' を作成できません</h2>
 
 <p>もし<code>mkdir: ディレクトリ `/usr/local/rvm' を作成できません: 許可がありません</code>か<code>Permission denied in /usr/local/rvm</code>というエラーが発生する場合は、以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-sudo rm -rf /usr/local/rvm
-sudo rm -rf /etc/rvmrc.
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rm -rf /usr/local/rvm
+</span><span class='line'>sudo rm -rf /etc/rvmrc.
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>でOSを再起動したほうがよさそう。</p>
 
-<p>{% codeblock lang:bash %}
-sudo reboot
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo reboot
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>エラー対策2: No space left on device</h2>
 
@@ -428,40 +561,43 @@ sudo reboot
 
 <p>ディレクトリ単位での使用量上位20位までを探す場合のコマンドは次の通り。</p>
 
-<p>{% codeblock lang:bash %}
-du -k / | sort -n | tail -20
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>du -k / | sort -n | tail -20
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>100MB以上のファイルを探す場合のコマンドは以下のとおりです。</p>
 
-<p>{% codeblock lang:bash %}
-find / -size 100000K -ls
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find / -size 100000K -ls
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>メモ: RVMを再インストール</h2>
 
 <p>何かの理由でRVMを再インストールする場合の削除コマンドは次の通り。</p>
 
-<p>{% codeblock lang:bash %}
-rvm implode
-sudo rm -rf /etc/rvmrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm implode
+</span><span class='line'>sudo rm -rf /etc/rvmrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>OSを再起動したほうがよさそう。</p>
 
-<p>{% codeblock lang:bash %}
-sudo reboot
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo reboot
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>メモ: ユーザーの所属しているグループを調べる</h2>
 
 <p>id コマンドでユーザーの所属しているグループが調べられる</p>
 
-<p>{% codeblock lang:bash %}
-id root</p>
-
-<blockquote><p>uid=0(root) gid=0(root) 所属グループ=0(root),501(rvm)
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>id root&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;uid<span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> 所属グループ<span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span>,501<span class="o">(</span>rvm<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <h2>Special Thanks</h2>
 
@@ -514,7 +650,7 @@ Server(さくらVPS 2G SSD):
     <link href="http://morizyun.github.io/blog/yslow-speed-up-rails-server-centos/"/>
     <updated>2012-12-23T11:30:00+09:00</updated>
     <id>http://morizyun.github.io/blog/yslow-speed-up-rails-server-centos</id>
-    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8494/8297892171_a60d77a761_q.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>今話題の「<a href="http://www.slideshare.net/SumiKoichiro/1-15709348?utm_medium=twitter&amp;amp;utm_source=dlvr.it">スタートアップ向け！1人日でできるサービスの高速化方法と成果</a>」に乗っていたアプリのスピード改善を提案してくれる「<a href="http://developer.yahoo.com/yslow/">YSlow</a>」を試してみました！ちなみにこのアドオンはアメリカのYahooが無料で提供しています。</p>
+    <content type="html"><![CDATA[<p><a href="blog/categories/server/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8494/8297892171_a60d77a761_q.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>今話題の「<a href="http://www.slideshare.net/SumiKoichiro/1-15709348?utm_medium=twitter&amp;amp;utm_source=dlvr.it">スタートアップ向け！1人日でできるサービスの高速化方法と成果</a>」に乗っていたアプリのスピード改善を提案してくれる「<a href="http://developer.yahoo.com/yslow/">YSlow</a>」を試してみました！ちなみにこのアドオンはアメリカのYahooが無料で提供しています。</p>
 
 <!-- more -->
 
@@ -522,7 +658,19 @@ Server(さくらVPS 2G SSD):
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Addonをインストール</h2>
 
@@ -578,39 +726,75 @@ ETagsの設定(トラフィックを抑えるように設定する)
 
 <p>サーバーの<code>http.conf(CentOSなら:/etc/httpd/conf/http.conf)</code>に以下の設定を追加。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>これは既に設定済の可能性があるので確認</h1>
-
-<p>LoadModule expires_module     modules/mod_expires.so</p>
-
-<h1>以下を新規で追加</h1>
-
-<h1>Apache Expire Header</h1>
-
-<p>ExpiresActive On
-ExpiresByType application/javascript "access plus 1 days"
-ExpiresByType application/x-javascript "access plus 1 days"
-ExpiresByType text/javascript "access plus 1 days"
-ExpiresByType text/css "access plus 1 days"
-ExpiresByType image/jpeg "access plus 3 days"
-ExpiresByType image/png "access plus 3 days"
-ExpiresByType image/gif "access plus 3 days"
-ExpiresByType image/x-icon "access plus 3 days"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;これは既に設定済の可能性があるので確認&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;LoadModule expires_module     modules/mod_expires.so&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;以下を新規で追加&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Apache Expire Header&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ExpiresActive On
+</span><span class='line'>ExpiresByType application/javascript <span class="s2">&quot;access plus 1 days&quot;</span>
+</span><span class='line'>ExpiresByType application/x-javascript <span class="s2">&quot;access plus 1 days&quot;</span>
+</span><span class='line'>ExpiresByType text/javascript <span class="s2">&quot;access plus 1 days&quot;</span>
+</span><span class='line'>ExpiresByType text/css <span class="s2">&quot;access plus 1 days&quot;</span>
+</span><span class='line'>ExpiresByType image/jpeg <span class="s2">&quot;access plus 3 days&quot;</span>
+</span><span class='line'>ExpiresByType image/png <span class="s2">&quot;access plus 3 days&quot;</span>
+</span><span class='line'>ExpiresByType image/gif <span class="s2">&quot;access plus 3 days&quot;</span>
+</span><span class='line'>ExpiresByType image/x-icon <span class="s2">&quot;access plus 3 days&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>ETagsの設定</h2>
 
 <p>サーバーの<code>http.conf(CentOSなら:/etc/httpd/conf/http.conf)</code>に以下の設定を追加。</p>
 
-<p>{% codeblock lang:bash %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ETags&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;FileETag MTime Size
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h1>ETags</h1>
-
-<p>FileETag MTime Size
-{% endcodeblock %}</p>
-
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>ということで</h2>
 
@@ -629,7 +813,7 @@ ExpiresByType image/x-icon "access plus 3 days"
     <link href="http://morizyun.github.io/blog/pow-guard-rails/"/>
     <updated>2012-11-28T16:40:00+09:00</updated>
     <id>http://morizyun.github.io/blog/pow-guard-rails</id>
-    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8209/8225589647_c2f4413b3b.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+    <content type="html"><![CDATA[<p><a href="blog/categories/server/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8209/8225589647_c2f4413b3b.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>「小さなチーム、大きな仕事」でおなじみの <a href="http://37signals.com/">37 signails</a>が開発した「設定が不要なRails &amp; Rackサーバ Pow」を使いはじめました！
 このPowを使うメリットは、</p>
@@ -652,27 +836,32 @@ ExpiresByType image/x-icon "access plus 3 days"
 
 <p>Powのインストールは以下のコマンドのみ。もし、万一エラーが出るようなら<a href="https://github.com/37signals/pow">37signals/pow GitHub</a>を確認してみてください。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-curl get.pow.cx | sh
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl get.pow.cx | sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Powderのインストール</h2>
 
 <p>Powのコマンド入力支援してくれる<a href="https://github.com/Rodreegez/powder">Powder</a>をインストール。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-gem install powder
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install powder
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Powへのリンクの作成</h2>
 
 <p>Rails/Rackアプリのフォルダで以下を入力するとpowへのリンクを作成できます。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-powder link</p>
-
-<blockquote><p>Your application is now available at http://app_folder_name.dev/
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>powder link&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Your application is now available at http://app_folder_name.dev/
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <p>ブラウザで<code>http://app_folder_name.dev/</code>にアクセスするか、<code>powder open</code>と入力するとアプリが表示されます。その他のpowderのコマンドについては、下にまとめています。</p>
 
@@ -681,15 +870,22 @@ powder link</p>
 <p>pow + xip.ioによって、LAN内のスマホ/タブレットからアプリに簡単にアクセスすることができます。
 まず、Mac側のローカルIPを確認。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-ifconfig
-...</p>
-
-<pre><code>    inet 192.168.24.99
-</code></pre>
-
-<p>...
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ifconfig
+</span><span class='line'>...&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;    inet 192.168.24.99
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;...
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にスマホ/タブレットのブラウザから、<code>http://app_folder_name.192.168.24.99.xip.io/</code>にアクセスするとアプリを表示することができます。</p>
 
@@ -700,9 +896,10 @@ ifconfig
 <p>Railsには、config/environment.rbなど再起動しないと反映されないファイルが幾つかあります。
 これをGem Guardで監視して変更があった場合には、自動でPowが再起動されるようにします。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-gem install guard-pow
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install guard-pow
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Guardファイルの設定</h2>
 
@@ -712,25 +909,37 @@ gem install guard-pow
 
 <p>まず、Guardfileを生成/更新します。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-guard init pow
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>guard init pow
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>このコマンドを実行すると以下のようにプロジェクト直下のGuardfileが更新されます。</p>
 
-<p>{% codeblock Guardfile lang:ruby %}
-guard 'pow' do
-  watch('.powrc')
-  watch('.powenv')
-  watch('.rvmrc')
-  watch('Gemfile')
-  watch('Gemfile.lock')
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch(%r{<sup>config/environments/.*.rb$})</sup>
-  watch(%r{<sup>config/initializers/.*.rb$})</sup>
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Guardfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="s1">&#39;pow&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.powrc&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.powenv&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.rvmrc&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;Gemfile&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;Gemfile.lock&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;config/application.rb&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;config/environment.rb&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{&lt;sup&gt;config/environments/.*.rb$}</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
+</span><span class='line'><span class="sr">  watch(%r{&lt;sup&gt;config/ini</span><span class="n">tializers</span><span class="o">/.</span><span class="n">*</span><span class="o">.</span><span class="n">rb</span><span class="err">$</span><span class="p">})</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これでGuardがファイルを監視して、変更があった場合には Powを自動で更新してくれます。</p>
 
@@ -738,26 +947,29 @@ end
 
 <p><code>localhost</code>でアクセスするリンク先は以下のコマンドで設定できます。</p>
 
-<p>{% codeblock lang:bash %}
-ln -s /app/path/to/ ~/.pow/default
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -s /app/path/to/ ~/.pow/default
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>補足: Pow-RVMの連携 Rubyのバージョンを指定する</h2>
 
 <p>もし、Powでリンクを張ったプロジェクトのRVMのバージョンを指定したい場合は、まずプロジェクトの直下に<code>.rvmrc</code>を作成して以下を登録。</p>
 
-<p>{% codeblock lang:bash %}
-rvm 1.9.3
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm 1.9.3
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に同じくプロジェクトの直下に<code>.powrc</code>を作成して以下を追加。</p>
 
-<p>{% codeblock lang:bash %}
-if [ -f "$rvm_path/scripts/rvm" ] &amp;&amp; [ -f ".rvmrc" ]; then
-  source "$rvm_path/scripts/rvm"
-  source ".rvmrc"
-fi
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> <span class="o">[</span> -f <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span> <span class="o">]</span> &amp;amp;&amp;amp; <span class="o">[</span> -f <span class="s2">&quot;.rvmrc&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">  </span><span class="nb">source</span> <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span>
+</span><span class='line'>  <span class="nb">source</span> <span class="s2">&quot;.rvmrc&quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>RVM関連の設定詳細は<a href="http://pow.cx/manual.html#section_2.3.2">公式ページの2.3.2 Specifying Ruby Versions with RVM</a>を参照。</p>
 
@@ -857,9 +1069,9 @@ powder update
 
 <p>もし何らかの事情でPowをアンインストールしたくなった場合は以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-curl get.pow.cx/uninstall.sh | sh
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl get.pow.cx/uninstall.sh | sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>アンインストールの詳細は<a href="http://pow.cx/manual.html#section_1.2">公式ページの1.2 Uninstalling Pow</a>を参照。</p>
 

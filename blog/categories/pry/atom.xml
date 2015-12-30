@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Pry | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/pry/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>オススメ記事</h2>
 
@@ -52,60 +64,105 @@ Pry の設定ファイルや、関連 Gem の簡易的なコマンドをまと�
 <code>ls</code>はオブジェクトのメソッドや、変数の表示。<br/>
 Pryの基本中の基本のコマンドですが超便利・超重要です！</p>
 
-<p>{% codeblock lang:ruby %}
-[1] pry(Object):1> images = Image.all           <br/>
-ImageSite Load (10.4ms)  SELECT <code>images</code>.* FROM <code>images</code>
-[2] pry(Object):1> cd images
-[3] pry(#<Array>):2> ls
-Enumerable#methods: all?  any?  chunk ...
-self.methods: <strong>pry</strong>
-locals: _  <em>dir</em>  <em>ex</em>  <em>file</em>  <em>in</em>  <em>out</em>  <em>pry</em>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="no">Object</span><span class="p">):</span><span class="mi">1</span><span class="o">&gt;</span> <span class="n">images</span> <span class="o">=</span> <span class="no">Image</span><span class="o">.</span><span class="n">all</span>           <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="no">ImageSite</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">10</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">images</span><span class="o">&lt;</span><span class="sr">/code&gt;.* FROM &lt;code&gt;images&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="no">Object</span><span class="p">):</span><span class="mi">1</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="n">images</span>
+</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="c1">#&lt;Array&gt;):2&gt; ls</span>
+</span><span class='line'><span class="no">Enumerable</span><span class="c1">#methods: all?  any?  chunk ...</span>
+</span><span class='line'><span class="nb">self</span><span class="o">.</span><span class="n">methods</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">pry</span><span class="o">&lt;</span><span class="sr">/strong&gt;</span>
+</span><span class='line'><span class="sr">locals: _  &lt;em&gt;dir&lt;/em</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">ex</span><span class="o">&lt;</span><span class="sr">/em&gt;  &lt;em&gt;file&lt;/em</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="k">in</span><span class="o">&lt;</span><span class="sr">/em&gt;  &lt;em&gt;out&lt;/em</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">pry</span><span class="o">&lt;</span><span class="sr">/em&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>(3) 特別なローカル情報</h2>
 
 <p>次はSpecial Locals(特別なローカル情報)を表示するための7つのコマンドです。使いこなせれば結構便利です。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>_ : １つ前のコマンドの結果</h1>
-
-<p>pry(main)> 5 + 5
-=> 10
-pry(main)> _ + 10
-=> 20</p>
-
-<h1><em>ex</em> : 前に発生した例外情報</h1>
-
-<p>pry(main)> 4 + "j"
-TypeError: String can't be coerced into Fixnum
-from (pry):2:in `+'
-pry(main)> <em>ex</em>
-=> #&lt;TypeError: String can't be coerced into Fixnum></p>
-
-<h1><em>in</em> : 入力値</h1>
-
-<h1><em>out</em> : 出力値</h1>
-
-<p>[25] pry(main)> 1 + 1
-=> 2
-[26] pry(main)> 2 + 3
-=> 5
-pry(main)> <em>out</em>[25] + <em>out</em>[26]
-=> 7</p>
-
-<h1><em>dir</em> : ディレクトリパス</h1>
-
-<h1><em>file</em> : ファイルパス</h1>
-
-<p>pry(main)> show-method pry</p>
-
-<p>From: /Users/john/ruby/projects/pry/lib/pry/core_extensions.rb @
-....</p>
-
-<p>pry(main)> <em>file</em>
-=> "/Users/john/ruby/projects/pry/lib/pry/core_extensions.rb"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;_ : １つ前のコマンドの結果&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;pry<span class="o">(</span>main<span class="o">)</span>&gt; 5 + <span class="nv">5</span>
+</span><span class='line'><span class="o">=</span>&gt; 10
+</span><span class='line'>pry<span class="o">(</span>main<span class="o">)</span>&gt; _ + <span class="nv">10</span>
+</span><span class='line'><span class="o">=</span>&gt; 20&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;em&gt;ex&lt;/em&gt; : 前に発生した例外情報&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;pry<span class="o">(</span>main<span class="o">)</span>&gt; 4 + <span class="s2">&quot;j&quot;</span>
+</span><span class='line'>TypeError: String can<span class="s1">&#39;t be coerced into Fixnum</span>
+</span><span class='line'><span class="s1">from (pry):2:in `+&#39;</span>
+</span><span class='line'>pry<span class="o">(</span>main<span class="o">)</span>&gt; &lt;em&gt;ex&lt;/em&gt;
+</span><span class='line'><span class="o">=</span>&gt; <span class="c">#&amp;lt;TypeError: String can&#39;t be coerced into Fixnum&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;em&gt;in&lt;/em&gt; : 入力値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;em&gt;out&lt;/em&gt; : 出力値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>25<span class="o">]</span> pry<span class="o">(</span>main<span class="o">)</span>&gt; 1 + <span class="nv">1</span>
+</span><span class='line'><span class="o">=</span>&gt; 2
+</span><span class='line'><span class="o">[</span>26<span class="o">]</span> pry<span class="o">(</span>main<span class="o">)</span>&gt; 2 + <span class="nv">3</span>
+</span><span class='line'><span class="o">=</span>&gt; 5
+</span><span class='line'>pry<span class="o">(</span>main<span class="o">)</span>&gt; &lt;em&gt;out&lt;/em&gt;<span class="o">[</span>25<span class="o">]</span> + &lt;em&gt;out&lt;/em&gt;<span class="o">[</span>26<span class="o">]</span>
+</span><span class='line'><span class="o">=</span>&gt; 7&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;em&gt;dir&lt;/em&gt; : ディレクトリパス&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;em&gt;file&lt;/em&gt; : ファイルパス&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;pry<span class="o">(</span>main<span class="o">)</span>&gt; show-method pry&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;From: /Users/john/ruby/projects/pry/lib/pry/core_extensions.rb @
+</span><span class='line'>....&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;pry<span class="o">(</span>main<span class="o">)</span>&gt; &lt;em&gt;file&lt;/em&gt;
+</span><span class='line'><span class="o">=</span>&gt; <span class="s2">&quot;/Users/john/ruby/projects/pry/lib/pry/core_extensions.rb&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>(4) find-method</h2>
 
@@ -125,14 +182,27 @@ pry(main)> <em>out</em>[25] + <em>out</em>[26]
 
 <p>コマンドは次のとおりです。</p>
 
-<p>{% codeblock lang:bash %}
-show-routes #&lt;= ルーティングの一覧を表示
-show-routes --grep new #&lt;= newに絞って表示
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>show-routes <span class="c">#&amp;lt;= ルーティングの一覧を表示</span>
+</span><span class='line'>show-routes --grep new <span class="c">#&amp;lt;= newに絞って表示</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>rake routes</code>より高速です！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>(7) show-middlewares</h2>
 
@@ -153,17 +223,25 @@ show-routes --grep new #&lt;= newに絞って表示
 共通して使うPryコマンドを作成する場合は、<code>~/.pryrc</code>を作成。<br/>
 作成したファイルに下記のように追加。</p>
 
-<p>{% codeblock lang:ruby %}
-command_set = Pry::CommandSet.new do
-  command "コマンドの名前", "コマンドの説明" do |引数|</p>
-
-<pre><code> # ここに処理を書く
-</code></pre>
-
-<p>  end
-end
-Pry.config.commands.import my_command_set
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">command_set</span> <span class="o">=</span> <span class="no">Pry</span><span class="o">::</span><span class="no">CommandSet</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">command</span> <span class="s2">&quot;コマンドの名前&quot;</span><span class="p">,</span> <span class="s2">&quot;コマンドの説明&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="err">引数</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt; # ここに処理を書く</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">Pry.config.commands.import my_command_set</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ちなみに、<a href="https://gist.github.com/1297510">このGist</a>には次のような便利なコマンドがありました。</p>
 
@@ -197,105 +275,189 @@ Pry.config.commands.import my_command_set
 
 <p>この4つのコマンドを使いたい場合は、下を.pryrcに追加して下さい。</p>
 
-<p>{% codeblock lang:bash %}
-%w[rubygems pp logger].each do |gem|
-  begin</p>
-
-<pre><code>require gem
-</code></pre>
-
-<p>  rescue LoadError
-  end
-end
-Pry.config.editor = "mate -w"</p>
-
-<h1>Default Command Set, add custom methods here:</h1>
-
-<p>default_command_set = Pry::CommandSet.new do
-  command "copy", "Copy argument to the clip-board" do |str|</p>
-
-<pre><code> IO.popen('pbcopy', 'w') { |f| f &lt;&lt; str.to_s }
-</code></pre>
-
-<p>  end</p>
-
-<p>  command "clear" do</p>
-
-<pre><code>system 'clear'
-if ENV['RAILS_ENV']
-  output.puts "Rails Environment: " + ENV['RAILS_ENV']
-end
-</code></pre>
-
-<p>  end</p>
-
-<p>  command "sql", "Send sql over AR." do |query|</p>
-
-<pre><code>if ENV['RAILS_ENV'] || defined?(Rails)
-  pp ActiveRecord::Base.connection.select_all(query)
-else
-  pp "Pry did not require the environment, try `pconsole`"
-end
-</code></pre>
-
-<p>  end
-  command "caller_method" do |depth|</p>
-
-<pre><code>depth = depth.to_i || 1
-if /^(.+?):(\d+)(?::in `(.*)')?/ =~ caller(depth+1).first
-  file   = Regexp.last_match[1]
-  line   = Regexp.last_match[2].to_i
-  method = Regexp.last_match[3]
-  output.puts [file, line, method]
-end
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>Pry.config.commands.import default_command_set
-Pry.config.should_load_plugins = false
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>%w<span class="o">[</span>rubygems pp logger<span class="o">]</span>.each <span class="k">do</span> |gem|
+</span><span class='line'>  begin&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;require gem
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  rescue LoadError
+</span><span class='line'>  end
+</span><span class='line'>end
+</span><span class='line'>Pry.config.editor <span class="o">=</span> <span class="s2">&quot;mate -w&quot;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Default Command Set, add custom methods here:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;default_command_set <span class="o">=</span> Pry::CommandSet.new <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="nb">command</span> <span class="s2">&quot;copy&quot;</span>, <span class="s2">&quot;Copy argument to the clip-board&quot;</span> <span class="k">do</span> |str|&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt; IO.popen<span class="o">(</span><span class="s1">&#39;pbcopy&#39;</span>, <span class="s1">&#39;w&#39;</span><span class="o">)</span> <span class="o">{</span> |f| f &amp;lt;&amp;lt; str.to_s <span class="o">}</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="nb">command</span> <span class="s2">&quot;clear&quot;</span> <span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;system <span class="s1">&#39;clear&#39;</span>
+</span><span class='line'><span class="k">if </span>ENV<span class="o">[</span><span class="s1">&#39;RAILS_ENV&#39;</span><span class="o">]</span>
+</span><span class='line'>  output.puts <span class="s2">&quot;Rails Environment: &quot;</span> + ENV<span class="o">[</span><span class="s1">&#39;RAILS_ENV&#39;</span><span class="o">]</span>
+</span><span class='line'>end
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="nb">command</span> <span class="s2">&quot;sql&quot;</span>, <span class="s2">&quot;Send sql over AR.&quot;</span> <span class="k">do</span> |query|&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;if ENV<span class="o">[</span><span class="s1">&#39;RAILS_ENV&#39;</span><span class="o">]</span> <span class="o">||</span> defined?<span class="o">(</span>Rails<span class="o">)</span>
+</span><span class='line'>  pp ActiveRecord::Base.connection.select_all<span class="o">(</span>query<span class="o">)</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'><span class="k">  </span>pp <span class="s2">&quot;Pry did not require the environment, try `pconsole`&quot;</span>
+</span><span class='line'>end
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>  <span class="nb">command</span> <span class="s2">&quot;caller_method&quot;</span> <span class="k">do</span> |depth|&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;depth <span class="o">=</span> depth.to_i <span class="o">||</span> 1
+</span><span class='line'><span class="k">if</span> /^<span class="o">(</span>.+?<span class="o">)</span>:<span class="o">(</span><span class="se">\d</span>+<span class="o">)(</span>?::in <span class="sb">`</span><span class="o">(</span>.*<span class="o">)</span><span class="err">&#39;</span><span class="o">)</span>?/ <span class="o">=</span>~ <span class="nb">caller</span><span class="o">(</span>depth+1<span class="o">)</span>.first
+</span><span class='line'>  <span class="nv">file</span>   <span class="o">=</span> Regexp.last_match<span class="o">[</span>1<span class="o">]</span>
+</span><span class='line'>  <span class="nv">line</span>   <span class="o">=</span> Regexp.last_match<span class="o">[</span>2<span class="o">]</span>.to_i
+</span><span class='line'>  <span class="nv">method</span> <span class="o">=</span> Regexp.last_match<span class="o">[</span>3<span class="o">]</span>
+</span><span class='line'>  output.puts <span class="o">[</span>file, line, method<span class="o">]</span>
+</span><span class='line'>end
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Pry.config.commands.import default_command_set
+</span><span class='line'>Pry.config.should_load_plugins <span class="o">=</span> <span class="nb">false</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>(10) urlヘルパーが生成するpath/urlの確認</h2>
 
-<p>{% codeblock lang:ruby %}
-app.product_index_path</p>
-
-<h1>=> "/product"</h1>
-
-<p>app.admin_product_index_url</p>
-
-<h1>=> "http://www.example.com/product"</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">product_index_path</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; &quot;/</span><span class="n">product</span><span class="s2">&quot;&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;app.admin_product_index_url&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;h1&gt;=&gt; &quot;</span><span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">www</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">product</span><span class="s2">&quot;&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>(11) リクエストしてコントローラの呼び出し</h2>
 
-<p>{% codeblock lang:ruby %}
-app.get "http://0.0.0.0:300/"
-....</p>
-
-<h1>=> 200</h1>
-
-<p>app.response.body</p>
-
-<h1>=> レスポンスのhtmlが表示</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">get</span> <span class="s2">&quot;http://0.0.0.0:300/&quot;</span>
+</span><span class='line'><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">.</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; 200&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">app</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; レスポンスのhtmlが表示&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>(12) viewヘルパーの呼び出し</h2>
 
-<p>{% codeblock lang:ruby %}
-helper.number_to_currency(7777777)</p>
-
-<h1>=> "7,777,777円"</h1>
-
-<p>helper.image_tag "https://www.google.co.jp/images/srpr/logo4w.png"</p>
-
-<h1>=> "<img alt=\"Logo4w\" src=\"https://www.google.co.jp/images/srpr/logo4w.png\" />"</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">helper</span><span class="o">.</span><span class="n">number_to_currency</span><span class="p">(</span><span class="mi">7777777</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; &quot;7,777,777円&quot;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">helper</span><span class="o">.</span><span class="n">image_tag</span> <span class="s2">&quot;https://www.google.co.jp/images/srpr/logo4w.png&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; &quot;&lt;img alt=\&quot;Logo4w\&quot; src=\&quot;https:/</span><span class="o">/</span><span class="n">www</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">co</span><span class="o">.</span><span class="n">jp</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">srpr</span><span class="o">/</span><span class="n">logo4w</span><span class="o">.</span><span class="n">png</span><span class="p">\</span><span class="s2">&quot; /&gt;&quot;</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Pry公式Wiki</h2>
 
@@ -307,7 +469,19 @@ helper.number_to_currency(7777777)</p>
 
 <p>Pryの拡張機能の紹介は、拙作の<strong>「<a href="/blog/pry-tips-rails-ruby/">Pryの秘めた力を最大限引き出す4つの拡張機能</a>」</strong>をご参照下さい！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 
@@ -337,7 +511,19 @@ helper.number_to_currency(7777777)</p>
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>モデルの中身を綺麗に表示</h2>
 
@@ -350,52 +536,91 @@ helper.number_to_currency(7777777)</p>
 
 <p>(1) 以下のコマンドを実行してGemをインストール(もしくはgem install)</p>
 
-<p>{% codeblock lang:bash %}
-group :development, :test do</p>
-
-<pre><code># PryでのSQLの結果を綺麗に表示
-gem 'hirb'
-gem 'hirb-unicode'
-</code></pre>
-
-<p>end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>group :development, :test <span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;# PryでのSQLの結果を綺麗に表示
+</span><span class='line'>gem <span class="s1">&#39;hirb&#39;</span>
+</span><span class='line'>gem <span class="s1">&#39;hirb-unicode&#39;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>(2) <code>~/.pryrc</code>に以下を追加</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>hirbの設定</h1>
-
-<p>begin
-  require 'hirb'
-rescue LoadError
-  # Missing goodies, bummer
-end</p>
-
-<p>if defined? Hirb
-  # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
-  Hirb::View.instance_eval do</p>
-
-<pre><code>def enable_output_method
-  @output_method = true
-  @old_print = Pry.config.print
-  Pry.config.print = proc do |output, value|
-    Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
-  end
-end
-
-def disable_output_method
-  Pry.config.print = @old_print
-  @output_method = nil
-end
-</code></pre>
-
-<p>  end</p>
-
-<p>  Hirb.enable
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;hirbの設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;begin
+</span><span class='line'>  require <span class="s1">&#39;hirb&#39;</span>
+</span><span class='line'>rescue LoadError
+</span><span class='line'>  <span class="c"># Missing goodies, bummer</span>
+</span><span class='line'>end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;if defined? Hirb
+</span><span class='line'>  <span class="c"># Slightly dirty hack to fully support in-session Hirb.disable/enable toggling</span>
+</span><span class='line'>  Hirb::View.instance_eval <span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;def enable_output_method
+</span><span class='line'>  @output_method <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>  @old_print <span class="o">=</span> Pry.config.print
+</span><span class='line'>  Pry.config.print <span class="o">=</span> proc <span class="k">do</span> |output, value|
+</span><span class='line'>    Hirb::View.view_or_page_output<span class="o">(</span>value<span class="o">)</span> <span class="o">||</span> @old_print.call<span class="o">(</span>output, value<span class="o">)</span>
+</span><span class='line'>  end
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>def disable_output_method
+</span><span class='line'>  Pry.config.print <span class="o">=</span> @old_print
+</span><span class='line'>  @output_method <span class="o">=</span> nil
+</span><span class='line'>end
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  Hirb.enable
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>(3) Pry画面内でSQLを内部で発行するActiveRecordのコマンドを実行すると、結果が整形されて表示</p>
 
@@ -411,27 +636,41 @@ end
 
 <p>(1) 以下のコマンドを実行してGemをインストール(もしくはgem install)</p>
 
-<p>{% codeblock lang:bash %}
-group :development, :test do</p>
-
-<pre><code># pry画面でデバックコマンドを実行
-gem 'pry-debugger'
-</code></pre>
-
-<p>end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>group :development, :test <span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;# pry画面でデバックコマンドを実行
+</span><span class='line'>gem <span class="s1">&#39;pry-debugger&#39;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>(2) <code>~/.pryrc</code>にコマンドのショートカット(下記)を追加する</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>pry-debuggerのショートカット</h1>
-
-<p>Pry.commands.alias_command 'c', 'continue'
-Pry.commands.alias_command 's', 'step'
-Pry.commands.alias_command 'n', 'next'
-Pry.commands.alias_command 'f', 'finish'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;pry-debuggerのショートカット&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Pry.commands.alias_command <span class="s1">&#39;c&#39;</span>, <span class="s1">&#39;continue&#39;</span>
+</span><span class='line'>Pry.commands.alias_command <span class="s1">&#39;s&#39;</span>, <span class="s1">&#39;step&#39;</span>
+</span><span class='line'>Pry.commands.alias_command <span class="s1">&#39;n&#39;</span>, <span class="s1">&#39;next&#39;</span>
+</span><span class='line'>Pry.commands.alias_command <span class="s1">&#39;f&#39;</span>, <span class="s1">&#39;finish&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>(3) ソース内のデバックしたい箇所に<code>binding.remote_pry</code>を追加。</p>
 
@@ -485,15 +724,21 @@ Pry.commands.alias_command 'f', 'finish'
 
 <p>(1) 以下のコマンドを実行してGemをインストール(もしくはgem install)</p>
 
-<p>{% codeblock lang:bash %}
-group :development, :test do</p>
-
-<pre><code># pry画面でのドキュメント/ソース表示
-gem 'pry-doc'
-</code></pre>
-
-<p>end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>group :development, :test <span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;# pry画面でのドキュメント/ソース表示
+</span><span class='line'>gem <span class="s1">&#39;pry-doc&#39;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>(2) Pry画面内でドキュメントの参照時には<code>? hoge</code>、ソースコードの参照時には<code>$ fuga</code>を実行</p>
 
@@ -531,15 +776,21 @@ gem 'pry-doc'
 
 <p>(1) 以下のコマンドを実行してGemをインストール(もしくはgem install)</p>
 
-<p>{% codeblock lang:bash %}
-group :development, :test do</p>
-
-<pre><code># pry画面でのstack表示
-gem 'pry-stack_explorer'
-</code></pre>
-
-<p>end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>group :development, :test <span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;# pry画面でのstack表示
+</span><span class='line'>gem <span class="s1">&#39;pry-stack_explorer&#39;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>(2) Pry画面内で<code>show-stack</code>を実行するとスタックが表示</p>
 
@@ -579,7 +830,19 @@ gem 'pry-stack_explorer'
 
 <p>Pryのコマンドの紹介は、拙作の<strong>「<a href="/blog/pry-command-rails-ruby/">Pryが真の力を発揮してくれる19個のコマンドとコマンドの自作方法</a>」</strong>をご参照下さい！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 
@@ -596,7 +859,7 @@ gem 'pry-stack_explorer'
     <link href="http://morizyun.github.io/blog/guard-spork-rspec-tdd/"/>
     <updated>2012-11-29T01:30:00+09:00</updated>
     <id>http://morizyun.github.io/blog/guard-spork-rspec-tdd</id>
-    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8339/8240550113_9fab04bc18_m.jpg" width="200" height="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+    <content type="html"><![CDATA[<p><a href="blog/categories/pry/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8339/8240550113_9fab04bc18_m.jpg" width="200" height="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>「ぷりちー」なRailsのTDD環境をオレオレ定義してみました！</p>
 
@@ -619,213 +882,374 @@ gem 'pry-stack_explorer'
 
 <p><code>Gemfile</code>に以下の内容を追加して、<code>bundle install</code>を実行。</p>
 
-<p>{% codeblock lang:ruby %}
-group :development do
-  # viewやcssの変更を監視してブラウザを自動的にリロードする
-  gem 'guard-livereload'
-  gem 'em-websocket'
-end</p>
-
-<p>group :test do
-  # HTTP requests用のモックアップを作ってくれる
-  gem 'webmock'</p>
-
-<p>  # 便利マッチャー集
-  gem "shoulda-matchers"
-end</p>
-
-<p>group :development, :test do
-  # ファイルの変更を監視してPowサーバを再起動
-  gem 'guard-pow'</p>
-
-<p>  # Rspec
-  gem 'rspec-rails'</p>
-
-<p>  # fixtureの代わり
-  gem "factory_girl_rails"</p>
-
-<p>  # テスト環境のテーブルをきれいにする
-  gem 'database_cleaner'</p>
-
-<p>  # 設定をロードしたサーバーによってテストを高速化
-  gem 'spork'</p>
-
-<p>  # ファイルの変更を検知する。OSX用
-  gem 'rb-fsevent'</p>
-
-<p>  # テスト結果をGrowlで通知する(Lion向け)
-  #gem 'growl'</p>
-
-<p>  # テスト結果を通知センターに表示する(Mountain Lion向け)
-  gem 'terminal-notifier-guard'</p>
-
-<p>  # ファイルの変更を監視してテストを自動化
-  gem 'guard-rspec'</p>
-
-<p>  # 設定ファイルの変更を監視してテストサーバーを再起動
-  gem 'guard-spork'</p>
-
-<p>  # Gemfileを監視して、変更があったら自動でbundle installを実行
-  gem 'guard-bundler'</p>
-
-<p>  # Railsコンソールの多機能版
-  gem 'pry-rails'</p>
-
-<p>  # pryの入力に色付け
-  gem 'pry-coolline'</p>
-
-<p>  # コードに"binding.remote_pry(rspec内ではbinding.pry_remote)" => pry-remoteでpryに入れます。
-  gem 'pry-remote'
-  gem "pry-debugger"
-  gem "pry-doc"
-  gem 'pry-stack_explorer'</p>
-
-<p>  # PryでのSQLの結果を綺麗に表示
-  gem 'hirb'
-  gem 'hirb-unicode'</p>
-
-<p>  # pryの色付けをしてくれる
-  gem 'awesome_print'
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># viewやcssの変更を監視してブラウザを自動的にリロードする</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;guard-livereload&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;em-websocket&#39;</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;group :test do</span>
+</span><span class='line'><span class="sr">  # HTTP requests用のモックアップを作ってくれる</span>
+</span><span class='line'><span class="sr">  gem &#39;webmock&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 便利マッチャー集</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s2">&quot;shoulda-matchers&quot;</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;group :development, :test do</span>
+</span><span class='line'><span class="sr">  # ファイルの変更を監視してPowサーバを再起動</span>
+</span><span class='line'><span class="sr">  gem &#39;guard-pow&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># Rspec</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # fixtureの代わり</span>
+</span><span class='line'><span class="sr">  gem &quot;factory_girl_rails&quot;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># テスト環境のテーブルをきれいにする</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;database_cleaner&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # 設定をロードしたサーバーによってテストを高速化</span>
+</span><span class='line'><span class="sr">  gem &#39;spork&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># ファイルの変更を検知する。OSX用</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rb-fsevent&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # テスト結果をGrowlで通知する(Lion向け)</span>
+</span><span class='line'><span class="sr">  #gem &#39;growl&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># テスト結果を通知センターに表示する(Mountain Lion向け)</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;terminal-notifier-guard&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # ファイルの変更を監視してテストを自動化</span>
+</span><span class='line'><span class="sr">  gem &#39;guard-rspec&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 設定ファイルの変更を監視してテストサーバーを再起動</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;guard-spork&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # Gemfileを監視して、変更があったら自動でbundle installを実行</span>
+</span><span class='line'><span class="sr">  gem &#39;guard-bundler&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># Railsコンソールの多機能版</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;pry-rails&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # pryの入力に色付け</span>
+</span><span class='line'><span class="sr">  gem &#39;pry-coolline&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># コードに&quot;binding.remote_pry(rspec内ではbinding.pry_remote)&quot; =&gt; pry-remoteでpryに入れます。</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;pry-remote&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s2">&quot;pry-debugger&quot;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s2">&quot;pry-doc&quot;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;pry-stack_explorer&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # PryでのSQLの結果を綺麗に表示</span>
+</span><span class='line'><span class="sr">  gem &#39;hirb&#39;</span>
+</span><span class='line'><span class="sr">  gem &#39;hirb-unicode&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># pryの色付けをしてくれる</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;awesome_print&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>application.rbの設定</h2>
 
 <p><code>config/application.rb</code>内の<code>class Application &lt; Rails::Application</code>内に以下の内容を追加。(設定は任意で変更してください)</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>generatorの設定</h1>
-
-<p>config.generators do |g|
-  g.test_framework  :rspec, :fixture => true
-  g.fixture_replacement :factory_girl, :dir => "spec/factories"
-  g.view_specs false
-  g.controller_specs false
-  g.helper_specs false
-  g.routing_specs false
-  g.request_specs false
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;generatorの設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;config.generators <span class="k">do</span> |g|
+</span><span class='line'>  g.test_framework  :rspec, :fixture <span class="o">=</span>&gt; <span class="nb">true</span>
+</span><span class='line'><span class="nb">  </span>g.fixture_replacement :factory_girl, :dir <span class="o">=</span>&gt; <span class="s2">&quot;spec/factories&quot;</span>
+</span><span class='line'>  g.view_specs <span class="nb">false</span>
+</span><span class='line'><span class="nb">  </span>g.controller_specs <span class="nb">false</span>
+</span><span class='line'><span class="nb">  </span>g.helper_specs <span class="nb">false</span>
+</span><span class='line'><span class="nb">  </span>g.routing_specs <span class="nb">false</span>
+</span><span class='line'><span class="nb">  </span>g.request_specs <span class="nb">false</span>
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>config/environments/test.rbの設定</h2>
 
 <p><code>config/environments/test.rb</code>に以下の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}
-AppName::Application.configure do
-  # Spork 使用時にクラスをキャッシュしないようにする
-  if defined?(Spork) &amp;&amp; Spork.using_spork?</p>
-
-<pre><code>config.cache_classes = false
-</code></pre>
-
-<p>  else</p>
-
-<pre><code>config.cache_classes = true
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>AppName::Application.configure <span class="k">do</span>
+</span><span class='line'>  <span class="c"># Spork 使用時にクラスをキャッシュしないようにする</span>
+</span><span class='line'>  <span class="k">if </span>defined?<span class="o">(</span>Spork<span class="o">)</span> &amp;amp;&amp;amp; Spork.using_spork?&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;config.cache_classes <span class="o">=</span> <span class="nb">false</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">else</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;config.cache_classes <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>RSpecの設定</h2>
 
 <p>RailsへのRSpecのインストールと雛形を作成。</p>
 
-<p>{% codeblock lang:bash %}
-rails generate rspec:install
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails generate rspec:install
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>.rspec</code>にはrspec コマンドの引数を記述できます。以下のとおり編集。<br/>
 (詳細は rspec --helpを参照)</p>
 
-<p>{% codeblock lang:bash %}
-echo '--color --drb -f d' > .rspec
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s1">&#39;--color --drb -f d&#39;</span> &gt; .rspec
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>rspecの設定ファイル<code>spec/spec_helper.rb</code>を次のように変更。</p>
 
-<p>{% codeblock lang:ruby %}
-require 'rubygems'
-require 'spork'
-require "webmock/rspec"
-WebMock.allow_net_connect!</p>
-
-<h1>uncomment the following line to use spork with the debugger</h1>
-
-<h1>require 'spork/ext/ruby-debug'</h1>
-
-<p>Spork.prefork do
-  # Loading more in this block will cause your tests to run faster. However,
-  # if you change any configuration or code from libraries loaded here, you'll
-  # need to restart spork for it take effect.
-  ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../config/environment", <strong>FILE</strong>)
-  require 'rspec/rails'
-  require 'rspec/autorun'
-  require 'shoulda-matchers'</p>
-
-<p>  # Requires supporting ruby files with custom matchers and macros, etc,
-  # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/<em>*/</em>.rb")].each {|f| require f}</p>
-
-<p>  RSpec.configure do |config|</p>
-
-<pre><code>config.infer_base_class_for_anonymous_controllers = false
-config.use_transactional_fixtures = true
-config.order = "random"
-# FactoryGirlのメソッドをbuild, build_stubbed, create, attributes_forなどの省略形で書ける
-config.include FactoryGirl::Syntax::Methods
-
-# database_cleanerでテストのたびにDBをクリアする
-require 'database_cleaner'
-config.before(:suite) do
-  DatabaseCleaner.strategy = :truncation
-  DatabaseCleaner.clean_with(:truncation)
-end
-
-config.before(:each) do
-  DatabaseCleaner.start
-end
-
-config.after(:each) do
-  DatabaseCleaner.clean
-end
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>This code will be run each time you run your specs.</h1>
-
-<p>Spork.each_run do
-  # Spork利用時にapp配下/locale/routesをリロード
-  if Spork.using_spork?</p>
-
-<pre><code>Rails.application.reloaders.each{|reloader| reloader.execute_if_updated }
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;spork&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;webmock/rspec&quot;</span>
+</span><span class='line'><span class="no">WebMock</span><span class="o">.</span><span class="n">allow_net_connect!</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;uncomment the following line to use spork with the debugger&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;spork/ext/ruby-debug&#39;</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Spork.prefork do</span>
+</span><span class='line'><span class="sr">  # Loading more in this block will cause your tests to run faster. However,</span>
+</span><span class='line'><span class="sr">  # if you change any configuration or code from libraries loaded here, you&#39;ll</span>
+</span><span class='line'><span class="sr">  # need to restart spork for it take effect.</span>
+</span><span class='line'><span class="sr">  ENV[&quot;RAILS_ENV&quot;] ||= &#39;test&#39;</span>
+</span><span class='line'><span class="sr">  require File.expand_path(&quot;../</span><span class="o">.</span><span class="n">.</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">environment</span><span class="s2">&quot;, &lt;strong&gt;FILE&lt;/strong&gt;)</span>
+</span><span class='line'><span class="s2">  require &#39;rspec/rails&#39;</span>
+</span><span class='line'><span class="s2">  require &#39;rspec/autorun&#39;</span>
+</span><span class='line'><span class="s2">  require &#39;shoulda-matchers&#39;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;  # Requires supporting ruby files with custom matchers and macros, etc,</span>
+</span><span class='line'><span class="s2">  # in spec/support/ and its subdirectories.</span>
+</span><span class='line'><span class="s2">  Dir[Rails.root.join(&quot;</span><span class="n">spec</span><span class="o">/</span><span class="n">support</span><span class="o">/&lt;</span><span class="n">em</span><span class="o">&gt;*/&lt;</span><span class="sr">/em&gt;.rb&quot;)].each {|f| require f}&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;config.infer_base_class_for_anonymous_controllers = false</span>
+</span><span class='line'><span class="sr">config.use_transactional_fixtures = true</span>
+</span><span class='line'><span class="sr">config.order = &quot;random&quot;</span>
+</span><span class='line'><span class="sr"># FactoryGirlのメソッドをbuild, build_stubbed, create, attributes_forなどの省略形で書ける</span>
+</span><span class='line'><span class="sr">config.include FactoryGirl::Syntax::Methods</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr"># database_cleanerでテストのたびにDBをクリアする</span>
+</span><span class='line'><span class="sr">require &#39;database_cleaner&#39;</span>
+</span><span class='line'><span class="sr">config.before(:suite) do</span>
+</span><span class='line'><span class="sr">  DatabaseCleaner.strategy = :truncation</span>
+</span><span class='line'><span class="sr">  DatabaseCleaner.clean_with(:truncation)</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">config.before(:each) do</span>
+</span><span class='line'><span class="sr">  DatabaseCleaner.start</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">config.after(:each) do</span>
+</span><span class='line'><span class="sr">  DatabaseCleaner.clean</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">This</span> <span class="n">code</span> <span class="n">will</span> <span class="n">be</span> <span class="n">run</span> <span class="n">each</span> <span class="n">time</span> <span class="n">you</span> <span class="n">run</span> <span class="n">your</span> <span class="n">specs</span><span class="o">.</span><span class="n">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Spork.each_run do</span>
+</span><span class='line'><span class="sr">  # Spork利用時にapp配下/</span><span class="n">locale</span><span class="o">/</span><span class="n">routes</span><span class="err">をリロード</span>
+</span><span class='line'>  <span class="k">if</span> <span class="no">Spork</span><span class="o">.</span><span class="n">using_spork?</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;Rails.application.reloaders.each{|reloader| reloader.execute_if_updated }</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Pryの設定</h2>
 
 <p><code>config/environments/development.rb</code>の中の<code>YourAppName::Application.configure</code>に以下を追加。</p>
 
-<p>{% codeblock lang:ruby %}
-silence_warnings do
-  begin</p>
-
-<pre><code>require 'pry'
-IRB = Pry
-</code></pre>
-
-<p>  rescue LoadError
-  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">silence_warnings</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">begin</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;require &#39;pry&#39;</span>
+</span><span class='line'><span class="sr">IRB = Pry</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  rescue LoadError</span>
+</span><span class='line'><span class="sr">  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これで、<code>rails c</code>とした場合に<code>pry</code>が呼び出されます。</p>
 
@@ -834,95 +1258,155 @@ end
 
 <p>続いて、<code>~/.pryrc</code>に以下を追記。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>-<em>- coding: utf-8 -</em>-</h1>
-
-<h1>awesome_printの色付けの設定</h1>
-
-<p>require "awesome_print"
-AwesomePrint.pry!</p>
-
-<h1>pry-debuggerのショートカット</h1>
-
-<p>Pry.commands.alias_command 'c', 'continue'
-Pry.commands.alias_command 's', 'step'
-Pry.commands.alias_command 'n', 'next'
-Pry.commands.alias_command 'f', 'finish'</p>
-
-<h1>hirbの設定</h1>
-
-<p>begin
-  require 'hirb'
-rescue LoadError
-  # Missing goodies, bummer
-end</p>
-
-<p>if defined? Hirb
-  # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
-  Hirb::View.instance_eval do</p>
-
-<pre><code>def enable_output_method
-  @output_method = true
-  @old_print = Pry.config.print
-  Pry.config.print = proc do |output, value|
-    Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
-  end
-end
-
-def disable_output_method
-  Pry.config.print = @old_print
-  @output_method = nil
-end
-</code></pre>
-
-<p>  end</p>
-
-<p>  Hirb.enable
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;-&lt;em&gt;- coding: utf-8 -&lt;/em</span><span class="o">&gt;-&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;awesome_printの色付けの設定&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s2">&quot;awesome_print&quot;</span>
+</span><span class='line'><span class="no">AwesomePrint</span><span class="o">.</span><span class="n">pry!</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;pry-debuggerのショートカット&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Pry</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">alias_command</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;continue&#39;</span>
+</span><span class='line'><span class="no">Pry</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">alias_command</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span>
+</span><span class='line'><span class="no">Pry</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">alias_command</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;next&#39;</span>
+</span><span class='line'><span class="no">Pry</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">alias_command</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;finish&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;hirbの設定&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">begin</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;hirb&#39;</span>
+</span><span class='line'><span class="k">rescue</span> <span class="no">LoadError</span>
+</span><span class='line'>  <span class="c1"># Missing goodies, bummer</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;if defined? Hirb</span>
+</span><span class='line'><span class="sr">  # Slightly dirty hack to fully support in-session Hirb.disable/en</span><span class="n">able</span> <span class="n">toggling</span>
+</span><span class='line'>  <span class="no">Hirb</span><span class="o">::</span><span class="no">View</span><span class="o">.</span><span class="n">instance_eval</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;def enable_output_method</span>
+</span><span class='line'><span class="sr">  @output_method = true</span>
+</span><span class='line'><span class="sr">  @old_print = Pry.config.print</span>
+</span><span class='line'><span class="sr">  Pry.config.print = proc do |output, value|</span>
+</span><span class='line'><span class="sr">    Hirb::View.view_or_page_output(value) || @old_print.call(output, value)</span>
+</span><span class='line'><span class="sr">  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">def disable_output_method</span>
+</span><span class='line'><span class="sr">  Pry.config.print = @old_print</span>
+</span><span class='line'><span class="sr">  @output_method = nil</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="no">Hirb</span><span class="o">.</span><span class="n">enable</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Sporkの設定</h2>
 
 <p>sporkの初期設定。</p>
 
-<p>{% codeblock lang:bash %}
-bundle exec spork --bootstrap
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>spork --bootstrap
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>sporkのテスト。(起動が確認できたら<code>Ctrl + C</code>で停止させてください)</p>
 
-<p>{% codeblock lang:bash %}
-bundle exec spork</p>
-
-<blockquote><p>Using RSpec
-Preloading Rails environment
-Loading Spork.prefork block...
-Spork is ready and listening on 8989! # ← 成功
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>spork&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Using RSpec
+</span><span class='line'>Preloading Rails environment
+</span><span class='line'>Loading Spork.prefork block...
+</span><span class='line'>Spork is ready and listening on 8989! <span class="c"># ← 成功</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <h2>Guardの設定</h2>
 
 <p><code>Guardfile</code>の作成。</p>
 
-<p>{% codeblock lang:bash %}
-bundle exec guard init
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>guard init
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>Guardfile</code>に以下の項目を追加。</p>
 
-<p>{% codeblock lang:bash %}
-guard 'rspec' do
-  # rakeファイルの更新監視
-  watch(%r{<sup>lib/(.+).rake$})</sup>     { |m| "spec/lib/#{m[1]}_rake_spec.rb" }
-end</p>
-
-<h1>全体テストをしないようにする(全体テストは、guardが動いてる所でEnterすると実行)</h1>
-
-<h1>guard 'rspec' doを以下に書換え</h1>
-
-<p>guard 'rspec', :version => 2, :cli => "--drb", :all_after_pass => false, :all_on_start => false do
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>guard <span class="s1">&#39;rspec&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c"># rakeファイルの更新監視</span>
+</span><span class='line'>  watch<span class="o">(</span>%r<span class="o">{</span>&lt;sup&gt;lib/<span class="o">(</span>.+<span class="o">)</span>.rake<span class="nv">$}</span><span class="o">)</span>&lt;/sup&gt;     <span class="o">{</span> |m| <span class="s2">&quot;spec/lib/#{m[1]}_rake_spec.rb&quot;</span> <span class="o">}</span>
+</span><span class='line'>end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;全体テストをしないようにする<span class="o">(</span>全体テストは、guardが動いてる所でEnterすると実行<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;guard <span class="s1">&#39;rspec&#39;</span> <span class="k">do</span>を以下に書換え&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;guard <span class="s1">&#39;rspec&#39;</span>, :version <span class="o">=</span>&gt; 2, :cli <span class="o">=</span>&gt; <span class="s2">&quot;--drb&quot;</span>, :all_after_pass <span class="o">=</span>&gt; <span class="nb">false</span>, :all_on_start <span class="o">=</span>&gt; <span class="nb">false </span><span class="k">do</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>LiveReloadの設定</h2>
 
@@ -952,9 +1436,9 @@ Mountain Lionの方は、通知センターに送付します。(Gemfileを参�
 
 <p><code>guard</code>の実行。</p>
 
-<p>{% codeblock lang:bash %}
-bundle exec guard
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>guard
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>以下のような結果が出ていれば成功です。</p>
 

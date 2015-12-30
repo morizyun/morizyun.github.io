@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Style Guide | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/style-guide/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>スタイルガイド</h2>
 
@@ -51,46 +63,85 @@
 <p>このスタイルは"The Ruby Programming Language"、"Programming Ruby" 双方で確率されている。
 matzのオススメ「良い例」だそうです！</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>悪い例</h1>
-
-<p>case
-  when song.name == 'Misty'</p>
-
-<pre><code>puts 'Not again!'
-</code></pre>
-
-<p>  when song.duration > 120</p>
-
-<pre><code>puts 'Too long!'
-</code></pre>
-
-<p>  when Time.now.hour > 21</p>
-
-<pre><code>puts "It's too late"
-</code></pre>
-
-<p>  else</p>
-
-<pre><code>song.play
-</code></pre>
-
-<p>end</p>
-
-<h1>良い例</h1>
-
-<p>case
-when song.name == 'Misty'
-  puts 'Not again!'
-when song.duration > 120
-  puts 'Too long!'
-when Time.now.hour > 21
-  puts "It's too late"
-else
-  song.play
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;悪い例&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">case</span>
+</span><span class='line'>  <span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Misty&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &#39;Not again!&#39;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  when song.duration &gt; 120&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="s1">&#39;Too long!&#39;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">when</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="mi">21</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &quot;It&#39;s too late&quot;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  else&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">song</span><span class="o">.</span><span class="n">play</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;良い例&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">case</span>
+</span><span class='line'><span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Misty&#39;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;Not again!&#39;</span>
+</span><span class='line'><span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">120</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;Too long!&#39;</span>
+</span><span class='line'><span class="k">when</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="mi">21</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;It&#39;s too late&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">song</span><span class="o">.</span><span class="n">play</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><strong><a href="http://blog.jnito.com/entry/2013/02/28/084302">なぜRubyのcase/whenはインデントしないのかを考えてみた - give IT a try</a></strong></p>
 
@@ -98,48 +149,78 @@ end
 
 <p>ついつい忘れがちだけど大切！</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>悪い例 - 0はいくつありますか？</h1>
-
-<p>num = 1000000</p>
-
-<h1>良い例 - 人の頭でもより簡単に解析できます</h1>
-
-<p>num = 1_000_000
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;悪い例 - 0はいくつありますか？&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">num</span> <span class="o">=</span> <span class="mi">1000000</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;良い例 - 人の頭でもより簡単に解析できます&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">num</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>self[:attribute]を使おう</h2>
 
-<p>{% codeblock lang:ruby %}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Railsの国際化(i18n)の「lazy lookup」について</h2>
 
 <p>辞書ファイルで下のように訳語が定義されている場合、app/views/users/show.html.hamlでは下記の呼び出し方でusers.show.titleを呼び出すことができます。
 このような呼び出し方を "lazy lookup" と呼びます。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>config/locales/en.yml</h1>
-
-<p>en:
-  users:</p>
-
-<pre><code>show:
-  title: 'User details page'
-</code></pre>
-
-<h1>app/views/users/show.html.haml</h1>
-
-<h2>悪い例</h2>
-
-<p>= t users.show.title</p>
-
-<h2>良い例</h2>
-
-<p>= t '.title'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;config/</span><span class="n">locales</span><span class="o">/</span><span class="n">en</span><span class="o">.</span><span class="n">yml</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;en:</span>
+</span><span class='line'><span class="sr">  users:&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">show</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">title</span><span class="p">:</span> <span class="s1">&#39;User details page&#39;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">app</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">show</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">haml</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h2&gt;悪い例&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;=</span> <span class="n">t</span> <span class="n">users</span><span class="o">.</span><span class="n">show</span><span class="o">.</span><span class="n">title</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h2&gt;良い例&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;=</span> <span class="n">t</span> <span class="s1">&#39;.title&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>最新のスキーマでDBを作る場合</h2>
 
@@ -225,7 +306,19 @@ end
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 ]]></content>
   </entry>
   

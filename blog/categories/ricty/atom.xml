@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ricty | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ricty/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -26,7 +26,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Rictyのサンプル</h2>
 
@@ -40,16 +52,23 @@
 
 <p>コンソールに以下のコマンドを入力。(ここは定期的に変化するようなので実際の画面を優先してください)</p>
 
-<p>{% codeblock lang:bash %}
-brew tap sanemat/font
-brew install Caskroom/cask/xquartz
-brew install ricty</p>
-
-<h1>(ゴニョゴニョ)</h1>
-
-<p>cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
-fc-cache -vf
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew tap sanemat/font
+</span><span class='line'>brew install Caskroom/cask/xquartz
+</span><span class='line'>brew install ricty&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>ゴニョゴニョ<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cp -f /usr/local/Cellar/ricty/3.2.2/share/fonts/Ricty*.ttf ~/Library/Fonts/
+</span><span class='line'><span class="nb">fc</span>-cache -vf
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Homebrewがインストールがまだの場合は、『<strong><a href="/blog/mountain-lion-rails-setup-ruby-rvm-msyql/">Mountain Lion Rails 最新環境 詳解 構築手順</a></strong>』を御覧ください。</p>
 
@@ -58,10 +77,11 @@ fc-cache -vf
 <p>Masanori MaedaさんからYosemiteの場合に事前インストールが必要なパッケージを教えて頂きました。
 Yosemiteな方は事前に以下のパッケージをインストールしてください。</p>
 
-<p>{% codeblock lang:bash %}
-brew install automake
-brew install pkg-config
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install automake
+</span><span class='line'>brew install pkg-config
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>iTerm2でRictyを使う場合</h2>
 
@@ -71,9 +91,9 @@ brew install pkg-config
 
 <p>もし外部ディスプレイを使っている場合は次のアンチエイリアスを有効にするためのコマンドを実行して、ターミナルを再起動して下さい。</p>
 
-<p>{% codeblock lang:bash %}
-defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>TerminalでRictyを使う場合</h2>
 
@@ -87,11 +107,23 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 
 <p>あと、もし外部ディスプレイを使っている場合は次のアンチエイリアスを有効にするためのコマンドを実行して、ターミナルを再起動して下さい。</p>
 
-<p>{% codeblock lang:bash %}
-defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 

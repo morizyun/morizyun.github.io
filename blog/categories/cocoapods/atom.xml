@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cocoapods | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -27,7 +27,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>概要</h2>
 
@@ -56,19 +68,31 @@
 
 <p><code>Podfile</code>に以下の内容を追記して、<code>pod install</code>を実行。</p>
 
-<p>{% codeblock lang:ruby %}
-pod 'FLEX'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="s1">&#39;FLEX&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>FLEXのコードの設置手順</h2>
 
-<p>{% codeblock lang:objectivec %}
-[[FLEXManager sharedManager] showExplorer];
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objectivec'><span class='line'><span class="p">[[</span><span class="n">FLEXManager</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="n">showExplorer</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>と書くだけで自動的にメニューバーが表示されます。実際はボタンか何かを設置して起動したほうが便利かも。</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 ]]></content>
   </entry>
   

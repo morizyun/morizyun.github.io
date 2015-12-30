@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Eventmachine | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/eventmachine/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>前置き：プロジェクトを新規作成する場合</h2>
 
@@ -40,13 +52,19 @@
 
 <p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>EventMachine/Twitter Stream API</h1>
-
-<p>gem 'eventmachine'
-gem 'tweetstream'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;EventMachine/</span><span class="no">Twitter</span> <span class="no">Stream</span> <span class="no">API</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;gem &#39;eventmachine&#39;</span>
+</span><span class='line'><span class="sr">gem &#39;tweetstream&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>eventmachineのコード</h2>
 
@@ -54,75 +72,133 @@ gem 'tweetstream'
 
 <p>ちなみに1つのeventmachine内では、id基準でチェックするか、keyword基準でチェックするかのどちらか一方しかできないっぽいです。</p>
 
-<p>{% codeblock lang:ruby %}
-require_relative '../../config/environment'</p>
-
-<h1>Twitter username => id変換: http://tweeterid.com/</h1>
-
-<p>@follower_id_list = ['xxxx']
-@track_words = ['xxxx']</p>
-
-<p>TweetStream.configure do |config|
-  config.consumer_key = ENV['TWITTER_CONSUMER_KEY']
-  config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
-  config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
-  config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
-  config.auth_method = :oauth
-end</p>
-
-<p>EM.run do
-  def write_to_mongodb(status)</p>
-
-<pre><code>EM.defer do
-  $stdout.print "status: #{status}\n"
-  $stdout.flush
-
-  # statusの処理
-  ## ゴニョゴニョ       
-end
-</code></pre>
-
-<p>  end</p>
-
-<p>  # Twitterのuser idをStream APIで常時チェック
-  TweetStream::Client.new.on_error do |message|</p>
-
-<pre><code>$stdout.print "message: #{message}\n"
-$stdout.flush
-Airbrake.notify(e, parameters: {message: message})
-</code></pre>
-
-<p>  end.follow(@follower_id_list) do |status|</p>
-
-<pre><code>write_to_mongodb(status)
-</code></pre>
-
-<p>  end</p>
-
-<p>  # Twitterでkeywordが出るのをStream APIで常時チェック
-  TweetStream::Client.new.on_error do |message|</p>
-
-<pre><code>$stdout.print "message: #{message}\n"
-$stdout.flush
-Airbrake.notify(e, parameters: {message: message})
-</code></pre>
-
-<p>  end.track(@track_words) do |status|</p>
-
-<pre><code>write_to_mongodb(status)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;../../config/environment&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Twitter username =&gt; id変換: http:/</span><span class="o">/</span><span class="n">tweeterid</span><span class="o">.</span><span class="n">com</span><span class="o">/&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;@follower_id_list = [&#39;xxxx&#39;]</span>
+</span><span class='line'><span class="sr">@track_words = [&#39;xxxx&#39;]&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">TweetStream</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_key</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_CONSUMER_KEY&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_secret</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_CONSUMER_SECRET&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">oauth_token</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_OAUTH_TOKEN&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">oauth_token_secret</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TWITTER_OAUTH_TOKEN_SECRET&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">auth_method</span> <span class="o">=</span> <span class="ss">:oauth</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;EM.run do</span>
+</span><span class='line'><span class="sr">  def write_to_mongodb(status)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="no">EM</span><span class="o">.</span><span class="n">defer</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vg">$stdout</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;status: </span><span class="si">#{</span><span class="n">status</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="vg">$stdout</span><span class="o">.</span><span class="n">flush</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># statusの処理</span>
+</span><span class='line'>  <span class="c1">## ゴニョゴニョ       </span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # Twitterのuser idをStream APIで常時チェック</span>
+</span><span class='line'><span class="sr">  TweetStream::Client.new.on_error do |message|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vg">$stdout</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;message: </span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="vg">$stdout</span><span class="o">.</span><span class="n">flush</span>
+</span><span class='line'><span class="no">Airbrake</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="p">{</span><span class="n">message</span><span class="p">:</span> <span class="n">message</span><span class="p">})</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">.</span><span class="n">follow</span><span class="p">(</span><span class="vi">@follower_id_list</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">status</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;write_to_mongodb(status)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># Twitterでkeywordが出るのをStream APIで常時チェック</span>
+</span><span class='line'>  <span class="no">TweetStream</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">on_error</span> <span class="k">do</span> <span class="o">|</span><span class="n">message</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;$stdout.print &quot;message: </span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sr">\n&quot;</span>
+</span><span class='line'><span class="sr">$stdout.flush</span>
+</span><span class='line'><span class="sr">Airbrake.notify(e, parameters: {message: message})</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end.track(@track_words) do |status|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">write_to_mongodb</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Procfileの設定</h2>
 
 <p><code>Procfile</code>の設定はこちら。</p>
 
-<p>{% codeblock lang:bash %}
-worker: bundle exec ruby lib/eventmachine/twitter_stream.rb
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>worker: bundle <span class="nb">exec </span>ruby lib/eventmachine/twitter_stream.rb
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Twitterのキー情報の取得と環境変数への登録</h2>
 
@@ -135,39 +211,56 @@ worker: bundle exec ruby lib/eventmachine/twitter_stream.rb
 
 <p>Gem「<strong><a href="https://github.com/laserlemon/figaro">Figaro</a></strong>」を使っている場合は、<code>config/application.yml</code>に以下のコードを入力。</p>
 
-<p>{% codeblock lang:bash %}
-TWITTER_CONSUMER_KEY: xxxx
-TWITTER_CONSUMER_SECRET: xxxx
-TWITTER_OAUTH_TOKEN: xxxx
-TWITTER_OAUTH_TOKEN_SECRET: xxxx
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>TWITTER_CONSUMER_KEY: xxxx
+</span><span class='line'>TWITTER_CONSUMER_SECRET: xxxx
+</span><span class='line'>TWITTER_OAUTH_TOKEN: xxxx
+</span><span class='line'>TWITTER_OAUTH_TOKEN_SECRET: xxxx
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Herokuへのデプロイ</h2>
 
 <p>では、Herokuにソースコードをデプロイ。<br/>
 (このまえにソースはローカルでgitにコミットしておいてください)</p>
 
-<p>{% codeblock lang:bash %}
-heroku create test-app --stack cedar
-git push heroku master
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku create <span class="nb">test</span>-app --stack cedar
+</span><span class='line'>git push heroku master
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>FigaroでTwitterのキー情報をherokuの環境変数に登録。</p>
 
-<p>{% codeblock lang:bash %}
-rake figaro:heroku['test-app']
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake figaro:heroku<span class="o">[</span><span class="s1">&#39;test-app&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>workerプロセスを起動！</p>
 
-<p>{% codeblock lang:bash %}
-heroku scale web=0
-heroku scale worker=1
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku scale <span class="nv">web</span><span class="o">=</span>0
+</span><span class='line'>heroku scale <span class="nv">worker</span><span class="o">=</span>1
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ちなみにプロセスはweb or workerが1つなら無料ですが、2つ以上のプロセスが起動していると有料になるので注意して使ってください。</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 ]]></content>
   </entry>
   

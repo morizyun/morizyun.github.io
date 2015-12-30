@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rspec | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rspec/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -31,7 +31,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Everyday Railsのサンプルソース</h2>
 
@@ -40,9 +52,9 @@
 <p>この書籍ではできるだけRspecやテストに集中できるようにサンプルソースが用意されています。しかもRails4対応と至れり尽くせりです。素晴らしい！
 ターミナルで以下のコマンドを実行すると、ローカルにソースコードをダウンロードできます。</p>
 
-<p>{% codeblock lang:bash %}
-git clone https://github.com/everydayrails/rspec_rails_4.git
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/everydayrails/rspec_rails_4.git
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>自分でコードを書く</h2>
 
@@ -77,25 +89,41 @@ git clone https://github.com/everydayrails/rspec_rails_4.git
 
 <p>以下のようにファクトリを書くことで、<code>home_phone</code>と<code>work_phone</code>を使わける事ができます。</p>
 
-<p>{% codeblock lang:ruby %}
-FactoryGirl.define do
-  factory :phone do</p>
-
-<pre><code>association :contact
-phone '123-555-1234'
-
-factory :home_phone do
-  phone_type: 'home'
-end
-
-factory :work_phone do
-  phone_type: 'work'
-end
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">factory</span> <span class="ss">:phone</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;association :contact</span>
+</span><span class='line'><span class="sr">phone &#39;123-555-1234&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">factory :home_phone do</span>
+</span><span class='line'><span class="sr">  phone_type: &#39;home&#39;</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">factory :work_phone do</span>
+</span><span class='line'><span class="sr">  phone_type: &#39;work&#39;</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>また、『<strong><a href="https://github.com/stympy/faker">stympy/faker</a></strong>』を使うと、
 住所やURL、メールアドレスなどのリアルなダミーデータを生成してくれます。</p>
@@ -110,95 +138,175 @@ end
 <p><code>shared_exmamples</code>とは、いくつかのテストをグループ化して、メソッドのように何度も呼び出せる機能です。
 下は公式サンプルのテストですが、これを見るとひと目でわかると思います！</p>
 
-<p>{% codeblock lang:ruby %}
-require "set"</p>
-
-<p>RSpec.shared_examples "a collection" do
-  let(:collection) { described_class.new([7, 2, 4]) }</p>
-
-<p>  context "initialized with 3 items" do</p>
-
-<pre><code>it "says it has three items" do
-  expect(collection.size).to eq(3)
-end
-</code></pre>
-
-<p>  end</p>
-
-<p>  context "with an an item that is in the collection" do</p>
-
-<pre><code>it "returns true" do
-  expect(collection.include?(7)).to be_truthy
-end
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>RSpec.describe Array do
-  # ↓shared_examplesを関数のように呼び出している
-  it_behaves_like "a collection"
-end</p>
-
-<h1>=> Array</h1>
-
-<h1>=>   behaves like a collection</h1>
-
-<h1>=>     initialized with 3 items</h1>
-
-<h1>=>       says it has three items</h1>
-
-<h1>=>     with an an item that is in the collection</h1>
-
-<h1>=>       returns true</h1>
-
-<p>RSpec.describe Set do
-  # ↓shared_examplesを関数のように呼び出している
-  it_behaves_like "a collection"
-end</p>
-
-<h1>=> Set</h1>
-
-<h1>=>   behaves like a collection</h1>
-
-<h1>=>     initialized with 3 items</h1>
-
-<h1>=>       says it has three items</h1>
-
-<h1>=>     with an an item that is in the collection</h1>
-
-<h1>=>       returns true</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;set&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;RSpec.shared_examples &quot;a collection&quot; do</span>
+</span><span class='line'><span class="sr">  let(:collection) { described_class.new([7, 2, 4]) }&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">context</span> <span class="s2">&quot;initialized with 3 items&quot;</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;it &quot;says it has three items&quot; do</span>
+</span><span class='line'><span class="sr">  expect(collection.size).to eq(3)</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">context</span> <span class="s2">&quot;with an an item that is in the collection&quot;</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;it &quot;returns true&quot; do</span>
+</span><span class='line'><span class="sr">  expect(collection.include?(7)).to be_truthy</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">RSpec</span><span class="o">.</span><span class="n">describe</span> <span class="nb">Array</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># ↓shared_examplesを関数のように呼び出している</span>
+</span><span class='line'>  <span class="n">it_behaves_like</span> <span class="s2">&quot;a collection&quot;</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; Array&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span>   <span class="n">behaves</span> <span class="n">like</span> <span class="n">a</span> <span class="n">collection</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt;     initialized with 3 items&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span>       <span class="n">says</span> <span class="n">it</span> <span class="n">has</span> <span class="n">three</span> <span class="n">items</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt;     with an an item that is in the collection&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span>       <span class="n">returns</span> <span class="kp">true</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;RSpec.describe Set do</span>
+</span><span class='line'><span class="sr">  # ↓shared_examplesを関数のように呼び出している</span>
+</span><span class='line'><span class="sr">  it_behaves_like &quot;a collection&quot;</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="no">Set</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt;   behaves like a collection&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span>     <span class="n">initialized</span> <span class="n">with</span> <span class="mi">3</span> <span class="n">items</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt;       says it has three items&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span>     <span class="n">with</span> <span class="n">an</span> <span class="n">an</span> <span class="n">item</span> <span class="n">that</span> <span class="n">is</span> <span class="k">in</span> <span class="n">the</span> <span class="n">collection</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt;       returns true&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>FactoryGirlでローカルのファイルを指定する方法</h2>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>ローカルのファイルを指定する方法</h1>
-
-<p>FactoryGirl.define do
-  factory :user do</p>
-
-<pre><code>avatar { File.new("#{Rails.root}/spec/factories/avatar.png") }
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;ローカルのファイルを指定する方法&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">factory</span> <span class="ss">:user</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;avatar { File.new(&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sr">/s</span><span class="n">pec</span><span class="o">/</span><span class="n">factories</span><span class="o">/</span><span class="n">avatar</span><span class="o">.</span><span class="n">png</span><span class="s2">&quot;) }</span>
+</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;  end</span>
+</span><span class='line'><span class="s2">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Rspecの便利マッチャー</h2>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>正規表現でのチェック</h1>
-
-<p>expect("a string").not_to match /a regex/</p>
-
-<h1>配列のチェック</h1>
-
-<p>expect([1, 2, 3]).to match_array [2, 1, 3]
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;正規表現でのチェック&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">expect</span><span class="p">(</span><span class="s2">&quot;a string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">match</span> <span class="sr">/a regex/</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;配列のチェック&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">expect</span><span class="p">(</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">match_array</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>テストで特定の時間を指定する方法</h2>
 
@@ -218,7 +326,19 @@ end
 
 <p>ちなみにその他のTDDやRSpecの入門記事も書いています。こちらも良ければ是非読んでみてください＾＾</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>変更来歴</h2>
 
@@ -241,7 +361,19 @@ end
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>RSpec 3初心者向けの資料まとめ</h2>
 
@@ -307,7 +439,19 @@ FactoryGirlの応用的な使い方を中心に説明。初心者むけという
 <p><strong><a href="https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md"> factory_girl / GETTING_STARTED.md</a></strong><br/>
 英語が読めるなら、FactoryGirlの本家スタートガイドがおすすめ。洗練されていて一番わかりやすい！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>変更来歴</h2>
 

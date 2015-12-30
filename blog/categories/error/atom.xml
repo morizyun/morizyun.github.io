@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Error | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/error/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:03:25+09:00</updated>
+  <updated>2015-12-30T21:05:39+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -29,115 +29,203 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>インストール手順</h2>
 
 <p>いつもどおり<code>Gemfile</code>に以下を追加。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Error handling</h1>
-
-<p>gem 'rambulance'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Error handling&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;rambulance&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>そして以下のコマンドを実行してインストールしてください。(pathは適宜変更)</p>
 
-<p>{% codeblock lang:bash %}
-bundle install --path vendor/bundle --jobs=4
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle install --path vendor/bundle --jobs<span class="o">=</span>4
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>環境設定</h2>
 
 <p>エラーページのviewや、設定ファイルを生成してくれます。</p>
 
-<p>{% codeblock lang:bash %}
-rails g rambulance:install</p>
-
-<h1>generating templates:</h1>
-
-<h1>create  app/views/errors/bad_request.html.haml</h1>
-
-<h1>create  app/views/errors/forbidden.html.haml</h1>
-
-<h1>create  app/views/errors/internal_server_error.html.haml</h1>
-
-<h1>create  app/views/errors/not_found.html.haml</h1>
-
-<h1>create  app/views/errors/unprocessable_entity.html.haml</h1>
-
-<h1>create  app/views/errors/bad_request.json.jbuilder</h1>
-
-<h1>create  app/views/errors/forbidden.json.jbuilder</h1>
-
-<h1>create  app/views/errors/internal_server_error.json.jbuilder</h1>
-
-<h1>create  app/views/errors/not_found.json.jbuilder</h1>
-
-<h1>create  app/views/errors/unprocessable_entity.json.jbuilder</h1>
-
-<p>#</p>
-
-<h1>generating initializer:</h1>
-
-<h1>create  config/initializers/rambulance.rb</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g rambulance:install&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;generating templates:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/bad_request.html.haml&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/forbidden.html.haml&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/internal_server_error.html.haml&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/not_found.html.haml&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/unprocessable_entity.html.haml&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/bad_request.json.jbuilder&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/forbidden.json.jbuilder&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/internal_server_error.json.jbuilder&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/not_found.json.jbuilder&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/views/errors/unprocessable_entity.json.jbuilder&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;#&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;generating initializer:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  config/initializers/rambulance.rb&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>エラーごとに表示するページを変更</h2>
 
 <p>エラーごとに表示するページを変更するには、<code>config/initializers/rambulance.rb</code>を適宜変更してください。
 また、個人的にlayoutは<code>nil</code>にしておくほうがはまりにくいと思います！</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>エラーページのハンドリング方法はこんな感じ</h1>
-
-<p>config.rescue_responses = {
-  # "ActiveRecord::RecordNotUnique" => :unprocessable_entity,
-  # "CanCan::AccessDenied"          => :forbidden,
-  # "Pundit::NotAuthorizedError"    => :forbidden,
-  # "YourCustomException"           => :not_found
-}</p>
-
-<h1>エラーページのレイアウトはnilにしておくのがオススメ</h1>
-
-<p>config.layout_name = nil
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;エラーページのハンドリング方法はこんな感じ&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">rescue_responses</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1"># &quot;ActiveRecord::RecordNotUnique&quot; =&gt; :unprocessable_entity,</span>
+</span><span class='line'>  <span class="c1"># &quot;CanCan::AccessDenied&quot;          =&gt; :forbidden,</span>
+</span><span class='line'>  <span class="c1"># &quot;Pundit::NotAuthorizedError&quot;    =&gt; :forbidden,</span>
+</span><span class='line'>  <span class="c1"># &quot;YourCustomException&quot;           =&gt; :not_found</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;エラーページのレイアウトはnilにしておくのがオススメ&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">layout_name</span> <span class="o">=</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>開発環境での確認方法</h2>
 
 <p><code>config/environments/development.rb</code>に以下を追記したら、開発環境でエラーが出た際にrambulanceのエラー画面が表示されます。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>--------------------------------</h1>
-
-<h1>Error Handling</h1>
-
-<h1>--------------------------------</h1>
-
-<p>config.consider_all_requests_local = false
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;--------------------------------&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Error</span> <span class="no">Handling</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;--------------------------------&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">config</span><span class="o">.</span><span class="n">consider_all_requests_local</span> <span class="o">=</span> <span class="kp">false</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>エラー処理を独自実装したい場合</h2>
 
 <p>もしエラー処理を独自実装したい場合は以下のコマンドでエラー処理用のひな形を生成してくれます。</p>
 
-<p>{% codeblock lang:bash %}
-rails g rambulance:exceptions_app</p>
-
-<h1>create  app/handlers/exceptions_app.rb</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g rambulance:exceptions_app&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;create  app/handlers/exceptions_app.rb&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ちなみに、最初はエラー通知をAirbrakeで自分でコードを書いて通知させていたんですが、作者の<strong><a href="https://twitter.com/yuki24">@yuki24</a></strong>
 から、Airbrakeのミドルウェアがやってくれるから、自作しなくていいという話を教えてもらいました。有難うございます！</p>
 
 <p>まだ、使い始めて日が浅いので間違い等あればコメントよろしくお願いします！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>変更来歴</h2>
 
@@ -161,7 +249,19 @@ rails g rambulance:exceptions_app</p>
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>routes.rbでのルーティングの修正</h2>
 
@@ -171,61 +271,107 @@ rails g rambulance:exceptions_app</p>
 
 <p><code>app/controllers/application_controller.rb</code>にエラー発生時のためのメソッドを追加。</p>
 
-<p>{% codeblock lang:ruby %}
-class ApplicationController &lt; ActionController::Base
-  # 例外ハンドル
-  if !Rails.env.development?</p>
-
-<pre><code>rescue_from Exception,                        with: :render_500
-rescue_from ActiveRecord::RecordNotFound,     with: :render_404
-rescue_from ActionController::RoutingError,   with: :render_404
-</code></pre>
-
-<p>  end</p>
-
-<p>  def routing_error</p>
-
-<pre><code>raise ActionController::RoutingError.new(params[:path])
-</code></pre>
-
-<p>  end</p>
-
-<p>  def render_404(e = nil)</p>
-
-<pre><code>logger.info "Rendering 404 with exception: #{e.message}" if e
-
-if request.xhr?
-  render json: { error: '404 error' }, status: 404
-else
-  format = params[:format] == :json ? :json : :html
-  render template: 'errors/error_404', formats: format, status: 404, layout: 'application', content_type: 'text/html'
-end
-</code></pre>
-
-<p>  end</p>
-
-<p>  def render_500(e = nil)</p>
-
-<pre><code>logger.info "Rendering 500 with exception: #{e.message}" if e
-Airbrake.notify(e) if e # Airbrake/Errbitを使う場合はこちら
-
-if request.xhr?
-  render json: { error: '500 error' }, status: 500
-else
-  format = params[:format] == :json ? :json : :html
-  render template: 'errors/error_500', formats: format, status: 500, layout: 'application', content_type: 'text/html'
-end
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="c1"># 例外ハンドル</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">!</span><span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;rescue_from Exception,                        with: :render_500</span>
+</span><span class='line'><span class="sr">rescue_from ActiveRecord::RecordNotFound,     with: :render_404</span>
+</span><span class='line'><span class="sr">rescue_from ActionController::RoutingError,   with: :render_404</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">routing_error</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;raise ActionController::RoutingError.new(params[:path])</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">render_404</span><span class="p">(</span><span class="n">e</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;logger.info &quot;Rendering 404 with exception: </span><span class="si">#{</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="sr">&quot; if e</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">if request.xhr?</span>
+</span><span class='line'><span class="sr">  render json: { error: &#39;404 error&#39; }, status: 404</span>
+</span><span class='line'><span class="sr">else</span>
+</span><span class='line'><span class="sr">  format = params[:format] == :json ? :json : :html</span>
+</span><span class='line'><span class="sr">  render template: &#39;errors/e</span><span class="n">rror_404</span><span class="s1">&#39;, formats: format, status: 404, layout: &#39;</span><span class="n">application</span><span class="s1">&#39;, content_type: &#39;</span><span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  def render_500(e = nil)&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;logger.info &quot;Rendering 500 with exception: #{e.message}&quot; if e</span>
+</span><span class='line'><span class="s1">Airbrake.notify(e) if e # Airbrake/Errbitを使う場合はこちら</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">if request.xhr?</span>
+</span><span class='line'><span class="s1">  render json: { error: &#39;</span><span class="mi">500</span> <span class="n">error</span><span class="s1">&#39; }, status: 500</span>
+</span><span class='line'><span class="s1">else</span>
+</span><span class='line'><span class="s1">  format = params[:format] == :json ? :json : :html</span>
+</span><span class='line'><span class="s1">  render template: &#39;</span><span class="n">errors</span><span class="o">/</span><span class="n">error_500</span><span class="s1">&#39;, formats: format, status: 500, layout: &#39;</span><span class="n">application</span><span class="s1">&#39;, content_type: &#39;</span><span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="err">&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>errors/error_404</code>、<code>errors/error_500</code>は動的にページを生成する場合の設定方法です。ちなみに静的なページにしたい場合は上のコードの<code>render</code>の部分を以下のように変更。</p>
 
-<p>{% codeblock lang:bash %}
-render file: Rails.root.join('public/404.html'), status: 404, layout: false, content_type: 'text/html'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>render file: Rails.root.join<span class="o">(</span><span class="s1">&#39;public/404.html&#39;</span><span class="o">)</span>, status: 404, layout: <span class="nb">false</span>, content_type: <span class="s1">&#39;text/html&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>カスタムエラー用のViewの作成</h2>
 
@@ -233,7 +379,19 @@ render file: Rails.root.join('public/404.html'), status: 404, layout: false, con
 
 <p>たったこれだけで、404/500エラー発生時のユーザーの印象を改善できると思います。ぜひチャレンジしてみて下さい！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 
@@ -256,9 +414,9 @@ render file: Rails.root.join('public/404.html'), status: 404, layout: false, con
     <id>http://morizyun.github.io/blog/rvm-ruby-rails-certificate-verify-failed</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4797371838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797371838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797371838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797371838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />RVM環境のRailsで<code>https</code>プロトコルのURLにアクセスをしたところ下記のエラーが発生しました。</p>
 
-<p>{% codeblock lang:ruby %}
-openssl::ssl::sslerror: ssl_connect returned=1 errno=0 state=sslv3 read server certificate b: certificate verify failed
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">openssl</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">sslerror</span><span class="p">:</span> <span class="n">ssl_connect</span> <span class="n">returned</span><span class="o">=</span><span class="mi">1</span> <span class="n">errno</span><span class="o">=</span><span class="mi">0</span> <span class="n">state</span><span class="o">=</span><span class="n">sslv3</span> <span class="n">read</span> <span class="n">server</span> <span class="n">certificate</span> <span class="n">b</span><span class="p">:</span> <span class="n">certificate</span> <span class="n">verify</span> <span class="n">failed</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ということで対策法を見つけたので、念のためメモしておきます。</p>
 
@@ -268,24 +426,41 @@ openssl::ssl::sslerror: ssl_connect returned=1 errno=0 state=sslv3 read server c
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>RVMのSSL証明書を更新</h2>
 
 <p>まずは、RVMを最新に更新。</p>
 
-<p>{% codeblock lang:bash %}
-rvm get head
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm get head
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>つづいて、RVMのSSL証明書を更新。</p>
 
-<p>{% codeblock lang:bash %}
-rvm osx-ssl-certs update all</p>
-
-<h1>Updating certificates...と出れば成功</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm osx-ssl-certs update all&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Updating certificates...と出れば成功&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これで私の環境下では<code>https</code>にアクセスできるようになりました。</p>
 
@@ -293,11 +468,23 @@ rvm osx-ssl-certs update all</p>
 
 <p>SSL証明書は定期的にダメになるっぽいです。なので、自動でSSLを更新するように設定する方法です。</p>
 
-<p>{% codeblock lang:bash %}
-sudo rvm osx-ssl-certs cron install
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rvm osx-ssl-certs cron install
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 
@@ -322,7 +509,19 @@ sudo rvm osx-ssl-certs cron install
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>EventMachine</h2>
 
@@ -334,43 +533,76 @@ sudo rvm osx-ssl-certs cron install
 
 <p>まずは、Gem <code>em-http-request</code>をinstall。</p>
 
-<p>{% codeblock lang:ruby %}
-gem install em-http-request
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="n">install</span> <span class="n">em</span><span class="o">-</span><span class="n">http</span><span class="o">-</span><span class="n">request</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にWebサイトにアクセスするサンプルソースのコード。</p>
 
-<p>{% codeblock lang:ruby %}
-require 'eventmachine'
-require 'em-http-request'</p>
-
-<p>URL = 'https://twitter.com'</p>
-
-<p>EM.run do
-  1.upto(5) do |i|</p>
-
-<pre><code># 5回URLを取得するリクエストを出す
-http = EM::HttpRequest.new(URL).get(
-  :path =&gt; '/',
-  :query =&gt; '')
-# レスポンスが帰ってきたら呼び出される
-call_back = proc do
-  puts http.response
-  EM.stop if i == 5 # 5回レスポンスを取得したら終了
-end
-http.callback(&amp;call_back)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;eventmachine&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;em-http-request&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;URL = &#39;https:/</span><span class="o">/</span><span class="n">twitter</span><span class="o">.</span><span class="n">com</span><span class="s1">&#39;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;EM.run do</span>
+</span><span class='line'><span class="s1">  1.upto(5) do |i|&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;# 5回URLを取得するリクエストを出す</span>
+</span><span class='line'><span class="s1">http = EM::HttpRequest.new(URL).get(</span>
+</span><span class='line'><span class="s1">  :path =&amp;gt; &#39;</span><span class="o">/</span><span class="s1">&#39;,</span>
+</span><span class='line'><span class="s1">  :query =&amp;gt; &#39;</span><span class="err">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># レスポンスが帰ってきたら呼び出される</span>
+</span><span class='line'><span class="n">call_back</span> <span class="o">=</span> <span class="nb">proc</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">http</span><span class="o">.</span><span class="n">response</span>
+</span><span class='line'>  <span class="no">EM</span><span class="o">.</span><span class="n">stop</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">5</span> <span class="c1"># 5回レスポンスを取得したら終了</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">http</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">call_back</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>テストの際は、自分のサーバに対して行うことをおすすめします。</p>
 
 <p>実際はもう少し例を増やしてまとめたかったんですが、まだまだ勉強不足な点を痛感中。
 <strong>Special Thanks</strong>に書いたサイトさん方はとってもわかりやすいんでよかったら、そちらもご覧ください。</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 
