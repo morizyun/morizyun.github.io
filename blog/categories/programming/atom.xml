@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -29,19 +29,7 @@ Railsって「Railsチュートリアル」には書いてないのに覚えな�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>プログラミングの重要な要素</h2>
 
@@ -228,19 +216,7 @@ Railsって「Railsチュートリアル」には書いてないのに覚えな�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -265,19 +241,7 @@ Railsって「Railsチュートリアル」には書いてないのに覚えな�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>一番大切にすべきことは読みやすさ</h2>
 
@@ -318,21 +282,15 @@ Railsって「Railsチュートリアル」には書いてないのに覚えな�
 </pre>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 例)</span>
-</span><span class='line'><span class="nx">TcpConnectionSimulator</span><span class="p">(</span>
-</span><span class='line'>  <span class="mi">500</span><span class="p">,</span>  <span class="err">/&lt;em&gt; Kbps &lt;/em&gt;/</span>
-</span><span class='line'>  <span class="mi">80</span><span class="p">,</span>   <span class="err">/&lt;em&gt; millisecs latency &lt;/em&gt;/</span>
-</span><span class='line'>  <span class="mi">200</span><span class="p">,</span>  <span class="err">/&lt;em&gt; jitter &lt;/em&gt;/</span>
-</span><span class='line'>  <span class="mi">1</span>     <span class="o">/&lt;</span><span class="nx">em</span><span class="o">&gt;</span> <span class="nx">packet</span> <span class="nx">loss</span> <span class="o">&lt;</span><span class="sr">/em&gt;/</span>
-</span><span class='line'><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:javascript %}
+// 例)
+TcpConnectionSimulator(
+  500,  /<em> Kbps </em>/
+  80,   /<em> millisecs latency </em>/
+  200,  /<em> jitter </em>/
+  1     /<em> packet loss </em>/
+)
+{% endcodeblock %}</p>
 
 <h2>コメントは書き手の意図を読み手に知らせるためにある</h2>
 
@@ -398,19 +356,7 @@ Railsって「Railsチュートリアル」には書いてないのに覚えな�
 意識してコードが「読みやすくあり続ける」ために設計・実装を行っていきたいです。
 そうすることで開発しやすいコードが保ち続けられると思います！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 ]]></content>
   </entry>
   

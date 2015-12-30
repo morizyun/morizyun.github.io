@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ubuntu | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -26,125 +26,61 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>スワップメモリの確認方法</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>cat /proc/swaps&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;こんなかんじで出ます↓&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Filename        Type    Size  Used  Priority&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cat /proc/swaps</p>
+
+<h1>こんなかんじで出ます↓</h1>
+
+<h1>Filename        Type    Size  Used  Priority</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h1>スワップ領域の作成</h1>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;管理者権限になる&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;sudo su -&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;スワップ用フォルダの作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;mkdir /var/swap&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;2Gのスワップ用のファイル作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/var/swap/swap0 <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span>2048&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;パーミッションの設定&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;chmod 600 /var/swap/swap0&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;スワップ割り当て&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;mkswap /var/swap/swap0
-</span><span class='line'>swapon /var/swap/swap0&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;起動時に自動でスワップが割り当てられるように設定&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;echo <span class="s1">&#39;/var/swap/swap0 swap swap defaults 0 0&#39;</span> &gt;&gt; /etc/fstab
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>管理者権限になる</h1>
+
+<p>sudo su -</p>
+
+<h1>スワップ用フォルダの作成</h1>
+
+<p>mkdir /var/swap</p>
+
+<h1>2Gのスワップ用のファイル作成</h1>
+
+<p>dd if=/dev/zero of=/var/swap/swap0 bs=1M count=2048</p>
+
+<h1>パーミッションの設定</h1>
+
+<p>chmod 600 /var/swap/swap0</p>
+
+<h1>スワップ割り当て</h1>
+
+<p>mkswap /var/swap/swap0
+swapon /var/swap/swap0</p>
+
+<h1>起動時に自動でスワップが割り当てられるように設定</h1>
+
+<p>echo '/var/swap/swap0 swap swap defaults 0 0' >> /etc/fstab
+{% endcodeblock %}</p>
 
 <h2>スワップ割り当て結果の確認</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>cat /proc/swaps&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Filename        Type    Size  Used  Priority&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;/var/swap/swap0                         file    2097148 211176  -1&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cat /proc/swaps</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<h1>Filename        Type    Size  Used  Priority</h1>
+
+<h1>/var/swap/swap0                         file    2097148 211176  -1</h1>
+
+<p>{% endcodeblock %}</p>
+
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Speical Thanks</h2>
 

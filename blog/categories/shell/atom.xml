@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Shell | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/shell/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -29,19 +29,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Moshとは</h2>
 
@@ -60,25 +48,23 @@
 
 <p>Mac側のインストールはこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install mobile-shell
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+brew install mobile-shell
+{% endcodeblock %}</p>
 
 <p>CentOSへのインストールはこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum install mosh
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+yum install mosh
+{% endcodeblock %}</p>
 
 <p>Ubuntuへのインストールはこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo add-apt-repository ppa:keithw/mosh
-</span><span class='line'>sudo apt-get update
-</span><span class='line'>sudo apt-get install mosh
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo add-apt-repository ppa:keithw/mosh
+sudo apt-get update
+sudo apt-get install mosh
+{% endcodeblock %}</p>
 
 <h2>UDPのポート解放</h2>
 
@@ -89,31 +75,22 @@
 
 <p>iptablesを変更する場合は、</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;centos<span class="o">(</span>redhat系<span class="o">)</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;vi /etc/sysconfig/iptables&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ubuntu&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;vi /network/if-pre-up.d/iptables
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>centos(redhat系)</h1>
+
+<p>vi /etc/sysconfig/iptables</p>
+
+<h1>ubuntu</h1>
+
+<p>vi /network/if-pre-up.d/iptables
+{% endcodeblock %}</p>
 
 <p>として、以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>-A RH-Firewall-1-INPUT -p udp -m udp --dport 60000:61000 -j ACCEPT
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+-A RH-Firewall-1-INPUT -p udp -m udp --dport 60000:61000 -j ACCEPT
+{% endcodeblock %}</p>
 
 <p>その後に、<code>sudo /etc/init.d/iptables restart</code>でiptablesを再起動。</p>
 
@@ -122,23 +99,19 @@
 <p>まずはいつもどおり、<code>~/.ssh/config</code>にこんなかんじでサーバ設定。
 (SERVER_NAME, SERVER_IP, PORT_NUMBER, SSH_KEY_PATH, USER_NAMEは自分の接続先似あわせて変更)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>Host SERVER_NAME
-</span><span class='line'>  Hostname SERVER_IP
-</span><span class='line'>  port PORT_NUMBER
-</span><span class='line'>  IdentityFile ~/.ssh/vps_rsa<span class="o">(</span>SSH_KEY_PATH<span class="o">)</span>
-</span><span class='line'>  User USER_NAME
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+Host SERVER_NAME
+  Hostname SERVER_IP
+  port PORT_NUMBER
+  IdentityFile ~/.ssh/vps_rsa(SSH_KEY_PATH)
+  User USER_NAME
+{% endcodeblock %}</p>
 
 <p>完了したら、以下のコマンドを実行すればsshとほぼ同じように接続できます！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mosh SERVER_NAME
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+mosh SERVER_NAME
+{% endcodeblock %}</p>
 
 <p>ライフハック！</p>
 
@@ -146,25 +119,13 @@
 
 <p>サーバーで以下のコマンドを実行するとMoshのコネクションをクローズできます！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">kill</span> &lt;code&gt;pidof mosh-server&lt;/code&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+kill <code>pidof mosh-server</code>
+{% endcodeblock %}</p>
 
 <p>参考: <a href="http://stackoverflow.com/questions/17857733/how-do-i-reattach-to-a-detached-mosh-session">ssh - How do I reattach to a detached mosh session? - Stack Overflow</a></p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

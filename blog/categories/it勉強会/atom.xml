@@ -4,7 +4,7 @@
   <title><![CDATA[Category: IT勉強会 | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/it勉強会/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -29,19 +29,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>リニュアールの目的</h2>
 
@@ -125,19 +113,7 @@ Wheneverさんにも大変お世話になっています！Cronの管理めっ�
 <p>デザインを一人で乗り切るだけの実力は無いので、『<strong><a href="http://getbootstrap.com/">Bootstrap</a></strong>』や
 『<strong><a href="https://www.polymer-project.org/">polymer</a></strong>』をうまく使いこなせるようになりたい！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 ]]></content>
   </entry>
   

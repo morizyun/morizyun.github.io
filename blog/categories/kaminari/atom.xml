@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Kaminari | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/kaminari/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -34,25 +34,20 @@
 
 <p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Pagenation&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;kaminari&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>Pagenation</h1>
+
+<p>gem 'kaminari'
+{% endcodeblock %}</p>
 
 <h2>kaminari configの設定</h2>
 
 <p>kaminariのconfig(設定)ファイルを生成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g kaminari:config
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rails g kaminari:config
+{% endcodeblock %}</p>
 
 <p><code>config/initializers/kaminari_config.rb</code>を構築するサイトに合わせて各種パラメータを調整。<br/>
 パラメータの詳細は『 <strong><a href="https://github.com/amatsuda/kaminari#general-configuration-options">amatsuda/kaminari | GitHub</a></strong>』を参照。</p>
@@ -61,75 +56,54 @@
 
 <p>Controllerでページネーションをするための変数を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span><span class="o">.</span><span class="n">page</span> <span class="n">params</span><span class="o">[</span><span class="ss">:page</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+@users = User.order(:name).page params[:page]
+{% endcodeblock %}</p>
 
 <p>Viewでページネーションを表示したい場所に以下のコードを追加。<br/></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="p">=</span> <span class="n">paginate</span> <span class="vi">@users</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:haml %}
+= paginate @users
+{% endcodeblock %}</p>
 
 <h2>ベージネーションViewのテンプレート取得</h2>
 
 <p>次のコマンドを実行すると<code>/app/view/kaminari/</code>フォルダにBootstrap用のViewを生成してくれます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g kaminari:views  bootstrap3
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rails g kaminari:views  bootstrap3
+{% endcodeblock %}</p>
 
 <p>ただしこちらは、Bootstrap2用のテンプレートっぽいです。ということで、<code>/app/view/kaminari/_paginator.html.haml</code>を次の様に編集します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="p">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">render</span> <span class="k">do</span>
-</span><span class='line'>  <span class="nc">.pagination</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;-# ↓ ここに.pagenationを追加
-</span><span class='line'><span class="nt">%ul</span><span class="nc">.pagination</span>
-</span><span class='line'>  ...(ゴニョゴニョ)
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:haml %}
+= paginator.render do
+  .pagination</p>
+
+<pre><code>-# ↓ ここに.pagenationを追加
+%ul.pagination
+  ...(ゴニョゴニョ)
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h2>ページネーターの表示カスタマイズ</h2>
 
 <p>ページネーションの文言(prevやnextなど)の変更程度であれば、<code>conifg/locales/ja.yml</code>に以下の内容を追加するだけで解決します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ja:
-</span><span class='line'>  views:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;pagination:
-</span><span class='line'>  first: <span class="s2">&quot;&amp;amp;laquo;&quot;</span>
-</span><span class='line'>  last: <span class="s2">&quot;&amp;amp;raquo;&quot;</span>
-</span><span class='line'>  previous: <span class="s2">&quot;&amp;amp;lsaquo;&quot;</span>
-</span><span class='line'>  next: <span class="s2">&quot;&amp;amp;rsaquo;&quot;</span>
-</span><span class='line'>  truncate: <span class="s2">&quot;...&quot;</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+ja:
+  views:</p>
+
+<pre><code>pagination:
+  first: "&amp;laquo;"
+  last: "&amp;raquo;"
+  previous: "&amp;lsaquo;"
+  next: "&amp;rsaquo;"
+  truncate: "..."
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>上は英語部分を外して、記号を残した場合の例です。
 これだけでもシンプルでわかりやすいですよ！</p>
@@ -140,13 +114,11 @@
 
 <p><code>config/routes.rb</code>のルーティングを以下の様に変更します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>resources :my_resources <span class="k">do</span>
-</span><span class='line'><span class="k">  </span>get <span class="s1">&#39;page/:page&#39;</span>, :action <span class="o">=</span>&gt; :index, :on <span class="o">=</span>&gt; :collection
-</span><span class='line'>end
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+resources :my_resources do
+  get 'page/:page', :action => :index, :on => :collection
+end
+{% endcodeblock %}</p>
 
 <p>このルーティングのメリットは次の通り。</p>
 
@@ -168,9 +140,9 @@
 
 <p>その場合は、<code>config/initializers/draper.rb</code>を作成して以下を記入しておくとエラーを回避できます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Draper</span><span class="o">::</span><span class="no">CollectionDecorator</span><span class="o">.</span><span class="n">delegate</span> <span class="ss">:current_page</span><span class="p">,</span> <span class="ss">:total_pages</span><span class="p">,</span> <span class="ss">:limit_value</span><span class="p">,</span> <span class="ss">:total_count</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+Draper::CollectionDecorator.delegate :current_page, :total_pages, :limit_value, :total_count
+{% endcodeblock %}</p>
 
 <p><strong><a href="https://github.com/drapergem/draper/issues/401">Kaminari vs Draper · Issue #401 · drapergem/draper</a></strong></p>
 

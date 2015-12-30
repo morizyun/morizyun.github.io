@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Source | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/source/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://morizyun.github.io/blog/throw-catch-symbol-ruby/"/>
     <updated>2012-12-02T21:50:00+09:00</updated>
     <id>http://morizyun.github.io/blog/throw-catch-symbol-ruby</id>
-    <content type="html"><![CDATA[<p><a href="blog/categories/source/atom.xml" title="by morizyun, on Flickr"><img src="http://farm3.staticflickr.com/2775/4141490387_1beb461cec_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm3.staticflickr.com/2775/4141490387_1beb461cec_m.jpg" width="240" height="160" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>Rubyの標準メソッドにthrow/catchはネストの深いループ(多重ループ)を一発で抜けだしたい場合などに使えそうなので、紹介します。</p>
 
@@ -44,14 +44,11 @@ end</p>
 end
 ```</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby throw.rb&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;ween <span class="c"># hoge =&gt; 出力されず</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock コンソール lang:bash %}
+ruby throw.rb</p>
+
+<blockquote><p>ween # hoge => 出力されず
+{% endcodeblock %}</p></blockquote>
 
 <p>つまり「throw/catch」は「raise/rescue」とほぼ同じ動きをします。</p>
 
@@ -82,30 +79,19 @@ end</p>
 <p>puts "loop out"
 ```</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby throw2.rb&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;i, <span class="nv">j</span> <span class="o">=</span> 0, 0
-</span><span class='line'>i, <span class="nv">j</span> <span class="o">=</span> 0, 1
-</span><span class='line'>i, <span class="nv">j</span> <span class="o">=</span> 0, 2
-</span><span class='line'>i, <span class="nv">j</span> <span class="o">=</span> 1, 0
-</span><span class='line'>i, <span class="nv">j</span> <span class="o">=</span> 1, 1
-</span><span class='line'>i, <span class="nv">j</span> <span class="o">=</span> 1, 2
-</span><span class='line'>i, <span class="nv">j</span> <span class="o">=</span> 2, 0
-</span><span class='line'>i, <span class="nv">j</span> <span class="o">=</span> 2, 1
-</span><span class='line'>loop out
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock コンソール lang:bash %}
+ruby throw2.rb</p>
+
+<blockquote><p>i, j = 0, 0
+i, j = 0, 1
+i, j = 0, 2
+i, j = 1, 0
+i, j = 1, 1
+i, j = 1, 2
+i, j = 2, 0
+i, j = 2, 1
+loop out
+{% endcodeblock %}</p></blockquote>
 ]]></content>
   </entry>
   

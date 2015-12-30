@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hackathon | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/hackathon/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -37,11 +37,10 @@
 
 <p>jbuilderの一番簡単な使い方のイメージは<code>/app/views/articles/show.json.jbuilder</code>内でこんな風に使います。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>json.id @article.id
-</span><span class='line'>json.name @article.name
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+json.id @article.id
+json.name @article.name
+{% endcodeblock %}</p>
 
 <p>これで、<code>http://localhost/articles/1.json</code>でアクセスするとjsonを出力してくれます。
 jbuilderはviewなどに書くことも可能で、DSLもRubyらしくて読みやすいです。</p>
@@ -67,11 +66,10 @@ jbuilderはviewなどに書くことも可能で、DSLもRubyらしくて読み�
 
 <p>rablの簡単な例は、<code>/app/views/articles/show.json.rabl</code>で次のように書くとjsonを出力してくれます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>object @article
-</span><span class='line'>attributes :id, :name, :published_at
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+object @article
+attributes :id, :name, :published_at
+{% endcodeblock %}</p>
 
 <p>すこしだけ書き方にクセがありますが、覚えてしまえば書きやすそうです。</p>
 
@@ -96,13 +94,11 @@ jbuilderはviewなどに書くことも可能で、DSLもRubyらしくて読み�
 
 <p>Active Model Serializersの簡単な使い方としては、<code>/app/serializers/article_serializer.rb</code>に次のように書きます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>class ArticleSerializer &amp;lt; ActiveModel::Serializer
-</span><span class='line'>  attributes :id, :name, :content
-</span><span class='line'>end
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+class ArticleSerializer &lt; ActiveModel::Serializer
+  attributes :id, :name, :content
+end
+{% endcodeblock %}</p>
 
 <p>jbuilderやrablと違って、専用のクラスをつくるところが特徴的です。</p>
 

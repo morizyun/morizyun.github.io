@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RubyGem | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rubygem/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -30,19 +30,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Upsertが適した利用シーン</h2>
 
@@ -60,63 +48,43 @@ DB内部でレコードの有無を判定して、insert/update処理までお�
 
 <p><code>Gemfile</code>に以下を追加して、コンソールで<code>bundle install</code>を実行してください。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Bulk Insert/</span><span class="no">Update</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;gem &#39;upsert&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>Bulk Insert/Update</h1>
+
+<p>gem 'upsert'
+{% endcodeblock %}</p>
 
 <h2>ActiveRecordでUpsertを使う場合</h2>
 
 <p>Petモデルのキーが<code>name</code>、カラムが<code>name, breed</code>の場合
 にUpsertする場合は次のように記述します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;upsert/active_record_upsert&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;Pet.upsert({name: &#39;Jerry&#39;}, {breed: &#39;beagle&#39;, updated_at: Time.now.iso8601, created_at: Time.now.iso8601})</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'upsert/active_record_upsert'</p>
+
+<p>Pet.upsert({name: 'Jerry'}, {breed: 'beagle', updated_at: Time.now.iso8601, created_at: Time.now.iso8601})
+{% endcodeblock %}</p>
 
 <h2>ActiveRecordで一括でUpsertを行う場合</h2>
 
 <p>Petモデルのキーが<code>name</code>、カラムが<code>name, breed</code>の場合
 に2件のデータを一括で、Upsertする場合は次のように記述します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Bulk でinsert /</span> <span class="n">update</span><span class="err">を実行</span> <span class="p">(</span><span class="n">mass</span> <span class="n">upsert</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;self.connection_pool.with_connection do |c|</span>
-</span><span class='line'><span class="sr">  Upsert.batch(c, table_name) do |upsert|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">upsert</span><span class="o">.</span><span class="n">row</span><span class="p">({</span><span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;Jerry&#39;</span><span class="p">},</span> <span class="p">{</span><span class="n">breed</span><span class="p">:</span> <span class="s1">&#39;beagle&#39;</span><span class="p">,</span> <span class="n">updated_at</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">iso8601</span><span class="p">,</span> <span class="n">created_at</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">iso8601</span><span class="p">})</span>
-</span><span class='line'><span class="n">upsert</span><span class="o">.</span><span class="n">row</span><span class="p">({</span><span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;Pierre&#39;</span><span class="p">},</span> <span class="p">{</span><span class="n">breed</span><span class="p">:</span> <span class="s1">&#39;tabby&#39;</span><span class="p">,</span> <span class="n">updated_at</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">iso8601</span><span class="p">,</span> <span class="n">created_at</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">iso8601</span><span class="p">})</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>Bulk でinsert / updateを実行 (mass upsert)</h1>
+
+<p>self.connection_pool.with_connection do |c|
+  Upsert.batch(c, table_name) do |upsert|</p>
+
+<pre><code>upsert.row({name: 'Jerry'}, {breed: 'beagle', updated_at: Time.now.iso8601, created_at: Time.now.iso8601})
+upsert.row({name: 'Pierre'}, {breed: 'tabby', updated_at: Time.now.iso8601, created_at: Time.now.iso8601})
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <h2>あとがき</h2>
 
@@ -131,19 +99,7 @@ DB内部でレコードの有無を判定して、insert/update処理までお�
 
 <p><strong><a href="https://www.coffeepowered.net/2009/01/23/mass-inserting-data-in-rails-without-killing-your-performance/">Mass inserting data in Rails without killing your performance</a></strong></p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 ]]></content>
   </entry>
   
@@ -161,284 +117,147 @@ DB内部でレコードの有無を判定して、insert/update処理までお�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>既存のActiveRecod::Baseにメソッドを生やす</h2>
 
 <p>『<strong><a href="https://github.com/eagletmt/switch_point">eagletmt/switch_point - GitHub</a></strong>』の<code>switch_point/lib/switch_point.rb</code>で既存のActiveRecod::Baseにメソッドを生やす目的で次のようなコードが書かれていました。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/lazy_load_hooks&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;...(省略)...&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">ActiveRecord</span><span class="err">が読み込まれたら以下のコードを実行する</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;第一引数(active_record)がフックのキー&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">第二引数のブロックが、ブロックを実行するためのコンテキスト</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;ActiveSupport.on_load(:active_record) do</span>
-</span><span class='line'><span class="sr">  require &#39;switch_point/mo</span><span class="n">del</span><span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">  require &#39;</span><span class="n">switch_point</span><span class="o">/</span><span class="n">connection</span><span class="err">&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  # SwitchPoint::ModelのメソッドをActiveRecord::Baseにinclude</span>
-</span><span class='line'><span class="sr">  ActiveRecord::Base.send(:include, SwitchPoint::Model)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># class_evalで動的にクラス・メソッドを定義</span>
-</span><span class='line'>  <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">ConnectionAdapters</span><span class="o">::</span><span class="no">AbstractAdapter</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;include SwitchPoint::Connection</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr"># insert, update, deleteメソッドのメソッドを上書き</span>
-</span><span class='line'><span class="sr"># 中ではwritableなDBにつなぎに行っているかのチェックとクエリー・キャッシュをクリアしてからメソッドを実行</span>
-</span><span class='line'><span class="sr">SwitchPoint::Connection::DESTRUCTIVE_METHODS.each do |method_name|</span>
-</span><span class='line'><span class="sr">  alias_method_chain method_name, :switch_point</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/lazy_load_hooks'</p>
+
+<h1>...(省略)...</h1>
+
+<h1>ActiveRecordが読み込まれたら以下のコードを実行する</h1>
+
+<h1>第一引数(active_record)がフックのキー</h1>
+
+<h1>第二引数のブロックが、ブロックを実行するためのコンテキスト</h1>
+
+<p>ActiveSupport.on_load(:active_record) do
+  require 'switch_point/model'
+  require 'switch_point/connection'</p>
+
+<p>  # SwitchPoint::ModelのメソッドをActiveRecord::Baseにinclude
+  ActiveRecord::Base.send(:include, SwitchPoint::Model)</p>
+
+<p>  # class_evalで動的にクラス・メソッドを定義
+  ActiveRecord::ConnectionAdapters::AbstractAdapter.class_eval do</p>
+
+<pre><code>include SwitchPoint::Connection
+
+# insert, update, deleteメソッドのメソッドを上書き
+# 中ではwritableなDBにつなぎに行っているかのチェックとクエリー・キャッシュをクリアしてからメソッドを実行
+SwitchPoint::Connection::DESTRUCTIVE_METHODS.each do |method_name|
+  alias_method_chain method_name, :switch_point
+end
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <h2>遅延読み込みフック lazy_load_hooks#on_load について</h2>
 
 <p><code>on_load</code>は、ActiveSupportのLazyLoadの機能の一つで、ライブラリの読み込み後に実行したいコードを登録するための機能だそうです。サンプルとしてはこんなかんじです。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/lazy_load_hooks&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;run_load_hooksが実行されていないので呼ばれない&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">ActiveSupport</span><span class="o">.</span><span class="n">on_load</span> <span class="ss">:fuga</span> <span class="k">do</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;start 1st on load&#39;</span>
-</span><span class='line'>  <span class="n">fuga</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;end 1st on load&#39;</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;class Fuga</span>
-</span><span class='line'><span class="sr">  def self.fuga&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="s1">&#39;fugafuga&#39;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts &#39;before run_load_hooks&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">run_load_hooks</span><span class="err">を実行すると、</span><span class="mi">4</span><span class="err">行目の</span> <span class="no">ActiveSupport</span><span class="o">.</span><span class="n">on_load</span> <span class="err">が呼ばれる</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;ActiveSupport.run_load_hooks :fuga, Fuga</span>
-</span><span class='line'><span class="sr">puts &#39;after run_load_hooks&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">run_load_hooks</span> <span class="err">が実行されているのですぐに呼ばれる</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;ActiveSupport.on_load :fuga do</span>
-</span><span class='line'><span class="sr">  puts &#39;start 2st on load&#39;</span>
-</span><span class='line'><span class="sr">  fuga</span>
-</span><span class='line'><span class="sr">  puts &#39;end 2st on load&#39;</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">実行結果</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;before run_load_hooks&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">start</span> <span class="mi">1</span><span class="n">st</span> <span class="n">on</span> <span class="nb">load</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;fugafuga&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="k">end</span> <span class="mi">1</span><span class="n">st</span> <span class="n">on</span> <span class="nb">load</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;after run_load_hooks&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">start</span> <span class="mi">2</span><span class="n">st</span> <span class="n">on</span> <span class="nb">load</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;fugafuga&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="k">end</span> <span class="mi">2</span><span class="n">st</span> <span class="n">on</span> <span class="nb">load</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/lazy_load_hooks'</p>
+
+<h1>run_load_hooksが実行されていないので呼ばれない</h1>
+
+<p>ActiveSupport.on_load :fuga do
+  puts 'start 1st on load'
+  fuga
+  puts 'end 1st on load'
+end</p>
+
+<p>class Fuga
+  def self.fuga</p>
+
+<pre><code>puts 'fugafuga'
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>puts 'before run_load_hooks'</p>
+
+<h1>run_load_hooksを実行すると、4行目の ActiveSupport.on_load が呼ばれる</h1>
+
+<p>ActiveSupport.run_load_hooks :fuga, Fuga
+puts 'after run_load_hooks'</p>
+
+<h1>run_load_hooks が実行されているのですぐに呼ばれる</h1>
+
+<p>ActiveSupport.on_load :fuga do
+  puts 'start 2st on load'
+  fuga
+  puts 'end 2st on load'
+end</p>
+
+<h1>実行結果</h1>
+
+<h1>before run_load_hooks</h1>
+
+<h1>start 1st on load</h1>
+
+<h1>fugafuga</h1>
+
+<h1>end 1st on load</h1>
+
+<h1>after run_load_hooks</h1>
+
+<h1>start 2st on load</h1>
+
+<h1>fugafuga</h1>
+
+<h1>end 2st on load</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p>コードにちょこちょこ書いていますが、要はActiveSupport.run_load_hooksが実行されないと呼ばれないし、
 ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれるということっぽいです。</p>
 
 <p>ここいらは、<strong><a href="">@eiel</a></strong>さんのRails Docの記事『<strong><a href="http://railsdoc.eiel.info/active_support/lazy_load_hooks/">RailsDoc - Lazy Load Hooks</a></strong>』を参考にさせて頂きました。最近Rails Docさんにはお世話になりっぱなしです！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>alias_method_chain について</h2>
 
 <p><code>alias_method_chain</code>は、既存のメソッドを置き換えをしてくれます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;active_supportのメソッドなのでrequireが必要&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;module LogHelper&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts message</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">log_with_timestamp</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;log_without_timestamp(&quot;[</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="sr">] </span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sr">&quot;)</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 以下と同義</span>
-</span><span class='line'>  <span class="c1"># alias_method :log, :log_with_timestamp</span>
-</span><span class='line'>  <span class="c1"># alias_method :log_without_timestamp, :log</span>
-</span><span class='line'>  <span class="n">alias_method_chain</span> <span class="ss">:log</span><span class="p">,</span> <span class="ss">:timestamp</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;include LogHelper</span>
-</span><span class='line'><span class="sr">log(&#39;Hello&#39;) #=&gt; [2015-01-02 11:45:01 +0900] Hello</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>active_supportのメソッドなのでrequireが必要</h1>
+
+<p>require 'active_support/all'</p>
+
+<p>module LogHelper</p>
+
+<p>  def log(message)</p>
+
+<pre><code>puts message
+</code></pre>
+
+<p>  end</p>
+
+<p>  def log_with_timestamp(message)</p>
+
+<pre><code>log_without_timestamp("[#{Time.now}] #{message}")
+</code></pre>
+
+<p>  end</p>
+
+<p>  # 以下と同義
+  # alias_method :log, :log_with_timestamp
+  # alias_method :log_without_timestamp, :log
+  alias_method_chain :log, :timestamp
+end</p>
+
+<p>include LogHelper
+log('Hello') #=> [2015-01-02 11:45:01 +0900] Hello
+{% endcodeblock %}</p>
 
 <p>このメソッドには次のルールがあるそうです。</p>
 
@@ -455,55 +274,32 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 <p>ちなみにActiveSupport(v4.2.0)の<code>alias_method_chain</code>のソースコードはこんなかんじです。
 (わかりやすい＾＾)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">def</span> <span class="nf">alias_method_chain</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;# Strip out punctuation on predicates, bang or writer methods since</span>
-</span><span class='line'><span class="sr"># e.g. target?_without_feature is not a valid method name.</span>
-</span><span class='line'><span class="sr">aliased_target, punctuation = target.to_s.sub(/</span><span class="p">(</span><span class="o">[</span><span class="sc">?!</span><span class="o">=]</span><span class="p">)</span><span class="vg">$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="vg">$1</span>
-</span><span class='line'><span class="k">yield</span><span class="p">(</span><span class="n">aliased_target</span><span class="p">,</span> <span class="n">punctuation</span><span class="p">)</span> <span class="k">if</span> <span class="nb">block_given?</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">with_method</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">aliased_target</span><span class="si">}</span><span class="s2">_with_</span><span class="si">#{</span><span class="n">feature</span><span class="si">}#{</span><span class="n">punctuation</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="n">without_method</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">aliased_target</span><span class="si">}</span><span class="s2">_without_</span><span class="si">#{</span><span class="n">feature</span><span class="si">}#{</span><span class="n">punctuation</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">alias_method</span> <span class="n">without_method</span><span class="p">,</span> <span class="n">target</span>
-</span><span class='line'><span class="n">alias_method</span> <span class="n">target</span><span class="p">,</span> <span class="n">with_method</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">case</span>
-</span><span class='line'><span class="k">when</span> <span class="nb">public_method_defined?</span><span class="p">(</span><span class="n">without_method</span><span class="p">)</span>
-</span><span class='line'>  <span class="kp">public</span> <span class="n">target</span>
-</span><span class='line'><span class="k">when</span> <span class="nb">protected_method_defined?</span><span class="p">(</span><span class="n">without_method</span><span class="p">)</span>
-</span><span class='line'>  <span class="kp">protected</span> <span class="n">target</span>
-</span><span class='line'><span class="k">when</span> <span class="nb">private_method_defined?</span><span class="p">(</span><span class="n">without_method</span><span class="p">)</span>
-</span><span class='line'>  <span class="kp">private</span> <span class="n">target</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+  def alias_method_chain(target, feature)</p>
+
+<pre><code># Strip out punctuation on predicates, bang or writer methods since
+# e.g. target?_without_feature is not a valid method name.
+aliased_target, punctuation = target.to_s.sub(/([?!=])$/, ''), $1
+yield(aliased_target, punctuation) if block_given?
+
+with_method = "#{aliased_target}_with_#{feature}#{punctuation}"
+without_method = "#{aliased_target}_without_#{feature}#{punctuation}"
+
+alias_method without_method, target
+alias_method target, with_method
+
+case
+when public_method_defined?(without_method)
+  public target
+when protected_method_defined?(without_method)
+  protected target
+when private_method_defined?(without_method)
+  private target
+end
+</code></pre>
+
+<p>  end
+{% endcodeblock %}</p>
 
 <p>シナジーマーケティングさんの、<strong><a href="http://www.techscore.com/blog/2013/02/27/rails-alias_method_chain-%E6%97%A2%E5%AD%98%E3%81%AE%E5%87%A6%E7%90%86%E3%82%92%E4%BF%AE%E6%AD%A3%E3%81%99%E3%82%8B%E5%B8%B8%E5%A5%97%E6%89%8B%E6%AE%B5/">» Rails: alias_method_chain: 既存の処理を修正する常套手段 TECHSCORE BLOG</a></strong>
 がすごくわかりやすい説明を書いて頂けていたので参考にさせて頂きました。有難うございます！</p>
@@ -512,57 +308,33 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 
 <p><code>module#prepend</code>自体はswitch_pointには出てきませんが、調べていく中でRuby 2.0で導入されたメソッドの<code>module#prepend</code>は<code>alias_method_chain</code>を置き換える事ができるのを知りました。使い方としてはこんな感じ。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">LoggingWithTimestamp</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  def log(message)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1"># 呼び出し元のメソッドを呼び出す</span>
-</span><span class='line'><span class="k">super</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s2">] </span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Logging</span>
-</span><span class='line'>  <span class="c1"># LoggingWithTimestampのlogが、Loggingのlogメソッドよりも優先して呼ばれる</span>
-</span><span class='line'>  <span class="n">prepend</span> <span class="no">LoggingWithTimestamp</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  def log(message)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="n">message</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;Logging.new.log(&#39;Hello&#39;) #=&gt; [2015-01-02 12:23:15 +0900] Hello</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+module LoggingWithTimestamp</p>
+
+<p>  def log(message)</p>
+
+<pre><code># 呼び出し元のメソッドを呼び出す
+super("[#{Time.now}] #{message}")
+</code></pre>
+
+<p>  end</p>
+
+<p>end</p>
+
+<p>class Logging
+  # LoggingWithTimestampのlogが、Loggingのlogメソッドよりも優先して呼ばれる
+  prepend LoggingWithTimestamp</p>
+
+<p>  def log(message)</p>
+
+<pre><code>puts message
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Logging.new.log('Hello') #=> [2015-01-02 12:23:15 +0900] Hello
+{% endcodeblock %}</p>
 
 <p><code>include</code>と<code>prepend</code>との使い分けは次の通り。</p>
 
@@ -584,19 +356,7 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 <p>今までなんの気なしに使ってきたライブラリですが、よく読んでみると色々と勉強になる部分が多くあります。
 自分がライブラリ書くときに使えそうなTipsがあってすごい勉強になります！今度はテストとかも読んでみるつもりです！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -619,19 +379,7 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>特徴</h2>
 
@@ -647,78 +395,55 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 
 <p>いつもどおり<code>Gemfile</code>に以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;http status checker&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;http_status_checker&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>http status checker</h1>
+
+<p>gem 'http_status_checker'
+{% endcodeblock %}</p>
 
 <p>そして以下のコマンドを実行してインストールしてください。(pathは適宜変更)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle install --path vendor/bundle --jobs<span class="o">=</span>4
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bundle install --path vendor/bundle --jobs=4
+{% endcodeblock %}</p>
 
 <p>もしくはコマンドライン上で以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install http_status_checker
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+gem install http_status_checker
+{% endcodeblock %}</p>
 
 <h2>コマンドラインから使い方</h2>
 
 <p>Gemをインストールしたら、<code>http_status_checker</code>をコマンドラインから呼び出す事ができます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">http_status_checker</span> <span class="o">-</span><span class="n">u</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">morizyun</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; url: http:/</span><span class="o">/</span><span class="n">morizyun</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; response: {:code=&gt;&quot;200&quot;, :is_alive=&gt;true, :redirect_url=&gt;nil}&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+$ http_status_checker -u http://morizyun.github.io</p>
+
+<h1>=> url: http://morizyun.github.io</h1>
+
+<h1>=> response: {:code=>"200", :is_alive=>true, :redirect_url=>nil}</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h2>Rubyプログラム内での使い方</h2>
 
 <p>Rubyプログラムから呼び出す事もできます。引数の<code>interval_sec</code>は任意なので省略可能です。
 省略した場合のデフォルトのインターバルは1秒です。(相手サイトに大量にアクセスしないように)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>require <span class="s1">&#39;http_status_checker&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;urls <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;http://morizyun.github.io&#39;</span>, <span class="s1">&#39;http://www.yahoo.co.jp&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="nv">interval_sec</span> <span class="o">=</span> 1
-</span><span class='line'>HttpStatusChecker.check urls, interval_sec&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; <span class="o">[{</span><span class="s2">&quot;http://morizyun.github.io&quot;</span><span class="o">=</span>&gt;<span class="o">{</span>:code<span class="o">=</span>&gt;<span class="s2">&quot;200&quot;</span>, :is_alive<span class="o">=</span>&gt;true, :redirect_url<span class="o">=</span>&gt;nil<span class="o">}}</span>,&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; <span class="o">{</span><span class="s2">&quot;http://www.yahoo.co.jp&quot;</span><span class="o">=</span>&gt;<span class="o">{</span>:code<span class="o">=</span>&gt;<span class="s2">&quot;200&quot;</span>, :is_alive<span class="o">=</span>&gt;true, :redirect_url<span class="o">=</span>&gt;nil<span class="o">}}]</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+require 'http_status_checker'</p>
+
+<p>urls = ['http://morizyun.github.io', 'http://www.yahoo.co.jp']
+interval_sec = 1
+HttpStatusChecker.check urls, interval_sec</p>
+
+<h1>=> [{"http://morizyun.github.io"=>{:code=>"200", :is_alive=>true, :redirect_url=>nil}},</h1>
+
+<h1>=> {"http://www.yahoo.co.jp"=>{:code=>"200", :is_alive=>true, :redirect_url=>nil}}]</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h2>Issue/Pull Request 大歓迎</h2>
 
@@ -727,19 +452,7 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 
 <p><strong><a href="https://github.com/morizyun/http_status_checker">morizyun/http_status_checker</a></strong></p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 ]]></content>
   </entry>
   
@@ -764,19 +477,7 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>プログラムのモチベーション</h2>
 
@@ -815,85 +516,55 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 
 <p>次にプロジェクトフォルダ直下で、Gemfile作成して以下の様に追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;debug用&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;pry&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;stackを表示&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;pry-stack_explorer&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;各種便利ユーティリティ&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;activesupport&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+source 'https://rubygems.org'</p>
+
+<h1>debug用</h1>
+
+<p>gem 'pry'</p>
+
+<h1>stackを表示</h1>
+
+<p>gem 'pry-stack_explorer'</p>
+
+<h1>各種便利ユーティリティ</h1>
+
+<p>gem 'activesupport'
+{% endcodeblock %}</p>
 
 <p>以下のコマンドを実行して、Gemをインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Gemを追加するためのディレクトリを作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;mkdir vendor&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Gemをディレクトリに保存&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bundle install --path vendor/bundle --jobs<span class="o">=</span>4
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>Gemを追加するためのディレクトリを作成</h1>
+
+<p>mkdir vendor</p>
+
+<h1>Gemをディレクトリに保存</h1>
+
+<p>bundle install --path vendor/bundle --jobs=4
+{% endcodeblock %}</p>
 
 <h4>(2) 実際に動かしてみる</h4>
 
 <p>例えば、<code>sample.rb</code>を作成して以下のようにコードを記入。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;pry&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;pry-byebug&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts 2.days.ago</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'pry'
+require 'pry-byebug'
+require 'active_support/all'</p>
+
+<p>puts 2.days.ago
+{% endcodeblock %}</p>
 
 <p>これを実行するとactive supportの機能である2日前の日付を取得する事ができます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bunlde <span class="nb">exec </span>ruby sample.rb&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 2014-12-25 14:09:42 +0900&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bunlde exec ruby sample.rb</p>
+
+<h1>=> 2014-12-25 14:09:42 +0900</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h4>(3) デバッガの準備</h4>
 
@@ -902,135 +573,74 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 <p>まずは、<code>vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/numeric/time.rb</code>
 を開いて、daysメソッドに以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">def</span> <span class="nf">days</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;binding.pry # &amp;lt;= この行を追加</span>
-</span><span class='line'><span class="sr">ActiveSupport::Duration.new(self * 24.hours, [[:days, self]])</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+  def days</p>
+
+<pre><code>binding.pry # &lt;= この行を追加
+ActiveSupport::Duration.new(self * 24.hours, [[:days, self]])
+</code></pre>
+
+<p>  end
+{% endcodeblock %}</p>
 
 <p>そしてもう一度以下のコマンドを実行すると今度は、<code>binding.pry</code>を書いた地点で停止します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bunlde <span class="nb">exec </span>ruby sample.rb&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;デバッカが表示&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; From:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;/active_support_reading/vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/numeric/time.rb @ line 50 Numeric#days:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;     49: def days&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;  <span class="o">=</span>&gt; 50:   binding.pry&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;     51:   ActiveSupport::Duration.new<span class="o">(</span>self * 24.hours, <span class="o">[[</span>:days, self<span class="o">]])</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;     52: end&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;呼び出しの関係を取得&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;2.1.4 <span class="o">(</span>2<span class="o">)</span>:0 &gt; show-stack&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Showing all accessible frames in stack <span class="o">(</span>2 in total<span class="o">)</span>:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; --&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; <span class="o">=</span>&gt; <span class="c">#0  days &amp;lt;Numeric#days()&gt;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;    <span class="c">#1 [main]    &lt;main&gt;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;2.1.4 <span class="o">(</span>main<span class="o">)</span>:0 &gt; show-source Benchmark.ms&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; From:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;/active_support_reading/vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/benchmark.rb @ line 11:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Owner: <span class="c">#&amp;lt;Class:Benchmark&gt;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Visibility: public&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Number of lines: 3&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; def ms&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;   1000 * realtime <span class="o">{</span> yield <span class="o">}</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; end&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ここでstepを実行すると処理の中身に移動、nextで次の処理を見ることができる&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bunlde exec ruby sample.rb</p>
+
+<h1>デバッカが表示</h1>
+
+<h1>=> From:</h1>
+
+<h1>=>/active_support_reading/vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/numeric/time.rb @ line 50 Numeric#days:</h1>
+
+<h1>=></h1>
+
+<h1>=>     49: def days</h1>
+
+<h1>=>  => 50:   binding.pry</h1>
+
+<h1>=>     51:   ActiveSupport::Duration.new(self * 24.hours, [[:days, self]])</h1>
+
+<h1>=>     52: end</h1>
+
+<h1>呼び出しの関係を取得</h1>
+
+<p>2.1.4 (2):0 > show-stack</p>
+
+<h1>=> Showing all accessible frames in stack (2 in total):</h1>
+
+<h1>=> --</h1>
+
+<h1>=> => #0  days &lt;Numeric#days()></h1>
+
+<h1>=>    #1 [main]    <main></h1>
+
+<p>2.1.4 (main):0 > show-source Benchmark.ms</p>
+
+<h1>=></h1>
+
+<h1>=> From:</h1>
+
+<h1>=>/active_support_reading/vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/benchmark.rb @ line 11:</h1>
+
+<h1>=> Owner: #&lt;Class:Benchmark></h1>
+
+<h1>=> Visibility: public</h1>
+
+<h1>=> Number of lines: 3</h1>
+
+<h1>=></h1>
+
+<h1>=> def ms</h1>
+
+<h1>=>   1000 * realtime { yield }</h1>
+
+<h1>=> end</h1>
+
+<h1>ここでstepを実行すると処理の中身に移動、nextで次の処理を見ることができる</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p>あとはちょっと変更して見て動かしたりしてみてください。</p>
 
@@ -1048,19 +658,7 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 </pre>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>ActiveSupportの面白い機能</h2>
 
@@ -1072,110 +670,72 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 <p><code>Benchmark.ms</code>はブロックを渡すとブロックを評価して実行時間を計測します。<br/>
 (Benchmark.realtimeのラッパーです)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts Benchmark.ms {  sleep 1 } # =&gt; 1000.234</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<p>puts Benchmark.ms {  sleep 1 } # => 1000.234
+{% endcodeblock %}</p>
 
 <h3>cattr_accessor</h3>
 
 <p><code>attr_accessor</code>はインスタンス変数へのアクセッサを提供するメソッド。<br/>
 <code>cattr_accessor</code>は、クラス変数へのアクセッサを提供するメソッド。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;class Sample</span>
-</span><span class='line'><span class="sr">  cattr_accessor :hoge</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Sample</span><span class="o">.</span><span class="n">hoge</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="nb">puts</span> <span class="no">Sample</span><span class="o">.</span><span class="n">hoge</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<p>class Sample
+  cattr_accessor :hoge
+end</p>
+
+<p>Sample.hoge = 1
+puts Sample.hoge
+{% endcodeblock %}</p>
 
 <h3>descendants</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;class Parent</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">class Child &amp;lt; Parent</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">class GrandChild &amp;lt; Child</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">継承してくれている先を出す</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts Parent.descendants.to_s #=&gt; [Child, GrandChild]&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">継承元を出すメソッド</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts GrandChild.ancestors.to_s&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="o">[</span><span class="no">GrandChild</span><span class="p">,</span> <span class="no">Child</span><span class="p">,</span> <span class="no">Parent</span><span class="p">,</span> <span class="no">Object</span><span class="p">,</span> <span class="no">JSON</span><span class="o">::</span><span class="no">Ext</span><span class="o">::</span><span class="no">Generator</span><span class="o">::</span><span class="no">GeneratorMethods</span><span class="o">::</span><span class="no">Object</span><span class="p">,</span> <span class="no">PP</span><span class="o">::</span><span class="no">ObjectMixin</span><span class="p">,</span> <span class="no">Kernel</span><span class="p">,</span> <span class="no">BasicObject</span><span class="o">]&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<p>class Parent
+end
+class Child &lt; Parent
+end
+class GrandChild &lt; Child
+end</p>
+
+<h1>継承してくれている先を出す</h1>
+
+<p>puts Parent.descendants.to_s #=> [Child, GrandChild]</p>
+
+<h1>継承元を出すメソッド</h1>
+
+<p>puts GrandChild.ancestors.to_s</p>
+
+<h1>=> [GrandChild, Child, Parent, Object, JSON::Ext::Generator::GeneratorMethods::Object, PP::ObjectMixin, Kernel, BasicObject]</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h2>Hash.except</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;ハッシュから特定のキーを削除&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="n">hoge</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">huga</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
-</span><span class='line'><span class="nb">puts</span> <span class="nb">hash</span><span class="o">.</span><span class="n">except</span><span class="p">(</span><span class="ss">:hoge</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span> <span class="c1"># =&gt; {:huga =&gt; 2}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<h1>ハッシュから特定のキーを削除</h1>
+
+<p>hash = { hoge: 1, huga: 2 }
+puts hash.except(:hoge).to_s # => {:huga => 2}
+{% endcodeblock %}</p>
 
 <h2>Time#change</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;その日の4時0分0秒を取得&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">hour</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">minute</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">second</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">#=&gt; 2014-12-27 04:00:00 +0900</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<h1>その日の4時0分0秒を取得</h1>
+
+<p>Time.now.change(hour: 4, minute: 0, second: 0) #=> 2014-12-27 04:00:00 +0900
+{% endcodeblock %}</p>
 
 <p>ここの記事が大変参考になりました！</p>
 
@@ -1224,19 +784,7 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 
 <p><strong><a href="http://qiita.com/shiro615">shiro615 - Qiita</a></strong></p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -1268,307 +816,176 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>インストール手順</h2>
 
 <p>いつもどおり<code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行してください。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;command-line interfaces&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;gem <span class="s1">&#39;thor&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>command-line interfaces</h1>
+
+<p>gem 'thor'
+{% endcodeblock %}</p>
 
 <p>もしくはコマンドライン上で以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install thor
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+gem install thor
+{% endcodeblock %}</p>
 
 <h2>基本的な使い方</h2>
 
 <p><code>testest</code>を作成して以下コードを記述します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;!/us</span><span class="n">r</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">ruby</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;coding: utf-8&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;thor&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;class Command &amp;lt; Thor</span>
-</span><span class='line'><span class="sr">  default_command :example&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">desc</span> <span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;an example task&#39;</span>
-</span><span class='line'>  <span class="n">option</span> <span class="ss">:file</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="ss">:string</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="s1">&#39;Delete the file after parsing it&#39;</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">example</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &quot;executing! argument is </span><span class="si">#{</span><span class="n">options</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="si">}</span><span class="sr">!&quot;</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Command</span><span class="o">.</span><span class="n">start</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>!/usr/bin/env ruby</h1>
+
+<h1>coding: utf-8</h1>
+
+<p>require 'rubygems'
+require 'thor'</p>
+
+<p>class Command &lt; Thor
+  default_command :example</p>
+
+<p>  desc 'example', 'an example task'
+  option :file, type: :string, aliases: '-f', desc: 'Delete the file after parsing it'
+  def example</p>
+
+<pre><code>puts "executing! argument is #{options[:file]}!"
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Command.start
+{% endcodeblock %}</p>
 
 <p>早速作成したコマンドを実行してみます！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;初回のみ実行権限を付与&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;chmod a+x testest&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;./testest -f sample.file&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; executing! argument is sample.file!&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>初回のみ実行権限を付与</h1>
+
+<p>chmod a+x testest</p>
+
+<p>./testest -f sample.file</p>
+
+<h1>=> executing! argument is sample.file!</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h2>引数とオプションの追加</h2>
 
 <p>先ほどのコマンドに引数と、オプションを足してみます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;!/us</span><span class="n">r</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">ruby</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;coding: utf-8&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;thor&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;class Command &amp;lt; Thor</span>
-</span><span class='line'><span class="sr">  default_command :example&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">desc</span> <span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;an example task&#39;</span>
-</span><span class='line'>  <span class="n">option</span> <span class="ss">:file</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="ss">:string</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="s1">&#39;Delete the file after parsing it&#39;</span>
-</span><span class='line'>  <span class="n">method_option</span> <span class="ss">:delete</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="p">:</span> <span class="s1">&#39;Delete the file after parsing it&#39;</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">example</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;if options[:delete]</span>
-</span><span class='line'><span class="sr">  puts &quot;executing! argument is </span><span class="si">#{</span><span class="n">options</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="si">}</span><span class="sr"> and delete option is true!&quot;</span>
-</span><span class='line'><span class="sr">else</span>
-</span><span class='line'><span class="sr">  puts &quot;executing! argument is </span><span class="si">#{</span><span class="n">options</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="si">}</span><span class="sr"> and delete option is false!&quot;</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Command</span><span class="o">.</span><span class="n">start</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>!/usr/bin/env ruby</h1>
+
+<h1>coding: utf-8</h1>
+
+<p>require 'rubygems'
+require 'thor'</p>
+
+<p>class Command &lt; Thor
+  default_command :example</p>
+
+<p>  desc 'example', 'an example task'
+  option :file, type: :string, aliases: '-f', desc: 'Delete the file after parsing it'
+  method_option :delete, aliases: '-d', desc: 'Delete the file after parsing it'
+  def example</p>
+
+<pre><code>if options[:delete]
+  puts "executing! argument is #{options[:file]} and delete option is true!"
+else
+  puts "executing! argument is #{options[:file]} and delete option is false!"
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Command.start
+{% endcodeblock %}</p>
 
 <p>では先ほど作ったコマンドを実行してみます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;-d<span class="o">(</span>--delete<span class="o">)</span> オプションを付けない場合&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;./testest -f <span class="s1">&#39;sample.file&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; executing! argument is sample.file and delete option is <span class="nb">false</span>!&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;-d<span class="o">(</span>--delete<span class="o">)</span> オプションを付ける場合&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;./testest -f <span class="s1">&#39;sample.file&#39;</span> -d&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; executing! argument is sample.file and delete option is <span class="nb">true</span>!&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>-d(--delete) オプションを付けない場合</h1>
+
+<p>./testest -f 'sample.file'</p>
+
+<h1>=> executing! argument is sample.file and delete option is false!</h1>
+
+<h1>-d(--delete) オプションを付ける場合</h1>
+
+<p>./testest -f 'sample.file' -d</p>
+
+<h1>=> executing! argument is sample.file and delete option is true!</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h2>Railsの環境情報を取得</h2>
 
 <p>Railsの環境情報を使ったコマンドも簡単に作成できます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Example</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Thor</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Thor</span><span class="o">::</span><span class="no">Actions</span>
-</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;init_example&quot;</span><span class="p">,</span> <span class="s2">&quot; you can write some description&quot;</span>
-</span><span class='line'>  <span class="n">method_options</span> <span class="ss">:force</span> <span class="o">=&gt;</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">:aliases</span> <span class="o">=&gt;</span> <span class="s2">&quot;-f&quot;</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">init_example</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;# Railsの環境情報を読み込み</span>
-</span><span class='line'><span class="sr">require &#39;./</span><span class="n">config</span><span class="o">/</span><span class="n">environment</span><span class="err">&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:force</span><span class="o">]</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">yes?</span><span class="p">(</span><span class="s2">&quot;WARN: Are u sure ?&quot;</span><span class="p">,</span><span class="ss">:yellow</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">delete_sql</span> <span class="o">=</span> <span class="s2">&quot;truncate examples&quot;</span>
-</span><span class='line'>    <span class="n">say</span> <span class="s2">&quot;delete all datas from examples ... &quot;</span><span class="p">,</span> <span class="ss">:red</span>
-</span><span class='line'>    <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">delete_sql</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="n">say</span> <span class="s2">&quot;Cancel!&quot;</span><span class="p">,</span> <span class="ss">:red</span>
-</span><span class='line'>    <span class="k">return</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#TODO</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+class Example &lt; Thor
+  include Thor::Actions
+  desc "init_example", " you can write some description"
+  method_options :force => :boolean, :aliases => "-f"
+  def init_example</p>
+
+<pre><code># Railsの環境情報を読み込み
+require './config/environment'
+
+if options[:force]
+  if yes?("WARN: Are u sure ?",:yellow)
+    delete_sql = "truncate examples"
+    say "delete all datas from examples ... ", :red
+    ActiveRecord::Base.connection.execute(delete_sql)
+  else
+    say "Cancel!", :red
+    return
+  end
+end
+
+#TODO
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <h2>Namespaceを付け足す</h2>
 
 <p>thorを使いこなす過程でNamespaceが欲しくなるかもです。そんな場合はこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>module Sinatra
-</span><span class='line'>  class App &amp;lt; Thor&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;namespace :myapp
-</span><span class='line'>def install
-</span><span class='line'>  <span class="c"># task code</span>
-</span><span class='line'>end
-</span><span class='line'><span class="c"># other tasks</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  end
-</span><span class='line'>end
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+module Sinatra
+  class App &lt; Thor</p>
+
+<pre><code>namespace :myapp
+def install
+  # task code
+end
+# other tasks
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <p>ちなみに、実行コマンドは以下の通りです。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>thor myapp:install
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+thor myapp:install
+{% endcodeblock %}</p>
 
 <h2>Thor GitHub Wiki</h2>
 
@@ -1576,19 +993,7 @@ ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれると�
 
 <p><strong><a href="https://github.com/erikhuda/thor/wiki">Home erikhuda/thor Wiki - GitHub</a></strong></p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: responsive | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/responsive/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -27,19 +27,7 @@ Youtube動画をiframeでサイトに埋め込む時に、最適なサイズに�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>表示サンプル</h2>
 
@@ -58,79 +46,43 @@ Youtube動画をiframeでサイトに埋め込む時に、最適なサイズに�
 
 <p>html側はyoutubeから取得してきた埋め込み用のiframeを<code>div</code>で囲みます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;youtube-container&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;iframe</span> <span class="na">id=</span><span class="s">&quot;player&quot;</span> <span class="na">type=</span><span class="s">&quot;text/html&quot;</span> <span class="na">width=</span><span class="s">&quot;640&quot;</span> <span class="na">height=</span><span class="s">&quot;390&quot;</span>
-</span><span class='line'>  <span class="na">src=</span><span class="s">&quot;http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&amp;origin=http://example.com&quot;</span>
-</span><span class='line'>  <span class="na">frameborder=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;/iframe&gt;</span>
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:html %}</p>
+
+<div class="youtube-container">
+<iframe id="player" type="text/html" width="640" height="390"
+  src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
+  frameborder="0"></iframe>
+</div>
+
+
+<p>{% endcodeblock %}</p>
 
 <h2>CSS側の設定</h2>
 
 <p>css側のソースコードはこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>// youtube responsive
-</span><span class='line'>.youtube-container <span class="o">{</span>
-</span><span class='line'>  position: relative;
-</span><span class='line'>  padding-bottom: 56.25%;
-</span><span class='line'>  padding-top: 30px; height: 0; overflow: hidden;
-</span><span class='line'><span class="o">}</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;.youtube-container iframe <span class="o">{</span>
-</span><span class='line'>  position: absolute;
-</span><span class='line'>  top: 0;
-</span><span class='line'>  left: 0;
-</span><span class='line'>  width: 100%;
-</span><span class='line'>  height: 100%;
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+// youtube responsive
+.youtube-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px; height: 0; overflow: hidden;
+}</p>
+
+<p>.youtube-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+{% endcodeblock %}</p>
 
 <h2>まとめ</h2>
 
 <p>たったこれだけのソースで、youtubeの幅に悩むことがなくなります。youtube動画を頻繁に使うようなサイトを運営されている方はぜひお試しください！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -151,19 +103,7 @@ Youtube動画をiframeでサイトに埋め込む時に、最適なサイズに�
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>TinyNav.jsって何？</h2>
 
@@ -189,123 +129,72 @@ Youtube動画をiframeでサイトに埋め込む時に、最適なサイズに�
 
 <h3>(2) jsの読み込み設定</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nt">%script</span><span class="p">{</span><span class="n">src</span> <span class="o">=&gt;</span> <span class="s2">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js&quot;</span><span class="p">}</span>
-</span><span class='line'><span class="nt">%script</span><span class="p">{</span><span class="ss">:src</span> <span class="o">=&gt;</span> <span class="s2">&quot;tinynav.min.js&quot;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:haml %}
+%script{src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"}
+%script{:src => "tinynav.min.js"}
+{% endcodeblock %}</p>
 
 <h3>(3) ナビゲーションのHTMLを作成</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nt">%ul</span><span class="nf">#nav</span>
-</span><span class='line'>  <span class="nt">%li</span><span class="nc">.selected</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;%a{:href =&amp;gt; &quot;/&quot;} Home
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  %li&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;%a{:href =&amp;gt; &quot;/about/&quot;} About
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  %li&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;%a{:href =&amp;gt; &quot;/contact/&quot;} Contact
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:haml %}
+%ul#nav
+  %li.selected</p>
+
+<pre><code>%a{:href =&gt; "/"} Home
+</code></pre>
+
+<p>  %li</p>
+
+<pre><code>%a{:href =&gt; "/about/"} About
+</code></pre>
+
+<p>  %li</p>
+
+<pre><code>%a{:href =&gt; "/contact/"} Contact
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h3>(4) スタイルシートの設定</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='sass'><span class='line'><span class="cm">/* デスクトップ用の設定</span>
-</span><span class='line'><span class="nc">.tinynav</span>
-</span><span class='line'>  <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;/*</span> <span class="err">モバイル用の設定</span>
-</span><span class='line'><span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="nd">:</span> <span class="nt">600px</span><span class="o">)</span>
-</span><span class='line'>  <span class="nc">.tinynav</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">&lt;pre&gt;&lt;code&gt;display</span><span class="o">:</span> <span class="no">block</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="nt">code</span><span class="o">&gt;&lt;/</span><span class="nt">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span>  <span class="nn">#nav</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">&lt;pre&gt;&lt;code&gt;display</span><span class="o">:</span> <span class="no">none</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="nt">code</span><span class="o">&gt;&lt;/</span><span class="nt">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:sass %}
+/* デスクトップ用の設定
+.tinynav
+  display: none</p>
+
+<p>/* モバイル用の設定
+@media screen and (max-width: 600px)
+  .tinynav</p>
+
+<pre><code>display: block
+</code></pre>
+
+<p>  #nav</p>
+
+<pre><code>display: none
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h3>(5) Coffeescript(js)の設定</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">$</span> <span class="o">-&gt;</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s">&quot;</span><span class="err">#</span><span class="s">nav&quot;</span><span class="p">).</span><span class="nx">tinyNav</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:coffeescript %}
+$ ->
+  $("#nav").tinyNav()
+{% endcodeblock %}</p>
 
 <h3>(6) 任意でオプションを設定</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s">&quot;</span><span class="err">#</span><span class="s">nav&quot;</span><span class="p">).</span><span class="nx">tinyNav</span>
-</span><span class='line'>  <span class="nv">active: </span><span class="s">&quot;selected&quot;</span> <span class="c1"># &quot;active&quot;クラスの設定</span>
-</span><span class='line'>  <span class="nv">header: </span><span class="s">&quot;Navigation&quot;</span> <span class="c1"># String: Specify text for &quot;header&quot; and show header instead of the active item</span>
-</span><span class='line'>  <span class="nv">label: </span><span class="s">&quot;&quot;</span> <span class="c1"># String: Sets the &lt;label&gt; text for the &lt;select&gt; (if not set, no label will be added)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:coffeescript %}
+$("#nav").tinyNav
+  active: "selected" # "active"クラスの設定
+  header: "Navigation" # String: Specify text for "header" and show header instead of the active item
+  label: "" # String: Sets the <label> text for the <select> (if not set, no label will be added)
+{% endcodeblock %}</p>
 
 <p>これで、メニューをレスポンシブに出来ます。デザイン的な見栄えは少し微妙かもしれませんが、実際に使ってみると使いやすさの面ではオススメです！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

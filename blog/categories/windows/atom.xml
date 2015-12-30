@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Windows | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/windows/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,19 +28,7 @@
 <br style="clear:both;"/>
 
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>VirtualBox</h2>
 
@@ -84,29 +72,23 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <p>vagrantをインストールしたら、boxでchefを使えるようにするためのプラグインをインストールします。コマンドプロンプトを開いて以下のコマンドを入力。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant plugin install vagrant-omnibus
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant plugin install vagrant-omnibus
+{% endcodeblock %}</p>
 
 <h2>仮想マシンの作成</h2>
 
 <p>自分の好きな場所(例は<code>~/Dropbox/vagrant</code>)に仮想マシン用のフォルダを作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir vagrant
-</span><span class='line'><span class="nb">cd </span>vagrant
-</span><span class='line'>git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp
-</span><span class='line'><span class="nb">cd </span>cakephp
-</span><span class='line'>gem install bundler
-</span><span class='line'>bundle install
-</span><span class='line'>vagrant up
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+mkdir vagrant
+cd vagrant
+git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp
+cd cakephp
+gem install bundler
+bundle install
+vagrant up
+{% endcodeblock %}</p>
 
 <p>Network系でエラーが出る場合は、一度Windows側を再起動をしてみてください。</p>
 
@@ -115,9 +97,9 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 <p>1) C:\Windows\System32\drivers\etc\hostsを管理者権限のメモ帳で開く<br/>
 2) 次の内容を追記<br/></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>192.168.33.10 cakephp.dev
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+192.168.33.10 cakephp.dev
+{% endcodeblock %}</p>
 
 <h2>ブラウザでのアクセス</h2>
 
@@ -135,33 +117,18 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <h2>Vagrantの基本コマンド</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant up : vagrantの起動<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant halt : vagrantを終了<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant provision : vagrantに設定を反映<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant ssh : vagrantにログイン
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant up : vagrantの起動(Vagrantfileがあるフォルダで実行)
+vagrant halt : vagrantを終了(Vagrantfileがあるフォルダで実行)
+vagrant provision : vagrantに設定を反映(Vagrantfileがあるフォルダで実行)
+vagrant ssh : vagrantにログイン
+{% endcodeblock %}</p>
 
 <h2>GitHubのリポジトリ</h2>
 
 <p>このvagrantの詳細はGitHubのリポジトリ『<strong><a href="https://github.com/morizyun/vagrant-centos-cakephp">morizyun/vagrant-centos-cakephp</a></strong>』にあります！</p>
 
-<p><div>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-4186413323075068";
-  /* middle_yoko_naga2 */
-  google_ad_slot = "4362325392";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-</div></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>お願い</h2>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rake | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rake/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:05:39+09:00</updated>
+  <updated>2015-12-30T21:06:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -33,59 +33,42 @@
 
 <p>次のコマンドを実行すると、Rakeタスク用のファイルが<code>lib/tasks</code>の下に作成されます。<br/>(<code>reports</code>の部分は任意の名前に変更してください)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g task reports
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rails g task reports
+{% endcodeblock %}</p>
 
 <p>上で生成された<code>lib/tasks/reports.rake</code>に処理を記述。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:reports</span> <span class="k">do</span>
-</span><span class='line'>  <span class="c1"># descの記述は必須</span>
-</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Generate report&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  # :environment は モデルにアクセスするのに必須</span>
-</span><span class='line'><span class="sr">  task :generate =&gt; :environment do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1"># 処理を記述</span>
-</span><span class='line'><span class="no">ReportGenerator</span><span class="o">.</span><span class="n">generate</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+namespace :reports do
+  # descの記述は必須
+  desc "Generate report"</p>
+
+<p>  # :environment は モデルにアクセスするのに必須
+  task :generate => :environment do</p>
+
+<pre><code># 処理を記述
+ReportGenerator.generate
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <p>ここまで完了するとrakeタスクの中に<code>reports:generate</code>が追加されます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake -vT&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;rake reports:generate  <span class="c"># hoge の説明&quot; # &amp;lt;= となっていれば成功&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rake -vT</p>
+
+<h1>rake reports:generate  # hoge の説明" # &lt;= となっていれば成功</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p>次のコマンドで、作成した<code>reports:generate</code>のRakeタスクを実行することができます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake reports:generate
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rake reports:generate
+{% endcodeblock %}</p>
 
 <h2>Rake タスクのRSpecを作成</h2>
 
@@ -95,51 +78,33 @@
 
 <p>まずはGemfileに以下を追加して、ターミナルで<code>bundle install</code>を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;rake&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;shared_context for rake tasks&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;rake_shared_context&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+gem 'rake'</p>
+
+<h1>shared_context for rake tasks</h1>
+
+<p>gem 'rake_shared_context'
+{% endcodeblock %}</p>
 
 <p><code>spec/lib/tasks/reports_rake_spec.rb</code>を作成して、テストを記述。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;describe &#39;reports:generate&#39; do</span>
-</span><span class='line'><span class="sr">  include_context &#39;rake&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">its</span><span class="p">(</span><span class="ss">:prerequisites</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="kp">include</span><span class="p">(</span><span class="s1">&#39;environment&#39;</span><span class="p">)</span> <span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  it &#39;generates the report&#39; do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="no">ReportGenerator</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:generate</span><span class="p">)</span>
-</span><span class='line'><span class="n">subject</span><span class="o">.</span><span class="n">invoke</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'spec_helper'</p>
+
+<p>describe 'reports:generate' do
+  include_context 'rake'</p>
+
+<p>  its(:prerequisites) { should include('environment') }</p>
+
+<p>  it 'generates the report' do</p>
+
+<pre><code>ReportGenerator.should_receive(:generate)
+subject.invoke
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <p>かなり簡単にRakeタスクのテストができちゃいます！</p>
 
