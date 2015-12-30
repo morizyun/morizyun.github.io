@@ -4,7 +4,7 @@
   <title><![CDATA[Category: telnet | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/telnet/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:08:25+09:00</updated>
+  <updated>2015-12-30T21:09:47+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>telnetとは？</h2>
 
@@ -38,33 +50,51 @@
 
 <p>telnetを使ってICP/IPの通信を行うことができるので、webサイトからhtmlを取得することも簡単にできます。例えば、<code>www.yahoo.co.jp</code>からhtmlを取得する場合は次のようにターミナルを実行するだけです。</p>
 
-<p>{% codeblock lang:bash %}
-telnet www.yahoo.co.jp 80
-GET / HTTP/1.0[Enter]
-Host: www.yahoo.co.jp[Enter]
-[Enter]
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>telnet www.yahoo.co.jp 80
+</span><span class='line'>GET / HTTP/1.0<span class="o">[</span>Enter<span class="o">]</span>
+</span><span class='line'>Host: www.yahoo.co.jp<span class="o">[</span>Enter<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>Enter<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>すると出力結果は次のようになります。</p>
 
-<p>{% codeblock lang:bash %}
-HTTP/1.1 200 OK
-Server: nginx
-Date: Sat, 21 Jun 2014 21:22:07 GMT
-Content-Type: text/html; charset=UTF-8
-Connection: close
-P3P: policyref="http://privacy.yahoo.co.jp/w3c/p3p_jp.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV"
-Cache-Control: private, no-cache, no-store, must-revalidate
-Expires: -1
-Pragma: no-cache
-X-XRDS-Location: https://open.login.yahooapis.jp/openid20/www.yahoo.co.jp/xrds
-Vary: Accept-Encoding</p>
-
-<p>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-....
-</html>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>HTTP/1.1 200 OK
+</span><span class='line'>Server: nginx
+</span><span class='line'>Date: Sat, 21 Jun 2014 21:22:07 GMT
+</span><span class='line'>Content-Type: text/html; <span class="nv">charset</span><span class="o">=</span>UTF-8
+</span><span class='line'>Connection: close
+</span><span class='line'>P3P: <span class="nv">policyref</span><span class="o">=</span><span class="s2">&quot;http://privacy.yahoo.co.jp/w3c/p3p_jp.xml&quot;</span>, <span class="nv">CP</span><span class="o">=</span><span class="s2">&quot;CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE GOV&quot;</span>
+</span><span class='line'>Cache-Control: private, no-cache, no-store, must-revalidate
+</span><span class='line'>Expires: -1
+</span><span class='line'>Pragma: no-cache
+</span><span class='line'>X-XRDS-Location: https://open.login.yahooapis.jp/openid20/www.yahoo.co.jp/xrds
+</span><span class='line'>Vary: Accept-Encoding&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&amp;lt;!DOCTYPE HTML PUBLIC <span class="s2">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="s2">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;
+</span><span class='line'>&lt;html&gt;
+</span><span class='line'>....
+</span><span class='line'>&lt;/html&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>telnetからでもHTMLが取得できている事がわかります。</p>
 
@@ -74,25 +104,33 @@ Vary: Accept-Encoding</p>
 
 <p>まずは、gmailのメールサーバを検索します。</p>
 
-<p>{% codeblock lang:bash %}
-nslookup -type=mx gmail.com                                                    Server:   10.0.1.1
-Address:  10.0.1.1#53</p>
-
-<p>Non-authoritative answer:
-gmail.com mail exchanger = 30 alt3.gmail-smtp-in.l.google.com.
-gmail.com mail exchanger = 40 alt4.gmail-smtp-in.l.google.com.
-gmail.com mail exchanger = 5 gmail-smtp-in.l.google.com.
-gmail.com mail exchanger = 10 alt1.gmail-smtp-in.l.google.com.
-gmail.com mail exchanger = 20 alt2.gmail-smtp-in.l.google.com.
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nslookup -type<span class="o">=</span>mx gmail.com                                                    Server:   10.0.1.1
+</span><span class='line'>Address:  10.0.1.1#53&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Non-authoritative answer:
+</span><span class='line'>gmail.com mail <span class="nv">exchanger</span> <span class="o">=</span> 30 alt3.gmail-smtp-in.l.google.com.
+</span><span class='line'>gmail.com mail <span class="nv">exchanger</span> <span class="o">=</span> 40 alt4.gmail-smtp-in.l.google.com.
+</span><span class='line'>gmail.com mail <span class="nv">exchanger</span> <span class="o">=</span> 5 gmail-smtp-in.l.google.com.
+</span><span class='line'>gmail.com mail <span class="nv">exchanger</span> <span class="o">=</span> 10 alt1.gmail-smtp-in.l.google.com.
+</span><span class='line'>gmail.com mail <span class="nv">exchanger</span> <span class="o">=</span> 20 alt2.gmail-smtp-in.l.google.com.
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>複数のドメインが優先順位をつけて登録されていることがわかります。</p>
 
 <p>今回は<code>gmail.com  mail exchanger = 5 gmail-smtp-in.l.google.com.</code>を使って、通信を行ってみます。</p>
 
-<p>{% codeblock lang:bash %}
-telnet gmail-smtp-in.l.google.com 25
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>telnet gmail-smtp-in.l.google.com 25
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ですが残念ながら僕の環境ではtelnetで接続できるmailサーバを発見できずorz</p>
 
@@ -106,7 +144,19 @@ telnet gmail-smtp-in.l.google.com 25
 
 <p>実際にはtelnetもTCP/IPのコネクションを行うための処理は隠蔽してくれているため、本当意味でのローレベルではないですが、擬似的にWebブラウザやメールアプリの通信を勉強できます。</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 ]]></content>
   </entry>
   

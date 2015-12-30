@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mac App | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/mac-app/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:08:25+09:00</updated>
+  <updated>2015-12-30T21:09:47+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://morizyun.github.io/blog/SmillaEnlarger-mac-app-image-enlarge/"/>
     <updated>2012-12-27T23:00:00+09:00</updated>
     <id>http://morizyun.github.io/blog/SmillaEnlarger-mac-app-image-enlarge</id>
-    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Macアプリで、jpeg/png画像を荒くせずに綺麗に拡大してくれるフリー(無料)ソフト SmillaEnlargerを紹介します。</p>
+    <content type="html"><![CDATA[<p><a href="blog/categories/mac-app/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Macアプリで、jpeg/png画像を荒くせずに綺麗に拡大してくれるフリー(無料)ソフト SmillaEnlargerを紹介します。</p>
 
 <p><a href="http://sourceforge.jp/projects/sfnet_imageenlarger/" title="SmillaEnlarger" class="button big primary">SmillaEnlarger</a></p>
 
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>ソフトのダウンロード</h2>
 
@@ -69,7 +81,19 @@
 
 <p><a href="http://sourceforge.jp/projects/sfnet_imageenlarger/" title="SmillaEnlarger" class="button big primary">SmillaEnlarger</a></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 ]]></content>
   </entry>
   
@@ -136,7 +160,7 @@
 
 <p>Facebookページのオリジナルバナーを作ってみました。テンプレートからpngの切り出しまで15分位でできました。(大半が色で悩んでいただけで作業は5分位)</p>
 
-<p>{% img /images/facebook_page_banner.png %}</p>
+<p><img src="/images/facebook_page_banner.png"></p>
 
 <h2>例えばiPhoneゲームを作っていたら</h2>
 
@@ -162,9 +186,10 @@
 <p>Octopressの場合は、デフォルトのfaviconがfavicon.pngとなっています。そのため
 favicon.icoがうまく読み込まれず焦りました。headerに以下を追加して解決しました。</p>
 
-<p>{% codeblock header.html lang:bash %}
-<link rel="shortcut icon" href="favicon.ico">
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>header.html  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;link <span class="nv">rel</span><span class="o">=</span><span class="s2">&quot;shortcut icon&quot;</span> <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;favicon.ico&quot;</span>&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>またブラウザのキャッシュもクリアして下さいまし。</p>
 

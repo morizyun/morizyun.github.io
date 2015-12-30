@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mac OSX | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/mac-osx/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:08:25+09:00</updated>
+  <updated>2015-12-30T21:09:47+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>XCodeのインストール</h2>
 
@@ -37,92 +49,118 @@ Mac App StoreからXCodeをインストール。</p>
 
 <p>必須ではないかもですが、コマンドラインからのライセンスの同意。</p>
 
-<p>{% codeblock lang:bash %}
-sudo xcodebuild -license
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo xcodebuild -license
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Homebrewのインストール</h2>
 
 <p><strong><a href="http://mxcl.github.com/homebrew/">Homebrew</a></strong><br/>
 ターミナルに次のコマンドを入力してインストール。途中で聞かれる、XcodeのCommand Line Toolもインストール。</p>
 
-<p>{% codeblock lang:bash %}
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Oh-my-zshのインストール</h2>
 
 <p>次にzshを適度にカスタマイズしてくれる<strong><a href="https://github.com/robbyrussell/oh-my-zsh">robbyrussell/oh-my-zsh</a></strong>
 をインストールします。</p>
 
-<p>{% codeblock lang:bash %}
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>gitのインストール</h2>
 
 <p>ソースコードのバージョン管理の仕組みである『<strong><a href="http://git-scm.com/">Git</a></strong>』の初期設定のコマンドを実行。このユーザー名と、メールアドレスはgit内で使われるだけなので自由に設定してください。</p>
 
-<p>{% codeblock lang:bash %}
-brew install git
-git config --global user.name "ユーザー名"
-git config --global user.email email@example.com
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span><span class='line'>git config --global user.name <span class="s2">&quot;ユーザー名&quot;</span>
+</span><span class='line'>git config --global user.email email@example.com
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Gitソースコードの管理から共通して除外したいファイルを指定するための
 設定を記述する<code>.gitignore</code>を作成&amp;登録します。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>gitignore自動生成をしてくれるツール</h1>
-
-<p>brew install gibo</p>
-
-<h1>JetBrainsとMacの不要なファイルを登録</h1>
-
-<p>gibo JetBrains OSX > .gitignore</p>
-
-<h1>gitに登録</h1>
-
-<p>git config --global --add core.excludesfile "$HOME/.gitignore"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;gitignore自動生成をしてくれるツール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew install gibo&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;JetBrainsとMacの不要なファイルを登録&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;gibo JetBrains OSX &gt; .gitignore&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;gitに登録&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;git config --global --add core.excludesfile <span class="s2">&quot;$HOME/.gitignore&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これで<code>~/.gitignore</code>に常にコミットしないファイルが登録されました。</p>
 
 <p>github用のパスワードを予め登録。<code>vi ~/.netrc</code>で以下を追記。</p>
 
-<p>{% codeblock lang:bash %}
-machine github.com
-login USERNAME
-password PASSWORD
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>machine github.com
+</span><span class='line'>login USERNAME
+</span><span class='line'>password PASSWORD
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>autojumpのインストール</h2>
 
 <p>次のautojumpをインストール。</p>
 
-<p>{% codeblock lang:bash %}
-brew install autojump
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install autojump
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>vim ~/.zshrc</code>で以下の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>alias</h1>
-
-<p>alias ls="ls -la"</p>
-
-<h1>autojump</h1>
-
-<p>[[ -s <code>brew --prefix</code>/etc/autojump.sh ]] &amp;&amp; . <code>brew --prefix</code>/etc/autojump.sh
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;alias&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;alias <span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls -la&quot;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;autojump&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[[</span> -s &lt;code&gt;brew --prefix&lt;/code&gt;/etc/autojump.sh <span class="o">]]</span> &amp;amp;&amp;amp; . &lt;code&gt;brew --prefix&lt;/code&gt;/etc/autojump.sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>で設定を反映。</p>
 
-<p>{% codeblock lang:bash %}
-source ~/.zshrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>アプリのインストール</h2>
 
@@ -182,90 +220,137 @@ source ~/.zshrc
 <p><code>gem install</code>で不要なドキュメントをインストールしないように<code>vim .gemrc</code>
 として以下を記入。</p>
 
-<p>{% codeblock lang:bash %}
-install: --no-document
-update: --no-document
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>install: --no-document
+</span><span class='line'>update: --no-document
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>rbenvのインストール</h2>
 
 <p><code>rbenv</code>と<code>ruby-build</code>をインストール。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>rbenv / ruby-build / rbenv-gem-rehash をインストール</h1>
-
-<p>brew install rbenv ruby-build rbenv-gem-rehash</p>
-
-<h1>rbenvを使うときにデフォルトでgemを追加してくれるツールを追加</h1>
-
-<p>git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems</p>
-
-<h1>デフォルトでインストールするgemを追記</h1>
-
-<p>echo 'bundler\nrails' ~/.rbenv/default-gems
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;rbenv / ruby-build / rbenv-gem-rehash をインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew install rbenv ruby-build rbenv-gem-rehash&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;rbenvを使うときにデフォルトでgemを追加してくれるツールを追加&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;デフォルトでインストールするgemを追記&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;echo <span class="s1">&#39;bundler\nrails&#39;</span> ~/.rbenv/default-gems
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次コマンドを実行して、vimで<code>~/.zshrc</code>を開きます。</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/.zshrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.zshrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ファイルを開いたら次の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi</p>
-
-<p>function gem(){
-  $HOME/.rbenv/shims/gem $*
-  if [ "$1" = "install" ] || [ "$1" = "i" ] || [ "$1" = "uninstall" ] || [ "$1" = "uni" ]
-  then</p>
-
-<pre><code>rbenv rehash
-</code></pre>
-
-<p>  fi
-}</p>
-
-<p>function bundle(){
-  $HOME/.rbenv/shims/bundle $*
-  if [ "$1" = "install" ] || [ "$1" = "update" ]
-  then</p>
-
-<pre><code>rbenv rehash
-</code></pre>
-
-<p>  fi
-}</p>
-
-<p>export PATH="$HOME/.rbenv/shims:$PATH"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if </span>which rbenv &gt; /dev/null; <span class="k">then </span><span class="nb">eval</span> <span class="s2">&quot;$(rbenv init -)&quot;</span>; <span class="k">fi</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;function gem<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/gem <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;i&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uninstall&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uni&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;rbenv rehash
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;function bundle<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/bundle <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;update&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;rbenv rehash
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;export <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$HOME/.rbenv/shims:$PATH&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>編集が完了したらターミナルで次のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-source ~/.zshrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にインストール可能なRubyのバージョンをチェック。</p>
 
-<p>{% codeblock lang:bash %}
-rbenv install -l
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rbenv install -l
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>最新のRuby(2.2.0など)をインストール。(xxx-dev, xxx-rc1などは開発版などのため除外)</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>一番最新のRuby(ここでは2.2.0)をインストール</h1>
-
-<p>rbenv install 2.2.0</p>
-
-<h1>globalで使うRubyのバージョン(2.2.0)を指定</h1>
-
-<p>rbenv global 2.2.0
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;一番最新のRuby<span class="o">(</span>ここでは2.2.0<span class="o">)</span>をインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rbenv install 2.2.0&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;globalで使うRubyのバージョン<span class="o">(</span>2.2.0<span class="o">)</span>を指定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rbenv global 2.2.0
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>PostgreSQLのインストール</h2>
 
@@ -275,13 +360,25 @@ rbenv install -l
 
 <p>ここまで本当にお疲れ様でした。ということで本題のRailsのインストールをします。</p>
 
-<p>{% codeblock lang:bash %}
-gem install rails
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>コマンドの完了後に、<code>rails -v</code>を実行してエラーが出なければ成功です。</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Tips集</h2>
 
@@ -326,7 +423,19 @@ MarvericksにRailsのモダンな開発環境を構築するまでの一連の�
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>オススメ記事</h2>
 
@@ -343,56 +452,60 @@ Mac App StoreからXCodeをインストール。(Marvericksでは必須ではな
 
 <p>同じく必須ではないかもですが、コマンドラインからのライセンスの同意。</p>
 
-<p>{% codeblock lang:bash %}
-sudo xcodebuild -license
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo xcodebuild -license
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Homebrewのインストール</h2>
 
 <p><strong><a href="http://mxcl.github.com/homebrew/">Homebrew</a></strong><br/>
 ターミナルに次のコマンドを入力してインストール。途中で聞かれる、XcodeのCommand Line Toolもインストール。</p>
 
-<p>{% codeblock lang:bash %}
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>gitのインストール</h2>
 
 <p>ソースコードのバージョン管理の仕組みである『<strong><a href="http://git-scm.com/">Git</a></strong>』の初期設定のコマンドを実行。このユーザー名と、メールアドレスはgit内で使われるだけなので自由に設定してください。</p>
 
-<p>{% codeblock lang:bash %}
-brew install git
-git config --global user.name "ユーザー名"
-git config --global user.email email@example.com
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span><span class='line'>git config --global user.name <span class="s2">&quot;ユーザー名&quot;</span>
+</span><span class='line'>git config --global user.email email@example.com
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Gitソースコードの管理から除外するファイル<code>.gitignore</code>を作成します。</p>
 
-<p>{% codeblock lang:bash %}
-git config --global --add core.excludesfile "$HOME/.gitignore"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global --add core.excludesfile <span class="s2">&quot;$HOME/.gitignore&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これで<code>~/.gitignore</code>に常にコミットしないファイルを登録できるようになりました。</p>
 
 <p>例えばJetBrains系のアプリを使っている場合は開発フォルダに<code>/.idea/*</code>といったファイルが自動生成されます。そのような場合は、まずvimで<code>~/.gitignore</code>を開きます。</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/.gitignore
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.gitignore
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ファイルを開いたら、<code>/.idea/*</code>を追加します。</p>
 
-<p>{% codeblock lang:bash %}
-/.idea/*
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/.idea/*
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>github用のパスワードを予め登録。<code>vi ~/.netrc</code>で以下を追記。</p>
 
-<p>{% codeblock lang:bash %}
-machine github.com
-login USERNAME
-password PASSWORD
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>machine github.com
+</span><span class='line'>login USERNAME
+</span><span class='line'>password PASSWORD
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Zshの設定</h2>
 
@@ -400,53 +513,66 @@ password PASSWORD
 
 <p>次のautojumpをインストール。</p>
 
-<p>{% codeblock lang:bash %}
-brew install autojump
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install autojump
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>vim ~/.zshrc</code>で以下の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>alias</h1>
-
-<p>alias ls="ls -la"</p>
-
-<h1>autojump</h1>
-
-<p>[[ -s <code>brew --prefix</code>/etc/autojump.sh ]] &amp;&amp; . <code>brew --prefix</code>/etc/autojump.sh
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;alias&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;alias <span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls -la&quot;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;autojump&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[[</span> -s &lt;code&gt;brew --prefix&lt;/code&gt;/etc/autojump.sh <span class="o">]]</span> &amp;amp;&amp;amp; . &lt;code&gt;brew --prefix&lt;/code&gt;/etc/autojump.sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>で設定を反映。</p>
 
-<p>{% codeblock lang:bash %}
-source ~/.zshrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>この<code>dotfiles</code>は頻繁に変更されているようなので次のコマンドで定期的にアップデートすると捗ります！</p>
 
-<p>{% codeblock lang:bash %}
-cd ~/.yadr
-git pull --rebase
-rake update
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/.yadr
+</span><span class='line'>git pull --rebase
+</span><span class='line'>rake update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もしcolorschemaを変更したい場合は以下のファイルの<code>colorschema</code>の部分をいじってください。</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/.yadr/vim/settings/yadr-appearance.vim
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.yadr/vim/settings/yadr-appearance.vim
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Homebrew Caskでインストール</h2>
 
 <p><strong><a href="http://caskroom.io/">Homebrew Cask</a></strong><br/>
 コマンドラインからアプリをインストールできるツール。今回は僕の普段インストールしているBrewfileをGitHubにあげておきました。 => <strong><a href="https://github.com/morizyun/homebrew-cask-brewfile">morizyun/homebrew-cask-brewfile</a></strong></p>
 
-<p>{% codeblock lang:bash %}
-git clone https://github.com/morizyun/homebrew-cask-brewfile.git
-cd homebrew-cask-brewfile
-brew bundle
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/morizyun/homebrew-cask-brewfile.git
+</span><span class='line'><span class="nb">cd </span>homebrew-cask-brewfile
+</span><span class='line'>brew bundle
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>iTerm2の設定</h2>
 
@@ -474,66 +600,87 @@ iTerm2でvimの256色表示をできるようにする。</p>
 <p>インストールが完了したら次のようなコメントがでます。<br/>
 (バージョンによって多少変わる可能性あり。自分の環境での表示を優先)</p>
 
-<p>{% codeblock lang:bash %}
-brew info mysql</p>
-
-<h1>一部抜粋</h1>
-
-<h1>To have launchd start mysql at login:</h1>
-
-<h1>ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents</h1>
-
-<h1>Then to load mysql now:</h1>
-
-<h1>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</h1>
-
-<h1>Or, if you don't want/need launchctl, you can just run:</h1>
-
-<h1>mysql.server start</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew info mysql&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;一部抜粋&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;To have launchd start mysql at login:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Then to load mysql now:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Or, <span class="k">if </span>you don<span class="err">&#39;</span>t want/need launchctl, you can just run:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;mysql.server start&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にMySQLを起動時に自動でSTARTさせるための設定をします。<br/>
 まず、以下のコマンドを実行して自動起動用plistをコピー。</p>
 
-<p>{% codeblock lang:bash %}
-ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にコピーしたplistは常に起動するように設定されているので、stopで終了できるように修正します。
 まずは以下のコマンドでファイルをvimで開きます。</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ファイルを開いたら<code><true/></code>となっている部分を<code><false/></code>に変更します。</p>
 
-<p>{% codeblock lang:bash %}
-  <key>KeepAlive</key>
-  <false/>
-  <key>Program</key>
-  <string>/usr/local/bin/mysqld_safe</string>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>  &lt;key&gt;KeepAlive&lt;/key&gt;
+</span><span class='line'>  &lt;<span class="nb">false</span>/&gt;
+</span><span class='line'>  &lt;key&gt;Program&lt;/key&gt;
+</span><span class='line'>  &lt;string&gt;/usr/local/bin/mysqld_safe&lt;/string&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に、自動起動の設定をします。</p>
 
-<p>{% codeblock lang:bash %}
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もしplistを修正して再読み込みさせたい場合は以下のコマンドを実行してください。</p>
 
-<p>{% codeblock lang:bash %}
-launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にmysqlのroot(管理者)のパスワードとTestDBの削除等を対話形式で行います。</p>
 
-<p>{% codeblock lang:bash %}
-mysql_secure_installation
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql_secure_installation
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>以下は僕の設定です。</p>
 
@@ -552,110 +699,146 @@ Reload privilege tables now?(権限リロード) => Y
 
 <p>まずは、「<strong><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems</a></strong>」をインストール。</p>
 
-<p>{% codeblock lang:bash %}
-git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>あとは、デフォルトでインストールするgemを追記。</p>
 
-<p>{% codeblock lang:bash %}
-bundler
-rails
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundler
+</span><span class='line'>rails
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次コマンドを実行して、vimで<code>~/.zshrc</code>を開きます。</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/.zshrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.zshrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ファイルを開いたら次の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi</p>
-
-<p>function gem(){
-  $HOME/.rbenv/shims/gem $*
-  if [ "$1" = "install" ] || [ "$1" = "i" ] || [ "$1" = "uninstall" ] || [ "$1" = "uni" ]
-  then</p>
-
-<pre><code>rbenv rehash
-</code></pre>
-
-<p>  fi
-}</p>
-
-<p>function bundle(){
-  $HOME/.rbenv/shims/bundle $*
-  if [ "$1" = "install" ] || [ "$1" = "update" ]
-  then</p>
-
-<pre><code>rbenv rehash
-</code></pre>
-
-<p>  fi
-}</p>
-
-<p>export PATH="$HOME/.rbenv/shims:$PATH"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if </span>which rbenv &gt; /dev/null; <span class="k">then </span><span class="nb">eval</span> <span class="s2">&quot;$(rbenv init -)&quot;</span>; <span class="k">fi</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;function gem<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/gem <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;i&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uninstall&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uni&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;rbenv rehash
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;function bundle<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/bundle <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;update&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;rbenv rehash
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;export <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$HOME/.rbenv/shims:$PATH&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>編集が完了したらターミナルで次のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-source ~/.zshrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にインストール可能なRubyのバージョンをチェック。</p>
 
-<p>{% codeblock lang:bash %}
-rbenv install -l
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rbenv install -l
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>最新のRuby(2.1.0など)をインストール。(xxx-dev, xxx-rc1などは開発版などのため除外)</p>
 
-<p>{% codeblock lang:bash %}
-rbenv install 2.1.0
-rbenv rehash
-rbenv global 2.1.0
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rbenv install 2.1.0
+</span><span class='line'>rbenv rehash
+</span><span class='line'>rbenv global 2.1.0
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>上記のコマンドの完了後、<code>ruby -v</code>を実行して<code>2.1.0</code>などの結果が帰ってくれば成功。</p>
 
 <p>さらに<code>bundle exec</code>を省略するために『<strong><a href="https://github.com/ianheggie/rbenv-binstubs">rbenv-binstubs</a></strong>』をインストール。</p>
 
-<p>{% codeblock lang:bash %}
-mkdir ~/.rbenv/plugins
-cd ~/.rbenv/plugins
-git clone git://github.com/ianheggie/rbenv-binstubs.git
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/.rbenv/plugins
+</span><span class='line'><span class="nb">cd</span> ~/.rbenv/plugins
+</span><span class='line'>git clone git://github.com/ianheggie/rbenv-binstubs.git
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に以下のコードを実行。</p>
 
-<p>{% codeblock lang:bash %}
-mkdir ~/.bundle
-vim ~/.bundle/config</p>
-
-<h1>↓ を追加</h1>
-
-<p>BUNDLE_BIN: bin
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/.bundle
+</span><span class='line'>vim ~/.bundle/config&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;↓ を追加&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;BUNDLE_BIN: bin
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これで設定は完了です。一点注意点としては、今後は新しいプロジェクトを作成したら次のコマンドを実行する必要があります。ついつい忘れがちになるので注意が必要かも。<br/>
 (<code>path/to/project</code>はプロジェクトのフォルダを表しています)</p>
 
-<p>{% codeblock lang:bash %}
-cd path/to/project
-bundle install --binstubs=bundle_bin
-rbenv rehash
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>path/to/project
+</span><span class='line'>bundle install --binstubs<span class="o">=</span>bundle_bin
+</span><span class='line'>rbenv rehash
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Railsのインストール</h2>
 
 <p>ここまで本当にお疲れ様でした。ということで本題のRailsのインストールをします。</p>
 
-<p>{% codeblock lang:bash %}
-gem install rails
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>コマンドの完了後に、<code>rails -v</code>を実行してエラーが出なければ成功です。</p>
 
@@ -665,7 +848,19 @@ gem install rails
 
 <p>Railsを触ったことがある人には、拙著『<strong><a href="/blog/heroku-rails4-postgresql-introduction/">Rails4でheroku Pushまでの最短手順</a></strong>』を試してみて頂ければ幸いです。</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Tips集</h2>
 
@@ -692,39 +887,61 @@ gem install rails
 
 <p>Homebrew周りでアップグレードした時のメモ。</p>
 
-<p>{% codeblock lang:bash %}
-xcodebuild -license
-xcode-select --install</p>
-
-<h1>warningがなくなるまで対応</h1>
-
-<p>brew doctor</p>
-
-<h1>brew側formulaのアップデート</h1>
-
-<p>brew update</p>
-
-<h1>インストールアプリのアップデート</h1>
-
-<p>brew upgrade</p>
-
-<h1>それでもダメなら再インストール</h1>
-
-<p>brew uninstall <dependency-name> &amp;&amp; brew install <dependency-name>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>xcodebuild -license
+</span><span class='line'>xcode-select --install&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;warningがなくなるまで対応&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew doctor&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;brew側formulaのアップデート&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew update&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;インストールアプリのアップデート&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew upgrade&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;それでもダメなら再インストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew uninstall &lt;dependency-name&gt; &amp;amp;&amp;amp; brew install &lt;dependency-name&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>ImageMagick/Rmagickのインストール</h2>
 
 <p>ImageMagick/Rmagick周りでハマったのでメモ。</p>
 
-<p>{% codeblock lang:bash %}
-brew uninstall pkgconfig &amp;&amp; brew install pkgconfig
-brew uninstall libtool &amp;&amp; brew install libtool
-brew uninstall libpng &amp;&amp; brew install libpng
-brew uninstall libjpg &amp;&amp; brew install libjpg
-brew uninstall imagemagick &amp;&amp; brew install imagemagick --build-from-source
-PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.8.8-9/lib/pkgconfig/ bundle install
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew uninstall pkgconfig &amp;amp;&amp;amp; brew install pkgconfig
+</span><span class='line'>brew uninstall libtool &amp;amp;&amp;amp; brew install libtool
+</span><span class='line'>brew uninstall libpng &amp;amp;&amp;amp; brew install libpng
+</span><span class='line'>brew uninstall libjpg &amp;amp;&amp;amp; brew install libjpg
+</span><span class='line'>brew uninstall imagemagick &amp;amp;&amp;amp; brew install imagemagick --build-from-source
+</span><span class='line'><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span>/usr/local/Cellar/imagemagick/6.8.8-9/lib/pkgconfig/ bundle install
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Special Thanks</h2>
 
@@ -761,7 +978,19 @@ PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.8.8-9/lib/pkgconfig/ bundle inst
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>目次</h2>
 
@@ -853,9 +1082,9 @@ PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.8.8-9/lib/pkgconfig/ bundle inst
 
 <p>Command Line Toolの初期設定。次のコマンドを実行して、<code>agree</code>(同意)を選択。</p>
 
-<p>{% codeblock lang:bash %}
-sudo xcodebuild -license
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo xcodebuild -license
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><a name="3"></a></p>
 
@@ -863,9 +1092,9 @@ sudo xcodebuild -license
 
 <p>続いてMacでコマンドラインツールを簡単にインストールしてくれるツール『<strong><a href="http://mxcl.github.com/homebrew/">Homebrew</a></strong>』をインストール。以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>コマンドが完了したら、<code>brew -v</code>で確認。バージョン情報が出ればOK。</p>
 
@@ -875,31 +1104,33 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 
 <p>続いてソースコードのバージョン管理の仕組みである『<strong><a href="http://git-scm.com/">Git</a></strong>』のインストールと初期設定のコマンドを実行。このユーザー名と、メールアドレスはgit内で使われるだけなので自由に設定してください。</p>
 
-<p>{% codeblock lang:bash %}
-brew install git
-git config --global user.name "ユーザー名"
-git config --global user.email email@example.com
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span><span class='line'>git config --global user.name <span class="s2">&quot;ユーザー名&quot;</span>
+</span><span class='line'>git config --global user.email email@example.com
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Gitソースコードの管理から除外するファイル<code>.gitignore</code>を作成します。</p>
 
-<p>{% codeblock lang:bash %}
-git config --global --add core.excludesfile "$HOME/.gitignore"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global --add core.excludesfile <span class="s2">&quot;$HOME/.gitignore&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これで<code>~/.gitignore</code>に常にコミットしないファイルを登録できるようになりました。</p>
 
 <p>例えばJetBrains系のアプリを使っている場合は開発フォルダに<code>/.idea/*</code>といったファイルが自動生成されます。そのような場合は、まずvimで<code>~/.gitignore</code>を開きます。</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/.gitignore
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.gitignore
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ファイルを開いたら、<code>/.idea/*</code>を追加します。</p>
 
-<p>{% codeblock lang:bash %}
-/.idea/*
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/.idea/*
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><a name="5"></a></p>
 
@@ -909,91 +1140,128 @@ vim ~/.gitignore
 
 <p>まずMySQLをHomebrewを使ってインストール。</p>
 
-<p>{% codeblock lang:bash %}
-brew update
-brew install mysql
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew update
+</span><span class='line'>brew install mysql
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>インストールが完了したら次のようなコメントがでます。<br/>
 (バージョンによって多少変わる可能性あり。自分の環境での表示を優先)</p>
 
-<p>{% codeblock lang:bash %}
-brew install mysql
-==> Downloading https://downloads.sf.net/project/machomebrew/Bottles/mysql-5.6.10.mountain_lion.bottl</p>
-
-<h6>################################################################## 100.0%</h6>
-
-<p>==> Pouring mysql-5.6.10.mountain_lion.bottle.tar.gz
-==> /usr/local/Cellar/mysql/5.6.10/bin/mysql_install_db --verbose --user=komji --basedir=/usr/local/C
-==> Caveats
-A "/etc/my.cnf" from another install may interfere with a Homebrew-built
-server starting up correctly.</p>
-
-<p>To connect:</p>
-
-<pre><code>mysql -uroot
-</code></pre>
-
-<p>To have launchd start mysql at login:</p>
-
-<pre><code>ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-</code></pre>
-
-<p>Then to load mysql now:</p>
-
-<pre><code>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-</code></pre>
-
-<p>Or, if you don't want/need launchctl, you can just run:</p>
-
-<pre><code>mysql.server start
-</code></pre>
-
-<p>==> Summary
-🍺  /usr/local/Cellar/mysql/5.6.10: 9245 files, 351M
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install <span class="nv">mysql</span>
+</span><span class='line'><span class="o">==</span>&gt; Downloading https://downloads.sf.net/project/machomebrew/Bottles/mysql-5.6.10.mountain_lion.bottl&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h6&gt;################################################################## 100.0%&lt;/h6&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; Pouring mysql-5.6.10.mountain_lion.bottle.tar.gz
+</span><span class='line'><span class="o">==</span>&gt; /usr/local/Cellar/mysql/5.6.10/bin/mysql_install_db --verbose --user<span class="o">=</span>komji --basedir<span class="o">=</span>/usr/local/C
+</span><span class='line'><span class="o">==</span>&gt; Caveats
+</span><span class='line'>A <span class="s2">&quot;/etc/my.cnf&quot;</span> from another install may interfere with a Homebrew-built
+</span><span class='line'>server starting up correctly.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;To connect:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;mysql -uroot
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;To have launchd start mysql at login:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Then to load mysql now:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Or, <span class="k">if </span>you don<span class="err">&#39;</span>t want/need launchctl, you can just run:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;mysql.server start
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; Summary
+</span><span class='line'>🍺  /usr/local/Cellar/mysql/5.6.10: 9245 files, 351M
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にMySQLを起動時に自動でSTARTさせるための設定をします。<br/>
 まず、以下のコマンドを実行して自動起動用plistをコピー。</p>
 
-<p>{% codeblock lang:bash %}
-ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にコピーしたplistは常に起動するように設定されているので、stopで終了できるように修正します。
 まずは以下のコマンドでファイルをvimで開きます。</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ファイルを開いたら<code><true/></code>となっている部分を<code><false/></code>に変更します。</p>
 
-<p>{% codeblock lang:bash %}
-  <key>KeepAlive</key>
-  <false/>
-  <key>Program</key>
-  <string>/usr/local/bin/mysqld_safe</string>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>  &lt;key&gt;KeepAlive&lt;/key&gt;
+</span><span class='line'>  &lt;<span class="nb">false</span>/&gt;
+</span><span class='line'>  &lt;key&gt;Program&lt;/key&gt;
+</span><span class='line'>  &lt;string&gt;/usr/local/bin/mysqld_safe&lt;/string&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に、自動起動の設定をします。</p>
 
-<p>{% codeblock lang:bash %}
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もしplistを修正して再読み込みさせたい場合は以下のコマンドを実行してください。</p>
 
-<p>{% codeblock lang:bash %}
-launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にmysqlのroot(管理者)のパスワードとTestDBの削除等を対話形式で行います。</p>
 
-<p>{% codeblock lang:bash %}
-mysql_secure_installation
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql_secure_installation
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>以下は僕の設定です。</p>
 
@@ -1014,95 +1282,129 @@ Reload privilege tables now?(権限リロード) => Y
 
 <p>Rubyのバージョン管理を行なってくれる『<strong><a href="https://github.com/sstephenson/rbenv">rbenv</a></strong>』をインストールします。</p>
 
-<p>{% codeblock lang:bash %}
-brew install rbenv
-brew install ruby-build
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install rbenv
+</span><span class='line'>brew install ruby-build
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>インストールが完了したら、次のコマンドを実行して、vimで<code>~/.bashrc</code>を開きます。
 (zshを使っている場合は<code>~/.zshrc</code>と読み替えてください)</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/.bashrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.bashrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ファイルを開いたら次の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi</p>
-
-<p>function gem(){
-  $HOME/.rbenv/shims/gem $*
-  if [ "$1" = "install" ] || [ "$1" = "i" ] || [ "$1" = "uninstall" ] || [ "$1" = "uni" ]
-  then</p>
-
-<pre><code>rbenv rehash
-</code></pre>
-
-<p>  fi
-}</p>
-
-<p>function bundle(){
-  $HOME/.rbenv/shims/bundle $*
-  if [ "$1" = "install" ] || [ "$1" = "update" ]
-  then</p>
-
-<pre><code>rbenv rehash
-</code></pre>
-
-<p>  fi
-}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if </span>which rbenv &gt; /dev/null; <span class="k">then </span><span class="nb">eval</span> <span class="s2">&quot;$(rbenv init -)&quot;</span>; <span class="k">fi</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;function gem<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/gem <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;i&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uninstall&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;uni&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;rbenv rehash
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;function bundle<span class="o">(){</span>
+</span><span class='line'>  <span class="nv">$HOME</span>/.rbenv/shims/bundle <span class="nv">$*</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;install&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">=</span> <span class="s2">&quot;update&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="k">then</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;rbenv rehash
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>編集が完了したらターミナルで次のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-source ~/.bashrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.bashrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にインストール可能なRubyのバージョンをチェック。</p>
 
-<p>{% codeblock lang:bash %}
-rbenv install -l
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rbenv install -l
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>最新のRuby(2.1.0など)をインストール。(xxx-dev, xxx-rc1などは開発版などのため除外)</p>
 
-<p>{% codeblock lang:bash %}
-rbenv install 2.1.0
-rbenv rehash
-rbenv global 2.1.0
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rbenv install 2.1.0
+</span><span class='line'>rbenv rehash
+</span><span class='line'>rbenv global 2.1.0
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>上記のコマンドの完了後、<code>ruby -v</code>を実行して<code>2.1.0</code>などの結果が帰ってくれば成功。</p>
 
 <p>さらに<code>bundle exec</code>を省略するために『<strong><a href="https://github.com/ianheggie/rbenv-binstubs">rbenv-binstubs</a></strong>』をインストール。</p>
 
-<p>{% codeblock lang:bash %}
-mkdir ~/.rbenv/plugins
-cd ~/.rbenv/plugins
-git clone git://github.com/ianheggie/rbenv-binstubs.git
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/.rbenv/plugins
+</span><span class='line'><span class="nb">cd</span> ~/.rbenv/plugins
+</span><span class='line'>git clone git://github.com/ianheggie/rbenv-binstubs.git
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に以下のコードを実行。</p>
 
-<p>{% codeblock lang:bash %}
-mkdir ~/.bundle
-vim ~/.bundle/config</p>
-
-<h1>↓ を追加</h1>
-
-<p>BUNDLE_BIN: bin
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/.bundle
+</span><span class='line'>vim ~/.bundle/config&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;↓ を追加&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;BUNDLE_BIN: bin
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これで設定は完了です。一点注意点としては、今後は新しいプロジェクトを作成したら次のコマンドを実行する必要があります。ついつい忘れがちになるので注意が必要かも。<br/>
 (<code>path/to/project</code>はプロジェクトのフォルダを表しています)</p>
 
-<p>{% codeblock lang:bash %}
-cd path/to/project
-bundle install --binstubs=bundle_bin
-rbenv rehash
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>path/to/project
+</span><span class='line'>bundle install --binstubs<span class="o">=</span>bundle_bin
+</span><span class='line'>rbenv rehash
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><a name="7"></a></p>
 
@@ -1110,9 +1412,9 @@ rbenv rehash
 
 <p>ここまで本当にお疲れ様でした。ということで本題のRailsのインストールをします。</p>
 
-<p>{% codeblock lang:bash %}
-gem install rails
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>コマンドの完了後に、<code>rails -v</code>を実行してエラーが出なければ成功です。</p>
 
@@ -1122,7 +1424,19 @@ gem install rails
 
 <p>Railsを触ったことがある人には、拙著『<strong><a href="/blog/heroku-rails4-postgresql-introduction/">Rails4でheroku Pushまでの最短手順</a></strong>』を試してみて頂ければ幸いです。</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <p><a name="8"></a></p>
 
@@ -1134,9 +1448,9 @@ gem install rails
 
 <p>Sublime Text2をコマンドラインから呼び出せるようにする</p>
 
-<p>{% codeblock lang:bash %}
-ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -s /Applications/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>Macの基本設定</h3>
 
@@ -1160,36 +1474,47 @@ ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/lo
 
 <p>次のautojumpをインストール。</p>
 
-<p>{% codeblock lang:bash %}
-brew install autojump
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install autojump
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>vim ~/.zshrc</code>で以下の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>alias</h1>
-
-<p>alias ls="ls -la"</p>
-
-<h1>autojump</h1>
-
-<p>[[ -s <code>brew --prefix</code>/etc/autojump.sh ]] &amp;&amp; . <code>brew --prefix</code>/etc/autojump.sh
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;alias&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;alias <span class="nv">ls</span><span class="o">=</span><span class="s2">&quot;ls -la&quot;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;autojump&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[[</span> -s &lt;code&gt;brew --prefix&lt;/code&gt;/etc/autojump.sh <span class="o">]]</span> &amp;amp;&amp;amp; . &lt;code&gt;brew --prefix&lt;/code&gt;/etc/autojump.sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>で設定を反映。</p>
 
-<p>{% codeblock lang:bash %}
-source ~/.zshrc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>この<code>dotfiles</code>は頻繁に変更されているようなので次のコマンドで定期的にアップデートすると捗ります！</p>
 
-<p>{% codeblock lang:bash %}
-cd ~/.yadr
-git pull --rebase
-rake update
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/.yadr
+</span><span class='line'>git pull --rebase
+</span><span class='line'>rake update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>SSH認証鍵の設定</h3>
 
@@ -1245,8 +1570,20 @@ rake update
     <link href="http://morizyun.github.io/blog/mountain-lion-rails-setup-ruby-rvm-msyql/"/>
     <updated>2012-12-12T19:00:00+09:00</updated>
     <id>http://morizyun.github.io/blog/mountain-lion-rails-setup-ruby-rvm-msyql</id>
-    <content type="html"><![CDATA[<p>{% include custom/google_ads_text.html %}
-<a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
+    <content type="html"><![CDATA[<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* bottom_burner */
+  google_ad_slot = "2184590598";
+  google_ad_width = 468;
+  google_ad_height = 15;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<a href="blog/categories/mac-osx/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14_m.jpg" width="200" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>Mountain LionにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。
 Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！</p>
@@ -1337,25 +1674,27 @@ Macを新しく買ったり、OSを再インストールした時などは良か
 
 <p>Command Line Toolの初期設定。下のコマンドを実行して、<code>agree</code>(同意)を選択。</p>
 
-<p>{% codeblock lang:bash %}
-sudo xcodebuild -license
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo xcodebuild -license
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><a href="http://mxcl.github.com/homebrew/">Homebrew</a>のインストールするためのコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>コマンドが終了したら、<code>brew -v</code>で確認。バージョン情報が出ればOK。</p>
 
 <p>GitをインストールとGitの初期設定。</p>
 
-<p>{% codeblock lang:bash %}
-brew install git
-git config --global user.name "ユーザー名"
-git config --global user.email email@example.com
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span><span class='line'>git config --global user.name <span class="s2">&quot;ユーザー名&quot;</span>
+</span><span class='line'>git config --global user.email email@example.com
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Git共通の.gitignoreファイルを<a href="/blog/git-gitignore-github/">GitHubの.gitignoreテンプレート(多数のフレームワークに対応)</a>を参考に作成します。</p>
 
@@ -1369,98 +1708,142 @@ git config --global user.email email@example.com
 
 <p>コマンドラインから以下を実行。</p>
 
-<p>{% codeblock lang:bash %}
-brew update
-brew install mysql
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew update
+</span><span class='line'>brew install mysql
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>インストールが完了したら次のようなコメントがでます。<br/>
 (バージョンによって多少変わる可能性あり。自分の環境での表示を優先)</p>
 
-<p>{% codeblock コンソール lang:bash %}
-$ brew install mysql
-==> Downloading https://downloads.sf.net/project/machomebrew/Bottles/mysql-5.6.10.mountain_lion.bottl</p>
-
-<h6>################################################################## 100.0%</h6>
-
-<p>==> Pouring mysql-5.6.10.mountain_lion.bottle.tar.gz
-==> /usr/local/Cellar/mysql/5.6.10/bin/mysql_install_db --verbose --user=komji --basedir=/usr/local/C
-==> Caveats
-A "/etc/my.cnf" from another install may interfere with a Homebrew-built
-server starting up correctly.</p>
-
-<p>To connect:</p>
-
-<pre><code>mysql -uroot
-</code></pre>
-
-<p>To have launchd start mysql at login:</p>
-
-<pre><code>ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-</code></pre>
-
-<p>Then to load mysql now:</p>
-
-<pre><code>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-</code></pre>
-
-<p>Or, if you don't want/need launchctl, you can just run:</p>
-
-<pre><code>mysql.server start
-</code></pre>
-
-<p>==> Summary
-🍺  /usr/local/Cellar/mysql/5.6.10: 9245 files, 351M
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install <span class="nv">mysql</span>
+</span><span class='line'><span class="o">==</span>&gt; Downloading https://downloads.sf.net/project/machomebrew/Bottles/mysql-5.6.10.mountain_lion.bottl&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h6&gt;################################################################## 100.0%&lt;/h6&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; Pouring mysql-5.6.10.mountain_lion.bottle.tar.gz
+</span><span class='line'><span class="o">==</span>&gt; /usr/local/Cellar/mysql/5.6.10/bin/mysql_install_db --verbose --user<span class="o">=</span>komji --basedir<span class="o">=</span>/usr/local/C
+</span><span class='line'><span class="o">==</span>&gt; Caveats
+</span><span class='line'>A <span class="s2">&quot;/etc/my.cnf&quot;</span> from another install may interfere with a Homebrew-built
+</span><span class='line'>server starting up correctly.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;To connect:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;mysql -uroot
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;To have launchd start mysql at login:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Then to load mysql now:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Or, <span class="k">if </span>you don<span class="err">&#39;</span>t want/need launchctl, you can just run:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;mysql.server start
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; Summary
+</span><span class='line'>🍺  /usr/local/Cellar/mysql/5.6.10: 9245 files, 351M
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にMySQLを起動時に自動でSTARTさせるための設定をします。<br/>
 まず、以下のコマンドを実行して自動起動用plistをコピー。</p>
 
-<p>{% codeblock lang:bash %}
-ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にコピーしたplistは常に起動するように設定されているので、stopで終了できるように修正します。またバージョンアップに対応しやすいように、パスを修正します。</p>
 
-<p>{% codeblock lang:bash %}
-vim ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</p>
-
-<h1>↓ の部分を修正</h1>
-
-<p>  <key>KeepAlive</key>
-  <false/>
-  <key>Program</key>
-  <string>/usr/local/bin/mysqld_safe</string>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;↓ の部分を修正&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  &lt;key&gt;KeepAlive&lt;/key&gt;
+</span><span class='line'>  &lt;<span class="nb">false</span>/&gt;
+</span><span class='line'>  &lt;key&gt;Program&lt;/key&gt;
+</span><span class='line'>  &lt;string&gt;/usr/local/bin/mysqld_safe&lt;/string&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>修正が完了したら、mysqlの簡単なチューニングを行います。<br/> <br/>
 <code>vim /usr/local/Cellar/mysql/x.x.xx/my.cnf</code>の中の以下の設定を変更します。<br/>
 (x.x.xxはバージョン、環境によって適宜変更して下さい)</p>
 
-<p>{% codeblock lang:bash %}
-innodb_buffer_pool_size = # サーバのメモリ70〜80%
-innodb_log_file_size = # 100-500MB程度
-innodb_flush_log_at_trx_commit = 2
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">innodb_buffer_pool_size</span> <span class="o">=</span> <span class="c"># サーバのメモリ70〜80%</span>
+</span><span class='line'><span class="nv">innodb_log_file_size</span> <span class="o">=</span> <span class="c"># 100-500MB程度</span>
+</span><span class='line'><span class="nv">innodb_flush_log_at_trx_commit</span> <span class="o">=</span> 2
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に、自動起動の設定をします。</p>
 
-<p>{% codeblock lang:bash %}
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もし修正して再読み込みさせたい場合は以下のコマンドを実行してください。</p>
 
-<p>{% codeblock lang:bash %}
-launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にmysqlのroot(管理者)のパスワードとTestDBの削除等を対話形式で行います。</p>
 
-<p>{% codeblock lang:bash %}
-mysql_secure_installation
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql_secure_installation
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>以下は僕の設定です。</p>
 
@@ -1479,9 +1862,9 @@ Reload privilege tables now?(権限リロード) => Y
 
 <p>Rubyのバージョン管理を行なってくれるRVM(Ruby Version Management)をインストールします。</p>
 
-<p>{% codeblock lang:bash %}
-curl -L https://get.rvm.io | bash -s stable
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://get.rvm.io | bash -s stable
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>RVMのインストールが完了したら設定を読み込むために、コンソールで以下を実行。<br/>
 (<font color="red">user_name</font>は自分のユーザー名にしてください)</p>
@@ -1493,9 +1876,9 @@ source /Users/<font color="red">user_name</font>/.rvm/scripts/rvm
 
 <p>続いてRVMの初期設定を確認します。下のコマンドを実行するとインストールが必要なものが列挙されますので、Homebrewでインストールしてください。</p>
 
-<p>{% codeblock lang:bash %}
-rvm requirements
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm requirements
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>僕の環境では以下のコマンドを実行。<br/></p>
 
@@ -1509,51 +1892,51 @@ rvm autolibs enable
 
 <p>Rubyをインストールします。まず、インストールするバージョンを確認。</p>
 
-<p>{% codeblock lang:bash %}
-rvm list known
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm list known
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>一覧が出るので、インストールしたいRubyのバージョンを指定します。<br/>
 (もし、特に指定がなければ1.9.3がおすすめです。 2012/12月時点)</p>
 
 <p>インストールは以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-rvm install 1.9.3
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm install 1.9.3
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>完了したら、Ruby がインストールされているか確認。</p>
 
-<p>{% codeblock lang:bash %}
-rvm list
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm list
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>ruby-1.9.3-xxxx [ x86_64 ]</code>など指定したバージョンが出れば成功。</p>
 
 <p>続いてデフォルトのrubyのバージョンを設定。</p>
 
-<p>{% codeblock lang:bash %}
-rvm --default 1.9.3
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm --default 1.9.3
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>デフォルトでgemインストール時にドキュメント生成しないようにします。
 <code>~/.gemrc</code>を開いて以下の内容を追加。</p>
 
-<p>{% codeblock lang:bash %}
-gem: --no-ri --no-rdoc
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem: --no-ri --no-rdoc
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ちなみに、各プロジェクトのフォルダ毎にRubyのバージョンを指定したい場合は、<code>.ruby-version</code>をフォルダ直下に作成して、次の内容を記述。</p>
 
-<p>{% codeblock lang:bash %}
-ruby-1.9.3-p392
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby-1.9.3-p392
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>また、bundle execを毎回実行するのは面倒なので、hookを有効にします。</p>
 
-<p>{% codeblock lang:bash %}
-chmod +x ~/.rvm/hooks/after_cd_bundler
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod +x ~/.rvm/hooks/after_cd_bundler
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><a name="5"></a></p>
 
@@ -1603,9 +1986,9 @@ chmod +x ~/.rvm/hooks/after_cd_bundler
 
 <p>Sublime Text2をコマンドラインから呼び出せるようにする</p>
 
-<p>{% codeblock lang:bash %}
-ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -s /Applications/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>コンピュータ名をを変更。</p>
 
@@ -1642,9 +2025,9 @@ ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/lo
 
 <p>何かの理由でRVMを再インストールする場合の削除コマンドは次の通り。</p>
 
-<p>{% codeblock lang:bash %}
-rvm implode
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm implode
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>補足: Library not loaded: libssl.1.0.0.dylib</h2>
 

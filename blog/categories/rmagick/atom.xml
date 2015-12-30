@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RMagick | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rmagick/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:08:25+09:00</updated>
+  <updated>2015-12-30T21:09:47+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -37,52 +37,95 @@
 </pre>
 
 
-<p>{% codeblock lang:ruby %}
-require 'rubygems'
-require 'open-uri'
-require 'rmagick' # gem install rmagick</p>
-
-<p>def shrink_to_fill(image, width, height)
-  image.resize_to_fill!(width, height)
-  image
-end</p>
-
-<p>def cover_white(image, width, height)
-  new_width = (image.columns &lt; width) ? image.columns : width
-  new_height = (image.rows &lt; height) ? image.rows : height</p>
-
-<p>  image.resize_to_fit!(new_width, new_height)
-  image_out = Magick::Image.new(width, height)
-  image_out.background_color = '#ffffff'
-  image_out.composite!(image, Magick::CenterGravity, Magick::OverCompositeOp)
-  image_out
-end</p>
-
-<h1>flickr上のクリエティブ・コモンズの画像</h1>
-
-<p>image_url = "http://farm4.staticflickr.com/3319/3584524809_f791a000e0_z.jpg"
-width = 300
-height = 300</p>
-
-<p>res = open(image_url)
-if res.content_type =~ /<sup>image/</sup>
-  thumb = Magick::Image.from_blob(res.read).shift</p>
-
-<p>  if thumb.columns &lt; width or thumb.rows &lt; height</p>
-
-<pre><code>thumb_out = cover_white(thumb, width, height)
-</code></pre>
-
-<p>  else</p>
-
-<pre><code>thumb_out = shrink_to_fill(thumb, width, height)
-</code></pre>
-
-<p>  end</p>
-
-<p>  open("./out_thumb.png", 'w').print thumb_out.to_blob
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rmagick&#39;</span> <span class="c1"># gem install rmagick&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">shrink_to_fill</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">image</span><span class="o">.</span><span class="n">resize_to_fill!</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">image</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;def cover_white(image, width, height)</span>
+</span><span class='line'><span class="sr">  new_width = (image.columns &amp;lt; width) ? image.columns : width</span>
+</span><span class='line'><span class="sr">  new_height = (image.rows &amp;lt; height) ? image.rows : height&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">image</span><span class="o">.</span><span class="n">resize_to_fit!</span><span class="p">(</span><span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">image_out</span> <span class="o">=</span> <span class="no">Magick</span><span class="o">::</span><span class="no">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">image_out</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="s1">&#39;#ffffff&#39;</span>
+</span><span class='line'>  <span class="n">image_out</span><span class="o">.</span><span class="n">composite!</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="no">Magick</span><span class="o">::</span><span class="no">CenterGravity</span><span class="p">,</span> <span class="no">Magick</span><span class="o">::</span><span class="no">OverCompositeOp</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">image_out</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;flickr上のクリエティブ・コモンズの画像&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">image_url</span> <span class="o">=</span> <span class="s2">&quot;http://farm4.staticflickr.com/3319/3584524809_f791a000e0_z.jpg&quot;</span>
+</span><span class='line'><span class="n">width</span> <span class="o">=</span> <span class="mi">300</span>
+</span><span class='line'><span class="n">height</span> <span class="o">=</span> <span class="mi">300</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;res = open(image_url)</span>
+</span><span class='line'><span class="sr">if res.content_type =~ /</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="n">image</span><span class="o">/&lt;</span><span class="sr">/sup&gt;</span>
+</span><span class='line'><span class="sr">  thumb = Magick::Image.from_blob(res.read).shift&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">if</span> <span class="n">thumb</span><span class="o">.</span><span class="n">columns</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">width</span> <span class="ow">or</span> <span class="n">thumb</span><span class="o">.</span><span class="n">rows</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">height</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;thumb_out = cover_white(thumb, width, height)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  else&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">thumb_out</span> <span class="o">=</span> <span class="n">shrink_to_fill</span><span class="p">(</span><span class="n">thumb</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  open(&quot;./ou</span><span class="n">t_thumb</span><span class="o">.</span><span class="n">png</span><span class="s2">&quot;, &#39;w&#39;).print thumb_out.to_blob</span>
+</span><span class='line'><span class="s2">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>では動作確認です。</p>
 

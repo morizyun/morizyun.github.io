@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ansible | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ansible/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:08:25+09:00</updated>
+  <updated>2015-12-30T21:09:47+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -30,7 +30,19 @@ Railsの簡単なサーバーの構築から、各種ミドルウェアの導入
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>最近のサーバのお気に入り</h2>
 
@@ -184,7 +196,19 @@ Ansibleはサーバー構築時の手順をコードにできるOSSです。今�
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>動作条件</h2>
 
@@ -198,20 +222,33 @@ Ansibleはサーバー構築時の手順をコードにできるOSSです。今�
 
 <p>MacでAnsibleを使えるようにする最低限のコマンド。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Pythonのインストール</h1>
-
-<p>brew install python</p>
-
-<h1>pipのインストール</h1>
-
-<p>sudo easy_install pip</p>
-
-<h1>Ansibleのインストール</h1>
-
-<p>sudo pip install ansible
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Pythonのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew install python&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;pipのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo easy_install pip&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Ansibleのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo pip install ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もう少しPythonの開発環境をしっかり構築したい場合は、拙著『<strong><a href="http://morizyun.github.io/blog/python-pyenv-rehash-mac-development/">Python開発環境構築 徹底解説[pyenv, Mavericks]</a></strong>』を良かったらご覧ください！</p>
 
@@ -220,58 +257,70 @@ Ansibleはサーバー構築時の手順をコードにできるOSSです。今�
 <p>まずは『<strong><a href="https://github.com/morizyun/centos_ansible_rails">morizyun/centos_ansible_rails - GitHub</a></strong>』
 のコードを入手。</p>
 
-<p>{% codeblock lang:bash %}
-git clone https://github.com/morizyun/centos_ansible_rails.git
-cd vagrant-ansible-rails
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/morizyun/centos_ansible_rails.git
+</span><span class='line'><span class="nb">cd </span>vagrant-ansible-rails
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>hosts_production</code>にIP、URSER名、SSH鍵のパスを設定する。</p>
 
-<p>{% codeblock lang:bash %}
-vi hosts_production
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vi hosts_production
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>以下のような内容を追記。<br/></p>
 
-<p>{% codeblock lang:bash %}
-[web]
-IP_ADDRESS ansible_ssh_user=USER_NAME ansible_connection=ssh ansible_ssh_private_key_file=~/ssh/path/to</p>
-
-<h1>IP_ADDRESS => サーバのIP</h1>
-
-<h1>USER_NAME => SSHでログインするユーザー</h1>
-
-<h1>/ssh/path/to => SSH鍵のパス</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>web<span class="o">]</span>
+</span><span class='line'>IP_ADDRESS <span class="nv">ansible_ssh_user</span><span class="o">=</span>USER_NAME <span class="nv">ansible_connection</span><span class="o">=</span>ssh <span class="nv">ansible_ssh_private_key_file</span><span class="o">=</span>~/ssh/path/to&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;IP_ADDRESS <span class="o">=</span>&gt; サーバのIP&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;USER_NAME <span class="o">=</span>&gt; SSHでログインするユーザー&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;/ssh/path/to <span class="o">=</span>&gt; SSH鍵のパス&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>また、<code>playbook_production.yml</code>の設定を変更。</p>
 
-<p>{% codeblock lang:bash %}
-vars: パラメータなど
-roles: 構築したい設定。postgresql => mysqlにするとmysqlがインストールされます
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vars: パラメータなど
+</span><span class='line'>roles: 構築したい設定。postgresql <span class="o">=</span>&gt; mysqlにするとmysqlがインストールされます
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>設定画完了したら、以下のコマンドを実行してhostsを読み込み。</p>
 
-<p>{% codeblock lang:bash %}
-export ANSIBLE_HOSTS=./hosts_production
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">ANSIBLE_HOSTS</span><span class="o">=</span>./hosts_production
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ついに実際にAnsibleのコードを実行。sshのログインユーザーのsudoパスによって2種類あります。</p>
 
 <p>(A) sshでログインするユーザーがsudoになる時にパスワードが必要ない場合は、以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-ansible-playbook ./playbook_production.yml
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ansible-playbook ./playbook_production.yml
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>(B) sshでログインするユーザーがsudoになる時にパスワードが必要な場合は、以下のコマンドを実行。
 実行すると最初にsudoのパスワードを聞かれるので入力。</p>
 
-<p>{% codeblock lang:bash %}
-ansible-playbook ./playbook_production.yml -K
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ansible-playbook ./playbook_production.yml -K
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>お願い</h2>
 
@@ -279,7 +328,19 @@ ansible-playbook ./playbook_production.yml -K
 
 <p><strong><a href="https://github.com/morizyun/centos_ansible_rails">morizyun/centos_ansible_rails - GitHub</a></strong></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 ]]></content>
   </entry>
   
@@ -300,7 +361,19 @@ ansible-playbook ./playbook_production.yml -K
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>バックエンドの選択</h2>
 
@@ -328,20 +401,33 @@ ansible-playbook ./playbook_production.yml -K
 
 <p>MacでAnsibleを使えるようにする最低限のコマンド。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Pythonのインストール</h1>
-
-<p>brew install python</p>
-
-<h1>pipのインストール</h1>
-
-<p>sudo easy_install pip</p>
-
-<h1>Ansibleのインストール</h1>
-
-<p>sudo pip install ansible
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Pythonのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew install python&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;pipのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo easy_install pip&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Ansibleのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo pip install ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もう少しPythonの開発環境をしっかり構築したい場合は、拙著『<strong><a href="http://morizyun.github.io/blog/python-pyenv-rehash-mac-development/">Python開発環境構築 徹底解説[pyenv, Mavericks]</a></strong>』を良かったらご覧ください！</p>
 
@@ -352,52 +438,80 @@ ansible-playbook ./playbook_production.yml -K
 <p>まずは共通部分。『<strong><a href="https://github.com/morizyun/vagrant-ansible-rails">morizyun/vagrant-ansible-rails - GitHub</a></strong>』のコードを入手して、Vagrantでサーバを起動。
 起動したサーバにAnsibleを実行するまでの一連の手順です。</p>
 
-<p>{% codeblock lang:bash %}
-git clone https://github.com/morizyun/vagrant-ansible-rails</p>
-
-<p>cd vagrant-ansible-rails
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/morizyun/vagrant-ansible-rails&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cd vagrant-ansible-rails
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>(A) Vagrantの起動、Ansibleの実行</h2>
 
-<p>{% codeblock lang:bash %}
-chmod a+x set_vagrant.sh &amp;&amp; ./set_vagrant.sh</p>
-
-<p>export ANSIBLE_HOSTS=./ansible/hosts_vagrant</p>
-
-<p>ansible-playbook ./ansible/playbook_vagrant.yml
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod a+x set_vagrant.sh &amp;amp;&amp;amp; ./set_vagrant.sh&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;export <span class="nv">ANSIBLE_HOSTS</span><span class="o">=</span>./ansible/hosts_vagrant&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ansible-playbook ./ansible/playbook_vagrant.yml
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>(B) AWS + Ansibleの実行。</h2>
 
 <p><code>ansible/hosts_vagrant</code>を参考にしつつ、<code>hosts_production</code>を作成して、AWSのIPとSSHキー(pem)のパスを設定。
 設定画完了したら、以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-export ANSIBLE_HOSTS=./ansible/hosts_production</p>
-
-<p>ansible-playbook ./ansible/playbook_production.yml
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">ANSIBLE_HOSTS</span><span class="o">=</span>./ansible/hosts_production&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ansible-playbook ./ansible/playbook_production.yml
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Railsのサンプルプロジェクトの作成</h2>
 
-<p>{% codeblock lang:bash %}
-vagrant ssh
-cd /var/rails
-rvmsudo gem install rails bundler --no-ri --no-rdoc
-rails new sample --database=mysql
-cd sample
-echo "gem 'therubyracer', platforms: :ruby" >> Gemfile
-bundle install
-bundle exec rake db:create
-rails s
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant ssh
+</span><span class='line'><span class="nb">cd</span> /var/rails
+</span><span class='line'>rvmsudo gem install rails bundler --no-ri --no-rdoc
+</span><span class='line'>rails new sample --database<span class="o">=</span>mysql
+</span><span class='line'><span class="nb">cd </span>sample
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;gem &#39;therubyracer&#39;, platforms: :ruby&quot;</span> &gt;&gt; Gemfile
+</span><span class='line'>bundle install
+</span><span class='line'>bundle <span class="nb">exec </span>rake db:create
+</span><span class='line'>rails s
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>ブラウザでのアクセス</h2>
 
 <p><code>http://192.168.33.10/</code>にブラウザをアクセスすると<code>app/</code>フォルダの中のファイルにアクセスできます。</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Vagrant Share</h2>
 
@@ -407,16 +521,25 @@ rails s
 
 <p>次に以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Vagrant Cloudのユーザー名/パスワードを入力</h1>
-
-<p>vagrant login</p>
-
-<h1>Vagrant Shareを実行</h1>
-
-<p>vagrant share
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Vagrant Cloudのユーザー名/パスワードを入力&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vagrant login&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Vagrant Shareを実行&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vagrant share
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>最後に出てきたURLがグローバルにアクセスできるURL。『http://xxxx.vagrantshare.com』とか。</p>
 
@@ -430,25 +553,49 @@ rails s
 
 <p>Mountのエラーが出る場合はこちらを試してみるといいかもです。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Vagrantにsshで接続</h1>
-
-<p>vagrant ssh
-sudo /etc/init.d/vboxadd setup
-exit</p>
-
-<h1>ローカルに戻ってVMを再起動</h1>
-
-<p>vagrant halt
-vagrant up
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Vagrantにsshで接続&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vagrant ssh
+</span><span class='line'>sudo /etc/init.d/vboxadd setup
+</span><span class='line'><span class="nb">exit</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ローカルに戻ってVMを再起動&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vagrant halt
+</span><span class='line'>vagrant up
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ちなみにこちらの記事を参照させて頂きました！</p>
 
 <p><strong><a href="http://qiita.com/osamu1203/items/10e19c74c912d303ca0b">vagrantでmountエラーの解決方法</a></strong></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 

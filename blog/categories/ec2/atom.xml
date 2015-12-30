@@ -4,7 +4,7 @@
   <title><![CDATA[Category: EC2 | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/ec2/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2015-12-30T21:08:25+09:00</updated>
+  <updated>2015-12-30T21:09:47+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,19 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>公式ドキュメント</h2>
 
@@ -46,89 +58,167 @@ mount_point => /path/to # 割り当てたいフォルダを作成
 </pre>
 
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>使用可能なディスクを確認するコマンド</h1>
-
-<p>lsblk</p>
-
-<h1>ext4 ファイルシステムを作成</h1>
-
-<p>sudo mkfs -t ext4 device_name</p>
-
-<h1>ボリュームを割り当て</h1>
-
-<p>sudo mkdir mount_point
-sudo mount device_name mount_point</p>
-
-<h1>再起動時に自動で割り当てされるように設定</h1>
-
-<p>sudo cp /etc/fstab /etc/fstab.org
-sudo vim /etc/fstab</p>
-
-<h1>下のように書き換え</h1>
-
-<h1>/dev/xvdx       /path/to  ext4    defaults    0       2</h1>
-
-<h1>Waring/Errorが出なければ設定成功</h1>
-
-<p>sudo mount -a
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;使用可能なディスクを確認するコマンド&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;lsblk&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ext4 ファイルシステムを作成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo mkfs -t ext4 device_name&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ボリュームを割り当て&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo mkdir mount_point
+</span><span class='line'>sudo mount device_name mount_point&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;再起動時に自動で割り当てされるように設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo cp /etc/fstab /etc/fstab.org
+</span><span class='line'>sudo vim /etc/fstab&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;下のように書き換え&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;/dev/xvdx       /path/to  ext4    defaults    0       2&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Waring/Errorが出なければ設定成功&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo mount -a
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>おまけ: MySQLのデータディレクトリをEBSに差し替え</h2>
 
 <p>MySQLにログインして以下を実行すると、データベースのディレクトリが出ます。</p>
 
-<p>{% codeblock lang:bash %}
-mysql -u root -p
-show variables like 'datadir';
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql -u root -p
+</span><span class='line'>show variables like <span class="s1">&#39;datadir&#39;</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ここで出たデータベースのデータディレクトリを<code>/path/to/mysql/new/</code>とします。ここをEBSのフォルダに差し替えます。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>MySQLを停止</h1>
-
-<p>sudo /etc/init.d/mysql stop</p>
-
-<p>sudo vi my.cnf</p>
-
-<h1>↓ 以下の様に変更</h1>
-
-<p>innodb_data_home_dir=/path/to/mysql/new/
-innodb_log_group_home_dir=/path/to/mysql/new/</p>
-
-<p>sudo vi /etc/init.d/mysql</p>
-
-<h1>↓ 以下の様に変更</h1>
-
-<p>datadir=/path/to/mysql/new/</p>
-
-<h1>旧ディレクトリ => 新ディレクトリへのコピー</h1>
-
-<p>cp -pR /path/to/mysql/old/* /path/to/mysql/new/</p>
-
-<h1>フォルダの権限変更</h1>
-
-<p>chmod -R mysql.mysql /path/to/mysql/new</p>
-
-<h1>MySQLを再起動</h1>
-
-<p>/etc/init.d/mysql start</p>
-
-<h1>動作確認(ログインできること・データ変更できることを確認)</h1>
-
-<p>mysql -u root -p</p>
-
-<h1>古いフォルダを削除</h1>
-
-<p>rm -rf /path/to/mysql/old
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;MySQLを停止&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo /etc/init.d/mysql stop&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo vi my.cnf&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;↓ 以下の様に変更&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;innodb_data_home_dir<span class="o">=</span>/path/to/mysql/new/
+</span><span class='line'><span class="nv">innodb_log_group_home_dir</span><span class="o">=</span>/path/to/mysql/new/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo vi /etc/init.d/mysql&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;↓ 以下の様に変更&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;datadir<span class="o">=</span>/path/to/mysql/new/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;旧ディレクトリ <span class="o">=</span>&gt; 新ディレクトリへのコピー&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cp -pR /path/to/mysql/old/* /path/to/mysql/new/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;フォルダの権限変更&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;chmod -R mysql.mysql /path/to/mysql/new&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;MySQLを再起動&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;/etc/init.d/mysql start&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;動作確認<span class="o">(</span>ログインできること・データ変更できることを確認<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mysql -u root -p&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;古いフォルダを削除&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rm -rf /path/to/mysql/old
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>インフラは苦手なので、いろいろご指摘頂ければ幸いです！</p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>Special Thanks</h2>
 
