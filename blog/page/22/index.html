@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="RubyスクリプトでRspecを使う方法を初めて知ったので、備忘録メモです！ Pure RubyのスクリプトでTDDを始めたい人におすすめ！ ">
+  <meta name="description" content="最近Facebook Eventでイベントを立ち上げて、参加者に連絡をとるようなことが一般的になってきました。IT勉強会系でもFacebook Eventを活用する機会が少しずつ増えてきている用に思えます。 ということでFacebookのGraph APIからOpenなFacebook &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="RubyスクリプトでRspecを使う方法を初めて知ったので、備忘録メモです！ Pure RubyのスクリプトでTDDを始めたい人におすすめ！ " />
+<meta property="og:description" content="最近Facebook Eventでイベントを立ち上げて、参加者に連絡をとるようなことが一般的になってきました。IT勉強会系でもFacebook Eventを活用する機会が少しずつ増えてきている用に思えます。 ということでFacebookのGraph APIからOpenなFacebook &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/22/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/facebook-event-api-ruby-fb_graph/">公開中のFacebook EventをGraph APIから取得する</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-12-31T17:25:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/facebook-event-api-ruby-fb_graph/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797370904/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797370904&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797370904&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797370904" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />最近Facebook Eventでイベントを立ち上げて、参加者に連絡をとるようなことが一般的になってきました。IT勉強会系でもFacebook Eventを活用する機会が少しずつ増えてきている用に思えます。</p>
+
+<p>ということでFacebookのGraph APIからOpenなFacebook Eventを取得するためのRubyスクリプトを作成したので備忘録メモ共有です！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/facebook-event-api-ruby-fb_graph/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -557,54 +606,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/youtube-responsive-iframe/">Youtube Iframeのレスポンシブ対応</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-12-04T08:30:00+09:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/youtube-responsive-iframe/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4198637024/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4198637024&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4198637024&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4198637024" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-Youtube動画をiframeでサイトに埋め込む時に、最適なサイズに苦慮することってありませんか？そんな時にオススメなのが、iframeの動画をレスポンシブにすることです。CSSを設定するだけで簡単に対応できるので、ぜひ選択肢の一つに！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/youtube-responsive-iframe/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/23/">&larr; Older</a>
@@ -697,7 +698,7 @@ Youtube動画をiframeでサイトに埋め込む時に、最適なサイズに�
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - morizyun -
+  Copyright &copy; 2016 - morizyun -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
