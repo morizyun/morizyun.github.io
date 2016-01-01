@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-01T21:56:32+09:00</updated>
+  <updated>2016-01-02T00:10:31+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -121,8 +121,8 @@ bundle install --jobs=4 --path=vendor/bundle
 
 <p>namespace :scrape do</p>
 
-<p>  desc 'Yahoo!からタイトルを取得'
-  task :yahoo_title => :environment do</p>
+<p>  desc 'NaverまとめのTechページからタイトルを取得'
+  task :naver_title => :environment do</p>
 
 <pre><code># スクレイピング先のURL
 url = 'http://matome.naver.jp/tech'
@@ -150,7 +150,7 @@ end
 <p>これを実行すると以下の様になります。</p>
 
 <p>```
-bundle exec rake scrape:yahoo_title</p>
+bundle exec rake scrape:naver_title</p>
 
 <h1>=> 写真撮って探しものができるアプリ3選</h1>
 

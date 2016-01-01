@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-01T21:56:32+09:00</updated>
+  <updated>2016-01-02T00:10:31+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -147,8 +147,8 @@ Nokogiriを使ったサンプルアプリを作ります！</p>
 </span><span class='line'>
 </span><span class='line'><span class="n">namespace</span> <span class="ss">:scrape</span> <span class="k">do</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="n">desc</span> <span class="s1">&#39;Yahoo!からタイトルを取得&#39;</span>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:yahoo_title</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s1">&#39;NaverまとめのTechページからタイトルを取得&#39;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:naver_title</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
 </span><span class='line'>    <span class="c1"># スクレイピング先のURL</span>
 </span><span class='line'>    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://matome.naver.jp/tech&#39;</span>
 </span><span class='line'>
@@ -195,7 +195,7 @@ Nokogiriを使ったサンプルアプリを作ります！</p>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">scrape</span><span class="ss">:yahoo_title</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">scrape</span><span class="ss">:naver_title</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># =&gt; 写真撮って探しものができるアプリ3選</span>
 </span><span class='line'><span class="c1"># =&gt; 洋楽好き必見！！音楽の世界が広がるアプリ７選</span>
