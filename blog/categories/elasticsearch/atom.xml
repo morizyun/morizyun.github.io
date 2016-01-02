@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elasticsearch | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-02T21:21:00+09:00</updated>
+  <updated>2016-01-02T21:22:50+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -25,8 +25,6 @@
 <p>どちらも最新版からは少し古いバージョンですが、日本語対応の
 「<strong><a href="https://github.com/elastic/elasticsearch-analysis-kuromoji">elastic/elasticsearch-analysis-kuromoji - GitHub</a></strong>」
 等をインストールしやすくするためにこのバージョンを選びました。</p>
-
-<p>最新版Elasticsearchにkuromoji等のpluginをいれる方法等分かる人いたら教えて下さい＞＜</p>
 
 <!-- more -->
 
@@ -135,6 +133,10 @@ cd kibana</p>
 <p><img src="https://farm6.staticflickr.com/5659/23996427772_e8904e5b3a.jpg" width="500" height="340"></p>
 
 <p>こんな感じの画面が見れれば成功だと思います！</p>
+
+<h2>あとがき</h2>
+
+<p>最新版Elasticsearchにkuromoji等のpluginをいれる方法等分かる人いたら教えて下さい＞＜</p>
 
 <br style="clear:both;"/>
 
