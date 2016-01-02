@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content=" Twitter BootsrapをLESSで使われている方限定ですが、CSSの中の一部だけを切り替える方法を紹介します。例えばスマホの時だけ画像の横の空白(margin, paddingとか)を変更したい時などに使えます。 ">
+  <meta name="description" content=" Open-URIでデータを取得する際に、一定時間以上取得できない場合に問い合わせを諦めるための制御です。ごくごくシンプルなプログラムですが、個人的によく使うのでメモ。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content=" Twitter BootsrapをLESSで使われている方限定ですが、CSSの中の一部だけを切り替える方法を紹介します。例えばスマホの時だけ画像の横の空白(margin, paddingとか)を変更したい時などに使えます。 " />
+<meta property="og:description" content=" Open-URIでデータを取得する際に、一定時間以上取得できない場合に問い合わせを諦めるための制御です。ごくごくシンプルなプログラムですが、個人的によく使うのでメモ。 " />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/33/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/open-uri-timeout-ruby/">open-uriにtimeout(タイムアウト/時間制限)を追加する[Ruby]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-16T12:55:00+09:00" pubdate data-updated="true">Dec 16<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/open-uri-timeout-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/open-uri-timeout-ruby/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8209/8254162158_074340d3b9_m.jpg" width="150" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Open-URIでデータを取得する際に、一定時間以上取得できない場合に問い合わせを諦めるための制御です。ごくごくシンプルなプログラムですが、個人的によく使うのでメモ。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/open-uri-timeout-ruby/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -578,55 +627,6 @@ Macを新しく買ったり、OSを再インストールした時などは良か
   
     <footer>
       <a rel="full-article" href="/blog/ruby-design-pattern-matome-mokuzi/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-design-pattern-13-interpreter/">インタープリタ Ruby 2.0.0 デザインパターン速攻習得[Interpreter][Design Pattern]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2012-12-09T21:50:00+09:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-design-pattern-13-interpreter/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4894712857/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4894712857&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4894712857&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="200" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4894712857" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />GoFのデザインパターン(Design Pattern)の一つ、インタープリタ(Interpreter)をRubyのサンプルコードで紹介します。</p>
-
-<p>インタープリタパターンは、1つ1つの問題はシンプルだが、組み合わさって複雑になるような場合に効果を発揮します。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/ruby-design-pattern-13-interpreter/">続きを読む</a>
     </footer>
   
 
