@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elasticsearch | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-02T21:43:13+09:00</updated>
+  <updated>2016-01-02T22:00:23+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -70,26 +70,21 @@ REST APIを使うことができ、jsonでやり取りを行う事ができる�
 plugin系が必ずしも対応していないようです。今回は日本語対応の kuromojiをつかたかったので、少し古いバージョンを使っています。</p>
 
 <p>```ruby
-wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.4.tar.gz
-tar zxvf elasticsearch-1.7.4.tar.gz
-rm -rf elasticsearch-1.7.4.tar.gz
-mv elastisearch-1.7.4 elasticsearch
-cd elastisearch</p>
+brew install elasticsearch</p>
 
-<h1>elasticsearch を起動します</h1>
+<h1>自動起動の設定</h1>
 
-<p>bin/elasticsearch
+<p>ln -sfv /usr/local/opt/elasticsearch/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
 ```</p>
 
 <h2>日本語対応で elasticsearch-analysis-kuromoji をインストール</h2>
 
 <p>ターミナルで以下を実行。</p>
 
-<p>```
-cd elastisearch</p>
-
-<p>./bin/plugin install elasticsearch/elasticsearch-analysis-kuromoji/2.7.0
-```</p>
+<p><code>
+plugin install analysis-kuromoji
+</code></p>
 
 <p><code>vi config/elasticsearch.yml</code>でファイルを開いて以下を追加。デフォルトで kurmoji を使うようにします。</p>
 
@@ -154,17 +149,19 @@ cd elasticsearch</p>
 <p>./bin/plugin install elasticsearch/marvel/latest
 ```</p>
 
+<p><code>http://localhost:9200/_plugin/marvel</code> にアクセスすると Marvelの画面が見れ得ると思います。</p>
+
 <p><img src="https://farm2.staticflickr.com/1461/23828851120_b45ed81acf.jpg" width="500" height="435"></p>
+
+<p>「Dashboard > Sense」と選択すると画面から簡単にクエリを実行できます！</p>
+
+<p><img src="https://farm2.staticflickr.com/1451/23498091433_13eab6cbf2.jpg" width="500" height="341"></p>
 
 <h2>おまけ</h2>
 
 <p>Elasticsearchのクラスタ情報等のフロントエンドには、
 『<strong><a href="https://github.com/mobz/elasticsearch-head">mobz/elasticsearch-head - GitHub</a></strong>』
 もあります。結構便利です。</p>
-
-<h2>あとがき</h2>
-
-<p>最新版Elasticsearchにkuromoji等のpluginをいれる方法等分かる人いたら教えて下さい＞＜</p>
 
 <br style="clear:both;"/>
 
@@ -188,6 +185,7 @@ cd elasticsearch</p>
 <ul>
 <li><strong><a href="http://qiita.com/watermint/items/fc04baa184be8cbfb251">Using ELK(ElasticSearch 1.4.2 + Logstash 1.4.2 + Kibana 4 Beta3) - Qiita</a></strong></li>
 <li><strong><a href="http://qiita.com/atsuya046/items/c53987153487f05e31fd">MacでElasticsearch(1.5.x) + Kuromojiをインストール - Qiita</a></strong></li>
+<li><strong><a href="http://ruby-rails.hatenadiary.com/entry/20151018/1445142266">RailsでElasticsearch: 全文検索を実装 - Rails Webook</a></strong></li>
 </ul>
 
 ]]></content>
