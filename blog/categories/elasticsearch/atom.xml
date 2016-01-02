@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elasticsearch | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-02T22:14:06+09:00</updated>
+  <updated>2016-01-02T22:15:33+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -81,7 +81,7 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
 plugin install analysis-kuromoji
 </code></p>
 
-<p><code>vi config/elasticsearch.yml</code>でファイルを開いて以下を追加。デフォルトで kurmoji を使うようにします。</p>
+<p><code>vi /usr/local/etc/elasticsearch/elasticsearch.yml</code>でファイルを開いて以下を追加。デフォルトで kurmoji を使うようにします。</p>
 
 <p>```</p>
 
@@ -99,6 +99,20 @@ index.analysis.analyzer.default.tokenizer: kuromoji_tokenizer
 $ curl -XPUT http://0.0.0.0:9200/dummy/test/1 -d '{"tag": "foo", "text": "bar"}'
 {"_index":"dummy","_type":"test","_id":"1","_version":1,"created":true}
 </code></p>
+
+<p><div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div></p>
 
 <h2>データビジュアライゼーション Kibana</h2>
 

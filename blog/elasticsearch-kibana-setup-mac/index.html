@@ -213,7 +213,7 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>vi config/elasticsearch.yml</code>でファイルを開いて以下を追加。デフォルトで kurmoji を使うようにします。</p>
+<p><code>vi /usr/local/etc/elasticsearch/elasticsearch.yml</code>でファイルを開いて以下を追加。デフォルトで kurmoji を使うようにします。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -233,6 +233,23 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">curl</span> <span class="o">-</span><span class="no">XPUT</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">:</span><span class="mi">9200</span><span class="o">/</span><span class="n">dummy</span><span class="o">/</span><span class="nb">test</span><span class="o">/</span><span class="mi">1</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;tag&quot;: &quot;foo&quot;, &quot;text&quot;: &quot;bar&quot;}&#39;</span>
 </span><span class='line'><span class="p">{</span><span class="s2">&quot;_index&quot;</span><span class="ss">:&quot;dummy&quot;</span><span class="p">,</span><span class="s2">&quot;_type&quot;</span><span class="ss">:&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;_id&quot;</span><span class="ss">:&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;_version&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;created&quot;</span><span class="ss">:true</span><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<div>
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-4186413323075068";
+  /* middle_yoko_naga2 */
+  google_ad_slot = "4362325392";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
 
 
 <h2>データビジュアライゼーション Kibana</h2>
