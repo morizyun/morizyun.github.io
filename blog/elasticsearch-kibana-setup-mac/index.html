@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Elasticsearch 1.7 + Kibana 4.1 + Marvel のMacへのセットアップ - 酒と泪とRubyとRailsと</title>
+  <title>Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ - 酒と泪とRubyとRailsと</title>
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="全文検索エンジンの『Elasticsearch 1.7.4』
+  <meta name="description" content="全文検索エンジンの『Elasticsearch 2.1』
 Elasticsearchのデータ表示のツール『Kibana 4.1.4』
-Elasticsearchの管理ツール『Marvel』 をMac Yosemiteに環境構築する手順をまとめました。 &hellip;">
+Elasticsearchの管理ツール『Marvel』 をMac Yosemiteに環境構築する手順をまとめました。 <!-- google_ad_client &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -48,10 +48,10 @@ Elasticsearchの管理ツール『Marvel』 をMac Yosemiteに環境構築する
   </script>
 
 
-  <meta property="og:title" content="Elasticsearch 1.7 + Kibana 4.1 + Marvel のMacへのセットアップ - 酒と泪とRubyとRailsと" />
-<meta property="og:description" content="全文検索エンジンの『Elasticsearch 1.7.4』
+  <meta property="og:title" content="Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="全文検索エンジンの『Elasticsearch 2.1』
 Elasticsearchのデータ表示のツール『Kibana 4.1.4』
-Elasticsearchの管理ツール『Marvel』 をMac Yosemiteに環境構築する手順をまとめました。 &hellip;" />
+Elasticsearchの管理ツール『Marvel』 をMac Yosemiteに環境構築する手順をまとめました。 <!-- google_ad_client &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -102,7 +102,7 @@ Elasticsearchの管理ツール『Marvel』 をMac Yosemiteに環境構築する
   
   <header>
     
-      <h1 class="entry-title">Elasticsearch 1.7 + Kibana 4.1 + Marvel のMacへのセットアップ</h1>
+      <h1 class="entry-title">Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ</h1>
     
     
     
@@ -147,17 +147,13 @@ Elasticsearchの管理ツール『Marvel』 をMac Yosemiteに環境構築する
 <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00MPDUQQI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00MPDUQQI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00MPDUQQI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00MPDUQQI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
 
 <ul>
-<li>全文検索エンジンの『<strong><a href="https://www.elastic.co/products/elasticsearch">Elasticsearch 1.7.4</a></strong>』</li>
+<li>全文検索エンジンの『<strong><a href="https://www.elastic.co/products/elasticsearch">Elasticsearch 2.1</a></strong>』</li>
 <li>Elasticsearchのデータ表示のツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana 4.1.4</a></strong>』</li>
 <li>Elasticsearchの管理ツール『<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>』</li>
 </ul>
 
 
 <p>をMac Yosemiteに環境構築する手順をまとめました。</p>
-
-<p>どちらも最新版からは少し古いバージョンですが、日本語対応の
-「<strong><a href="https://github.com/elastic/elasticsearch-analysis-kuromoji">elastic/elasticsearch-analysis-kuromoji - GitHub</a></strong>」
-等をインストールしやすくするためにこのバージョンを選びました。</p>
 
 <!-- more -->
 
@@ -301,6 +297,16 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 <p>Elasticsearchのクラスタ情報等のフロントエンドには、
 『<strong><a href="https://github.com/mobz/elasticsearch-head">mobz/elasticsearch-head - GitHub</a></strong>』
 もあります。結構便利です。</p>
+
+<h2>ありがとうございました！</h2>
+
+<blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/zyunnosuke">@zyunnosuke</a> 2.xからはkuromojiのインストールはこのようになっています。1.7を選択した理由はそれ以外にもあるんでしょうか？ <a href="https://t.co/M3DOakc4Um">https://t.co/M3DOakc4Um</a></p>&mdash; Jun Ohtani (@johtani) <a href="https://twitter.com/johtani/status/683263779988082688">2016, 1月 2</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>ということで、 [@johtani]さんのおかげで、無事2.1系で手順をかけました。ありがとうございました＾＾</p>
 
 <br style="clear:both;"/>
 
