@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-02T21:22:50+09:00</updated>
+  <updated>2016-01-02T21:43:13+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -14,13 +14,20 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Elasticsearch 1.7 + Kibana 4.1 のMacへのセットアップ]]></title>
+    <title type="html"><![CDATA[Elasticsearch 1.7 + Kibana 4.1 + Marvel のMacへのセットアップ]]></title>
     <link href="http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac/"/>
-    <updated>2016-01-02T21:25:00+09:00</updated>
+    <updated>2016-01-02T21:40:00+09:00</updated>
     <id>http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00MPDUQQI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00MPDUQQI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00MPDUQQI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00MPDUQQI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-全文検索エンジンの『<strong><a href="https://www.elastic.co/products/elasticsearch">Elasticsearch 1.7.4</a></strong>』とElasticsearchのデータ表示のツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana 4.1.4</a></strong>』
-をMac Yosemiteに環境構築する手順をまとめました。</p>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00MPDUQQI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00MPDUQQI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00MPDUQQI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00MPDUQQI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
+
+<ul>
+<li>全文検索エンジンの『<strong><a href="https://www.elastic.co/products/elasticsearch">Elasticsearch 1.7.4</a></strong>』</li>
+<li>Elasticsearchのデータ表示のツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana 4.1.4</a></strong>』</li>
+<li>Elasticsearchの管理ツール『<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>』</li>
+</ul>
+
+
+<p>をMac Yosemiteに環境構築する手順をまとめました。</p>
 
 <p>どちらも最新版からは少し古いバージョンですが、日本語対応の
 「<strong><a href="https://github.com/elastic/elasticsearch-analysis-kuromoji">elastic/elasticsearch-analysis-kuromoji - GitHub</a></strong>」
@@ -117,7 +124,7 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Kibana</h2>
+<h2>データビジュアライゼーション Kibana</h2>
 
 <p>ミーハーなので データのビジュアライゼーションツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana</a></strong>』
 もインストールします。後で使うかもくらいですww</p>
@@ -154,6 +161,30 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 <p><img src="https://farm6.staticflickr.com/5659/23996427772_e8904e5b3a.jpg" width="500" height="340"></p>
 
 <p>こんな感じの画面が見れれば成功だと思います！</p>
+
+<h2>Elasticsearchの管理プラグイン Mervel</h2>
+
+<p>つづいて、Elasticsearchの管理プラグイン「<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>」をインストールします。
+クラスタやインデックスのキャッシュヒット、ドキュメント数などを閲覧できます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cd</span> <span class="n">elasticsearch</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># marvelのインストール</span>
+</span><span class='line'><span class="o">.</span><span class="n">/bin</span><span class="o">/</span><span class="n">plugin</span> <span class="n">install</span> <span class="n">elasticsearch</span><span class="o">/</span><span class="n">marvel</span><span class="o">/</span><span class="n">latest</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://farm2.staticflickr.com/1461/23828851120_b45ed81acf.jpg" width="500" height="435"></p>
+
+<h2>おまけ</h2>
+
+<p>Elasticsearchのクラスタ情報等のフロントエンドには、
+『<strong><a href="https://github.com/mobz/elasticsearch-head">mobz/elasticsearch-head - GitHub</a></strong>』
+もあります。結構便利です。</p>
 
 <h2>あとがき</h2>
 
