@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elasticsearch | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-02T22:00:23+09:00</updated>
+  <updated>2016-01-02T22:03:05+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -141,13 +141,9 @@ cd kibana</p>
 <p>つづいて、Elasticsearchの管理プラグイン「<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>」をインストールします。
 クラスタやインデックスのキャッシュヒット、ドキュメント数などを閲覧できます。</p>
 
-<p>```
-cd elasticsearch</p>
-
-<h1>marvelのインストール</h1>
-
-<p>./bin/plugin install elasticsearch/marvel/latest
-```</p>
+<p><code>
+plugin install elasticsearch/marvel/latest
+</code></p>
 
 <p><code>http://localhost:9200/_plugin/marvel</code> にアクセスすると Marvelの画面が見れ得ると思います。</p>
 
