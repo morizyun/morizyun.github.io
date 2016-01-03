@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-03T19:42:39+09:00</updated>
+  <updated>2016-01-03T19:44:10+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -78,6 +78,10 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p><code>http://localhost:9200/_plugin/head/</code>が見れたら動いていると思います！</p>
+
+<p><img src="https://farm2.staticflickr.com/1600/24036707412_4258a9701a.jpg" width="500" height="376"></p>
+
 <h2>日本語対応で elasticsearch-analysis-kuromoji をインストール</h2>
 
 <p>ターミナルで以下を実行。</p>
@@ -100,9 +104,16 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>http://localhost:9200/_plugin/head/</code>が見れたら動いていると思います！</p>
+<p>ということでElasticsearchを再起動します。</p>
 
-<p><img src="https://farm2.staticflickr.com/1600/24036707412_4258a9701a.jpg" width="500" height="376"></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">launchctl</span> <span class="n">unload</span> <span class="o">~</span><span class="sr">/Library/</span><span class="no">LaunchAgents</span><span class="o">/</span><span class="n">homebrew</span><span class="o">.</span><span class="n">mxcl</span><span class="o">.</span><span class="n">elasticsearch</span><span class="o">.</span><span class="n">plist</span>
+</span><span class='line'><span class="n">launchctl</span> <span class="nb">load</span> <span class="o">~</span><span class="sr">/Library/</span><span class="no">LaunchAgents</span><span class="o">/</span><span class="n">homebrew</span><span class="o">.</span><span class="n">mxcl</span><span class="o">.</span><span class="n">elasticsearch</span><span class="o">.</span><span class="n">plist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 
 <div>
   <script type="text/javascript"><!--

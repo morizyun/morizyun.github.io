@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elasticsearch | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-03T19:42:39+09:00</updated>
+  <updated>2016-01-03T19:44:10+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -73,6 +73,10 @@ brew install elasticsearch</p>
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
 ```</p>
 
+<p><code>http://localhost:9200/_plugin/head/</code>が見れたら動いていると思います！</p>
+
+<p><img src="https://farm2.staticflickr.com/1600/24036707412_4258a9701a.jpg" width="500" height="376"></p>
+
 <h2>日本語対応で elasticsearch-analysis-kuromoji をインストール</h2>
 
 <p>ターミナルで以下を実行。</p>
@@ -93,9 +97,12 @@ plugin install analysis-kuromoji
 index.analysis.analyzer.default.tokenizer: kuromoji_tokenizer
 ```</p>
 
-<p><code>http://localhost:9200/_plugin/head/</code>が見れたら動いていると思います！</p>
+<p>ということでElasticsearchを再起動します。</p>
 
-<p><img src="https://farm2.staticflickr.com/1600/24036707412_4258a9701a.jpg" width="500" height="376"></p>
+<p><code>
+launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
+</code></p>
 
 <p><div>
   <script type="text/javascript"><!--
