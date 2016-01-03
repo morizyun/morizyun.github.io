@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elasticsearch | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-03T21:58:31+09:00</updated>
+  <updated>2016-01-03T22:00:33+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -368,7 +368,7 @@ end
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ]]></title>
+    <title type="html"><![CDATA[Elasticsearch 2.1 + Kibana 4.3 + Marvel のMacへのセットアップ]]></title>
     <link href="http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac/"/>
     <updated>2016-01-03T19:40:00+09:00</updated>
     <id>http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac</id>
@@ -377,7 +377,7 @@ Mac Yosemiteに以下の環境構築する手順をまとめました！</p>
 
 <ul>
 <li>全文検索エンジンの『<strong><a href="https://www.elastic.co/products/elasticsearch">Elasticsearch 2.1</a></strong>』</li>
-<li>Elasticsearchのデータ表示のツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana 4.1.4</a></strong>』</li>
+<li>Elasticsearchのデータ表示のツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana 4.3.1</a></strong>』</li>
 <li>Elasticsearchの管理ツール『<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>』</li>
 </ul>
 
@@ -414,9 +414,6 @@ REST APIを使うことができ、jsonでやり取りを行う事ができる�
 からファイルをダウンロードして、インストールします。</p>
 
 <p>次に『<strong><a href="https://www.elastic.co/downloads/past-releases/">Download Elasticsearch | Elastic</a></strong>』からファイルをダウンロードします。</p>
-
-<p>今回は Elasticsearchの 1.7.4をインストールします。理由は、2.0系からsha1のチェックを行うそうなんですが、
-plugin系が必ずしも対応していないようです。今回は日本語対応の kuromojiをつかたかったので、少し古いバージョンを使っています。</p>
 
 <p>```ruby
 brew install elasticsearch</p>

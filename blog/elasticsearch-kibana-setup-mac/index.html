@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ - 酒と泪とRubyとRailsと</title>
+  <title>Elasticsearch 2.1 + Kibana 4.3 + Marvel のMacへのセットアップ - 酒と泪とRubyとRailsと</title>
   <meta name="author" content="morizyun">
 
   
   <meta name="description" content="Mac Yosemiteに以下の環境構築する手順をまとめました！ 全文検索エンジンの『Elasticsearch 2.1』
-Elasticsearchのデータ表示のツール『Kibana 4.1.4』
+Elasticsearchのデータ表示のツール『Kibana 4.3.1』
 Elasticsearchの管理ツール『Marvel』 <!-- &hellip;">
   
 
@@ -48,9 +48,9 @@ Elasticsearchの管理ツール『Marvel』 <!-- &hellip;">
   </script>
 
 
-  <meta property="og:title" content="Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ - 酒と泪とRubyとRailsと" />
+  <meta property="og:title" content="Elasticsearch 2.1 + Kibana 4.3 + Marvel のMacへのセットアップ - 酒と泪とRubyとRailsと" />
 <meta property="og:description" content="Mac Yosemiteに以下の環境構築する手順をまとめました！ 全文検索エンジンの『Elasticsearch 2.1』
-Elasticsearchのデータ表示のツール『Kibana 4.1.4』
+Elasticsearchのデータ表示のツール『Kibana 4.3.1』
 Elasticsearchの管理ツール『Marvel』 <!-- &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
@@ -102,7 +102,7 @@ Elasticsearchの管理ツール『Marvel』 <!-- &hellip;" />
   
   <header>
     
-      <h1 class="entry-title">Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ</h1>
+      <h1 class="entry-title">Elasticsearch 2.1 + Kibana 4.3 + Marvel のMacへのセットアップ</h1>
     
     
     
@@ -149,7 +149,7 @@ Mac Yosemiteに以下の環境構築する手順をまとめました！</p>
 
 <ul>
 <li>全文検索エンジンの『<strong><a href="https://www.elastic.co/products/elasticsearch">Elasticsearch 2.1</a></strong>』</li>
-<li>Elasticsearchのデータ表示のツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana 4.1.4</a></strong>』</li>
+<li>Elasticsearchのデータ表示のツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana 4.3.1</a></strong>』</li>
 <li>Elasticsearchの管理ツール『<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>』</li>
 </ul>
 
@@ -187,9 +187,6 @@ REST APIを使うことができ、jsonでやり取りを行う事ができる�
 からファイルをダウンロードして、インストールします。</p>
 
 <p>次に『<strong><a href="https://www.elastic.co/downloads/past-releases/">Download Elasticsearch | Elastic</a></strong>』からファイルをダウンロードします。</p>
-
-<p>今回は Elasticsearchの 1.7.4をインストールします。理由は、2.0系からsha1のチェックを行うそうなんですが、
-plugin系が必ずしも対応していないようです。今回は日本語対応の kuromojiをつかたかったので、少し古いバージョンを使っています。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
