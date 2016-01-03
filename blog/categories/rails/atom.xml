@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-03T21:54:39+09:00</updated>
+  <updated>2016-01-03T21:55:44+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -297,7 +297,7 @@ Article.search('9').results.count</p>
 
 <p>```</p>
 
-<h2>とりあえず一覧の検索まで</h2>
+<h2>とりあえず一覧の検索を実装</h2>
 
 <p><code>articles_controller</code> の <code>index</code> を以下のように変更。</p>
 
