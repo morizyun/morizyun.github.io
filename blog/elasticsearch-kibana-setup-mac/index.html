@@ -121,7 +121,7 @@ Elasticsearchの管理ツール『Marvel』 <!-- &hellip;" />
 
 
 
-        <time datetime="2016-01-02T21:40:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2016</time>
+        <time datetime="2016-01-03T19:30:00+09:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2016</time>
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
@@ -226,16 +226,7 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>以下が動作確認の手順です。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">curl</span> <span class="o">-</span><span class="no">XPUT</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">:</span><span class="mi">9200</span><span class="o">/</span><span class="n">dummy</span><span class="o">/</span><span class="nb">test</span><span class="o">/</span><span class="mi">1</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;tag&quot;: &quot;foo&quot;, &quot;text&quot;: &quot;bar&quot;}&#39;</span>
-</span><span class='line'><span class="p">{</span><span class="s2">&quot;_index&quot;</span><span class="ss">:&quot;dummy&quot;</span><span class="p">,</span><span class="s2">&quot;_type&quot;</span><span class="ss">:&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;_id&quot;</span><span class="ss">:&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;_version&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;created&quot;</span><span class="ss">:true</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p><code>http://localhost:9200/_plugin/head/</code>が見れたら動いていると思います！</p>
 
 <div>
   <script type="text/javascript"><!--
@@ -269,14 +260,10 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># npm を最新にします</span>
-</span><span class='line'><span class="n">npm</span> <span class="n">update</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">wget</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">download</span><span class="o">.</span><span class="n">elastic</span><span class="o">.</span><span class="n">co</span><span class="o">/</span><span class="n">kibana</span><span class="o">/</span><span class="n">kibana</span><span class="o">/</span><span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span><span class="o">.</span><span class="n">zip</span>
-</span><span class='line'><span class="n">unzip</span> <span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span><span class="o">.</span><span class="n">zip</span>
-</span><span class='line'><span class="n">mv</span> <span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span> <span class="n">kibana</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 最新版のURLに置き換えてください</span>
+</span><span class='line'><span class="n">wget</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">download</span><span class="o">.</span><span class="n">elastic</span><span class="o">.</span><span class="n">co</span><span class="o">/</span><span class="n">kibana</span><span class="o">/</span><span class="n">kibana</span><span class="o">/</span><span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</span><span class='line'><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</span><span class='line'><span class="n">mv</span> <span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span> <span class="n">kibana</span>
 </span><span class='line'><span class="n">cd</span> <span class="n">kibana</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># kibana のサーバを起動</span>
@@ -296,11 +283,27 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 クラスタやインデックスのキャッシュヒット、ドキュメント数などを閲覧できます。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">plugin</span> <span class="n">install</span> <span class="n">elasticsearch</span><span class="o">/</span><span class="n">marvel</span><span class="o">/</span><span class="n">latest</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Elasticsearchの plugin をインストール</span>
+</span><span class='line'><span class="c1"># インストール手順: https://www.elastic.co/downloads/marvel</span>
+</span><span class='line'><span class="n">plugin</span> <span class="n">install</span> <span class="n">license</span>
+</span><span class='line'><span class="n">plugin</span> <span class="n">install</span> <span class="n">marvel</span><span class="o">-</span><span class="n">agent</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Kibanaのプラグインとして Marvelをインストール</span>
+</span><span class='line'><span class="n">cd</span> <span class="n">kibana</span>
+</span><span class='line'><span class="o">.</span><span class="n">/bin</span><span class="o">/</span><span class="n">kibana</span> <span class="n">plugin</span> <span class="o">-</span><span class="n">i</span> <span class="n">elasticsearch</span><span class="o">/</span><span class="n">marvel</span><span class="o">/</span><span class="n">latest</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>http://localhost:9200/_plugin/marvel</code> にアクセスすると Marvelの画面が見れ得ると思います。</p>
+<p>インストールしたら、 ElasticsearchとKibanaを再起動させてください。そして</p>
+
+<p><code>http://localhost:5601/app/marvel</code> にアクセスすると Marvelの画面が見れ得ると思います。</p>
 
 <p><img src="https://farm2.staticflickr.com/1461/23828851120_b45ed81acf.jpg" width="500" height="435"></p>
 
@@ -350,6 +353,11 @@ plugin系が必ずしも対応していないようです。今回は日本語�
 <li><strong><a href="http://ruby-rails.hatenadiary.com/entry/20151018/1445142266">RailsでElasticsearch: 全文検索を実装 - Rails Webook</a></strong></li>
 </ul>
 
+
+<h2>変更来歴</h2>
+
+<p>(2016-01-02 21:40) 新規作成
+(2016-01-03 19:30) 記述ミスの修正</p>
 </div>
 
   <div>
@@ -384,7 +392,7 @@ plugin系が必ずしも対応していないようです。今回は日本語�
   
 
 
-<time datetime="2016-01-02T21:40:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2016</time>
+<time datetime="2016-01-03T19:30:00+09:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2016</time>
       
 
 <span class="categories">

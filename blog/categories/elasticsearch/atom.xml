@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elasticsearch | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-02T22:15:33+09:00</updated>
+  <updated>2016-01-03T19:34:00+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ]]></title>
     <link href="http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac/"/>
-    <updated>2016-01-02T21:40:00+09:00</updated>
+    <updated>2016-01-03T19:30:00+09:00</updated>
     <id>http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00MPDUQQI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00MPDUQQI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00MPDUQQI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00MPDUQQI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 Mac Yosemiteに以下の環境構築する手順をまとめました！</p>
@@ -93,12 +93,7 @@ plugin install analysis-kuromoji
 index.analysis.analyzer.default.tokenizer: kuromoji_tokenizer
 ```</p>
 
-<p>以下が動作確認の手順です。</p>
-
-<p><code>
-$ curl -XPUT http://0.0.0.0:9200/dummy/test/1 -d '{"tag": "foo", "text": "bar"}'
-{"_index":"dummy","_type":"test","_id":"1","_version":1,"created":true}
-</code></p>
+<p><code>http://localhost:9200/_plugin/head/</code>が見れたら動いていると思います！</p>
 
 <p><div>
   <script type="text/javascript"><!--
@@ -125,13 +120,11 @@ $ curl -XPUT http://0.0.0.0:9200/dummy/test/1 -d '{"tag": "foo", "text": "bar"}'
 
 <p>```ruby</p>
 
-<h1>npm を最新にします</h1>
+<h1>最新版のURLに置き換えてください</h1>
 
-<p>npm update</p>
-
-<p>wget https://download.elastic.co/kibana/kibana/kibana-4.1.4-darwin-x64.zip
-unzip kibana-4.1.4-darwin-x64.zip
-mv kibana-4.1.4-darwin-x64 kibana
+<p>wget https://download.elastic.co/kibana/kibana/kibana-4.3.1-darwin-x64.tar.gz
+tar zxvf kibana-4.3.1-darwin-x64.tar.gz
+mv kibana-4.3.1-darwin-x64 kibana
 cd kibana</p>
 
 <h1>kibana のサーバを起動</h1>
@@ -150,11 +143,24 @@ cd kibana</p>
 <p>つづいて、Elasticsearchの管理プラグイン「<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>」をインストールします。
 クラスタやインデックスのキャッシュヒット、ドキュメント数などを閲覧できます。</p>
 
-<p><code>
-plugin install elasticsearch/marvel/latest
-</code></p>
+<p>```</p>
 
-<p><code>http://localhost:9200/_plugin/marvel</code> にアクセスすると Marvelの画面が見れ得ると思います。</p>
+<h1>Elasticsearchの plugin をインストール</h1>
+
+<h1>インストール手順: https://www.elastic.co/downloads/marvel</h1>
+
+<p>plugin install license
+plugin install marvel-agent</p>
+
+<h1>Kibanaのプラグインとして Marvelをインストール</h1>
+
+<p>cd kibana
+./bin/kibana plugin -i elasticsearch/marvel/latest
+```</p>
+
+<p>インストールしたら、 ElasticsearchとKibanaを再起動させてください。そして</p>
+
+<p><code>http://localhost:5601/app/marvel</code> にアクセスすると Marvelの画面が見れ得ると思います。</p>
 
 <p><img src="https://farm2.staticflickr.com/1461/23828851120_b45ed81acf.jpg" width="500" height="435"></p>
 
@@ -203,6 +209,11 @@ plugin install elasticsearch/marvel/latest
 <li><strong><a href="http://ruby-rails.hatenadiary.com/entry/20151018/1445142266">RailsでElasticsearch: 全文検索を実装 - Rails Webook</a></strong></li>
 </ul>
 
+
+<h2>変更来歴</h2>
+
+<p>(2016-01-02 21:40) 新規作成
+(2016-01-03 19:30) 記述ミスの修正</p>
 ]]></content>
   </entry>
   
