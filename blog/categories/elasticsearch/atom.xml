@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elasticsearch | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-04T22:00:54+09:00</updated>
+  <updated>2016-01-04T23:15:04+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -60,22 +60,41 @@ curl -XPUT http://localhost:9200/post -d '{ "title" : "manual post title 1", "bo
 
 <h2>Elasticsearch の基本概念</h2>
 
+<h3>Elasticsearchの論理的な構成要素</h3>
+
+<p>検索で使うデータの構成要素のイメージ。</p>
+
 <pre>
-- クラスタ(cluster)とノード(node)
-  - 複数サーバで協調して動かした場合のサーバ群をクラスタと呼ぶ。その構成要素をノードと呼ぶ。
 - インデックス
   - ドキュメントの集合体。リレーショナルDBのテーブルのようなもの。格納された値は、全文検索に最適化される。
 - ドキュメントタイプ
   - 1つのインデックス内に複数のオブジェクトを格納できる。その区分のこと。
 - ドキュメント
   - リレーショナルDBのレコードのようなもの。型(type)は自動で決まることも、強制することもできる
-- シャード(shard)
-  - 大量のドキュメントを処理するために、小さな部分インデックスに分割して複数のサーバに格納する。これをシャードという。
-- レプリカ(replica)
-  - クエリのスループットや高可用性を実現するためにシャードを完全にコピーしたレプリカを作ることができる
-  - クラスタ内では自動的にプライマリとなるシャードを選定することができる
 </pre>
 
+
+<h3>Elasticsearchの物理的な構成要素</h3>
+
+<p>インデックスを物理的に構成する要素。</p>
+
+<pre>
+- クラスタ(cluster)
+  - 複数サーバで協調して動かした場合のサーバ群をクラスタと呼ぶ。
+- ノード(node)
+  Elasticsearchのプロセスをノードと呼ぶ。クラスタの構成要素。
+- シャード(shard)
+  - 大量のドキュメントを処理するために、小さな部分インデックスに分割して複数のサーバに格納する。これをシャードという。
+  - デフォルトでは5つのPrimary Shardと各Primary Shardごとに1つのReplica Shardに分類される
+  - Primary Shard
+    - インデックスの書き込みと参照処理で利用される
+  - Replica Shard
+    - クエリのスループットや高可用性を実現するためにシャードを完全にコピーしたレプリカを作ることができる
+    - クラスタ内では自動的にプライマリとなるシャードを選定することができる
+</pre>
+
+
+<p><code>Replica Shard</code>は動的に数を変更可能だが、<code>Primary Shard</code>は一度インデックスを作成すると変更できません。</p>
 
 <h2>Elasticsearchの基本的なAPI</h2>
 
