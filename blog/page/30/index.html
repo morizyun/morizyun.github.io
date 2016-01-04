@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="ユーザーにフォームを使ってメールアドレスを登録してもらう場合にメールアドレスのバリデーションが必要になります。Railsの標準機能には無いので、難しくないですが自作が必要です。そんな時に助けてくれるのが、『validates_email_format_of』です。 ">
+  <meta name="description" content="Railsにはメールを送信してくれるActionMailerという機能が標準で組み込まれています。この機能を使えば、メールを送信するタイプのWebアプリを簡単に構築出来ます。今回はActionMailerの基本的な設定のやり方を説明します。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="ユーザーにフォームを使ってメールアドレスを登録してもらう場合にメールアドレスのバリデーションが必要になります。Railsの標準機能には無いので、難しくないですが自作が必要です。そんな時に助けてくれるのが、『validates_email_format_of』です。 " />
+<meta property="og:description" content="Railsにはメールを送信してくれるActionMailerという機能が標準で組み込まれています。この機能を使えば、メールを送信するタイプのWebアプリを簡単に構築出来ます。今回はActionMailerの基本的な設定のやり方を説明します。 " />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/30/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/action-mailer-rails-mail/">ActionMailer Railsアプリからメールを送信</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-02-13T20:55:00+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/action-mailer-rails-mail/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798131113/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798131113&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798131113&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798131113" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsにはメールを送信してくれるActionMailerという機能が標準で組み込まれています。この機能を使えば、メールを送信するタイプのWebアプリを簡単に構築出来ます。今回はActionMailerの基本的な設定のやり方を説明します。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/action-mailer-rails-mail/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -524,53 +571,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/ghunit-xcode-45-ios6-tdd-unit-test/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/cocoapods-xcode-45-ios6-library-managent/">Objective-Cのライブラリ管理 CocoaPods 【もうこれなしには戻れない】</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-01-24T11:00:00+09:00" pubdate data-updated="true">Jan 24<span>th</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/cocoapods-xcode-45-ios6-library-managent/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798036277/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798036277&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798036277&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798036277" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />遅ればせながら、Objective-Cのライブラリ管理をしてくれるCocoaPodsを知りました。Ruby Gemの<code>Bundler</code>のObjective-C版です。外部のライブラリをプロジェクトに設定するときの面倒臭い設定を自動でやってくれる、素晴らしいツールです。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/cocoapods-xcode-45-ios6-library-managent/">続きを読む</a>
     </footer>
   
 
