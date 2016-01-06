@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-06T22:24:32+09:00</updated>
+  <updated>2016-01-06T22:31:26+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -70,9 +70,9 @@ REFRESH MATERIALIZED VIEW CONCURRENTLY materialized_view;
 
 <p>```ruby</p>
 
-<h1>View &amp; Materialized View</h1>
+<h1>View &amp; Materialized View (GitHubじゃないとちょっと古い気がします)</h1>
 
-<p>gem 'scenic'</p>
+<p>gem 'scenic', git: 'git@github.com:thoughtbot/scenic.git'</p>
 
 <h1>Fake Data(サンプルデータを作るために使います)</h1>
 
@@ -180,6 +180,7 @@ WHERE
   def change</p>
 
 <pre><code>create_view :expensive_books, materialized: true
+# 追加
 add_index :expensive_books, :id, unique: true
 </code></pre>
 

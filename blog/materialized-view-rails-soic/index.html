@@ -197,8 +197,8 @@ PosgreSQLにはリフレッシュ時にSELECTコマンドを発行した時に�
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># View &amp; Materialized View</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;scenic&#39;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># View &amp; Materialized View (GitHubじゃないとちょっと古い気がします)</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;scenic&#39;</span><span class="p">,</span> <span class="n">git</span><span class="p">:</span> <span class="s1">&#39;git@github.com:thoughtbot/scenic.git&#39;</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># Fake Data(サンプルデータを作るために使います)</span>
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;faker&#39;</span>
@@ -325,10 +325,12 @@ PosgreSQLにはリフレッシュ時にSELECTコマンドを発行した時に�
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
+<span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># db/migrate/20160106123247_create_expensive_books.rb</span>
 </span><span class='line'><span class="k">class</span> <span class="nc">CreateExpensiveBooks</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
 </span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
 </span><span class='line'>    <span class="n">create_view</span> <span class="ss">:expensive_books</span><span class="p">,</span> <span class="n">materialized</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="c1"># 追加</span>
 </span><span class='line'>    <span class="n">add_index</span> <span class="ss">:expensive_books</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="n">unique</span><span class="p">:</span> <span class="kp">true</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
