@@ -1,0 +1,650 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>scenic RailsでMaterialized Viewを使う - 酒と泪とRubyとRailsと</title>
+  <meta name="author" content="morizyun">
+
+  
+  <meta name="description" content="RailsでPostgreSQLのビュー(View)やマテリアライズド・ビュー(Materialized View)を使うためのGem「thoughtbot/scenic」の紹介です。
+thoughtbot謹製なので、安心して使えそうなのも魅力です！ {% include custom/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://morizyun.github.io/blog/materialized-view-rails-soic/">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/gh-buttons.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/table.css" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/rubyrails" rel="alternate" title="酒と泪とRubyとRailsと" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36299115-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <meta property="og:title" content="scenic RailsでMaterialized Viewを使う - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="RailsでPostgreSQLのビュー(View)やマテリアライズド・ビュー(Materialized View)を使うためのGem「thoughtbot/scenic」の紹介です。
+thoughtbot謹製なので、安心して使えそうなのも魅力です！ {% include custom/ &hellip;" />
+<meta property="og:url" content="http://morizyun.github.io/blog/materialized-view-rails-soic/" />
+<meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
+<meta property="og:author" content="zyunnosuke" />
+<meta property="og:site_name" content="酒と泪とRubyとRailsと" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="183897648417956" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">酒と泪とRubyとRailsと</a>
+  </h1>
+  
+    <h2>Ruby on Rails と Objective-C は酒の肴です！</h2>
+  
+</hgroup>
+<script language="JavaScript">
+  $(document).ready( function () {
+     $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
+     })
+</script>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/rubyrails" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:morizyun.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/ruby-design-pattern-matome-mokuzi/">Rubyデザインパターン</a></li>
+  <li><a href="/blog/centos63-sakura-vps-rails-setup-guide/">Railsサーバ構築手順</a></li>
+  <li><a href="https://coderwall.com/p/u/morizyun" target="_blank">English</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Scenic RailsでMaterialized Viewを使う</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2016-01-06T22:20:00+09:00" pubdate data-updated="true">Jan 6<span>th</span>, 2016</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/materialized-view-rails-soic/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/materialized-view-rails-soic/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/materialized-view-rails-soic/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/materialized-view-rails-soic/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00T5ZGX0W/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00T5ZGX0W&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00T5ZGX0W&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00T5ZGX0W" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+RailsでPostgreSQLのビュー(View)やマテリアライズド・ビュー(Materialized View)を使うためのGem「<strong><a href="https://github.com/thoughtbot/scenic">thoughtbot/scenic</a></strong>」の紹介です。
+thoughtbot謹製なので、安心して使えそうなのも魅力です！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p>{% include custom/google_ads_yoko_naga.html %</p>
+
+<h2>PostgreSQLのViewとMaterialized View</h2>
+
+<p>PostgreSQLのViewとMaterialized Viewの大まかかな説明は次の通りです。</p>
+
+<h3>View(ビュー)について</h3>
+
+<ul>
+<li>ViewとはSQLで構成された実態のな仮想的なテーブルのこと。Viewの作成時にSQLを定義する</li>
+<li>Viewを呼び出すとSQLが即時実行される</li>
+<li>最新の情報を常に取得できるが、SQLが複雑だったり、レコードが多いと負荷がかかる</li>
+</ul>
+
+
+<h3>Materialized View(マテリアライズド・ビュー)について</h3>
+
+<ul>
+<li>実態を持ったViewのことである。作成するときにSQLの実行結果のテーブルを作る</li>
+<li>最新の情報を反映するためにはリフレッシュ処理を行う必要がある</li>
+<li>SQLが複雑だったり、レコードが多い処理の負荷を下げるのに有効なアプローチである</li>
+</ul>
+
+
+<h2>PostgreSQLのMaterialized Viewの機能</h2>
+
+<p>『<strong><a href="http://goo.gl/WiA4wK">RailsでPostgreSQLのマテリアライズドビューを使う | 日々雑記</a></strong>』にある通り、
+PosgreSQLにはリフレッシュ時にSELECTコマンドを発行した時にロックされて応答が遅延しないように、<code>CONCURRENTLY</code>
+というパラメータをつけるといいようです！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>REFRESH MATERIALIZED VIEW CONCURRENTLY materialized_view;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Gemのインストール</h2>
+
+<p>ではいよいよ、Viewを扱いやすくするGem「<strong><a href="https://github.com/thoughtbot/scenic">thoughtbot/scenic</a></strong>」の紹介です。</p>
+
+<p><code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行してください。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># View &amp; Materialized View</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;scenic&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Fake Data(サンプルデータを作るために使います)</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;faker&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Viewを作成するためのModelを作成</h2>
+
+<p>まずは、Viewを作成するための元となるテーブルをScaffoldで作成します。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 新しい Rails プロジェクトを作成</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="kp">new</span> <span class="n">scenic_sample</span>
+</span><span class='line'><span class="err">$</span> <span class="n">cd</span> <span class="n">scenic_sample</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># scaffoldで一通り作成</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="n">g</span> <span class="n">scaffold</span> <span class="n">book</span> <span class="n">title</span><span class="ss">:string</span> <span class="n">author</span><span class="ss">:string</span> <span class="n">price</span><span class="ss">:float</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次にサンプルデータを作ります。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># db/seeds.rb</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;faker&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">1000</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="no">Book</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span class='line'>      <span class="n">title</span><span class="p">:</span> <span class="no">Faker</span><span class="o">::</span><span class="no">Name</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+</span><span class='line'>      <span class="n">author</span><span class="p">:</span> <span class="no">Faker</span><span class="o">::</span><span class="no">Name</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+</span><span class='line'>      <span class="n">price</span><span class="p">:</span> <span class="no">Faker</span><span class="o">::</span><span class="no">Commerce</span><span class="o">.</span><span class="n">price</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ではテーブルを作って、テストデータを投入します。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># テーブルを作成</span>
+</span><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">db</span><span class="ss">:migrate</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># テストデータを投入</span>
+</span><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">db</span><span class="ss">:seed</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでサンプルデータが作成されました。</p>
+
+<h2>いよいよマテリアライズド・ビューを作成</h2>
+
+<p>次にマテリアライズド・ビューを作成します。</p>
+
+<p>今回は$50以上のBookを<code>ExpensiveBook</code>として、それを抽出するテーブルにします。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># ExpensiveBookの作成</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="n">generate</span> <span class="n">scenic</span><span class="ss">:model</span> <span class="n">expensive_book</span> <span class="o">--</span><span class="n">materialized</span>
+</span><span class='line'>      <span class="n">invoke</span>  <span class="n">active_record</span>
+</span><span class='line'>      <span class="n">create</span>    <span class="n">app</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">expensive_book</span><span class="o">.</span><span class="n">rb</span>
+</span><span class='line'>      <span class="n">invoke</span>    <span class="n">rspec</span>
+</span><span class='line'>      <span class="n">create</span>      <span class="n">spec</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">expensive_book_spec</span><span class="o">.</span><span class="n">rb</span>
+</span><span class='line'>      <span class="n">invoke</span>      <span class="n">factory_girl</span>
+</span><span class='line'>      <span class="n">create</span>        <span class="n">spec</span><span class="o">/</span><span class="n">factories</span><span class="o">/</span><span class="n">expensive_books</span><span class="o">.</span><span class="n">rb</span>
+</span><span class='line'>      <span class="n">create</span>  <span class="n">db</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">expensive_books_v01</span><span class="o">.</span><span class="n">sql</span>
+</span><span class='line'>      <span class="n">create</span>  <span class="n">db</span><span class="o">/</span><span class="n">migrate</span><span class="o">/</span><span class="mi">20160106124232</span><span class="n">_update_expensive_books</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>マテリアライズド・ビューのSQL</h2>
+
+<p>そんなマテリアライズド・ビューのSQLがこちら。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="o">#</span> <span class="n">db</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">expensive_books_v01</span><span class="p">.</span><span class="k">sql</span>
+</span><span class='line'><span class="k">SELECT</span>
+</span><span class='line'>  <span class="o">*</span>
+</span><span class='line'><span class="k">FROM</span>
+</span><span class='line'>  <span class="n">books</span>
+</span><span class='line'><span class="k">WHERE</span>
+</span><span class='line'>  <span class="n">price</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">.</span><span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとはリフレッシュ時に<code>CONCURRENTLY</code>を使うために、UNIQ INEXを追加します。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># db/migrate/20160106123247_create_expensive_books.rb</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">CreateExpensiveBooks</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">create_view</span> <span class="ss">:expensive_books</span><span class="p">,</span> <span class="n">materialized</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="n">add_index</span> <span class="ss">:expensive_books</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="n">unique</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ではマテリアライズド・ビューを作成します。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">db</span><span class="ss">:migrate</span>
+</span><span class='line'><span class="o">==</span> <span class="mi">20160106123247</span> <span class="no">CreateExpensiveBooks</span><span class="p">:</span> <span class="n">migrating</span> <span class="o">=============================</span>
+</span><span class='line'><span class="o">--</span> <span class="n">create_view</span><span class="p">(</span><span class="ss">:expensive_books</span><span class="p">)</span>
+</span><span class='line'>   <span class="o">-&gt;</span> <span class="mi">0</span><span class="o">.</span><span class="mo">0272</span><span class="n">s</span>
+</span><span class='line'><span class="o">==</span> <span class="mi">20160106123247</span> <span class="no">CreateExpensiveBooks</span><span class="p">:</span> <span class="n">migrated</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mo">0272</span><span class="n">s</span><span class="p">)</span> <span class="o">====================</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こんな感じのSQLが実行されたようです。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">VIEW</span> <span class="k">public</span><span class="p">.</span><span class="n">expensive_books</span> <span class="k">AS</span> <span class="k">SELECT</span> <span class="n">books</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">books</span><span class="p">.</span><span class="n">title</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">books</span><span class="p">.</span><span class="n">author</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">books</span><span class="p">.</span><span class="n">price</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">books</span><span class="p">.</span><span class="n">created_at</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">books</span><span class="p">.</span><span class="n">updated_at</span>
+</span><span class='line'>   <span class="k">FROM</span> <span class="n">books</span>
+</span><span class='line'>  <span class="k">WHERE</span> <span class="p">(</span><span class="n">books</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">50</span><span class="p">.</span><span class="mi">0</span><span class="p">)::</span><span class="n">double</span> <span class="k">precision</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>SQLを変更する場合は、<code>rails g scenic:view expensive_book</code> とすれば変更用のSQLのmigrationファイル生成されます。</p>
+
+<h2>マテリアライズド・ビューのModelファイル</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ExpensiveBook</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="c1"># find_by!とかを使う場合はprimary_keyが必要なので</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">primary_key</span> <span class="o">=</span> <span class="ss">:id</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># このメソッドを実行するとマテリアライズド・ビューが更新される</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">refresh</span>
+</span><span class='line'>    <span class="no">Scenic</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">refresh_materialized_view</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">concurrently</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>  <span class="c1"># マテリアライズド・ビューは書き込みができないので読み込み専用のViewとして作成</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">readonly?</span>
+</span><span class='line'>    <span class="kp">true</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一点GemのREADMEに書いていた注意点として、リフレッシュ時のパラメータに<code>concurrently: true</code>とした場合
+はlockがかからないけど、<code>PostgreSQL 9.4 以上 &amp;&amp; uniq index</code> が必須なので注意してください。</p>
+
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="https://github.com/stympy/faker">stympy/faker - GitHub</a></strong></li>
+</ul>
+
+</div>
+
+  <div>
+    <h2>押さえておきたい書籍</h2>
+    <a href="http://www.amazon.co.jp/gp/product/4802610181/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4802610181&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4802610181&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4802610181" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774178659/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774178659&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774178659&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774178659" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774178667/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774178667&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774178667&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774178667" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4774178020/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774178020&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774178020&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774178020" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B019DFSTIC/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B019DFSTIC&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B019DFSTIC&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B019DFSTIC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4822236080/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822236080&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822236080&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822236080" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B018DOG57Q/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018DOG57Q&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B018DOG57Q&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B018DOG57Q" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/B018QDBVI2/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B018QDBVI2&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B018QDBVI2&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B018QDBVI2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798143669/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798143669&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798143669&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798143669" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="http://www.amazon.co.jp/gp/product/4798145033/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798145033&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798145033&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798145033" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+</div>
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-06T22:20:00+09:00" pubdate data-updated="true">Jan 6<span>th</span>, 2016</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/postgresql/'>postgresql</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/materialized-view-rails-soic/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/materialized-view-rails-soic/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/materialized-view-rails-soic/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/materialized-view-rails-soic/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/zoho-mail-original-domain-pop-smtp-free/" title="Previous Post: Zoho Mail 無料で独自ドメインのメールの送受信をスタートできる [POP/STMP対応]">&laquo; Zoho Mail 無料で独自ドメインのメールの送受信をスタートできる [POP/STMP対応]</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">おすすめヘッドホン</h1>
+    <a href='/blog/ah-gc20-denon-headphone/'><img src="https://farm6.staticflickr.com/5803/23625553989_c4ef2dbb3c_n.jpg" width="240" height="320"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">発表スライド</h1>
+    <a href='http://www.slideshare.net/morizyun' target='blank'><img src="https://farm1.staticflickr.com/656/23237249193_2b0d6a954a_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">勉強会を見つけやすく！</h1>
+    <a href='http://workshop.morizyun.com/' target='blank'><img src="https://farm4.staticflickr.com/3942/15511213577_e5c7a57333_n.jpg" width="256"></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+  <h1 style="margin: 0 0 10px 0;">RSSもあるよ</h1>
+  <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Ffeeds.feedburner.com%2Frubyrails'  target='blank'><img id='feedlyFollow' src='http://s3.feedly.com/img/follows/feedly-follow-rectangle-volume-big_2x.png' alt='follow us in feedly' width='256' height='112'></a>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <h1 style="margin: 0 0 10px 0;">Rubyニュース</h1>
+    <a href="http://www.facebook.com/pages/RailsRuby%E3%81%A7%E8%A9%B1%E9%A1%8C%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%98%E4%BA%8B%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BE%E3%81%99-%E9%85%92%E3%81%A8%E6%B3%AA%E3%81%A8Ruby%E3%81%A8Rails%E3%81%A8/307988722650180?ref=hl"><img src="/images/ruby_news_banner.png" width="264" height="90" alt="facebook_page_banner"></a>
+</section>
+<section>
+  <h1 style="margin-bottom: 10px;">Ruby on Rails人気記事</h1>
+  <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+  <script language="javascript" type="text/javascript">
+    Hatena.BookmarkWidget.url   = "http://morizyun.github.io/";
+    Hatena.BookmarkWidget.title = "酒と泪とRubyとRailsと";
+    Hatena.BookmarkWidget.sort  = "count";
+    Hatena.BookmarkWidget.width = 0;
+    Hatena.BookmarkWidget.num   = 10;
+    Hatena.BookmarkWidget.theme = "notheme";
+    Hatena.BookmarkWidget.load();
+  </script>
+</section>
+<section style="margin: 20px 0 0 0;">
+    <a class="twitter-timeline" href="https://twitter.com/zyunnosuke" data-widget-id="369007573455736833">@zyunnosuke からのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>About Me</h1>
+  <div id="twitter-profile" style="margin-top:0.5em;">
+    <p>
+      <strong>morizyun</strong> 
+      (<a href="http://twitter.com/zyunnosuke">@zyunnosuke</a>)
+    </p>
+    <p>Ruby on RailsはWebサービスのプロトタイプをスピーディに開発できることが特徴です。このRailをさらに有効活用するためのGemや、デザイン・パターン、アルゴリズムなどを積極的に発信していきます！</p>
+  </div>
+  <script type="text/javascript">
+    $.domReady(function(){
+        var container = $('#twitter-profile'),
+            user = "zyunnosuke";
+        
+        function parseTwLinks(s) {
+          var twUrl = "http://www.twitter.com/"
+          s = s.replace(/ (@([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+p2+"'>"+p1+"</a>"
+          }).replace(/ (#([\w]+))/g, function(match, p1, p2) {
+              return " <a href='"+twUrl+"#!/search?q=%23"+p2+"'>"+p1+"</a>"
+          })
+          return s
+        }
+
+        $.ajax({
+            url: "http://api.twitter.com/1/users/show.json?include_entities=false&screen_name="+user+"&callback=?"
+          , type: 'jsonp'
+          , error: function (err) { $('#twitter-profile').addClass('error');  }
+          , success: function(data) {
+              container.html('<img class="left" src="http://api.twitter.com/1/users/profile_image/'+user+'.json?size=bigger" alt="@'+user+'"><p><strong>'+data.name+'</strong> (<a href="http://twitter.com/'+user+'">@'+user+'</a>)<br/>'+data.location+'</p><p>'+parseTwLinks(data.description)+'</p>');
+            }
+        })
+      });
+  </script>
+</section>
+
+
+  
+</aside>
+
+<!-- Qualaroo for github.com -->
+<!-- Paste this code right after the <body> tag on every page of your site. -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - morizyun -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morizyun';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.io/blog/materialized-view-rails-soic/';
+        var disqus_url = 'http://morizyun.github.io/blog/materialized-view-rails-soic/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
