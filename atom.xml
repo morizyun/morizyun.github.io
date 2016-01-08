@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-09T00:05:53+09:00</updated>
+  <updated>2016-01-09T00:08:35+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://morizyun.github.io/blog/dokku-postgresql-rails-degitalocean/"/>
     <updated>2016-01-08T23:55:00+09:00</updated>
     <id>http://morizyun.github.io/blog/dokku-postgresql-rails-degitalocean</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00NM7VROQ/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00NM7VROQ&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00NM7VROQ&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00NM7VROQ" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00C2ONQIU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00C2ONQIU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00C2ONQIU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00C2ONQIU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 herokuライクなプライベートなPaaSを作るためのOSS『<strong><a href="https://github.com/dokku/dokku">dokku/dokku - GitHub</a></strong>』の紹介です。
 このDokkuの環境は、「<strong><a href="https://www.digitalocean.com/?refcode=0da417edaeee">DegitalOclean</a></strong>」だと画面から数クリックで作成できるので、
 今回は、DegitalOcleanとセットで手順を紹介します。</p>
@@ -82,9 +82,12 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 
 <pre>
 - Custom Domain
+- アプリごとのVirtual Host名の利用
 - 自分のキーを登録
 </pre>
 
+
+<p><img src="https://farm2.staticflickr.com/1536/23625078373_5f346892a0.jpg" width="500" height="435" alt="スクリーンショット 2016-01-08 22.43.36"></p>
 
 <p>Custom Domainを登録したら、自分のdomain側の設定を修正して、<code>123.123.123.123</code> を見に行くようにしてください。</p>
 
