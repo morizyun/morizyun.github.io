@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-08T23:57:56+09:00</updated>
+  <updated>2016-01-09T00:00:24+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -58,7 +58,7 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 </pre>
 
 
-<p>もちろんただ乗りフリーライダーの理論ですので、基本ごめんなさいですm(<em> </em>)m
+<p>Herokuはただ乗りフリーライダーの理論ですので、基本ごめんなさいですm(<em> </em>)m
 一方で個人の趣味開発は、限られた時間との勝負なのでより効率的な開発手法を模索していて今回
 『<strong><a href="https://github.com/dokku/dokku">dokku/dokku - GitHub</a></strong>』を使った方法をトライすることにしました！</p>
 
@@ -230,6 +230,10 @@ dokku open                                      # Open the app in your default b
 dokku url                                       # Show the first URL for the app
 dokku urls                                      # Show all URLs for the app
 ```</p>
+
+<h2>感想</h2>
+
+<p>まだ、簡単なアプリをデプロイしただけなので、もう少し色々試した上でですが、今のところの感触はかなりありな気がします＾＾</p>
 
 <p><div>
   <script type="text/javascript"><!--
