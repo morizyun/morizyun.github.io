@@ -207,9 +207,9 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 <p>以下を登録してください</p>
 
 <pre>
+- 自分のSSHキー
 - Custom Domain
-- アプリごとのVirtual Host名の利用
-- 自分のキーを登録
+- アプリごとのVirtual Host名の利用(onにしていいかも)
 </pre>
 
 
@@ -256,6 +256,8 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 </span><span class='line'># DBをアプリケーションとをひも付け
 </span><span class='line'>dokku postgres:link dokku_sample_db dokku_sample_app</span></code></pre></td></tr></table></div></figure>
 
+
+<p>ちなみに、Dokkuで使えるPluginの一覧はこちら『<strong><a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - Dokku</a></strong>』。</p>
 
 <h2>Rails アプリを作成</h2>
 

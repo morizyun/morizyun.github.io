@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-09T00:08:35+09:00</updated>
+  <updated>2016-01-09T00:13:33+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -80,9 +80,9 @@ open 123.123.123.123
 <p>以下を登録してください</p>
 
 <pre>
+- 自分のSSHキー
 - Custom Domain
-- アプリごとのVirtual Host名の利用
-- 自分のキーを登録
+- アプリごとのVirtual Host名の利用(onにしていいかも)
 </pre>
 
 
@@ -121,6 +121,8 @@ apps.yourdomain.com   A 123.123.123.123
 
 <p>dokku postgres:link dokku_sample_db dokku_sample_app
 ```</p>
+
+<p>ちなみに、Dokkuで使えるPluginの一覧はこちら『<strong><a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - Dokku</a></strong>』。</p>
 
 <h2>Rails アプリを作成</h2>
 
