@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-09T00:19:58+09:00</updated>
+  <updated>2016-01-09T18:25:52+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -22,6 +22,16 @@
 herokuライクなプライベートなPaaSを作るためのOSS『<strong><a href="https://github.com/dokku/dokku">dokku/dokku - GitHub</a></strong>』の紹介です。
 このDokkuの環境は、「<strong><a href="https://www.digitalocean.com/?refcode=0da417edaeee">DegitalOclean</a></strong>」だと画面から数クリックで作成できるので、
 今回は、DegitalOcleanとセットで手順を紹介します。</p>
+
+<p>Dukkuを使うメリットは次の通りです。</p>
+
+<ul>
+<li>Heroku ライクにgitにpushしたら、BuildPack的なものを使ってRailsやNode.js, Pythonなどのアプリを展開できる</li>
+<li>Dokkuは、PosgreSQLやRedis、ElasticSearchなどのプラグインを数コマンドで使える</li>
+</ul>
+
+
+<p>まだ簡単なアプリをBuildしただけですが、特にハマることもなく安定して使えています！</p>
 
 <!-- more -->
 
@@ -49,10 +59,10 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 
 <pre>
 - 趣味アプリでは、できるだけアプリだけに集中したい
+- PosgreSQLやRedis、ElasticSearchなどのプラグインを数コマンドで使えるようになる
 - Herokuの無料版の制約を気にせずにアプリ開発したい
   - 1時間以上アクセスしないとスリープになる
   - 6時間/1日はスリープ状態にしないといけない
-  - Heroku PostgreSQLは10,000行までしか使えない
   - 一定時間以上連続するプロセスがkillされる(はず)
 - VPSやクラウドだとミドルウェアの環境構築や、デプロイのセッティングに時間がかかる
 </pre>
@@ -235,6 +245,33 @@ dokku open                                      # Open the app in your default b
 dokku url                                       # Show the first URL for the app
 dokku urls                                      # Show all URLs for the app
 ```</p>
+
+<h2>DokkuのミドルウェアPlugin</h2>
+
+<p>PostgreSQLだけでなく、RedisやElasticsearch等のPluginも数コマンドで使うことができるようになります。
+公式サポートされているものだけでも次のようなものがあります。</p>
+
+<p><code>
+CouchDB (beta)
+Elasticsearch (beta)
+MariaDB (beta)
+Memcached (beta)
+Mongo (beta)
+MySQL (beta)
+Nats (beta)
+Postgres (beta)
+RabbitMQ (beta)
+Redis (beta)
+RethinkDB (beta)
+Copy Files to Image
+HTTP Auth (beta)
+Let's Encrypt (beta)
+Maintenance mode (beta)
+Redirect (beta)
+</code></p>
+
+<p>また公式サポートされているPlugin以外にもコミュニティや個人が様々なPluginを提供しています。
+詳しくは、『<a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - GitHub</a>**』を見てみてください。</p>
 
 <h2>感想</h2>
 

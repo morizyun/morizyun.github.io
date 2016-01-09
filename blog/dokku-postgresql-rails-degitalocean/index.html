@@ -11,7 +11,7 @@
   
   <meta name="description" content="herokuライクなプライベートなPaaSを作るためのOSS『dokku/dokku - GitHub』の紹介です。
 このDokkuの環境は、「DegitalOclean」だと画面から数クリックで作成できるので、
-今回は、DegitalOcleanとセットで手順を紹介します。 <!-- &hellip;">
+今回は、DegitalOcleanとセットで手順を紹介します。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@
   <meta property="og:title" content="Dokku プライベートなherokuを作ってRailsアプリをデプロイ[DegitalOclean] - 酒と泪とRubyとRailsと" />
 <meta property="og:description" content="herokuライクなプライベートなPaaSを作るためのOSS『dokku/dokku - GitHub』の紹介です。
 このDokkuの環境は、「DegitalOclean」だと画面から数クリックで作成できるので、
-今回は、DegitalOcleanとセットで手順を紹介します。 <!-- &hellip;" />
+今回は、DegitalOcleanとセットで手順を紹介します。 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/dokku-postgresql-rails-degitalocean/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -149,6 +149,16 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 このDokkuの環境は、「<strong><a href="https://www.digitalocean.com/?refcode=0da417edaeee">DegitalOclean</a></strong>」だと画面から数クリックで作成できるので、
 今回は、DegitalOcleanとセットで手順を紹介します。</p>
 
+<p>Dukkuを使うメリットは次の通りです。</p>
+
+<ul>
+<li>Heroku ライクにgitにpushしたら、BuildPack的なものを使ってRailsやNode.js, Pythonなどのアプリを展開できる</li>
+<li>Dokkuは、PosgreSQLやRedis、ElasticSearchなどのプラグインを数コマンドで使える</li>
+</ul>
+
+
+<p>まだ簡単なアプリをBuildしただけですが、特にハマることもなく安定して使えています！</p>
+
 <!-- more -->
 
 
@@ -176,10 +186,10 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 
 <pre>
 - 趣味アプリでは、できるだけアプリだけに集中したい
+- PosgreSQLやRedis、ElasticSearchなどのプラグインを数コマンドで使えるようになる
 - Herokuの無料版の制約を気にせずにアプリ開発したい
   - 1時間以上アクセスしないとスリープになる
   - 6時間/1日はスリープ状態にしないといけない
-  - Heroku PostgreSQLは10,000行までしか使えない
   - 一定時間以上連続するプロセスがkillされる(はず)
 - VPSやクラウドだとミドルウェアの環境構築や、デプロイのセッティングに時間がかかる
 </pre>
@@ -400,6 +410,48 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 </span><span class='line'>dokku url                                       # Show the first URL for the app
 </span><span class='line'>dokku urls                                      # Show all URLs for the app</span></code></pre></td></tr></table></div></figure>
 
+
+<h2>DokkuのミドルウェアPlugin</h2>
+
+<p>PostgreSQLだけでなく、RedisやElasticsearch等のPluginも数コマンドで使うことができるようになります。
+公式サポートされているものだけでも次のようなものがあります。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CouchDB (beta)
+</span><span class='line'>Elasticsearch (beta)
+</span><span class='line'>MariaDB (beta)
+</span><span class='line'>Memcached (beta)
+</span><span class='line'>Mongo (beta)
+</span><span class='line'>MySQL (beta)
+</span><span class='line'>Nats (beta)
+</span><span class='line'>Postgres (beta)
+</span><span class='line'>RabbitMQ (beta)
+</span><span class='line'>Redis (beta)
+</span><span class='line'>RethinkDB (beta)
+</span><span class='line'>Copy Files to Image
+</span><span class='line'>HTTP Auth (beta)
+</span><span class='line'>Let's Encrypt (beta)
+</span><span class='line'>Maintenance mode (beta)
+</span><span class='line'>Redirect (beta)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>また公式サポートされているPlugin以外にもコミュニティや個人が様々なPluginを提供しています。
+詳しくは、『<a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - GitHub</a>**』を見てみてください。</p>
 
 <h2>感想</h2>
 
