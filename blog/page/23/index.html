@@ -9,8 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="Herokuの超優良アドオンの一つであるMongoLabは、HerokuでMongoDBを0.5GBまで無料で使えるアドオンです。公式のPostgreSQLの無料枠が1万レコードまで
-なのでかなり太っ腹なサービスです。 今回は久々にMongoLabを触ったので、ついでにRails 4 x Ruby &hellip;">
+  <meta name="description" content="TwitterのStreaming APIを色々といじっています。今回はMongoLabがJSONをそのまま保存できるというのを最近おしえてもらったので、勉強がてらMongoLabを触ってみました。 また、この機会にRubyのEventMachineについても多少勉強したり、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -48,8 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="Herokuの超優良アドオンの一つであるMongoLabは、HerokuでMongoDBを0.5GBまで無料で使えるアドオンです。公式のPostgreSQLの無料枠が1万レコードまで
-なのでかなり太っ腹なサービスです。 今回は久々にMongoLabを触ったので、ついでにRails 4 x Ruby &hellip;" />
+<meta property="og:description" content="TwitterのStreaming APIを色々といじっています。今回はMongoLabがJSONをそのまま保存できるというのを最近おしえてもらったので、勉強がてらMongoLabを触ってみました。 また、この機会にRubyのEventMachineについても多少勉強したり、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/23/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -97,6 +95,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mongodb-eventmachine-heroku/">Heroku Mongolab + RubyでTwitter Stream APIの JSONを保存【Eventmachine】</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-12-29T07:30:00+09:00" pubdate data-updated="true">Dec 29<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/mongodb-eventmachine-heroku/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B0046RERX4/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B0046RERX4&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B0046RERX4&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B0046RERX4" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><strong><a href="https://dev.twitter.com/docs/streaming-apis">TwitterのStreaming API</a></strong>を色々といじっています。今回はMongoLabがJSONをそのまま保存できるというのを最近おしえてもらったので、勉強がてら<strong><a href="https://addons.heroku.com/mongolab">MongoLab</a></strong>を触ってみました。</p>
+
+<p>また、この機会にRubyのEventMachineについても多少勉強したり、資料をさがしてみたのであわせて
+ご紹介いたしやす！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/mongodb-eventmachine-heroku/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -556,58 +604,6 @@ Youtube動画をiframeでサイトに埋め込む時に、最適なサイズに�
   
     <footer>
       <a rel="full-article" href="/blog/backbone-marionette-angular-js/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/json-builder-rabl-active-model-seriarizer/">jbuilder/rabl/ActiveModel Seriarizer Rails4 のjsonライブラリについて in Ginza.rb</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-11-14T23:55:00+09:00" pubdate data-updated="true">Nov 14<span>th</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/json-builder-rabl-active-model-seriarizer/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774159905/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774159905&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774159905&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774159905" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-10/26に開催されたginza.rb「<strong><a href="http://ginzarb.doorkeeper.jp/events/6459">Ginza.rb 第4回 Rails 4.0時代の json ライブラリ頂上決定戦！！</a></strong>」のレポート記事です。</p>
-
-<p>今回は、Rails 4で有名どころのjsonライブラリ、jbuilder、rabl、Activemodel Seriarizerを比較してその特徴を考えていくのがテーマでした。参加して、jsonのライブラリにもそれぞれ設計に思想の違いがあって、その特徴の違いを意識して、ライブラリを選択するべきだと実感出来ました＾＾</p>
-
-<p>ちなみに、次回は11/26(火)に「<strong><a href="http://ginzarb.doorkeeper.jp/events/7014">Ginza.rb 第5回 ハラショー！ Russian Doll Caching！</a></strong>」がもしご興味があればぜひ！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/json-builder-rabl-active-model-seriarizer/">続きを読む</a>
     </footer>
   
 

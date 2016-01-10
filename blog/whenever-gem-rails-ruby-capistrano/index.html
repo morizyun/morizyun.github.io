@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.2] - 酒と泪とRubyとRailsと</title>
+  <title>Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.2 x Ruby2.3] - 酒と泪とRubyとRailsと</title>
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="wheneverはcrontab管理ライブラリです。導入はすごく簡単ですし、RailsやCapistranoとの連携もスムーズで楽ちんです！定期実行するような処理がある場合はぜひご検討ください！ javan/whenever · GitHub <!-- google_ad_client = "ca &hellip;">
+  <meta name="description" content="wheneverはcrontab管理ライブラリです。導入はすごく簡単ですし、RailsやCapistranoとの連携もスムーズで楽ちんです！定期実行するような処理がある場合はぜひご検討ください！ javan/whenever · GitHub (2016/01/10) Rails 4.2 x &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -46,8 +46,8 @@
   </script>
 
 
-  <meta property="og:title" content="Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.2] - 酒と泪とRubyとRailsと" />
-<meta property="og:description" content="wheneverはcrontab管理ライブラリです。導入はすごく簡単ですし、RailsやCapistranoとの連携もスムーズで楽ちんです！定期実行するような処理がある場合はぜひご検討ください！ javan/whenever · GitHub <!-- google_ad_client = "ca &hellip;" />
+  <meta property="og:title" content="Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.2 x Ruby2.3] - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="wheneverはcrontab管理ライブラリです。導入はすごく簡単ですし、RailsやCapistranoとの連携もスムーズで楽ちんです！定期実行するような処理がある場合はぜひご検討ください！ javan/whenever · GitHub (2016/01/10) Rails 4.2 x &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/whenever-gem-rails-ruby-capistrano/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -98,7 +98,7 @@
   
   <header>
     
-      <h1 class="entry-title">Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.2]</h1>
+      <h1 class="entry-title">Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.2 X Ruby2.3]</h1>
     
     
     
@@ -117,7 +117,7 @@
 
 
 
-        <time datetime="2015-11-15T17:35:00+09:00" pubdate data-updated="true">Nov 15<span>th</span>, 2015</time>
+        <time datetime="2016-01-10T14:45:00+09:00" pubdate data-updated="true">Jan 10<span>th</span>, 2016</time>
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
@@ -144,6 +144,8 @@
 
 <p><a href="https://github.com/javan/whenever" title="javan/whenever · GitHub" class="button big primary">javan/whenever · GitHub</a></p>
 
+<p><strong>(2016/01/10) Rails 4.2 x Ruby 2.3の動作確認。記事をリファクタリング</strong></p>
+
 <!-- more -->
 
 
@@ -169,10 +171,12 @@
 
 <p>いつもどおり<code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行してください。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># crontab管理</span>
-</span><span class='line'>gem <span class="s1">&#39;whenever&#39;</span>, :require <span class="o">=</span>&gt; <span class="nb">false</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
+</span><span class='line'><span class="c1"># crontab管理</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;whenever&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="kp">false</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -180,10 +184,10 @@
 
 <p>以下のコマンドを実行してconfig/schedule.rb</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wheneverize .
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>wheneverize .
 </span><span class='line'>&gt; <span class="o">[</span>add<span class="o">]</span> writing <span class="sb">`</span>./config/schedule.rb<span class="err">&#39;</span>
 </span><span class='line'>&gt; <span class="o">[</span><span class="k">done</span><span class="o">]</span> wheneverized! <span class="c">#&lt;= 成功</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -203,7 +207,7 @@ script: scriptの実行
 
 <h2>設定の具体例</h2>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -248,36 +252,36 @@ script: scriptの実行
 </span><span class='line'>
 </span><span class='line'><span class="c1"># 3時間毎に実行するスケジューリング</span>
 </span><span class='line'><span class="n">every</span> <span class="mi">3</span><span class="o">.</span><span class="n">hours</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">runner</span> <span class="s2">&quot;MyModel.some_process&quot;</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s2">&quot;my:rake:task&quot;</span>
-</span><span class='line'>  <span class="n">command</span> <span class="s2">&quot;/usr/bin/my_great_command&quot;</span>
+</span><span class='line'>  <span class="n">runner</span> <span class="s1">&#39;MyModel.some_process&#39;</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;my:rake:task&#39;</span>
+</span><span class='line'>  <span class="n">command</span> <span class="s1">&#39;/usr/bin/my_great_command&#39;</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># 毎日 am4:30のスケジューリング</span>
-</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="ss">:at</span> <span class="o">=&gt;</span> <span class="s1">&#39;4:30 am&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">runner</span> <span class="s2">&quot;MyModel.task_to_run_at_four_thirty_in_the_morning&quot;</span>
+</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">at</span><span class="p">:</span> <span class="s1">&#39;4:30 am&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">runner</span> <span class="s1">&#39;MyModel.task_to_run_at_four_thirty_in_the_morning&#39;</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># 一時間毎のスケジューリング</span>
 </span><span class='line'><span class="n">every</span> <span class="ss">:hour</span> <span class="k">do</span> <span class="c1"># Many shortcuts available: :hour, :day, :month, :year, :reboot</span>
-</span><span class='line'>  <span class="n">runner</span> <span class="s2">&quot;SomeModel.ladeeda&quot;</span>
+</span><span class='line'>  <span class="n">runner</span> <span class="s1">&#39;SomeModel.ladeeda&#39;</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># 日曜日のpm12時にスケジューリング</span>
-</span><span class='line'><span class="n">every</span> <span class="ss">:sunday</span><span class="p">,</span> <span class="ss">:at</span> <span class="o">=&gt;</span> <span class="s1">&#39;12pm&#39;</span> <span class="k">do</span> <span class="c1"># Use any day of the week or :weekend, :weekday</span>
-</span><span class='line'>  <span class="n">runner</span> <span class="s2">&quot;Task.do_something_great&quot;</span>
+</span><span class='line'><span class="n">every</span> <span class="ss">:sunday</span><span class="p">,</span> <span class="n">at</span><span class="p">:</span> <span class="s1">&#39;12pm&#39;</span> <span class="k">do</span> <span class="c1"># Use any day of the week or :weekend, :weekday</span>
+</span><span class='line'>  <span class="n">runner</span> <span class="s1">&#39;Task.do_something_great&#39;</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># crontab型の設定「分」「時」「日」「月」「曜日」</span>
 </span><span class='line'><span class="c1"># 毎月27日〜31日まで0:00に実行</span>
 </span><span class='line'><span class="n">every</span> <span class="s1">&#39;0 0 27-31 * * &#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">command</span> <span class="s2">&quot;echo &#39;you can use raw cron syntax too&#39;&quot;</span>
+</span><span class='line'>  <span class="n">command</span> <span class="s1">&#39;echo &#39;</span><span class="n">you</span> <span class="n">can</span> <span class="n">use</span> <span class="n">raw</span> <span class="n">cron</span> <span class="n">syntax</span> <span class="n">too</span><span class="s1">&#39;&#39;</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># 6-24時まで3時間おきに実行</span>
-</span><span class='line'><span class="n">work_hour_per_two</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;6&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;24&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">collect</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">:00&quot;</span><span class="o">]</span> <span class="k">if</span> <span class="n">x</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="n">flatten</span>
+</span><span class='line'><span class="n">work_hour_per_two</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="o">.</span><span class="n">.</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="n">_</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">}</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">_</span><span class="si">}</span><span class="s2">:00&quot;</span> <span class="p">}</span>
 </span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">at</span><span class="p">:</span> <span class="n">work_hour_per_two</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s2">&quot;my:rake:task&quot;</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;my:rake:task&#39;</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -286,16 +290,17 @@ script: scriptの実行
 
 <p>crontab に設定する際のコマンドは以下のとおり。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># wheneverの設定更新
-</span><span class='line'>RAILS_ENV=development bundle exec whenever --update-crontab
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># wheneverの設定更新</span>
+</span><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development bundle <span class="nb">exec </span>whenever --update-crontab
 </span><span class='line'>
-</span><span class='line'># crontabの設定削除
-</span><span class='line'>RAILS_ENV=development bundle exec whenever --clear-crontab</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="c"># crontabの設定削除</span>
+</span><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development bundle <span class="nb">exec </span>whenever --clear-crontab
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>詳しい設定方法はGitHubの公式ページへ。</p>
@@ -348,9 +353,10 @@ script: scriptの実行
 (13/01/07 18:35) 「補足：別ファイルにローカルタスク用の設定を書く」を追加<br/>
 (13/01/08 23:50) 「補足：複数環境でwheneverを使いたい場合&#8230;」を修正<br/>
 (14/04/23 22:20) Rails4.1対応、全面書き直し！<br/>
-(14/07-10 20:15) 環境ごとにcronの設定を切り替える方法を追記<br/>
-(14/11-02 15:25) capistranoで環境ごとに処理を振り分ける方法がrvmのパスが変わってうまく動かなくなったので一度削除<br/>
-(15/11-15 17:15) wheneverコマンドの記述を追加<br/></p>
+(14/07/10 20:15) 環境ごとにcronの設定を切り替える方法を追記<br/>
+(14/11/02 15:25) capistranoで環境ごとに処理を振り分ける方法がrvmのパスが変わってうまく動かなくなったので一度削除<br/>
+(15/11/15 17:15) wheneverコマンドの記述を追加<br/>
+(16/01/10 14:40) bundle exec を追加。Rails 4.2 x Ruby 2.3.0 動作確認<br/></p>
 </div>
 
   <div>
@@ -385,7 +391,7 @@ script: scriptの実行
   
 
 
-<time datetime="2015-11-15T17:35:00+09:00" pubdate data-updated="true">Nov 15<span>th</span>, 2015</time>
+<time datetime="2016-01-10T14:45:00+09:00" pubdate data-updated="true">Jan 10<span>th</span>, 2016</time>
       
 
 <span class="categories">
@@ -421,10 +427,8 @@ script: scriptの実行
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/acts-as-taggable-on-gem-rails/" title="Previous Post: acts-as-taggable-onでつくるタグクラウド＆効率的なタグ管理【Rails4.2 x Ruby2.2】">&laquo; acts-as-taggable-onでつくるタグクラウド＆効率的なタグ管理【Rails4.2 x Ruby2.2】</a>
+        <a class="basic-alignment left" href="/blog/action-mailer-rails-mail/" title="Previous Post: ActionMailer Railsアプリからメールを送信[Rails4.2 x Ruby2.3]">&laquo; ActionMailer Railsアプリからメールを送信[Rails4.2 x Ruby2.3]</a>
       
-      
-        <a class="basic-alignment right" href="/blog/meta-programing-ruby-book-review-chapter4-block/" title="Next Post: メタプログラミング Ruby 第2版 / 第4章 ブロック[勉強メモ]">メタプログラミング Ruby 第2版 / 第4章 ブロック[勉強メモ] &raquo;</a>
       
     </p>
   </footer>
