@@ -176,7 +176,7 @@
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
 </span><span class='line'><span class="c1"># crontab管理</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;whenever&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;whenever&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -245,7 +245,11 @@ script: scriptの実行
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
 <span class='line-number'>38</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 出力先のログファイルの指定</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/schedule.rb</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 出力先のログファイルの指定</span>
 </span><span class='line'><span class="n">set</span> <span class="ss">:output</span><span class="p">,</span> <span class="s1">&#39;log/crontab.log&#39;</span>
 </span><span class='line'><span class="c1"># ジョブの実行環境の指定</span>
 </span><span class='line'><span class="n">set</span> <span class="ss">:environment</span><span class="p">,</span> <span class="ss">:production</span>
