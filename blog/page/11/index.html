@@ -9,7 +9,9 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="Twitter Bootstrap3がスタンダードになってきて、今までのBootstrapだけだと上手くカバーできなくなってきたので、新しくBootstrap3の無料テーマと有料だけど格安でクオリティの高いテーマのまとめを厳選してみました！俺得記事です。 (11-03 15:45) &hellip;">
+  <meta name="description" content="
+今回は、RedisのオブジェクトをRubyらしく使うことができるようになる『nateware/redis-objects』
+とRedisのサーバ内でネームスペースを区切ってくれることで、複数アプリで併用してもバッティングしないようになる『resque/redis-namespace』の紹介です。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +49,9 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="Twitter Bootstrap3がスタンダードになってきて、今までのBootstrapだけだと上手くカバーできなくなってきたので、新しくBootstrap3の無料テーマと有料だけど格安でクオリティの高いテーマのまとめを厳選してみました！俺得記事です。 (11-03 15:45) &hellip;" />
+<meta property="og:description" content="
+今回は、RedisのオブジェクトをRubyらしく使うことができるようになる『nateware/redis-objects』
+とRedisのサーバ内でネームスペースを区切ってくれることで、複数アプリで併用してもバッティングしないようになる『resque/redis-namespace』の紹介です。 " />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/11/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -101,7 +105,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/bootstrap3-twitter-free-theme-list/">Bootstrap3 の無料テーマ・格安有料テーマまとめのまとめ</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/redis-coloud-heroku-rails4-redis-object/">Redis-objects/redis-namespace Redisを便利に使うためのGem紹介!</a></h1>
     
     
     
@@ -120,9 +124,9 @@
 
 
 
-        <time datetime="2014-11-03T15:45:00+09:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2014</time>
+        <time datetime="2014-12-22T20:20:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/bootstrap3-twitter-free-theme-list/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/redis-coloud-heroku-rails4-redis-object/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -131,15 +135,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4777517993/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4777517993&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4777517993&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4777517993" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Twitter Bootstrap3がスタンダードになってきて、今までのBootstrapだけだと上手くカバーできなくなってきたので、新しくBootstrap3の無料テーマと有料だけど格安でクオリティの高いテーマのまとめを厳選してみました！俺得記事です。</p>
-
-<p><strong>(11-03 15:45) 無料テーマのMaterial Designを追加</strong><br/></p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774158062/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158062&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158062&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774158062" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+今回は、RedisのオブジェクトをRubyらしく使うことができるようになる『<strong><a href="https://github.com/nateware/redis-objects">nateware/redis-objects</a></strong>』
+とRedisのサーバ内でネームスペースを区切ってくれることで、複数アプリで併用してもバッティングしないようになる『<strong><a href="https://github.com/resque/redis-namespace">resque/redis-namespace</a></strong>』の紹介です。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/bootstrap3-twitter-free-theme-list/">続きを読む</a>
+      <a rel="full-article" href="/blog/redis-coloud-heroku-rails4-redis-object/">続きを読む</a>
     </footer>
   
 
@@ -150,7 +154,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/errbit-heroku-rails-error-ruby/">Errbit - Railsアプリの本番エラーをherokuで管理、メール通知する【無料枠】</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/redis-mac-centos-rails/">CentOS/Mac OSXへのRedis導入手順 - memcacheライクなKey-Value方式と、永続化対応のインメモリDB</a></h1>
     
     
     
@@ -169,9 +173,9 @@
 
 
 
-        <time datetime="2014-11-03T09:30:00+09:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2014</time>
+        <time datetime="2014-12-22T20:05:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/errbit-heroku-rails-error-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/redis-mac-centos-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -180,20 +184,13 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774162051/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774162051&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774162051&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774162051" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-サーバで稼働しているWebアプリのエラー監視して、エラーが出たら通知してくれるツール Errbitの紹介です。この分野で有名な有料のサービス Airbrakeのオープンソース版です。</p>
-
-<p>また今回はこのサービスをheroku上で動かします。herokuの無料枠内で運用できるのでコストパフォーマンスも抜群だと思います！</p>
-
-<p>Ruby 2.1.4で動作確認しました！</p>
-
-<p><a href="https://github.com/errbit/errbit" class="button big primary">errbit/errbit · GitHub</a></p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873115930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873115930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873115930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873115930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />memcachedライクなKey-Value方式と、永続化対応のインメモリDB『<strong><a href="http://redis.io/">Redis</a></strong>』をMac OSXや、CentOSに導入する手順です。Redisを効率的に活用して、さらにRailsアプリを高速化しちゃいましょう＾＾</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/errbit-heroku-rails-error-ruby/">続きを読む</a>
+      <a rel="full-article" href="/blog/redis-mac-centos-rails/">続きを読む</a>
     </footer>
   
 
@@ -204,7 +201,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos/">AWS/VULTR + AnsibleでベーシックなRailsサーバを簡単構築</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/scouter-ruby-gem-social-count-facebook-twitter-hatena-bookmark-pocket/">Scouter FB/Twitter/はてぶ/Pocket/G+/feedly/GitHubなどのカウントを収集</a></h1>
     
     
     
@@ -223,9 +220,9 @@
 
 
 
-        <time datetime="2014-11-02T17:10:00+09:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2014</time>
+        <time datetime="2014-12-21T13:35:00+09:00" pubdate data-updated="true">Dec 21<span>st</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/scouter-ruby-gem-social-count-facebook-twitter-hatena-bookmark-pocket/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -234,19 +231,22 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00JWM4W2E/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00JWM4W2E&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00JWM4W2E&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00JWM4W2E" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-Ansibleはサーバー構築時の手順をコードにできるOSSです。今回は最近構築した自分のサーバのコード『<strong><a href="https://github.com/morizyun/centos_ansible_rails">morizyun/centos_ansible_rails - GitHub</a></strong>』を紹介します。</p>
-
-<p>このAnsibleを使うとCentOSを使っているサーバーに以下のような環境をたったの数コマンドで構築できます。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774170577/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774170577&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774170577&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774170577" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="http://workshop.morizyun.com/">俺の勉カレ</a></strong>』でFacebookやTwitter、はてなブックマークのカウントを収集していたので、
+その部分を『<strong><a href="https://github.com/morizyun/scouter">scouter</a></strong>』という名前でGem化してみました。
+今回Gem化するときに次のサービスまで対応させました。</p>
 
 <pre>
-* サーバ: Nginx
-* DB: MySQL or PostgreSQL
-* Firewall: iptables
-* サーバ監視: NewRelic
-* Ruby: RVM & Rails
-* SSH: Mosh
-* 開発に必要なライブラリのインストール
+  * Buffer
+  * Facebook
+  * feedly
+  * GitHub
+  * Google+
+  * Hatena Bookmark(はてなブックマーク)
+  * Linkedin
+  * Pinterest
+  * Pocket
+  * Twitter
 </pre>
 
 
@@ -256,7 +256,7 @@ Ansibleはサーバー構築時の手順をコードにできるOSSです。今�
   
   
     <footer>
-      <a rel="full-article" href="/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos/">続きを読む</a>
+      <a rel="full-article" href="/blog/scouter-ruby-gem-social-count-facebook-twitter-hatena-bookmark-pocket/">続きを読む</a>
     </footer>
   
 
@@ -267,7 +267,7 @@ Ansibleはサーバー構築時の手順をコードにできるOSSです。今�
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rakutenc-technology-conference-2014/">Rakuten Technology Conference 2014 に行ってきたよ！</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rspec-model-controller-ruby-rails/">RSpec でテストを作るのに役立つ「モック/スタブ」のシンプルな説明</a></h1>
     
     
     
@@ -286,9 +286,9 @@ Ansibleはサーバー構築時の手順をコードにできるOSSです。今�
 
 
 
-        <time datetime="2014-10-25T18:05:00+09:00" pubdate data-updated="true">Oct 25<span>th</span>, 2014</time>
+        <time datetime="2014-12-14T18:00:00+09:00" pubdate data-updated="true">Dec 14<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rakutenc-technology-conference-2014/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rspec-model-controller-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -297,17 +297,14 @@ Ansibleはサーバー構築時の手順をコードにできるOSSです。今�
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774165166/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774165166&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774165166&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774165166" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-2014/10/25に開催された『<strong><a href="http://tech.rakuten.co.jp/">Rakuten Technology Conference 2014</a></strong>』に参加してきました。
-朝一番で社食におじゃまして、無料でめっちゃ美味しいごはんを頂けました。
-nakajimaさんやmatzのセッションを聞けました！
-今までに行ったカンファレンスの中で、ダントツに楽しかったです！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873115655/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798121932&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798121932&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798121932" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />ユニットテストで使われるモックとスタブを正しく理解するために、シンプルな説明を作ってみました。
+モックとスタブを有効に活用して、より効率的なTDDを目指します！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/rakutenc-technology-conference-2014/">続きを読む</a>
+      <a rel="full-article" href="/blog/rspec-model-controller-ruby-rails/">続きを読む</a>
     </footer>
   
 
@@ -318,7 +315,7 @@ nakajimaさんやmatzのセッションを聞けました！
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/endpoint-http-testing-api-json/">RequestBin respondto.it エンドポイントへのHTTPテスト用サービス</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-gem-easy-to-create/">「3分 Gem クッキング」というタイトルでLT発表しました！</a></h1>
     
     
     
@@ -337,9 +334,9 @@ nakajimaさんやmatzのセッションを聞けました！
 
 
 
-        <time datetime="2014-10-19T12:00:00+09:00" pubdate data-updated="true">Oct 19<span>th</span>, 2014</time>
+        <time datetime="2014-12-13T18:15:00+09:00" pubdate data-updated="true">Dec 13<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/endpoint-http-testing-api-json/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-gem-easy-to-create/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -348,14 +345,15 @@ nakajimaさんやmatzのセッションを聞けました！
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4048915134/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048915134&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048915134&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048915134" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-APIへのアクセスのあるiPhoneアプリなどのクライアントを作るときに、まだAPIがない。。。なんてときに重宝するサービス、『<strong><a href="http://requestb.in/">RequestBin</a></strong>』と『<strong><a href="http://respondto.it/">respondto.it</a></strong>』の紹介です。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873115930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873115930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873115930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873115930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+社内勉強会ですが、『<strong><a href="http://www.slideshare.net/morizyun/3-gem">3分 Gem クッキング</a></strong>』生まれてはじめてLT的な発表をしてきました。
+基本的には最近まとめていた、RubyGemsの作り方やOSSに携わると使える無料のサービスなんかの紹介が中心です。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/endpoint-http-testing-api-json/">続きを読む</a>
+      <a rel="full-article" href="/blog/ruby-gem-easy-to-create/">続きを読む</a>
     </footer>
   
 
@@ -366,7 +364,7 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rbenv-default-gems-rails-ruby-versionup/">Rbenv-default-gems rbenvでRubyの別バージョンを入れる時に、gemを自動インストール</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-gem-easy-publish-library-rails/">RubyGemはめっちゃ簡単に作れる！</a></h1>
     
     
     
@@ -385,9 +383,9 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
 
 
 
-        <time datetime="2014-09-27T15:00:00+09:00" pubdate data-updated="true">Sep 27<span>th</span>, 2014</time>
+        <time datetime="2014-12-06T21:15:00+09:00" pubdate data-updated="true">Dec 6<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rbenv-default-gems-rails-ruby-versionup/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-gem-easy-publish-library-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -396,14 +394,15 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/487311697X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=487311697X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=487311697X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=487311697X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-今回はrbenvのバージョンアップをするときについでにいつも使うgemを自動でインストールしてくれるgem 『<strong><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems</a></strong>』の紹介です。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4274050653/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274050653&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274050653&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274050653" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+RubyライブラリのRubyGemは知らないとハードル高そうに見えますが、実際にはかなり簡単につくれます。
+これから積極的にRubyGemを作ってOSSの世界に貢献していきたいので簡単な作り方をまとめました。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/rbenv-default-gems-rails-ruby-versionup/">続きを読む</a>
+      <a rel="full-article" href="/blog/ruby-gem-easy-publish-library-rails/">続きを読む</a>
     </footer>
   
 
@@ -414,7 +413,7 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/git-biginner-web-develop/">Git 初心者のための資料まとめ</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/VULTR-server-ssd-vps-easy-to-use/">VULTR 日本リージョン/MEM 768MB/SSD 15GB VPS $5/月！ Rails鯖のためのAnsibleコードあり</a></h1>
     
     
     
@@ -433,9 +432,9 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
 
 
 
-        <time datetime="2014-09-06T17:45:00+09:00" pubdate data-updated="true">Sep 6<span>th</span>, 2014</time>
+        <time datetime="2014-12-06T15:50:00+09:00" pubdate data-updated="true">Dec 6<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/git-biginner-web-develop/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/VULTR-server-ssd-vps-easy-to-use/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -444,15 +443,15 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/427406767X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=427406767X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=427406767X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=427406767X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Gitを使ったことがない人が、Gitを最初に取り入れるときに是非読んで欲しい資料をまとめてみました。初心者のWebエンジニアが、<code>clone, checkout, add, commit, push</code>やプルリクエスト(Pull Request)ができるようになるまでの一連の流れができるようになることを目標にしています。</p>
-
-<p><strong>(09/06 17:45) 初めてコードレビューされる人のためのpull requestとcommitの作り方を追加</strong><br/></p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00M3OEPEI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00M3OEPEI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00M3OEPEI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00M3OEPEI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+開発をやっている中で、ネットワークに寄っては独自ドメインを使いたい！となります。そんな時に時間単位で借りれてカジュアルに使える
+『<strong><a href="http://www.vultr.com/?ref=6808408">VPS VULTR</a></strong>』を今回はじめて借りてみました！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/git-biginner-web-develop/">続きを読む</a>
+      <a rel="full-article" href="/blog/VULTR-server-ssd-vps-easy-to-use/">続きを読む</a>
     </footer>
   
 
@@ -463,7 +462,7 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/gcd-lcm-euclidean-algorithm-aoj-0005/">アルゴリズムの勉強: 最大公約数、最小公倍数[AOJ 0005][Ruby][Python][Java]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci/">Travis CI、Coveralls、Code Climate、RubyGems、Gemnasiumと連携させよう！</a></h1>
     
     
     
@@ -482,9 +481,9 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
 
 
 
-        <time datetime="2014-09-03T20:55:00+09:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2014</time>
+        <time datetime="2014-12-06T14:55:00+09:00" pubdate data-updated="true">Dec 6<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/gcd-lcm-euclidean-algorithm-aoj-0005/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -493,17 +492,25 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797341378/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797341378&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797341378&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797341378" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />今回は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0005">最大公約数と最小公倍数</a></strong>』に関する問題です。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798139823/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798139823&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798139823&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798139823" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> RubyGemsなどのライブラリをOSSで公開した時の醍醐味として、Travis CIやCode Climateなどのコードの品質担保の仕組みを無料で使うことができるということがあります。ということで先日公開した
+『<strong><a href="https://github.com/morizyun/events_jp">events_jp</a></strong>』として公開したを今回、以下のツールに連携させてみました！</p>
 
-<p>整数における最大公約数を求めるアルゴリズムは、『<strong><a href="http://www.amazon.co.jp/gp/product/4797341378/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4797341378&amp;linkCode=as2&amp;tag=morizyun00-22">ユークリッドの互除法</a></strong>』が有名です。今回はこのアルゴリズムを使って、コードを書いていきます。</p>
+<pre>
+  (1) travisCI
+  (2) Coveralls
+  (3) Code Climate
+  (4) RubyGems.org
+  (5) Gemnasium
+</pre>
 
-<p><strong>(09/03 20:55) Java 追加しました！</strong></p>
+
+
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/gcd-lcm-euclidean-algorithm-aoj-0005/">続きを読む</a>
+      <a rel="full-article" href="/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci/">続きを読む</a>
     </footer>
   
 
@@ -514,7 +521,7 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/java-introduction-code-style/">Java 初心者向け資料を全力でまとめてみた！</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/activeandroid-andcroid-java-gradle/">ActiveAndroid Android/JavaでActiveRecord風にsqliteを使う</a></h1>
     
     
     
@@ -533,9 +540,9 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
 
 
 
-        <time datetime="2014-09-02T20:55:00+09:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2014</time>
+        <time datetime="2014-11-24T08:35:00+09:00" pubdate data-updated="true">Nov 24<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/java-introduction-code-style/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/activeandroid-andcroid-java-gradle/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -544,15 +551,15 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798024031/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798024031&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798024031&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798024031" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-最近仕事でJavaを触り始めました。正直Javaは今まで研修的なことしかやってこなかったので、かなり苦戦していますが、新しい言語を学ぶ楽しさのおかげで毎日がめっちゃ充実しています！
-ということで、最近ネットで探しているJavaの入門用資料を中心にまとめてみました。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/479813192X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=479813192X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=479813192X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=479813192X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />AndroidのsqliteをActiveRecord風に使うためのライブラリ
+『<strong><a href="https://github.com/pardom/ActiveAndroid">ActiveAndroid</a></strong>』のインストールに手こずったのでそのメモです。
+インストールさえ完了すれば、かなりわかりやすいライブラリなのでこれから重宝しそうです＾＾</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/java-introduction-code-style/">続きを読む</a>
+      <a rel="full-article" href="/blog/activeandroid-andcroid-java-gradle/">続きを読む</a>
     </footer>
   
 
@@ -563,7 +570,7 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/uitableview-controller-hcell-height-sizetofit/">UITableViewCellの高さを文字数に合わせて可変にする</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/java-silver-licentiate-study-tips/">Java Silver SE7 勉強日記 調べたことTips</a></h1>
     
     
     
@@ -582,9 +589,9 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
 
 
 
-        <time datetime="2014-08-31T20:30:00+09:00" pubdate data-updated="true">Aug 31<span>st</span>, 2014</time>
+        <time datetime="2014-11-18T22:30:00+09:00" pubdate data-updated="true">Nov 18<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/uitableview-controller-hcell-height-sizetofit/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/java-silver-licentiate-study-tips/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -593,14 +600,15 @@ APIへのアクセスのあるiPhoneアプリなどのクライアントを作�
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4048865366/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048865366&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048865366&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048865366" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-UITableViewCellの高さをその中の文字数に合わせて可変にするコードです。意外と調べるのに苦労したんですが、結構簡単にかけて色々使いそうなのでメモしておきます！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798128627/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798128627&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798128627&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798128627" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+最近仕事でJavaのソースコードを読む事が多くなってきたので、勉強も兼ねて『<strong><a href="http://education.oracle.com/pls/web_prod-plq-dad/db_pages.getpage?page_id=458&amp;p_org_id=70&amp;lang=JA&amp;get_params=p_track_id:JSE7PROG">Java Silver SE7</a></strong>』の資格を勉強しています。資格の勉強をするという作業は、業務でやっているJavaの知識を整理することがができていて結構楽しいです。
+今回はJava Silver SE7の勉強をしている過程で調べたことを中心にまとめてみます＾＾</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/uitableview-controller-hcell-height-sizetofit/">続きを読む</a>
+      <a rel="full-article" href="/blog/java-silver-licentiate-study-tips/">続きを読む</a>
     </footer>
   
 

@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="2013年9月17日に開催されたGinza.rbの『ActionController::Liveで始めるリアルタイムWeb』に参加しました。 ActionController::Liveの導入部分の説明があったり、ActionController:: &hellip;">
+  <meta name="description" content="以前、「Rails4でheroku Pushまでの最短手順」という記事を書きましたが、今回はその派生版えす。Herokuをインフラにして、Ruby2.0 + Rails 4 + Backbone.js + Marionette.js + Slimで環境を構築していきます！ ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="2013年9月17日に開催されたGinza.rbの『ActionController::Liveで始めるリアルタイムWeb』に参加しました。 ActionController::Liveの導入部分の説明があったり、ActionController:: &hellip;" />
+<meta property="og:description" content="以前、「Rails4でheroku Pushまでの最短手順」という記事を書きましたが、今回はその派生版えす。Herokuをインフラにして、Ruby2.0 + Rails 4 + Backbone.js + Marionette.js + Slimで環境を構築していきます！ " />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/26/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -101,7 +101,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ginza-ruby-active-live/">ActionController::Liveで始めるリアルタイムWeb at Ginza.rb</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/heroku-rails4-postgresql-backbonejs/">Heroku環境で Rails4 + Backbone.js + Marionette.js + Slim アプリを構築</a></h1>
     
     
     
@@ -120,9 +120,9 @@
 
 
 
-        <time datetime="2013-09-18T21:30:00+09:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+        <time datetime="2013-11-04T10:00:00+09:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ginza-ruby-active-live/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/heroku-rails4-postgresql-backbonejs/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -131,15 +131,13 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844334476/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844334476&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844334476&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844334476" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />2013年9月17日に開催された<strong><a href="http://ginzarb.github.io/">Ginza.rb</a></strong>の『<strong><a href="http://ginzarb.doorkeeper.jp/events/5492">ActionController::Liveで始めるリアルタイムWeb</a></strong>』に参加しました。 ActionController::Liveの導入部分の説明があったり、ActionController::Liveのコードをガッツリ1時間以上読んだりしました。</p>
-
-<p><a href="https://twitter.com/netwillnet">@netwillnet</a>さん達のクールなコードの読解方法も知ることができたので本当に実りの多い勉強会でした！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797371838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797371838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797371838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797371838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />以前、「<strong><a href="/blog/heroku-rails4-postgresql-introduction/">Rails4でheroku Pushまでの最短手順</a></strong>」という記事を書きましたが、今回はその派生版えす。Herokuをインフラにして、Ruby2.0 + Rails 4 + Backbone.js + Marionette.js + Slimで環境を構築していきます！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/ginza-ruby-active-live/">続きを読む</a>
+      <a rel="full-article" href="/blog/heroku-rails4-postgresql-backbonejs/">続きを読む</a>
     </footer>
   
 
@@ -150,7 +148,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/web-analytics-introduction/">『入門　ウェブ分析論』で学ぶ、Webサイトの課題発見と改善</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/performance-turning-tools/">パフォーマンス・チューニングやオススメGem in 「Rails勉強会@東京 第88回」</a></h1>
     
     
     
@@ -169,9 +167,9 @@
 
 
 
-        <time datetime="2013-09-18T20:10:00+09:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+        <time datetime="2013-10-31T20:45:00+09:00" pubdate data-updated="true">Oct 31<span>st</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/web-analytics-introduction/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/performance-turning-tools/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -180,15 +178,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797368845/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797368845&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797368845&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=marketing-morizyun-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797368845" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="http://www.amazon.co.jp/gp/product/4797368845/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4797368845&amp;linkCode=as2&amp;tag=marketing-morizyun-22">入門　ウェブ分析論</a></strong>』を読みました。基本的な統計や、Google Analyticsをベースとした分析、サイトの課題発見と改善、集客と導線の最適化、Facebookインサイトなどの新しいツールの活用など内容が盛り沢山です。実は職場の先輩からお借りしたんですが、あんまりおもしろい本だったのでさっきamazonでポチッとしましたw、これからずっとお世話になりそうです！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797372273/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797372273&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797372273&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797372273" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />10/19(土)に開催された<a href="http://railsmeetingtokyo.doorkeeper.jp/events/6600">Rails勉強会@東京 第88回</a>のレポート記事です。</p>
 
-<p>今回はGoogle Analyticsを使ったWebサイトの課題発見〜改善までの部分を中心に特に印象に残った部分をピックアップしていきます！</p>
+<p>前回の「<a href="/blog/rails-benkyokai-tokyo-ruby/">Angular.js / Backbone.js + marionette.js 編</a>」に続いて、今回はパフォーマンス・チューニング系の話についての議論を参考にさせていただきつつ、資料をまとめていきます</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/web-analytics-introduction/">続きを読む</a>
+      <a rel="full-article" href="/blog/performance-turning-tools/">続きを読む</a>
     </footer>
   
 
@@ -199,7 +197,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/start-with-why-golden-circle/">共感で駆動するプロダクト開発の始め方と進め方の勉強会に参加しました！</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/tokyogas-google-apps-script-lecture/">Googleサービスと連携して省エネ開発、「TokyoGAS #4 2013秋」に行ってきた</a></h1>
     
     
     
@@ -218,9 +216,9 @@
 
 
 
-        <time datetime="2013-09-14T00:00:00+09:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+        <time datetime="2013-10-21T19:00:00+09:00" pubdate data-updated="true">Oct 21<span>st</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/start-with-why-golden-circle/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/tokyogas-google-apps-script-lecture/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -229,17 +227,18 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798129704/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129704&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798129704&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798129704" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />2013年9月13日にMixiで開催された『<strong><a href="http://changehackers.doorkeeper.jp/events/5485">共感で駆動するプロダクト開発の始め方と進め方</a></strong>』の勉強会に参加しました！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798036757/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798036757&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798036757&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798036757" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Google Apps Scriptをご存知ですか？Google Apps Scriptとは、Google DocsのスプレッドシートやGoogle MapsなどのGoogleのサービスを結びつけることができるスクリプト言語です。スクリプト言語はjavascriptベースなので、Web系のエンジニアなら簡単に作成することができると思います。よく使われる場面としては、フォーム画面をGoogle Docsでフォームを作成して、解答があったらGmailで管理者にメールで通知といった仕組みがあります。</p>
 
-<p>Agile開発の入門的位置づけの勉強会ですが、なかなか内容が濃かったので面白かったです。あとは最後の30分はグループを作って他の会社さんのAgileでの苦労話なんかを聞けたのも、すごくためになりました！</p>
+<p>今回は10/18に開催された『<strong><a href="http://connpass.com/event/3521/">TokyoGAS #4 2013a秋</a></strong>』というイベントに出席して、日本でのGoogle Appsの活用事例やハンズオン、最近のGoogle Apps Scriptの変更点などの発表を伺ってきました。</p>
 
-<p>この記事では特に印象に残った部分を残していきます。</p>
+<p>いつもどおり、この勉強会の中から特に参考になった点をつらつらと書いていきます。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/start-with-why-golden-circle/">続きを読む</a>
+      <a rel="full-article" href="/blog/tokyogas-google-apps-script-lecture/">続きを読む</a>
     </footer>
   
 
@@ -250,7 +249,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/37signals-success-rule-review-book/">『小さなチーム、大きな仕事　完全場』で学ぶエンジニア主導のものづくり</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/KIT-way-of-business-idea-thinking/">悩むとは考えるのをやめること、動いて考える『K.I.T 公開講座 ビジネス発想思考法』</a></h1>
     
     
     
@@ -269,9 +268,9 @@
 
 
 
-        <time datetime="2013-09-05T00:10:00+09:00" pubdate data-updated="true">Sep 5<span>th</span>, 2013</time>
+        <time datetime="2013-10-13T09:25:00+09:00" pubdate data-updated="true">Oct 13<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/37signals-success-rule-review-book/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/KIT-way-of-business-idea-thinking/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -280,15 +279,17 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/415209267X/"><img border="0" src="http://ecx.images-amazon.com/images/I/51Uwn-WBcTL._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>『<strong><a href="http://www.amazon.co.jp/gp/product/415209267X/">小さなチーム、大きな仕事　完全場</a></strong>』を読みました。「自分に必要なもの」を「作る」こと。その行為こそが、一番大切だという言葉は37signailsを世界的なネットサービスの企業に育て上げた著者だからこそ伝えられる言葉だと思います。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/483341953X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=483341953X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=483341953X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=marketing-morizyun-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=483341953X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />10/12(土)に金沢工業大学 虎ノ門キャンパス(K.I.T) で開催された公開講座『<strong><a href="http://www.kanazawa-it.ac.jp/tokyo/business/seminar_ba/1194319_2824.html">ビジネス発想思考法</a></strong>』に行ってきました。講師の三谷 宏治さんは小・中・高校を中心に全国で様々な教育活動を行っておられ、「<strong><a href="http://www.amazon.co.jp/gp/product/483341953X/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=483341953X&amp;linkCode=as2&amp;tag=morizyun00-22">お手伝い至上主義でいこう！</a></strong>」といったユニークな教育本などを多数書かれている方でした。公開講座の内容もビジネスに活かせそうな内容から、子育て・教育に至るまで本当に幅広く、３時間うなずきっぱなしでした。</p>
 
-<p>一般的なメディアで持ち上げられるような成功者とは違う、『成功する確率を上げる』ために必要なことをシンプルに貫く<strong>実践論</strong>が書かれた良本です！</p>
+<p>ちなみに、<strong><a href="http://www.kanazawa-it.ac.jp/tokyo/business/seminar_ba.htm">公開講座は定期的に開かれている</a></strong>ようなのでもしご興味があれば一度ぜひ聞きに行ってみてください＾＾</p>
+
+<p>今回はこの公開講座の中で特に興味に残った部分を書いて行きます！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/37signals-success-rule-review-book/">続きを読む</a>
+      <a rel="full-article" href="/blog/KIT-way-of-business-idea-thinking/">続きを読む</a>
     </footer>
   
 
@@ -299,7 +300,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/kindle-book-1-minion-sell-review-book/">『電子書籍を無名でも100万部売る方法』で学ぶターゲット・マーケティング</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/customer-development-model-dev-love-seminer/">顧客開発の本当の素晴らしさを体験できる勉強会「顧客開発1日ワークショップ」</a></h1>
     
     
     
@@ -318,9 +319,9 @@
 
 
 
-        <time datetime="2013-09-01T19:25:00+09:00" pubdate data-updated="true">Sep 1<span>st</span>, 2013</time>
+        <time datetime="2013-10-07T22:00:00+09:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/kindle-book-1-minion-sell-review-book/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/customer-development-model-dev-love-seminer/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -329,22 +330,19 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4492044809/"><img border="0" src="http://ecx.images-amazon.com/images/I/51Ryk3W1sbL._SS500_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>『<strong><a href="http://www.amazon.co.jp/gp/product/4492044809/">電子書籍を無名でも100万部売る方法</a></strong>』を読みました。著者のジョン・ロックさんは、インディーズ作家として初めてアメリカのAmazon Kindle ランキングで1位を獲得した作家さんです。僕がこの人を凄いと感じた点は次の３点です。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798128511/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798128511&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798128511&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798128511" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+10/6に品川で開催された『<strong><a href="http://devlove.doorkeeper.jp/events/5461">One Day LeanStartup -顧客開発1日ワークショップ-</a></strong>』
+に参加しました。このワークショップの講師の方々は、『<strong><a href="http://www.amazon.co.jp/gp/product/4798117552/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798117552&amp;linkCode=as2&amp;tag=morizyun00-22" title="">アントレプレナーの教科書</a></strong>』や『<strong><a href="http://www.amazon.co.jp/gp/product/4798128511/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798128511&amp;linkCode=as2&amp;tag=morizyun00-22">スタートアップ・マニュアル</a></strong>』などの翻訳を担当された堤さんと飯野さんでした。お二人は、新規事業のご経験や、ベンチャーキャピタルでの投資などの経験を豊富に持っておられて、今までの失敗も含めた経験を余すことなく伝えようという情熱をすごく感じました！</p>
 
-<pre>
-(1) 自分の著書に共通して登場する主人公キャラクターを作ってそれを育てる
-(2) ブログやTwitter、メルマガを最大限に活用して、熱烈なファンを獲得する
-(3) ニッチ分野の本を書くことで、明確なターゲットが満足してくれる作品にする
-</pre>
+<p>講義の内容は、本来は数日間かけておこなう顧客開発モデルのワークショップを8時間に凝縮した形式だそうです。このような制限でしたが、逆に半日の中でできるだけ多くのことを伝えようとしてくれたおかげで、内容が濃かったのですごく学びの多い勉強会でした！</p>
 
-
-<p>著者は自分の作品をデジタル・コンテンツとして捉えて、ターゲットに合わせて商品を作り、自分の著書やブログ・Twitter・メルマガを通して、がっちりとファンを囲い込むという戦略を作り上げた著者は本当に素晴らしいと感激ました！ということで、書籍の中で特に印象に残った点をまとめます！</p>
+<p>いつもどおり、このワークショップの中から特に参考になった点をつらつらと書いていきます。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/kindle-book-1-minion-sell-review-book/">続きを読む</a>
+      <a rel="full-article" href="/blog/customer-development-model-dev-love-seminer/">続きを読む</a>
     </footer>
   
 
@@ -355,7 +353,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/scrum-agile-xp-book-review/">SCRUM/アジャイル開発の入門資料を全力でまとめてみた</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mobile-design-ui-ux-basic-benkyokai/">UXをみっちり基礎から教わることができた「モバイルUI/UXのキホン」って勉強会のレポート！</a></h1>
     
     
     
@@ -374,9 +372,9 @@
 
 
 
-        <time datetime="2013-09-01T13:00:00+09:00" pubdate data-updated="true">Sep 1<span>st</span>, 2013</time>
+        <time datetime="2013-10-06T22:00:00+09:00" pubdate data-updated="true">Oct 6<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/scrum-agile-xp-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/mobile-design-ui-ux-basic-benkyokai/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -385,15 +383,17 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798129712&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798129712" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="/blog/agile-samurai-review-book/">アジャイルサムライ－達人開発者への道－</a></strong>』に続いて、アジャイル開発のバイブル的書籍『<strong><a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798129712&amp;linkCode=as2&amp;tag=morizyun00-22">SCRUM BOOT CAMP</a></strong>』を読みました。SCRUMの実践的な知識を漫画をおりまぜながら、本当にわかりやすく書いている良本でした。これから何度も読み直して、アジャイルの習得に努めます！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4839946035/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839946035&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839946035&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839946035" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+10/4に渋谷で開催された「<strong><a href="http://www.zusaar.com/event/1064003">モバイルUI/UXのキホン</a></strong>」
+に参加しました。2011年から色々なテーマで開催されている歴史のある勉強会なのと、ディスカッションや意見交換を通じた双方向性を大切にしている、学びの多い勉強会でした！</p>
 
-<p>ということで、今回は書籍を読む過程であつめたSCRUMやアジャイル開発に関するスライドやPDF、ブログ記事などをまとめていきます！</p>
+<p>今回は勉強会の中で特に参考になった点を書いていきます！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/scrum-agile-xp-book-review/">続きを読む</a>
+      <a rel="full-article" href="/blog/mobile-design-ui-ux-basic-benkyokai/">続きを読む</a>
     </footer>
   
 
@@ -404,7 +404,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/create-web-service-essey-book-review/">『Webサービスのつくり方 ~「新しい」を生み出すための33のエッセイ』からアイデアを形にする方法を考える</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/most-easy-google-analytics-book-review/">Google Analytics 入門本で一番わかり易い！『世界一やさしい Google Anatilytics アクセス解析入門』</a></h1>
     
     
     
@@ -423,9 +423,9 @@
 
 
 
-        <time datetime="2013-08-31T15:00:00+09:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+        <time datetime="2013-10-03T06:15:00+09:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/create-web-service-essey-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/most-easy-google-analytics-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -434,13 +434,17 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774154075/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774154075&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774154075&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774154075" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />最近『<strong><a href="/blog/agile-samurai-review-book/">アジャイルサムライ－達人開発者への道－</a></strong>』を読で、その後ゆーすけべーさんの書かれた『<strong><a href="http://www.amazon.co.jp/gp/product/4774154075/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774154075&amp;linkCode=as2&amp;tag=morizyun00-22">Webサービスのつくり方 ~「新しい」を生み出すための33のエッセイ</a></strong>』を読み直しました。その中で、アイデアの着想させて形にして実現していくまでのプロセスについて、いくつかのヒントを得ることができたので、忘れないためにこの記事をまとめ直してみます！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798038415/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798038415&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798038415&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=marketing-morizyun-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798038415" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Google Anatlyticsは無料で使えるツールでは考えられないほど機能が充実しているし、見ていればアクセス解析をしている気分になれます。でも本当に大切なことは『数字を見る』ことではなく、『<strong>サービスの強みの強化と問題点のあぶり出し</strong>』を行ってより望むべき結果を得ることだと思います。</p>
+
+<p>そんなことを考えている僕のようなWeb解析初心者の方が、『<strong>アクセス解析を行う上での思考法</strong>』を知ることができる書籍「<strong><a href="http://www.amazon.co.jp/gp/product/4798038415/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798038415&amp;linkCode=as2&amp;tag=morizyun00-22">無料でできる！世界一やさしい Google Anatilytics アクセス解析入門</a></strong>」の紹介です。</p>
+
+<p>早速、この書籍の中から特に印象に残った点をピックアップして紹介します。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/create-web-service-essey-book-review/">続きを読む</a>
+      <a rel="full-article" href="/blog/most-easy-google-analytics-book-review/">続きを読む</a>
     </footer>
   
 
@@ -451,7 +455,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/the-rspec-book-review-rails/">Rspec/Capybara/Turnipの入門記事を全力でまとめてみた</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/simple_form-bootstrap-30-rails/">simple_formでTwitter Bootstrap 3.0に対応したフォームを書く[Rails 4]</a></h1>
     
     
     
@@ -470,9 +474,9 @@
 
 
 
-        <time datetime="2013-08-30T16:00:00+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2013</time>
+        <time datetime="2013-09-30T04:45:00+09:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/the-rspec-book-review-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/simple_form-bootstrap-30-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -481,17 +485,13 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798121932/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798121932&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798121932&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798121932" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />さっき、『<strong>
-<a href="http://www.amazon.co.jp/gp/product/4798121932/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4798121932&amp;linkCode=as2&amp;tag=morizyun00-22">The Rspec Book</a></strong>』を読み終えました。厚めの本ですが、RspecやCucumber、Webrat、Seleniumなどを活用するためのノウハウ満載で大満足でした！ ということで、この本で読んだ内容を忘れないようにするためと、その過程でRspec/Capybaraなどのネット資料をあつめたので、まとめるためにこの記事を書きます。もし、間違いを発見した場合や他にもいいリソースがあれば、是非メッセージを願いします！</p>
-
-<p><strong>(08/30 20:15) 補足：Cucumber(Turnip) + serverspecを追加しました！</strong><br/>
-<strong>(08/30 22:45) 補足: The RSpec BookのRailsコードについてを追加しました！</strong><br/></p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844334476/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844334476&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844334476&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844334476" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Rails 4やBootstrap 3.0を使っているとWebの進化の速さを感じますね＾＾、ということで相変わらずドハマり中なのですが、とりあえずRailsでフォームを簡単に作れるgem <strong><a href="https://github.com/plataformatec/simple_form">simple_form</a></strong>をTwitter Bootstrap 3.0に対応させるときの忘備録記事です。もしこの辺りでハマった方がいればぜひ情報共有したいのでコメント下さいまし！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/the-rspec-book-review-rails/">続きを読む</a>
+      <a rel="full-article" href="/blog/simple_form-bootstrap-30-rails/">続きを読む</a>
     </footer>
   
 
@@ -502,7 +502,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/smartphone-marketing-3-tips-book-review/">スマホで世界を狙うために知っておきたい3つのことで学んだスマホ・マーケティングの基礎</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/google-analytics-seo-kyoto/">『最新SEO動向 京都大学との共同研究によるデータ分析と検索エンジン』に出席しました！</a></h1>
     
     
     
@@ -521,9 +521,9 @@
 
 
 
-        <time datetime="2013-08-29T16:20:00+09:00" pubdate data-updated="true">Aug 29<span>th</span>, 2013</time>
+        <time datetime="2013-09-26T04:00:00+09:00" pubdate data-updated="true">Sep 26<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/smartphone-marketing-3-tips-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/google-analytics-seo-kyoto/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -532,22 +532,13 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4532318041/"><img border="0" src="http://ecx.images-amazon.com/images/I/51OqxDPvV3L._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>『<strong><a href="http://www.amazon.co.jp/gp/product/4532318041/">スマホで世界をねらうために知っておきたい3つのこと</a></strong>』は2012年6月に出版された書籍です。出版で1年が経っているのでスマホ業界では既に幾つかの変化がおきていますが、客観的にスマホ業界の要点がわかる良本です。</p>
-
-<p>ループスの許 直人さんのブログ記事『<strong><a href="http://media.looops.net/naoto/2012/09/10/smartphone-business/">「スマホで世界を狙うために知っておきたい3つのこと」から学んだ5つのこと</a></strong>』には、この書籍の素晴らしい要約がありました。</p>
-
-<BLOCKQUOTE>
-市場環境(特に北米とアジア)、ビジネスモデルの考え方、マーケティング(集客、運用)、プラットフォーム特性など幅広い範囲の情報が、必要最小限のデータと著者である佐藤航陽氏の肌感覚を元にすっきりとまとめられています。
-</BLOCKQUOTE>
-
-
-<p>今回は本の中から特にインパクトの強かった部分を中心にピックアップしていきます！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4534051212/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4534051212&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4534051212&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=marketing-morizyun-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4534051212" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="http://jane.or.jp/event/10075/">京都大学との共同研究によるデータ分析と検索エンジンの変化から見る最新SEO動向</a></strong>』に参加しました。1時間ほどのセッションでしたが、最新の研究成果をベースにした発表だったので有益な情報満載でした。今回はその中から特に印象に残った点をピックアップして紹介します。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/smartphone-marketing-3-tips-book-review/">続きを読む</a>
+      <a rel="full-article" href="/blog/google-analytics-seo-kyoto/">続きを読む</a>
     </footer>
   
 
@@ -558,7 +549,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/google-app-engine-seminar/">Google Cloud EndPointsの勉強会@Google Japanに参加しました</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/apache-virtualhost-conf-passenger/">Apache VirtualHostの設定</a></h1>
     
     
     
@@ -577,9 +568,9 @@
 
 
 
-        <time datetime="2013-08-28T21:30:00+09:00" pubdate data-updated="true">Aug 28<span>th</span>, 2013</time>
+        <time datetime="2013-09-24T20:45:00+09:00" pubdate data-updated="true">Sep 24<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/google-app-engine-seminar/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/apache-virtualhost-conf-passenger/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -588,16 +579,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798127914/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798127914&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798127914&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798127914" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />08/28に六本木ヒルズで開催された『<a href="http://atnd.org/event/rainbowappsgoogle">Google App Engine を使ったスマホアプリ サーバーサイド開発入門セミナー</a>』に行ってきました。<strong>Google App Engine</strong>やバックエンド REST APIための<strong>Google Cloud Endpoints</strong>の紹介などが聞けたので、早速紹介します！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774150363/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774150363&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774150363&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774150363" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Apache + PassengerでRailsサーバを立てるときに使うVirtualHostの設定です。個人的に幾つかの記事に分散していて、見にくかったという俺得記事ですww</p>
 
-<br style="clear: both;"/>
-
+<p>もし、より効率的な設定とか有ればぜひ教えて下さい＾＾</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/google-app-engine-seminar/">続きを読む</a>
+      <a rel="full-article" href="/blog/apache-virtualhost-conf-passenger/">続きを読む</a>
     </footer>
   
 

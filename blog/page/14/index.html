@@ -9,7 +9,8 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第5回はNginxの導入です。NginxはApacheと比べると歴史は浅いですがRailsで使うのもかなりメジャーになってきました。もしApacheの方が、 &hellip;">
+  <meta name="description" content="位置情報を使うようなサービスで、ある緯度経度を中心として、その場所から一定距離の範囲内の緯度経度を持つレコードを抽出したいといったユースケースがあると思います。
+そんな時にもGem『alexreisner/geocoder』がめっちゃ便利だったので共有です。 「 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +48,8 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第5回はNginxの導入です。NginxはApacheと比べると歴史は浅いですがRailsで使うのもかなりメジャーになってきました。もしApacheの方が、 &hellip;" />
+<meta property="og:description" content="位置情報を使うようなサービスで、ある緯度経度を中心として、その場所から一定距離の範囲内の緯度経度を持つレコードを抽出したいといったユースケースがあると思います。
+そんな時にもGem『alexreisner/geocoder』がめっちゃ便利だったので共有です。 「 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/14/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -101,7 +103,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/nginx-setup-sakura-vps-centos/">さくらVPS/Cent OS 6.4 Nginx導入[Railsサーバへの道]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/geocoder-within-bounding-box/">Geocoder DB - ある場所から一定距離の範囲内の緯度経度を持つレコードを抽出</a></h1>
     
     
     
@@ -120,9 +122,9 @@
 
 
 
-        <time datetime="2014-07-24T13:55:00+09:00" pubdate data-updated="true">Jul 24<span>th</span>, 2014</time>
+        <time datetime="2014-08-10T23:30:00+09:00" pubdate data-updated="true">Aug 10<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/nginx-setup-sakura-vps-centos/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/geocoder-within-bounding-box/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -131,16 +133,17 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4048702270/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048702270&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048702270&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048702270" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第5回はNginxの導入です。NginxはApacheと比べると歴史は浅いですがRailsで使うのもかなりメジャーになってきました。もしApacheの方が、好みの方は<strong><a href="/blog/apache-setup-sakura-vps-centos63">さくらVPS/Cent OS 6.4へのApache導入</a></strong>を試してみて下さい！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844335928/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844335928&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844335928&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844335928" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+位置情報を使うようなサービスで、ある緯度経度を中心として、その場所から一定距離の範囲内の緯度経度を持つレコードを抽出したいといったユースケースがあると思います。
+そんな時にもGem『<strong><a href="https://github.com/alexreisner/geocoder">alexreisner/geocoder</a></strong>』がめっちゃ便利だったので共有です。</p>
 
-<p><strong>(07-10 20:30) ELB経由のnginxでクライアントのIPを取得する方法を追記</strong></p>
+<p>「<strong><a href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/">アルバイトを10秒で探せるiPhone/Androidアプリ Short.Works</a></strong>」のアルバイト情報の抽出でも大活躍しています！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/nginx-setup-sakura-vps-centos/">続きを読む</a>
+      <a rel="full-article" href="/blog/geocoder-within-bounding-box/">続きを読む</a>
     </footer>
   
 
@@ -151,7 +154,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/bbutton-bootstrap-faicon-flat-objectivec/">BButton 超簡単にObjective-CでBootstrapっぽいボタンが設置できる [Cocoapods]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/bugsense-crash-report-objective-c-cocoapods/">BugSense iOS向けのバグレポート・サービス[Objetive-C]</a></h1>
     
     
     
@@ -170,9 +173,9 @@
 
 
 
-        <time datetime="2014-07-22T19:50:00+09:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2014</time>
+        <time datetime="2014-08-09T21:10:00+09:00" pubdate data-updated="true">Aug 9<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/bbutton-bootstrap-faicon-flat-objectivec/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/bugsense-crash-report-objective-c-cocoapods/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -181,15 +184,20 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4839941076/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839941076&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839941076&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839941076" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-Objective-Cを使っていて一番悩むのが、ほんのちょっとだけデザインをマシにしたいとおもった時にTwitter Bootstrapライクに簡単に実装できないことです。
-そんな初心者エンジニアにおすすめなCocoapodsが、『<strong><a href="https://github.com/jessesquires/BButton">BButton</a></strong>』です。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4839951977/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839951977&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839951977&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839951977" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+iPhoneアプリのユーザーテストを行うにあたってクラッシュ・レポートを取りやすくするために、『<strong><a href="https://www.bugsense.com/pricing">BugSense</a></strong>』を導入してみました。
+500エラーまでは無料。25000エラー/月までは$19なので、スタートアップには良さそう。</p>
+
+<p>あとクラッシュレポート系のサービスをいくつか試してみましたが、一番ちゃんとレポートをキャッチされたのも好印象でした！
+(Objective-C初心者なので、僕の設定がまずいだけの可能性がかなり高いデス<sup>^;)</sup></p>
+
+<p>「<strong><a href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/">アルバイトを10秒で探せるiPhone/Androidアプリ Short.Works</a></strong>」で、ユーザーテストをするときに大活躍する予定っす！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/bbutton-bootstrap-faicon-flat-objectivec/">続きを読む</a>
+      <a rel="full-article" href="/blog/bugsense-crash-report-objective-c-cocoapods/">続きを読む</a>
     </footer>
   
 
@@ -200,7 +208,7 @@ Objective-Cを使っていて一番悩むのが、ほんのちょっとだけデ
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/uitableview-uitableviewcontroller-separate-objectivec/">UITableViewとUITableViewControllerを分離する[Objecitve-C]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/carrierwave-fog-s3-upload-aws/">Fog + carrierwaveでAWS S3に画像をアップロード</a></h1>
     
     
     
@@ -219,9 +227,9 @@ Objective-Cを使っていて一番悩むのが、ほんのちょっとだけデ
 
 
 
-        <time datetime="2014-07-21T11:40:00+09:00" pubdate data-updated="true">Jul 21<span>st</span>, 2014</time>
+        <time datetime="2014-08-08T22:15:00+09:00" pubdate data-updated="true">Aug 8<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/uitableview-uitableviewcontroller-separate-objectivec/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/carrierwave-fog-s3-upload-aws/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -230,14 +238,17 @@ Objective-Cを使っていて一番悩むのが、ほんのちょっとだけデ
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844364308/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844364308&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844364308&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844364308" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-UITableViewとUITableViewControllerをうまく切り離す方法に苦労していたので今後のためにメモ。Webだったら簡単な実装でもObjective-Cだと結構躓きます。もう少し入門書を読まないとなぁ。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774165166/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774165166&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774165166&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774165166" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="https://github.com/fog/fog">fog</a></strong>』はRubyのクラウドサービス向けのライブラリ(gem)です。
+このfogと「<strong><a href="https://github.com/carrierwaveuploader/carrierwave">carrierwave</a></strong>」を使うと、ユーザー向けの画像アップロードフォーム => S3への画像アップロードが、超簡単に実装できてしまいます！</p>
+
+<p>「<strong><a href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/">アルバイトを10秒で探せるiPhone/Androidアプリ Short.Works</a></strong>」でも画像アップロードの部分に活用しています！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/uitableview-uitableviewcontroller-separate-objectivec/">続きを読む</a>
+      <a rel="full-article" href="/blog/carrierwave-fog-s3-upload-aws/">続きを読む</a>
     </footer>
   
 
@@ -248,7 +259,7 @@ UITableViewとUITableViewControllerをうまく切り離す方法に苦労して
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/JAMValidatingTextField-cocoapods-objective-c/">JAMValidatingTextField フォームの超簡単バリデーション[Cocoapods]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mosh-mobile-ssh-reconnect/">Mosh Mobile SSH - モバイル用に自動再接続してくれるSSH</a></h1>
     
     
     
@@ -267,9 +278,9 @@ UITableViewとUITableViewControllerをうまく切り離す方法に苦労して
 
 
 
-        <time datetime="2014-07-20T09:05:00+09:00" pubdate data-updated="true">Jul 20<span>th</span>, 2014</time>
+        <time datetime="2014-08-07T20:20:00+09:00" pubdate data-updated="true">Aug 7<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/JAMValidatingTextField-cocoapods-objective-c/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/mosh-mobile-ssh-reconnect/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -278,14 +289,16 @@ UITableViewとUITableViewControllerをうまく切り離す方法に苦労して
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4899774125/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4899774125&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4899774125&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4899774125" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-Objective-Cで最近はまっていたのは、フォームのバリデーションをいかに簡単に、わかりやすく実装するかでした。で、Cocoapodsでめぼしいのを幾つか試してみて良かった『<strong><a href="https://github.com/jmenter/JAMValidatingTextField">JAMValidatingTextField</a></strong>』の紹介です！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B006H4GA0M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B006H4GA0M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B006H4GA0M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B006H4GA0M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="http://mosh.mit.edu/">Mosh</a></strong>』はモバイル回線など通信が不安定なときにも、SSHをかなり快適にしてくれるアプリです。移動が多い人や、スリープから復旧したときにターミナルの接続が再開されるようにしたい場合などに超オススメです！</p>
+
+<p>「<strong><a href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/">アルバイトを10秒で探せるiPhone/Androidアプリ Short.Works</a></strong>」の開発にもめっちゃ役に立っています！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/JAMValidatingTextField-cocoapods-objective-c/">続きを読む</a>
+      <a rel="full-article" href="/blog/mosh-mobile-ssh-reconnect/">続きを読む</a>
     </footer>
   
 
@@ -296,7 +309,7 @@ Objective-Cで最近はまっていたのは、フォームのバリデーショ
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/uiview-uiviewcontroller-separate-objective-c/">UIViewControllerからUIView部分を切り出す[Objective-C]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/parse.com-push-notification-badge-alert/">Parse.comを使ってPush Notificationを実装。RubyでNotificationを送付[Objective-C]</a></h1>
     
     
     
@@ -315,9 +328,9 @@ Objective-Cで最近はまっていたのは、フォームのバリデーショ
 
 
 
-        <time datetime="2014-07-16T19:00:00+09:00" pubdate data-updated="true">Jul 16<span>th</span>, 2014</time>
+        <time datetime="2014-08-03T00:15:00+09:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/uiview-uiviewcontroller-separate-objective-c/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/parse.com-push-notification-badge-alert/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -326,15 +339,16 @@ Objective-Cで最近はまっていたのは、フォームのバリデーショ
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4800710472/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4800710472&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4800710472&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4800710472" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-UIViewControllerからViewの要素をUIViewに切り出す手順です。相当久しぶりにObjective-Cを触っていて、
-片っ端からハマりまくっていますが少しずつ、新しいことやるのはやっぱり超楽しいです！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798041114/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798041114&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798041114&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798041114" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Parse.comを使ったPush Notificationの実装についての解説はかなり豊富なので、今更感があると思いますが正直、実装しきるまでに少しハマったので今後のために忘備録デス！</p>
+
+<p>「<strong><a href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/">アルバイトを10秒で探せるiPhone/Androidアプリ Short.Works</a></strong>」の開発でも活用させて頂いています！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/uiview-uiviewcontroller-separate-objective-c/">続きを読む</a>
+      <a rel="full-article" href="/blog/parse.com-push-notification-badge-alert/">続きを読む</a>
     </footer>
   
 
@@ -345,7 +359,7 @@ UIViewControllerからViewの要素をUIViewに切り出す手順です。相当
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/geocoder-rails-latitude-longitude-ruby/">Geocoder 地名から緯度経度に変換 or 緯度経度から住所変換が簡単にできるgem</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/kebord-show-close-adjust-objective-c/">UITextFieldをタップした時にキーボードで隠れないようにする[Ojbective-C]</a></h1>
     
     
     
@@ -364,9 +378,9 @@ UIViewControllerからViewの要素をUIViewに切り出す手順です。相当
 
 
 
-        <time datetime="2014-07-14T20:45:00+09:00" pubdate data-updated="true">Jul 14<span>th</span>, 2014</time>
+        <time datetime="2014-08-02T18:00:00+09:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/geocoder-rails-latitude-longitude-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/kebord-show-close-adjust-objective-c/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -375,15 +389,15 @@ UIViewControllerからViewの要素をUIViewに切り出す手順です。相当
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/427405019X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=427405019X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=427405019X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=427405019X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-地名から緯度経度を求めたり、緯度経度から住所登録をやる場合に便利なのが、この『<strong><a href="https://github.com/alexreisner/geocoder">alexreisner/geocoder</a></strong>』です。
-ActiveRecordと組み合わると、緯度経度を登録したら後は自動で変換を行うカラムを追加できるといったことが可能になります。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/484433624X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=484433624X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=484433624X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=484433624X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Objective-Cを触っていて、最近良くこのあたりの挙動にはまっています。
+一応、この方法で現時点のデモまでは動くようになったので、とりあえず備忘録がてらのメモです。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/geocoder-rails-latitude-longitude-ruby/">続きを読む</a>
+      <a rel="full-article" href="/blog/kebord-show-close-adjust-objective-c/">続きを読む</a>
     </footer>
   
 
@@ -394,7 +408,7 @@ ActiveRecordと組み合わると、緯度経度を登録したら後は自動�
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/no-image-jquery-javascript/">imgタグの画像がない場合にNo Imageに差し替え【jQuery/JavaScript】</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/short.works-parttimer-sidejob-iphone-app/">短期アルバイトを10秒で探せるiPhone/Androidアプリ「Short.Works」を作っています！</a></h1>
     
     
     
@@ -413,9 +427,9 @@ ActiveRecordと組み合わると、緯度経度を登録したら後は自動�
 
 
 
-        <time datetime="2014-07-09T19:25:00+09:00" pubdate data-updated="true">Jul 9<span>th</span>, 2014</time>
+        <time datetime="2014-07-31T12:05:00+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/no-image-jquery-javascript/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -424,14 +438,19 @@ ActiveRecordと組み合わると、緯度経度を登録したら後は自動�
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00HE4R9H2/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00HE4R9H2&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00HE4R9H2&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00HE4R9H2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-imgタグで指定した画像がない場合にjQueryでNo Imageに差し替えるTipsです。超簡単ですが、破壊力抜群なので良かったら是非試してみてください！</p>
+  <div class="entry-content"><p><a href="https://short.works/"><img src="https://farm4.staticflickr.com/3921/14790220145_5a116b8000_z.jpg" width="640" height="388" alt="short.works"></a></p>
+
+<p>短期のアルバイトを10秒で探して、応募ができるiPhone/Androidアプリ『<strong><a href="https://short.works/">Short.Works</a></strong>』を個人開発しています。
+現時点としてはWebサイト・iPhone/Androidアプリを開発中の状態ですが、ヒアリング、デザイン・開発などにご協力頂ける個人・企業様を探したくてティザーサイトを作りました。<br/>
+(つまり、今回は個人開発の広告的記事ですw)</p>
+
+<p>(8/8 16:25) Androidも合わせて9月リリースを目標に変更して開発しています！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/no-image-jquery-javascript/">続きを読む</a>
+      <a rel="full-article" href="/blog/short.works-parttimer-sidejob-iphone-app/">続きを読む</a>
     </footer>
   
 
@@ -442,7 +461,7 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/python-pyenv-rehash-mac-development/">Python開発環境構築 徹底解説[pyenv, Mavericks]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/vagrant-ansible-rails-rvm-nginx-mysql/">Vagrant/AWS + AnsibleでCentOS/Nginx/MySQL/RVM/Ruby2.1.2環境を構築</a></h1>
     
     
     
@@ -461,9 +480,9 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
 
 
 
-        <time datetime="2014-07-07T20:20:00+09:00" pubdate data-updated="true">Jul 7<span>th</span>, 2014</time>
+        <time datetime="2014-07-31T12:00:00+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/python-pyenv-rehash-mac-development/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/vagrant-ansible-rails-rvm-nginx-mysql/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -472,15 +491,17 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873116554/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116554&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873116554&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873116554" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Pythonの統計や機械学習系ライブラリを触ってみたくって、Pythonの環境をMarvericksに構築したのでそのメモです。Pythonはほぼ初心者なので、いろいろ触ってどんどん覚えていきたい！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00JWM4W2E/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00JWM4W2E&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00JWM4W2E&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00JWM4W2E" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+久々にVagrantでRails鯖を構築する必要があったので、勉強がてらAnsibleで作ってみました。Chefに比べるとシンプルで学習コストが低いのが素敵です。
+でもChefにせよ、Ansibleにせよ、ハマリポイントがしっかり用意されていて、ちょっと手こずりました。もうちょっとフレキシブルに書けるようになりたい！</p>
 
-<p><strong>(03/27 23:10) Marvericks対応にアップデート</strong></p>
+<p>7/31 11:50 AWSのAmazon LinuxでもAnsibleの動作確認をしました。Ansibleの良さを実感中！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/python-pyenv-rehash-mac-development/">続きを読む</a>
+      <a rel="full-article" href="/blog/vagrant-ansible-rails-rvm-nginx-mysql/">続きを読む</a>
     </footer>
   
 
@@ -491,7 +512,7 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/carrierwave-image-uploader-rails/">Carrierwave + Rails 4.1 画像アップローダー</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ssl-store-nginx-conf-webapp-introduction/">SSLストア 1,050円でRapidSSLをnginxに簡単導入！</a></h1>
     
     
     
@@ -510,9 +531,9 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
 
 
 
-        <time datetime="2014-07-06T09:30:00+09:00" pubdate data-updated="true">Jul 6<span>th</span>, 2014</time>
+        <time datetime="2014-07-31T11:30:00+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/carrierwave-image-uploader-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ssl-store-nginx-conf-webapp-introduction/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -521,23 +542,14 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774164283/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774164283&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774164283&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774164283" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-今回は、carrierwave + rails 4.1で作る簡単画像アップローダーの作成ネタです。目次はこんなかんじです！</p>
-
-<pre>
-(1) carrierwave + rails 4.1で作る簡単画像アップローダーを作る
-(2) simple_formと組み合わせる
-(3) アップロード画像のサイズのvalidationを行う
-</pre>
-
-
-
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774169838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774169838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774169838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774169838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+「<strong><a href="http://www.ssl-store.jp/">SSLストア</a></strong>」、たった1,050円でSSLが買えちゃいます。SSL証明書をnginxに導入するときに、ほんのちょっとだけはまってしまったので、忘備録メモです。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/carrierwave-image-uploader-rails/">続きを読む</a>
+      <a rel="full-article" href="/blog/ssl-store-nginx-conf-webapp-introduction/">続きを読む</a>
     </footer>
   
 
@@ -548,7 +560,7 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rdbms-nosql-merit-demerit/">RDBMSとNoSQLのメリット・デメリットについて</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/mailtraptoio-mail-test/">mailtrap.io - メールを使ったサービスで開発・テストをするのに最適</a></h1>
     
     
     
@@ -567,9 +579,9 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
 
 
 
-        <time datetime="2014-07-05T14:30:00+09:00" pubdate data-updated="true">Jul 5<span>th</span>, 2014</time>
+        <time datetime="2014-07-29T21:20:00+09:00" pubdate data-updated="true">Jul 29<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rdbms-nosql-merit-demerit/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/mailtraptoio-mail-test/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -578,14 +590,16 @@ imgタグで指定した画像がない場合にjQueryでNo Imageに差し替え
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4897978874/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897978874&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897978874&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4897978874" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-RDBMSとNoSQLの特徴、メリット・デメリットについて調べたのでそのメモです。今まで言葉の表面的な部分ばかりを見てきていたことを反省中。自分の頭のなかにあるキーワードをしっかりと構造化していくように、基礎固めを頑張ります！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4822250229/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4822250229&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4822250229&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4822250229" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+先日あるベンチャーのエンジニアの方から教えていただいたサービスが『<strong><a href="https://mailtrap.io/">mailtrap.io</a></strong>』です。
+このサービスはSMTPのように動作するが、実際にはメールを送付せずにWeb上で確認ができるサービスです。Railsでの設定は通常のSMTPメールとほぼ同じです。
+また最初は間違いやすい設定に関しても、Web画面上で自動生成してくれるという親切っぷりです。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/rdbms-nosql-merit-demerit/">続きを読む</a>
+      <a rel="full-article" href="/blog/mailtraptoio-mail-test/">続きを読む</a>
     </footer>
   
 
