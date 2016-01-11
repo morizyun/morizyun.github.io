@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Marketing | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/marketing/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google検索エンジン最適化スターターガイド 要点ピックアップ[無料][SEO]]]></title>
+    <link href="http://morizyun.github.io/blog/seo-google-search-engine-optimization/"/>
+    <updated>2013-11-13T23:10:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/seo-google-search-engine-optimization</id>
+    <content type="html"><![CDATA[<p><a href="https://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.co.jp/ja/jp/webmasters/docs/search-engine-optimization-starter-guide-ja.pdf" title="Google検索エンジン最適化スターターガイド" style="float: left; margin: 0 20px 20px 0;" ><img src="http://farm4.staticflickr.com/3708/9553045473_1bb561565a_m.jpg" width="172" height="240" alt="Google検索エンジン最適化スターターガイド"></a>『<strong><a href="https://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.co.jp/ja/jp/webmasters/docs/search-engine-optimization-starter-guide-ja.pdf">Google検索エンジン最適化スターターガイド</a></strong>』はGoogleがPDFで無料配布している、SEO対策における教科書のような資料です。</p>
+
+<p>この基礎的な内容を実践していくことで、検索エンジンからしっかりとクローリングされ、インデックスされやすいWebサイトを構築できるそうです！</p>
+
+<p>(11/13 23:10 おまけで英語版へのリンクを追加)</p>
+
+<!-- more -->
+
+
+<p>この記事では、『<strong><a href="https://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.co.jp/ja/jp/webmasters/docs/search-engine-optimization-starter-guide-ja.pdf">Google検索エンジン最適化スターターガイド</a></strong>』の中で特に印象に残った点を幾つかピックアップしてみたいと思います。</p>
+
+<h2>(1) 適切なページタイトル、descriptionをつける</h2>
+
+<p>HTML内の<code>title</code>タグのタイトルや<code>description</code>メタタグの内容はGoogleの検索結果に表示される最も重要な項目の一つです。</p>
+
+<p>手間はかかりますが、以下の内容を着実に実践していくことが大切なようです。</p>
+
+<pre>
+titleタグ: ページごとに固有の簡潔で説明的なタイトルをつける
+descriptionメタタグ: ページごとに固有で、ページ内容を正確にまとめる
+</pre>
+
+
+<h2>(2) WebサイトのURL構造を最適化する</h2>
+
+<p>WebサイトのURL構造(ルーティング)は、検索エンジンがクローリングしやすくなるための重要な要素の一つです。エンジニアの立場からも、SEOを意識したルーティング構成になるように常に心がけることが大切なようです。</p>
+
+<pre>
+* URLにコンテンツに関連した単語を入れる
+* 1つのページのURLは1つにする
+* URLのディレクトリ構造はできるだけシンプルに
+* 論理的かつ人間が理解できるURLになるようにコンテンツを整理する
+* セッションIDはURLではなくCookieを使う
+* できるだけ不必要なパラメータを排除する
+</pre>
+
+
+<p>このURL構造については、『<strong><a href="https://support.google.com/webmasters/answer/76329?hl=ja">Google ウェブマスターツール内のヘルプ Google と相性の良い URL の作成</a></strong>』にも詳しく書かれているのでぜひ参考にしてみてください。</p>
+
+<h2>(3) ナビゲーションをわかりやすくする</h2>
+
+<p>ナビゲーションはユーザーが適切にコンテンツに到達するためにとても重要な要素です。トップページからユーザーがどのように詳細ページにたどり着くかを常に意識してサイトを構築することが大切です。また、検索エンジンからみたナビゲーションも大切だそうです。</p>
+
+<pre>
+* パンくずリストでユーザーの利便性を向上させる
+* URLの一部を取り除いても、URLがきちんと意味を持ち続ける(ページが存在する)ようにする
+* ユーザー向けのHTMLサイトマップと検索エンジン向けのサイトマップ(XML)を用意する
+* 404ページを適切に配置する(役に立つ404ページを作る)
+</pre>
+
+
+<h2>(4) 質の高いコンテンツを提供する</h2>
+
+<p>SNSでの口コミや掲示板やブログへの紹介が<strong>自然発生</strong>するような質の高いコンテンツを提供することはGoogle検索エンジンの中でも最も重要な点ですので、特に意識してコンテンツを作っていきましょう！</p>
+
+<pre>
+* コンテンツを探しだす人を想像してその人が使いそうなキーワードをコンテンツ内に設置
+* 既存のコンテンツのコピーや自分のサイト内で重複したコンテンツは作らない
+</pre>
+
+
+<h2>(5) 適切なアンカーテキストを設置しよう</h2>
+
+<p>アンカーテキストとは<strong>リンクが設定されたテキスト</strong>のことです。このアンカーテキストもSEOにおいては重要な要素となるそうです。アンカーテキストにおいては次のことに気をつけましょう。</p>
+
+<pre>
+* 簡潔で説明的なテキストを心がける
+* リンクだとすぐに分かるようなCSS/テキストスタイルを使う
+* 内部リンクのアンカーテキストも簡潔で意味のあるテキストにする
+</pre>
+
+
+<h2>(6) 画像のalt属性は必ず設定</h2>
+
+<p><strong>画像のalt属性</strong>は何らかの理由で画像が表示されない際にユーザーに代替情報を知らせることと、検索エンジンに画像に関する情報を知らせることの２つの意味があります。alt属性もアンカーテキストなどと同じく、<strong>簡潔で説明的なテキスト</strong>を心がけましょう。</p>
+
+<h2>(7) 見出しタグを適切に伝えよう</h2>
+
+<p><code>h1, h2, h3, h4, h5, h6</code>タグを<strong>見出しタグ</strong>と呼びます。この見出しタグはHTML内での重要性を表すために使います。目次を作るようにコンテンツの何が主要なのかを考えて、コンテンツのポイントとなる部分に見出しタグを設置するようにしましょう。</p>
+
+<h2>(8) コメント欄や掲示板にはnofollowを設定しよう</h2>
+
+<p>コメント欄や掲示板などユーザーが気軽に書き込める場所は、時としてスパムの標的となります。スパムサイトへのリンクがページ内に存在すると、<strong>Googleがそのサイト自体の評価を下げてしまう可能性があります</strong>。これを防ぐためにユーザーが自由に操作できるリンクにはrel属性の値に<code>no follow</code>をセットするようにしましょう。</p>
+
+<p>このスパムコメントへの対策は、『<strong><a href="https://support.google.com/webmasters/answer/81749?hl=ja">Google ウェブマスターツール内のヘルプ ユーザー生成スパム</a></strong>』にも詳しく書かれているのでぜひ参考にしてみてください。</p>
+
+<h2>(9) モバイルサイトをGoogleに知らせよう</h2>
+
+<p>Googleモバイルの検索結果は携帯電話からの利用を想定しており、デスクトップ版とは検索結果が異なります。Googleにモバイルサイトとして判定されているかをチェックするには、『<strong>Googleモバイル検索でsite:演算子を使って検索</strong>』を実施します。この検索結果に表示されない原因は主に２点です。</p>
+
+<h3>(Ａ) Googleがモバイルサイトを発見できていない</h3>
+
+<p><strong>モバイルサイトマップ</strong>を作成して配信することでこの問題を解決できます。このモバイルサイトマップについては、『<strong><a href="https://support.google.com/webmasters/topic/8493?hl=ja&amp;ref_topic=20986">Google ウェブマスターツール内のヘルプ 特殊なサイトマップ（動画、画像、ニュース、モバイルなど）</a></strong>』に詳しく書かれてます。</p>
+
+<h3>(Ｂ) Googlebotがモバイルサイトにアクセスできない</h3>
+
+<p>モバイルサイトの中には、携帯電話以外からのモバイルサイトへのアクセスを禁止している場合があります。そのため、Googlebotがモバイルサイトにアクセスできないケースがあるそうです。モバイルサイトの収集用のGooglebotは、ユーザーエージェント情報が“Googlebot-Mobile”です。このGooglebotもモバイルサイトにアクセスできるようにしましょう。</p>
+
+<h3>(Ｃ) モバイルサイトであることを正しく判定できない</h3>
+
+<p>Googlebotが携帯電話で閲覧できないと判断されるページは、モバイルサイトのインデックスがされません。この判定はさまざまな情報に基づき行われるそうですが、例えばXHTML MobileやCompact HTMLなど携帯端末向けのフォーマットのDTDを宣言しているかなどを確認しましょう。</p>
+
+<h2>(10) 携帯ユーザーを適切に誘導しよう</h2>
+
+<p>デスクトップ検索でモバイルページが表示されたり、モバイル検索でデスクトップページが表示される問題があります。この問題のベストな対策はリダイレクトさせることです。Googleはこのリダイレクトによって両者の関係に気づき、デスクトップ検索からはデスクトップのページを、モバイル検索からはモバイルページを表示するようになるそうです。この場合はデスクトップの個別ページからモバイルの個別ページへリダイレクトするように、一致するコンテンツ間でリダイレクトするように心がけましょう。</p>
+
+<h2>(11) 正しい方法でサイトを宣伝して被リンクを獲得しよう</h2>
+
+<p>ソーシャルメディアの特性を理解して、ユーザーが興味をもつコンテンツに絞って紹介するようにしたり、関連するコミュニティへ参加していくことで自然な被リンクの獲得を目指しましょう。</p>
+
+<h2>(12) 便利なツールを積極的に活用しよう</h2>
+
+<p><strong><a href="https://www.google.com/webmasters/tools/home?hl=ja">ウェブマスターツール</a></strong><br/>
+利用することで、もし自分のサイトに問題があればその問題を特定するのに役立ち、検索結果上のパフォーマンスを高めることにつながる可能性があります。</p>
+
+<p><strong><a href="http://www.google.co.jp/intl/ja/analytics/">Google Analytics</a></strong><br/>
+ユーザーがどのような経路でサイトへたどり着き、サイト内でどのような行動を取ったかを知ることができる。また、Google Analytics内のはウェブサイトオプティマイザーによって、コンバージョン率を高めるための変更点の提案もおこなってくれます。</p>
+
+<p><strong><a href="https://support.google.com/webmasters/answer/35769?hl=ja">ウェブマスター向けガイドライン（品質に関するガイドライン）</a></strong><br/>
+デザインとコンテンツ、技術、品質に関するガイドラインです。</p>
+
+<p><strong><a href="http://googlewebmastercentral-ja.blogspot.jp/">Google ウェブマスター向け公式ブログ</a></strong><br/>
+Googleが行っているウェブサイトのクロールやインデックスに関する、最新の情報をゲットできる素晴らしいブログです！</p>
+
+<h2>おまけ: 英語版はさらに追記事項があり</h2>
+
+<p>最近こちらの英語版を発見しましたが、日本語版にプラスαの内容が書かれていました。
+もし英語に抵抗がなければぜひこちらも見てみてください！</p>
+
+<p><a href="https://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/ja//webmasters/docs/search-engine-optimization-starter-guide.pdf"><img src="http://farm4.staticflickr.com/3757/10836803586_026edb9d7d_z.jpg" width="456" height="640"></a></p>
+
+<h2>このテーマに関係する書籍</h2>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4774148148/"><img border="0" src="http://ecx.images-amazon.com/images/I/51Vei9MED7L._SS500_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>『<strong><a href="http://www.amazon.co.jp/gp/product/4774148148">繁盛するWebの秘訣「ウェブ解析入門」</a></strong>』はアクセス解析を始めたい方や、もう少し勉強したいという初心者〜中級者の手前くらいまでの人にオススメの書籍です。特に継続的な改善を繰り返すことの重要性を実感できる点が素晴らしいです！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[『電子書籍を無名でも100万部売る方法』で学ぶターゲット・マーケティング]]></title>
+    <link href="http://morizyun.github.io/blog/kindle-book-1-minion-sell-review-book/"/>
+    <updated>2013-09-01T19:25:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/kindle-book-1-minion-sell-review-book</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4492044809/"><img border="0" src="http://ecx.images-amazon.com/images/I/51Ryk3W1sbL._SS500_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>『<strong><a href="http://www.amazon.co.jp/gp/product/4492044809/">電子書籍を無名でも100万部売る方法</a></strong>』を読みました。著者のジョン・ロックさんは、インディーズ作家として初めてアメリカのAmazon Kindle ランキングで1位を獲得した作家さんです。僕がこの人を凄いと感じた点は次の３点です。</p>
+
+<pre>
+(1) 自分の著書に共通して登場する主人公キャラクターを作ってそれを育てる
+(2) ブログやTwitter、メルマガを最大限に活用して、熱烈なファンを獲得する
+(3) ニッチ分野の本を書くことで、明確なターゲットが満足してくれる作品にする
+</pre>
+
+
+<p>著者は自分の作品をデジタル・コンテンツとして捉えて、ターゲットに合わせて商品を作り、自分の著書やブログ・Twitter・メルマガを通して、がっちりとファンを囲い込むという戦略を作り上げた著者は本当に素晴らしいと感激ました！ということで、書籍の中で特に印象に残った点をまとめます！</p>
+
+<!-- more -->
+
+
+<h2>効率の悪いマーケティング手法は捨てる</h2>
+
+<p>著者は出版業界で伝統的に行っている『<strong>新聞取材やプレスリリースなど</strong>』では効果が低いと実感したそうです。レガシーに使われているマーケティングは『<strong>自分の頭で効果を考する or 実際に効果を測定する</strong>』ことが重要だということでしょう。</p>
+
+<h2>特定の顧客のためにコンテンツを作り、特定の顧客を集客する</h2>
+
+<p>『<strong>特定の顧客のためにコンテンツを作る</strong>』、『<strong>特定の顧客を集客する</strong>』という言葉は何度も聞いてきましたが、この本を読んでその意味をようやく理解できました。ニッチ顧客の目的を把握しやすく、そのためのコンテンツを作りやすい。出来上がったニッチなコンテンツはファンの満足度が高く、継続的な購買活動を行ってくれるということだと思います。</p>
+
+<p>以下は著者が実際に、ニッチ顧客のためにコンテンツを作り、マーケティングを行った内容です。</p>
+
+<h3>顧客への直接ヒアリングでコンテンツの内容を決める</h3>
+
+<p>コンテンツ(プロトタイプ含む)に対するターゲットユーザーを探しだして、ユーザーのニーズや類似商品のヒットの要因を探し出します。筆者は実際に次の方法で実践したそうです。</p>
+
+<pre>
+(1) コンテンツのユーザーを明確に定義すること
+(2) 複数の友人にコンテンツを見せて、気に入る人の共通点を探しだす
+(3) 気に入った人達に共通する理由を考える
+(4) 気に入った人達に対してコンテンツの中身についての質問を行う
+(5) 気に入った人達が他に好きなコンテンツを探して、ウケる要素を見つけ出す
+(6) 読者傾向をよりイメージするために、ペルソナを作り上げる
+(7) ペルソナが満足してくれるコンテンツを作りこむ
+</pre>
+
+
+<h3>プロジェクトの実行計画と達成可能な目標を立てる</h3>
+
+<p>書籍の販売数のような不確定な要素の目標は必要としません。代わりに、プロジェクト実現するために必要な『行動』と『マーケティング施策』を列挙し、その中で達成可能なマーケティング面での目標(Twitterのフォロワー数100人など)を立てます。一見当たり前のことですが、実行計画に現実的なマーケティング施策を織り込むことの重要性を実感しました。</p>
+
+<h3>電子書籍で実際に行ったマーケティング施策</h3>
+
+<p>著者が行った電子書籍のマーケティング施策の一例です。</p>
+
+<pre>
+* 複数のコンテンツを予め準備することで、顧客の2冊目以降の需要を狙う
+* 固有名詞をブランド化することでブランディングを行う
+* 書籍インタビューや面白いネタ、感動ネタをブログにしてSEO/ソーシャル対策
+* 大手出版社とは異なる低い定価でランキング対策や顧客の住み分けを狙う
+* ファンとのコミュニケーションを自ら行い、生涯のファンを生み出す
+* 購買後の書籍へのレビューを分析して、次回作に活かす
+* ファンを囲い込むためにブログやメルマガへの導線を作る
+* Twitterのハッシュタグでバイラルのための仕組みを作る
+* 思わず人に話したくなる(話題になる)ようなシーンを書籍に書く
+</pre>
+
+
+<p>上記の内容は、電子書籍以外のコンテンツでも応用出来る施策です。僕も今後の仕事の中で活かせそうなヒントが詰まっています！</p>
+
+<h2>さいごに感想</h2>
+
+<p>ここまでの記事は僕が本を読んで自分なりの解釈を加えているため、見苦しい部分もあるかとおもいます。どうかご容赦下さい。</p>
+
+<p>最後に書籍の感想です。著者は実業家の経験もあり、ソーシャル・ネットワークへの理解も深そうです。だからこそ出来た離れ業という印象もあります。ただ、実践してきた内容はどれも僕がこれから真似・応用できることばかりなのでデジタル・コンテンツに関わる人にはぜひ読んで欲しい、素晴らしい書籍だと思います！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[スマホで世界を狙うために知っておきたい3つのことで学んだスマホ・マーケティングの基礎]]></title>
+    <link href="http://morizyun.github.io/blog/smartphone-marketing-3-tips-book-review/"/>
+    <updated>2013-08-29T16:20:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/smartphone-marketing-3-tips-book-review</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4532318041/"><img border="0" src="http://ecx.images-amazon.com/images/I/51OqxDPvV3L._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>『<strong><a href="http://www.amazon.co.jp/gp/product/4532318041/">スマホで世界をねらうために知っておきたい3つのこと</a></strong>』は2012年6月に出版された書籍です。出版で1年が経っているのでスマホ業界では既に幾つかの変化がおきていますが、客観的にスマホ業界の要点がわかる良本です。</p>
+
+<p>ループスの許 直人さんのブログ記事『<strong><a href="http://media.looops.net/naoto/2012/09/10/smartphone-business/">「スマホで世界を狙うために知っておきたい3つのこと」から学んだ5つのこと</a></strong>』には、この書籍の素晴らしい要約がありました。</p>
+
+<BLOCKQUOTE>
+市場環境(特に北米とアジア)、ビジネスモデルの考え方、マーケティング(集客、運用)、プラットフォーム特性など幅広い範囲の情報が、必要最小限のデータと著者である佐藤航陽氏の肌感覚を元にすっきりとまとめられています。
+</BLOCKQUOTE>
+
+
+<p>今回は本の中から特にインパクトの強かった部分を中心にピックアップしていきます！</p>
+
+<!-- more -->
+
+
+<h2>ガラケーとスマートフォンとのマーケットの違い</h2>
+
+<p>ガラケーでは課金システムが通話料金に直結していたため、課金ハードルが非常に低かったです。対してスマートフォンは課金にクレジットカードを必要とするため、ハードルがかなり上がりました。</p>
+
+<p>またAppStoreやGoogle Playで簡単に世界中でアプリを販売できたり、AWSなどでインフラコストが下がり、<a href="https://www.odesk.com/">odesk</a>などで多国展開の運用コストが下がったことなど幾つかの市場ルールが変化したことで、グローバルな競合についても常に意識する必要があります。</p>
+
+<h2>競合を最小にするための差別化、ポジショニング</h2>
+
+<p>スマホビジネスで収益をあげられているのは2012年時点でわずか14%。その現実を理解して<strong>競合を最小にするための差別化とポジショニングの戦略</strong>を明確に打ち出すことが、小規模資本の開発者には必須要件だと考えます。</p>
+
+<p>また日々、大量のスマホアプリがリリースされています。そのため、ユーザー視点で『<strong>エンターテインメントか実用性</strong>』の面ではっきりとアピールできるポイントがなければ使ってもらえません。また、リリースしただけではユーザーに認知してもらうのは難しいため、プロモーションプランをしっかりと持つことが重要だと考えます。<br/>
+From <a href="http://web-tan.forum.impressrd.jp/e/2013/08/27/15768">グーグルが解説する「スマートフォン広告入門 2013年版」、広告主が理解すべき現状と可能性 | Web担当者Forum</a></p>
+
+<h2>緻密なプロモーション戦略を用意する</h2>
+
+<p>著者の佐藤さんは、さすがにメタップスの代表だけあってプロモーション戦略はかなり細かい説明があります。ネットの記事では『<strong><a href="http://web-essense.tumblr.com/post/33834491173">どうすればスマホアプリをダウンロードしてもらえるのか</a></strong>』が基本的なスマホのプロモーション戦略についてわかりやすく説明をして頂けています。</p>
+
+<h3>リリース時期のプロモーション戦略</h3>
+
+<p>リリース時の有効なプロモーションの戦略には、(1)リワード広告、(2)店舗アフィリエイト、(3)アフィリエイトがあります。またアドネットワークやリスティング広告にも少額でテスト・マーケティングを行い、長期的なプロモーションのための検証を行います。</p>
+
+<h3>ランキング・プロモーション</h3>
+
+<p>AppストアやGoogle Playのランキングはそれぞれロジックは異なりますが、ランキングに掲載されれば自然流入が発生し、広告との相乗効果を得ることができます。各ランキングのロジックの解説は以下がオススメ。</p>
+
+<p><strong><a href="http://nousnou.net/2012/10/10/ranking-est-01/">App Store のランキングはどうやって決まるのか？ その1 | What's Iwasaki?</a></strong></p>
+
+<p><strong><a href="http://appmarketinglabo.net/googleplay-algorithm/">29万DLのandroidアプリ開発者が推測！GooglePlayのランキングアルゴリズム | アプリマーケティング研究所</a></strong></p>
+
+<p><img src="http://farm6.staticflickr.com/5349/9617944327_7b7fba2ff6_z.jpg" height="500" style="height: 500px;" alt="Google Play ランキングロジック"><br/>
+From <a href="http://www.amazon.co.jp/gp/product/4532318041/">スマホで世界をねらうために知っておきたい3つのこと Page 107</a></p>
+
+<h3>レビューサイトの活用</h3>
+
+<p>リリース時にできるプロモーションの一つとして、レビューサイトを活用する方法があります。こちらの『<strong><a href="http://www.sawadaru.com/blog/?p=490">アプリレビュー依頼先一覧（iOS＆Android）</a></strong>』に主要なレビューサイトがあります。ぜひ積極的に活用してください！</p>
+
+<p>またもう少し省エネでレビューをお願いしたいときには、無料・有料でのレビューを一括で申請してくれるサービス『<strong><a href="http://applis.ne.jp/">Applis（アプリス）</a></strong>』もオススメです。</p>
+
+<p><a href="http://applis.ne.jp/" title="Applis（アプリス）"><img src="http://farm3.staticflickr.com/2872/9617365991_0965e6ef04_z.jpg" width="640" height="459" alt="Applis（アプリス）"></a></p>
+
+<h3>運用フェーズにおけるプロモーション戦略</h3>
+
+<p>リリース時のプロモーションが一段落したら、(1) CPC型のアドネットワークや(2) スマホ検索のリスティング広告などから費用対効果の高い運用プロモーションをピックアップして運用していきます。</p>
+
+<h3>マーケティング施策を開発に組み込む</h3>
+
+<p>バグやクレームによるレビュー評価の低下は、マーケティングに直結します。そのため、マーケティング施策を開発プロセスに組み込んでスピーディに改善を繰り返していく必要があります。下の図はアクティブ率の向上やレビューを高めるための施策の一例です。</p>
+
+<p><img src="http://farm4.staticflickr.com/3726/9618016925_d11a9b7710_z.jpg" height="500" style="height: 500px;" alt="Google Play ランキングロジック"><br/>
+From <a href="http://www.amazon.co.jp/gp/product/4532318041/">スマホで世界をねらうために知っておきたい3つのこと Page 117</a></p>
+
+<h2>『強み』を活かすための外部パートナーとの連携</h2>
+
+<p>参入障壁が低く、競合が多いスマホ業界では<strong>自分たちの強みをとことん強化して、得意でない部分は外部パートナーと組むこと</strong>でビジネスのスピード感を加速させる必要があります。まず、『完璧に捨てること』を明確に決めることが、強みを活かす第一歩だと考えます。</p>
+
+<h2>まとめ</h2>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4532318041/"><img border="0" src="http://ecx.images-amazon.com/images/I/51OqxDPvV3L._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>知識・経験・理解不足が記事に出ていますが、スマホアプリのマーケティングを中心にまとめてみました。発売から1年が経過した書籍なので、今は市場が変化していると思いますが、一方で変わっていない部分もたくさんあり、全て含めて勉強になります。もしお時間があれば是非読んでみてください！</p>
+
+<br style="clear: both;"/>
+
+
+<h2>補足：無音カメラ（サイレントシャッター）の改善施策</h2>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/16805303" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"></p>
+
+<p>この書籍のレビューを書くにあたっていくつか調べていた中で、ネットマイルさんのAndroidアプリ『<strong><a href="https://play.google.com/store/apps/details?id=soft.kinoko.SilentCamera&amp;hl=ja">無音カメラ（サイレントシャッター）</a></strong>』で改善を重ねて、アプリのDL数を伸ばした事例の紹介がありましたので紹介します。</p>
+
+<h2>補足：個人エンジニアによるAndroidアプリの開発スタイル</h2>
+
+<p>同じく、この書籍レビューに関する調査の中でYaneDaisukeさんがNaverまとめに上げた『<strong><a href="http://matome.naver.jp/odai/2134646744724582901">【実際儲かった！】②Androidアプリ個人開発、1年で20本リリース結果発表！？（統計・推移編）</a></strong>』が面白かったです。こちらはユーザーメリットがはっきりした、開発コストが低めのアプリを複数開発してトータルで収益を稼ぐモデルのようです。個人エンジニアの方には是非読んでいただきたい記事＾＾</p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://media.looops.net/naoto/2012/09/10/smartphone-business/">「スマホで世界を狙うために知っておきたい3つのこと」から学んだ5つのこと</a></strong></p>
+
+<p><strong><a href="http://techwave.jp/archives/51770637.html">改めて「スマホで世界をねらうために知っておきたい3つのこと」を読んでみた</a></strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ディズニー こころをつかむ 9つの秘密 [書評]]]></title>
+    <link href="http://morizyun.github.io/blog/disney-marketing-repeater-book-review/"/>
+    <updated>2013-08-18T19:10:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/disney-marketing-repeater-book-review</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4478022542/"><img border="0" src="http://ecx.images-amazon.com/images/I/51fh1hsMpYL._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>「<strong><a href="http://www.amazon.co.jp/gp/product/4478022542">ディズニー こころをつかむ 9つの秘密</a></strong>」というマーケティング本の書評です。東京ディズニーランドは、97%がリピーターという驚異的なコンテンツ。このコンテンツを生み出して、育ててきたマーケッターさんの哲学の片鱗に触れることができる良本です。</p>
+
+<!-- more -->
+
+
+<p>この記事では、「<strong><a href="http://www.amazon.co.jp/gp/product/4478022542">ディズニー こころをつかむ 9つの秘密</a></strong>」の中で特に印象に残った点を幾つかピックアップしていきます。</p>
+
+<h2>存在価値「夢の国であること」に徹底的にこだわる</h2>
+
+<p>この本では、「<strong>夢の国であること</strong>」について一貫して書かれています。これは、ディズニーランドを訪れたお客さんが日常を感じないようにすることに徹底的にこだわっているということです。そうすることで、東京ディズニーランドの「<strong>存在価値</strong>」を高め、お客さんの「<strong>共感・感動</strong>」を生み出し、「<strong>ファン</strong>」を惹きつけているそうです。</p>
+
+<p>他にも例えば、「プレスリリース」をそのまま記事にできるほどのクオリティにしたいり、1メディアに1人の広報を置くなど、広報活動にもゼッタに手を抜かずにいるなど「<strong>徹底的なブランド・イメージへのこだわり</strong>」を大切にしているそうです。</p>
+
+<h2>開業前に40回の「プレビュー」で徹底的にクオリティを高めた</h2>
+
+<p>これこそまさに「<strong>トライ＆エラーによる改善</strong>」。この誰にも真似できないほどの地道な作業を繰り返すことで、高いクオリティを実現しているんだと実感。また、行うことに対して常に「<strong>ロジック</strong>」を持つことについても書かれていました。そうすることで自分たちのトライの質を高めて、成功した時の仕組みづくりに活かしてきたそうです。</p>
+
+<h2>人を集める方法は「商圏・曜日などカテゴリ」を分けて考える</h2>
+
+<p>ディズニーランドでは、「日帰りのエリア・宿泊が必要なエリア・富裕層を中心に来場が見込めるエリア」の３種類に商圏を分けていたそうです。この対象エリアは、業界の慣例ではなく、ディズニーランドのバリューをベースに考えたことで大成功させたそうです。また、入場者を365日に分けて考えることで、1日1日の集客のアイデアを考えていたそうです。どちらも「<strong>シンプルだが的確なカテゴライズ</strong>」をすることでマーケティングの精度を向上させている好例だと思います。</p>
+
+<h2>リピーターを獲得するために地道な取り組みを積み重ねる</h2>
+
+<p>ディズニーランドでは、リピーターを獲得するために次のようなことを実施しているそうです。</p>
+
+<pre>
+* アトラクションの追加や、ディスプレイの定期的な変更など、「常に変化させる」
+* すべてのお客さんを「VIP」として接する
+* アニバーサリーによる「モノのプレゼント」を行う
+* 会員組織を幾つかに分けることで、「カテゴライズと優越感」を演出する
+* コアなファンが楽しめる「遊び方」を作りこんで、紹介する
+* 「リサーチ」を専門にする人員を配置して、常に改善点を探しだす
+* 季節ごとの「イベント」を作りこんでリピーターを呼び込む
+</pre>
+
+
+<p>ディズニーランドがいかにリピーターを大切にしているか、地道な作り込みをしてきたかが如実に分かる項目ばかりです！</p>
+
+<h2>シンプル・常識にとらわれないアイデアと緻密なリサーチの組合せ</h2>
+
+<p>常識にとらわれないアイデアを、「<strong>笑い</strong>」ながら発想するといった取り組みと、そレによって生まれたアイデアに対して緻密なリサーチを行うことで、質の高いアイデアを生み出してきたそうです。</p>
+
+<h2>あとがき</h2>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4478022542/"><img border="0" src="http://ecx.images-amazon.com/images/I/51fh1hsMpYL._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>「<strong><a href="http://www.amazon.co.jp/gp/product/4478022542">ディズニー こころをつかむ 9つの秘密</a></strong>」で特に印象に残った点は以上です。扱うコンテンツの質は違うにせよ、ベースの発送はリーン・スタートアップのようなWeb・スマホサービスの開発にも通じる箇所が沢山あると思います。具体的な内容も多くて読みやすいのでお時間があれば、ぜひ手にとって見てください！</p>
+]]></content>
+  </entry>
+  
+</feed>

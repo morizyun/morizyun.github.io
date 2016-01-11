@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveModelを使って、Classにバリデーションなどの便利機能を追加 [Rails4.2]]]></title>
+    <link href="http://morizyun.github.io/blog/activemodel-rails-basic-usage/"/>
+    <updated>2016-01-11T21:10:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/activemodel-rails-basic-usage</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00NM7VROQ/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00NM7VROQ&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00NM7VROQ&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00NM7VROQ" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+RailsのModelで便利に使っているバリデーションなどの機能をオブジェクトに追加する際には、<code>include ActiveModel::Model</code> がお手軽で便利ですよというお話です。
+ちょっとボケて失念してしまっていたので、念のためメモです。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>できること</h2>
+
+<p>この <code>include ActiveModel::Model</code> でできることはこちら。</p>
+
+<ul>
+<li><code>Hoge.new({fuga: pugi})</code> みたいなイニシャライズができる</li>
+<li>attributeのバリデーションを作れる</li>
+<li><code>form_for</code> などで使える</li>
+</ul>
+
+
+<h2>実装例</h2>
+
+<p>オブジェクトの実装はこちら。</p>
+
+<p>```ruby</p>
+
+<h1>app/forms/non_model.rb</h1>
+
+<p>class Form::NonModel
+  # ------------------------------------------------------------------
+  # Modules
+  # ------------------------------------------------------------------
+  include ActiveModel::Model # Modelの便利機能とか</p>
+
+<p>  # ------------------------------------------------------------------
+  # Attributes
+  # ------------------------------------------------------------------
+  attr_accessor :foo, :bar</p>
+
+<p>  # ------------------------------------------------------------------
+  # Validations
+  # ------------------------------------------------------------------
+  validates :foo, presence: true
+  validates :bar, presence: true
+end
+```</p>
+
+<p>オブジェクトを使う際はこちら。</p>
+
+<p>```ruby</p>
+
+<h1>バリデーションOKのオブジェクト</h1>
+
+<p>vaiid_form = Form::NonModel.new(foo: 'foooo', bar: 'baaaan!')
+vaiid_form.valid? #=> true</p>
+
+<h1>バリデーションNGのオブジェクト</h1>
+
+<p>invalid_form = Form::NonModel.new(foo: 'foooo')
+invalid_form.valid? #=> false
+invalid_form.errors #=> #&lt;ActiveModel::Errors:0x007fe6bb19df58 @base=#&lt;Form::NonModel:0x007fe6beec6038 @errors=#&lt;ActiveModel::Errors:0x007fe6bb19df58 ...>, @foo="foooo", @validation_context=nil>, @messages={:bar=>["を入力してください。"]}>
+```</p>
+
+<p>地味だけど、便利です。Fat Modelを避けるために、責務に応じたオブジェクトを作る際に適用範囲は広いです。</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>あどがき</h2>
+
+<p>「<strong><a href="http://qiita.com/kbaba1001/items/e265ad1e40f238931468">Ruby - Rails のアーキテクチャ設計を考える - Qiita</a></strong>」も勉強になる。
+チームへの導入コスト等も考えつつ、検討していきたい！</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><a href="http://tanihiro.hatenablog.com/entry/2014/01/09/193720">【ruby】ActiveModelを使ってDBと関係ないFormを作成する【Rails】 - tanihiro.log</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[figaro HerokuやDokkuの環境変数の管理に便利！]]></title>
+    <link href="http://morizyun.github.io/blog/figaro-config-heroku-dokku-rails-ruby/"/>
+    <updated>2016-01-09T23:55:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/figaro-config-heroku-dokku-rails-ruby</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00NXMTLHK/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00NXMTLHK&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00NXMTLHK&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00NXMTLHK" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+HerokuやDokkuで使う環境変数を管理するGem「<strong><a href="https://github.com/laserlemon/figaro">laserlemon/figaro</a></strong>」の紹介です。
+モダンなWebアプリケーションの設計の指針とも言える「<strong><a href="http://12factor.net/ja/">Twelve-Factor App</a></strong>」を実現するのを手助けしてくれる素晴らしいGemです。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Twelve-Factor App</h2>
+
+<p>「<strong><a href="http://12factor.net/ja/">Twelve-Factor App</a></strong>」にある通り、次の設計指針のことです。
+今回のFigaroは(3)の設定を環境変数に格納するためのものです。</p>
+
+<pre>
+(1) コードベース : バージョン管理されている1つのコードベースがあり、それにより複数の環境にデプロイできる
+(2) 依存関係 : 依存関係を明示的に宣言し分離する
+(3) 設定 : 設定を環境変数に格納する
+(4) バックエンドサービス : バックエンドのサービスをアタッチされたリソースとして扱う
+(5) ビルド、リリース、実行 : ビルド、リリース、実行の3つのステージをちゃんと分離する
+(6) プロセス : アプリケーションを1つもしくは複数のステートレスなプロセスとして実行する
+(7) ポートバインディング : ポートバインディングを通してサービスを公開する
+(8) 並行性 : プロセスモデルによってスケールアウトする
+(9) 廃棄容易性 : 高速な起動とグレースフルシャットダウンで堅牢性を最大化する
+(10) 開発/本番一致 : 開発、ステージング、本番環境をできるだけ一致させた状態を保つ
+(11) ログ : ログをイベントストリームとして扱う
+(12) 管理プロセス : 管理タスクを1回限りのプロセスとして実行する
+</pre>
+
+
+<h2>Gemのインストール</h2>
+
+<p><code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行してください。
+下記は用途に合わせてどちらかをお使いください。</p>
+
+<p>```ruby</p>
+
+<h1>公式のものを使う場合(Dokku非対応の公式のものを使う場合はこちら)</h1>
+
+<p>gem 'figaro'</p>
+
+<h1>Dokku対応を行ったバージョンです(PR中なのでそのうち本体に取り込まれるかも)</h1>
+
+<p>gem 'figaro', github: 'morizyun/figaro'
+```</p>
+
+<h2>設定方法</h2>
+
+<p>以下の様に設定してください。</p>
+
+<p>```ruby</p>
+
+<h1>config/application.yml</h1>
+
+<p>pusher_app_id: "2954"
+pusher_key: "7381a978f7dd7f9a1117"
+pusher_secret: "abdc3b896a0ffb85d373"</p>
+
+<p>test:
+  pusher_app_id: "5112"
+  pusher_key: "ad69caf9a44dcac1fb28"
+  pusher_secret: "83ca7aa160fedaf3b350"
+```</p>
+
+<p>Railsアプリ側からは次のように扱います。</p>
+
+<p>```ruby</p>
+
+<h1>config/initializers/pusher.rb</h1>
+
+<h1>一般的には以下の様に使います</h1>
+
+<p>Pusher.app_id = ENV["pusher_app_id"]
+Pusher.key    = ENV["pusher_key"]
+Pusher.secret = ENV["pusher_secret"]</p>
+
+<h1>こんな風に Figaro.envで使うこともできます</h1>
+
+<p>Figaro.env.pusher_app_id # => "5112"
+Figaro.env.pusher_app_id? # => true
+```</p>
+
+<h2>Herokuへの設定</h2>
+
+<p>「<strong><a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a></strong>」をインストールして、Herokuのアプリを作成し、
+Railsアプリ側をデプロイする段階になったら、以下のコマンドで環境変数に設定を登録します。</p>
+
+<p>```bash</p>
+
+<h1>手動で個別登録</h1>
+
+<p>$ heroku config:set google_analytics_key=UA-35722661-5</p>
+
+<h1>ファイルから一括登録</h1>
+
+<p>$ figaro heroku:set -e production</p>
+
+<h1>使い方の詳細はこちら</h1>
+
+<p>$ figaro help heroku:set
+```</p>
+
+<h2>Dokkuへの設定</h2>
+
+<p>Dokkuの設定もほぼ同じです。<code>dokku-cli</code>をインストールして、gitリポジトリを設定したら、herokuとほぼ同じことを実行できます。</p>
+
+<p>```bash</p>
+
+<h1>dokku の git を登録</h1>
+
+<p>$ git remote add dokku dokku@example-dokku-server.com:example-app</p>
+
+<h1>dokku-cli をインストール</h1>
+
+<p>$ gem install dokku-cli</p>
+
+<h1>手動で個別登録</h1>
+
+<p>$ dokku config:set google_analytics_key=UA-35722661-5</p>
+
+<h1>ファイルから一括登録</h1>
+
+<p>$ figaro dokku:set -e production</p>
+
+<h1>使い方の詳細はこちら</h1>
+
+<p>$ figaro help dokku:set
+```</p>
+
+<h2>おまけ</h2>
+
+<p>正直 <code>Dokku</code> で使おうと思ったら、すでに拡張してくれている人がいたのでうほーいと思ったら、
+Travis CIのRSpecがコケてて散々悩みながら、デバックしてたら夜中の2時でしたww</p>
+
+<p><strong><a href="https://github.com/laserlemon/figaro/pull/227">Support dokku cli by morizyun · Pull Request #227 · laserlemon/figaro</a></strong></p>
+
+<p><code>Pull Request</code> うまくいくといいなぁ</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="http://xoyip.hatenablog.com/entry/2014/04/09/214405">Rails4.1のsecrets.ymlはfigaroと違うの？ - PILOG</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dokku プライベートなherokuを作ってRailsアプリをデプロイ[DegitalOclean]]]></title>
+    <link href="http://morizyun.github.io/blog/dokku-postgresql-rails-degitalocean/"/>
+    <updated>2016-01-08T23:55:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/dokku-postgresql-rails-degitalocean</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00C2ONQIU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00C2ONQIU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00C2ONQIU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00C2ONQIU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+herokuライクなプライベートなPaaSを作るためのOSS『<strong><a href="https://github.com/dokku/dokku">dokku/dokku - GitHub</a></strong>』の紹介です。
+このDokkuの環境は、「<strong><a href="https://www.digitalocean.com/?refcode=0da417edaeee">DegitalOclean</a></strong>」だと画面から数クリックで作成できるので、
+今回は、DegitalOcleanとセットで手順を紹介します。</p>
+
+<p>Dukkuを使うメリットは次の通りです。</p>
+
+<ul>
+<li>Heroku ライクにgitにpushしたら、BuildPack的なものを使ってRailsやNode.js, Pythonなどのアプリを展開できる</li>
+<li>Dokkuは、PosgreSQLやRedis、ElasticSearchなどのプラグインを数コマンドで使える</li>
+</ul>
+
+
+<p>まだ簡単なアプリをBuildしただけですが、特にハマることもなく安定して使えています！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Dokkuを使うモチベーション</h2>
+
+<p>今回Dokkuを使おうと思ったモチベーションはこちら。</p>
+
+<pre>
+- 趣味アプリでは、できるだけアプリだけに集中したい
+- PosgreSQLやRedis、ElasticSearchなどのプラグインを数コマンドで使えるようになる
+- Herokuの無料版の制約を気にせずにアプリ開発したい
+  - 1時間以上アクセスしないとスリープになる
+  - 6時間/1日はスリープ状態にしないといけない
+  - 一定時間以上連続するプロセスがkillされる(はず)
+- VPSやクラウドだとミドルウェアの環境構築や、デプロイのセッティングに時間がかかる
+</pre>
+
+
+<p>Herokuはただ乗りフリーライダーの理論ですので、基本ごめんなさいですm(<em> </em>)m
+一方で個人の趣味開発は、限られた時間との勝負なのでより効率的な開発手法を模索していて今回
+『<strong><a href="https://github.com/dokku/dokku">dokku/dokku - GitHub</a></strong>』を使った方法をトライすることにしました！</p>
+
+<h2>画面からDokkuのDropletを作成</h2>
+
+<p>「<strong><a href="https://www.digitalocean.com/?refcode=0da417edaeee">DegitalOclean</a></strong>」にログインして、Dropletを作成します。
+「One-click App」 => 「Dokku v0.4.10 on 14.04」を選んでDropletを作成してください。</p>
+
+<p><img src="https://farm2.staticflickr.com/1475/24142129302_aebd0c8997_c.jpg" width="800" height="701"></p>
+
+<h2>ドメインの設定です。</h2>
+
+<p>自分のDropletを作成して、IP(例 <code>123.123.123.123</code>) にブラウザでアクセス。</p>
+
+<p><code>
+open 123.123.123.123
+</code></p>
+
+<p>以下を登録してください</p>
+
+<pre>
+- 自分のSSHキー
+- Custom Domain
+- アプリごとのVirtual Host名の利用(onにしていいかも)
+</pre>
+
+
+<p><img src="https://farm2.staticflickr.com/1536/23625078373_5f346892a0.jpg" width="500" height="435" alt="スクリーンショット 2016-01-08 22.43.36"></p>
+
+<p>Custom Domainを登録したら、自分のdomain側の設定を修正して、<code>123.123.123.123</code> を見に行くようにしてください。</p>
+
+<p><code>
+apps.yourdomain.com   A 123.123.123.123
+*.apps.yourdomain.com A 123.123.123.123
+</code></p>
+
+<h2>サーバに入ってpostgresqlのプラグインをインストール</h2>
+
+<p>公式チュートリアルに従って、『<strong><a href="https://github.com/dokku/dokku-postgres">dokku/dokku-postgres - GitHub</a></strong>』をインストールします。</p>
+
+<p>```</p>
+
+<h1>ssh でサーバにログイン</h1>
+
+<p>ssh root@123.123.123.123</p>
+
+<h1>dokku の postgresql プラグインをインストール</h1>
+
+<p>$ dokku plugin:install https://github.com/dokku/dokku-postgres.git</p>
+
+<h1>PostgreSQL の 今回のアプリ用のDB を作成</h1>
+
+<p>$ dokku postgres:create dokku_sample_db</p>
+
+<h1>dokkuのアプリケーションを作成</h1>
+
+<p>$ dokku app:create dokku_sample_app</p>
+
+<h1>DBをアプリケーションとをひも付け</h1>
+
+<p>dokku postgres:link dokku_sample_db dokku_sample_app
+```</p>
+
+<p>ちなみに、Dokkuで使えるPluginの一覧はこちら『<strong><a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - Dokku</a></strong>』。</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Rails アプリを作成</h2>
+
+<p>ローカルに戻ってサンプルのRailsアプリを作成します。</p>
+
+<p>```</p>
+
+<h1>Railsアプリの作成</h1>
+
+<p>rails new dokku_sample_app --database=postgresql --skip-test-unit --skip-bundle -m https://raw.github.com/morizyun/rails4_template/master/app_template.rb</p>
+
+<h1>アプリのフォルダに移動</h1>
+
+<p>cd dokku_sample_app</p>
+
+<h1>Bookでscaffold</h1>
+
+<p>rails g scaffold book title:string auther:string price:float
+```</p>
+
+<p>routesにrootを追加します。</p>
+
+<p>```</p>
+
+<h1>config/routes.rb</h1>
+
+<p>Rails.application.routes.draw do
+  # ↓ を追加
+  root 'books#index'
+end
+```</p>
+
+<p><code>.gitignore</code> から <code>config/secrets.yml</code> を削除。そして、git にコミット。</p>
+
+<p>```</p>
+
+<h1>gitに登録</h1>
+
+<p>git add . -A &amp;&amp; git commit -m 'first commit'</p>
+
+<h1>git のremote サーバを追加</h1>
+
+<p>git remote add dokku dokku@apps.yourdomain.com:dokku_sample_app
+```</p>
+
+<h2>ローカルからの実行系</h2>
+
+<p>ローカルでのコマンド入力を簡単にしてくれる
+「<strong><a href="https://github.com/SebastianSzturo/dokku-cli">SebastianSzturo/dokku-cli</a></strong>」
+を使いつつデプロイします！</p>
+
+<p>```</p>
+
+<h1>gitの情報を読んで、herokutoolbelt</h1>
+
+<p>gem install dokku-cli</p>
+
+<h1>secret keyをセット</h1>
+
+<p>dokku config:set dokku_sample1 SECRET_KEY_BASE=<code>bundle exec rake secret</code></p>
+
+<h1>サーバにdeploy</h1>
+
+<p>git push dokku master</p>
+
+<h1>ブラウザで表示</h1>
+
+<p>dokku open
+```</p>
+
+<p>Railsで作成した画面が表示されれば成功です！</p>
+
+<p><img src="https://farm2.staticflickr.com/1675/24168218261_30651ecd62.jpg" width="500" height="294" alt="スクリーンショット 2016-01-08 22.52.38"></p>
+
+<h2>dokku-cliのコマンド</h2>
+
+<p>以下の様なことができます。</p>
+
+<p>```</p>
+
+<h1>アプリ配下でコマンドを実行</h1>
+
+<p>dokku run <cmd>   # Run a one-off command in the environment of the app</p>
+
+<h1>よく使いそうなコマンド</h1>
+
+<p>dokku ssh                                       # Start an SSH session as root user
+dokku logs [-t]                                 # Display logs for the app (-t follows)
+dokku help [COMMAND]                            # Describe available commands or one specific command</p>
+
+<h1>設定変更系のコマンド</h1>
+
+<p>dokku config                                    # Display the app's environment variables
+dokku config:get KEY                            # Display an environment variable value
+dokku config:set KEY1=VALUE1 [KEY2=VALUE2 ...]  # Set one or more environment variables
+dokku config:set:file <path/to/file>            # Set one or more environment variables from file
+dokku config:unset KEY1 [KEY2 ...]              # Unset one or more environment variables</p>
+
+<h1>プロセス/コンテナ系のコマンド</h1>
+
+<p>dokku ps           # List processes running in app container(s)
+dokku ps:rebuild   # Rebuild the app
+dokku ps:restart   # Restart the app container
+dokku ps:start     # Start the app container</p>
+
+<h1>その他便利コマンド</h1>
+
+<p>dokku nginx:build                               # (Re)builds nginx config for the app
+dokku open                                      # Open the app in your default browser
+dokku url                                       # Show the first URL for the app
+dokku urls                                      # Show all URLs for the app
+```</p>
+
+<h2>DokkuのミドルウェアPlugin</h2>
+
+<p>PostgreSQLだけでなく、RedisやElasticsearch等のPluginも数コマンドで使うことができるようになります。
+公式サポートされているものだけでも次のようなものがあります。</p>
+
+<p><code>
+CouchDB (beta)
+Elasticsearch (beta)
+MariaDB (beta)
+Memcached (beta)
+Mongo (beta)
+MySQL (beta)
+Nats (beta)
+Postgres (beta)
+RabbitMQ (beta)
+Redis (beta)
+RethinkDB (beta)
+Copy Files to Image
+HTTP Auth (beta)
+Let's Encrypt (beta)
+Maintenance mode (beta)
+Redirect (beta)
+</code></p>
+
+<p>また公式サポートされているPlugin以外にもコミュニティや個人が様々なPluginを提供しています。
+詳しくは、『<a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - GitHub</a>**』を見てみてください。</p>
+
+<h2>感想</h2>
+
+<p>まだ、簡単なアプリをデプロイしただけなので、もう少し色々試した上でですが、今のところの感触はかなりありな気がします＾＾</p>
+
+<h2>Special Thank</h2>
+
+<ul>
+<li><strong><a href="http://dokku.viewdocs.io/dokku/application-deployment/">Dokku - The smallest PaaS implementation you've ever seen</a></strong></li>
+<li><strong><a href="http://blog.mochromatic.com/2014/12/17/setting-up-dokku-on-digital-ocean/">Setting up Dokku on Digital Ocean</a></strong></li>
+<li><strong><a href="http://donpottinger.net/blog/2014/11/17/bye-bye-heroku-hello-dokku.html">Bye Bye Heroku, Hello Dokku: Migrating a Rails App from Heroku to Dokku (Part 1) | by @donpottinger</a></strong></li>
+<li><strong><a href="http://donpottinger.net/blog/2014/11/22/bye-bye-heroku-hello-dokku-part-2.html">Bye Bye Heroku, Hello Dokku: Migrating a Rails App from Heroku to Dokku (Part 2) | by @donpottinger</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[scenic RailsでMaterialized Viewを使う]]></title>
+    <link href="http://morizyun.github.io/blog/materialized-view-rails-soic/"/>
+    <updated>2016-01-06T22:20:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/materialized-view-rails-soic</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00NM7VROQ/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00NM7VROQ&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00NM7VROQ&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00NM7VROQ" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+RailsでPostgreSQLのビュー(View)やマテリアライズド・ビュー(Materialized View)を使うためのGem「<strong><a href="https://github.com/thoughtbot/scenic">thoughtbot/scenic</a></strong>」の紹介です。
+thoughtbot謹製なので、安心して使えそうなのも魅力です！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>PostgreSQLのViewとMaterialized View</h2>
+
+<p>PostgreSQLのViewとMaterialized Viewの大まかかな説明は次の通りです。</p>
+
+<h3>View(ビュー)について</h3>
+
+<ul>
+<li>ViewとはSQLで構成された実態のな仮想的なテーブルのこと。Viewの作成時にSQLを定義する</li>
+<li>Viewを呼び出すとSQLが即時実行される</li>
+<li>最新の情報を常に取得できるが、SQLが複雑だったり、レコードが多いと負荷がかかる</li>
+</ul>
+
+
+<h3>Materialized View(マテリアライズド・ビュー)について</h3>
+
+<ul>
+<li>実態を持ったViewのことである。作成するときにSQLの実行結果のテーブルを作る</li>
+<li>最新の情報を反映するためにはリフレッシュ処理を行う必要がある</li>
+<li>SQLが複雑だったり、レコードが多い処理の負荷を下げるのに有効なアプローチである</li>
+</ul>
+
+
+<h2>PostgreSQLのMaterialized Viewの機能</h2>
+
+<p>『<strong><a href="http://goo.gl/WiA4wK">RailsでPostgreSQLのマテリアライズドビューを使う | 日々雑記</a></strong>』にある通り、
+PosgreSQLにはリフレッシュ時にSELECTコマンドを発行した時にロックされて応答が遅延しないように、<code>CONCURRENTLY</code>
+というパラメータをつけるといいようです！</p>
+
+<p><code>
+REFRESH MATERIALIZED VIEW CONCURRENTLY materialized_view;
+</code></p>
+
+<h2>Gemのインストール</h2>
+
+<p>ではいよいよ、Viewを扱いやすくするGem「<strong><a href="https://github.com/thoughtbot/scenic">thoughtbot/scenic</a></strong>」の紹介です。</p>
+
+<p><code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行してください。</p>
+
+<p>```ruby</p>
+
+<h1>View &amp; Materialized View (GitHubじゃないとちょっと古い気がします)</h1>
+
+<p>gem 'scenic', git: 'git@github.com:thoughtbot/scenic.git'</p>
+
+<h1>Fake Data(サンプルデータを作るために使います)</h1>
+
+<p>gem 'faker'
+```</p>
+
+<h2>Viewを作成するためのModelを作成</h2>
+
+<p>まずは、Viewを作成するための元となるテーブルをScaffoldで作成します。</p>
+
+<p>```</p>
+
+<h1>新しい Rails プロジェクトを作成</h1>
+
+<p>$ rails new scenic_sample
+$ cd scenic_sample</p>
+
+<h1>scaffoldで一通り作成</h1>
+
+<p>$ rails g scaffold book title:string author:string price:float
+```</p>
+
+<p>次にサンプルデータを作ります。</p>
+
+<p>```ruby</p>
+
+<h1>db/seeds.rb</h1>
+
+<p>require 'faker'</p>
+
+<p>1000.times do |i|
+  Book.create(</p>
+
+<pre><code>  title: Faker::Name.title,
+  author: Faker::Name.name,
+  price: Faker::Commerce.price
+</code></pre>
+
+<p>  )
+end
+```</p>
+
+<p>ではテーブルを作って、テストデータを投入します。</p>
+
+<p>```</p>
+
+<h1>テーブルを作成</h1>
+
+<p>$ bundle exec rake db:migrate</p>
+
+<h1>テストデータを投入</h1>
+
+<p>$ bundle exec rake db:seed
+```</p>
+
+<p>これでサンプルデータが作成されました。</p>
+
+<h2>いよいよマテリアライズド・ビューを作成</h2>
+
+<p>次にマテリアライズド・ビューを作成します。</p>
+
+<p>今回は$50以上のBookを<code>ExpensiveBook</code>として、それを抽出するテーブルにします。</p>
+
+<p>```</p>
+
+<h1>ExpensiveBookの作成</h1>
+
+<p>$ rails generate scenic:model expensive_book --materialized</p>
+
+<pre><code>  invoke  active_record
+  create    app/models/expensive_book.rb
+  invoke    rspec
+  create      spec/models/expensive_book_spec.rb
+  invoke      factory_girl
+  create        spec/factories/expensive_books.rb
+  create  db/views/expensive_books_v01.sql
+  create  db/migrate/20160106124232_update_expensive_books.rb
+</code></pre>
+
+<p>```</p>
+
+<h2>マテリアライズド・ビューのSQL</h2>
+
+<p>そんなマテリアライズド・ビューのSQLがこちら。</p>
+
+<p>```sql</p>
+
+<h1>db/views/expensive_books_v01.sql</h1>
+
+<p>SELECT
+  *
+FROM
+  books
+WHERE
+  price >= 50.0
+```</p>
+
+<p>あとはリフレッシュ時に<code>CONCURRENTLY</code>を使うために、UNIQ INEXを追加します。</p>
+
+<p>```ruby</p>
+
+<h1>db/migrate/20160106123247_create_expensive_books.rb</h1>
+
+<p>class CreateExpensiveBooks &lt; ActiveRecord::Migration
+  def change</p>
+
+<pre><code>create_view :expensive_books, materialized: true
+# 追加
+add_index :expensive_books, :id, unique: true
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>ではマテリアライズド・ビューを作成します。</p>
+
+<p><code>
+$ bundle exec rake db:migrate
+== 20160106123247 CreateExpensiveBooks: migrating =============================
+-- create_view(:expensive_books)
+   -&gt; 0.0272s
+== 20160106123247 CreateExpensiveBooks: migrated (0.0272s) ====================
+</code></p>
+
+<p>こんな感じのSQLが実行されたようです。</p>
+
+<p>```sql
+CREATE OR REPLACE VIEW public.expensive_books AS SELECT books.id,</p>
+
+<pre><code>books.title,
+books.author,
+books.price,
+books.created_at,
+books.updated_at
+</code></pre>
+
+<p>   FROM books
+  WHERE (books.price >= (50.0)::double precision);
+```</p>
+
+<p>SQLを変更する場合は、<code>rails g scenic:view expensive_book</code> とすれば変更用のSQLのmigrationファイル生成されます。</p>
+
+<h2>マテリアライズド・ビューのModelファイル</h2>
+
+<p>```ruby
+class ExpensiveBook &lt; ActiveRecord::Base
+  # find_by!とかを使う場合はprimary_keyが必要なので
+  self.primary_key = :id</p>
+
+<p>  # このメソッドを実行するとマテリアライズド・ビューが更新される
+  def self.refresh</p>
+
+<pre><code>Scenic.database.refresh_materialized_view(table_name, concurrently: true)
+</code></pre>
+
+<p>  end</p>
+
+<p>  private
+  # マテリアライズド・ビューは書き込みができないので読み込み専用のViewとして作成
+  def readonly?</p>
+
+<pre><code>true
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>一点GemのREADMEに書いていた注意点として、リフレッシュ時のパラメータに<code>concurrently: true</code>とした場合
+はlockがかからないけど、<code>PostgreSQL 9.4 以上 &amp;&amp; uniq index</code> が必須なので注意してください。</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="https://github.com/stympy/faker">stympy/faker - GitHub</a></strong></li>
+<li><strong><a href="http://qiita.com/yaotti/items/510779877e515a1155db">Ruby - Gemfileでのgem指定色々 - Qiita</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Elasticsearchを使ったRailsサンプルアプリの作成]]></title>
+    <link href="http://morizyun.github.io/blog/elasticsearch-rails-tutorial/"/>
+    <updated>2016-01-03T21:50:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/elasticsearch-rails-tutorial</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00J4KDYZU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00J4KDYZU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00J4KDYZU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00J4KDYZU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+検索機能を実装するときによく使われているElasticsearchをRailsで使うためのサンプルアプリの作成の手順を作りました。入門レベルです！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Elasticsearchの導入</h2>
+
+<p>拙著『<strong><a href="/blog/elasticsearch-kibana-setup-mac/">Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ</a></strong>』を良ければご参考ください。</p>
+
+<h2>Rails サンプルアプリ</h2>
+
+<p>Railsのサンプルアプリを作成します。今回は <code>Article</code>(記事) のモデルを持つことにします。</p>
+
+<p>```</p>
+
+<h1>Railsアプリの作成</h1>
+
+<p>rails new elasticsearch_sample --skip-bundle</p>
+
+<h1>フォルダを移動</h1>
+
+<p>cd elasticsearch_sample</p>
+
+<h1>DBの作成</h1>
+
+<p>rake db:create</p>
+
+<h1>article テーブルの定義を作成</h1>
+
+<p>bundle exec rails g scaffold article title:string body:text</p>
+
+<h1>article テーブルを作成</h1>
+
+<p>bundle exec rake db:migrate
+```</p>
+
+<p>GemfileにElasticsearch用のgemを追加します。</p>
+
+<p>```ruby</p>
+
+<h1>Gemfile</h1>
+
+<h1>Elasticsearch</h1>
+
+<p>gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+```</p>
+
+<p>追加したらターミナルで以下のコマンドを実行してgemをインストールします。</p>
+
+<p><code>
+bundle install --jobs=4 --path=vendor/bundle
+</code></p>
+
+<h2>ModelにElasticsearchを使うための設定</h2>
+
+<p>次に<code>Article</code>モデルにElasticsearchを使うための設定をします。</p>
+
+<p>```ruby</p>
+
+<h1>app/models/article.rb</h1>
+
+<p>class Article &lt; ActiveRecord::Base
+  include ArticleSearchable
+end
+```</p>
+
+<p>今回はconcernにElasticsearchに関する処理を切り出します。</p>
+
+<p>```ruby</p>
+
+<h1>app/models/concerns/article_searcable.rb</h1>
+
+<p>module ArticleSearchable
+  extend ActiveSupport::Concern</p>
+
+<p>  included do</p>
+
+<pre><code>include Elasticsearch::Model
+
+# インデックスするフィールドの一覧
+INDEX_FIELDS = %w(title body).freeze
+
+# インデックス名
+index_name "es_sample_article_#{Rails.env}"
+
+# マッピング情報
+settings do
+  mappings dynamic: 'false' do # 動的にマッピングを生成しない
+    indexes :title, analyzer: 'kuromoji', type: 'string'
+    indexes :body,  analyzer: 'kuromoji', type: 'string'
+  end
+end
+
+# インデックスするデータを生成
+# @return [Hash]
+def as_indexed_json(option = {})
+  self.as_json.select { |k, _| INDEX_FIELDS.include?(k) }
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  module ClassMethods</p>
+
+<pre><code># indexの作成メソッド
+def create_index!
+  client = __elasticsearch__.client
+  client.indices.delete index: self.index_name rescue nil
+  client.indices.create(index: self.index_name,
+                        body: {
+                            settings: self.settings.to_hash,
+                            mappings: self.mappings.to_hash
+                        })
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>インデックス名には環境情報をつけておきます。</p>
+
+<p>理由はlocalでのテストをしやすくするためです。</p>
+
+<h2>index作成のrakeタスクを作成</h2>
+
+<p>続いてindexを作成するrake タスクを作ります。</p>
+
+<p>まずはrakeタスクを作成するために、以下のコマンドをターミナルで実行します。</p>
+
+<p><code>
+rails g task elasticsearch
+</code></p>
+
+<p>作成されたrakeタスクを以下の様に変更します。</p>
+
+<p>```ruby</p>
+
+<h1>lib/tasks/elasticsearch.rake</h1>
+
+<p>namespace :elasticsearch do
+  desc 'Elasticsearch のindex作成'
+  task :create_index => :environment do</p>
+
+<pre><code>Article.create_index!
+</code></pre>
+
+<p>  end</p>
+
+<p>  desc 'Article を Elasticsearch に登録'
+  task :import_article => :environment do</p>
+
+<pre><code>Article.import
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>ではインデックスを作成します。</p>
+
+<p><code>
+bundle exec rake elasticsearch:create_index
+</code></p>
+
+<p><code>http://localhost:9200/_plugin/head/</code> にアクセスして「es_sample_article_development => info => Metadata」
+の中身が以下の様になっていたら成功です！</p>
+
+<p><img src="https://farm2.staticflickr.com/1510/24062169671_9781dc7e17_z.jpg" width="556" height="640"></p>
+
+<p>ちなみに、curlコマンドでもマッピングを確認できます。
+ターミナルで以下のコマンドを実行してみてください。</p>
+
+<p>```
+curl -XGET 'localhost:9200/es_sample_article_development/_mapping/article?pretty=true'
+{
+  "es_sample_article_development" : {</p>
+
+<pre><code>"mappings" : {
+  "article" : {
+    "dynamic" : "false",
+    "properties" : {
+      "body" : {
+        "type" : "string",
+        "analyzer" : "kuromoji"
+      },
+      "title" : {
+        "type" : "string",
+        "analyzer" : "kuromoji"
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>  }
+}
+```</p>
+
+<h2>サンプルデータの作成</h2>
+
+<p>サンプルデータを作成します。</p>
+
+<p>```ruby</p>
+
+<h1>db/seeds.rb</h1>
+
+<p>ActiveRecord::Base.transaction do
+  # ===========================
+  # 記事(Article)
+  # ===========================
+  Article.delete_all
+  10.times do |idx|</p>
+
+<pre><code>Article.create!(
+    title: "タイトル #{idx}",
+    body: "本文 #{idx}"
+)
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Elasticsearchにデータを登録します。</p>
+
+<p>```</p>
+
+<h1>サンプルデータの生成</h1>
+
+<p>bundle exec rake db:seed</p>
+
+<h1>Elasticsearchへの登録</h1>
+
+<p>bundle exec rake elasticsearch:import_article
+```</p>
+
+<p><code>http://localhost:9200/_plugin/head/</code> から「Structured Query」を選択して色々いじるとデータが格納されていることがわかると思います！</p>
+
+<p><img src="https://farm2.staticflickr.com/1607/24037229962_fc29541c95.jpg" width="500" height="346"></p>
+
+<p>ちなみに、<code>rails console</code> からでも色々試せるのでぜひ色々遊んでみてください！</p>
+
+<p>```ruby
+Article.search('9').results.count</p>
+
+<h1>=> 1</h1>
+
+<p>Article.search('9').results.first</p>
+
+<h1>=> #&lt;Elasticsearch::Model::Response::Result:0x007fb7ebac0a08 @result=#&lt;Hashie::Mash <em>id="10" </em>index="es_sample_article_development" <em>score=1.1972358 </em>source=#&lt;Hashie::Mash body="本文 9" created_at="2016-01-03T11:02:46.578Z" id=10 title="タイトル 9" updated_at="2016-01-03T11:02:46.578Z"> _type="article">></h1>
+
+<p>Article.search(query: {term: {title: "5"} }).records.first</p>
+
+<h1>=> Article Load (0.1ms)  SELECT "articles".* FROM "articles" WHERE "articles"."id" = 6</h1>
+
+<h1>=> #<Article id: 6, title: "タイトル 5", body: "本文 5", created_at: "2016-01-03 11:02:46", updated_at: "2016-01-03 11:02:46"></h1>
+
+<p>```</p>
+
+<h2>とりあえず一覧の検索を実装</h2>
+
+<p><code>articles_controller</code> の <code>index</code> を以下のように変更。</p>
+
+<p>```ruby</p>
+
+<h1>app/controllers/articles_controller.rb</h1>
+
+<p>class ArticlesController &lt; ApplicationController
+  def index</p>
+
+<pre><code>@articles =if params[:search]
+             Article.search(params[:search]).records
+           else
+             Article.all
+           end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>viewも以下を追加。</p>
+
+<p>```ruby</p>
+
+<h1>app/views/articles/index.html.erb</h1>
+
+<p>&lt;%= form_tag articles_path, :method => :get do %></p>
+
+<pre><code>&lt;%= text_field_tag :search, params[:search] %&gt;
+&lt;%= submit_tag 'Search', :name =&gt; nil %&gt;
+</code></pre>
+
+<p>&lt;% end %>
+```</p>
+
+<p><code>http://localhost:3000/articles</code> にアクセスすれば検索できると思います！</p>
+
+<p><img src="https://farm6.staticflickr.com/5799/24038700492_75081a1440.jpg" width="500" height="317"></p>
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="http://qiita.com/k-shogo/items/8657e0a5fdf20a25bba0">Ruby - railsから全文検索エンジンelasticsearchを利用する - Qiita</a></strong></li>
+<li><strong><a href="http://qiita.com/moriyaman/items/373107a3870c33229bac">既存のRailsアプリの検索にElasticSearchを導入してみる - Qiita</a></strong></li>
+<li><strong><a href="http://qiita.com/yuku_t/items/d749111f589c88c8315b">Elasticsearch - Qiitaがquery-stringっぽい構文を自前実装した理由 - Qiita</a></strong></li>
+<li><strong><a href="http://qiita.com/mosson/items/9a9b0703ac4c76ebfd4e">Rails - Rakeタスクをつくる - Qiita</a></strong></li>
+<li><strong><a href="http://ruby-rails.hatenadiary.com/entry/20151018/1445142266">RailsでElasticsearch: 全文検索を実装 - Rails Webook</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

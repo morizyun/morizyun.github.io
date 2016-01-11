@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CSS | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HTML/CSS/JavaScript 初歩の初歩]]></title>
+    <link href="http://morizyun.github.io/blog/html-css-javascript-biginner/"/>
+    <updated>2014-11-09T12:45:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/html-css-javascript-biginner</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774163678/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774163678&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774163678&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774163678" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />最近HTML/CSS/JavaScriptなどを初学者の方向けに教える機会がすごく増えきました。初学者の方ができるだけ詰まらずに、効率的に学習するための手順をいろいろな方と相談しながら、書きなおしています。</p>
+
+<p><strong>(11-09 12:45) Progate, atomを追加</strong></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h1>導入編</h1>
+
+<h2>Webサイトを作ることは楽しい！</h2>
+
+<p><img src="https://farm3.staticflickr.com/2898/14096345151_3ba825553e_z.jpg" width="640" height="361" alt="スクリーンショット 2014-05-04 7.29.51"></p>
+
+<p><strong><a href="http://gigazine.net/news/20130911-180-websites/">プログラミング経験ゼロだが180日で180個のウェブサイトを作るプロジェクトがゴールまであとわずかに</a></strong><br/>
+プログラミング経験0のデザイナさんが、毎日1つサイトを作っていったお話です。最初はテキストとリンクが並ぶだけのサイトでしたが、少しずつゲームやチャットなどが作れるようになっていきます。</p>
+
+<p>今知っている知識だけで、作れるWebサイトを作っていく。そして、自分の知っている2つの知識を組み合わせたり、１つやりたいコトのためのパーツをGoogleに教えてもらうくらいが、挫折せずに続けられる方法だと思っています！</p>
+
+<h2>今できることの範囲内で、作りたいWebサイトは？</h2>
+
+<p>今知っている知識、今できることの範囲内でできるWebサイトを考えてみてください。大切なことは最大でも4-5時間あれば十分できてしまう作業量の範囲内にすること。1日を超えてしまうとモチベーションが下がったり、難易度が高すぎて途中で挫折してしまう可能性がありもったいないです。</p>
+
+<h2>おすすめテキストエディタ</h2>
+
+<p><strong><a href="https://atom.io/">Atom</a></strong><br/>
+GitHub社がオープンソースで開発しているエディタ、Mac、Windowsに対応していてパッケージのインストールなどが楽ちん。</p>
+
+<p><strong><a href="http://www.sublimetext.com/2">Sublime Text2</a></strong><br/>
+多くのプログラマーが好んで使っている、おすすめのテキスト・エディターです。WindowsもMacにも対応しています。ダウンロードして評価する場合は無料です。継続して使う場合はシェアウェアとなります。</p>
+
+<h2>HTML</h2>
+
+<p>HTMLとは、インターネット・エクスプローラ(IE)やクローム(Chrome)などのブラウザにわかりやすい文章のこと。</p>
+
+<p><strong><a href="http://www.tohoho-web.com/wwwbeg3.htm">HTMLの基本テクニック</a></strong><br/>
+HTMLの要点中の要点が書かれています。最低限ここを見ておくだけで最低限のHTMLは書けるようになります。</p>
+
+<p><strong><a href="http://dotinstall.com/lessons/basic_html_v2">HTML入門 (全16回) | ドットインストール</a></strong><br/>
+HTMLについてわかりやすく解説した動画(約3分)が全16回あります。最初から全部を覚えようとしたり、真似して書く必要はありません。タイトルを見ながら、興味が有るところや作りたいことに関係しそうなところをつまみ食いしてみてください。</p>
+
+<h2>CSS</h2>
+
+<p>HTMLが、ブラウザが解釈しやすい文章。CSSはその文章の飾りや体裁を整えるための言語。</p>
+
+<p><strong><a href="http://sinfonia-wld.com/pc/css.html">初級 CSS 解説｛初心者向けの、ごく簡単な、スタイルシート の使い方の説明です。｝</a></strong><br/>
+HTMLとCSSを使う方法が書かれています。もし分かりづらければコメントください！</p>
+
+<p><strong><a href="http://dotinstall.com/lessons/basic_css3">CSS3入門 (全19回) | ドットインストール</a></strong><br/>
+CSSについてわかりやすく解説した動画(約3分)が全19回あります。最初からすべてを理解する必要は全然無いです。自分の興味があるタイトルや内容があればちょっと見てみるくらいがオススメです。</p>
+
+<h2>JavaScript</h2>
+
+<p>HTMLが文章構造、CSSがデザイン、Javascriptは主にブラウザ側での「動き」を表現するための言語。</p>
+
+<p><strong><a href="http://liginc.co.jp/programmer/archives/4958">JavaScriptではじめるプログラミング超初心者講座</a></strong><br/>
+Javascriptはすごく奥が深いので、まずはここを見てこんなことができるだなってイメージを持ってもらえれば十分です。</p>
+
+<p><strong><a href="http://dotinstall.com/lessons/basic_javascript_v2">JavaScript入門 (全24回) | ドットインストール</a></strong><br/>
+JavaScriptについてわかりやすく解説した動画(約3分)が全16回あります。ブラウザの中で動くものを作りたいと思ったら、ちょっと覗いてみてください。自分のやりたことにマッチするタイトルの動画があればちょっと見てみるくらいで十分です。</p>
+
+<h2>プログラムを学ぶことの意義</h2>
+
+<p><strong><a href="http://lrandcom.com/facebook_former_executive_learning_programming_guarantee_life_time_work">Facebook元役員「プログラミングを学ぶのなら、生涯仕事に困らないことを私が保証しよう。」</a></strong><br/>
+かなりインパクトの有るタイトルですが、内容はプログラムを学ぶことがどんな未来につながるか、海外では今どんなことが起こっているかを俯瞰的に理解できる素晴らしい記事です！</p>
+
+<hr>
+
+
+<h1>ここからは参考リンク</h1>
+
+<h2>書きながら覚えるHTML/CSS/Javascript</h2>
+
+<p><strong><a href="http://prog-8.com/">Progate</a></strong><br/>
+Hackathon Houseによく来ていた学生さんが中心になって開発をしているサービス。
+Webサービスを作り出すことを体系的に学ぶ事ができる。日本人が躓きやすいポイントをしっかりとフォローしてます！</p>
+
+<p><strong><a href="http://codeprep.jp">CODEPREP</a></strong><br/>
+オンラインでプログラミングを書きながら覚えることができます。HTML5、CSS、Javascriptを基礎から応用まで勉強できます！</p>
+
+<p><strong><a href="http://www.codecademy.com">Codecademy</a></strong><br/>
+日本語と英語がまじってはいますが、CODEPREPと同じく、オンラインでブラウザ上でプログラムを覚える事が出来る仕組みです。</p>
+
+<h2>CSSをより使いこなす</h2>
+
+<p><strong><a href="http://smkn.xsrv.jp/blog/2010/02/css-basic-syntax/">CSS基礎文法最速マスター</a></strong><br/>
+CSSの要点が詰まっている。やや中級者向けの内容なので、わからなければ読み飛ばしてください。</p>
+
+<h2>Javascriptをより使いこなす</h2>
+
+<p><strong><a href="http://gifnksm.hatenablog.jp/entry/20100131/1264934942">JavaScript基礎文法最速マスター</a></strong><br/>
+中級者向けの内容ですが、知っておくと後からの理解が早まりそうな内容です。ちょっとJavaScriptを触ってから読み直すと、理解が深まるかも。</p>
+
+<h2>Qiitaでアウトプット</h2>
+
+<p><strong><a href="https://qiita.com/">Qiita</a></strong><br/>
+僕は未来の自分が困らないようにブログを書いています。そうすることで、次に同じことをやるときに効率的に作業ができるようになりました。またこのアウトプットを続けたことで、ブログ経由でいろいろな出会いを得られたり、転職ができたりしました。</p>
+
+<p>Mac限定ですが、Qiitaは<strong><a href="http://kobito.qiita.com/ja">Kobito</a></strong>というMacアプリがあり、メモを気軽に公開できます。Macな人で自分でブログを始める前の練習でQiitaにアップするのはすごくいい方法だと思います！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>お願い事項</h2>
+
+<p>このやり方は賛否両論あると思いますが、僕が個人的に試行錯誤を重ねた経験や沢山の人からアドバイスをもらった結果の仮説です。未完成な仮説をネットにアップすることは申し訳ないと思いつつも、シェアすることでより良くなると信じています。もしもっといい方法があればぜひコメントお願いします！</p>
+
+<h2>Special Thanks</h2>
+
+<p>Sublime Textの料金体系について勘違いしていました。『<strong><a href="https://twitter.com/economixmeister">@economixmeister</a></strong>』さん、ありがとうございます！</p>
+
+<p><strong><a href="http://rajic.2chblog.jp/archives/51811716.html">短期間でプログラミング言語を覚えるのに役に立ちそうなサイトまとめ</a></strong></p>
+
+<p><strong><a href="http://fladdict.net/blog/2014/02/engineering-for-designer.html">デザイナがエンジニアリング（プログラム）を学ぶコツ</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(04/27 16:50) 書きながら覚えるHTML/CSS/Javascriptを追加<br/>
+(05-04 07:50) Webサイトを作ることは楽しい！を追加<br/>
+(11-09 12:45) Progate, atomを追加<br/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[railsのpluckを複数カラムに使えるように拡張するgem multipluck]]></title>
+    <link href="http://morizyun.github.io/blog/multi-pluck-ruby-rails/"/>
+    <updated>2013-03-31T21:00:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/multi-pluck-ruby-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774155934/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048702181&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774155934&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774155934" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsの超便利なメソッドの一つpluckですが、実はRailsのデフォルトでは単一行でしか実行できないそうです。ということで複数カラムにpluckできるgem『<strong><a href="https://github.com/hanzq/multipluck">multipluck</a></strong>』の紹介です！</p>
+
+<p>追記です。Rails 4からは標準で搭載されるらしいです。なのでRails 3限定です！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Gemのインストール</h2>
+
+<p><code>Gemfile</code>に以下を追加して、コンソールで<code>bundle</code>を実行してください。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;複数行のpluck&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s2">&quot;multipluck&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>使用方法</h2>
+
+<p>使用方法はいつもどおり、pluckを実行するだけっす。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;すべてのユーザー名とidをフェッチする場合&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">User</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="o">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="o">]</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;=&gt; [ [1, &quot;Bob&quot;], [2, &quot;Simone&quot;], ...  ]&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>地味に便利！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[JavascriptでiPhone/Androidを判定してスマホ用ページにリダイレクトする]]></title>
+    <link href="http://morizyun.github.io/blog/redirect-mobile-page-javascript/"/>
+    <updated>2013-03-29T21:30:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/redirect-mobile-page-javascript</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4048702181/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048702181&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048702181&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048702181" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsでページキャッシュを使うとrails内の処理をスキップして、htmlを直接表示します。ということで、PC用のページとスマホ用のページでURLを分けている場合にスマホ用のページにjavascriptを使ってリダイレクトする方法を書きます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>javascriptを使ったリダイレクト</h2>
+
+<p>Javascript内でブラウザの種類を判別して、iPhoneかAndroidスマホだった場合に、スマホ用のページにリダイレクトするためのサンプルソースです。coffeescriptで書いています。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">ブラウザのエージェントを取得</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nv">agent = </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">現在の</span><span class="nx">URL</span><span class="err">を取得</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nv">url = </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">スマホ用のページの場合</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="nx">url</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/\/sp\//</span><span class="p">)</span> <span class="o">isnt</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>  <span class="nv">current_device = </span><span class="s">&quot;sp&quot;</span>
+</span><span class='line'>  <span class="nv">redirect_url = </span><span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s">&quot;/sp/&quot;</span><span class="p">,</span> <span class="s">&quot;/pc/&quot;</span><span class="p">)</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">パソコン用のページの場合</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="k">else</span>
+</span><span class='line'>  <span class="nv">current_device = </span><span class="s">&quot;pc&quot;</span>
+</span><span class='line'>  <span class="nv">redirect_url = </span><span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s">&quot;/pc/&quot;</span><span class="p">,</span> <span class="s">&quot;/sp/&quot;</span><span class="p">)</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">パソコンの用のページに</span><span class="nx">iPhone</span><span class="err">でアクセスした場合はスマホ用のページにリダイレクト</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="nx">current_device</span> <span class="o">==</span> <span class="s">&quot;pc&quot;</span> <span class="o">and</span> <span class="nx">agent</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/(iPhone|iPod)/</span><span class="p">)</span> <span class="o">isnt</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>  <span class="nv">location.href = </span><span class="nx">redirect_url</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">パソコンの用のページに</span><span class="nx">Android</span><span class="err">でアクセスした場合はスマホ用のページにリダイレクト</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="nx">current_device</span> <span class="o">==</span> <span class="s">&quot;pc&quot;</span> <span class="o">and</span> <span class="p">(</span><span class="nx">agent</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/Android/</span><span class="p">)</span> <span class="o">isnt</span> <span class="o">-</span><span class="mi">1</span> <span class="o">and</span> <span class="nx">agent</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/Mobile/</span><span class="p">)</span> <span class="o">isnt</span> <span class="o">-</span><span class="mi">1</span> <span class="o">and</span> <span class="nx">agent</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/(SC-01C|A1_07)/</span><span class="p">)</span> <span class="o">is</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="nv">location.href = </span><span class="nx">redirect_url</span><span class="o">&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="err">スマホ用のページにパソコンでアクセスした場合にパソコン用のページにリダイレクト</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="nx">current_device</span> <span class="o">==</span> <span class="s">&quot;sp&quot;</span> <span class="o">and</span> <span class="nx">agent</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/(iPhone|iPod|Android|Mobile)/</span><span class="p">)</span> <span class="o">is</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>  <span class="nv">location.href = </span><span class="nx">redirect_url</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>スマホとタブレットを判定する基準はこちらからを参考にさせて頂きました。</p>
+
+<p><a href="http://black-flag.net/javascript/20130213-4472.html">Androidでモバイルとタブレット（＋iPhone／iPad）を振り分ける方法 | BlackFlag</a></p>
+
+<p>2012年3月の記事なので、もしかしたらAndorid Mobileとなっているタブレットが他にもあるかもしれません。</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Speical Thanks</h2>
+
+<p><a href="http://black-flag.net/jquery/20120201-3656.html">jQuery（JavaScript）でiPhone、iPad、Androidなどデバイスを判別してURLをリダイレクトする方法 | BlackFlag</a></p>
+
+<p><a href="http://www.syboos.jp/webjs/doc/string-replace-and-replaceall.html">JavaScript 文字列の置き換え - replace／replaceAll - JavaScript入門</a></p>
+
+<p><a href="http://www.openspc2.org/reibun/javascript/link/011/">現在のページのURLを取得する</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[書評] CSS3スタンダード・デザインガイドを読みました！]]></title>
+    <link href="http://morizyun.github.io/blog/css3-standard-design-guide-book-review/"/>
+    <updated>2013-03-28T23:30:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/css3-standard-design-guide-book-review</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4839938296/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839938296&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839938296&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839938296" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Bootstrapベースで画面を作り上げている途中で、要素を思った通りに配置するためには、どうすればいいだろうって、悩んだりしませんか？そんな時に、デスクにあると便利なのがこの『<strong><a href="http://www.amazon.co.jp/gp/product/4839938296/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4839938296&amp;linkCode=as2&amp;tag=morizyun00-22">CSS3スタンダード・デザインガイド</a></strong>』です。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>CSS3スタンダード・デザインガイドの概略</h2>
+
+<p>この本はいわゆるCSS3中心のリファレンス本で、CSSを使ったデザインをしている時に『正しい定義をしっかり理解したい、サンプルソースを見てみたい』ときに一番活躍してくれそうな本です。</p>
+
+<p>エンジニア個人でBootstrapなどを使いながらサービスを作っていて、CSSで最低限のデザインがしたいという人にぜひ読んで欲しい本です。</p>
+
+<h2>特に参考になったサンプル</h2>
+
+<p>この本の中で次ぜひ使ってみたいと思えたサンプルを幾つか紹介してみます。</p>
+
+<h3>フレキシブルボックスレイアウト</h3>
+
+<p>floatのような段組のレイアウトを簡単に実現することができるのが、『<strong>フレキシブルボックスレイアウト</strong>』です。</p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4839938296/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839938296&linkCode=as2&tag=morizyun00-22" title="CSS3スタンダード・デザインガイド"><img src="http://farm9.staticflickr.com/8515/8596991023_3f891edd29_z.jpg" width="640" height="587" alt="CSS3スタンダード・デザインガイド"></a></p>
+
+<p>HTMLのサンプルソースはこちら。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;column01&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;....jpg&quot;</span> <span class="err">....</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;column02&quot;</span><span class="nt">&gt;</span>texttexttext...<span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>CSS側のサンプルソースはこちら。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span><span class="o">&gt;</span><span class="nt">container</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">border</span><span class="o">:</span> <span class="k">dotted</span> <span class="m">2</span><span class="n">pb</span> <span class="nb">blue</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">box</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">box</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">box</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span><span class="o">&gt;</span><span class="nt">column01</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">background-color</span><span class="o">:</span> <span class="nb">orange</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">width</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span><span class="o">&gt;</span><span class="nt">column02</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">background-color</span><span class="o">:</span> <span class="nb">greenyellow</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">width</span><span class="o">:</span> <span class="m">400px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ちなみにCompassにも類似の機能があります。良かったら、<strong><a href="http://compass-style.org/reference/compass/css3/box/">こちら</a></strong>もどうぞ。</p>
+
+<h3>マルチカラムの段にまたがる表示</h3>
+
+<p>複数の段にまたがる形でテキストを表示する方法です。</p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4839938296/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839938296&linkCode=as2&tag=morizyun00-22" title="CSS3スタンダード・デザインガイド"><img src="http://farm9.staticflickr.com/8510/8598164084_93ffc29338_z.jpg" width="640" height="543" alt="CSS3スタンダード・デザインガイド"></a></p>
+
+<p>HTMLのサンプルソースはこちら。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h2&gt;</span>おすすめサンドイッチ<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>焼きたての手作りパンは... 略<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  .... 略 ....
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>CSSのサンプルソースはこちら。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">div</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">width</span><span class="o">:</span> <span class="m">800px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">margin</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">column</span><span class="o">-</span><span class="n">count</span><span class="o">:</span> <span class="m">2</span><span class="p">;</span>
+</span><span class='line'>  <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">column</span><span class="o">-</span><span class="n">count</span><span class="o">:</span> <span class="m">2</span><span class="p">;</span>
+</span><span class='line'>  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">column</span><span class="o">-</span><span class="n">count</span><span class="o">:</span> <span class="m">2</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nt">h2</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">background-color</span><span class="o">:</span> <span class="nb">greenyellow</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">padding</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">column</span><span class="o">-</span><span class="n">span</span><span class="o">:</span> <span class="n">all</span><span class="p">;</span>
+</span><span class='line'>  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">column</span><span class="o">-</span><span class="n">span</span><span class="o">:</span> <span class="n">all</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>他にもサンプルソースや定義が大量にあるので、CSS3を正しく理解したいときには是非、この本をご検討下さい！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+</feed>

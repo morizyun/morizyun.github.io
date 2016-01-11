@@ -9,7 +9,17 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="早速統計学に挫折したのでorz、『統計学がわかる』を読みました。この本はハンバーガーショプの店長と店員が、統計学を用いてライバル店との比較などを行うストーリーで構成されています。平均や分散、信頼区間、検定などの基本的な考え方をシンプルに理解することができるので、 &hellip;">
+  <meta name="description" content="MacにCakePHPやMySQLなどが入ったVagrantのboxをインストールする手順を整理しました。ApacheやMySQLをほとんど設定せずに、開発を開始できます。PHPの開発を始めてみたい人におすすめです。 Vagrantの基本的な構成 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +57,17 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="早速統計学に挫折したのでorz、『統計学がわかる』を読みました。この本はハンバーガーショプの店長と店員が、統計学を用いてライバル店との比較などを行うストーリーで構成されています。平均や分散、信頼区間、検定などの基本的な考え方をシンプルに理解することができるので、 &hellip;" />
+<meta property="og:description" content="MacにCakePHPやMySQLなどが入ったVagrantのboxをインストールする手順を整理しました。ApacheやMySQLをほとんど設定せずに、開発を開始できます。PHPの開発を始めてみたい人におすすめです。 Vagrantの基本的な構成 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/21/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -101,7 +121,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/statistics-understand-first-book-review/">【書評: 統計学がわかる】統計学初心者が統計学の面白さに触れられます！</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/vagrant-mac-setup-biginner/">VagrantでPHP 5.5 & CakePHP2.4.5 開発環境を10分で整備</a></h1>
     
     
     
@@ -120,9 +140,9 @@
 
 
 
-        <time datetime="2014-03-23T09:45:00+09:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2014</time>
+        <time datetime="2014-02-23T22:45:00+09:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/statistics-understand-first-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/vagrant-mac-setup-biginner/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -131,17 +151,53 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774131903/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774131903&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774131903&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774131903" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />早速統計学に挫折したのでorz、『<strong><a href="http://www.amazon.co.jp/gp/product/4774131903/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774131903&amp;linkCode=as2&amp;tag=morizyun00-22">統計学がわかる</a></strong>』を読みました。この本はハンバーガーショプの店長と店員が、統計学を用いてライバル店との比較などを行うストーリーで構成されています。平均や分散、信頼区間、検定などの基本的な考え方をシンプルに理解することができるので、統計学の初学者の方にすごくおすすめな本です！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798119873/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798119873&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798119873&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798119873" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />MacにCakePHPやMySQLなどが入ったVagrantのboxをインストールする手順を整理しました。ApacheやMySQLをほとんど設定せずに、開発を開始できます。PHPの開発を始めてみたい人におすすめです。</p>
 
-<p>今回はこの本の中で、特に勉強になった部分を中心にメモを書いておきます。</p>
+<br style="clear:both;"/>
 
-<p><strong>(03/22 09:45) 確認テストを中心に書き直し</strong></p>
+
+<h2>Vagrantの基本的な構成</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apache2
+</span><span class='line'>php5 <span class="o">(</span>5.5<span class="o">)</span>
+</span><span class='line'>php5-cli
+</span><span class='line'>php5-mysql
+</span><span class='line'>php5-dev
+</span><span class='line'>php-pear
+</span><span class='line'>PHPUnit
+</span><span class='line'>PHP_CodeSniffer
+</span><span class='line'>CakePHP_CodeSniffer
+</span><span class='line'>mysql-server
+</span><span class='line'>phpMyAdmin
+</span><span class='line'>git-core
+</span><span class='line'>vim
+</span><span class='line'>curl
+</span><span class='line'>composer
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2014/02/23時点です。最新は<strong><a href="https://github.com/borivojevic/cakephp-vagrant">borivojevic/cakephp-vagrant</a></strong></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/statistics-understand-first-book-review/">続きを読む</a>
+      <a rel="full-article" href="/blog/vagrant-mac-setup-biginner/">続きを読む</a>
     </footer>
   
 
@@ -152,7 +208,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ginza-rb-web-service-development-support/">「第9回 Ginza.rb Web開発を取り巻くサービスの比較をしよう！」に行ってきたよ！</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/statistics-analysis-bigginer-r/">統計解析 & R言語 超初心者入門資料まとめ</a></h1>
     
     
     
@@ -171,9 +227,9 @@
 
 
 
-        <time datetime="2014-03-23T06:20:00+09:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2014</time>
+        <time datetime="2014-02-23T11:00:00+09:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ginza-rb-web-service-development-support/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/statistics-analysis-bigginer-r/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -182,17 +238,17 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/8850333110/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=8850333110&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=8850333110&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=8850333110" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />3/18(火)に開催された「<strong><a href="http://ginzarb.doorkeeper.jp/events/9555">第9回 Ginza.rb Web開発を取り巻くサービスの比較をしよう！</a></strong>」に参加してきました。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873116155/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116155&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873116155&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873116155" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />興味を持ち続けていた統計解析や、R言語の勉強をはじめました！まだまだ初歩の初歩ですが、この記事がいつか偉大な一歩になれるように頑張っていく所存ですw</p>
 
-<p>今回はみなさんの発表が盛り沢山でメモしきれなかったですが、特に気になったサービスを中心にピックアップしていきます。</p>
+<p>まずは、R言語や統計解析に関する入門記事や、モチベーションがアップしそうな記事をまとめていきます！</p>
 
-<p><strong>(03/23 06:20) Rubyを楽しく学ぶコンテンツへのリンクを追加</strong><br/></p>
+<p><strong>(02/23 11:00) 初学者の人におすすめな資料にフォーカスしてまとめ直し</strong></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/ginza-rb-web-service-development-support/">続きを読む</a>
+      <a rel="full-article" href="/blog/statistics-analysis-bigginer-r/">続きを読む</a>
     </footer>
   
 
@@ -203,7 +259,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/R-tips-Grammer-PG-language/">「R Tips」で学ぶ R言語のプログラミング的Tips</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/how-to-git-review-book/">チーム開発に必要なgit コマンドを神速で習得しよう！</a></h1>
     
     
     
@@ -222,9 +278,9 @@
 
 
 
-        <time datetime="2014-03-22T10:50:00+09:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2014</time>
+        <time datetime="2014-02-22T00:20:00+09:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/R-tips-Grammer-PG-language/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/how-to-git-review-book/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -233,17 +289,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4274067831/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274067831&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274067831&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274067831" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />統計学やR言語を勉強していく過程で、R言語のプログラミング的な側面や言語仕様をちゃんと理解したいと思うようになりました。ということでチャンレンジしたのが、『<strong><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html">R-Tips</a></strong>』です。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/427406767X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=427406767X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=427406767X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=427406767X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />すみません、タイトルは釣りです。書籍『<strong><a href="http://www.amazon.co.jp/gp/product/427406767X/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=427406767X&amp;linkCode=as2&amp;tag=morizyun00-22">入門git </a></strong>』と『<strong><a href="http://www.find-job.net/startup/7-git-slides">もっと早く知りたかった！ Gitが鬼のようにわかるスライド厳選7選</a></strong>』、『<strong><a href="http://programmerbox.com/2013-07-17_git_summary/">Gitがこわくて触れられなかったけど、このスライドで理解出来るようになったよGitサイトまとめ</a></strong>』紹介のスライドを読んで、理解したことをまとめるためにこの記事を書きました。今までは個人でしかgitを使ってなかったので、チーム開発に必要なgitコマンドを少しでも理解できるように頑張ります！</p>
 
-<p>このサイトはいくつかのトピックに分かれているので、自分のRの使い方に合わせて勉強しやすくなっています。まだまだ前半戦ですが、特に覚えておきたいコマンドを中心にメモを書いていきます。</p>
-
-<p><strong>(03/22 10:50) 回帰分析部分の説明を追記</strong><br/></p>
+<p><strong>(02/22 00:20) 全体的に説明をアップデート</strong><br/></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/R-tips-Grammer-PG-language/">続きを読む</a>
+      <a rel="full-article" href="/blog/how-to-git-review-book/">続きを読む</a>
     </footer>
   
 
@@ -254,7 +308,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/easy-R-statistics-book-review/">「Rによるやさしい統計学」で学ぶ R言語と統計学の基礎徹底解説 2-5章</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/yard-rails-ruby-gem-document-html/">Rails/Rubyドキュメントをキレイに生成するYARD、早見表付き！</a></h1>
     
     
     
@@ -273,9 +327,9 @@
 
 
 
-        <time datetime="2014-03-21T17:40:00+09:00" pubdate data-updated="true">Mar 21<span>st</span>, 2014</time>
+        <time datetime="2014-02-16T23:25:00+09:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/easy-R-statistics-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/yard-rails-ruby-gem-document-html/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -284,17 +338,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4274067106/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274067106&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274067106&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274067106" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />R言語と統計学を同時に学ぶことができる『 <strong><a href="http://www.amazon.co.jp/gp/product/4274067106/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4274067106&amp;linkCode=as2&amp;tag=morizyun00-22">Rによるやさしい統計学</a></strong>』を少しずつ読み進めています。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873114454/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873114454&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873114454&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873114454" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />RubyやRailsのドキュメントを生成するGem YARDをご存知ですか？ ドキュメント生成GemではrDocが不動の1番ですが、その後ろで猛追しているYARDというGemがあります。今回はこのGemの紹介です。</p>
 
-<p>この本は難しい数学の式などは出てこずに、わかりやすい言葉や例で統計学の基礎的なキーワードとそれに紐づく「<strong>Rの使い方</strong>」に焦点を当てて、説明をしてくれています。個人的には事前に基本的な概念を説明した入門書を一冊やってから、「Rではどうやるか？」を知るにオススメな本だと思います。</p>
-
-<p>まだ前半戦の状態ですが、この中で特に覚えておきたい部分を中心にメモを書いていきます。</p>
+<p><strong>(02/16 23:30) Ruby 2.1で動作確認しつつリニュアール</strong><br/></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/easy-R-statistics-book-review/">続きを読む</a>
+      <a rel="full-article" href="/blog/yard-rails-ruby-gem-document-html/">続きを読む</a>
     </footer>
   
 
@@ -305,7 +357,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/heroku-rails4-postgresql-introduction/">Rails4でheroku Pushまでの詳細手順 [Haml/bootstrap 3.0/postgresql or MySQL]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/parfect-ruby-standard-library/">標準ライブラリ【パーフェクトRuby Part4】</a></h1>
     
     
     
@@ -324,9 +376,9 @@
 
 
 
-        <time datetime="2014-03-21T09:40:00+09:00" pubdate data-updated="true">Mar 21<span>st</span>, 2014</time>
+        <time datetime="2014-02-16T23:10:00+09:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/heroku-rails4-postgresql-introduction/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/parfect-ruby-standard-library/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -335,17 +387,13 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797371838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797371838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797371838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797371838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />短時間でプロトタイプを制作する場合には、インフラ構築のコストが低いHerokuはベストな選択肢の一つです。ということで、Ruby2.1とRails4.0のプロジェクトをHerokuにPushするまでの手順を書いておきます。DBはPostgreSQL or <strong>MySQL</strong>、テンプレートエンジンはHaml、CSSフレームワークはBootstrap 3.0を使います。</p>
-
-<p>この記事の一連のコマンドを半自動化することができる『<strong>Application Template</strong>』を作りました。詳しくは『<strong><a href="/blog/rails4-application-templates-heroku/">Rails4 x herokuアプリを5分でスタートできるapplication template作ってみた！</a></strong>』をご参照ください！</p>
-
-<p><strong>(03/21 09:40) かなりの分量なので、タイトルを「簡単手順 => 詳細手順」に変更</strong><br/></p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774158798/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158798&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158798&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774158798" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />関東の大雪でめっちゃ寒いですが、『<strong><a href="http://www.amazon.co.jp/gp/product/4774158798/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774158798&amp;linkCode=as2&amp;tag=morizyun00-22">パーフェクト Ruby</a></strong>』を少しずつですが読み進めています。ここでは『<strong><a href="/blog/parfect-ruby-ruby-meta-programming-2">Part3のメタプログラミング</a></strong>』に引き続いて、Part4の標準ライブラリで特に気になった部分をメモしていきます！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/heroku-rails4-postgresql-introduction/">続きを読む</a>
+      <a rel="full-article" href="/blog/parfect-ruby-standard-library/">続きを読む</a>
     </footer>
   
 
@@ -356,7 +404,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/first-and-simple-statistics-book-review/">「明日から使えるシンプル統計学」で明日から統計学を使おう！</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/active-record-rails-beginner-tutorial/">RailsでデータをDBに投入する Active Record [初心者向けチュートリアル]</a></h1>
     
     
     
@@ -375,9 +423,9 @@
 
 
 
-        <time datetime="2014-03-17T22:50:00+09:00" pubdate data-updated="true">Mar 17<span>th</span>, 2014</time>
+        <time datetime="2014-02-16T12:25:00+09:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/first-and-simple-statistics-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/active-record-rails-beginner-tutorial/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -386,17 +434,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774150541/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774150541&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774150541&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774163678" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />ある人から教えてもらった言葉で、「<strong>普段からニュースにでてくる数字の統計的な意味を捉えるように訓練しておく</strong>」とビジネスの中で活かせるようになっていくというのを教えてもらった事があります。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774146633/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774146633&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774146633&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774146633" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />プログラム初心者な方向けに始めたRailsチュートリアルシリーズです。今回はRailsのWebアプリケーションでDBを扱う場合に便利なライブラリ『<strong><a href="https://github.com/rails/rails/tree/master/activerecord">Active Record</a></strong>』の入門記事です。</p>
 
-<p>というのが少しでも出来るようになりたいという気持ちから『<strong><a href="http://www.amazon.co.jp/gp/product/4774150541/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774150541&amp;linkCode=as2&amp;tag=morizyun00-22">明日から使えるシンプル統計学</a></strong>』を読み始めました。</p>
-
-<p>今回はこの書籍から、特に参考になった点をピックアップしていきます。</p>
+<p>例えば、拙著の『<strong><a href="/blog/ruby-nokogiri-scraping-tutorial/">Nokogiri を使った Rubyスクレイピング</a></strong>』で取得したデータをWebサイトで表示する場合は、スクレイピングした時点でDBに入れておくのが一般的です。そうすることで、スクレイピングする処理と、表示にかかわる処理をシンプルにすることができます。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/first-and-simple-statistics-book-review/">続きを読む</a>
+      <a rel="full-article" href="/blog/active-record-rails-beginner-tutorial/">続きを読む</a>
     </footer>
   
 
@@ -407,7 +453,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/cloud9-online-editor-rails-html5-php/">Cloud9 IDEでWebブラウザでガリガリRuby on Rails/Node.js/Python/PHP開発</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-generalization-hitotsubashi-univ-3/">Ruby 概論のスライドが素晴らしかったのでまとめてみた(第3部)</a></h1>
     
     
     
@@ -426,9 +472,9 @@
 
 
 
-        <time datetime="2014-03-16T17:40:00+09:00" pubdate data-updated="true">Mar 16<span>th</span>, 2014</time>
+        <time datetime="2014-02-15T19:00:00+09:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/cloud9-online-editor-rails-html5-php/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-generalization-hitotsubashi-univ-3/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -437,15 +483,22 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/477416366X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=477416366X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=477416366X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=477416366X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><strong><a href="http://c9.io/">Cloud9 IDE</a></strong>はWebブラウザベースの統合開発環境です。その場でプレビューを見ることができたり、herokuへのdeployなどにも対応しています。外出時のタブレットなどでWebブラウザごしにソースコードをいじったりできるのが便利です！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873113679/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873113679&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873113679&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873113679" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Spice Lifeの五十嵐邦明さんの一橋大学のRuby概論スライドがかなり素晴らしかったのでまとめてみました。こんなキャッチーな資料がネットで手に入るというのは本当にありがたい限りです！</p>
 
-<p>ちなみに2014/03/16時点での対応言語(パッケージ)は、Ruby(Rails)やNode.js(Express)、Python(Django)、Wordpress、HTML5、C/C++でした。デプロイ先は、Heroku、Windows Azure、CLOUD FOUNDARY、OPENSHIFTなどをえらべそうです。gitリポジトリもGitHubやBitbucketなどにも対応しています。</p>
+<br style="clear:both;"/>
+
+
+<p>ちなみに、スライドが沢山あるので3部作ですw</p>
+
+<p>(1) 『<strong><a href="/blog/ruby-generalization-hitotsubashi-univ-1">Ruby 概論のスライドが素晴らしかったのでまとめてみた(第1部)</a></strong>』<br/>
+(2) 『<strong><a href="/blog/ruby-generalization-hitotsubashi-univ-2">Ruby 概論のスライドが素晴らしかったのでまとめてみた(第2部)</a></strong>』<br/>
+(3) 『Ruby 概論のスライドが素晴らしかったのでまとめてみた(第3部)』 <strong>&lt;= 今ここ</strong><br/></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/cloud9-online-editor-rails-html5-php/">続きを読む</a>
+      <a rel="full-article" href="/blog/ruby-generalization-hitotsubashi-univ-3/">続きを読む</a>
     </footer>
   
 
@@ -456,7 +509,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/vagrant-centos-nginx-mysql-rbenv/">VagrantでRails開発環境を整備 (CentOS 6.5/Nginx/mysql5.6/rbenv/ruby2.1.0)</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-generalization-hitotsubashi-univ-2/">Ruby 概論のスライドが素晴らしかったのでまとめてみた(第2部)</a></h1>
     
     
     
@@ -475,9 +528,9 @@
 
 
 
-        <time datetime="2014-03-16T11:50:00+09:00" pubdate data-updated="true">Mar 16<span>th</span>, 2014</time>
+        <time datetime="2014-02-15T19:00:00+09:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/vagrant-centos-nginx-mysql-rbenv/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-generalization-hitotsubashi-univ-2/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -486,15 +539,22 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774163678/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774163678&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774163678&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774163678" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Vagrantネタ第二弾です。今回はVagrant + Chef Soloを使って、Rails開発用のboxをローカルで作れるようにしました。具体的には、CentOS 6.5上にChef Soloで、nginx/mysql5.6/rbenv/ruby2.1.0などのベーシックな環境を自動構築します。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873113679/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873113679&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873113679&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873113679" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Spice Lifeの五十嵐邦明さんの一橋大学のRuby概論スライドがかなり素晴らしかったのでまとめてみました。こんなキャッチーな資料がネットで手に入るというのは本当にありがたい限りです！</p>
 
-<p>『<strong><a href="/blog/test-kitchen-vagrant-rails-rbenv-chef-serverspec/">test-kitchenでインフラのTDDに挑戦</a></strong>』でもほぼ同じ事ができます。加えて、Serverspecまでまとめで実行できるので、こちらのほうがオススメかも！</p>
+<br style="clear:both;"/>
+
+
+<p>ちなみに、スライドが沢山あるので3部作ですw</p>
+
+<p>(1) 『<strong><a href="/blog/ruby-generalization-hitotsubashi-univ-1">Ruby 概論のスライドが素晴らしかったのでまとめてみた(第1部)</a></strong>』<br/>
+(2) 『Ruby 概論のスライドが素晴らしかったのでまとめてみた(第2部)』<strong>&lt;= 今ここ</strong><br/>
+(3) 『<strong><a href="/blog/ruby-generalization-hitotsubashi-univ-3">Ruby 概論のスライドが素晴らしかったのでまとめてみた(第3部)</a></strong>』<br/></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/vagrant-centos-nginx-mysql-rbenv/">続きを読む</a>
+      <a rel="full-article" href="/blog/ruby-generalization-hitotsubashi-univ-2/">続きを読む</a>
     </footer>
   
 
@@ -505,7 +565,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/javascript-learning-tech-yourself_01/">JavaScript 徹底入門のための資料＆書籍まとめ</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/beginner-rails-tutorial-haml/">Hamlが5分で分るチートシート [Rails初心者チュートリアル]</a></h1>
     
     
     
@@ -524,9 +584,9 @@
 
 
 
-        <time datetime="2014-03-09T21:50:00+09:00" pubdate data-updated="true">Mar 9<span>th</span>, 2014</time>
+        <time datetime="2014-02-13T21:25:00+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/javascript-learning-tech-yourself_01/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/beginner-rails-tutorial-haml/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -535,15 +595,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797372214/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797372214&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797372214&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797372214" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />JavaScriptはブラウザから簡単に使えるし、jQuery Pluginも簡単に追加できるので、つい基礎をおろそかにしたまま使っていて、ちょっと凝った事をしようとした時にいつもハマっていました。ということで今回は、独習JavaScriptの第二版を購入して読み進めつつ、ネットのおすすめのドキュメントを見て、補足しながら勉強していったのでそのメモです。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844333755/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844333755&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844333755&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844333755" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />プログラム初心者な方向けに始めたRailsチュートリアル『<strong><a href="/blog/beginner-rails-heroku-tutorial/">Rails x Herokuでアプリを作成</a></strong>』の第2段です。今回はRubyの代表的なテンプレートエンジン<code>haml</code>を使って、RailsのViewを書き換えてみます。また、Hamlをすでに使っている人向けにも適したTips的なチートシートを作りました！</p>
 
-<p><strong>(03/09 21:50) JavaScriptの習熟度を上げるための勉強フローを追加</strong></p>
+<p><strong>(02/14 07:20) タイトルと導入説明を修正</strong><br/></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/javascript-learning-tech-yourself_01/">続きを読む</a>
+      <a rel="full-article" href="/blog/beginner-rails-tutorial-haml/">続きを読む</a>
     </footer>
   
 
@@ -554,7 +614,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/vine-api-ruby-gem/">Vineの非公式APIについて調べたのでメモ書き</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rake-task-rails-rspec-test/">RailsでオリジナルRakeタスク作成からRSpecテストまで</a></h1>
     
     
     
@@ -573,9 +633,9 @@
 
 
 
-        <time datetime="2014-03-09T21:35:00+09:00" pubdate data-updated="true">Mar 9<span>th</span>, 2014</time>
+        <time datetime="2014-02-13T21:20:00+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/vine-api-ruby-gem/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rake-task-rails-rspec-test/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -584,15 +644,16 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4479793798/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4479793798&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4479793798&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4479793798" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />6秒間の短い動画の投稿サイト『<strong><a href="https://vine.co/">Vine</a></strong>』ですが、2014/03/09時点ではAPIは提供していません。また<a href="https://vine.co/terms">利用規約</a>的にもスクレイピンなどを禁止しているようです。が、非公式APIが存在するらしいので興味があって調べました。早くAPIが公式に提供されないかなぁ〜</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797372273/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797372273&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797372273&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797372273" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />RailsのRakeタスク作成〜RSpecでのテストまでの流れをまとめました。
+できるだけシンプルにまとめたので、Rakeタスクの作成に初めてトライされる方はぜひご一読下さい。</p>
 
-<p>今回は今後のために調べた内容を残しておく、俺得記事です。</p>
+<p><strong>02/13 22:10 全体的に説明書きを書き直し</strong><br/></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/vine-api-ruby-gem/">続きを読む</a>
+      <a rel="full-article" href="/blog/rake-task-rails-rspec-test/">続きを読む</a>
     </footer>
   
 

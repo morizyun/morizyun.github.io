@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Nginx | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/nginx/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[AWS/VULTR + AnsibleでベーシックなRailsサーバを簡単構築]]></title>
+    <link href="http://morizyun.github.io/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos/"/>
+    <updated>2014-11-02T17:10:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/ansible-rails-rvm-nginx-mysql-postgresql-centos</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00JWM4W2E/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00JWM4W2E&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00JWM4W2E&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00JWM4W2E" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Ansibleはサーバー構築時の手順をコードにできるOSSです。今回は最近構築した自分のサーバのコード『<strong><a href="https://github.com/morizyun/centos_ansible_rails">morizyun/centos_ansible_rails - GitHub</a></strong>』を紹介します。</p>
+
+<p>このAnsibleを使うとCentOSを使っているサーバーに以下のような環境をたったの数コマンドで構築できます。</p>
+
+<pre>
+* サーバ: Nginx
+* DB: MySQL or PostgreSQL
+* Firewall: iptables
+* サーバ監視: NewRelic
+* Ruby: RVM & Rails
+* SSH: Mosh
+* 開発に必要なライブラリのインストール
+</pre>
+
+
+
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>動作条件</h2>
+
+<p>AWSやVULTRで動作確認がなんとなく出来ている状況ですが、多分CentOS系のOSなら動く気がします。</p>
+
+<p>VULTRの場合は拙著『<strong>[VULTR 日本リージョン/MEM 768MB/SSD 15GB VPS $5/月！ Rails鯖のためのAnsibleコードあり]
+(/blog/VULTR-server-ssd-vps-easy-to-use/)</strong>』
+を使うと捗ると思います！</p>
+
+<h2>AnsibleをMacに導入</h2>
+
+<p>MacでAnsibleを使えるようにする最低限のコマンド。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Pythonのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew install python&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;pipのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo easy_install pip&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Ansibleのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo pip install ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>もう少しPythonの開発環境をしっかり構築したい場合は、拙著『<strong><a href="http://morizyun.github.io/blog/python-pyenv-rehash-mac-development/">Python開発環境構築 徹底解説[pyenv, Mavericks]</a></strong>』を良かったらご覧ください！</p>
+
+<h2>Ansibleの実行手順</h2>
+
+<p>まずは『<strong><a href="https://github.com/morizyun/centos_ansible_rails">morizyun/centos_ansible_rails - GitHub</a></strong>』
+のコードを入手。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/morizyun/centos_ansible_rails.git
+</span><span class='line'><span class="nb">cd </span>vagrant-ansible-rails
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><code>hosts_production</code>にIP、URSER名、SSH鍵のパスを設定する。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vi hosts_production
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>以下のような内容を追記。<br/></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>web<span class="o">]</span>
+</span><span class='line'>IP_ADDRESS <span class="nv">ansible_ssh_user</span><span class="o">=</span>USER_NAME <span class="nv">ansible_connection</span><span class="o">=</span>ssh <span class="nv">ansible_ssh_private_key_file</span><span class="o">=</span>~/ssh/path/to&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;IP_ADDRESS <span class="o">=</span>&gt; サーバのIP&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;USER_NAME <span class="o">=</span>&gt; SSHでログインするユーザー&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;/ssh/path/to <span class="o">=</span>&gt; SSH鍵のパス&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>また、<code>playbook_production.yml</code>の設定を変更。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vars: パラメータなど
+</span><span class='line'>roles: 構築したい設定。postgresql <span class="o">=</span>&gt; mysqlにするとmysqlがインストールされます
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>設定画完了したら、以下のコマンドを実行してhostsを読み込み。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">ANSIBLE_HOSTS</span><span class="o">=</span>./hosts_production
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ついに実際にAnsibleのコードを実行。sshのログインユーザーのsudoパスによって2種類あります。</p>
+
+<p>(A) sshでログインするユーザーがsudoになる時にパスワードが必要ない場合は、以下のコマンドを実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ansible-playbook ./playbook_production.yml
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>(B) sshでログインするユーザーがsudoになる時にパスワードが必要な場合は、以下のコマンドを実行。
+実行すると最初にsudoのパスワードを聞かれるので入力。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ansible-playbook ./playbook_production.yml -K
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>お願い</h2>
+
+<p>今回公開したコードは、力技で逃げているだけの部分も多いのでお気づきの点があればPRよろしくお願いします！</p>
+
+<p><strong><a href="https://github.com/morizyun/centos_ansible_rails">morizyun/centos_ansible_rails - GitHub</a></strong></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant/AWS + AnsibleでCentOS/Nginx/MySQL/RVM/Ruby2.1.2環境を構築]]></title>
+    <link href="http://morizyun.github.io/blog/vagrant-ansible-rails-rvm-nginx-mysql/"/>
+    <updated>2014-07-31T12:00:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/vagrant-ansible-rails-rvm-nginx-mysql</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00JWM4W2E/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00JWM4W2E&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00JWM4W2E&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00JWM4W2E" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+久々にVagrantでRails鯖を構築する必要があったので、勉強がてらAnsibleで作ってみました。Chefに比べるとシンプルで学習コストが低いのが素敵です。
+でもChefにせよ、Ansibleにせよ、ハマリポイントがしっかり用意されていて、ちょっと手こずりました。もうちょっとフレキシブルに書けるようになりたい！</p>
+
+<p>7/31 11:50 AWSのAmazon LinuxでもAnsibleの動作確認をしました。Ansibleの良さを実感中！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>バックエンドの選択</h2>
+
+<p>バックエンドはVagrantかAWSのどちらかを使えます。
+(検証しているのがAWSのAmazon Linuxだけという意味です。実際は、CentOS系ならある程度使えると思うっす)</p>
+
+<h3>(A) Vagrantを使う場合</h3>
+
+<h4>Vagrantのインストール</h4>
+
+<p><strong><a href="http://www.vagrantup.com/">Vagrant 公式サイト</a></strong><br/>
+パッケージをDLしてインストール。</p>
+
+<h4>VirtualBox</h4>
+
+<p><strong><a href="https://www.virtualbox.org/">VirtualBox 公式サイト</a></strong><br/>
+パッケージをDLしてインストール。</p>
+
+<h3>(B) AWSを使う場合</h3>
+
+<p>AWSでAmazon Linuxを使う場合はAWSのコンソールから、インスタンスを起動。
+(CentOS系の鯖なら同様の方法でやれます)</p>
+
+<h2>Ansibleの導入</h2>
+
+<p>MacでAnsibleを使えるようにする最低限のコマンド。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Pythonのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew install python&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;pipのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo easy_install pip&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Ansibleのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo pip install ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>もう少しPythonの開発環境をしっかり構築したい場合は、拙著『<strong><a href="http://morizyun.github.io/blog/python-pyenv-rehash-mac-development/">Python開発環境構築 徹底解説[pyenv, Mavericks]</a></strong>』を良かったらご覧ください！</p>
+
+<h2>Ansibleの実行部分。</h2>
+
+<p>バックエンドに(A) Vagrantを使う場合と、(B) AWSを使う場合の手順です。</p>
+
+<p>まずは共通部分。『<strong><a href="https://github.com/morizyun/vagrant-ansible-rails">morizyun/vagrant-ansible-rails - GitHub</a></strong>』のコードを入手して、Vagrantでサーバを起動。
+起動したサーバにAnsibleを実行するまでの一連の手順です。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/morizyun/vagrant-ansible-rails&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cd vagrant-ansible-rails
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>(A) Vagrantの起動、Ansibleの実行</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod a+x set_vagrant.sh &amp;amp;&amp;amp; ./set_vagrant.sh&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;export <span class="nv">ANSIBLE_HOSTS</span><span class="o">=</span>./ansible/hosts_vagrant&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ansible-playbook ./ansible/playbook_vagrant.yml
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>(B) AWS + Ansibleの実行。</h2>
+
+<p><code>ansible/hosts_vagrant</code>を参考にしつつ、<code>hosts_production</code>を作成して、AWSのIPとSSHキー(pem)のパスを設定。
+設定画完了したら、以下のコマンドを実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">ANSIBLE_HOSTS</span><span class="o">=</span>./ansible/hosts_production&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ansible-playbook ./ansible/playbook_production.yml
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Railsのサンプルプロジェクトの作成</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant ssh
+</span><span class='line'><span class="nb">cd</span> /var/rails
+</span><span class='line'>rvmsudo gem install rails bundler --no-ri --no-rdoc
+</span><span class='line'>rails new sample --database<span class="o">=</span>mysql
+</span><span class='line'><span class="nb">cd </span>sample
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;gem &#39;therubyracer&#39;, platforms: :ruby&quot;</span> &gt;&gt; Gemfile
+</span><span class='line'>bundle install
+</span><span class='line'>bundle <span class="nb">exec </span>rake db:create
+</span><span class='line'>rails s
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>ブラウザでのアクセス</h2>
+
+<p><code>http://192.168.33.10/</code>にブラウザをアクセスすると<code>app/</code>フォルダの中のファイルにアクセスできます。</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Vagrant Share</h2>
+
+<p>Vagrant Shareを使うとグローバルなURLを取得する事もできます。</p>
+
+<p>まずは『<strong><a href="https://vagrantcloud.com/">Vagrant Cloud</a></strong>』でユーザー登録。</p>
+
+<p>次に以下のコマンドを実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Vagrant Cloudのユーザー名/パスワードを入力&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vagrant login&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Vagrant Shareを実行&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vagrant share
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>最後に出てきたURLがグローバルにアクセスできるURL。『http://xxxx.vagrantshare.com』とか。</p>
+
+<h2>GitHubリポジトリ</h2>
+
+<p>今回のVagrantfileをGitHubにも作っておきました！</p>
+
+<p><strong><a href="https://github.com/morizyun/vagrant-ansible-rails">morizyun/vagrant-ansible-rails</a></strong></p>
+
+<h2>Vagrant Upで「Failed to mount folders」が出る場合</h2>
+
+<p>Mountのエラーが出る場合はこちらを試してみるといいかもです。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Vagrantにsshで接続&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vagrant ssh
+</span><span class='line'>sudo /etc/init.d/vboxadd setup
+</span><span class='line'><span class="nb">exit</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ローカルに戻ってVMを再起動&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vagrant halt
+</span><span class='line'>vagrant up
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ちなみにこちらの記事を参照させて頂きました！</p>
+
+<p><strong><a href="http://qiita.com/osamu1203/items/10e19c74c912d303ca0b">vagrantでmountエラーの解決方法</a></strong></p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://qiita.com/kazuph/items/0d9d723b36720b9bd6ed">Vagrantでvagrantのデフォの秘密鍵じゃなくて自分のいつもの秘密鍵を使えるようにするシェルスクリプト - Qiita</a></strong></p>
+
+<p><strong><a href="http://nekopunch.hatenablog.com/entry/2014/03/11/223250">Vagrant CloudのVagrant Shareを試してみたら凄すぎて鼻血出た - 憂鬱な世界にネコパンチ！</a></strong></p>
+
+<p><strong><a href="http://qiita.com/hissanova/items/56ce07d5629b6d79d1b3">Rails - CentOS6.xでbundle installが遅い場合の対処 - Qiita</a></strong></p>
+]]></content>
+  </entry>
+  
+</feed>

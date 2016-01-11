@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: objective-C | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/objective-c/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Realm Swift/objective-C/Android用のデータベース]]></title>
+    <link href="http://morizyun.github.io/blog/realm-swift-database-ios-smartphone/"/>
+    <updated>2015-06-21T18:40:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/realm-swift-database-ios-smartphone</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4797371145/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797371145&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797371145&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797371145" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Swiftやobjective-Cなどを使ったiOSのアプリ開発や、
+Javaを使ったAndroid開発で使えるローカルデータベースとして最近人気がある『<strong><a href="https://realm.io/jp/">Realm</a></strong>』の紹介です。</p>
+
+<p>今回はまだ触り始めたばかりであまり知見もないので、紹介記事へのリンクをメインにします。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Realmの特徴</h2>
+
+<pre>
+* 使い方が簡単
+* ゼロコピーの設計なので速い
+* iOS、Androidでクロスプラットフォーム
+</pre>
+
+
+<h2>リンク集</h2>
+
+<h3>公式ドキュメント</h3>
+
+<p><strong><a href="https://realm.io/jp/docs/swift/latest/">Swift Docs - Realm is a mobile database: a replacement for SQLite &amp; Core Data</a></strong></p>
+
+<p>公式ドキュメント。日本人のコミッターもいるそうで、とにかくドキュメントがわかりやすいのも特徴の一つ。</p>
+
+<h3>Realm for Swift まとめ完全版</h3>
+
+<p><strong><a href="http://qiita.com/okitsutakatomo/items/9134c5fa8bd4384a2acf">Realm for Swift まとめ完全版</a></strong></p>
+
+<p>これだけ読んでも簡単な使い方ならわかるほどクオリティの高いまとめ。素晴らしすぎる。</p>
+
+<h3>Realmを使ってデータ管理</h3>
+
+<p><strong><a href="http://qiita.com/jtemplej/items/0443571fdbffbcea3e7f">Objective-C - Realmを使ってデータ管理【Swift編】-その2- - Qiita</a></strong><br/>
+<strong><a href="http://qiita.com/jtemplej/items/10ed4bc0cc6519682e6e">iOS - Realmを使ってデータ管理【Swift編】-その3- - Qiita</a></strong></p>
+
+<p>こちらもQiitaの記事ですが、Realmを使ってデータ管理するときに使いそうな細かいTipsが書かれている。Qiita素敵！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+</feed>

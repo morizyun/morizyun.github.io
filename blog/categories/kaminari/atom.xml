@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Kaminari | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/kaminari/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[kaminariをBootstrap3、Rails4.2環境で使う！[Ruby 2.3]]]></title>
+    <link href="http://morizyun.github.io/blog/kaminari-gem-paginator-rails/"/>
+    <updated>2016-01-11T09:10:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/kaminari-gem-paginator-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048916599&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048916599&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048916599" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Rails 4でも不動の人気を誇るページネーター「<strong><a href="https://github.com/amatsuda/kaminari#customizing-the-pagination-helper">amatsuda/kaminari</a></strong>」を
+Bootstrap3、Rails4環境で使うための導入手順です。びっくりするくらい簡単に導入できちゃいますよ！</p>
+
+<p><strong>(2016/01/11) Rails 4.2 x Ruby 2.3の動作確認。記事をリファクタリング</strong></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>まえおき</h2>
+
+<p>この記事は、Bootstrap環境を構築済の前提で話を進めます。もし、Bootstrap環境の構築からスタートしたい場合は、
+拙著『<strong><a href="/blog/rails4-application-templates-heroku/">Rails 4.2 + Bootstrap の Application template 1コマンドでモダンRailsが！</a></strong>』をご参照頂ければ幸甚です！</p>
+
+<h2>Gemインストール</h2>
+
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<p>```ruby</p>
+
+<h1>Gemfile</h1>
+
+<h1>Pagenation</h1>
+
+<p>gem 'kaminari'
+```</p>
+
+<h2>kaminari configの設定</h2>
+
+<p>kaminariのconfig(設定)ファイルを生成。</p>
+
+<p><code>bash
+$ rails g kaminari:config
+</code></p>
+
+<p><code>config/initializers/kaminari_config.rb</code>を構築するサイトに合わせて各種パラメータを調整。
+パラメータの詳細は『 <strong><a href="https://github.com/amatsuda/kaminari#general-configuration-options">amatsuda/kaminari | GitHub</a></strong>』を参照。</p>
+
+<h2>Controller/Viewへの設置</h2>
+
+<p>Controllerでページネーションをするための変数を追加。</p>
+
+<p><code>ruby
+@users = User.order(:name).page(params[:page])
+</code></p>
+
+<p>Viewでページネーションを表示したい場所に以下のコードを追加。</p>
+
+<p><code>haml
+= paginate @users
+</code></p>
+
+<h2>ベージネーションViewのテンプレート取得</h2>
+
+<p>次のコマンドを実行すると <code>/app/view/kaminari/</code> フォルダにBootstrap用のViewを生成してくれます。</p>
+
+<p><code>bash
+$ rails g kaminari:views bootstrap3
+</code></p>
+
+<h2>ページネーターの表示カスタマイズ</h2>
+
+<p>ページネーションの文言(prevやnextなど)の変更程度であれば、i18nの日本語設定ファイルに以下の内容を追加するだけで解決します。</p>
+
+<p>```ruby</p>
+
+<h1>conifg/locales/ja.yml</h1>
+
+<p>ja:
+  views:</p>
+
+<pre><code>pagination:
+  first: "&amp;laquo;"
+  last: "&amp;raquo;"
+  previous: "&amp;lsaquo;"
+  next: "&amp;rsaquo;"
+  truncate: "..."
+</code></pre>
+
+<p>```</p>
+
+<p>上は英語部分を外して、記号を残した場合の例です。これだけでもシンプルでわかりやすいですよ！</p>
+
+<p><img src="http://farm9.staticflickr.com/8477/8250145044_9193f27280_n.jpg" width="320" height="42" alt="fpu_tmp_1354804296.8519_d61bda"></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>ルーティングの設定</h2>
+
+<p>ルーティングを以下の様に変更します。</p>
+
+<p>```ruby</p>
+
+<h1>config/routes.rb</h1>
+
+<p>resources :users do
+  get 'page/:page', :action => :index, :on => :collection
+end
+```</p>
+
+<p>このルーティングのメリットは次の通り。</p>
+
+<pre>
+* SEO的に良い、ユーザーフレンドリーである
+* params pageがURLセグメントの一部 => RailsのPageキャシュが有効に
+</pre>
+
+
+<h2>表示確認</h2>
+
+<p>ブラウザで表示を確認します。以下は今回作ったサンプルページネーションです。</p>
+
+<p><img src="http://farm9.staticflickr.com/8340/8244955784_4b2ae33c4a_n.jpg" width="320" height="44" alt="fpu_tmp_1354636719.4462_910632"></p>
+
+<h2>(補足) プレゼンターのGem Draperと共存させる場合</h2>
+
+<p>kaminariとプレゼンターのDraperを使う場合は、Draperがうまくkaminariのメソッドを呼び出せない場合があります。<br/></p>
+
+<p>その場合は、<code>config/initializers/draper.rb</code>を作成して以下を記入しておくとエラーを回避できます。</p>
+
+<p><code>ruby
+Draper::CollectionDecorator.delegate :current_page, :total_pages, :limit_value, :total_count
+</code></p>
+
+<p><strong><a href="https://github.com/drapergem/draper/issues/401">Kaminari vs Draper · Issue #401 · drapergem/draper</a></strong></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="https://github.com/amatsuda/kaminari#customizing-the-pagination-helper">amatsuda/kaminari | GitHub</a></strong></p>
+
+<p><strong><a href="https://github.com/amatsuda/kaminari/wiki/Kaminari-recipes">Kaminari recipes | amatsuda/kaminari | GitHub wiki</a></strong></p>
+
+<p><strong><a href="http://d.hatena.ne.jp/CortYuming/20131027/p1">ささっと Rails4 + Bootstrap3 + kaminari でゲストブック作成してみるメモ - 牌語備忘録 - pygo</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(2013/04/18 23:35) 補足: プレゼンターDraperと共存させる場合を追加<br/>
+(2013/12/23 20:15) Bootstrap3、Rails4に対応<br/>
+(2015/12/20 18:30) コマンドを修正<br/>
+(2016/01/11 09:10) Rails 4.2 x Ruby 2.3の動作確認。記事をリファクタリング<br/></p>
+]]></content>
+  </entry>
+  
+</feed>

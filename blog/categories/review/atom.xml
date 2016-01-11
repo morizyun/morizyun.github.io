@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: review | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/review/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[チーム開発に必要なgit コマンドを神速で習得しよう！]]></title>
+    <link href="http://morizyun.github.io/blog/how-to-git-review-book/"/>
+    <updated>2014-02-22T00:20:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/how-to-git-review-book</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/427406767X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=427406767X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=427406767X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=427406767X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />すみません、タイトルは釣りです。書籍『<strong><a href="http://www.amazon.co.jp/gp/product/427406767X/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=427406767X&amp;linkCode=as2&amp;tag=morizyun00-22">入門git </a></strong>』と『<strong><a href="http://www.find-job.net/startup/7-git-slides">もっと早く知りたかった！ Gitが鬼のようにわかるスライド厳選7選</a></strong>』、『<strong><a href="http://programmerbox.com/2013-07-17_git_summary/">Gitがこわくて触れられなかったけど、このスライドで理解出来るようになったよGitサイトまとめ</a></strong>』紹介のスライドを読んで、理解したことをまとめるためにこの記事を書きました。今までは個人でしかgitを使ってなかったので、チーム開発に必要なgitコマンドを少しでも理解できるように頑張ります！</p>
+
+<p><strong>(02/22 00:20) 全体的に説明をアップデート</strong><br/></p>
+
+<!-- more -->
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>gitの基本的な開発スタイルについて</h2>
+
+<p><a href="http://blog.asial.co.jp/894"><img src="http://farm8.staticflickr.com/7310/9603451209_d94fb11e58_z.jpg"></a><br/>
+From <a href="http://blog.asial.co.jp/894">イラストでわかる！git入門の入門</a></p>
+
+<p>gitの基本的な開発スタイルは次の通りです。</p>
+
+<pre>
+(1) gitの開発ではローカルで使う個人リポジトリとチームで使う共有リポジトリを用いる
+(2) 共有リポジトリに push すると個人リポジトリのこれまでのコミット内容を送れる
+(3) pull すると共有リポジトリのコミット内容を個人リポジトリに取り込める
+</pre>
+
+
+<h2>gitリポジトリを作成する</h2>
+
+<p>ローカルに個人リポジトリを新規作成する場合は、プロジェクト直下のフォルダで<code>git init</code>を実行します。また、サーバ側にリポジトリを新規作成する場合は、<code>git init --bare</code>を実行します。</p>
+
+<h2>開発の基本的な流れ</h2>
+
+<p><img src="http://farm3.staticflickr.com/2810/9603580319_4df7243b62_z.jpg"><br/>
+From <a href="http://www.slideshare.net/zephiransas/git-14810093">一人でもはじめるGitでバージョン管理</a></p>
+
+<p>gitを使った開発の基本的な流れは次の通りです。</p>
+
+<pre>
+(1) 共有リポジトリからpullして個人リポジトリを最新に
+(2) 個人リポジトリでソースコードを変更
+(3) ファイルの追加/削除/変更をgitのインデックスに追加するために git add
+(4) 変更結果を git commit で個人リポジトリにコミット
+(5) 個人リポジトリをpushして共有リポジトリに反映
+</pre>
+
+
+<h2>ブランチ・マージ・リベースの意味</h2>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/15276118" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"></p>
+
+<p>git のブランチや、<code>marge / rebase</code>コマンドについてかなり丁寧に説明をしてくれています。また、マージの際の<strong>Fast Forward</strong>の説明もわかりやすいです。コレを読んでおくと陥りがちな失敗をうまく回避できそうです！</p>
+
+<h2>git の仕組みについて</h2>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/17499005" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p>ここまでいくつかのgitコマンドを紹介しましたが、次にgit内部でどんな動きをしているかについてのスライド『<strong><a href="http://www.slideshare.net/matsukaz/git-17499005">いつやるの？Git入門</a></strong>』を紹介します。これを読んでおくと、git内部の動きが色々納得できますよ！</p>
+
+<h2>gitの基本コマンドを理解できるサイト</h2>
+
+<p>gitのコマンドを例題を通して理解できるサイト『<strong><a href="http://k.swd.cc/learnGitBranching-ja/">Learn Git Branching</a></strong>』の紹介です。コマンドを実行すると図が変化するなど、動きがあってわかりやすいです。</p>
+
+<p><a href="http://k.swd.cc/learnGitBranching-ja/"><img src="http://farm6.staticflickr.com/5497/9604520241_b159c2e09c_z.jpg"></a></p>
+
+<h2>rebaseの正しい使い方</h2>
+
+<script async class="speakerdeck-embed" data-id="80584750f134013089bf7ad89fb6c866" data-ratio="1.33333333333333" src="http://morizyun.github.io//speakerdeck.com/assets/embed.js"></script>
+
+
+<p><a href="http://crocos.co.jp/">ソーシャルメディアマーケティングで有名なクロコス</a>さんのスライド。特にrebaseを使う場合の使い方や、チーム作業で注意すべき点が書かれていて勉強になります！</p>
+
+<h2>A successful Git branching modelについて</h2>
+
+<p><img src="http://farm3.staticflickr.com/2817/9603741657_6ba43d7edd_z.jpg"><br/>
+From <a href="http://www.slideshare.net/add20/ss-11951387">バージョン管理のワークフロー</a></p>
+
+<p>ブランチを活用してバージョン管理を行いながら開発をするための代表的なモデル『<strong>A successful Git branching model</strong>』は次の通りです。</p>
+
+<pre>
+* masterブランチ：安定してリリースが可能な状態を保つ
+* developブランチ：最新の開発を反映する
+* featureブランチ：新しい開発をするのに用いる
+* releaseブランチ：リリース準備のために用いる
+* hotfixブランチ：masterで致命的バグがあった場合に使用します。
+</pre>
+
+
+<p>featureブランチでの機能開発の流れは次の通りです。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git checkout -b feature-x.x.x develop <span class="c">#=&gt; developからfeature-x.x.xブランチを作成して移動</span>
+</span><span class='line'><span class="o">(</span>feature-x.x.xの実装<span class="o">)</span>
+</span><span class='line'>git checkout develop <span class="c">#=&gt; developブランチにスイッチ</span>
+</span><span class='line'>git merge --no-ff feature-x.x.x <span class="c">#=&gt; developとfeature-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git branch -d feature-x.x.x <span class="c">#=&gt; マージされたfeature-x.x.xブランチを削除</span>
+</span><span class='line'>git push origin develop <span class="c">#=&gt; 共有リポジトリにdevelopをpush</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>releaseブランチでのリリース準備作業の流れは次の通りです。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git checkout -b release-x.x.x develop <span class="c">#=&gt; developからrelease-x.x.xブランチを作成して移動</span>
+</span><span class='line'><span class="o">(</span>リリースの準備作業<span class="o">)</span>
+</span><span class='line'>git checkout master <span class="c">#=&gt; masterブランチにスイッチ</span>
+</span><span class='line'>git merge --no-ff release-x.x.x <span class="c">#=&gt; masterとrelease-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git tag -a x.x.x <span class="c">#=&gt; バージョン情報をタグに書く</span>
+</span><span class='line'>git checkout develop <span class="c">#=&gt; developブランチに移動</span>
+</span><span class='line'>git merge --no-ff release-x.x.x <span class="c">#=&gt; developとrelease-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git branch -d release-x.x.x <span class="c">#=&gt; マージされたrelease-x.x.xを削除</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>hotfixブランチでのバグ修正作業の流れは次の通りです。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git checkout -b hotﬁx-x.x.x master <span class="c">#=&gt; masterからrelease-x.x.xブランチを作成して移動</span>
+</span><span class='line'>（バグ修正を実施）
+</span><span class='line'>git commit -m “Fix a bug” <span class="c">#=&gt; バグ修正をコミット</span>
+</span><span class='line'>git checkout master <span class="c">#=&gt; masterブランチにスイッチ</span>
+</span><span class='line'>git merge --no-ff hotﬁx-x.x.x <span class="c">#=&gt; masterとhotfix-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git tag -a x.x.x <span class="c">#=&gt; バージョン情報をタグに書く</span>
+</span><span class='line'>git checkout develop <span class="c">#=&gt; ブランチdevelopにスイッチ</span>
+</span><span class='line'>git merge --no-ff hotﬁx-x.x.x <span class="c">#=&gt; developとhotfix-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git branch -d hotﬁx-x.x.x <span class="c">#=&gt; ブランチhotfix-x.x.xを削除</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>補足として、『A successful Git branching model』のコマンド入力を簡略化するためのツールとして、<strong><a href="https://github.com/nvie/gitflow">git-flow</a></strong>があります。もしこのモデルを踏襲したい場合は是非活用ください。</p>
+
+<h2>逆引きGit</h2>
+
+<p><a href="http://www.backlog.jp/git-guide/reference/"><img src="http://farm4.staticflickr.com/3827/9604572059_dc41c8e6cb_z.jpg"></a></p>
+
+<p>nulabさんが作成されている『<strong><a href="http://www.backlog.jp/git-guide/reference/">逆引きGit</a></strong>』は書籍になったら大ヒットしそうなレベルでまとまっていてオススメです！</p>
+
+<h2>本格的にGitを学ぶなら Pro Git</h2>
+
+<p>『<strong><a href="http://git-scm.com/book/ja">Pro Git</a></strong>』は本格的にGit を学ぶ手助けをしてくれるサイトです。10の言語で翻訳されているほど人気が高いコンテンツです！英語版の書籍は約$20でアマゾンUSで販売されています！</p>
+
+<p> <a href="http://git-scm.com/book/ja" title="Pro Git"><img src="http://farm4.staticflickr.com/3802/9613075826_c02cf38ce0_z.jpg" width="640" height="421" alt="Pro Git"></a></p>
+
+<h2>マージでconflictが発生した場合の対策</h2>
+
+<p>marge中の2つのブランチでどちらも同じファイルを変更した場合、conflict(矛盾)が発生することがあります。『<strong><a href="http://d.hatena.ne.jp/sinsoku/20110831/1314720280">Gitでコンフリクトした時のための備忘録</a></strong>』にconflictが発生した場合によく使いそうなコマンドが整理されています！</p>
+
+<p><a href="http://d.hatena.ne.jp/sinsoku/20110831/1314720280"><img src="http://farm4.staticflickr.com/3734/9607911806_c01fb1e924_z.jpg"></a></p>
+
+<p>また、p4margeというconflict時のツールもあります。『<strong><a href="http://wadahiro.hatenablog.com/entry/20111115/1321372150">Gitのマージツールにp4mergeを使ってみた</a></strong>』にgitで利用するための手順がまとめラているのでよかったら試してみてください！</p>
+
+<p><a href="http://wadahiro.hatenablog.com/entry/20111115/1321372150"><img src="http://gitextensions.googlecode.com/files/p4Merge.jpg"></a></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>補足</h2>
+
+<h3>pullとfetchの違い</h3>
+
+<p><code>pull</code>コマンドでは自分のコードと他人のコードがマージされます。もしまずは取り込むだけにしたい場合は、<code>fetch</code>コマンドを実行します。<strong><a href="http://qiita.com/y42sora/items/e082d64f3f8b424e9b7d">fetch と pullの違い</a></strong>に簡潔な説明がありますので、こちらもオススメです！</p>
+
+<h3>ベアリポジトリ(git init --bare)について</h3>
+
+<p><img src="http://farm4.staticflickr.com/3701/9603675283_45565c4632_z.jpg"><br/>
+From <a href="http://www.nekotricolor.com/blog/2013/05/01/961/">ベアリポジトリとノンベアリポジトリ：理論編〜GitでWordPressのテーマを管理</a></p>
+
+<p><img src="http://farm3.staticflickr.com/2862/9607305096_a33c09b513_z.jpg"><br/>
+From <a href="http://www.slideshare.net/matsukaz/git-17499005">いつやるの？Git入門</a></p>
+
+<p><code>--bare</code>は、ベアリポジトリを作成する場合につけます。ベアリポジトリとは、更新情報だけを持つリポジトリのことでサーバの共有リポジトリの場合につけます。</p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://programmerbox.com/2013-07-17_git_summary/">Gitがこわくて触れられなかったけど、このスライドで理解出来るようになったよGitサイトまとめ</a></strong></p>
+
+<p><strong><a href="http://www.find-job.net/startup/7-git-slides">もっと早く知りたかった！ Gitが鬼のようにわかるスライド厳選7選</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(13/08/28 10:25) スライド『Git 7つの心構え』を追加。日本語のミスを修正<br/>
+(13/08/28 12:00) Pro Gitの紹介を追加<br/>
+(14/02/22 00:20) 全体的に説明をアップデート<br/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[アジャイルサムライ－達人開発者への道－ 書籍レビュー 初心者にも優しく実践的な内容]]></title>
+    <link href="http://morizyun.github.io/blog/agile-samurai-review-book/"/>
+    <updated>2013-08-25T19:00:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/agile-samurai-review-book</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4274068560/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274068560&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274068560&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274068560" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="http://www.amazon.co.jp/gp/product/4274068560/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4274068560&amp;linkCode=as2&amp;tag=morizyun00-22">アジャイルサムライ－達人開発者への道－</a></strong>』を読んだので、この記事でまとめ兼レビューを書きます。この本を読んだ動機は、再来週くらいからアジャイル開発に初めて挑戦することになったので、その前に予備知識を少しでも得たいというのが理由です。</p>
+
+<p>読んだ感想としては、「<strong>初心者に優しい、実践的な内容！</strong>」の一言につきます。アジャイルにこれから挑戦する人や、単純に興味がある人に特にオススメな一品です！</p>
+
+<!-- more -->
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>原則：動くプロダクトを顧客に見せてフィードバックを受ける</h2>
+
+<p>アジャイルの原則は『<strong>顧客に動くプロダクトをできるだけ早く見せて、フィードバックを貰うこと</strong>』です。そうすることで、顧客側はプロダクトが狙い通りか否かを早い段階で確認することができます。また、開発側も開発コストの低い状態で顧客のプロダクトへの反応を確認できます。</p>
+
+<p>この考え方の前提条件は次の2つです。</p>
+
+<pre>
+(1) プロジェクト開始時に全ての要求を集めることはできない。集めても変わる
+(2) やるべきことはいつでも与えられた時間と資金よりも多い
+</pre>
+
+
+<p>この内容はウォーターフォール型でいつも感じていた問題なので、すごく納得できる内容です。</p>
+
+<h2>チームメンバーがアジャイル・プロジェクトに合わせる</h2>
+
+<p>アジャイル・プロジェクトにおいて、次の２点が関係者全員に求められるマインドだと思います。</p>
+
+<p><strong>(1) 小さなベンチャー企業に入ったように、肩書も役割に関係なく、プロジェクトの成功に貢献できることなら何でも協力するというマインドを持つ。</strong></p>
+
+<p><strong>(2) 『アジャイル・プロジェクト特有の性質である曖昧さ』を理解して、『個人が得意な領域に固執しないこと』に務める。そして、アジャイルが『役割ごとに求める行動』を各人が自分で考えて実践する。</strong></p>
+
+<p>上の２つのマインドは一見すると矛盾しているようにみえます。ですが、この矛盾したかのようなマインドこそが、メンバー1人ひとりがアジャイルに適合するために必要なことと考えます。</p>
+
+<h2>プロジェクトのゴール、ビジョン、状況や背景をチームで共有</h2>
+
+<p><strong>プロジェクトのゴール、ビジョン、状況や背景をチームで完全に共有すること</strong>で、メンバー各人の状況に応じた判断の妥当性を高めることができます。そのためのフレームワークの一つ『<strong>インセプションデッキ</strong>』を紹介します。このフレームワークでは次のような内容を実施します。</p>
+
+<pre>
+(1)  「なぜ」プロジェクトが始まったのか？顧客はだれか？を共有する
+(2)  短い言葉でプロジェクトをアピールするための言葉を決める
+(3)  顧客の視点で、プロダクトが欲しいと思うような広告を作る
+(4)  プロジェクトのスコープを狭めるために、やらないことをリストにする
+(5)  プロジェクトの関係者を幅広く集めて、信頼関係の第一歩を築く
+(6)  概念的なプロダクトの設計図を作り、チーム内での解決策を一致させる
+(7)  プロジェクトに対するリスクを洗い出し、チームで取り組むべきリスクを決める
+(8)  最も重要なリソースの一つである時間を管理するために、期間を見積もる
+(9)  『期間・スコープ・予算・品質』についてのトレードオフを考える
+(10) プロジェクトを実現するための『期間・コスト・人員』を見積もる 
+</pre>
+
+
+<p>アジャイル開発では『ソフトウエア開発の曖昧さ』を認めながら、ソフトウェア開発を成功させるための『リソースの見積もり』を徹底し、プロジェクトの成功確率を高めようとしていると感じました。</p>
+
+<p>プロダクトのスコープ・リソースは異なりますが、ゆーすけべーさん著『<strong><a href="http://morizyun.github.io/blog/create-web-service-essey-book-review/">Webサービスのつくり方 ~「新しい」を生み出すための33のエッセイ(自作のまとめ記事)</a></strong>』にもコレに通じるポリシーがあり、改めて納得出来ました。</p>
+
+<h2>ユーザーの要求をユーザーと意思疎通しやすい形式にまとめる</h2>
+
+<p>ユーザーストーリーでは、顧客の要求を『<strong>誰のために・何のために・それを実現するのか</strong>』を関係者がいつでも思い出せるように複数の小さなカードに書いて表現します。</p>
+
+<p>このカードを書く上で、顧客側・開発者側の双方が意識すべき点は次の通りです。</p>
+
+<pre>
+顧客側　：ビジネスの観点から評価できるように書き、状況に応じた取捨選択できるようにする
+開発者側：テストができるように書き、作業範囲と仕事の完了基準を明確にする
+</pre>
+
+
+<p>ユーザーストーリーを書くためのプロセスは次の通り。</p>
+
+<pre>
+(1) 顔を突き合わせてワークショップ形式で話せる場所に集まる
+(2) フローチャート・ペーパープロトタイプなどの図を沢山書く
+(3) ユーザーストーリーを沢山書く
+(4) 図で表せない要素をブレーンストーミングしてカードに書き出す
+(5) ユーザーストーリーの重複を省き、全員にわかりやすく、テストできるように書く
+</pre>
+
+
+<h2>アジャイルにおける計画作り方</h2>
+
+<p>アジャイル開発では『ソフトウエア開発の曖昧さや、開発者の見積もりの精度は低いこと』の前提の中で、計画の作成に最善を尽くします。計画において大切なことは次の点だと考えます。</p>
+
+<pre>
+* 限られたリソースの中で、ビジネスの価値を高めるために最善を尽くす
+* プロジェクトの状況に応じて、柔軟に対応する
+* 顧客にとってわかりやすく、状況に応じた選択肢を示せること
+</pre>
+
+
+<h2>短い期間ごとに反復して顧客に動くソフトウェアを提供する</h2>
+
+<p>アジャイル開発では短い期間ごとに反復して、顧客に動くソフトウェアを提供します。この開発サイクルのことを「イーテレーション」と呼びます。このイーテレーションは次の３つのステップによって構成されます。</p>
+
+<pre>
+* ユーザーストーリーを分解して画面の設計やタスクの詳細化、テスト項目を洗い出す
+* リリース可能な、動くソフトウエアを実装する。顧客が語る言葉に合わせたコードにする
+* 自動化したテストを実施すると共に、顧客にデモ操作をやってもらう(受け入れテスト)
+</pre>
+
+
+<p>このイーテレーション内でのグッド・プラクティスは次の通りです。</p>
+
+<pre>
+* デイリースタンドアップ：毎日チーム内で『自分のやること、チームで調整すること、課題』を共有
+* ストーリーボード：開発の進捗状況がチーム全員にわかるような形式で、ユーザーストーリーをまとめる
+* バグ管理：プロジェクトの初日からバグを監視・追跡する。一定の割合で技術的負債する時間をとる
+* プロジェクト全体：プロジェクトの性質に合わせて仕事の進め方や成果物の残し方を変えていく
+</pre>
+
+
+<h2>アジャイルなプログラミング</h2>
+
+<p>アジャイル開発において重要なエンジニア・プラクティスは次の４点。</p>
+
+<h3>ユニットテスト</h3>
+
+<p>ユニットテストとは個々のモジュールを対象とする小さな粒度のテスト。ユニットテストの利点は、コード変更に対して素早いフィードバックを繰り返し貰うことができたり、ヒューマンエラーの一定の防止ができることなどです。</p>
+
+<h3>リファクタリング</h3>
+
+<p>リファクタリングとはコードをわかりやすくして、変更しやすくなるように設計を改善することです。リファクタリングの利点は、コードの分かりやすさと変更のしやすさを保つことで『ソフトウェアの規模』が大きくなっても開発速度の低下を防ぐことができる点です。小さなリファクタリングはコードの変更を加える度に継続的に行い、大きなリファクタリングは規模に応じたリソースをきちんと当てることが重要です。</p>
+
+<h3>テスト駆動開発</h3>
+
+<p>テスト駆動開発(TDD)はソフトウェア開発の手法の一つです。ごく短いサイクルを繰り返しながら、ソフトウェアを設計していきます。テスト駆動開発の利点は、複雑な問題を小さく分解することで難易度を下げ、最善の解決策へ至る道を着実に進めることです。</p>
+
+<h3>継続的インテグレーション・継続的デリバリー</h3>
+
+<p>継続的インテグレーションとはビルドやテスト、インスペクションなどを<strong><a href="http://jenkins-ci.org/">Jenkins</a></strong>などを使って継続的に実行していくことです。継続的インテグレーションの利点は本番にリリースできるプロダクトに対しての変更をより実践しやすくなる点です。</p>
+
+<p>また、継続的インテグレーションでテストしたコードの中から、望むバージョンを選んでテスト・本番環境へのデプロイするプロセスを自動化することを『<strong>継続的デリバリー</strong>』といいます。これもグッド・プラクティスの一つです。</p>
+
+<h3>参考サイト</h3>
+
+<p><strong><a href="http://www.slideshare.net/JunyaSuzuki1/jenkins-13502498">jenkinsのすゝめ - 継続的インテグレーションと継続的デリバリー</a></strong></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>アジャイル特有の用語集</h2>
+
+<h3>エクストリーム・プログラミング（XP）</h3>
+
+<p>アジャイルに欠かせないベスト・プラクティスをまとめたもの。重視する要素は、『<strong>コミュニケーション・シンプル・フィードバック・勇気・尊重</strong>』。まとめられているプラクティスは次の項目。</p>
+
+<pre>
+# 開発の技術的なプラクティス
+* テスト駆動開発
+* ペアプログラミング
+* リファクタリング
+* 継続的インテグレーション
+
+# プロジェクト全体に対するプラクティス
+* 短期的に動くソフトウェアをリリースすること
+* 開発チームはだれでもソースコードを修正できるようにすること
+* 顧客の分かる言葉で『求める機能』を決めて、顧客・開発チーム側で合意すること
+* 開発チーム全体でリリースの計画を立てること
+</pre>
+
+
+<h3>スクラム</h3>
+
+<p>アジャイルにおけるプロジェクト・マネージメント手法の一つ。要求仕様を簡単に動くコードに変換することを目的としています。中身は、チーム論や顧客の要求管理、開発工程管理、テクニック(テスト駆動開発、受け入れテスト、リファクタリング、継続的インテグレーションなど)等々。</p>
+
+<h3>プロダクト・バックログ</h3>
+
+<p>機能や技術的改善要素を優先順位をつけて記述したもの。顧客・開発チームなど関係者全員がプロダクトの状況を把握できるようにする必要があります。</p>
+
+<h4>参考サイト</h4>
+
+<p><strong><a href="http://jibun.atmarkit.co.jp/lskill01/rensai/scrum/08/01.html">5分で分かる、「スクラム」の基本まとめ</a></strong></p>
+
+<h3>リーン開発</h3>
+
+<p>能率を上げることをとことん追い求めるための手法。リーンの原則は『<strong>無駄をなくす、品質を作りこむ、早く提供する、人のモチベーションを重視する、全体を最適化する、ビジネスとしての視点で考える</strong>』など。</p>
+
+<h4>参考サイト</h4>
+
+<p><strong><a href="http://blogs.itmedia.co.jp/hiranabe/2012/10/implementing-lean-software-development-afterwords.html">『リーン開発の本質』のあとがき。日本のアジャイルをつくりたい。：An Agile Way：ITmedia オルタナティブ・ブログ</a></strong></p>
+
+<p><strong><a href="http://www.publickey1.jp/blog/10/agile_japan_2010.html">「アジャイルの現状と未来、次に来るもの。～リーン開発への展望～」Agile Japan 2010基調講演から － Publickey</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(08/26 10:50) 継続的デリバリーの説明を追加<br/></p>
+]]></content>
+  </entry>
+  
+</feed>

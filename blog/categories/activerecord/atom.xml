@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ActiveRecord | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/activerecord/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby on Railsを仕事にしていくための第一歩]]></title>
+    <link href="http://morizyun.github.io/blog/ruby-rails-non-beginner-guide-book/"/>
+    <updated>2015-11-08T23:10:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/ruby-rails-non-beginner-guide-book</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00P0UR1CA/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00P0UR1CA&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00P0UR1CA&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00P0UR1CA" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />最近仕事でRailsのコードレビューをする時間が長くって、いろいろ指摘するんですが、
+Railsって「Railsチュートリアル」には書いてないのに覚えないと仕事にならないこと多すぎだなと気付かされます。
+どこでどんなふうにすれば、プロになろうとしている人が最短距離で知識を獲得できるかはわからないですが、
+今思っている特に大事だなと思うことつらつらと書いていきます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>プログラミングの重要な要素</h2>
+
+<p>まず、Railsの前にプログラミングで全般的に特に重要と思っている要素を紹介します。</p>
+
+<pre>
+- リーダブルなコード
+  - ネーミングルールについて
+  - 言語・フレームワークのルール
+  - 変数のスコープについて
+  - プロジェクトの設計思想
+  - オブジェクト指向・コードの再利用性
+- 正しいテストケースを作る
+</pre>
+
+
+<p>プロジェクトによって変わるので、全ては書きませんが、ぜひ意識してどこを学ぶべきかを考えてみてください。</p>
+
+<h2>ネーミングルールについて</h2>
+
+<ul>
+<li>動詞・名詞を正しく使い分けて下さい(英語離れるまで大変ですが、頑張ってください＞＜)</li>
+<li>名前は「他のチームメンバーにも意味がわかる英語の名前」にして下さい</li>
+<li>プロジェクト内の周りのメソッド・変数うがどんな意味を持っているか考えて見てください</li>
+</ul>
+
+
+<h2>コーディングガイドライン</h2>
+
+<p>Ruby/Railsの有名なコーディングガイドラインは世の中に沢山あるので、ぜひ読んでください。</p>
+
+<ul>
+<li><a href="https://github.com/bbatsov/ruby-style-guide">The Ruby Style Guide (bbatsov)</a></li>
+<li><a href="https://github.com/bbatsov/rails-style-guide">The Rails Style Guide (bbatsov)</a></li>
+<li><a href="https://github.com/cookpad/styleguide/blob/master/ruby.ja.md">CookPad Ruby コーディング規準</a></li>
+<li><a href="https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md">The Ruby Style Guide (fortissimo1997)</a></li>
+<li><a href="https://github.com/satour/rails-style-guide/blob/master/README-jaJA.md">The Rails Style Guide (satour)</a></li>
+</ul>
+
+
+<h2>変数のスコープについて</h2>
+
+<p>変数のスコープにおいてプログラムの読みやすさはすごく大切です。
+ローカル変数、インスタンス変数、クラス変数のスコープを理解して使い分けて下さい。
+スコープの広い変数をむやみに使うとほかの人がコードを読みにくくなり、バグの温床になります。</p>
+
+<h2>オブジェクト指向について</h2>
+
+<ul>
+<li><a href="http://qiita.com/hirokidaichi/items/591ad96ab12938878fe1">オブジェクト指向を手に入れるまでの奇跡</a></li>
+<li><a href="http://tdak.hateblo.jp/entry/20140406/1396773476">オブジェクト指向について</a></li>
+<li><a href="http://www.itmedia.co.jp/im/articles/0703/06/news125.html">5分で分るオブジェクト指向</a></li>
+</ul>
+
+
+<h2>その他必須で読んで欲しい本・記事</h2>
+
+<h3>書籍</h3>
+
+<ul>
+<li><a href="http://www.amazon.co.jp/dp/4873115655">リーダブルコード</a></li>
+<li><a href="http://www.amazon.co.jp/dp/4873113679">初めてのRuby</a></li>
+<li><a href="https://leanpub.com/everydayrailsrspec-jp">EveryDay Rails(RSpec)</a></li>
+</ul>
+
+
+<h3>記事</h3>
+
+<ul>
+<li><a href="http://qiita.com/jnchito/items/dedb3b889ab226933ccf">RubyやRailsでリファクタリングに使えそうなイディオムとか便利メソッドとか</a></li>
+<li><a href="http://at-grandpa.hatenablog.jp/entry/2013/11/01/072636">MVCの勘所</a></li>
+<li><a href="http://betterspecs.org/jp/">RSpecの書き方</a></li>
+</ul>
+
+
+<h2>Rails/Ruby Tips</h2>
+
+<p>ここからは、細かめのTipsです。よく指摘するところを中心に書きます。</p>
+
+<h3>Active Record</h3>
+
+<ul>
+<li>pluck を上手に活用して下さい(ARのオブジェクトを作らないのでSQLのコストが減ります)
+
+<ul>
+<li><a href="http://blog.livedoor.jp/sasata299/archives/51847390.html">Rails3.2から導入されたpluckメソッドのパフォーマンスが素晴らしい件 - (ﾟ∀ﾟ)o彡 sasata299's blog</a></li>
+</ul>
+</li>
+<li>ログを見て、無駄なSQLがないかを常に考えてください</li>
+<li>indexが適切に効かないと、パフォーマンスが悪くなります。常にパフォーマンスを意識してください</li>
+</ul>
+
+
+<h3>Rails - View</h3>
+
+<ul>
+<li>共通的に使う可能性のあるは Decorator(ActiveDecorator等を利用) 側に書いて下さい</li>
+<li>Viewのロジックは出来る限り減らして下さい</li>
+<li>haml/slimは構造化しやすいという点で便利！</li>
+</ul>
+
+
+<h3>Rails - i18n</h3>
+
+<p>適材適所でi18nを活用してください。</p>
+
+<ul>
+<li><a href="http://railsguides.jp/i18n.html">Rails国際化(I18n) API | Rails ガイド</a></li>
+<li><a href="http://morizyun.github.io/blog/i18n-english-rails-ruby-many-languages/">Railsの多言語化対応 i18nのやり方を整理してみた！</a></li>
+<li><a href="http://ruby-rails.hatenadiary.com/entry/20150226/1424937175">Railsのi18nの基本的な使い方まとめ - Rails Webook</a></li>
+</ul>
+
+
+<h3>N+1問題の対策 - Bullet</h3>
+
+<p>RailsのActiveRecord(findやwhere)は便利ですが、DB(SQL)の側から見ると
+非効率的なクエリを発生させることがあります。
+これを監視してくれるのが、『<strong><a href="https://github.com/flyerhzm/bullet">Gem Bullet</a></strong>』です。
+このGemを入れておくと開発環境で N+1が発生した時に警告を出してくれます。</p>
+
+<ul>
+<li><a href="http://www.techscore.com/blog/2012/12/25/rails%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E7%B4%B9%E4%BB%8B-n1%E5%95%8F%E9%A1%8C%E3%82%92%E6%A4%9C%E5%87%BA%E3%81%99%E3%82%8B%E3%80%8Cbullet%E3%80%8D/">Railsライブラリ紹介: N+1問題を検出する「bullet」</a></li>
+<li><a href="http://morizyun.github.io/blog/speed-up-rails-bullet/">[Rails 高速化] ページキャッシュ、N+1対策、SQLチューニング</a></li>
+</ul>
+
+
+<h3>Profiler</h3>
+
+<p>Viewが遅い時にボトルネックを探すためのツールです。
+速度改善をする場合はプロファイラーか、ログを取ってボトルネックを計測して実施して下さい。</p>
+
+<ul>
+<li><a href="https://github.com/MiniProfiler/rack-mini-profiler">MiniProfiler/rack-mini-profiler - GitHub</a></li>
+<li><a href="http://spring-mt.hatenablog.com/entry/2015/01/24/112454">railsアプリでstackprofを使ってボトルネックを探す + JSON::Schema(2.2.1)の高速化 - CubicLouve</a></li>
+</ul>
+
+
+<h3>Ruby/Railsの細かいTips</h3>
+
+<ul>
+<li>Ruby の定数は 書き換え可能です。immutable な場合はかならず、最後に .freeze をつけて下さい
+
+<ul>
+<li><a href="http://qiita.com/yukiyan/items/39f945c55b6dc5e11ed7">Rubyで定数を扱う場合はfreezeするべき</a></li>
+</ul>
+</li>
+<li>Timezoneもしっかり意識して実装すると後々はまらないと思います
+
+<ul>
+<li><a href="http://qiita.com/jnchito/items/cae89ee43c30f5d6fa2c">RubyとRailsにおけるTime, Date, DateTime, TimeWithZoneの違い</a></li>
+</ul>
+</li>
+<li>ActiveSupport::StringInquirerを使うとコードが読みやすくなります。適材適所で利用を検討してください。
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/holysugar/20110513/p1">今更ながらシリーズ(2) StringInquirer - HWPS別館</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>参考書籍</h2>
+
+<p>その他読んでおくといいよって本です。</p>
+
+<ul>
+<li><a href="http://www.amazon.co.jp/dp/4774145963">良いコードを書く技術</a></li>
+<li><a href="http://www.amazon.co.jp/dp/4873114799">プログラマが知るべき97のこと</a></li>
+<li><a href="http://www.amazon.co.jp/dp/4822284654">オブジェクト指向でなぜ作るのか</a></li>
+<li><a href="http://www.amazon.co.jp/dp/4774142042">Webを支える技術</a></li>
+<li><a href="http://www.amazon.co.jp/dp/4048869558">プログラマの考え方が面白いほど身につく本</a></li>
+</ul>
+
+
+<p>あとは『<strong><a href="http://blog.jnito.com/entry/2014/09/29/074949">プログラマ歴12年の僕が選んだ「10年経っても役立つ技術書17選」 - give IT a try</a></strong>』
+にプログラマーが基礎を身につける上で役に立ちそうな本が紹介されています。こちらも良かったら読んでみてください<sup>^</sup></p>
+
+<h2>本当に初心者な人向けに</h2>
+
+<p>ちょっと上の内容がハードだなと思う人向けには拙著
+『<strong><a href="http://morizyun.github.io/blog/rails-beginner-first-step-guide/">ぼくのかんがえたさいきょうのRailsファースト・ガイド - 酒と泪とRubyとRailsと</a></strong>』
+をよかったら読んでみてください。</p>
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="http://goo.gl/0HPyuh">pull-request-のフォーマットを決めるとレビューの効率が3倍よくなる</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Railsのマスタ的なModelのキャッシュについて[Redis]]]></title>
+    <link href="http://morizyun.github.io/blog/model-master-cache-rails-redis/"/>
+    <updated>2015-11-08T10:10:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/model-master-cache-rails-redis</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00SF6JN4K/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00SF6JN4K&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00SF6JN4K&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00SF6JN4K" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Railsで中規模なサイトを作っていく上で
+避けて通れないのが、増えてきたモデルを適切にキャッシュする仕組みのように思えます。</p>
+
+<p>特に変更が少ないマスタ的なテーブルに対して、『多対多』で<code>関連付け(アソシエーション: association)</code>がある場合などは、
+それなりのSQLの発行コストになる事があります。そこを適切にキャッシュすることでDBへの負荷が減り、
+ユーザーへのレスポンスが改善されると思います。</p>
+
+<p>今回は、最近実装しているキャッシュの方法について、紹介したいと思います。
+(というか偉い人、ぜひいい方法教えて下さい＞＜)</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>前提条件: RailsからRedisにキャッシュ</h2>
+
+<p>今回は前提条件として、Railsのアプリ から『<strong><a href="https://github.com/redis-store/redis-rails">redis-store/redis-rails - GitHub</a></strong>』
+のGemを使って、Redisにキャッシュをされているとします。
+セットアップ方法は『<strong><a href="https://github.com/redis-store/redis-rails">redis-store/redis-rails - GitHub</a></strong>』
+のREADMEを御覧ください。</p>
+
+<p>またRedis自体のインストールについては拙著
+「<strong><a href="http://morizyun.github.io/blog/redis-mac-centos-rails/">CentOS/Mac OSXへのRedis導入手順 - memcacheライクなKey-Value方式と、永続化対応のインメモリDB</a></strong>」
+をよかったら御覧ください。</p>
+
+<h2>Railsでのキャッシュ(ActiveSupport::Cache)</h2>
+
+<p>Rails内では次のように書くことでRedisに<code>xxx</code>というキーでキャッシュ済の場合は、Redisのキャッシュを取得します。
+Redisに<code>xxx</code>というキーがない場合は中の処理を実行してキャッシュにセットした上で値を取得します。</p>
+
+<p>```ruby
+array = Rails.cache.fetch('xxx') do
+  ["hoge", "fuga"] # 実際には重い処理
+end
+puts array.to_s #=> ["hoge", "fuga"]</p>
+
+<p>array = Rails.cache.fetch('xxx') do
+  ["hoge", "fuuuga"]
+end</p>
+
+<h1>キャッシュが残っているので前の値が使われる</h1>
+
+<p>puts array.to_s #=> ["hoge", "fuga"]
+```</p>
+
+<p>ちなみに、Redis側に格納されたデータは次のようになります。</p>
+
+<p><code>bash
+$ redis-cli
+127.0.0.1:6379&gt; GET xxx
+"\x04\bo: ActiveSupport::Cache::Entry\b:\x0b@value[\aI\"\thoge\x06:\x06ETI\"\tfuga\x06;\aT:\x10@created_atf\x171446337812.0613928:\x10@expires_inf\n5.4e3"
+</code></p>
+
+<p>Redis側にはActiveSupport::Cache::Entryというオブジェクトとして、値が格納されるようです。</p>
+
+<h2>ActiveRecord::Relation.to_a (一回呼び出して)のキャッシュ</h2>
+
+<p>いよいよ本題です。まずは、<code>ActiveRecord::Relation.to_a</code>ってやるとキャッシュできるか試してみました。</p>
+
+<p><code>ruby
+Rails.cache.fetch('prefecture') do
+  Prefecture.all.to_a
+end
+</code></p>
+
+<p>```bash
+$ redis-cli</p>
+
+<blockquote><p>GET prefecture
+"\x04\bo: ActiveSupport::Cache::Entry\b:\x0b@value[6o:\x0fPrefecture\x10:\x10@attributeso:\x1fActiveRecord::AttributeSet\x06;\bo:$ActiveRecord::LazyAttributeHash\n:
+..(省略)..eated_atf\x161446338581.033632:\x10@expires_inf\n5.4e3"
+```</p></blockquote>
+
+<p>キャッシュされてた。どうやら、Rails 4.2.1以降は<code>ActiveRecord::LazyAttributeHash</code> というオブジェクトでキャッシュされているっぽい。
+Railsすごいな... (一部の環境でArelまでしかキャッシュされないことがある気がしますが、ライブラリとかのバージョン依存なのか、実装がしょぼいのか...)</p>
+
+<p>あと、これとは別で状態が変化するオブジェクトをキャッシュするのはいかがなものかという議論もあります。</p>
+
+<p><strong><a href="http://stackoverflow.com/questions/11218917/confusion-caching-active-record-queries-with-rails-cache-fetch?answertab=votes#tab-top">Confusion caching Active Record queries with Rails.cache.fetch - Stack Overflow</a></strong></p>
+
+<p>この方が言っていることは至極最もだと思います。あくまで変化が殆ど無いような、マスタデータに
+関するキャッシュを想定しています。</p>
+
+<h2>最近 ActiveRecord / DB周り に対して思うこと</h2>
+
+<ul>
+<li>ActiveRecord、まじ洗練されててすごい。でもその分、レコード数、カラム数が多くなるとオブジェクトの生成コストつらい気がする</li>
+<li>パフォーマンス保つためにも できるだけ SQL は発行したくないよね</li>
+<li>仮に N+1 をさけて、include しても DB側のSQLのコストはそれなりに高い(index次第だけど)
+
+<ul>
+<li>SQLの発行コストや発生頻度は常に意識する必要がある</li>
+<li>コストを正しく把握した上で、SQLを発行するかどうか選択すべき</li>
+</ul>
+</li>
+<li>ただし、トレードオフとして生産性がある。ActiveRecordの便利な機能使えないってことは生産性が下がる</li>
+<li>生産性を犠牲にはし過ぎないようにしたい。生産性を犠牲にしない程度にキャッシュを有効活用したい</li>
+</ul>
+
+
+<h2>ライブラリに依存すべき？</h2>
+
+<p>それっぽいGemがないかなと思って探していたら、shopify謹製のライブラリを発見しました。更新も頻繁に行われているようです。</p>
+
+<p><strong><a href="http://shopify.github.io/identity_cache/">shopify/identity_cache</a></strong></p>
+
+<p>便利そうなGemがあることはあるけど...</p>
+
+<pre>
+- 学習コストが高いライブラリはやっぱり怖い(チーム開発で使いづらい)
+- 実装をちゃんと読みきらないとブラックボックス化して怖そう...
+</pre>
+
+
+<h2>models/concern でのキャッシュ実装の提案</h2>
+
+<p>Railsが前提にはなりますが、<code>models/concern/cache_support.rb</code> を実装して、プロジェクトで使いやすい形、
+チームメンバーが簡単に使える形で実装していくという提案です。</p>
+
+<p>一応補足で、キャッシュのクリアを1時間に1回にしていますが、これはマスタ系のデータがほぼ更新されない
+ような特殊な環境を想定しています。正しくやるのであれば、after_saveとかのcallbackを使って、キャッシュを
+クリアして上げる仕組みも一緒に実装してあげると幸せになれると思います。</p>
+
+<p>```ruby</p>
+
+<h1>キャッシュ制御に関するモジュール</h1>
+
+<p>#</p>
+
+<h1>■ 背景・目的</h1>
+
+<h1>- ActiveRecord便利なんだけど name とるだけなのに SQLを発行しすぎとか気になるます</h1>
+
+<h1>- model自体に大したレコード数がない場合は、この機能を使ってキャッシュしましょう</h1>
+
+<p>#</p>
+
+<h1>■ 制約条件</h1>
+
+<h1>- id のないテーブルでは使えません</h1>
+
+<h1>- キャッシュは1時間でクリアされます</h1>
+
+<p>#</p>
+
+<h1>■ お願い</h1>
+
+<h1>- 定期的な更新があるようなデータを取り扱う場合は、after_save / after_destroy とかで、</h1>
+
+<h1>キャッシュをクリアする機構を取り付けてください</h1>
+
+<p>#</p>
+
+<h1>■ 使い方</h1>
+
+<h1>△ 前提</h1>
+
+<h1>- Model にこのモジュールを include</h1>
+
+<p>#</p>
+
+<h1>△ キャッシュから特定のcolumn(xxx)の値を取得する</h1>
+
+<h1>- Class.cached_xxx_of(id) って呼び出す</h1>
+
+<p>#</p>
+
+<h1>△ キャッシュから特定id の ActiveRecord を取得する</h1>
+
+<h1>- Class.cached_record_of(id) って呼び出す</h1>
+
+<p>#</p>
+
+<h1>△ キャッシュから全レコード(ActiveRecord) を取得する</h1>
+
+<h1>- Class.cached_all_records って呼び出す</h1>
+
+<p>#
+module CacheSupport
+  extend ActiveSupport::Concern</p>
+
+<p>  module ClassMethods</p>
+
+<pre><code># ------------------------------------------------------------------
+# Public Class Methods
+# ------------------------------------------------------------------
+# キャッシュされた値を取得するメソッド(cached_xxx_of)を必要なタイミングで動的に生成
+def method_missing(method_name, *args, &amp;block)
+  if cache_method?(method_name)
+    define_singleton_method(method_name) do |arg_id|
+      column = method_name.to_s.scan(/^cached_(.*)_of$/).flatten.first
+      refresh_cache! if need_refresh? # キャッシュを更新
+      Rails.cache.fetch(cache_key_record(arg_id)).try(column.to_sym)
+    end
+    public_send(method_name, *args)
+  else
+    super
+  end
+end
+
+# Logic for this method MUST match that of the detection in method_missing
+# - http://docs.ruby-lang.org/ja/2.2.0/method/Object/i/respond_to_missing=3f.html
+# - https://robots.thoughtbot.com/always-define-respond-to-missing-when-overriding
+# @return [Boolean]
+def respond_to_missing?(method_name, include_private = false)
+  cache_method?(method_name) || super
+end
+
+# キャッシュされたレコードを返すメソッド
+def cached_record_of(id)
+  refresh_cache! if need_refresh? # キャッシュを更新
+  Rails.cache.fetch(cache_key_record(id))
+end
+
+# 全てのレコードを返すメソッド
+def cached_all_records
+  refresh_cache! if need_refresh? # キャッシュを更新
+  ids = Rails.cache.read(cache_key_ids)
+  cache_keys = ids.map { |id| cache_key_record(id) }
+  Rails.cache.read_multi(*cache_keys).values
+end
+
+private
+# ------------------------------------------------------------------
+# Private Class Methods
+# ------------------------------------------------------------------
+# キャッシュを設定
+def refresh_cache!
+  # レコード単位のキャッシュ
+  self.all.each do |record|
+    Rails.cache.write(cache_key_record(record.id), record)
+  end
+
+  # idの配列をキャッシュ
+  Rails.cache.write(cache_key_ids, self.pluck(:id))
+end
+
+# キャッシュすべきなら true、キャッシュすべきでないなら false
+def need_refresh?
+  key = "/models/cache_support/need_refresh?/#{self.to_s.underscore}"
+  if Rails.cache.exist?(key, expires_in: 1.hour)
+    return false
+  else
+    Rails.cache.write(key, 1, expires_in: 1.hour)
+    return true
+  end
+end
+
+# キャッシュした値を取得するメソッドなら true, 異なれば false
+def cache_method?(method)
+  column_names.each do |col|
+    return true if "cached_#{col}_of" == method.to_s
+  end
+  false
+end
+
+# レコード単位のキャッシュ名
+def cache_key_record(id)
+  "/models/cache_support/cache_key_record/#{self.to_s.underscore}/#{id}"
+end
+
+# id一覧のキャッシュ名
+def cache_key_ids
+  "/models/cache_support/cache_key_ids/#{self.to_s.underscore}"
+end
+</code></pre>
+
+<p>  end # ClassMethods
+end # CacheSupport
+```</p>
+
+<p>11/8に少し更新をしました。</p>
+
+<pre>
+- カラムを限定する仕組みを取りの時期ました。チームでの使いやすさを重視しました。
+- ハッシュではなく、ActiveRecordにしました。ActiveRecordに戻すコストはかかりますが、使いやすさ重視です。
+- キャッシュをレコード単位に変更しました。RedisのIOとハッシュに戻す部分のコストが大きかったので減らすのが目的です。
+- 全レコードを一括で取得するメソッドを追加しました。Rails.cache.read_multi 便利。
+</pre>
+
+
+<p>この辺りの実装でよりいいプラクティスとかあればぜひ教えてほしいです＞＜</p>
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="http://redis.shibu.jp/commandreference/">コマンドリファレンス — redis 2.0.3 documentation</a></strong></li>
+<li><strong><a href="http://qiita.com/Kta-M/items/b4852c849d408e7445c6">RailsのセッションストアとしてRedisを使う(Mac/EC2:AmazonLinux) - Qiita</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Java プログラマー Silver 覚えておきたいTips[Oralce][資格勉強]]]></title>
+    <link href="http://morizyun.github.io/blog/java-programer-silver-se7-tips-oracle/"/>
+    <updated>2015-02-14T08:45:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/java-programer-silver-se7-tips-oracle</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00ESXY9H0/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00ESXY9H0&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00ESXY9H0&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00ESXY9H0" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Oracle社が提供している『<strong><a href="http://education.oracle.com/pls/web_prod-plq-dad/db_pages.getpage?page_id=5001&amp;get_params=p_exam_id:1Z0-803&amp;p_org_id=70">Java プログラマー Sliver</a></strong>』という資格を2ヶ月ほど少しずつ勉強を続けています。今回はこの資格の勉強中に覚えておくとあとでJavaプログラムを書くときにの基礎になりそうな項目を中心にメモしておきます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>クラス定義とオブジェクトの生成</h2>
+
+<h3>オーバーロード</h3>
+
+<p>『<strong>オーバーロード</strong>』とは、1つのクラス内に同じ名前のメソッドやコンストラクタを複数定義できることです。ただし『<strong>引数の並び、データ型、数が異なっている</strong>』ことがオーバーロードの条件となります。</p>
+
+<p>オーバーロードのポイントは次の通り。</p>
+
+<p> (1) オーバーロードされたメソッドは、それぞれ別々に定義されたメソッドとして扱われる<br/>
+ (2) 同一クラス内に同じ名前のメソッドが2つ以上存在し、これらの引数データ型が異なるか、データ型は同じであっても順番が異なるか、数が異なる場合にはオーバーロードとみなされる<br/>
+ (3) オーバーロードされたメソッドは、戻り値の有無、データ型の違いなどの制限はない<br/>
+ (4) オーバーロードされたメソッドのいずれが呼び出されるかは、メソッドの呼び出し時に指定された引数を元にコンパイラが判定する<br/>
+ (5) オーバーロードされたメソッドは、異なる修飾子を指定できる(修飾子については後述)<br/>
+ (6) スーパークラスから継承したメソッドに対してもオーバーロードできる</p>
+
+<h3>アクセス修飾子とカプセル化について</h3>
+
+<pre>
+(公開範囲が広い)
+public => どのクラスからでも利用可能
+↓
+protected => このクラスを継承したサブクラス、もしくは同一パッケージ内のクラスから利用できる
+↓
+デフォルト(指定なし) => 同一パッケージ内のクラスからのみ利用可能
+↓
+private => 同一クラス内からのみ利用可能
+(公開範囲が狭い)
+</pre>
+
+
+<h2>継承とポリモフィズム</h2>
+
+<h3>インターフェースについて</h3>
+
+<p>インターフェースの構文について。</p>
+
+<p> (1) インターフェスで宣言できるメソッドは抽象メソッドのみ<br/>
+ (2) インターフェースでは<code>public static</code>な定数を宣言できる。定数のため初期化が必要。初期化しない場合はコンパイルエラーとなる<br/>
+ (3) インスタンス化はできない。実装クラスは、抽象メソッドをオーバーライドする<br/>
+ (4) 実装クラスを定義するには、<code>implements</code>キーワードを利用する<br/>
+ (5) インターフェースを元にサブインターフェースを作成する場合はextendsを利用する</p>
+
+<p>インターフェースの抽象メソッド、変数に付与される修飾子について。</p>
+
+<pre>
+ * 抽象メソッド => public abstract 修飾子が付与
+ * 変数 => staic final 修飾子が付与(定数となる)
+</pre>
+
+
+<h3>基本データ型の型変換</h3>
+
+<h4>暗黙型変換</h4>
+
+<p>byte値を int型に代入したり、 float値を double型に代入する場合、暗黙的に型変換が行われる</p>
+
+<pre>
+byte => short => int => long => float => double
+char => int => long => float => double
+</pre>
+
+
+<h4>キャストによる型変換</h4>
+
+<p>int 型をbyte 型の変数に代入したり、 double値をfloat 型の変数に代入する場合は『<strong>キャスト</strong>』が必要。</p>
+
+<pre>
+double => float => long => int => short => byte
+double => float => long => int => char
+</pre>
+
+
+<h3>参照型の型変換</h3>
+
+<h4>暗黙型変換</h4>
+
+<p>サブクラスのオブジェクトをスーパークラス型で変換した変数で扱える。また、実装クラスのオブジェクトをインターフェースの方で宣言した変数で扱える。</p>
+
+<pre>
+サブクラス => スーパークラス
+実装クラス => インターフェース
+</pre>
+
+
+<h4>キャストによる型変換</h4>
+
+<p>スーパークラスで宣言した変数で参照しているサブクラスのオブジェクトを、元の型であるサブクラス型で宣言した変数で扱うにはキャストを用いる。</p>
+
+<pre>
+スーパークラス => サブクラス
+インターフェース => 実装クラス
+</pre>
+
+
+<h3>ポリモフィズム</h3>
+
+<p>オブジェクト指向言語では、共通のインターフェースを持つ操作でも、実際にはオブジェクトごとに振る舞いや動作がことなることをポリモフィズム(多態性、多層性)という。</p>
+
+<h3>arraycopyメソッドについて</h3>
+
+<p>よく勘違いしてしまう、arraycopyメソッドについて。</p>
+
+<pre>
+arraycopy(array, originStartNum, copy, copyStartNum, copyElementNum)
+
+array - コピー元の配列名
+originStartNum - コピー対象の開始位置
+copy - コピー先の配列名
+copyStartNum - コピー先の開始位置
+copyElement - コピーされる配列要素の数
+</pre>
+
+
+<h2>例外処理</h2>
+
+<h3>例外の種類</h3>
+
+<p>Javaの例外には『<strong>例外処理が必須のchecked例外</strong>』と『例外処理が任意のunchecked例外』がある。</p>
+
+<p> (1) Error クラス及びそのサブクラス => unchecked 例外<br/>
+ (2) RuntimeExceptionクラス及びそのサブクラス => unchecked 例外<br/>
+ (3) RuntimeExceptionクラス以外のExceptionのサブクラス => checked 例外</p>
+
+<h3>オーバーライドにおける例外処理(throws)の注意点</h3>
+
+<p>メソッドをオーバーライドする際に例外処理(throws)を記述する際のルールについて。</p>
+
+<p> (1) サブクラスのメソッドがスローする例外は、スーパークラスのメソッドがスローする例外クラスと同じか、その例外クラスのサブクラスとする<br/>
+ (2) サブクラスのメソッドがスローする例外は、RuntimeException および RuntimeExceptionのサブクラスの例外は、スーパークラスのメソッドに関係なくスローできる<br/>
+ (3) スーパークラスのメソッドにthrowsがあっても、サブクラス側でthrowsを記述しないことは可能</p>
+
+<h3>オーバーライドのルール</h3>
+
+<p>例外処理ではないけど、オーバーライドには以下の様なルールがあります。</p>
+
+<p> (1) オーバーライドとは、メソッド名、引数リストがまったく同じメソッドをサブクラスで定義すること<br/>
+ (2) 戻り値の型は、スーパークラスと同じものか、もしくはその戻り値の方のサブクラスであれば利用可能<br/>
+ (3) アクセス修飾子は、スーパークラスと同じものか、それよりも公開範囲が広いものであれば利用可能<br/>
+ (4) throwsには、スーパークラスのメソッドかthrowsに指定した例外クラスとそのサブクラスが指定できる<br/>
+ (5) ただし、RuntimeException クラスおよびそのサブクラスは制約なしにthrowsに指定できる<br/>
+ (6) スーパークラスのメソッドにthrowsがあっても、throwsをしてしなくてもいい</p>
+
+<h2>その他</h2>
+
+<h3>switch文</h3>
+
+<p>swich文で使えるデータ型は、byte, char, short, int, enum, Stringのいずれかの値である必要がある</p>
+
+<h3>ArrayListクラス</h3>
+
+<p>ArrayListは参照型しか使えない。基本型(int, double)を使うときは参照型のラッパーを使う必要がある</p>
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>変更来歴</h2>
+
+<p>(2015-01-05 22:30) 新規作成<br/>
+(2015-01-06 21:50) 微調整<br/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[知識ゼロから学ぶ ソフトウェアテストを読みました！[書評]]]></title>
+    <link href="http://morizyun.github.io/blog/software-test-knowledge-zero-start-book-review/"/>
+    <updated>2015-01-03T20:35:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/software-test-knowledge-zero-start-book-review</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00HQ7S5CA/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00HQ7S5CA&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00HQ7S5CA&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00HQ7S5CA" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+少しでもバグの無いソフトを作るために、テストを基礎から勉強し直すために、『<strong><a href="http://www.amazon.co.jp/gp/product/B00HQ7S5CA/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B00HQ7S5CA&amp;linkCode=as2&amp;tag=morizyun00-22">知識ゼロから学ぶ ソフトウェアテスト</a></strong>』を読みました。この本はソフトウェアのテストに関する大局的な知識がわかりやす言葉で書かれているので、まずテストに入門してみたいという人に読んでみて欲しい本です！</p>
+
+<p>今回はこの中で特に心に残った部分を中心にメモしていきます！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>テストの心得</h2>
+
+<p>『<strong>ソフトウェアテストで重要なのはどの部分にバグが出やすか、そこにどのようなテスト手法を適用すれば十分な品質が得られるかを知ることである。</strong>』これはその通り。闇雲にすべての箇所のテストはできないので、バグので易い場所を見極めて、十分な品質を得られるようにテストをしていくことが大切だと思います。</p>
+
+<h2>ホワイトボックステスト: カバレッジテスト</h2>
+
+<p>カバレッジテストはソフトウェアのすべての箇所を通るようにテストを行う事。ただし、『<strong>エラー処理や使われていないコードなど</strong>』はカバーできないことがあります。特に『<strong>要求仕様の間違い、機能の不足、データに関するバグ</strong>』は発見できないので特に注意してください。</p>
+
+<h2>ブラックボックステスト</h2>
+
+<p>ソフトウェアは『入力の処理、出力の処理、計算処理、データ保存』の4つしか行わない。その振る舞いを適切にテストすればいいというのがブラックボックステストの基本的概念です。ユーザーが使いそうなデータや、プログラムが許す最大値、最小値を使って、必要最低限のパターンのテストを行うことが大切です。</p>
+
+<pre>
+(1) 同値分割: 入力を部分集合で分割して、テストパターンをシンプルにする手法。有効値と無効値をテストに使う
+(2) 境界値テスト: 同値分割とセットで使われる。有効値と無効値の境界を重点的にテストする
+(3) 状態遷移のテスト: 状態遷移のタイミングで、意図していない遷移のバグや、存在しない遷移を検出する
+</pre>
+
+
+<h2>弱いエリアを見つけて重点的にテストする</h2>
+
+<p>データの交換が発生する分野、他のソフトとイベントを共有する機能、エラーや例外処理からの復帰などソフトウェア的に弱い部分、言い換えるとバグを発生させやすい部分を重点的にテストすることで、より確実なテストが実行できます。</p>
+
+<h2>あとがき</h2>
+
+<p><a href="http://www.amazon.co.jp/gp/product/B00HQ7S5CA/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00HQ7S5CA&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00HQ7S5CA&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00HQ7S5CA" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />この本では比較的規模が大きめのソフトウェアを開発していく上で、必要となる品質管理や、俯瞰的にソフトウェアのテストを解説してくれています。大局的な知識を得ることで、普段のWeb開発の仕事の中で活かせそうな発見も沢山ありました。まず、ソフトウェアのテストについて全体的な知識を知りたいという人にオススメの本です！</p>
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[switch_point ActiveRecordにメソッドを追加・変更する部分を勉強してみた]]></title>
+    <link href="http://morizyun.github.io/blog/switch-point-swithcing-database-connection-readonly-writable-rails-gem/"/>
+    <updated>2015-01-02T17:45:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/switch-point-swithcing-database-connection-readonly-writable-rails-gem</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00P0UR1RU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00P0UR1RU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00P0UR1RU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00P0UR1RU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+昨日DB関連の資料を調べていく中で興味があった『<strong><a href="https://github.com/eagletmt/switch_point">eagletmt/switch_point</a></strong>』がどんなふうに実装されているのかが、興味あって、ソースコードを読んでみました。特に興味があったのは、<code>ActiveRecord::Base</code>などにメソッドを追加したり、既存のメソッドに手を加える部分です。まだわかっていない部分も多いのでメモ書きレベルですが、一応せっかくなのでアウトプットしておきます！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>既存のActiveRecod::Baseにメソッドを生やす</h2>
+
+<p>『<strong><a href="https://github.com/eagletmt/switch_point">eagletmt/switch_point - GitHub</a></strong>』の<code>switch_point/lib/switch_point.rb</code>で既存のActiveRecod::Baseにメソッドを生やす目的で次のようなコードが書かれていました。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/lazy_load_hooks&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;...(省略)...&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">ActiveRecord</span><span class="err">が読み込まれたら以下のコードを実行する</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;第一引数(active_record)がフックのキー&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">第二引数のブロックが、ブロックを実行するためのコンテキスト</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;ActiveSupport.on_load(:active_record) do</span>
+</span><span class='line'><span class="sr">  require &#39;switch_point/mo</span><span class="n">del</span><span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  require &#39;</span><span class="n">switch_point</span><span class="o">/</span><span class="n">connection</span><span class="err">&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # SwitchPoint::ModelのメソッドをActiveRecord::Baseにinclude</span>
+</span><span class='line'><span class="sr">  ActiveRecord::Base.send(:include, SwitchPoint::Model)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># class_evalで動的にクラス・メソッドを定義</span>
+</span><span class='line'>  <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">ConnectionAdapters</span><span class="o">::</span><span class="no">AbstractAdapter</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;include SwitchPoint::Connection</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr"># insert, update, deleteメソッドのメソッドを上書き</span>
+</span><span class='line'><span class="sr"># 中ではwritableなDBにつなぎに行っているかのチェックとクエリー・キャッシュをクリアしてからメソッドを実行</span>
+</span><span class='line'><span class="sr">SwitchPoint::Connection::DESTRUCTIVE_METHODS.each do |method_name|</span>
+</span><span class='line'><span class="sr">  alias_method_chain method_name, :switch_point</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>遅延読み込みフック lazy_load_hooks#on_load について</h2>
+
+<p><code>on_load</code>は、ActiveSupportのLazyLoadの機能の一つで、ライブラリの読み込み後に実行したいコードを登録するための機能だそうです。サンプルとしてはこんなかんじです。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/lazy_load_hooks&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;run_load_hooksが実行されていないので呼ばれない&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">ActiveSupport</span><span class="o">.</span><span class="n">on_load</span> <span class="ss">:fuga</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;start 1st on load&#39;</span>
+</span><span class='line'>  <span class="n">fuga</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;end 1st on load&#39;</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Fuga</span>
+</span><span class='line'><span class="sr">  def self.fuga&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="s1">&#39;fugafuga&#39;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;puts &#39;before run_load_hooks&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">run_load_hooks</span><span class="err">を実行すると、</span><span class="mi">4</span><span class="err">行目の</span> <span class="no">ActiveSupport</span><span class="o">.</span><span class="n">on_load</span> <span class="err">が呼ばれる</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;ActiveSupport.run_load_hooks :fuga, Fuga</span>
+</span><span class='line'><span class="sr">puts &#39;after run_load_hooks&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">run_load_hooks</span> <span class="err">が実行されているのですぐに呼ばれる</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;ActiveSupport.on_load :fuga do</span>
+</span><span class='line'><span class="sr">  puts &#39;start 2st on load&#39;</span>
+</span><span class='line'><span class="sr">  fuga</span>
+</span><span class='line'><span class="sr">  puts &#39;end 2st on load&#39;</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">実行結果</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;before run_load_hooks&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">start</span> <span class="mi">1</span><span class="n">st</span> <span class="n">on</span> <span class="nb">load</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;fugafuga&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="k">end</span> <span class="mi">1</span><span class="n">st</span> <span class="n">on</span> <span class="nb">load</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;after run_load_hooks&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">start</span> <span class="mi">2</span><span class="n">st</span> <span class="n">on</span> <span class="nb">load</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;fugafuga&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="k">end</span> <span class="mi">2</span><span class="n">st</span> <span class="n">on</span> <span class="nb">load</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>コードにちょこちょこ書いていますが、要はActiveSupport.run_load_hooksが実行されないと呼ばれないし、
+ActiveSupport.run_load_hooksが呼ばれれば一緒に実行してくれるということっぽいです。</p>
+
+<p>ここいらは、<strong><a href="">@eiel</a></strong>さんのRails Docの記事『<strong><a href="http://railsdoc.eiel.info/active_support/lazy_load_hooks/">RailsDoc - Lazy Load Hooks</a></strong>』を参考にさせて頂きました。最近Rails Docさんにはお世話になりっぱなしです！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>alias_method_chain について</h2>
+
+<p><code>alias_method_chain</code>は、既存のメソッドを置き換えをしてくれます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;active_supportのメソッドなのでrequireが必要&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;module LogHelper&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts message</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">log_with_timestamp</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;log_without_timestamp(&quot;[</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="sr">] </span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="sr">&quot;)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># 以下と同義</span>
+</span><span class='line'>  <span class="c1"># alias_method :log, :log_with_timestamp</span>
+</span><span class='line'>  <span class="c1"># alias_method :log_without_timestamp, :log</span>
+</span><span class='line'>  <span class="n">alias_method_chain</span> <span class="ss">:log</span><span class="p">,</span> <span class="ss">:timestamp</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;include LogHelper</span>
+</span><span class='line'><span class="sr">log(&#39;Hello&#39;) #=&gt; [2015-01-02 11:45:01 +0900] Hello</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>このメソッドには次のルールがあるそうです。</p>
+
+<pre>
+ (A) 前提
+   alias_method_chain :xxx, :yyy
+
+ (B) ルール
+   (1) 上書きして呼び出すメソッドは、 xxx_with_yyy とする
+   (2) 元となるメソッドは、 xxx_without_yyy とする
+</pre>
+
+
+<p>ちなみにActiveSupport(v4.2.0)の<code>alias_method_chain</code>のソースコードはこんなかんじです。
+(わかりやすい＾＾)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">def</span> <span class="nf">alias_method_chain</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;# Strip out punctuation on predicates, bang or writer methods since</span>
+</span><span class='line'><span class="sr"># e.g. target?_without_feature is not a valid method name.</span>
+</span><span class='line'><span class="sr">aliased_target, punctuation = target.to_s.sub(/</span><span class="p">(</span><span class="o">[</span><span class="sc">?!</span><span class="o">=]</span><span class="p">)</span><span class="vg">$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="vg">$1</span>
+</span><span class='line'><span class="k">yield</span><span class="p">(</span><span class="n">aliased_target</span><span class="p">,</span> <span class="n">punctuation</span><span class="p">)</span> <span class="k">if</span> <span class="nb">block_given?</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">with_method</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">aliased_target</span><span class="si">}</span><span class="s2">_with_</span><span class="si">#{</span><span class="n">feature</span><span class="si">}#{</span><span class="n">punctuation</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="n">without_method</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">aliased_target</span><span class="si">}</span><span class="s2">_without_</span><span class="si">#{</span><span class="n">feature</span><span class="si">}#{</span><span class="n">punctuation</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">alias_method</span> <span class="n">without_method</span><span class="p">,</span> <span class="n">target</span>
+</span><span class='line'><span class="n">alias_method</span> <span class="n">target</span><span class="p">,</span> <span class="n">with_method</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">case</span>
+</span><span class='line'><span class="k">when</span> <span class="nb">public_method_defined?</span><span class="p">(</span><span class="n">without_method</span><span class="p">)</span>
+</span><span class='line'>  <span class="kp">public</span> <span class="n">target</span>
+</span><span class='line'><span class="k">when</span> <span class="nb">protected_method_defined?</span><span class="p">(</span><span class="n">without_method</span><span class="p">)</span>
+</span><span class='line'>  <span class="kp">protected</span> <span class="n">target</span>
+</span><span class='line'><span class="k">when</span> <span class="nb">private_method_defined?</span><span class="p">(</span><span class="n">without_method</span><span class="p">)</span>
+</span><span class='line'>  <span class="kp">private</span> <span class="n">target</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>シナジーマーケティングさんの、<strong><a href="http://www.techscore.com/blog/2013/02/27/rails-alias_method_chain-%E6%97%A2%E5%AD%98%E3%81%AE%E5%87%A6%E7%90%86%E3%82%92%E4%BF%AE%E6%AD%A3%E3%81%99%E3%82%8B%E5%B8%B8%E5%A5%97%E6%89%8B%E6%AE%B5/">» Rails: alias_method_chain: 既存の処理を修正する常套手段 TECHSCORE BLOG</a></strong>
+がすごくわかりやすい説明を書いて頂けていたので参考にさせて頂きました。有難うございます！</p>
+
+<h2>module#prepend について</h2>
+
+<p><code>module#prepend</code>自体はswitch_pointには出てきませんが、調べていく中でRuby 2.0で導入されたメソッドの<code>module#prepend</code>は<code>alias_method_chain</code>を置き換える事ができるのを知りました。使い方としてはこんな感じ。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">LoggingWithTimestamp</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def log(message)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1"># 呼び出し元のメソッドを呼び出す</span>
+</span><span class='line'><span class="k">super</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s2">] </span><span class="si">#{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Logging</span>
+</span><span class='line'>  <span class="c1"># LoggingWithTimestampのlogが、Loggingのlogメソッドよりも優先して呼ばれる</span>
+</span><span class='line'>  <span class="n">prepend</span> <span class="no">LoggingWithTimestamp</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def log(message)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="n">message</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Logging.new.log(&#39;Hello&#39;) #=&gt; [2015-01-02 12:23:15 +0900] Hello</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><code>include</code>と<code>prepend</code>との使い分けは次の通り。</p>
+
+<pre>
+* include: 新しい機能を追加するために使う
+  * モジュール側のメソッドはクラスのメソッドを上書きできない
+  * クラス側のメソッドはモジュールのメソッドを上書きできる
+
+* prepend: 既存の機能の変更をするために使う
+  * モジュール側のメソッドはクラス側のメソッドを上書きでる
+  * クラス側のメソッドはモジュール側のメソッドを上書きできない
+</pre>
+
+
+<p>こちらもシナジーマーケティングさんのブログ記事『<strong><a href="http://www.techscore.com/blog/2013/01/22/ruby2-0%E3%81%AEmodule-prepend%E3%81%AF%E5%A6%82%E4%BD%95%E3%81%AB%E3%81%97%E3%81%A6alias_method_chain%E3%82%92%E6%92%B2%E6%BB%85%E3%81%99%E3%82%8B%E3%81%AE%E3%81%8B%EF%BC%81%EF%BC%9F/">» Ruby2.0のModule#prependは如何にしてalias_method_chainを撲滅するのか！？</a></strong>』が図解も含めてすごくわかりやすい解説をしてくれています！</p>
+
+<h2>あとがき</h2>
+
+<p>今までなんの気なしに使ってきたライブラリですが、よく読んでみると色々と勉強になる部分が多くあります。
+自分がライブラリ書くときに使えそうなTipsがあってすごい勉強になります！今度はテストとかも読んでみるつもりです！</p>
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://qiita.com/seanchas_t/items/ea47a1eb0969afcac2af">Rubyのdefine_method、class_evalで動的に定義されたメソッドの呼出コストを調べてみた - Qiita</a></p>
+]]></content>
+  </entry>
+  
+</feed>

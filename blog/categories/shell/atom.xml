@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Shell | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/shell/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mosh Mobile SSH - モバイル用に自動再接続してくれるSSH]]></title>
+    <link href="http://morizyun.github.io/blog/mosh-mobile-ssh-reconnect/"/>
+    <updated>2014-08-07T20:20:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/mosh-mobile-ssh-reconnect</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B006H4GA0M/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B006H4GA0M&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B006H4GA0M&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B006H4GA0M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="http://mosh.mit.edu/">Mosh</a></strong>』はモバイル回線など通信が不安定なときにも、SSHをかなり快適にしてくれるアプリです。移動が多い人や、スリープから復旧したときにターミナルの接続が再開されるようにしたい場合などに超オススメです！</p>
+
+<p>「<strong><a href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/">アルバイトを10秒で探せるiPhone/Androidアプリ Short.Works</a></strong>」の開発にもめっちゃ役に立っています！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Moshとは</h2>
+
+<p>Moshはモバイル回線など回線が不安定なときにも、快適にSSHができるツールです。</p>
+
+<pre>
+* IPアドレスが変更されても接続が継続する
+* サーバー接続途中でPCをスリープモード => 復帰でも自動で再開
+* SSHの設定(~/.ssh/config)をそのまま使える
+</pre>
+
+
+<p>などいたれりつくせりなツールです！</p>
+
+<h2>Moshのインストール</h2>
+
+<p>Mac側のインストールはこちら。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install mobile-shell
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>CentOSへのインストールはこちら。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum install mosh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Ubuntuへのインストールはこちら。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo add-apt-repository ppa:keithw/mosh
+</span><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install mosh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>UDPのポート解放</h2>
+
+<p>Moshを使う場合はUDPのポート60000-61000を解放しておく必要があります。
+(実際には1セッションごとに1ポート使うので最大同時接続数が10セッションで足りるなら10個でいいそう)</p>
+
+<p>AWSの場合はセキュリティグループの設定を変更。</p>
+
+<p>iptablesを変更する場合は、</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;centos<span class="o">(</span>redhat系<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vi /etc/sysconfig/iptables&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ubuntu&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;vi /network/if-pre-up.d/iptables
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>として、以下を追加。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>-A RH-Firewall-1-INPUT -p udp -m udp --dport 60000:61000 -j ACCEPT
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>その後に、<code>sudo /etc/init.d/iptables restart</code>でiptablesを再起動。</p>
+
+<h2>接続方法</h2>
+
+<p>まずはいつもどおり、<code>~/.ssh/config</code>にこんなかんじでサーバ設定。
+(SERVER_NAME, SERVER_IP, PORT_NUMBER, SSH_KEY_PATH, USER_NAMEは自分の接続先似あわせて変更)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Host SERVER_NAME
+</span><span class='line'>  Hostname SERVER_IP
+</span><span class='line'>  port PORT_NUMBER
+</span><span class='line'>  IdentityFile ~/.ssh/vps_rsa<span class="o">(</span>SSH_KEY_PATH<span class="o">)</span>
+</span><span class='line'>  User USER_NAME
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>完了したら、以下のコマンドを実行すればsshとほぼ同じように接続できます！</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mosh SERVER_NAME
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ライフハック！</p>
+
+<h2>おまけ: Moshのコネクションをクローズする</h2>
+
+<p>サーバーで以下のコマンドを実行するとMoshのコネクションをクローズできます！</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">kill</span> &lt;code&gt;pidof mosh-server&lt;/code&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>参考: <a href="http://stackoverflow.com/questions/17857733/how-do-i-reattach-to-a-detached-mosh-session">ssh - How do I reattach to a detached mosh session? - Stack Overflow</a></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://qiita.com/somtd@github/items/bb964c77d8aab71e17c4">Sakura VPSにmoshで接続するための設定</a></p>
+
+<p><a href="http://codnex.blogspot.jp/2012/04/mosh.html">moshを使ってリモート接続する</a></p>
+
+<p><a href="http://blog.serverworks.co.jp/tech/2013/06/12/mosh-is-good/">SSHの代わりになるかもしれない「Mosh」を使ってみました</a></p>
+
+<p><a href="https://gist.github.com/mitukiii/2357499">Ubuntu と Mac に mosh 入れてみた</a></p>
+]]></content>
+  </entry>
+  
+</feed>

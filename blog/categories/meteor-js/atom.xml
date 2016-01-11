@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Meteor.js | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/meteor-js/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[JSフレームワーク Meteor 入門 & Heroku デプロイまで]]></title>
+    <link href="http://morizyun.github.io/blog/meteor-heroku-deployment-tips/"/>
+    <updated>2015-10-25T08:45:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/meteor-heroku-deployment-tips</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873117194/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117194&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117194&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873117194" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+10/10に開催された <a href="http://www.meetup.com/de/Meteor-Tokyo/events/225464906/">JavaScript Framework - Meteor のハッカソン</a>
+でいろいろ話を聞いて興味を持ち始めて、<a href="https://www.meteor.com/tutorials/blaze/creating-an-app">Meteorのチュートリアル</a>
+を触って Heroku に push した時に少しハマったのでメモです。</p>
+
+<p>Meteor は簡単に言うとクライアントもサーバーも一緒にJSで書ける、リアルタイムWebアプリケーションのためのフレームワークのようです。
+チュートリアルを触るとわかりますが、SPA(シングルページアプリケーション)が簡単に作れるのは確かに感動ものです。
+その代わりにデメリットとして割り切っている部分も多い印象です。</p>
+
+<p>基本的には Meteor の特徴を理解して、「特徴にマッチする」アプリのアイデアがある時に使うことをオススメします。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Meteor 入門</h2>
+
+<p>Meteor 入門時に参考になりそうなページはこちら。</p>
+
+<ul>
+<li><strong><a href="https://www.meteor.com/tutorials/blaze/creating-an-app">公式チュートリアル(英語)</a></strong></li>
+<li><strong><a href="http://gihyo.jp/dev/serial/01/meteor">体感！JavaScriptで超速アプリケーション開発 －Meteor完全解説</a></strong></li>
+<li><strong><a href="http://docs.meteor.com/#/basic/">公式ドキュメント(英語)</a></strong></li>
+</ul>
+
+
+<h2>Meteor Mac環境構築の手順</h2>
+
+<p>MacのMeteorのインストール手順はこれだけ。</p>
+
+<p><code>bash
+curl https://install.meteor.com/ | sh
+</code></p>
+
+<p>(もしかしたら Node.jsとか、MongoDBのセットアップが必要かも知れません...)</p>
+
+<h2>Heroku への公開</h2>
+
+<p>公式チュートリアルがすごく良く出来ているので今回は、サンプルアプリができた時にHerokuにプッシュする手順を書いておきます。</p>
+
+<p>```bash</p>
+
+<h1>サンプルアプリの作成(チュートリアルを作成済の場合は省略)</h1>
+
+<p>meteor create --example todos</p>
+
+<h1>アプリのプロジェクトフォルダに移動</h1>
+
+<p>cd todos</p>
+
+<h1>git リポジトリの作成</h1>
+
+<p>git init</p>
+
+<h1>git first commit!</h1>
+
+<p>git add . -A
+git commit -m "Sample todos app!"</p>
+
+<h1>一番人気のbuildpackはこちら => https://devcenter.heroku.com/articles/third-party-buildpacks</h1>
+
+<h1>一番人気のbuildpackは、残念ながらnode.jsのバージョンが少し古いので今回はforkしたものを利用</h1>
+
+<h1>(0.10.40が必要だか、0.10.36が指定されている)</h1>
+
+<p>heroku create --buildpack https://github.com/TFarla/heroku-buildpack-meteor.git</p>
+
+<h1>mongolabのアドオンを追加</h1>
+
+<p>heroku addons:create mongolab:sandbox</p>
+
+<h1>MongoDBのURLを設定</h1>
+
+<p>heroku config:add MONGO_URL=<insert_value_of_MONGOLAB_URI_here></p>
+
+<h1>MongoDBのルートURLを設定</h1>
+
+<p>heroku config:add ROOT_URL=<insert_url_created_above_here></p>
+
+<h1>1つのdynoで動かすための設定</h1>
+
+<p>heroku labs:enable http-session-affinity</p>
+
+<h1>Heroku に deploy</h1>
+
+<p>git push heroku master
+```</p>
+
+<p>これで、2015/10/12時点ではうまくいきました。多分、Meteorは頻繁にアップデートがあると思うので動かなかったら、
+<a href="https://twitter.com/zyunnosuke">@zunnosuke</a>に声をかけてください！</p>
+
+<h2>Meteorのサンプルソース</h2>
+
+<p>触り始めたばかりですが、サンプルが結構充実しているので、サンプルを見ながらMeteorの実装を勉強していきたいと思います！</p>
+
+<p>```bash
+meteor create --list
+Available examples:
+  clock
+  leaderboard
+  localmarket
+  simple-todos
+  simple-todos-angular
+  simple-todos-react
+  todos</p>
+
+<h1>こんな感じでサンプルソースを取得できます！</h1>
+
+<p>meteor create clock</p>
+
+<h1>github にはここにあります。</h1>
+
+<p>https://github.com/meteor/meteor/tree/devel/examples
+```</p>
+
+<p>その他 GitHubで気になったリポジトリです。今度じっくり読んでみます。</p>
+
+<ul>
+<li><strong><a href="https://github.com/nate-strauser/wework">wework (Meteor.jsのジョブボード)</a></strong></li>
+<li><strong><a href="https://github.com/DiscoverMeteor/Microscope">DiscoverMeteor/Microscope (電子書籍 Discover Meteorのサンプルソース)</a></strong></li>
+<li><strong><a href="https://github.com/lpatmo/cb">lpatmo/cb (オンライン勉強会の告知サイト)</a></strong></li>
+<li><strong><a href="https://github.com/meteorclub/crater.io">meteorclub/crater.io (Meteor, React, Nodeのソーシャルブックマークサイト)</a></strong></li>
+<li><strong><a href="https://github.com/scotch-io/meteor-slack">scotch-io/meteor-slack (Meteor.jsのSlack Clone。英語解説記事あり)</a></strong></li>
+</ul>
+
+
+<h2>リンク集</h2>
+
+<ul>
+<li>WebRTCを使ったAndroidチャットアプリの紹介記事
+
+<ul>
+<li><strong><a href="http://codezine.jp/article/detail/8872">CrosswalkとMeteor.jsでチャットアプリを作成してみよう</a></strong></li>
+</ul>
+</li>
+<li>電子書籍(Webページあり)
+
+<ul>
+<li><strong><a href="http://ja.discovermeteor.com/">Discover Meteor(日本語ですが、翻訳がまばら)</a></strong></li>
+</ul>
+</li>
+<li>リンク集
+
+<ul>
+<li><strong><a href="https://github.com/ericdouglas/Meteor-Learning">ericdouglas/Meteor-Learning - GitHub</a></strong></li>
+</ul>
+</li>
+<li>ノウハウ集
+
+<ul>
+<li><strong><a href="https://github.com/oortcloud/unofficial-meteor-faq">非公式FAQ (英語、少し情報が古めです)</a></strong></li>
+</ul>
+</li>
+<li>PodCast
+
+<ul>
+<li><strong><a href="https://meteorjs.club/">Meteor Club (英語ですが、MeteorのPodcastを配信)</a></strong></li>
+</ul>
+</li>
+<li>パッケージの調査
+
+<ul>
+<li><strong><a href="https://atmospherejs.com/">Atmosphere (パッケージの検索サイト)</a></strong></li>
+<li><strong><a href="http://qiita.com/n-oshiro/items/580a58d29514c0f6b7a0">個人的にMeteorでよく使うパッケージのチートシート - Qiita</a></strong></li>
+</ul>
+</li>
+</ul>
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Speical Thanks</h2>
+
+<ul>
+<li><strong><a href="http://d.hatena.ne.jp/naoya/20120422/1335109615">Meteor.js - naoyaのはてなダイアリー</a></strong></li>
+<li><strong><a href="http://qiita.com/m0a/items/cf7a57face7a0e264881">リアルタイムWebアプリケーションフレームワークMeteorについて</a></strong></li>
+<li><strong><a href="http://qiita.com/tadfmac/items/a63bb85e5cfb12bbbfc8">JavaScript超初心者向け Meteor メモ (1)</a></strong></li>
+<li><strong><a href="http://qiita.com/kobarei/items/c2df840bc02391e907a1">MeteorをHerokuにデプロイする</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Meteor.js で 健康管理用のチェックリストアプリ healthack.me 作ってみた]]></title>
+    <link href="http://morizyun.github.io/blog/healthack-meteor-sample-application/"/>
+    <updated>2015-10-22T22:15:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/healthack-meteor-sample-application</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/1617292478/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=1617292478&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=1617292478&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=1617292478" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />先週から引き続いて、 <strong><a href="https://www.meteor.com/">Meteor.js</a></strong> を触っています。
+今回は主に Meteor.js の勉強を目的に、健康管理用のチェックリストアプリ <strong><a href="http://healthack.morizyun.com">healthack.me</a></strong> を作ってみました！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>動機</h2>
+
+<p><a href="http://healthack.morizyun.com"><img src="https://farm1.staticflickr.com/652/22197382029_79ee7dd411_z.jpg" width="640" height="411"></a></p>
+
+<p>最近買ったサプリメントが体に合わなかったみたいで、本当に数日間動けないという出来事がありました。健康の大切さを思い知らされました。
+そもそものサプリ買った動機は、年をとっても効率的にコードを書き続けたいという、おっさんプログラマーの切なる願いでした。
+ということで作り始めたばかりですが、「<strong><a href="http://healthack.morizyun.com">healthack.me</a></strong>」を宜しくお願いします。</p>
+
+<h2>機能</h2>
+
+<p>基本的には、</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>meteor create --example todos
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>って言ってできたアプリから、少しずつカスタマイズしていきました。
+機能としては次のようなものがあります。</p>
+
+<pre>
+* 未ログイン時のトップページ
+* 新規ユーザー登録
+* メールアドレスでのログイン機能
+* 初回ログイン時にデフォルトのリストを登録
+* リストのCRUD
+* リスト内のタスクのCRUD、
+* タスクのチェックは毎日自動でリセット
+</pre>
+
+
+<h2>Meteor.jsの感想</h2>
+
+<p>JavaScript は苦手意識がすごく強かったですが、思ったよりもJavaScriptって素直でいいやつな印象です。
+ただnpmライブラリの効率的な利用方法とか、SPAアプリの作り方とか、Meteor.jsっぽい書き方とかまだ勉強すべき点が山積みな印象です。
+少しずつ勉強しながら、ブログに残していきたいと思っています。</p>
+
+<h2>Meteor.jsの得意分野を上手く活かせるようになりたい</h2>
+
+<p>Meteor.jsは苦手分野と得意分野がはっきりしているような気がします。
+トレードオフを理解してメリットを最大限生かしていくことが大切な気がする。
+そのためにもちゃんと最低限使いこなせるようになりたいものです。</p>
+
+<p>あと、NodeやJavaScriptのエコシステムは素晴らしいのでぜひ仲良くしていきたいです。</p>
+
+<pre>
+- Electronと上手くつなぎあわせてデスクトップアプリを作る
+- Cordva + ionic とつなぎあわせてスマホアプリを作る
+- Amazon Lambda もJSつかえるようになったよね
+- Chrome extension とかも上手くつなぎ込めないかな
+</pre>
+
+
+<h2>ソースコード</h2>
+
+<p>正直見せるレベルに無いですが、せっかくなので公開しておきます。</p>
+
+<p><strong><a href="https://github.com/morizyun/healthack">morizyun/healthack - GitHub</a></strong></p>
+
+<p>勉強中なので、まずいとことかあったら issue で教えてほしいです。</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+</feed>

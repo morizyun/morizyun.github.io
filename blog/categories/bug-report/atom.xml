@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bug-Report | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/bug-report/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[BugSense iOS向けのバグレポート・サービス[Objetive-C]]]></title>
+    <link href="http://morizyun.github.io/blog/bugsense-crash-report-objective-c-cocoapods/"/>
+    <updated>2014-08-09T21:10:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/bugsense-crash-report-objective-c-cocoapods</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4839951977/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839951977&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839951977&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839951977" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+iPhoneアプリのユーザーテストを行うにあたってクラッシュ・レポートを取りやすくするために、『<strong><a href="https://www.bugsense.com/pricing">BugSense</a></strong>』を導入してみました。
+500エラーまでは無料。25000エラー/月までは$19なので、スタートアップには良さそう。</p>
+
+<p>あとクラッシュレポート系のサービスをいくつか試してみましたが、一番ちゃんとレポートをキャッチされたのも好印象でした！
+(Objective-C初心者なので、僕の設定がまずいだけの可能性がかなり高いデス<sup>^;)</sup></p>
+
+<p>「<strong><a href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/">アルバイトを10秒で探せるiPhone/Androidアプリ Short.Works</a></strong>」で、ユーザーテストをするときに大活躍する予定っす！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>BugSenseにユーザー登録/アプリ登録</h2>
+
+<p>『<strong><a href="https://www.bugsense.com/">BugSense</a></strong>』のサイトからユーザー登録。</p>
+
+<p>ユーザー登録が完了すると、アプリを登録する画面がでます。そこでAPI_KEY(コード)がでるのでメモっておいてください。</p>
+
+<h2>Podfileへの追記</h2>
+
+<p><code>Podfile</code>に以下の内容を追記して、<code>pod install</code>を実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="s1">&#39;BugSense&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>コード側への追記</h2>
+
+<p><code>AppDelegate.m</code>に以下ようにコードを追記。BugSense_API_KEYに先ほど出たAPI_KEYを記入。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;import &amp;lt;BugSense-iOS/BugSenseController.h&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;<span class="o">(</span>BOOL<span class="o">)</span> application:<span class="o">(</span>UIApplication &lt;em&gt;<span class="o">)</span>application didFinishLaunchingWithOptions:<span class="o">(</span>NSDictionary &lt;/em&gt;<span class="o">)</span>launchOptions <span class="o">{</span>
+</span><span class='line'><span class="o">[</span>BugSenseController sharedControllerWithBugSenseAPIKey:@<span class="s2">&quot;BugSense_API_KEY&quot;</span><span class="o">]</span>;
+</span><span class='line'><span class="k">return </span>YES;
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+</ul>
+
+
+<h2>レポートのテスト</h2>
+
+<p>実際にクラッシュしそうなコードをどこかに追記します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>// クラッシュ・テストコード
+</span><span class='line'>NSArray *array <span class="o">=</span> <span class="o">[</span>NSArray array<span class="o">]</span>;
+</span><span class='line'>id <span class="nv">data</span> <span class="o">=</span> array<span class="o">[</span>0<span class="o">]</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>あとは普通にビルドじて実行して、クラッシュすると数分待つとWeb側にレポートが表示されます。</p>
+
+<p><img src="https://farm6.staticflickr.com/5580/14866292585_363739c6b4_z.jpg" width="640" height="352" alt="スクリーンショット_2014-08-09_19_37_35"></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<p><a href="http://qiita.com/asakahara/items/7c890668a709abb949cf">iPhone - Crash Report解析サービスのBugSenseを試してみた - Qiita</a></p>
+
+<p><a href="http://www.atmarkit.co.jp/ait/articles/1407/10/news027_2.html">iOSアプリ開発でもCI／継続的デリバリしようぜ（5）：アプリのクラッシュリポートを統計解析できるBugSenseの使い方 (2/3) - ＠IT</a></p>
+
+<p><a href="http://blog.katty.in/5842">クラッシュ分析ツールBugSenseでアプリのバグの原因を突き止める。 | 三度の飯とエレクトロン</a></p>
+]]></content>
+  </entry>
+  
+</feed>

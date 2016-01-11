@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: GitHub | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SSH認証キーをBitbucket/GitHubに設定しよう！ [Mac簡単手順]]]></title>
+    <link href="http://morizyun.github.io/blog/ssh-key-bitbucket-github/"/>
+    <updated>2014-04-11T22:30:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/ssh-key-bitbucket-github</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/477415184X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=477415184X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ecx.images-amazon.com/images/I/51I5ZLcWDaL._SS500_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=477415184X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />BitbucketやGitHubのGitリポジトリにアクセスではSSH認証キーを使うことができます。このSSH認証キーを使ったアクセスのメリットは次の通りです。</p>
+
+<pre>
+* Pushするときにいちいちパスワードを打つ必要がなくなる
+* セキュリティが向上する
+</pre>
+
+
+<p>今回はMacでSSH認証のための公開鍵と秘密鍵を生成して、GitHubやBitbucketに公開鍵を登録して、SSHでアクセスできるようにするまでの設定手順をできるだけわかりやすく書いていきます。もし、詰まった点とかあればコメントお願いします！</p>
+
+<p><strong>(04/11 22:30) 前回の修正でミスってた部分を修正</strong></p>
+
+<!-- more -->
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>流れ</h2>
+
+<p>SSH認証キーの設定の流れは次の通りです。</p>
+
+<pre>
+(1) SSH認証の公開鍵と秘密鍵を作成
+(2) Mac側(クライアント側)へのSSHキーの設定
+(3) Bitbucketへの公開鍵の登録
+(4) GitHubへの公開鍵の登録
+</pre>
+
+
+<h2>(1) SSH認証の公開鍵と秘密鍵を作成</h2>
+
+<p>コンソールでssh keyを作成していきます。ここではのちのち躓くのをふぐためにパスフレーズを省略したSSH鍵を作成していきます。</p>
+
+<p>こちらが作成の注意点。</p>
+
+<pre>
+* <code>test@example.com</code>の部分に自分のメアドを登録 
+* 途中でパスフレーズ(passphrase)をきかれるが、Enterを押すだけ
+</pre>
+
+
+<p>コンソールでSSH Keyを作成するコマンドはこちら。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/.ssh
+</span><span class='line'>ssh-keygen -t rsa -C <span class="nb">test</span>@example.com
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>鍵の生成が完了したら2つのファイルができます。</p>
+
+<pre>
+id_rsa: 秘密鍵、他人には見られないようにする
+id_rsa.pub: 公開鍵、Bitbucket/GitHubに渡す
+</pre>
+
+
+<p>秘密鍵の<code>id_rsa</code>のセキュリティを強化するために以下のコマンドを実行します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod 600 id_rsa
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>鍵作成は以上です。</p>
+
+<h2>(2) Mac側(クライアント側)へのSSHキーの設定</h2>
+
+<p>鍵の管理を簡単にするために、~/.ssh/configに設定を追加します。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim ~/.ssh/config
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>~/.ssh/configのファイルの末尾に以下の内容を追加してください。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Host bitbucket.org
+</span><span class='line'>  HostName bitbucket.org
+</span><span class='line'>  IdentityFile ~/.ssh/id_rsa
+</span><span class='line'>  User git&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Host github
+</span><span class='line'>  HostName github.com
+</span><span class='line'>  IdentityFile ~/.ssh/id_rsa
+</span><span class='line'>  User git
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>(3) Bitbucketへの公開鍵の登録</h2>
+
+<p>ブラウザで<a href="https://bitbucket.org/">Bitbucket</a>にアクセスしてユーザー登録/ログインしてください。</p>
+
+<p>トップページの右上の人のアイコン => Manage Accountをクリック。</p>
+
+<p><a href="https://bitbucket.org/" title="bitbucket_header_menu_2012-11-24 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8069/8213207153_50879c37ed_c.jpg" width="800" height="175" alt="bitbucket_header_menu_2012-11-24"></a></p>
+
+<p>左側のメニューの「SSH keys」 => 「Add key」を選択。</p>
+
+<p><a href="https://bitbucket.org/" title="bitbucket_add_ssh_key_20121124 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8479/8214294928_b7a79830d1_c.jpg" width="800" height="190" alt="bitbucket_add_ssh_key_20121124"></a></p>
+
+<p>ssh keyファイルをクリップボードにコピーするために、コンソールで以下のコマンドを実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pbcopy &amp;lt; ~/.ssh/id_rsa.pub
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Label名を管理しやすい名前で登録。bitbuketのkeyのフォームにクリップボードから貼り付け => add keyをクリック。</p>
+
+<p><a href="https://bitbucket.org/" title="bitbucket_modal_add_ssh_key-20121124 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8202/8213207075_babd9aa30e_c.jpg" width="800" height="501" alt="bitbucket_modal_add_ssh_key-20121124"></a></p>
+
+<p>これで、ssh keyをbitbucketに登録できました。</p>
+
+<h2>(4) GitHubへの公開鍵の登録</h2>
+
+<p>ブラウザで<a href="https://github.com/">GitHub</a>にアクセスしてユーザー登録/ログインしてください。</p>
+
+<p>トップページの右上の道具のアイコン(Account settings)をクリック。</p>
+
+<p><a href="https://github.com/" title="github_header_menu_admin_2012-11-24 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8061/8214294166_71123af65e_c.jpg" width="800" height="124" alt="github_header_menu_admin_2012-11-24"></a></p>
+
+<p>左側のメニューの「SSH keys」 => 「Add key」を選択。</p>
+
+<p><a href="https://github.com/" title="github_select_add_SSH_Keys_20121124 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8061/8213206469_d7942a8593_c.jpg" width="800" height="445" alt="github_select_add_SSH_Keys_20121124"></a></p>
+
+<p>フォームのTitleにssh keyの名前をセットして、コンソールで以下のコマンドを実行。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pbcopy &amp;lt; ~/.ssh/id_rsa.pub
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>このコマンドでコンソールからクリップボードにsshキーの中身がコピーされます。
+そして、keyのところにクリップボードから貼り付け => add keyをクリック。</p>
+
+<p><a href="https://github.com/)" title="github_set_SSH_Keys_20121124 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8069/8213206275_87876d18d9_c.jpg" width="800" height="530" alt="github_set_SSH_Keys_20121124"></a></p>
+
+<p>これで、ssh keyをGitHubに登録できました。</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>補足: GitHubで複数アカウントにssh接続するための手順</h2>
+
+<p>GitHubで複数アカウントを持っていて、CUIで使い分けるための手順が<strong><a href="http://dev.classmethod.jp/tool/github-ssh-sub-account-setting/">クラスメソッドさんのブログ</a></strong>の中にありました。よければぜひご検討ください！</p>
+
+<h2>補足: SSH鍵/フォルダのパーミッション</h2>
+
+<p>毎回忘れるのでメモ。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod 700 ~/.ssh
+</span><span class='line'>chmod 600 ~/.ssh/id_rsa
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>このテーマに関連するオススメ本</h2>
+
+<p><a href="http://www.amazon.co.jp/gp/product/477415184X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=477415184X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ecx.images-amazon.com/images/I/51I5ZLcWDaL._SS500_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=477415184X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><strong><a href="http://www.amazon.co.jp/gp/product/477415184X/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=477415184X&amp;linkCode=as2&amp;tag=morizyun00-22">Git ポケットリファレンス</a></strong>はGitやGitHubでの開発をする際に机の上においておくとほんとうに役に立ちます。特に本の中のチートシートが便利です！</p>
+
+<pre>
+* Git作業フロー&コマンド チートシート
+* GitHub作業フロー&コマンド・設定 チートシート
+</pre>
+
+
+<p>このチートシートだけでもこの本を買う価値は十二分にあります！</p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="https://twitter.com/ironsand/">テツさん</a></strong>にコメントを頂いて、記述ミスを修正出来ました。ほんとうに有難いです！</p>
+
+<p><a href="http://www.pistolfly.jp/weblog/2007/02/ssh.html">SSHで公開鍵認証を使う</a></p>
+
+<h2>変更来歴</h2>
+
+<p>12/12/06 17:45 メモ：パスフレーズ入力の省略を追加<br/>
+12/12/12 21:00 メモ: SSH鍵/フォルダのパーミッションを追加<br/>
+13/05/06 17:30 フォルダ名の記述ミスを修正<br/>
+13/08/19 17:00 記述ミスが散見されたため、書き直し
+14/01/25 13:30 わかりにくかった部分をヒアリングして書き直し
+14/04/11 22:30 前回の修正でミスってた部分を修正</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bookmark | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/bookmark/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[2/27 エンジニア向け厳選ブックマーク]]></title>
+    <link href="http://morizyun.github.io/blog/Feb-27-selected-bookmarks/"/>
+    <updated>2014-02-27T23:30:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/Feb-27-selected-bookmarks</id>
+    <content type="html"><![CDATA[<p>2014/02/27に気になったブックマークの一覧です。</p>
+
+<h2>ワッツアップ創業者の半生</h2>
+
+<p><strong><a href="http://www.nikkei.com/article/DGXNASFK2500L_V20C14A2000000/?dg=1">フェイスブックに２兆円で買われた男　波乱の半生 </a></strong><br/>
+米ワッツアップ創業者のヤン・クーム（37歳）の半生の記事。これは本当に感動しました！</p>
+
+<h2>Googleが提供する初等統計学コース</h2>
+
+<p><strong><a href="http://jp.techcrunch.com/2014/02/27/20140226google-announces-an-online-data-interpretation-class-for-the-general-public/">GoogleがedXと組んでMOOCを展開か？: 一般大衆向け初等統計学コースをまず無料で提供</a></strong><br/>
+Googleが、調査や研究などの結果を表す統計データの理解の仕方を一般大衆に教えるMOOCのコース“Making Sense of Data”（データを理解する）を開始！登録しました！</p>
+
+<h2>初心者エンジニア向けのプログラム</h2>
+
+<p><strong><a href="http://tech.vasily.jp/2014/02/recipe_for_engineer/">たった9日間で戦力となるウェブエンジニアになれる７ステップ</a></strong><br/>
+理系的素養は有るけれどもウェブ経験が全く無い学生インターンが、9日間で立派なウェブ系エンジニア になるまでのポイントまとめ！</p>
+
+<h2>Rails Best Practice</h2>
+
+<p><strong><a href="http://robots.thoughtbot.com/emberjs-with-a-separate-rails-api">EmberJS with a Separate Rails API</a></strong><br/>
+EmberJS + Rails API ネタ</p>
+
+<h2>Objective-C 初心者向け</h2>
+
+<p><strong><a href="http://dev.classmethod.jp/study_meeting/yxcm-epilogue/">【iOS勉強会】ヤフー vs クラスメソッド epilogue of classmethod</a></strong><br/>
+iOSアプリ開発者による7つのテーマについての対決形式の勉強会のスライドまとめ。初心者向けのスライドも充実！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2/25 エンジニア向け厳選ブックマーク]]></title>
+    <link href="http://morizyun.github.io/blog/Feb-25-selected-bookmarks/"/>
+    <updated>2014-02-25T23:30:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/Feb-25-selected-bookmarks</id>
+    <content type="html"><![CDATA[<p>2014/02/25に気になったブックマークの一覧です。</p>
+
+<h2>Elasticsearch</h2>
+
+<p><strong><a href="http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch - Wantedly Engineer Blog</a></strong><br/>
+検索のためのインデックスを作成してくれるオープンソースです。この入門〜導入までの丁寧な解説。興味がある人には是非読んで欲しい記事！</p>
+
+<h2>Ruby 2.1.1 Macインストール手順</h2>
+
+<p><strong><a href="http://qiita.com/shu_0115/items/9efb4b060f465cde0ff2">Ruby 2.1.1インストール</a></strong><br/>Ruby 2.1.0のバグフィックス版、「2.1.1」がリリースされました。Macのインストール手順です。</p>
+
+<h2>Ruby Gem</h2>
+
+<p><strong><a href="https://github.com/square/cane">square/cane</a></strong><br/>
+コード品質のチェックをビルドプロセスの中で行ってくれるgem</p>
+
+<p><strong><a href="https://github.com/davispuh/TimezoneParser">TimezoneParser
+</a></strong><br/>タイムゾーンのParse、ローカルのタイムゾーンの自動認識などを行ってくれるLibrary。</p>
+
+<h2>Rails Code Sample</h2>
+
+<p><strong><a href="http://blog.n-z.jp/blog/2014-02-25-autopagerize-kaminari-ransack.html">autopagerizeのような動作をkaminariとransackを使った環境で実装した</a></strong><br/>
+ページごとに分けられたWebページを自動で読み込み継ぎ足し表示を行うAutoPagerizeのような機能をkaminariとransackで実装する手順です。</p>
+
+<h2>Rails Controller向けのRSpec</h2>
+
+<p><strong><a href="http://pivotallabs.com/writing-rails-engine-rspec-controller-tests/?tag=pairing">writing Rails engine rspec controller tests - Pivotal Labs</a></strong><br/>
+Rails Controller向けのRSpecのルーティングのエラー対策について。</p>
+
+<h2>AWS DynamoDB (NoSQL)</h2>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/12509631" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/AmazonWebServicesJapan/20120409-aws-meisterreloadeddynamodb-12509631" title="20120409 aws meister-reloaded-dynamo-db" target="_blank">20120409 aws meister-reloaded-dynamo-db</a> </strong> from <strong><a href="http://www.slideshare.net/AmazonWebServicesJapan" target="_blank">Amazon Web Services Japan</a></strong> </div></p>
+
+<h2>CookPadのUI/UXについてのスライド</h2>
+
+<script async class="speakerdeck-embed" data-id="5a7a1b703fe5013162063a28d6c1e062" data-ratio="1.33333333333333" src="http://morizyun.github.io//speakerdeck.com/assets/embed.js"></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2/24 厳選エンジニア向けブックマーク]]></title>
+    <link href="http://morizyun.github.io/blog/Feb-24-selected-bookmarks/"/>
+    <updated>2014-02-24T23:30:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/Feb-24-selected-bookmarks</id>
+    <content type="html"><![CDATA[<p>2014/02/24に気になったブックマークの一覧です。</p>
+
+<h2>新サービス</h2>
+
+<p><strong><a href="https://catmdes.com/features/performance-test/">無料パフォーマンステスト | 負荷テスト</a></strong><br/>
+URLだけわかれば、後は自動で負荷テストを行ってくれるサービス。これはかなり面白そう！</p>
+
+<p><strong><a href="http://layzie.hatenablog.com/entry/20140224/1393181968">Gitterが一般βになったので早速やってみたんだけど、ムッチャ感動するレベルだった</a></strong><br/>
+GitHubのリポジトリやOrganizationごとにチャットルームを作成することができるツール『Gitter』の紹介記事。そのリポジトリの活動状況をチャットルームに簡単に表示することができるそうです。</p>
+
+<h2>無料・電子書籍</h2>
+
+<p><strong><a href="http://it-ebooks.info/book/1504/">Rails AntiPatterns</a></strong><br/>
+全311ページに及ぶ、Railsリファクタリングのベスト・プラクティスがマトメられた無料の電子書籍です。英語ですが、読む価値がある素晴らしいコンテンツです！</p>
+
+<h2>Objective-C / iOS</h2>
+
+<p><strong><a href="http://qiita.com/appwatcher/items/07a3babcb9b6cefb307e">iOSの開発をする上で絶対に使うべき！外せない！webサービス、開発ツール集 - Qiita</a></strong><br/>
+殿堂入りレベルのObjective-C / iOSに関する記事。素晴らしい！</p>
+
+<h2>Javascript</h2>
+
+<p><strong><a href="http://qiita.com/snknsk/items/8867446dd0e4e2f816a2">ソーシャル投稿ボタンのクリックのcallbackをJS から知る方法</a></strong><br/>
+自分のサイトに設置したTwitter/Facebook/Google+などのボタンから投稿した後のCallbackを取得するための方法のマトメ。Google Analyticsでtrackingする方法や、Facebookクローラについての記述もあり。</p>
+
+<h2>CUI ツール</h2>
+
+<p><strong><a href="http://qiita.com/suino/items/b0dae7e00bd7165f79ea">tigでgitをもっと便利に！ addやcommitも</a></strong><br/>
+CUIでgitを操作する際に欠かせないツール『<strong>tig</strong>』のTips的な記事。</p>
+]]></content>
+  </entry>
+  
+</feed>

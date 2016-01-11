@@ -1,0 +1,3722 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Analyze | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/analyze/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[【書評: 入門統計学 検定から多量変数解析・実験計画法まで】基礎固めに最適！]]></title>
+    <link href="http://morizyun.github.io/blog/nyumon-toukeigaku-kurihara-shinichi-book-review/"/>
+    <updated>2014-03-31T13:40:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/nyumon-toukeigaku-kurihara-shinichi-book-review</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4274068552/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274068552&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274068552&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274068552" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="/blog/statistics-understand-first-book-review/">統計学がわかる</a></strong>』を読んで基礎の中の基礎が少しずつわかってきたので、ステップアップを目指して『<strong><a href="http://www.amazon.co.jp/gp/product/4274068552/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4274068552&amp;linkCode=as2&amp;tag=morizyun00-22">入門統計学 検定から多量変数解析・実験計画法まで</a></strong>』を読み始めました。この本は、推測統計についてわかりやすく、実践的に解説しているテキストです。数式の説明もかなり丁寧に書かれており、統計学の理解を深めるための工夫が随所に凝らされています。</p>
+
+<p>今回はこの本の中で、特に勉強になった部分を中心にメモを書いておきます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>1章: データ整理(記述的統計学)</h2>
+
+<p>記述的統計学とは、実験や調査で集めたデータの特性を明らかにするために平均やばらつき、分布などをもとめて整理する学問。</p>
+
+<h3>キーワード</h3>
+
+<pre>
+# 量的データ
+* 比率データ(比率尺度) : +-*/ : 質量、長さ、年齢、時間、金額
+* 間隔データ(間隔尺度) : +-   : 温度(摂氏)、知能指数
+
+# 質的データ
+* 順位データ(順序尺度) : >= : 満足度、選好度、硬度
+* カテゴリデータ(名義尺度) : 度数カウント : 電話番号、性別、血液型
+
+# 連続変量
+=> 重さや長さなどもともと区別されていないデータ
+
+# 離散変量
+=> 疾病件数や農家戸数などはじめから区別されているデータ
+
+# 変動係数
+=> 標準偏差/平均。英語ではCoefficeient of Variation。ばらつきの相対比較に使える
+
+# 相関係数
+=> キュウリは長いほど重い。つまり、「重さ」と「長さ」には正の相関関係がある。相関係数は -1 < r < 1。-1に近づくほど負の相関関係があり、0は相関関係なし、1に近づくほど正の相関関係がある。
+</pre>
+
+
+<h3>例題・章末問題をやってみた</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;例題1-2&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;parent_height &amp;lt;- c<span class="o">(</span>185.0,169.1,166.2,160.1,166.6,172.1,180.5,169.1,170.9,160.0,168.2,175.5<span class="o">)</span>
+</span><span class='line'>child_height  &amp;lt;- c<span class="o">(</span>183.0,167.4,171.0,164.2,173.9,177.0,179.3,172.0,170.6,166.3,170.0,173.0<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sums <span class="o">=</span> 0.0
+</span><span class='line'><span class="k">for</span> <span class="o">(</span>i in 1:12<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="nv">sums</span> <span class="o">=</span> sums + <span class="o">(</span>parent_height<span class="o">[</span>i<span class="o">]</span> - mean<span class="o">(</span>parent_height<span class="o">))</span>*<span class="o">(</span>child_height<span class="o">[</span>i<span class="o">]</span> - mean<span class="o">(</span>child_height<span class="o">))</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>sums/<span class="o">(</span>sqrt<span class="o">(</span>sum<span class="o">((</span>parent_height - mean<span class="o">(</span>parent_height<span class="o">))</span>&lt;sup&gt;2<span class="o">))</span>*sqrt<span class="o">(</span>sum<span class="o">((</span>child_height&lt;/sup&gt; - mean<span class="o">(</span>child_height<span class="o">))</span>&lt;sup&gt;2<span class="o">)))</span>&lt;/sup&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 0.8958307&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;章末&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問1: データの測定尺度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;a<span class="o">)</span> 植物の成長速度 <span class="o">=</span>&gt; 間隔データ
+</span><span class='line'>b<span class="o">)</span> 植物の病気の有無 <span class="o">=</span>&gt; 名義尺度
+</span><span class='line'>c<span class="o">)</span> 絶対温度<span class="o">(</span>熱力学温度<span class="o">)</span> <span class="o">=</span>&gt; 比率尺度
+</span><span class='line'>d<span class="o">)</span> 農家のやりがい、アンケートでの5段階評価 <span class="o">=</span>&gt; 順序尺度
+</span><span class='line'>e<span class="o">)</span> カレンダーの日付 <span class="o">=</span>&gt; 間隔尺度&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問2&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;a<span class="o">)</span> 度数分布表、ヒストグラム&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sales &amp;lt;- c<span class="o">(</span>400,15,480,993,600,150,115,50,0,130,3000,500,200,55,2200,1,900,1000,450,400<span class="o">)</span>
+</span><span class='line'>area  &amp;lt;- c<span class="o">(</span>60,30,365,190,136,15,37,100,170,70,783,560,50,35,595,200,300,356,155,250<span class="o">)</span>
+</span><span class='line'>table<span class="o">(</span>area<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;area&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;15  30  35  37  50  60  70 100 136 155 170 190 200 250 300 356 365 560 595 783&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;hist<span class="o">(</span>area<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="https://farm4.staticflickr.com/3815/13529553134_779304c5d6.jpg" width="500" height="359" alt="Rplot"></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;b<span class="o">)</span> 平均、分散、標準偏差、変動係数&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">(</span>sales<span class="o">)</span> <span class="c">#=&gt; 581.95</span>
+</span><span class='line'>var<span class="o">(</span>sales<span class="o">)</span>  <span class="c">#=&gt; 596000.5</span>
+</span><span class='line'>sd<span class="o">(</span>sales<span class="o">)</span>   <span class="c">#=&gt; 772.0107</span>
+</span><span class='line'>sd<span class="o">(</span>sales<span class="o">)</span>/mean<span class="o">(</span>sales<span class="o">)</span> <span class="c">#=&gt; 1.326593&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">(</span>area<span class="o">)</span> <span class="c">#=&gt; 222.85</span>
+</span><span class='line'>var<span class="o">(</span>area<span class="o">)</span>  <span class="c">#=&gt; 45903.82</span>
+</span><span class='line'>sd<span class="o">(</span>area<span class="o">)</span>   <span class="c">#=&gt; 214.2518</span>
+</span><span class='line'>sd<span class="o">(</span>area<span class="o">)</span>/mean<span class="o">(</span>area<span class="o">)</span> <span class="c">#=&gt; 0.9614169&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;c<span class="o">)</span> 相関係数&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cor<span class="o">(</span>sales, area, <span class="nv">method</span><span class="o">=</span><span class="s2">&quot;pearson&quot;</span><span class="o">)</span> <span class="c">#=&gt; 0.840888&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;こんな方法もある&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;cor<span class="o">(</span>sales, area, <span class="nv">method</span><span class="o">=</span><span class="s2">&quot;spearman&quot;</span><span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;cor<span class="o">(</span>sales, area, <span class="nv">method</span><span class="o">=</span><span class="s2">&quot;kendall&quot;</span><span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問3&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;data1 &amp;lt;- c<span class="o">(</span>2, 4, 5, 7<span class="o">)</span>
+</span><span class='line'>data2 &amp;lt;- c<span class="o">(</span>2, 4, 5, 70<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;算術平均&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">(</span>data1<span class="o">)</span> <span class="c">#=&gt; 4.5</span>
+</span><span class='line'>mean<span class="o">(</span>data2<span class="o">)</span> <span class="c">#=&gt; 20.25&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;幾何平均&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;source<span class="o">(</span><span class="s2">&quot;http://aoki2.si.gunma-u.ac.jp/R/src/univariate.R&quot;</span>, <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;euc-jp&quot;</span><span class="o">)</span>
+</span><span class='line'>geomean<span class="o">(</span>data1<span class="o">)</span> <span class="c">#=&gt; 4.090623</span>
+</span><span class='line'>geomean<span class="o">(</span>data2<span class="o">)</span> <span class="c">#=&gt; 7.274272&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;比較&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">(</span>data1<span class="o">)</span> &gt; geomean<span class="o">(</span>data1<span class="o">)</span>
+</span><span class='line'>mean<span class="o">(</span>data2<span class="o">)</span> &gt; geomean<span class="o">(</span>data2<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 突出して大きな値があっても幾何平均は大きな影響を受けない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Speical Thanks</h3>
+
+<p><strong><a href="http://aoki2.si.gunma-u.ac.jp/R/univariate.html">R -- Excel にある一変量統計関数</a></strong></p>
+
+<h2>2章: 確率分布</h2>
+
+<p>確率分布とは、確率変数のそれぞれの値、その発生確率との対応を示したもの。代表的なものとしては、一様分布や正規分布、カイ二乗分布などがある。</p>
+
+<h3>キーワード</h3>
+
+<pre>
+# 確率分布
+## 離散型
+* 一様分布: 発生確率が一定の事象の分布(サイコロの目など)
+* 二項分布: n回のベルヌーイ試行の成功回数xの分布
+(同時に複数個のサイコロを投げる、複数個の製品に含まれる不良品数など)
+* ポアソン分布: 稀にしか起こらない事象の発生回数の分布
+(1日に受け取る電子メールの件数)
+
+## 連続型
+* 正規分布: 試行回数nが大きいときの二項分布の近似分布(身長、体重などの自然現象)
+* 標準正規分布: 標準化(平均0, 分散1)した分布。z分布と同義。
+* 対数正規分布: 変数xの対数が正規分布となる
+* t分布: 母分散の代わりに不偏分散を使った分布
+* カイ二乗分布: 自由度(標本数)に応じて決まる分布
+* F分布: 2つの母集団から持ってきたカイ二乗、もしくは不偏分散の比による分布
+</pre>
+
+
+
+
+<pre>
+ベルヌーイ試行: AかBのどちらかしか起こらないような事象(コインの表裏など)
+不偏分散: 標本から算出する母分散の推定量
+</pre>
+
+
+<h3>例題・章末問題をやってみた</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題: 標準化&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;saibai_a &amp;lt;- c<span class="o">(</span>3063, 2275, 2089, 2855, 2836, 3219, 2817, 2136, 2540, 2263, 2140, 1757, 2499, 2093, 2073<span class="o">)</span>
+</span><span class='line'>saibai_b &amp;lt;- c<span class="o">(</span>3157, 2707, 3270, 3181, 3633, 3404, 2219, 2730, 3408, 3203, 2938, 3286, 2920, 3332, 3478<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標準化&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sai_a_sca &amp;lt;- scale<span class="o">(</span>saibai_a<span class="o">)[</span>,<span class="o">]</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;平均<span class="o">(</span>小数点下3桁で四捨五入<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;round<span class="o">(</span>mean<span class="o">(</span>sai_a_sca<span class="o">)</span>, <span class="nv">digits</span><span class="o">=</span>3<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;分散&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;var<span class="o">(</span>sai_a_sca<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;  1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標準偏差&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sd<span class="o">(</span>sai_a_sca<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標準化&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sai_b_sca &amp;lt;- scale<span class="o">(</span>saibai_b<span class="o">)[</span>,<span class="o">]</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;平均<span class="o">(</span>小数点下3桁で四捨五入<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;round<span class="o">(</span>mean<span class="o">(</span>sai_b_sca<span class="o">)</span>, <span class="nv">digits</span><span class="o">=</span>3<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;分散&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;var<span class="o">(</span>sai_b_sca<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標準偏差&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sd<span class="o">(</span>sai_b_sca<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;大切なこと <span class="o">=</span>&gt; 標準化すると平均0、分散1の標準正規分布になる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題: ポアソン分布&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;3日間でマグニチュード7以上の地震が発生する確率&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;日本でマグニチュード7の地震は過去五年で7回発生している&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;式 <span class="o">=</span>&gt; 日数 * <span class="o">((</span>7.0/5.0<span class="o">)</span> / 365<span class="o">)</span>&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;r &lt;- 3 * <span class="o">((</span>7.0/5.0<span class="o">)</span> / 365<span class="o">)</span> <span class="c">#=&gt; 0.00115</span>
+</span><span class='line'><span class="o">(</span>exp<span class="o">(</span>1<span class="o">)</span>&lt;sup&gt;r*r<span class="o">)</span>/1&lt;/sup&gt; <span class="c">#=&gt; 0.01164002 = 1.164%の確率で地震が発生する&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;章末問題&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1<span class="o">)</span> 標準化&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sales &lt;- c<span class="o">(</span>400,15,480,993,600,150,115,50,0,130,3000,500,200,55,2200,1,900,1000,450,400<span class="o">)</span>
+</span><span class='line'>sale_sca &lt;- scale<span class="o">(</span>sales<span class="o">)[</span>,<span class="o">]</span> <span class="c">#=&gt; 標準化</span>
+</span><span class='line'>round<span class="o">(</span>mean<span class="o">(</span>sale_sca<span class="o">)</span>, <span class="nv">digits</span><span class="o">=</span>4<span class="o">)</span> <span class="c">#=&gt; 平均: 0</span>
+</span><span class='line'>var<span class="o">(</span>sale_sca<span class="o">)</span> <span class="c">#=&gt; 分散: 1&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;area  &lt;- c<span class="o">(</span>60,30,365,190,136,15,37,100,170,70,783,560,50,35,595,200,300,356,155,250<span class="o">)</span>
+</span><span class='line'>area_sca &lt;- scale<span class="o">(</span>area<span class="o">)[</span>,<span class="o">]</span> <span class="c">#=&gt; 標準化</span>
+</span><span class='line'>round<span class="o">(</span>mean<span class="o">(</span>area_sca<span class="o">)</span>, <span class="nv">digits</span><span class="o">=</span>4<span class="o">)</span> <span class="c">#=&gt; 平均: 0</span>
+</span><span class='line'>var<span class="o">(</span>area_sca<span class="o">)</span> <span class="c">#=&gt; 分散: 1&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2<span class="o">)</span> 歪度・尖度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;歪度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">((</span>sales-mean<span class="o">(</span>sales<span class="o">))</span>&lt;sup&gt;3<span class="o">)</span>/<span class="o">(</span>sd<span class="o">(</span>sales<span class="o">)</span>&lt;sup&gt;3<span class="o">)</span>&lt;/sup&gt;&lt;/sup&gt; <span class="c">#=&gt; 1.883264&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;尖度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">((</span>sales-mean<span class="o">(</span>sales<span class="o">))</span>&lt;sup&gt;4<span class="o">)</span>/<span class="o">(</span>sd<span class="o">(</span>sales<span class="o">)</span>&lt;sup&gt;4<span class="o">)</span>&lt;/sup&gt;&lt;/sup&gt; <span class="c">#=&gt; 5.876389&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;歪度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">((</span>area-mean<span class="o">(</span>area<span class="o">))</span>&lt;sup&gt;3<span class="o">)</span>/<span class="o">(</span>sd<span class="o">(</span>area<span class="o">)</span>&lt;sup&gt;3<span class="o">)</span>&lt;/sup&gt;&lt;/sup&gt; <span class="c">#=&gt; 1.149286&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;尖度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">((</span>area-mean<span class="o">(</span>area<span class="o">))</span>&lt;sup&gt;4<span class="o">)</span>/<span class="o">(</span>sd<span class="o">(</span>area<span class="o">)</span>&lt;sup&gt;4<span class="o">)</span>&lt;/sup&gt;&lt;/sup&gt; <span class="c">#=&gt; 3.309088&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3<span class="o">)</span> 標準化・偏差値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">(</span>80 - 60<span class="o">)</span>/10 <span class="c">#=&gt;2&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;10*<span class="o">(</span>80-60<span class="o">)</span>/10 + 50 <span class="c">#=&gt; 70&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4<span class="o">)</span> パーセンテージ&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">(</span>1/sqrt<span class="o">(</span>2&lt;em&gt;3.14<span class="o">))</span>&lt;/em&gt;exp<span class="o">(</span>1<span class="o">)</span>&lt;sup&gt;<span class="o">(</span>-2<span class="o">)</span>&lt;/sup&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;5<span class="o">)</span> ポワソン分布&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;食中毒 &lt;- 20204/<span class="o">(</span>127370000*365<span class="o">)</span> <span class="c">#=&gt; 4.345876e-07</span>
+</span><span class='line'>食中毒 * 484600 <span class="c">#=&gt; 0.2106012</span>
+</span><span class='line'>x &lt;- 0 <span class="c">#=&gt; 0回発生&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">(</span>exp<span class="o">(</span>1<span class="o">)</span>&lt;sup&gt;<span class="o">(</span>-0.21<span class="o">)</span>*0.21&lt;sup&gt;x<span class="o">)</span>/1&lt;/sup&gt;&lt;/sup&gt; <span class="c">#=&gt; 0.8105842&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 松江市で食中毒一件も発生しない確率は約81%&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Rの使い方メモ</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>exp<span class="o">(</span>1<span class="o">)</span> <span class="c">#=&gt; 自然対数の底 2.718...</span>
+</span><span class='line'>round<span class="o">(</span>num, <span class="nv">digits</span><span class="o">=</span>n<span class="o">)</span> <span class="c">#=&gt; 四捨五入</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>第3章 不偏推定量と標本分布(推測統計学)</h2>
+
+<p>推測統計学とは、実験や調査で測定したデータを使ってその背景にある母集団の特徴を推定する学問。平均やバラツキに関する区間推定や差の検定などがある。</p>
+
+<h3>キーワード</h3>
+
+<pre>
+母集団 => 英語ではpopulationとuniverseがある
+population => 標本の背景にあって対象となる要素の集合体(一般的な母集団)
+universe => 要素を含む対象自体の集合、関連する情報が付随している
+
+標本のばらつき(標本分散、標本標準偏差) =< 母集団のばらつき(母分散、母標準偏差)
+不偏推定量　　<= 母集団の統計量を推定した値
+不偏分散　　　<= 母集団の分散の推定量
+不偏標準偏差　<= 母集団の標準偏差の推定量
+標本誤差分散　<= 複数標本間の誤差の分散
+</pre>
+
+
+<h3>例題・章末問題</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題: 不偏分散誤差&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;栽培法A&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;標本標準偏差を使う場合&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;標本標準偏差 &lt;- 413.5
+</span><span class='line'>標本数 &lt;- 15
+</span><span class='line'>標本標準偏差/sqrt<span class="o">(</span>標本数 -1<span class="o">)</span> <span class="c">#=&gt; 110.5&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;不偏標準偏差を使う場合&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;不偏標準偏差 &lt;- 428.1
+</span><span class='line'>不偏標準偏差/sqrt<span class="o">(</span>標本数<span class="o">)</span> <span class="c">#=&gt; 110.5&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;栽培法B&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;標本標準偏差を使う場合&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;標本標準偏差 &lt;- 353.0
+</span><span class='line'>標本数 &lt;- 15
+</span><span class='line'>標本標準偏差/sqrt<span class="o">(</span>標本数 -1<span class="o">)</span> <span class="c">#=&gt; 94.3&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;不偏標準偏差を使う場合&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;不偏標準偏差 &lt;- 365.4
+</span><span class='line'>不偏標準偏差/sqrt<span class="o">(</span>標本数<span class="o">)</span> <span class="c">#=&gt; 94.3&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;章末問題&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問1<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;母集団 : 新入生1万人<span class="o">(</span>試験結果<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標本 : 無作為に抽出した500人&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ユニバース : 新入生1万人<span class="o">(</span>対象の人間そのもの<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標本数 : 1<span class="o">(</span>標本サイズは500<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問2<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標本分散 <span class="o">=</span>&amp;lt; 母分散となる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問3<span class="o">)</span> 標準偏差と標準誤差の違い&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標準偏差 : 個々のデータからなる集団のバラ付き具合を示す統計量&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標準誤差 : 標本平均のバラつき具合を示す。不偏統計量の精度を示す指標。&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問4<span class="o">)</span> 統計量の自由度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;標本から相関計測を推定する場合、統計量の自由度は「標本サイズ - 2」となる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>相関係数の場合は変数が2つになるので<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>4章 : 信頼区間の推定</h2>
+
+<p>真の平均や分散が、どのような範囲にあるかを推定し、それを確率的に示すこと。</p>
+
+<h3>例題・章末問題</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題: 正規分布による95%信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;標本数 &amp;lt;- 16
+</span><span class='line'>平均   &amp;lt;- 10.0
+</span><span class='line'>母分散 &amp;lt;- 36.0&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;平均 - 1.96&lt;em&gt;sqrt<span class="o">(</span>母分散/標本数<span class="o">)</span> <span class="c">#=&gt; 7.06</span>
+</span><span class='line'>平均 + 1.96&lt;/em&gt;sqrt<span class="o">(</span>母分散/標本数<span class="o">)</span> <span class="c">#=&gt; 12.94&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題: 正規分布による90%信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;月平均の減少値 &amp;lt;-165.0
+</span><span class='line'>標本サイズ     &amp;lt;- 66
+</span><span class='line'>標本標準偏差   &amp;lt;- 680.6&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;月平均の減少値 - 1.65&lt;em&gt;標本標準偏差/sqrt<span class="o">(</span>標本サイズ<span class="o">)</span> <span class="c">#=&gt; 26.76949</span>
+</span><span class='line'>月平均の減少値 + 1.65&lt;/em&gt;標本標準偏差/sqrt<span class="o">(</span>標本サイズ<span class="o">)</span> <span class="c">#=&gt; 303.2305&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題: t分布による95%信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;標本数 &amp;lt;- 5
+</span><span class='line'>平均乳量 &amp;lt;- 22.1
+</span><span class='line'>標本芳醇偏差 &amp;lt;- 6.5&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;22.1 - 2.776&lt;em&gt;6.5/sqrt<span class="o">(</span>標本数 -1<span class="o">)</span> <span class="c">#=&gt; 17.44106</span>
+</span><span class='line'>22.1 + 2.776&lt;/em&gt;6.5/sqrt<span class="o">(</span>標本数 -1<span class="o">)</span> <span class="c">#=&gt; 26.75894&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題: 母比率の信頼区間の推定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;0.7 - 1.96&lt;em&gt;sqrt<span class="o">(</span>0.7&lt;/em&gt;<span class="o">(</span>1.0-0.7<span class="o">)</span>/50<span class="o">)</span> <span class="c">#=&gt; 0.5729775</span>
+</span><span class='line'>0.7 + 1.96&lt;em&gt;sqrt<span class="o">(</span>0.7&lt;/em&gt;<span class="o">(</span>1.0-0.7<span class="o">)</span>/50<span class="o">)</span> <span class="c">#=&gt; 0.8270225&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 下限の信頼限界が50%を超えているので、当確を出しても良い&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題: 標本サイズの決め方&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;1.96 * sqrt<span class="o">(</span>0.5*0.5/n<span class="o">)</span> <span class="o">=</span> 0.1&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;上の式を満たすnは次の式から求められる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;n &lt;- <span class="o">((</span>1.96 * sqrt<span class="o">(</span>0.5*0.5<span class="o">))</span>/0.1<span class="o">)</span>^2 <span class="c">#=&gt; 96.04&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;章末&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問1<span class="o">)</span> 標準偏差を使った95%信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;標本サイズ &amp;lt;- 100
+</span><span class='line'>標本平均   &amp;lt;- 2.0
+</span><span class='line'>標本分散   &amp;lt;- 1.0&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;標本平均 - 1.96 * sqrt<span class="o">(</span>標本分散/標本サイズ<span class="o">)</span> <span class="c">#=&gt; 1.804</span>
+</span><span class='line'>標本平均 + 1.96 * sqrt<span class="o">(</span>標本分散/標本サイズ<span class="o">)</span> <span class="c">#=&gt; 2.196&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問2<span class="o">)</span> t分布を使った95%信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sales &amp;lt;- c<span class="o">(</span>400,15,480,993,600,150,115,50,0,130,3000,500,200,55,2200,1,900,1000,450,400<span class="o">)</span>
+</span><span class='line'>標本サイズ &amp;lt;- length<span class="o">(</span>sales<span class="o">)</span>
+</span><span class='line'>標本平均   &amp;lt;- mean<span class="o">(</span>sales<span class="o">)</span>
+</span><span class='line'>標本分散   &amp;lt;- var<span class="o">(</span>sales<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;標本平均 - 2.093 * sqrt<span class="o">(</span>標本分散/<span class="o">(</span>標本サイズ-1<span class="o">))</span> <span class="c">#=&gt; 211.2559</span>
+</span><span class='line'>標本平均 + 2.093 * sqrt<span class="o">(</span>標本分散/<span class="o">(</span>標本サイズ-1<span class="o">))</span> <span class="c">#=&gt; 952.6441&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問3<span class="o">)</span> AgrestiとCoullの式を使った母比率の信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;標本サイズ &amp;lt;- 20
+</span><span class='line'>比率 &amp;lt;- 16/20&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;p &lt;- <span class="o">(</span>16+2<span class="o">)</span>/<span class="o">(</span>標本サイズ+4<span class="o">)</span>
+</span><span class='line'>p - 1.96*sqrt<span class="o">(</span>p*<span class="o">(</span>1-p<span class="o">)</span>/<span class="o">(</span>標本サイズ+4<span class="o">))</span> <span class="c">#=&gt; 0.5767588</span>
+</span><span class='line'>p + 1.96&lt;em&gt;sqrt<span class="o">(</span>p&lt;/em&gt;<span class="o">(</span>1-p<span class="o">)</span>/<span class="o">(</span>標本サイズ+4<span class="o">))</span> <span class="c">#=&gt; 0.9232412&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問4<span class="o">)</span> 標本サイズの決め方&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;1.96&lt;em&gt;sqrt<span class="o">((</span>0.5&lt;/em&gt;0.5<span class="o">)</span>/n<span class="o">)</span> <span class="o">=</span> 0.01
+</span><span class='line'>n &lt;- <span class="o">((</span>1.96/0.01<span class="o">)</span>*sqrt<span class="o">(</span>0.5*0.5<span class="o">))</span>^2 <span class="c">#=&gt; 9604</span>
+</span><span class='line'>n*5 <span class="c">#=&gt; 48020</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>5章: カイ二乗分布とF分布</h2>
+
+<p>カイ二乗分布は標準変化量zを2情和したカイ二乗値が従う確率分布で、母分散の信頼区間の推定やクロス集計表の検定に用いる。F分布は独立した2つのカイ二乗値の比であるF値が従う確率分布で、等分散性の検定や分散分析などに用いる。</p>
+
+<h3>例題・章末問題をやってみた</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題 : 信頼区間95%の母分散&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;tento &amp;lt;- c<span class="o">(</span>5, 8, 10, 11, 15<span class="o">)</span>
+</span><span class='line'>size &amp;lt;- length<span class="o">(</span>tento<span class="o">)</span>
+</span><span class='line'>var &amp;lt;- var<span class="o">(</span>tento<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">((</span>size - 1<span class="o">)</span>&lt;em&gt;var<span class="o">)</span>/11.143 <span class="c">#=&gt; 4.917886</span>
+</span><span class='line'><span class="o">((</span>size - 1<span class="o">)</span>&lt;/em&gt;var<span class="o">)</span>/0.484  <span class="c">#=&gt; 113.2231&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;章末問題&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問1<span class="o">)</span> カイ二乗値とは？&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 標準変化量zを2乗和<span class="o">(</span>すべての標準変化量を2乗して足し合わせた値<span class="o">)</span>した値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問2<span class="o">)</span> 母平均が未知の場合のカイ二乗値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 未知の場合には、不偏統計量と同様に自由度は減少する&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 具体的には、自由度 &amp;lt;- n<span class="o">(</span>標本サイズ<span class="o">)</span> - 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問3<span class="o">)</span> 母標準偏差に対する90%信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;size &amp;lt;- 10
+</span><span class='line'>不偏標準偏差 &amp;lt;- 0.05
+</span><span class='line'>不偏分散 &amp;lt;- 25&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sqrt<span class="o">(((</span>size-1<span class="o">)</span>&lt;em&gt;不偏分散<span class="o">)</span>/16.919<span class="o">)</span> <span class="c">#=&gt; 3.646733</span>
+</span><span class='line'>sqrt<span class="o">(((</span>size-1<span class="o">)</span>&lt;/em&gt;不偏分散<span class="o">)</span>/3.325<span class="o">)</span>  <span class="c">#=&gt; 8.226127&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;問4<span class="o">)</span> t値とF値の関係&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 自由度がvのt値の2乗と、分母の自由度がvで分子の自由度が1のF値は等しい&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 2つの平均値の差はt検定<span class="o">(</span>両側検定<span class="o">)</span>でも、F検定を基礎とした2群の分散分析でも同じ結論となる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>6章 : 検定の基礎</h2>
+
+<p>仮説検定とは、実験結果の「起きやすさ」から「めったに起きないことが起きた」とかんがえられる場合は、その仮説を間違いであると判断する手法。</p>
+
+<h3>検定の手順</h3>
+
+<pre>
+1) 仮説の設定
+2) 検定統計量の計算
+3) 確率の計算
+4) 仮説の判断
+</pre>
+
+
+<h3>キーワード</h3>
+
+<pre>
+第一種の誤り(Type I error) : 帰無仮説が正しいにもかかわらず棄却してしまうこと
+第二種の誤り(Type II error) : 帰無仮説が間違っているにもかかわらず許容すること
+危険率 : 第一種の誤りを犯す確率
+検定力 : 帰無仮説が間違っている時に正しく棄却できる確率(第二種の誤りを防ぐ)
+</pre>
+
+
+<h3>例題をやってみた</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;例題 : テントウが新種か否かの検定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ave &amp;lt;- 11
+</span><span class='line'>既存種の平均 &amp;lt;- 5
+</span><span class='line'>誤差 &amp;lt;- 2&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 帰無仮説 : 新種ではない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 対立仮説 : 新種である&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;既存種の平均 - 1.96&lt;em&gt;誤差 <span class="c">#=&gt; 1.08mm</span>
+</span><span class='line'>既存種の平均 + 1.96&lt;/em&gt;誤差 <span class="c">#=&gt; 8.92mm&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; よって11mmは8.92mmより大きいので帰無仮説が棄却&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 新種であると考えたほうが妥当&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【書評: 統計学がわかる】統計学初心者が統計学の面白さに触れられます！]]></title>
+    <link href="http://morizyun.github.io/blog/statistics-understand-first-book-review/"/>
+    <updated>2014-03-23T09:45:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/statistics-understand-first-book-review</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774131903/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774131903&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774131903&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774131903" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />早速統計学に挫折したのでorz、『<strong><a href="http://www.amazon.co.jp/gp/product/4774131903/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774131903&amp;linkCode=as2&amp;tag=morizyun00-22">統計学がわかる</a></strong>』を読みました。この本はハンバーガーショプの店長と店員が、統計学を用いてライバル店との比較などを行うストーリーで構成されています。平均や分散、信頼区間、検定などの基本的な考え方をシンプルに理解することができるので、統計学の初学者の方にすごくおすすめな本です！</p>
+
+<p>今回はこの本の中で、特に勉強になった部分を中心にメモを書いておきます。</p>
+
+<p><strong>(03/22 09:45) 確認テストを中心に書き直し</strong></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>[無料Web教材] ハンバーガー統計学にようこそ！</h2>
+
+<p><a href="http://kogolab.chillout.jp/elearn/hamburger/"><img title="ハンバーガー統計学にようこそ！" src="http://capture.heartrails.com/400x300/cool/1393275330517?http://kogolab.chillout.jp/elearn/hamburger/" alt="http://kogolab.chillout.jp/elearn/hamburger/" width="400" height="300" /></a></p>
+
+<p>この本の内容は『<strong><a href="http://kogolab.chillout.jp/elearn/hamburger/">ハンバーガー統計学にようこそ！</a></strong>』に無料で公開されています。もしご興味があればぜひご覧になってみてください。</p>
+
+<h2>第2章: 母集団・標本・区間推定・信頼区間・t分布</h2>
+
+<p>母集団が大きい場合にサンプリングして、母集団を推定する。</p>
+
+<h3>キーワード</h3>
+
+<pre>
+母平均 => 標本の平均で推定できる
+母分散 => 標本の不偏分散で推定できる
+不偏分散 => ((データ - 平均値)**2)の総和 / (サンプルサイズ - 1)
+95%信頼区間 => 母平均が95%の確率で含まれているような範囲
+信頼区間 => 標本平均 +- t * 標準誤差
+標本平均の標準偏差 => sqrt(不偏分散 / サンプルサイズ)
+t分布 => 正規表現に似た「つりがね型」の分布。サンプルサイズが少ないと平、多いと正規分布に近づく
+自由度 => サンプルサイズから1を引いたもの
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1<span class="o">)</span> 統計用語&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;a. 母集団
+</span><span class='line'>b. 標本集団
+</span><span class='line'>c. 無作為抽出
+</span><span class='line'>d. 正規分布&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2<span class="o">)</span> 信頼区間の計算&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ave &amp;lt;- 65
+</span><span class='line'>var &amp;lt;- 60
+</span><span class='line'>標準誤差 &amp;lt;- sqrt<span class="o">(</span>var/500<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;95%信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ave - 1.96&lt;em&gt;標準誤差 <span class="c">#=&gt; 64.32104</span>
+</span><span class='line'>ave + 1.96&lt;/em&gt;標準誤差 <span class="c">#=&gt; 65.67896&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;99%信頼区間&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ave - 2.576&lt;em&gt;標準誤差 <span class="c">#=&gt; 64.10765</span>
+</span><span class='line'>ave + 2.576&lt;/em&gt;標準誤差 <span class="c">#=&gt; 65.89235&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3<span class="o">)</span> 信頼区間の意味&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;95%の確率で64.32104点-65.67896点におさまる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;99%の確率で64.10765点-65.89235点におさまる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>第3章: 帰無仮説・対立仮説・観測度数・期待度数・カイ二乗分布</h2>
+
+<p>仮説を建ててその有効性を検証するための方法。</p>
+
+<h3>キーワード</h3>
+
+<pre>
+帰無仮説 => 『○◯と◯◯との間には差がない』という仮説
+対立仮説 => 帰無仮説が棄却されたときに採択される『差はないとは言えない、つまり差はある』
+観測度数 => 『実際の売上』のような実際に観測された度数
+期待度数 => 『同じ割合で売れるとした場合の売上』のように予測される度数
+カイ(χ)2乗値 => 期待度数と観測度数のズレを表す値
+カイ(χ)2乗値の自由度 => 変数のうち自由に選べるものの数
+</pre>
+
+
+<h3>仮説検定の方法</h3>
+
+<pre>
+1) 『○◯と◯◯との間には差がない』という形の帰無仮説をたてる
+2) 期待度数と観測度数のズレを見るためカイ(χ)2乗値を計算する
+3) カイ(χ)2乗値の出現確率を調べる
+4) 有意水準を基準にして帰無仮説を棄却するか、あるいは採択するかを決める
+</pre>
+
+
+<h2>カイ(χ)2乗分布の性質</h2>
+
+<pre>
+期待度数と観測度数が完全に一致すれば、カイ(χ)2乗値はゼロになる
+逆に、不一致(ズレ)が大きくなれば、カイ(χ)2乗値は大きな値となる
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 帰無仮説 担任の違いが子供の好き嫌いに影響を与えない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 対立仮説 担任の違いが子供の好き嫌いに影響を与える&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3<span class="o">)</span> 期待度数&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;kokugo_sakura &lt;- 42 * 32/68 <span class="c">#=&gt; 19.76471</span>
+</span><span class='line'>kokugo_momo   &lt;- 42 * 36/68 <span class="c">#=&gt; 22.23529</span>
+</span><span class='line'>math_sakura   &lt;- 26 * 32/68 <span class="c">#=&gt; 12.23529</span>
+</span><span class='line'>math_momo     &lt;- 26 * 36/68 <span class="c">#=&gt; 13.76471&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4<span class="o">)</span> カイ二乗値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">(</span>24-kokugo_sakura<span class="o">)</span>&lt;sup&gt;2/kokugo_sakura&lt;/sup&gt; + <span class="o">(</span>18-kokugo_momo<span class="o">)</span>&lt;sup&gt;2/kokugo_momo&lt;/sup&gt; + <span class="o">(</span>8 - math_sakura<span class="o">)</span>&lt;sup&gt;2/math_sakura&lt;/sup&gt; + <span class="o">(</span>18 - math_momo<span class="o">)</span>&lt;sup&gt;2/math_momo&lt;/sup&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 4.483516&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;5<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;自由度<span class="o">(</span>2-1<span class="o">)</span>の有意水準1%のカイ2乗値 <span class="o">=</span>&gt; 6.63&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 4.48 &amp;lt; 6.63なので帰無仮説は採択&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;6<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 以上の結果より、担任の違いは子供の好き嫌いに有意な影響を与えない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>第4章: t検定(対応なし)</h2>
+
+<p>t検定とは、帰無仮説が正しいと仮定した場合に、統計量がt分布に従うことを利用して統計的な検定をする方法。ただし、t検定は2つの標本間の平均の差を調べる</p>
+
+<h3>キーワード</h3>
+
+<pre>
+有意水準 => 偶然などではなくその要因が結果に違いを生み出したということ(1% or 5%をよく使う)
+t分布における自由度 => サンプルサイズA + サンプルサイズB - 2
+棄却域 => 統計的仮説を検定する場合に判断の基準となる領域
+</pre>
+
+
+<h2>数式</h2>
+
+<pre>
+平均偏差の平方和 => (データ - 平均値)**2の総和
+推定母分散 => (標本Aの平均偏差の平方和+標本Bの平均偏差の平方和)/(サンプルサイズA +サンプルサイズB - 2)
+t値 => 標本平均の差/sqrt(推定母分散*(1/サンプルサイズA + 1/サンプルサイズB))
+</pre>
+
+
+<h3>t検定の手続き</h3>
+
+<pre>
+1) 帰無仮説を建てる => 『○◯と◯◯との間には差がない』
+2) 帰無仮説の否定である、対立仮説を建てる => 『○◯と◯◯との間には差がある』
+3) 有意水準を決める
+4) 得られた標本を使って、指標tを計算する
+5) 標本の数から自由度を計算する
+6) t分布表の該当する自由度のところを見て、求めたtが棄却域にはいっているかを判定し、帰無仮説を棄却するか、採択するかを決める
+7) 帰無仮説を採択するか、対立仮説を採択するかを決める
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1<span class="o">)</span> 帰無仮説&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 漫画を使う方法と使わない従来の方法に差はない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2<span class="o">)</span> 対立仮説&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 漫画を使う方法と使わない従来の方法には差はがある&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3<span class="o">)</span> t値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sakura &amp;lt;- c<span class="o">(</span>7,8,10,5,8,7,9,5,6,9,10,6,7,8,7,9,10,6<span class="o">)</span>
+</span><span class='line'>momo &amp;lt;- c<span class="o">(</span>9,9,6,10,9,8,10,7,9,10,6,8,9,9,10,7,8,8,10,9<span class="o">)</span>
+</span><span class='line'>t.test<span class="o">(</span>sakura, momo<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Welch Two Sample t-test&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;data:  sakura and momo&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;t <span class="o">=</span> -1.9464, <span class="nv">df</span> <span class="o">=</span> 31.95, p-value <span class="o">=</span> 0.06045&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;alternative hypothesis: <span class="nb">true </span>difference in means is not equal to 0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;95 percent confidence interval:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;-1.92150701  0.04372923&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sample estimates:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;mean of x mean of y&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;7.611111  8.550000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; t値は-1.94&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4<span class="o">)</span> 有意水準1%&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1%の有意水準は2.704。t値の絶対値1.94よりも大きいので優位な差は存在しない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;5<span class="o">)</span> 結果の説明&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 漫画を使う方法と使わない従来の方法には優位な差がある&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>第5章: t検定(対応あり)</h2>
+
+<h3>t検定における「対応」とは？</h3>
+
+<p>2つのハンバーガーを食べ比べるなどのように直接比較ができるような標本の場合、「<strong>対応がある</strong>」とします。いいかえると、2つのハンバーガーを食べた母集団「<strong>1つ</strong>」を元に検定します。</p>
+
+<h3>数式</h3>
+
+<pre>
+t => 差の平均/sqrt(不偏分散/サンプルサイズ)
+or
+t => 差の平均/sqrt(標本分散/(サンプルサイズ - 1))
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;帰無仮説 <span class="o">=</span>&gt; 漫画を使った新手法と従来の手法の間に差はない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;対立仮説 <span class="o">=</span>&gt; 漫画を使った新手法と従来の手法の間に差はある&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;before &amp;lt;- c<span class="o">(</span>9,8,10,7,5,9,10,10,8,10,10,6,8,9,10,9,10,9<span class="o">)</span>
+</span><span class='line'>after  &amp;lt;- c<span class="o">(</span>9,9,10,7,6,10,10,9,8,10,7,8,10,10,10,10,10,10<span class="o">)</span>
+</span><span class='line'>t.test<span class="o">(</span>before,after, <span class="nv">paired</span><span class="o">=</span>TRUE<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Paired t-test&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;data:  before and after&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;t <span class="o">=</span> -1.2432, <span class="nv">df</span> <span class="o">=</span> 17, p-value <span class="o">=</span> 0.2307&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;alternative hypothesis: <span class="nb">true </span>difference in means is not equal to 0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;95 percent confidence interval:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;-0.8990450  0.2323783&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sample estimates:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;mean of the differences&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;-0.3333333&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; t値は-1.2432&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4<span class="o">)</span> 有意水準1%&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 有意水準1%は2.898。t値の絶対値よりも大きいので優位な差は存在しない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;5<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;漫画を使った従来の手法と今回の手法の間には優位な差がない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>第6章: 分散分析(1要因)</h2>
+
+<p>分散分析(ANOVA)は、観測データにおける変動を誤差変動と各要因およびそれらの交互作用による変動に分解することによって、要因および交互作用の効果を判定する、統計的仮説検定の一手法。1要因の分散分析を一元配置分散分析ともいうそうです。</p>
+
+<h3>キーワード</h3>
+
+<pre>
+分散分析とは、全体の平均が各群(各標本集団)がどれほどずれているかを分析すること
+</pre>
+
+
+<h3>分散分析(1要因)の手続き</h3>
+
+<pre>
+1) 帰無仮説を建てる => 『3つ以上の標本集団の間には差がない』
+2) 帰無仮説の否定である、対立仮説を建てる => 『3つ以上の標本集団の間には差がある』
+3) 有意水準を決める
+4) 得られた標本を使って、全体の平方和、群間の平方和、郡内の平方和を計算する
+5) 分散分析表を作り、自由度、平均平方を計算する
+6) 指標F = 群間の平均平方/ 郡内の平均平方 を計算する
+7) F分布表の該当する自由度からFが棄却域に入っているかを判定し、帰無仮説を棄却するかを決める
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>touseigun &amp;lt;- c<span class="o">(</span>6,5,7,6,8,4,6,5,8,4,5,6,5,4,5<span class="o">)</span>
+</span><span class='line'>kyumanga  &amp;lt;- c<span class="o">(</span>5,6,9,7,7,6,8,5,6,9,5,4,7,6<span class="o">)</span>
+</span><span class='line'>shinmanga &amp;lt;- c<span class="o">(</span>6,8,9,6,8,6,9,7,6,5,9,6,10,8,9,6<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1<span class="o">)</span> 3つの群の分散と分析&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;統制群:&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">(</span>touseigun<span class="o">)</span> <span class="c">#=&gt; 平均: 5.6</span>
+</span><span class='line'>sd<span class="o">(</span>touseigun<span class="o">)</span>   <span class="c">#=&gt; 標準偏差: 1.298351&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;旧マンガ群:&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">(</span>kyumanga<span class="o">)</span>  <span class="c">#=&gt; 平均: 6.428571</span>
+</span><span class='line'>sd<span class="o">(</span>kyumanga<span class="o">)</span>    <span class="c">#=&gt; 標準偏差: 1.504572&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;新マンガ群:&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mean<span class="o">(</span>shinmanga<span class="o">)</span> <span class="c">#=&gt; 平均: 7.375</span>
+</span><span class='line'>sd<span class="o">(</span>shinmanga<span class="o">)</span>   <span class="c">#=&gt; 標準偏差: 1.543805&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2<span class="o">)</span> 帰無仮説&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 3つの群の間に優位な差はない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3<span class="o">)</span> 対立仮説&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 3つの群のの間には優位な差が存在する&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4<span class="o">)</span> 分散分析表&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;一元配置分散分析&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;score <span class="o">=</span> c<span class="o">(</span>touseigun,kyumanga,shinmanga<span class="o">)</span>
+</span><span class='line'><span class="nv">group</span> <span class="o">=</span> c<span class="o">(</span>rep<span class="o">(</span>1,14<span class="o">)</span>,rep<span class="o">(</span>2,16<span class="o">)</span>,rep<span class="o">(</span>3,15<span class="o">))</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;oneway.test関数を使う場合&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;oneway.test<span class="o">(</span>score ~ group, <span class="nv">var</span><span class="o">=</span>T<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;One-way analysis of means&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;data:  score and group&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;F <span class="o">=</span> 5.9065, num <span class="nv">df</span> <span class="o">=</span> 2, denom <span class="nv">df</span> <span class="o">=</span> 42, p-value <span class="o">=</span> 0.00549&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;分散分析表&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;anova<span class="o">(</span>lm<span class="o">(</span>score ~ group<span class="o">))</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Analysis of Variance Table&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Response: score&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Df Sum Sq Mean Sq F value   Pr<span class="o">(</span>&gt;F<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;group      1 24.254 24.2544   11.72 0.001369 **&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Residuals 43 88.990  2.0695&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;---&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Signif. codes:  0 ‘&lt;em&gt;&lt;strong&gt;’ 0.001 ‘&lt;/strong&gt;’ 0.01 ‘&lt;/em&gt;’ 0.05 ‘.’ 0.1 ‘ ’ 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;aov関数を使う場合&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;result &amp;lt;- aov<span class="o">(</span>score ~ group<span class="o">)</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Df Sum Sq Mean Sq F value  Pr<span class="o">(</span>&gt;F<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;group        1  24.25   24.25   11.72 0.00137 **&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Residuals   43  88.99    2.07&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;---&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Signif. codes:  0 ‘&lt;em&gt;&lt;strong&gt;’ 0.001 ‘&lt;/strong&gt;’ 0.01 ‘&lt;/em&gt;’ 0.05 ‘.’ 0.1 ‘ ’ 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;5<span class="o">)</span> 有意水準1%&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 群間の自由度2、郡内の自由度が42の自由度の場合、有意水準1%のF値は5.18&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; F値は5.9065なので棄却域に入り、帰無仮説は棄却される&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;6<span class="o">)</span> 結論&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 3つの群の間の少なくとも1つに優位な差が存在する&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>おそらくグループか自由度の指定方法をちょっとミスっていると思うので、正しくはなさそう(帰無仮説の棄却は正しい)。後日知識がついたら再度トライするつもりです。</p>
+
+<h3>Special Thanks</h3>
+
+<p><strong><a href="http://d.hatena.ne.jp/pokepen/20130527/1369618411">Rで1要因の分散分析</a></strong><br/>
+ハンバーガー屋さんの例をRで解いています。3つのグループがある場合の比較方法が書かれていて助かりました。</p>
+
+<h2>第7章: 分散分析(2要因)</h2>
+
+<h3>キーワード</h3>
+
+<pre>
+残差 => 誤差の推定量。1要因の場合の郡内のズレと同義。
+相互作用 => 2つの要因によって起こるズレを相互作用と呼ぶ
+</pre>
+
+
+<h3>分散分析(2要因)の手続き</h3>
+
+<pre>
+1) 帰無仮説を建てる => 『要因1, 要因2,交互作用による差はない』
+2) 帰無仮説の否定である、対立仮説を建てる => 『要因1 or 要因2 or 交互作用による差がある』
+3) 有意水準を決める
+4) 得られた標本から全体の平方和、要因1の平方和、要因2の平方和、残差の平方和、全体の平方和を計算
+5) 分散分析表を作り、自由度、平均平方を計算する
+6) 指標Fを計算する
+7) F分布表の該当する自由度からFが棄却域に入っているかを判定し、帰無仮説を棄却するかを決める
+</pre>
+
+
+<h3>確認テスト</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>suki_touseigun  &amp;lt;- c<span class="o">(</span>7,8,6,8,10,7,8,8,9,7<span class="o">)</span>
+</span><span class='line'>kirai_touseigun &amp;lt;- c<span class="o">(</span>4,6,5,4,3,7,5,6,4,5<span class="o">)</span>
+</span><span class='line'>suki_manga      &amp;lt;- c<span class="o">(</span>8,9,10,10,8,8,9,7,10,8<span class="o">)</span>
+</span><span class='line'>kirai_manga     &amp;lt;- c<span class="o">(</span>8,7,8,6,9,7,8,8,10,8<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1<span class="o">)</span> 帰無仮説&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;a<span class="o">)</span> 漫画を使った勉強法と統制群の間に平均点の差はない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;b<span class="o">)</span> 算数の好き嫌いに平均点の差はない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;c<span class="o">)</span> 相互作用にも平均点の差はない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;a, b, cをすべて満たす&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2<span class="o">)</span> 対立仮説&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 上のa,b,cのいづれかに平均点の差がある&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3<span class="o">)</span> 平均・標準偏差&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ave_suki_touseigun  &lt;- mean<span class="o">(</span>suki_touseigun<span class="o">)</span>  <span class="c">#=&gt; 7.8</span>
+</span><span class='line'>sd_suki_touseigun   &lt;- sd<span class="o">(</span>suki_touseigun<span class="o">)</span>    <span class="c">#=&gt; 1.13529</span>
+</span><span class='line'>ave_kirai_touseigun &lt;- mean<span class="o">(</span>kirai_touseigun<span class="o">)</span> <span class="c">#=&gt; 4.9</span>
+</span><span class='line'>sd_kirai_touseigun  &lt;- sd<span class="o">(</span>kirai_touseigun<span class="o">)</span>   <span class="c">#=&gt; 1.19721</span>
+</span><span class='line'>ave_suki_manga      &lt;- mean<span class="o">(</span>suki_manga<span class="o">)</span>      <span class="c">#=&gt; 8.7</span>
+</span><span class='line'>sd_suki_manga       &lt;- sd<span class="o">(</span>suki_manga<span class="o">)</span>        <span class="c">#=&gt; 1.05934</span>
+</span><span class='line'>ave_kirai_manga     &lt;- mean<span class="o">(</span>kirai_manga<span class="o">)</span>     <span class="c">#=&gt; 7.9</span>
+</span><span class='line'>sd_kirai_manga      &lt;- sd<span class="o">(</span>kirai_manga<span class="o">)</span>       <span class="c">#=&gt; 1.10050&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4<span class="o">)</span> グラフ&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 挫折&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;5<span class="o">)</span> 分散分析表&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;マンガ・統制群の平方和&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;touseigun &lt;- c<span class="o">(</span>suki_touseigun, kirai_touseigun<span class="o">)</span>
+</span><span class='line'>manga &lt;- c<span class="o">(</span>suki_manga, kirai_manga<span class="o">)</span>
+</span><span class='line'>ave_tou &lt;- mean<span class="o">(</span>touseigun<span class="o">)</span> <span class="c">#=&gt; 6.35</span>
+</span><span class='line'>ave_man &lt;- mean<span class="o">(</span>manga<span class="o">)</span>     <span class="c">#=&gt; 8.3</span>
+</span><span class='line'>zen_heikin &lt;- mean<span class="o">(</span>c<span class="o">(</span>touseigun, manga<span class="o">))</span> <span class="c">#=&gt; 7.325</span>
+</span><span class='line'>mantou_heihowa &amp;lt;- <span class="o">(</span>ave_man-zen_heikin<span class="o">)</span>&lt;sup&gt;2*length<span class="o">(</span>manga<span class="o">)</span>&lt;/sup&gt; + <span class="o">(</span>ave_tou -zen_heikin<span class="o">)</span>&lt;sup&gt;2*length<span class="o">(</span>touseigun<span class="o">)</span>&lt;/sup&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 38.025&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;好き嫌いの平方和&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;suki &lt;- c<span class="o">(</span>suki_touseigun, suki_manga<span class="o">)</span>
+</span><span class='line'>kirai &lt;- c<span class="o">(</span>kirai_touseigun, kirai_manga<span class="o">)</span>
+</span><span class='line'>ave_suki &lt;- mean<span class="o">(</span>suki<span class="o">)</span>   <span class="c">#=&gt; 8.25</span>
+</span><span class='line'>ave_kirai &lt;- mean<span class="o">(</span>kirai<span class="o">)</span> <span class="c">#=&gt; 6.4</span>
+</span><span class='line'>suki_heihouwa &amp;lt;- <span class="o">(</span>ave_suki - zen_heikin<span class="o">)</span>&lt;sup&gt;2*length<span class="o">(</span>suki<span class="o">)</span>&lt;/sup&gt; + <span class="o">(</span>ave_kirai - zen_heikin<span class="o">)</span>&lt;sup&gt;2*length<span class="o">(</span>kirai<span class="o">)</span>&lt;/sup&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 34.225&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;相互作用の平方和&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;gunkan_heikin_zure &amp;lt;- <span class="o">(</span>ave_suki_touseigun - zen_heikin<span class="o">)</span>&lt;sup&gt;2*length<span class="o">(</span>suki_touseigun<span class="o">)</span>&lt;/sup&gt; + <span class="o">(</span>ave_kirai_touseigun - zen_heikin<span class="o">)</span>&lt;sup&gt;2*length<span class="o">(</span>kirai_touseigun<span class="o">)</span>&lt;/sup&gt; + <span class="o">(</span>ave_suki_manga - zen_heikin<span class="o">)</span>&lt;sup&gt;2*length<span class="o">(</span>suki_manga<span class="o">)</span>&lt;/sup&gt; + <span class="o">(</span>ave_kirai_manga - zen_heikin<span class="o">)</span>&lt;sup&gt;2*length<span class="o">(</span>kirai_manga<span class="o">)</span>&lt;/sup&gt;
+</span><span class='line'>sougo_heihouwa &amp;lt;- gunkan_heikin_zure - mantou_heihowa - suki_heihouwa&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 11.0249&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;残差の平方和&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;zansa_heihouwa &amp;lt;- sum<span class="o">((</span>suki_touseigun - ave_suki_touseigun<span class="o">)</span>&lt;sup&gt;2<span class="o">)</span>&lt;/sup&gt; + sum<span class="o">((</span>kirai_touseigun - ave_kirai_touseigun<span class="o">)</span>&lt;sup&gt;2<span class="o">)</span>&lt;/sup&gt; + sum<span class="o">((</span>suki_manga - ave_suki_manga<span class="o">)</span>&lt;sup&gt;2<span class="o">)</span>&lt;/sup&gt; + sum<span class="o">((</span>kirai_manga - ave_kirai_manga<span class="o">)</span>&lt;sup&gt;2<span class="o">)</span>&lt;/sup&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 45.5&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;全体の平方和&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;zentai_heihouwa &amp;lt;- mantou_heihowa + suki_heihouwa + sougo_heihouwa + zansa_heihouwa&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 128.775&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;マンガ・統制群の自由度: 条件数<span class="o">(</span>郡の数<span class="o">)</span> - 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mantou_ziyudo &amp;lt;- 1&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;好き嫌いの自由度: 条件数<span class="o">(</span>郡の数<span class="o">)</span> - 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;suki_ziyudo &amp;lt;- 1&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;相互作用の自由度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sougo_ziyudo &lt;- mantou_ziyudo * suki_ziyudo <span class="c">#=&gt; 1&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;全体の自由度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;zentai_ziyudo &amp;lt;- length<span class="o">(</span>c<span class="o">(</span>suki_touseigun, kirai_touseigun, suki_manga, kirai_manga<span class="o">))</span> - 1&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 39&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;残差の自由度&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;zansa_ziyundo &amp;lt;- zentai_ziyudo - mantou_ziyudo - suki_ziyudo - sougo_ziyudo&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 36&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;マンガ・統制群の平均平方&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mantou_hehe &amp;lt;- mantou_heihowa / mantou_ziyudo&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 38.025&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;好き嫌いの平均平方&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;suki_hehe &amp;lt;- suki_heihouwa  / suki_ziyudo&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 34.225&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;相互作用の平均平方&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sougo_hehe &amp;lt;- sougo_heihouwa / sougo_ziyudo&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 11.025&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;全体の平均平方&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;zansa_hehe &amp;lt;- zansa_heihouwa / zansa_ziyundo&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1.263889&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;マンガ・統制群のF値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mantou_f &amp;lt;- mantou_hehe / zansa_hehe&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 30.08571&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;好き嫌いのF値&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;suki_f &amp;lt;- suki_hehe   / zansa_hehe&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 27.07912&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sougo_f  &amp;lt;- sougo_hehe  / zansa_hehe&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 8.723077&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>あとがき</h2>
+
+<p>初心者が最初に統計学の世界を触れるときに是非読んで欲しい本。計算がわかりやすいので、理解しやすいです！個人的には統計を好きになれる本だと思う！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>おねがい</h2>
+
+<p>いろいろ初心者すぎてわけがわからない状態ですが、もしこういうふうにしたらいいとか、ツッコミ大歓迎です。もしよかったら是非コメントをお願いします！</p>
+
+<h2>変更来歴</h2>
+
+<p>(02/27 19:00) [無料Web教材] ハンバーガー統計学にようこそ！を追加<br/>
+(03/22 09:45) 確認テストを中心に書き直し</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[「R Tips」で学ぶ R言語のプログラミング的Tips]]></title>
+    <link href="http://morizyun.github.io/blog/R-tips-Grammer-PG-language/"/>
+    <updated>2014-03-22T10:50:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/R-tips-Grammer-PG-language</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4274067831/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274067831&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274067831&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274067831" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />統計学やR言語を勉強していく過程で、R言語のプログラミング的な側面や言語仕様をちゃんと理解したいと思うようになりました。ということでチャンレンジしたのが、『<strong><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html">R-Tips</a></strong>』です。</p>
+
+<p>このサイトはいくつかのトピックに分かれているので、自分のRの使い方に合わせて勉強しやすくなっています。まだまだ前半戦ですが、特に覚えておきたいコマンドを中心にメモを書いていきます。</p>
+
+<p><strong>(03/22 10:50) 回帰分析部分の説明を追記</strong><br/></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h3>Rの便利なメソッド</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>x &amp;lt;- <span class="s2">&quot;1245&quot;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;中身についての情報を取得&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;str<span class="o">(</span>x<span class="o">)</span> <span class="c">#=&gt; chr &quot;1245&quot;</span>
+</span><span class='line'>summary<span class="o">(</span>x<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Length     Class      Mode&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1 character character&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;基本的な情報&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;y &amp;lt;- c<span class="o">(</span>2, 3, 4, 5<span class="o">)</span>
+</span><span class='line'>summary<span class="o">(</span>y<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Min. 1st Qu.  Median    Mean 3rd Qu.    Max.&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2.00    2.75    3.50    3.50    4.25    5.00&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>ベクトルの生成</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;aからbまでのベクトルを生成 <span class="o">=</span>&gt; a:b&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;1:10&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1  2  3  4  5  6  7  8  9 10&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>a, b<span class="o">)</span>間をn等分するベクトルを生成 <span class="o">=</span>&gt; seq<span class="o">(</span>a, b, <span class="nv">length</span> <span class="o">=</span> n<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;seq<span class="o">(</span>1, 2, <span class="nv">length</span> <span class="o">=</span> 10<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1.000000 1.111111 1.222222 1.333333 1.444444&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1.555556 1.666667 1.777778 1.888889 2.000000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;aからbまでcずつ増加するベクトルを生成 <span class="o">=</span>&gt; seq<span class="o">(</span>a, b, <span class="nv">by</span> <span class="o">=</span> c<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;seq<span class="o">(</span>2, 15, <span class="nv">by</span><span class="o">=</span>3<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 2  5  8 11 14&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;a:bをc回繰り返すベクトルを生成 <span class="o">=</span>&gt; rep<span class="o">(</span>a:b, <span class="nb">times</span> <span class="o">=</span> c<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rep<span class="o">(</span>1:3, <span class="nb">times</span> <span class="o">=</span> 2<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1 2 3 1 2 3&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ベクトル内の値をユニークにする<span class="o">(</span>重複した値を取り除く<span class="o">)</span> <span class="o">=</span>&gt; unique<span class="o">(</span>x<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;unique<span class="o">(</span>c<span class="o">(</span>1,2,4,6,3,3,2,1<span class="o">))</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1 2 4 6 3&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;0をn個並べたベクトルを生成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;numeric<span class="o">(</span>5<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 0 0 0 0 0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;x &amp;lt;- 1:5&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;要素の並びを逆順にする&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rev<span class="o">(</span>x<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 5 4 3 2 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;y &amp;lt;- 5:1&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;要素の並び順を整列させる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sort<span class="o">(</span>y<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1 2 3 4 5&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>ベクトル条件</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;どれか一つでも条件をみたすものがあるか？&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;any<span class="o">(</span>y &gt; 4<span class="o">)</span> <span class="c">#=&gt; TRUE&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;すべて条件をみたすか？&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;all<span class="o">(</span>y &gt; 2<span class="o">)</span> <span class="c">#=&gt; FALSE&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;NULLか否か&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;is.null<span class="o">(</span>NULL<span class="o">)</span> <span class="c">#=&gt; TRUE&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;NA<span class="o">(</span>データの欠損<span class="o">)</span>か否か&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;is.na<span class="o">(</span>NA<span class="o">)</span> <span class="c">#=&gt; TRUE&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;NaN<span class="o">(</span>数では表せない<span class="o">)</span>か否か&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;is.nan<span class="o">(</span>0/0<span class="o">)</span> <span class="c">#=&gt; TRUE&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;有限か否か&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;is.finite<span class="o">(</span>1<span class="o">)</span> <span class="c">#=&gt; TRUE&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;無限か否か&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;is.infinite<span class="o">(</span>1/0<span class="o">)</span> <span class="c">#=&gt; TRUE</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>ベクトルの中身</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>x &amp;lt;- 1:5&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2-4番目の要素&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;x<span class="o">[</span>2:4<span class="o">]</span> <span class="c">#=&gt; 2, 3, 4&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1, 4番目の要素以外を取り出す&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;x<span class="o">[</span>c<span class="o">(</span>-1,-4<span class="o">)]</span> <span class="c">#=&gt; 2, 3, 5&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3より大きい要素を取り出す&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;x<span class="o">[</span>3 &amp;lt; x<span class="o">]</span> <span class="c">#=&gt; 4, 5&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1より大きく、4より小さい要素を取り出す&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;x<span class="o">[</span>1 &amp;lt; x &amp;amp; x &amp;lt; 4<span class="o">]</span> <span class="c">#=&gt; 2, 3&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;y &amp;lt;- x * 2&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;条件を満たす要素の番号を返す&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">(</span>1:length<span class="o">(</span>y<span class="o">))[</span>1 &amp;lt; y &amp;amp; y &amp;lt; 8<span class="o">]</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 1, 2, 3&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>日付</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;日付型に変換&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;as.Date<span class="o">(</span><span class="s2">&quot;2012/08/15&quot;</span><span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; <span class="s2">&quot;2012-08-15&quot;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;as.Date<span class="o">(</span><span class="s2">&quot;20130222&quot;</span>, <span class="nv">format</span><span class="o">=</span><span class="s2">&quot;%Y%m%d&quot;</span><span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; <span class="s2">&quot;2013-02-22&quot;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;現在時刻を日付オブジェクトで取得&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;today &amp;lt;- Sys.Date<span class="o">()</span>
+</span><span class='line'>now &amp;lt;- Sys.time<span class="o">()</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;日付の差分&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;x &amp;lt;- as.Date<span class="o">(</span>c<span class="o">(</span><span class="s2">&quot;2012/07/01&quot;</span>, <span class="s2">&quot;2009/08/01&quot;</span><span class="o">))</span>
+</span><span class='line'>x<span class="o">[</span>2<span class="o">]</span> - x<span class="o">[</span>1<span class="o">]</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Time difference of -1065 days&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>文字列</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;文字列ベクトルの結合&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;paste<span class="o">(</span>month.abb, 1:8, c<span class="o">(</span><span class="s2">&quot;st&quot;</span>, <span class="s2">&quot;nd&quot;</span>, <span class="s2">&quot;rd&quot;</span>, rep<span class="o">(</span><span class="s2">&quot;th&quot;</span>,5<span class="o">)))</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="s2">&quot;Jan 1 st&quot;</span> <span class="s2">&quot;Feb 2 nd&quot;</span> <span class="s2">&quot;Mar 3 rd&quot;</span> <span class="s2">&quot;Apr 4 th&quot;</span> <span class="s2">&quot;May 5 th&quot;</span> <span class="s2">&quot;Jun 6 th&quot;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="s2">&quot;Jul 7 th&quot;</span> <span class="s2">&quot;Aug 8 th&quot;</span> <span class="s2">&quot;Sep 1 st&quot;</span> <span class="s2">&quot;Oct 2 nd&quot;</span> <span class="s2">&quot;Nov 3 rd&quot;</span> <span class="s2">&quot;Dec 4 th&quot;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;文字列から特定の部分を切り出し&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;substring<span class="o">(</span><span class="s2">&quot;defghijklmnopqr&quot;</span>, 3, 7<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; <span class="s2">&quot;fghij&quot;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>データフレーム</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;データフレームの作成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sex &amp;lt;- c<span class="o">(</span>rep<span class="o">(</span><span class="s2">&quot;F&quot;</span>, 3<span class="o">)</span>, rep<span class="o">(</span><span class="s2">&quot;M&quot;</span>, 1<span class="o">))</span>
+</span><span class='line'>height &amp;lt;- seq<span class="o">(</span>150, 180, <span class="nv">length</span><span class="o">=</span>4<span class="o">)</span>
+</span><span class='line'>weight &amp;lt;- seq<span class="o">(</span>70, 80, <span class="nv">length</span><span class="o">=</span>4<span class="o">)</span>
+</span><span class='line'>df &amp;lt;- data.frame<span class="o">(</span>sex, height, weight<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sex height   weight&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1   F    150 70.00000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2   F    160 73.33333&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3   F    170 76.66667&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4   M    180 80.00000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;データオブジェクトの行数を返す&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;nrow<span class="o">(</span>df<span class="o">)</span> <span class="c">#=&gt; 4&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;summaryでデータフレームの要素の情報を表示&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;summary<span class="o">(</span>df<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sex       height          weight&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;F:3   Min.   :150.0   Min.   :70.0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;M:1   1st Qu.:157.5   1st Qu.:72.5&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Median :165.0   Median :75.0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Mean   :165.0   Mean   :75.0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3rd Qu.:172.5   3rd Qu.:77.5&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Max.   :180.0   Max.   :80.0&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;heightで降順に並べ直し&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sort_list &amp;lt;- order<span class="o">(</span>df<span class="nv">$height</span>,decreasing<span class="o">=</span>T<span class="o">)</span>
+</span><span class='line'>df<span class="o">[</span>sort_list,<span class="o">]</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sex height   weight&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4   M    180 80.00000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3   F    170 76.66667&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2   F    160 73.33333&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1   F    150 70.00000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;typeカラムに条件に応じてBIG, MIDDLE, SMALL&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;df<span class="nv">$type</span> &lt;- ifelse<span class="o">(</span>height &gt;<span class="o">=</span> 170, <span class="s2">&quot;BIG&quot;</span>, ifelse<span class="o">(</span>height&gt;<span class="o">=</span>160, <span class="s2">&quot;MIDDLE&quot;</span>, <span class="s2">&quot;SMALL&quot;</span><span class="o">))</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sex height   weight   <span class="nb">type</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1   F    150 70.00000  SMALL&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2   F    160 73.33333 MIDDLE&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3   F    170 76.66667    BIG&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4   M    180 80.00000    BIG&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;一律でheight_mmカラムを追加&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;transform<span class="o">(</span>df, <span class="nv">height_mm</span><span class="o">=</span>df<span class="nv">$height</span>*100<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sex height   weight   <span class="nb">type </span>height_mm&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1   F    150 70.00000  SMALL     15000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2   F    160 73.33333 MIDDLE     16000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3   F    170 76.66667    BIG     17000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4   M    180 80.00000    BIG     18000&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;行番号を追加&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;df<span class="nv">$id</span> &amp;lt;- row.names<span class="o">(</span>df<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sex height   weight   <span class="nb">type </span>id&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1   F    150 70.00000  SMALL  1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2   F    160 73.33333 MIDDLE  2&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3   F    170 76.66667    BIG  3&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4   M    180 80.00000    BIG  4&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;行方向の結合&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cbind<span class="o">(</span>df, df<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sex height   weight   <span class="nb">type </span>id sex height   weight   <span class="nb">type </span>id&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1   F    150 70.00000  SMALL  1   F    150 70.00000  SMALL  1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2   F    160 73.33333 MIDDLE  2   F    160 73.33333 MIDDLE  2&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3   F    170 76.66667    BIG  3   F    170 76.66667    BIG  3&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4   M    180 80.00000    BIG  4   M    180 80.00000    BIG  4&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;列方向の結合&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rbind<span class="o">(</span>df, df<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sex height   weight   <span class="nb">type </span>id&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1   F    150 70.00000  SMALL  1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2   F    160 73.33333 MIDDLE  2&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3   F    170 76.66667    BIG  3&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;4   M    180 80.00000    BIG  4&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;5   F    150 70.00000  SMALL  1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;6   F    160 73.33333 MIDDLE  2&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;7   F    170 76.66667    BIG  3&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;8   M    180 80.00000    BIG  4&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>サンプルデータセット</h2>
+
+<p>Rで勉強していく上で、避けて通れないのがサンプルデータの確保です。Rにはデフォルトで複数のデータセットが格納されています。『<strong><a href="http://d.hatena.ne.jp/hoxo_m/20120214/p1">統計を学びたい人へ贈る、統計解析に使えるデータセットまとめ</a></strong>』に初心者におすすめなデータがまとめられています！</p>
+
+<h2>データセットを使った集計・グラフ表示</h2>
+
+<p>デフォルトのデータセットのあやめのデータ(iris)を使って、いくつかサンプルを書いていきます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;irisはあやめのデータ・セット&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;width_set &lt;- iris<span class="o">[</span>,c<span class="o">(</span><span class="s2">&quot;Sepal.Length&quot;</span>, <span class="s2">&quot;Petal.Length&quot;</span>, <span class="s2">&quot;Species&quot;</span><span class="o">)]</span>
+</span><span class='line'>width_large &lt;- width_set<span class="o">[</span>width_set<span class="nv">$Species</span> <span class="o">==</span> <span class="s2">&quot;versicolor&quot;</span>,<span class="o">]</span>
+</span><span class='line'>mean<span class="o">(</span>width_large<span class="nv">$Petal</span>.Length<span class="o">)</span> <span class="c">#=&gt; 4.26&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;plyrパッケージの導入&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;plyr : データフレームの加工をしやすくするパッケージ&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;install.packages<span class="o">(</span><span class="s2">&quot;plyr&quot;</span><span class="o">)</span>
+</span><span class='line'>library<span class="o">(</span><span class="s2">&quot;plyr&quot;</span><span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;irisのデータからSpeciesをキーにSepal.Length<span class="o">(</span>がくの長さ<span class="o">)</span>の平均を出す&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;data &amp;lt;- ddply<span class="o">(</span>iris, .<span class="o">(</span>Species<span class="o">)</span>, summarise, Sepal.Length.Average<span class="o">=</span>mean<span class="o">(</span>Sepal.Length<span class="o">))</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Species Sepal.Length.Average&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1     setosa                5.006&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2 versicolor                5.936&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3  virginica                6.588&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Sepal.Length<span class="o">(</span>がくの長さ<span class="o">)</span>の平均順でならべ直す&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;arrange<span class="o">(</span>data, desc<span class="o">(</span>Sepal.Length.Average<span class="o">))</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Species Sepal.Length.Average&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1  virginica                6.588&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2 versicolor                5.936&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3     setosa                5.006&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;棒グラフ&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;棒グラフは「月ごとの販売実績」のように書くカテゴリの度数や比率を表示するために利用する&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;index &lt;- iris<span class="nv">$Sepal</span>.Length &gt; 5.5
+</span><span class='line'>dat &amp;lt;- iris<span class="o">[</span>index,<span class="o">]</span>
+</span><span class='line'>xtabs<span class="o">(</span>~Species, <span class="nv">data</span><span class="o">=</span>dat, drop.unused.levels<span class="o">=</span>T<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Species&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;setosa versicolor  virginica&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;3         39         49&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;qplot<span class="o">(</span>Species, <span class="nv">data</span><span class="o">=</span>dat, <span class="nv">geom</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm8.staticflickr.com/7298/13000340725_82a36b0b98.jpg" width="413" height="439" alt="Rplot01"></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ヒストグラム&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;身長・成績・人口などのように連続量のデータの度数<span class="o">(</span>割合<span class="o">)</span>を表示する&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;qplot<span class="o">(</span>Sepal.Length, <span class="nv">data</span><span class="o">=</span>iris, <span class="nv">geom</span><span class="o">=</span><span class="s2">&quot;histogram&quot;</span>, <span class="nv">binwidth</span><span class="o">=</span>0.5, <span class="nv">xlim</span><span class="o">=</span>c<span class="o">(</span>4,8<span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm3.staticflickr.com/2581/13000752024_5542498537.jpg" width="413" height="439" alt="Rplot"></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;箱ひげ図&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;カテゴリごとの中央値、箱、ヒゲ、外れ値を表示。ヒストグラムの簡略版&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;1つが複数カテゴリのデータ、もう一つが連続量の場合に用いる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;qplot<span class="o">(</span>Species, Sepal.Length, <span class="nv">data</span><span class="o">=</span>iris, <span class="nv">geom</span><span class="o">=</span><span class="s2">&quot;boxplot&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm4.staticflickr.com/3671/13000403615_dc98e591a0.jpg" width="413" height="439" alt="Rplot02"></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;散布図&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2つの変数の値に従って座標平面上に複数の点を表示&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;2つの変数がともに連続量の場合に用いる&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;index &amp;lt;- iris<span class="nv">$Species</span> !<span class="o">=</span> <span class="s1">&#39;virginica&#39;</span>
+</span><span class='line'>dat &amp;lt;- iris<span class="o">[</span>index,<span class="o">]</span>
+</span><span class='line'>qplot<span class="o">(</span>Sepal.Length, Petal.Length, <span class="nv">data</span><span class="o">=</span>iris, <span class="nv">geom</span><span class="o">=</span>c<span class="o">(</span><span class="s2">&quot;point&quot;</span>, <span class="s2">&quot;smooth&quot;</span><span class="o">)</span>, <span class="nv">color</span><span class="o">=</span>Species<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm8.staticflickr.com/7353/13000607723_53c89f2449.jpg" width="413" height="439" alt="Rplot03"></p>
+
+<h2>サンプルデータを使った単回帰分析</h2>
+
+<p>サンプルデータを知らなすぎて、あまり適切な分析ではないですが、手元にある範囲内で。</p>
+
+<h3>キーワード</h3>
+
+<pre>
+独立変数: 原因となる変数
+従属変数: 性質を明らかにしたい側の変数
+単回帰分析: 独立変数が1つの分析
+重回帰分析: 独立変数が2つ以上の分析
+</pre>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;データ・セットを使った回帰分析のサンプル&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;library<span class="o">(</span>ggplot2<span class="o">)</span>
+</span><span class='line'>qplot<span class="o">(</span>Petal.Length, <span class="nv">data</span><span class="o">=</span>dat, <span class="nv">geom</span><span class="o">=</span><span class="s2">&quot;histogram&quot;</span>, <span class="nv">bandwith</span><span class="o">=</span>0.5, <span class="nv">xlim</span><span class="o">=</span>c<span class="o">(</span>3,6<span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm8.staticflickr.com/7044/13155728714_9b43830cb0_o.png" /></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>index &amp;lt;- iris<span class="nv">$Species</span> <span class="o">==</span> <span class="s1">&#39;versicolor&#39;</span>
+</span><span class='line'>dat &amp;lt;- iris<span class="o">[</span>index,<span class="o">]</span>
+</span><span class='line'>result &amp;lt;- glm<span class="o">(</span>Sepal.Length~Petal.Length, <span class="nv">data</span><span class="o">=</span>dat, <span class="nv">family</span><span class="o">=</span>gaussian<span class="o">)</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;glm<span class="o">(</span><span class="nv">formula</span> <span class="o">=</span> Sepal.Length ~ Petal.Length, <span class="nv">family</span> <span class="o">=</span> gaussian,&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;data <span class="o">=</span> dat<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Deviance Residuals:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Min        1Q    Median        3Q       Max&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;-0.73479  -0.20272  -0.02065   0.26092   0.69956&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Coefficients:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Estimate Std. Error t value Pr<span class="o">(</span>&gt;|t|<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>Intercept<span class="o">)</span>    2.4075     0.4463   5.395 2.08e-06 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Petal.Length   0.8283     0.1041   7.954 2.59e-10 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;---&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Signif. codes:  0 ‘&lt;em&gt;&lt;strong&gt;’ 0.001 ‘&lt;/strong&gt;’ 0.01 ‘&lt;/em&gt;’ 0.05 ‘.’ 0.1 ‘ ’ 1&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>Dispersion parameter <span class="k">for </span>gaussian family taken to be 0.1173364<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Null deviance: 13.0552  on 49  degrees of freedom&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Residual deviance:  5.6321  on 48  degrees of freedom&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;AIC: 38.717&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Number of Fisher Scoring iterations: 2&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 回帰式 <span class="nv">y</span> <span class="o">=</span> ax + bで <span class="nv">a</span> <span class="o">=</span> 2.4075, <span class="nv">b</span> <span class="o">=</span> 0.8283&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Coefficientsの最後が信頼度。<span class="s1">&#39;***&#39;</span>なので高い&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>適切な回帰分析式の比較</h2>
+
+<h3>AIC : 赤池情報量規準</h3>
+
+<p>統計モデルの良さを評価するための指標。</p>
+
+<h3>統計モデルの比較</h3>
+
+<p>こちらも素人のトライなので、ツッコミお待ちしております！</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>library<span class="o">(</span>ggplot2<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;単純にヒストグラムでプロット&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;qplot<span class="o">(</span>Volume, <span class="nv">data</span><span class="o">=</span>trees, <span class="nv">geom</span><span class="o">=</span><span class="s2">&quot;histogram&quot;</span>, <span class="nv">bandwith</span><span class="o">=</span>5, <span class="nv">xlim</span><span class="o">=</span>c<span class="o">(</span>10,80<span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm3.staticflickr.com/2741/13155614675_20ae60951c.jpg" width="413" height="439" alt="Rplot"></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;対数をとってヒストグラムでプロット&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;qplot<span class="o">(</span>log<span class="o">(</span>Volume<span class="o">)</span>, <span class="nv">data</span><span class="o">=</span>trees, <span class="nv">geom</span><span class="o">=</span><span class="s2">&quot;histogram&quot;</span>, <span class="nv">bandwith</span><span class="o">=</span>0.2, <span class="nv">xlim</span><span class="o">=</span>c<span class="o">(</span>2,5<span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm8.staticflickr.com/7146/13156766444_35d1a2b410.jpg" width="413" height="439" alt="Rplot02"></p>
+
+<p>本来は正規分布に従いそうなデータですが、サンプルデータを目視する限りは対数正規分布に近そう。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>result &amp;lt;- glm<span class="o">(</span>Volume~Girth, <span class="nv">data</span> <span class="o">=</span> trees, <span class="nv">family</span><span class="o">=</span>gaussian<span class="o">)</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>Intercept<span class="o">)</span> -36.9435     3.3651  -10.98 7.62e-12 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Girth         5.0659     0.2474   20.48  &amp;lt; 2e-16 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;AIC: 181.64&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;result &amp;lt;- glm<span class="o">(</span>Volume~Girth, <span class="nv">data</span> <span class="o">=</span> trees, <span class="nv">family</span><span class="o">=</span>gaussian<span class="o">(</span><span class="nv">link</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="o">))</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>Intercept<span class="o">)</span> 1.340516   0.097224   13.79 2.89e-14 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Girth       0.147910   0.005839   25.33  &amp;lt; 2e-16 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;AIC: 169.14&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;result &amp;lt;- glm<span class="o">(</span>Volume~<span class="o">(</span>Girth+Height<span class="o">)</span>, <span class="nv">data</span> <span class="o">=</span> trees, <span class="nv">family</span><span class="o">=</span>gaussian<span class="o">)</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>Intercept<span class="o">)</span> -57.9877     8.6382  -6.713 2.75e-07 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Girth         4.7082     0.2643  17.816  &amp;lt; 2e-16 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Height        0.3393     0.1302   2.607   0.0145 *&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;AIC: 176.91&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;result &amp;lt;- glm<span class="o">(</span>Volume~<span class="o">(</span>Girth+Height<span class="o">)</span>, <span class="nv">data</span> <span class="o">=</span> trees, <span class="nv">family</span><span class="o">=</span>gaussian<span class="o">(</span><span class="nv">link</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="o">))</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>Intercept<span class="o">)</span> 0.679294   0.258124   2.632  0.01366 *&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Girth       0.134163   0.006845  19.601  &amp;lt; 2e-16 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Height      0.011144   0.003975   2.804  0.00907 **&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;AIC: 163.37&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 上記4つのAIC<span class="o">(</span>赤池情報量規準<span class="o">)</span>からみると一番最後の回帰式<span class="o">(</span>対数正規分布で独立変数にGirth, Heightをとる<span class="o">)</span>が最も近い&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>ポワソン回帰</h2>
+
+<p>ポワソン回帰は離散値かつ、ゼロ以上の範囲のデータを扱うときに利用する。<br/></p>
+
+<p>適切なデータでないんで、雰囲気だけメモ。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dat &amp;lt;- InsectSprays
+</span><span class='line'>qplot<span class="o">(</span>count, <span class="nv">data</span><span class="o">=</span>dat, <span class="nv">geom</span><span class="o">=</span><span class="s2">&quot;histogram&quot;</span>, <span class="nv">bandwith</span><span class="o">=</span>1, <span class="nv">xlim</span><span class="o">=</span>c<span class="o">(</span>0,30<span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm4.staticflickr.com/3680/13319567853_70a00eccfc.jpg" width="413" height="439" alt="Rplot04"></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>result &amp;lt;- glm<span class="o">(</span>count~spray, <span class="nv">data</span><span class="o">=</span>dat, <span class="nv">family</span><span class="o">=</span>poisson<span class="o">(</span><span class="nv">link</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="o">))</span>
+</span><span class='line'>summary<span class="o">(</span>result<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>Intercept<span class="o">)</span>  2.67415    0.07581  35.274  &amp;lt; 2e-16 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sprayB       0.05588    0.10574   0.528    0.597&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sprayC      -1.94018    0.21389  -9.071  &amp;lt; 2e-16 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sprayD      -1.08152    0.15065  -7.179 7.03e-13 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sprayE      -1.42139    0.17192  -8.268  &amp;lt; 2e-16 ***&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sprayF       0.13926    0.10367   1.343    0.179&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;AIC: 376.59&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>独立変数の最適化</h2>
+
+<p>複数の独立変数から、Rが効率的なアルゴリズムで自動的にモデル選択をする方法。</p>
+
+<p>適切なサンプルデータで後でリトライする予定。。。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;独立変数の最適化&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;dat &amp;lt;- iris
+</span><span class='line'>result &amp;lt;- glm<span class="o">(</span>Petal.Width~Sepal.Length+Sepal.Width+Petal.Length, <span class="nv">data</span> <span class="o">=</span> dat, <span class="nv">family</span><span class="o">=</span>gaussian<span class="o">(</span><span class="nv">link</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="o">))</span>
+</span><span class='line'>step<span class="o">(</span>result, <span class="nv">direction</span><span class="o">=</span><span class="s2">&quot;backward&quot;</span><span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Start:  <span class="nv">AIC</span><span class="o">=</span>19.47&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Petal.Width ~ Sepal.Length + Sepal.Width + Petal.Length&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Df Deviance     AIC&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;- Sepal.Width   1    9.472  19.337&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;none&gt;               9.355  19.469&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;- Sepal.Length  1   12.225  57.615&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;- Petal.Length  1   33.293 207.890&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Step:  <span class="nv">AIC</span><span class="o">=</span>19.34&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Petal.Width ~ Sepal.Length + Petal.Length&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Df Deviance     AIC&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;none&gt;               9.472  19.337&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;- Sepal.Length  1   12.371  57.394&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;- Petal.Length  1   38.191 226.476&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Call:  glm<span class="o">(</span><span class="nv">formula</span> <span class="o">=</span> Petal.Width ~ Sepal.Length + Petal.Length, <span class="nv">family</span> <span class="o">=</span> gaussian<span class="o">(</span><span class="nv">link</span> <span class="o">=</span> <span class="s2">&quot;log&quot;</span><span class="o">)</span>,&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;data <span class="o">=</span> dat<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Coefficients:&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">(</span>Intercept<span class="o">)</span>  Sepal.Length  Petal.Length&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;-0.3528       -0.2442        0.4752&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Degrees of Freedom: 149 Total <span class="o">(</span>i.e. Null<span class="o">)</span>;  147 Residual&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Null Deviance:      86.57&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Residual Deviance: 9.472  AIC: 19.34&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;#&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 以上より、Petal.Width <span class="o">=</span> -0.2442&lt;em&gt;Sepal.Length + 0.4752&lt;/em&gt;Petal.Length + -0.3528 がAICでベスト&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>ユークリッド距離を使ったクラスタリング</h2>
+
+<p>ユークリッド距離や重心の概念を使ってクラスタリングを行う。</p>
+
+<p>Rに難儀しているので、とりあえず暫定で出来たところまで。使い方を覚えたらちゃんと直したい！</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>library<span class="o">(</span><span class="s2">&quot;plyr&quot;</span><span class="o">)</span>
+</span><span class='line'>dat &amp;lt;- InsectSprays
+</span><span class='line'>dat2 &amp;lt;- ddply<span class="o">(</span>dat, .<span class="o">(</span>spray<span class="o">)</span>, summarise, <span class="nv">count_ave</span><span class="o">=</span>mean<span class="o">(</span>count<span class="o">))</span>
+</span><span class='line'>distw &amp;lt;- dist<span class="o">(</span>dat2, <span class="nv">method</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="o">)</span>
+</span><span class='line'>clust &amp;lt;- hclust<span class="o">(</span>distw, <span class="nv">method</span><span class="o">=</span><span class="s2">&quot;ward&quot;</span><span class="o">)</span>
+</span><span class='line'>plclust<span class="o">(</span>clust, <span class="nv">hang</span><span class="o">=</span>-1, <span class="nv">xlab</span><span class="o">=</span><span class="s2">&quot;spray&quot;</span>, <span class="nv">ylab</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://farm4.staticflickr.com/3715/13157567135_d51493c391.jpg" width="413" height="439" alt="Rplot03"></p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://www.slideshare.net/teramonagi/tokyo-r30-20130420">「plyrパッケージで君も前処理スタ☆」改め「plyrパッケージ徹底入門」</a></strong><br/>
+第30回R勉強会＠東京(#TokyoR)の資料</p>
+
+<h2>あとで読む</h2>
+
+<p><strong><a href="http://matome.naver.jp/odai/2134709644082692701">統計・機械学習・データマイニングの無料で読めるPDF資料</a></strong><br/></p>
+
+<blockquote>
+オンラインで無料公開されている書籍等のPDF資料をまとめ。
+</blockquote>
+
+
+<p><strong><a href="http://www.r.dl.itc.u-tokyo.ac.jp/node/33">統計的機械学習 | 中川研究室</a></strong><br/></p>
+
+<blockquote>
+統計的機械学習とは、観測されたデータから統計的手法を用い新たな知識を導出すること。 統計的機械学習には種々の分類がある、この説明。
+</blockquote>
+
+
+<p><strong><a href="http://www.slideshare.net/pfi/deep-learning-22350063">一般向けのDeep Learning</a></strong><br/></p>
+
+<blockquote>
+PFI 全体セミナーで発表した、専門家向けではなく一般向けのDeep Learning（深層学習）の解説です。どのような場面で活躍しているのか、今までの学習手法と何が違うのかを解説しています。
+</blockquote>
+
+
+<p><strong><a href="http://www.toukei-kentei.jp/index.html">統計検定：Japan Statistical Society Certificate</a></strong><br/></p>
+
+<blockquote>
+「統計検定」とは、統計に関する知識や活用力を評価する全国統一試験です。 データに基づいて客観的に判断し、科学的に問題を解決する能力は、仕事や研究をするための21世紀型スキルとして国際社会で広く認められています。
+</blockquote>
+
+
+<p><strong><a href="http://gci.t.u-tokyo.ac.jp/tutorial/">チュートリアル | グローバル消費インテリジェンス寄附講座</a></strong><br/></p>
+
+<blockquote>
+GCI チュートリアル (Global Consumer Intelligence Tutorial) は、東京大学工学部 松尾豊研究室とグローバル消費インテリジェンス寄附講座の学生のためのチュートリアルです。ウェブと人工知能を活かした研究を行うために必要な技能を身に付けることを目的としています。
+</blockquote>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>変更来歴</h2>
+
+<p>(03/15 10:45) 回帰に関する記述を追記<br/>
+(03/21 17:25) データ・フレームを追記<br/>
+(03/22 10:50) 回帰分析部分の説明を追記<br/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[「統計学が最強の学問である」で学ぶ 統計学で見える新しい世界]]></title>
+    <link href="http://morizyun.github.io/blog/statistics-is-best-knowledge-book-review/"/>
+    <updated>2014-03-09T18:50:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/statistics-is-best-knowledge-book-review</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4478022216/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4478022216&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4478022216&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4478022216" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />少しずつ統計学を勉強していく中で「統計学で学んだこと」を少しでも実践で生かせるようなマインドを養いたかったので、『<strong><a href="http://www.amazon.co.jp/gp/product/4478022216/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4478022216&amp;linkCode=as2&amp;tag=morizyun00-22">統計学が最強の学問である</a></strong>』を読み始めました。</p>
+
+<p>この記事ではこの本の中で特に参考になった点を中心にマトメていきます！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>マイクロソフトのBlogでアツい3つの専門性</h2>
+
+<pre>
+* データマイニング、機械学習、人工知能、自然言語処理
+* ビジネスインテリジェンス、競合分析
+* 分析、統計、特にウェブ分析、A/Bテスト、統計解析
+</pre>
+
+
+<h2>データをビジネスで使うための「3つの問い」</h2>
+
+<pre>
+問1) 何かの要因が変化すれば利益が向上するのか？
+問2) そうした変化を起こすような行動は実際に可能か？
+問3) 変化を起こす行動が可能だとしてそのコストは利益を上回るのか？
+</pre>
+
+
+<h2>データから適切な判断ポイントを見つけるために重要な点</h2>
+
+<pre>
+1) 適切な比較を行うこと
+2) ただの集計ではなくその誤差とp値について明らかにすること
+</pre>
+
+
+<h2>統計学における「ランダム化」の可能性と課題</h2>
+
+<pre>
+# ランダム化の利点
+* 統計的な裏付けがないのに、「正しい」と決め付けるのは間違い
+* 統計的な裏付けがないのに、「間違い」と決めつけるのも間違い
+* 正解がないのであればとりあえずランダムに試すのにも価値がある
+
+# ランダム化の欠点
+絶対的なサンプル数の制限 => サンプル数が少なすぎると統計学は無意味
+現実は条件を制御できない => 条件を満たすことが困難な場合統計学が脆い
+倫理的な問題 => 有害性や不公平などの倫理も現実にはとても重要
+不公平や劣等感が感情を逆なでする => 社会に対して不信感を与えない
+</pre>
+
+
+<h2>回帰分析について</h2>
+
+<pre>
+# 回帰分析とは？
+データ間の関係性を記述する、もしくは一方のデータから他方のデータを予測する数式を推定
+
+# 回帰分析で注意すべき点
+ばらつきをもつ現象に対する理論的な予測はそれほどうまくいかない
+
+# 統計学ができること
+サンプルの統計量から、真値の信頼度を測る
+
+# 重回帰分析とは？
+予測したい結果に影響する要因が複数ある状況へ拡張された回帰分析
+
+# 重回帰分析で注意すべき点
+重回帰分析では、2つの説明変数を掛けあわせた新しい説明変数(相互作用項)にも注意が必要
+
+# 回帰モデルの妥当性
+=> AIC(赤池情報量基準)
+=> 傾向スコア: 興味のある二値の説明変数についてどちらに該当するかという確率
+</pre>
+
+
+<h2>統計学における6つの分野</h2>
+
+<pre>
+1) 実態把握を行う社会学調査法
+=> 可能な限り偏りを減らして、求める誤差に収まる推定値を効率よく算出する
+
+2) 原因究明のための疫学・生物統計学
+=> 原因を見つけることに重視。母集団への当てはまりにはこだわらない
+
+3) 抽象的なものを測定する心理統計学
+=> いくつかの測定方法から相関性を出して、数値化したのが知能指数(IQ)
+
+4) 機械的分類のためのデータマイニング
+=> マーケティングを目的にクラスタ分析や相関を調べる。ニューラル・ネットワークやサポートベクターマシンなどのような機械学習は、予測に役立つデータマイニングのための手法
+
+5) 自然言語処理のためのテキストマイニング
+=> 大量のテキストデータから目的にマッチしたデータを抽出・集計する。形態素解析として辞書を使うMeCabや辞書を使わずに重複する単語を探しだすN-Gramなどがある
+
+6) 演繹に感心を寄せる数量経済学
+=>経済学分野で統計学を用いる。相互作用を含む説明変数の選択について慎重な検討を行う
+
+番外) 確率に対する考え方の違うベイズ派
+=> 事前確率と事後確率を使う。限られた情報と仮定を組み合わせることで、迅速に答えを出す。
+</pre>
+
+
+<h2>先人たちの知識をフル動員する</h2>
+
+<p>エビデンスが重要 : 統計的レビュー、メタアナリシス。Google Scholarなどで検索可能。この先人たちの知恵をフル動員することで、「最善」にコントロールすることが重要。</p>
+
+<h2>覚えておきたいキーワード</h2>
+
+<pre>
+最小で十分なサンプル : 正しい判断に不必要な精度を求める必要はない
+χ2乗検定 : 「意味のある偏り」、「誤差」のどちらかを確かめる手法
+p値 : 誤差や偶然によってたまたま差が出る確率
+真値 : 無制限にデータを集めればわかる本当に知りたい値
+標準誤差 : 推定値の誤差の大きさ。
+</pre>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[統計解析 & R言語 超初心者入門資料まとめ]]></title>
+    <link href="http://morizyun.github.io/blog/statistics-analysis-bigginer-r/"/>
+    <updated>2014-02-23T11:00:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/statistics-analysis-bigginer-r</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873116155/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116155&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873116155&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873116155" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />興味を持ち続けていた統計解析や、R言語の勉強をはじめました！まだまだ初歩の初歩ですが、この記事がいつか偉大な一歩になれるように頑張っていく所存ですw</p>
+
+<p>まずは、R言語や統計解析に関する入門記事や、モチベーションがアップしそうな記事をまとめていきます！</p>
+
+<p><strong>(02/23 11:00) 初学者の人におすすめな資料にフォーカスしてまとめ直し</strong></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>[スライド] 統計学入門</h2>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/5349634" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen></iframe>
+
+
+<p>統計学の全体像をつかむのに最適なスライドです。初歩。。。とはちょっと呼べないくらい内容が深いです！</p>
+
+<h2>[スライド] はじめての「R」</h2>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/15432969" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/m884/japan-r-15432969" title="はじめての「R」" target="_blank">はじめての「R」</a> </strong> from <strong><a href="http://www.slideshare.net/m884" target="_blank">Masahiro Hayashi</a></strong> </div></p>
+
+<p>統計解析を始めるときにWindowsな方も、Macな方もとっつきやすのが『<strong><a href="http://www.r-project.org/">R</a></strong>』です。このRを完全初心者をターゲットに説明をして頂けている資料です。超わかりやすいです！</p>
+
+<h2>[デスクトップアプリ] R用のIDE: RStudio</h2>
+
+<p><strong><a href="http://www.rstudio.com/ide/download/desktop">RStudio</a></strong><br/>
+RStudioはR言語用のIDEです。Window、Mac、Linuxに対応したフリーのオープンソース・ソフトです。</p>
+
+<h2>[CUI] Mac コマンドラインのRインストール手順</h2>
+
+<p>パッケージ版もありますが、コマンドライン版のRをインストールする手順を紹介します。</p>
+
+<p>まず『<strong><a href="https://xquartz.macosforge.org/landing/">XQuartz</a></strong>』からXQuartzのパッケージをDL&amp;インストールします。ちなみにこの<strong>XQuartz</strong>はX Window SystemをMacで動くようにするためのものです。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Homebrewをupdate&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew update&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;コンパイラ gfortranのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew install gfortran&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;フォーミュラをhomebrewの中に取り込む&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew tap homebrew/science&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Rのインストール&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;brew install R&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Rの起動&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;R&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Rを終了するためのコマンド&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;q<span class="o">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>[Web] とある弁当屋の統計技師</h2>
+
+<p><a href="http://rmecab.jp/ranko/chap1.html"><img title="とある弁当屋の統計技師（データサイエンティスト）" src="http://capture.heartrails.com/400x300/cool/1392461821673?http://rmecab.jp/ranko/chap1.html" alt="http://rmecab.jp/ranko/chap1.html" width="400" height="300" /></a></p>
+
+<p>こちらはRの導入から始まって基本的な使い方のチュートリアルまでをかなり細かく解説をしてくれています。導入の時には一番オススメなサイトです！</p>
+
+<h2>[Web・英語] Code School Try R</h2>
+
+<p><strong><a href="http://tryr.codeschool.com/levels/1/challenges/3">Code School Try R</a></strong><br/>
+インタラクティブにRを学ぶことができるサイト。唯一日本語に対応していないのが残念。</p>
+
+<h2>[書籍] Rによるやさしい統計学</h2>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4274067106/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274067106&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274067106&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274067106" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />これは最近購入して読み進めている『<strong><a href="http://www.amazon.co.jp/gp/product/4274067106/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4274067106&amp;linkCode=as2&amp;tag=morizyun00-22">Rによる統計解析</a></strong>』です。まだ前半戦の状態ですが、基本的には難しい数式ではなく、Rを使いながら基本的な統計の用語を学んでいけるので、初学者の人で数式の書かれた本が読めない僕のような人に超おすすめな本です。僕はあとは統計学の漫画系の書籍を買えるだけ買ってみました！そちらもおいおいレポートしていきます＾＾</p>
+
+<br style="clear:both;"/>
+
+
+<p>ここに書いていた書籍の中のメモ書きは増えてきたので『<strong><a href="/blog/easy-R-statistics-book-review/">「Rによるやさしい統計学」で学ぶ R言語と統計学の基礎徹底解説</a></strong>』に移動しました！</p>
+
+<h2>[Web] R-Tips : Rの基本的なコマンドの使い方がわかる</h2>
+
+<p><a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html"><img title="R-Tips" src="http://capture.heartrails.com/400x300/cool?http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html" alt="http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html" width="400" height="300" /></a></p>
+
+<p>Rをプログラミング言語の側面で特に覚えておくべきことをわかりやすく項目別にまとめてくれています。</p>
+
+<h2>[Web] R Markdownのシェアサイト</h2>
+
+<p><strong><a href="http://rpubs.com/">RPubs</a></strong><br/>
+RStudio用のプラグイン R Markdown形式で書かれた情報をシェアできるサイト。なかなか面白う！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Speical Thanks</h2>
+
+<p><strong><a href="http://qiita.com/dkkoma/items/8b45ce94c2c5d89d567f">MacOSX に homebrew で R をインストール - Qiita</a></strong></p>
+
+<p><strong><a href="http://statsguild.blog102.fc2.com/blog-entry-4.html">新人OLのはじめての統計 質的変数・量的変数とはなんぞや？</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(02/23 11:00) 初学者の人におすすめな資料にフォーカスしてまとめ直し<br/></p>
+]]></content>
+  </entry>
+  
+</feed>

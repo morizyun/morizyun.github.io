@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: LT | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/lt/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[「3分 Gem クッキング」というタイトルでLT発表しました！]]></title>
+    <link href="http://morizyun.github.io/blog/ruby-gem-easy-to-create/"/>
+    <updated>2014-12-13T18:15:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/ruby-gem-easy-to-create</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4873115930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873115930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873115930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873115930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+社内勉強会ですが、『<strong><a href="http://www.slideshare.net/morizyun/3-gem">3分 Gem クッキング</a></strong>』生まれてはじめてLT的な発表をしてきました。
+基本的には最近まとめていた、RubyGemsの作り方やOSSに携わると使える無料のサービスなんかの紹介が中心です。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>発表スライド</h2>
+
+<p>発表スライドはこちら。</p>
+
+<iframe src="http://morizyun.github.io//www.slideshare.net/slideshow/embed_code/42666755" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="http://morizyun.github.io//www.slideshare.net/morizyun/3-gem" title="3分 gem クッキング" target="_blank">3分 gem クッキング</a> </strong> from <strong><a href="http://morizyun.github.io//www.slideshare.net/morizyun" target="_blank">morizyun</a></strong> </div></p>
+
+<h2>伝えたいこと</h2>
+
+<p>僕の周りのエンジニアは実力はあるのに、ブログやQiitaの記事を書いたり、GitHubで活動したり、オープンソースに貢献することに対して、
+ちょと及び腰なところがあるなと思っています。</p>
+
+<p>でも、GitHubに自分のコードを公開したり、OSSにちょっとしたプルリクエスト(Pull Request)を出したり、自分でライブラリ
+を作って公開することは、やってみるとすごく簡単だし、それによって得られるメリットも沢山あると思っています！</p>
+
+<p>僕自身もその経験をして、少しでもその良さを伝えたいという想いから、この発表をしました！</p>
+
+<p>ちなみに、Rakuten Tech ConferenceでMatzさんもちょっと近いことをおっしゃっていたので、拙著『<strong><a href="http://morizyun.github.io/blog/rakutenc-technology-conference-2014/">http://morizyun.github.io/blog/rakutenc-technology-conference-2014/</a></strong>』を良かったら御覧ください＾＾</p>
+
+<h2>関連する記事</h2>
+
+<p>このスライドだけだとなかなかRubyGemを公開するのには情報不足なので、良ければ以下の記事も読んでみてください。</p>
+
+<p><strong><a href="/blog/ruby-gem-easy-publish-library-rails/">RubyGemはめっちゃ簡単に作れる！</a></strong></p>
+
+<p><strong><a href="/blog/travis-ci-code-climate-rubygem-org-coverall-gemnusium-inch-ci/">Travis CI、Coveralls、Code Climate、RubyGems、Gemnasiumと連携させよう！</a></strong></p>
+
+<h2>反省点</h2>
+
+<p>大勢の前で喋ったりするとガチガチになるタイプなのと、もう少しストーリーをねって伝えるべきだったのを反省してます。
+あとはオーディエンスの嗜好に合わせて、内容の深さを考えるべきだったです。</p>
+
+<p>とはいえこれはグッドプロブレムだと思うんで、3ヶ月後位を目標にリベンジのLTをやるつもりです＾＾</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+</feed>

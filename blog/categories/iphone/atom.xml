@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: iphone | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/iphone/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[【詳解 Objective-C iPhoneアプリ開発 入門ノート】で再入門iPhoneアプリ開発！]]></title>
+    <link href="http://morizyun.github.io/blog/objective-c-iphone-app-introduction-note/"/>
+    <updated>2014-04-05T22:45:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/objective-c-iphone-app-introduction-note</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4800710227/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4800710227&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4800710227&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4800710227" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />久々にObjective-Cを触り始めました。ほとんど忘れてるかなと思ってたんですが、結構覚えていて自分でびっくりしています。前に開発していた時にかなり苦労したので、その分脳にしっかり刻み込まれていたのかもw</p>
+
+<p>ということでリハビリで『<strong><a href="http://www.amazon.co.jp/gp/product/4800710227/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4800710227&amp;linkCode=as2&amp;tag=morizyun00-22">詳細! Objective-C iPhoneアプリ開発 入門ノート</a></strong>』を読み始めました。この本はサンプルソースがかなり豊富なので、作りながら覚えていくのに最適な構成です。</p>
+
+<p>今回は、特に参考になった点を中心にピックアップしていきます。</p>
+
+<p><strong>(04/05 22:45) ピンチイン・アウトとダブルタップを認識するサンプルを追加</strong></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>入門者におすすめなドキュメント</h2>
+
+<p><strong><a href="http://www.slideshare.net/cocopon/xcode-12535772">キーボードで完結！ハイスピード Xcodeコーディング</a></strong><br/>
+スライド形式で、わかりやすくショートカットコマンドがわかる。これは初心者に超オススメ！</p>
+
+<p><strong><a href="http://qiita.com/yuky_az/items/f2c3db2796d0a73dfde2">Objective-Cでは、インスタンス変数をどこに宣言するのが正しいのか？</a></strong><br/>
+Apple的には実装ファイル側に変数を書いてほしいそうですが、ソースの見通し的にはヘッダファイル側に変数を書いたほうが良さそうです。</p>
+
+<h2>Objective-Cの基礎</h2>
+
+<p>便利メソッドとか覚えておきたいメソッドとかを中心に書いてみました！</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> &lt;br/&gt;
+</span><span class='line'>// 便利メソッド
+</span><span class='line'>// 1以上のランダムな数を出す
+</span><span class='line'>int <span class="nv">random</span> <span class="o">=</span> arc4random<span class="o">()</span>;
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;arc4random() = %d&quot;</span>, random<span class="o">)</span>; //<span class="o">=</span>&gt; 173176668&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 小数点の切り上げ
+</span><span class='line'>int <span class="nv">ceil_num</span> <span class="o">=</span> ceil<span class="o">(</span>0.5<span class="o">)</span>;
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;ceil() = %d&quot;</span>, ceil_num<span class="o">)</span>; //<span class="o">=</span>&gt; 1&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// doubleの絶対値
+</span><span class='line'>double <span class="nv">fabs_num</span> <span class="o">=</span> fabs<span class="o">(</span>-55.2940<span class="o">)</span>;
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;fabs() = %f&quot;</span>, fabs_num<span class="o">)</span>; //<span class="o">=</span>&gt; 55.294000&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 今日の日付
+</span><span class='line'>NSDate *today <span class="o">=</span> <span class="o">[</span>NSDate date<span class="o">]</span>;
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;today = %@&quot;</span>, today<span class="o">)</span>; //<span class="o">=</span>&gt; 2014-04-02 10:19:34 +0000&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 文字列
+</span><span class='line'>NSString *address <span class="o">=</span> @<span class="s2">&quot;東京都文京区本郷1-2-3&quot;</span>;
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;%@&quot;</span>, <span class="o">[</span>address substringFromIndex:6<span class="o">])</span>; //<span class="o">=</span>&gt; 本郷1-2-3
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;%@&quot;</span>, <span class="o">[</span>address substringToIndex:4<span class="o">])</span>; //<span class="o">=</span>&gt; 東京都文京区&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 編集可能な文字列型
+</span><span class='line'>NSMutableString *str <span class="o">=</span> <span class="o">[</span>NSMutableString string<span class="o">]</span>;
+</span><span class='line'><span class="o">[</span>str setString:<span class="o">(</span>@<span class="s2">&quot;あいうえお&quot;</span><span class="o">)]</span>;
+</span><span class='line'><span class="o">[</span>str insertString:@<span class="s2">&quot;def&quot;</span> atIndex:4<span class="o">]</span>;
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;%@&quot;</span>, str<span class="o">)</span>; //<span class="o">=</span>&gt; あいうえdefお&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 整数の配列の合計を求める
+</span><span class='line'>NSArray &lt;em&gt;intlist <span class="o">=</span> @<span class="o">[</span>@16, @5, @25, @54<span class="o">]</span>;
+</span><span class='line'>NSInteger <span class="nv">sum</span> <span class="o">=</span> 0;
+</span><span class='line'><span class="k">for</span> <span class="o">(</span>NSString &lt;/em&gt;num in intlist<span class="o">)</span> <span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;sum +<span class="o">=</span> <span class="o">[</span>num intValue<span class="o">]</span>;
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;sum = %d&quot;</span>, sum<span class="o">)</span>; //<span class="o">=</span>&gt; 100&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 配列の値をソートする
+</span><span class='line'>NSArray &lt;em&gt;fruits <span class="o">=</span> @<span class="o">[</span>@<span class="s2">&quot;melon&quot;</span>, @<span class="s2">&quot;Peach&quot;</span>, @<span class="s2">&quot;apple&quot;</span>, @<span class="s2">&quot;orange&quot;</span><span class="o">]</span>;
+</span><span class='line'>NSArray &lt;/em&gt;sortedFruits <span class="o">=</span> <span class="o">[</span>fruits sortedArrayUsingSelector:@selector<span class="o">(</span>caseInsensitiveCompare:<span class="o">)]</span>;
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;%@&quot;</span>, sortedFruits<span class="o">)</span>; //<span class="o">=</span>&gt; apple, melon, orange, Peach&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 数値の配列をフィルタリングする
+</span><span class='line'>NSMutableArray &lt;em&gt;number_3 <span class="o">=</span> <span class="o">[</span>NSMutableArray arrayWithArray:@<span class="o">[</span>@3, @18, @20, @7, @9, @10<span class="o">]]</span>;
+</span><span class='line'>NSPredicate &lt;/em&gt;predicate <span class="o">=</span> <span class="o">[</span>NSPredicate predicateWithFormat:@<span class="s2">&quot;self &gt;= 10&quot;</span><span class="o">]</span>;
+</span><span class='line'>NSLog<span class="o">(</span> @<span class="s2">&quot;%@&quot;</span>, <span class="o">[</span>number_3 filteredArrayUsingPredicate:predicate<span class="o">]</span> <span class="o">)</span>; // <span class="o">=</span>&gt; 18, 20, 10&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// セットを作る <span class="o">=</span>&gt; 共通した要素を残す
+</span><span class='line'>NSArray &lt;em&gt;color1 <span class="o">=</span> @<span class="o">[</span>@<span class="s2">&quot;blue&quot;</span>, @<span class="s2">&quot;red&quot;</span>, @<span class="s2">&quot;yellow&quot;</span>, @<span class="s2">&quot;white&quot;</span><span class="o">]</span>;
+</span><span class='line'>NSArray &lt;/em&gt;color2 <span class="o">=</span> @<span class="o">[</span>@<span class="s2">&quot;green&quot;</span>, @<span class="s2">&quot;white&quot;</span>, @<span class="s2">&quot;black&quot;</span><span class="o">]</span>;
+</span><span class='line'>NSSet &lt;em&gt;colorSet2 <span class="o">=</span> <span class="o">[</span>NSSet setWithArray:color2<span class="o">]</span>;
+</span><span class='line'>NSMutableSet &lt;/em&gt;commonColors <span class="o">=</span> <span class="o">[</span>NSMutableSet setWithArray:color1<span class="o">]</span>;
+</span><span class='line'><span class="o">[</span>commonColors intersectSet:colorSet2<span class="o">]</span>;
+</span><span class='line'>NSLog<span class="o">(</span>@<span class="s2">&quot;Common = %@&quot;</span>, commonColors<span class="o">)</span>; //<span class="o">=</span>&gt; white
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>画像タップで背景色を変えるサンプル。</h2>
+
+<p>シングルページビューで、画像をタップすると背景色が変わるようなサンプルを作成。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ViewController.h  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;import &amp;lt;UIKit/UIKit.h&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@interface ViewController : UIViewController
+</span><span class='line'><span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;// catのイメージビュー
+</span><span class='line'>UIImageView *cat;
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>
+</span><span class='line'>// タップで実行するメソッド
+</span><span class='line'>-<span class="o">(</span>void<span class="o">)</span> tapCat:<span class="o">(</span>UITapGestureRecognizer *<span class="o">)</span>gesture;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ViewController.m  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;import <span class="s2">&quot;ViewController.h&quot;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@interface ViewController <span class="o">()</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@implementation ViewController  <span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;BOOL _screen_color;
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;p&gt;<span class="o">(</span>void<span class="o">)</span>viewDidLoad
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="o">[</span>super viewDidLoad<span class="o">]</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // イメージを作る
+</span><span class='line'>  UIImage *imageData <span class="o">=</span> <span class="o">[</span>UIImage imageNamed:@<span class="s2">&quot;cat.jpg&quot;</span><span class="o">]</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // イメージビューを作る
+</span><span class='line'>  CGFloat <span class="nv">width</span> <span class="o">=</span> imageData.size.width/10;
+</span><span class='line'>  CGFloat <span class="nv">height</span> <span class="o">=</span> imageData.size.height/10;
+</span><span class='line'>  CGRect <span class="nv">rect</span> <span class="o">=</span> CGRectMake<span class="o">(</span>0, 0, width, height<span class="o">)</span>;
+</span><span class='line'>  <span class="nv">cat</span> <span class="o">=</span> <span class="o">[[</span>UIImageView alloc<span class="o">]</span> initWithFrame:rect<span class="o">]</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // イメージビューにイメージを設定
+</span><span class='line'>  cat.image <span class="o">=</span> imageData;
+</span><span class='line'>  cat.contentMode <span class="o">=</span> UIViewContentModeScaleAspectFit;
+</span><span class='line'>  cat.center <span class="o">=</span> CGPointMake<span class="o">(</span>160, 100<span class="o">)</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // イメージビューがインタラクティブ操作を受け付けるようにする
+</span><span class='line'>  cat.userInteractionEnabled <span class="o">=</span> YES;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // タップジェスチャーを作る
+</span><span class='line'>  UITapGestureRecognizer *tapGesture <span class="o">=</span> <span class="o">[[</span>UITapGestureRecognizer alloc<span class="o">]</span> initWithTarget:self action:@selector<span class="o">(</span>tapCat:<span class="o">)]</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // イメージビューにタップジェスチャーを設定
+</span><span class='line'>  <span class="o">[</span>cat addGestureRecognizer:tapGesture<span class="o">]</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // イメージビューを表示する
+</span><span class='line'>  <span class="o">[</span>self.view addSubview:cat<span class="o">]</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="nv">_screen_color</span> <span class="o">=</span> YES;
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&lt;p&gt;<span class="o">(</span>void<span class="o">)</span>didReceiveMemoryWarning
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="o">[</span>super didReceiveMemoryWarning<span class="o">]</span>;
+</span><span class='line'>  // Dispose of any resources that can be recreated.
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&lt;p&gt;<span class="o">(</span>void<span class="o">)</span> tapCat:<span class="o">(</span>UITapGestureRecognizer *<span class="o">)</span>gesture
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  NSLog<span class="o">(</span>@<span class="s2">&quot;心をタップされました。&quot;</span><span class="o">)</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">if</span><span class="o">(</span>_screen_color<span class="o">)</span> <span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;  self.view.backgroundColor <span class="o">=</span> <span class="o">[</span>UIColor blueColor<span class="o">]</span>;
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;  self.view.backgroundColor <span class="o">=</span> <span class="o">[</span>UIColor whiteColor<span class="o">]</span>;
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // 色をトグルで変更
+</span><span class='line'>  _screen_color ^<span class="o">=</span> YES;
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>ピンチイン・アウトとダブルタップを認識するアプリ</h2>
+
+<p>中央に画像を置いて、画像のピンチイン・アウトが出来たり、ダブルタップでの拡大をするためのソース。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ViewController.h  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;import &amp;lt;UIKit/UIKit.h&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@interface ViewController : UIViewController &lt;UIScrollViewDelegate&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// スクロールビュー
+</span><span class='line'>@property <span class="o">(</span>weak, nonatomic<span class="o">)</span> IBOutlet UIScrollView *myScrollView;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// スクロールビューにおいたイメージビュー
+</span><span class='line'>@property <span class="o">(</span>weak, nonatomic<span class="o">)</span> IBOutlet UIImageView *myImageView;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ViewController.m  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;import <span class="s2">&quot;ViewController.h&quot;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@interface ViewController <span class="o">()</span>
+</span><span class='line'>// 拡大する領域を求めるメソッド
+</span><span class='line'>- <span class="o">(</span>CGRect<span class="o">)</span>zoomRectForScale:<span class="o">(</span>float<span class="o">)</span>scale withCenter:<span class="o">(</span>CGPoint<span class="o">)</span>center;
+</span><span class='line'>@end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@implementation ViewController&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;p&gt;<span class="o">(</span>void<span class="o">)</span>viewDidLoad
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="o">[</span>super viewDidLoad<span class="o">]</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // スクロールビューのデリゲート先になる
+</span><span class='line'>  _myScrollView.delegate <span class="o">=</span> self;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // ズームの最小/最大を設定する
+</span><span class='line'>  &lt;em&gt;myScrollView.minimumZoomScale <span class="o">=</span> 1;
+</span><span class='line'>  &lt;/em&gt;myScrollView.maximumZoomScale <span class="o">=</span> 8;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // スクローラを表示する
+</span><span class='line'>  &lt;em&gt;myScrollView.scrollEnabled <span class="o">=</span> YES;
+</span><span class='line'>  &lt;/em&gt;myScrollView.showsHorizontalScrollIndicator <span class="o">=</span> YES;
+</span><span class='line'>  _myScrollView.showsVerticalScrollIndicator <span class="o">=</span> YES;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // ダブルタップジェスチャーを作る
+</span><span class='line'>  UITapGestureRecognizer *doubleTapGesture <span class="o">=</span> <span class="o">[[</span>UITapGestureRecognizer alloc<span class="o">]</span> initWithTarget:self action:@selector<span class="o">(</span>doubleTap:<span class="o">)]</span>;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // ダブルタップを認識する設定にする
+</span><span class='line'>  doubleTapGesture.numberOfTapsRequired <span class="o">=</span> 2;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // イメージビューにダブルタップジェスチャーを設定する
+</span><span class='line'>  &lt;em&gt;myImageView.userInteractionEnabled <span class="o">=</span> YES;
+</span><span class='line'>  <span class="o">[</span>&lt;/em&gt;myImageView addGestureRecognizer:doubleTapGesture<span class="o">]</span>;
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 拡大写真をピンチイン/ピンチアウトできるようにする
+</span><span class='line'>- <span class="o">(</span>UIView&lt;em&gt;<span class="o">)</span>viewForZoomingInScrollView:<span class="o">(</span>UIScrollView &lt;/em&gt;<span class="o">)</span>scrollView
+</span><span class='line'><span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;return _myImageView;
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 写真がダブルタップされたならば拡大/縮小する
+</span><span class='line'>- <span class="o">(</span>void<span class="o">)</span>doubleTap:<span class="o">(</span>UIGestureRecognizer *<span class="o">)</span>gesture <span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;// 最大倍率でなければ拡大する
+</span><span class='line'><span class="k">if</span><span class="o">(</span>_myScrollView.zoomScale &amp;lt; _myScrollView.maximumZoomScale<span class="o">)</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>    // 現在の3倍の倍率にする
+</span><span class='line'>    float <span class="nv">newScale</span> <span class="o">=</span> _myScrollView.zoomScale * 3;
+</span><span class='line'>
+</span><span class='line'>    //拡大する領域を求める
+</span><span class='line'>    CGRect <span class="nv">zoomRect</span> <span class="o">=</span> <span class="o">[</span>self zoomRectForScale:newScale withCenter:<span class="o">[</span>gesture locationInView:gesture.view<span class="o">]]</span>;
+</span><span class='line'>
+</span><span class='line'>    // タップした位置を拡大する
+</span><span class='line'>    <span class="o">[</span>_myScrollView zoomToRect:zoomRect animated:YES<span class="o">]</span>;
+</span><span class='line'><span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>    // 倍率1に戻す
+</span><span class='line'>    <span class="o">[</span>_myScrollView setZoomScale:1.0 animated:YES<span class="o">]</span>;
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 指定の座標を中心にして拡大する領域を求める
+</span><span class='line'>- <span class="o">(</span>CGRect<span class="o">)</span>zoomRectForScale:<span class="o">(</span>float<span class="o">)</span>scale withCenter:<span class="o">(</span>CGPoint<span class="o">)</span>center <span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;CGRect zoomRect;
+</span><span class='line'>
+</span><span class='line'>// 倍率から拡大する縦横サイズを求める
+</span><span class='line'>zoomRect.size.height <span class="o">=</span> <span class="o">[</span>_myScrollView frame<span class="o">]</span>.size.height / scale;
+</span><span class='line'>zoomRect.size.width  <span class="o">=</span> <span class="o">[</span>_myScrollView frame<span class="o">]</span>.size.width / scale;
+</span><span class='line'>
+</span><span class='line'>// 座標<span class="o">(</span>左上<span class="o">)</span>を設定する
+</span><span class='line'>zoomRect.origin.x <span class="o">=</span> center.x - <span class="o">(</span>zoomRect.size.width/2.0<span class="o">)</span>;
+</span><span class='line'>zoomRect.origin.y <span class="o">=</span> center.y - <span class="o">(</span>zoomRect.size.height/2.0<span class="o">)</span>;
+</span><span class='line'>
+</span><span class='line'>// 領域を返す
+</span><span class='line'><span class="k">return </span>zoomRect;
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;<span class="o">(</span>void<span class="o">)</span>didReceiveMemoryWarning
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="o">[</span>super didReceiveMemoryWarning<span class="o">]</span>;
+</span><span class='line'>  // Dispose of any resources that can be recreated.
+</span><span class='line'><span class="o">}</span>&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>変更来歴</h2>
+
+<p>(04/04 22:45) タップするサンプルを追加<br/>
+(04/05 22:45) ピンチイン・アウトとダブルタップを認識するサンプルを追加<br/></p>
+]]></content>
+  </entry>
+  
+</feed>

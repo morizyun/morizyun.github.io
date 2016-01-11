@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bootsrap | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/bootsrap/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Bootsrapで画面幅によってCSSの一部だけを切り替える[LESS][Twitter]]]></title>
+    <link href="http://morizyun.github.io/blog/less-change-responsive-twitter-bootsrap/"/>
+    <updated>2012-12-16T12:35:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/less-change-responsive-twitter-bootsrap</id>
+    <content type="html"><![CDATA[<p><a href="blog/categories/bootsrap/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8069/8250062954_f9859c52e8_m.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Twitter BootsrapをLESSで使われている方限定ですが、CSSの中の一部だけを切り替える方法を紹介します。例えばスマホの時だけ画像の横の空白(margin, paddingとか)を変更したい時などに使えます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>CSSの切り替え方</h2>
+
+<p>LESSを使って画面幅を切り替える方法です。まず、HTML側の修正。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>HTML  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;assets/css/bootstrap-responsive.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ちなみにHAMLの場合はこちら。(HAMLの方以外は無視してください)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>HAML  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nt">%meta</span><span class="p">{</span><span class="ss">:content</span> <span class="o">=&gt;</span> <span class="s2">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;viewport&quot;</span><span class="p">}</span>
+</span><span class='line'><span class="nt">%link</span><span class="p">{</span><span class="ss">:href</span> <span class="o">=&gt;</span> <span class="s2">&quot;assets/css/bootstrap-responsive.css&quot;</span><span class="p">,</span> <span class="ss">:rel</span> <span class="o">=&gt;</span> <span class="s2">&quot;stylesheet&quot;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>続いてLESS側の書き方は次の通り。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>CSS  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">/&lt;</span><span class="nt">em</span><span class="o">&gt;</span> <span class="err">スマホ以外を対象</span> <span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;/</span>
+</span><span class='line'><span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">481px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nc">.thumbnail_box</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">padding</span><span class="o">:</span> <span class="m">8px</span><span class="p">;</span>
+</span><span class='line'><span class="k">margin</span><span class="o">:</span> <span class="m">0</span> <span class="m">10px</span> <span class="m">18px</span> <span class="m">10px</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;/&lt;</span><span class="nt">em</span><span class="o">&gt;</span> <span class="err">スマホ対象</span> <span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;/</span>
+</span><span class='line'><span class="k">@media</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">480px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nc">.thumbnail_box</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">padding</span><span class="o">:</span> <span class="m">4px</span><span class="p">;</span>
+</span><span class='line'><span class="k">margin</span><span class="o">:</span> <span class="m">4px</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>結果はこちら、まずスマホ以外の場合です。</p>
+
+<p><img src="http://farm9.staticflickr.com/8350/8276834726_aa14ae251b_c.jpg" width="600" height="800" alt="写真"></p>
+
+<p>次にiPhoneの場合。iPhoneの場合だけ横の空白が狭くなっています。</p>
+
+<p><img src="http://farm9.staticflickr.com/8213/8275769955_4f02d4c32f.jpg" width="333" height="500" alt="fpu_tmp_1355628898.0756_ea491f"></p>
+
+<p>もちろんこの応用で、タブレットの場合を増やすこともできます。
+詳しくは<a href="http://twitter.github.com/bootstrap/scaffolding.html#responsive">Twitter/Bootstrapの公式の説明を御覧ください</a>。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 3.2.9/Bootstrap/Bootswatchで「どうぶつの森 QRコードまとめ」作ってみた！]]></title>
+    <link href="http://morizyun.github.io/blog/doubutsu-qr-matome-release/"/>
+    <updated>2012-12-07T00:20:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/doubutsu-qr-matome-release</id>
+    <content type="html"><![CDATA[<p>Included file 'custom/google_ads_text.html' not found in _includes directory
+<a href="http://doubutsu.qr-matome.info/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8198/8249134787_edd7bab851.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>2012年11月最高に輝いてたテック記事「<a href="http://d.hatena.ne.jp/inouetakuya/20121117/1353145846">Rails3、Twitter Bootstrap、Bootswatch を使ったレスポンシブなエロサイト「babyshark」をリリースしました</a>」を見て泪流したので、Railsで「<a href="http://doubutsu.qr-matome.info/">どうぶつの森 QRコードまとめ</a>」を作ってみました。
+ということで今回やったことまとめと反省、今後の目標です。</p>
+
+<p><a href="http://doubutsu.qr-matome.info/" class="button big primary">どうぶつの森 QR コードまとめ</a></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>目次</h2>
+
+<p>(1) <a href="#1">今回使った技術まとめ</a><br/>
+(2) <a href="#2">開始時の目標と現時点の自己採点</a><br/>
+(3) <a href="#3">今後の目標</a></p>
+
+<p><a name="1"></a></p>
+
+<h2>(1)今回使った技術まとめ</h2>
+
+<p>今回使った技術はほとんどをブログの記事にしています。以下の記事が今回使った技術です。</p>
+
+<h4>環境構築編</h4>
+
+<ul>
+<li><a href="/blog/ssh-key-bitbucket-github">SSH認証キーをBitbucket/GitHubに設定</a></li>
+<li><a href="/blog/pow-guard-rails">開発サーバーにPowを導入</a></li>
+<li><a href="/blog/guard-spork-rspec-tdd">RSpecによるTDD環境の構築</a></li>
+</ul>
+
+
+<h4>開発Rails編</h4>
+
+<ul>
+<li><a href="/blog/rails-mysql-bootstrap">Rails 3.2.9/Bootstrap/Haml プロジェクト新規作成</a></li>
+<li><a href="/blog/yard-rails-ruby-gem-document-html">Rails/Rubyドキュメント作成 Gem YARDを導入</a></li>
+<li><a href="/blog/kaminari-gem-paginator-rails">RailsのページネーションGem kaminariを導入</a></li>
+<li><a href="/blog/meta-tags-sitemap-generator-rails-seo">Rails メタタグとサイトマップ生成Gemを導入</a></li>
+<li><a href="/blog/capistrano-git-rails-deploy">Git連携Capistranoによる自動デプロイの導入</a></li>
+</ul>
+
+
+<h4>開発テスト編</h4>
+
+<ul>
+<li><a href="/blog/rspec-ruby-rails">RSpecの基礎の基礎</a></li>
+<li><a href="/blog/rspec-builtin-matcher-rails">RSpecの標準matchers(マッチャー)の一覧を作成</a></li>
+<li><a href="/blog/rake-task-rails-rspec-test">Rails Rakeタスク作成からRSpecテストまで</a></li>
+<li><a href="/blog/rails-lib-rspec-test">Rails 3.2のlibフォルダをRspecでテスト</a></li>
+</ul>
+
+
+<h4>開発デザイン編</h4>
+
+<ul>
+<li><a href="/blog/bootswatch-rails-setup">RailsにBootsrap/BootswatchのテーマCosmoを導入</a></li>
+<li><a href="/blog/jquery-vgrid-js-rails">可変グリッドレイアウトjQuery - jquery.vgrid.jsを導入</a></li>
+<li><a href="/blog/hatena-facebook-twitter-octopress">はてブ/Twitter/いいねなどソーシャルボタンをキレイに並べる</a></li>
+</ul>
+
+
+<p><a name="2"></a></p>
+
+<h2>(2)開始時の目標と現時点の自己採点</h2>
+
+<h4>(i) Railsのベーシックなスキルの習得</h4>
+
+<p>前述の「<a href="http://d.hatena.ne.jp/inouetakuya/20121117/1353145846">Rails3、Twitter Bootstrap、Bootswatch を使ったレスポンシブなエロサイト「babyshark」をリリースしました</a>」に載っていた手法などをできる限りトレースして、少しでもスキルを上げること
+が今回の第一の目標でした。この点の自己採点は表面的な技術に触れることはできましたが、むしろ「自分が何も知らないという事実」を知れたことこそが収穫だと思っています。</p>
+
+<h4>(ii) ブログでのアウトプット</h4>
+
+<p>今回のサイトでは、学んだこと/調べたことをできる限りブログにアウトプットをするようにしました。人に説明するプロセスを挟むことで今まで「なんとなくできた」ことが、「少し理解できた」にレベルアップできたと思っています。また、コーディング前/ブログを書くの前に公式のリファレンスを読むクセがついたのは収穫でした。</p>
+
+<p><a name="3"></a></p>
+
+<h2>(3) 今後の目標</h2>
+
+<h4>(i) 「どうぶつの森 QR コードまとめ」としての目標</h4>
+
+<p>一人でも多くの「どうぶつの森 ユーザー」に満足してもらえるようなサイトを作る。
+これが最大の目標です。直近のTODOは次の通りです。</p>
+
+<pre>
+* 画像表示速度の改善
+* Twitpicしか対応できていないので、twitter.yfrog/twippleにも対応
+* タグ付け
+* 検索機能
+* 新着画像を目立たせる
+* 英語化
+* Twitterボットで新着QRコードをつぶやく
+</pre>
+
+
+<h4>(ii) 技術的な目標</h4>
+
+<p>技術的な目標としては以下を考えています。</p>
+
+<pre>
+* PVの向上と離脱率低下の施策を少しでも身につける
+* テスト駆動開発プロセスを最低限こなせるようになる
+* Rubyライブラリの理解
+* プログラミングの前段階でのコード設計力を身につける
+* サーバ監視の導入等、サーバサイドをしっかり学ぶ
+</pre>
+
+
+<p>以上です。これからも「<a href="http://doubutsu.qr-matome.info/">どうぶつの森 QRコードまとめ</a>」を開発・運営して行く中で得られた経験を積極的にこのブログにフィードバックしていきます。初心者ブログと初心者サイトでお見苦しい点ばかりだと思いますが、今後共ご指導ご鞭撻のほどよろしくお願いします！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bootsrapでモーダル表示 HTML/HAMLテンプレート]]></title>
+    <link href="http://morizyun.github.io/blog/twitter-bootsrap-modal/"/>
+    <updated>2012-12-06T22:55:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/twitter-bootsrap-modal</id>
+    <content type="html"><![CDATA[<p><a href="blog/categories/bootsrap/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8069/8250062954_f9859c52e8_m.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Twitter Bootsrapでモーダル表示 HTML/HAMLテンプレートを作ってみました。
+もしTwitterブートストラップでモーダルを作る際には、試してみて下さい！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>HTML/HAML テンプレート</h2>
+
+<p>Bootsrap モーダルのHTMLのテンプレート。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>HTML  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- モーダル呼び出し側 --&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;modal&quot;</span> <span class="na">href=</span><span class="s">&quot;#show_modal&quot;</span> <span class="na">role=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>モーダル呼び出しボタン
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;/a&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- モーダル内容 --&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;show_modal&quot;</span> <span class="na">class =</span><span class="s">&quot;modal hide fade&quot;</span> <span class="na">aria-hidden=</span><span class="s">&quot;true&quot;</span> <span class="na">aria-labelledby=</span><span class="s">&quot;modal_label&quot;</span> <span class="na">role=</span><span class="s">&quot;dialog&quot;</span> <span class="na">style=</span><span class="s">&quot;display: none; &quot;</span> <span class="na">tabindex=</span><span class="s">&quot;-1&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;modal-header&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;close&quot;</span> <span class="na">aria-hidden=</span><span class="s">&quot;true&quot;</span> <span class="na">data-dismiss=</span><span class="s">&quot;modal&quot;</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>×<span class="nt">&lt;/button&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">&quot;modal_label&quot;</span><span class="nt">&gt;</span>モーダル画面のタイトル<span class="nt">&lt;/h3&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;modal-body&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;h4&gt;</span>テーマ<span class="nt">&lt;/h4&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;p&gt;</span>メッセージ<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;modal-footer&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;btn&quot;</span> <span class="na">data-dismiss=</span><span class="s">&quot;modal&quot;</span><span class="nt">&gt;</span>Close<span class="nt">&lt;/button&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="nt">&gt;</span>Change<span class="nt">&lt;/button&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Bootsrap モーダルのHAMLのテンプレート。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>HAML  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="cp">-# モーダル呼び出し側</span>
+</span><span class='line'><span class="nt">%a</span><span class="nc">.btn</span><span class="p">{</span><span class="s2">&quot;data-toggle&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;modal&quot;</span><span class="p">,</span> <span class="ss">:href</span> <span class="o">=&gt;</span> <span class="s2">&quot;#show_modal&quot;</span><span class="p">,</span> <span class="ss">:role</span> <span class="o">=&gt;</span> <span class="s2">&quot;button&quot;</span><span class="p">}</span> モーダル呼び出しボタン&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;-# モーダル内容&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;show_modal.modal.hide.fade{&quot;aria-hidden&quot; =&gt; &quot;true&quot;, &quot;aria-labelledby&quot; =&gt; &quot;modal_label&quot;, :role =&gt; &quot;dialog&quot;, :style =&gt; &quot;display: none; &quot;, :tabindex =&gt; &quot;-1&quot;}&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  .modal-header&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;%button.close{&quot;aria-hidden&quot; =&amp;gt; &quot;true&quot;, &quot;data-dismiss&quot; =&amp;gt; &quot;modal&quot;, :type =&amp;gt; &quot;button&quot;} ×
+</span><span class='line'><span class="nt">%h3</span><span class="nf">#modal_label</span> モーダル画面のタイトル
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  .modal-body&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;%h4 テーマ
+</span><span class='line'><span class="nt">%p</span> メッセージ
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  .modal-footer&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;%button.btn{&quot;data-dismiss&quot; =&amp;gt; &quot;modal&quot;} Close
+</span><span class='line'><span class="nt">%button</span><span class="nc">.btn.btn-primary</span> Change
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>下は、Bootsrap/Bootswatch/Cosmoでのモーダルのサンプルです。</p>
+
+<p><img src="http://farm9.staticflickr.com/8204/8249002573_e6f61129c8.jpg" width="500" height="219" alt="fpu_tmp_1354801932.2845_6c09fa"></p>
+
+<h2>おまけ：Bootsrapでレスポンシブ</h2>
+
+<p>Twitter Bootsrapでレスポンシブのデザインにするときについつい忘れてしまうのでメモ。</p>
+
+<h3>HTMLのヘッダに次のコードを入れる</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;meta <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;viewport&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;
+</span><span class='line'>&lt;link <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;assets/css/bootstrap-responsive.css&quot;</span> <span class="nv">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span>&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>これで小1時間無駄にした〜〜orz</p>
+]]></content>
+  </entry>
+  
+</feed>

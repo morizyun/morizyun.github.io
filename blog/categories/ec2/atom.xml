@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: EC2 | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/ec2/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Elastic Block Store(EBS)をAWSのEC2にヒモ付]]></title>
+    <link href="http://morizyun.github.io/blog/elastic-block-store-aws-amazon-strage/"/>
+    <updated>2014-05-02T21:30:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/elastic-block-store-aws-amazon-strage</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774158135/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158135&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158135&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774158135" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />AWSのEC2にElastic Block Store(EBS)を紐付けする手順です。サーバを新規作成した際には、仕様に応じて事前にストレージの容量設計をしておくと後で不要なエラーを発生させずに、捗ります。てか、よくそこで数カ月後にハマりますw</p>
+
+<p>昨日やっていて設定でハマってしまったので忘備録を兼ねてメモです。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>公式ドキュメント</h2>
+
+<p><strong><a href="http://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ebs-using-volumes.html">Amazon EBS ボリュームを使用できるようにする</a></strong><br/>
+AWSは進歩がすごく早いので、ググった情報だとうまく動かず、かなりハマってしまいました。公式ドキュメントが一番信頼できると実感しています。</p>
+
+<h2>手順</h2>
+
+<p>AWSのコンソール画面内のEBS(Elastic Block Store)でボリュームを作成。インスタンスに紐付け。</p>
+
+<pre>
+# 用語説明
+device_name => /dev/xvdx # ボリュームを割り当てると自動で設定される
+mount_point => /path/to # 割り当てたいフォルダを作成
+</pre>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;使用可能なディスクを確認するコマンド&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;lsblk&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ext4 ファイルシステムを作成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo mkfs -t ext4 device_name&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;ボリュームを割り当て&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo mkdir mount_point
+</span><span class='line'>sudo mount device_name mount_point&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;再起動時に自動で割り当てされるように設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo cp /etc/fstab /etc/fstab.org
+</span><span class='line'>sudo vim /etc/fstab&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;下のように書き換え&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;/dev/xvdx       /path/to  ext4    defaults    0       2&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Waring/Errorが出なければ設定成功&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo mount -a
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>おまけ: MySQLのデータディレクトリをEBSに差し替え</h2>
+
+<p>MySQLにログインして以下を実行すると、データベースのディレクトリが出ます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql -u root -p
+</span><span class='line'>show variables like <span class="s1">&#39;datadir&#39;</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ここで出たデータベースのデータディレクトリを<code>/path/to/mysql/new/</code>とします。ここをEBSのフォルダに差し替えます。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;MySQLを停止&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo /etc/init.d/mysql stop&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo vi my.cnf&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;↓ 以下の様に変更&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;innodb_data_home_dir<span class="o">=</span>/path/to/mysql/new/
+</span><span class='line'><span class="nv">innodb_log_group_home_dir</span><span class="o">=</span>/path/to/mysql/new/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo vi /etc/init.d/mysql&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;↓ 以下の様に変更&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;datadir<span class="o">=</span>/path/to/mysql/new/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;旧ディレクトリ <span class="o">=</span>&gt; 新ディレクトリへのコピー&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cp -pR /path/to/mysql/old/* /path/to/mysql/new/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;フォルダの権限変更&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;chmod -R mysql.mysql /path/to/mysql/new&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;MySQLを再起動&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;/etc/init.d/mysql start&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;動作確認<span class="o">(</span>ログインできること・データ変更できることを確認<span class="o">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mysql -u root -p&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;古いフォルダを削除&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rm -rf /path/to/mysql/old
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>インフラは苦手なので、いろいろご指摘頂ければ幸いです！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://d.hatena.ne.jp/CortYuming/20120412/p1">MySQLのデータベースの場所を調べたり、ディレクトリ変更したりのメモ</a></strong></p>
+
+<p><strong><a href="http://qiita.com/ShuM/items/1a960b4ef53f8a08dd5a">MySQLのデータディレクトリを移動する</a></strong></p>
+]]></content>
+  </entry>
+  
+</feed>

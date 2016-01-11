@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第8回はPassengerの導入です。PassengerとはRailsのアプリケーションサーバの１つで、Apacheと組合せて使う方式はそれなりの時間が立って、 &hellip;">
+  <meta name="description" content="『アジャイルサムライ－達人開発者への道－』を読んだので、この記事でまとめ兼レビューを書きます。この本を読んだ動機は、再来週くらいからアジャイル開発に初めて挑戦することになったので、その前に予備知識を少しでも得たいというのが理由です。 読んだ感想としては、「初心者に優しい、実践的な内容！」 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第8回はPassengerの導入です。PassengerとはRailsのアプリケーションサーバの１つで、Apacheと組合せて使う方式はそれなりの時間が立って、 &hellip;" />
+<meta property="og:description" content="『アジャイルサムライ－達人開発者への道－』を読んだので、この記事でまとめ兼レビューを書きます。この本を読んだ動機は、再来週くらいからアジャイル開発に初めて挑戦することになったので、その前に予備知識を少しでも得たいというのが理由です。 読んだ感想としては、「初心者に優しい、実践的な内容！」 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/27/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -101,7 +101,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/passenger-install-apache-ruby-rails/">さくらVPS/entOS 6.4 Passengerのインストール手順 [Apache][Railsサーバへの道]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/agile-samurai-review-book/">アジャイルサムライ－達人開発者への道－ 書籍レビュー 初心者にも優しく実践的な内容</a></h1>
     
     
     
@@ -120,9 +120,9 @@
 
 
 
-        <time datetime="2013-09-24T07:20:00+09:00" pubdate data-updated="true">Sep 24<span>th</span>, 2013</time>
+        <time datetime="2013-08-25T19:00:00+09:00" pubdate data-updated="true">Aug 25<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/passenger-install-apache-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/agile-samurai-review-book/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -131,14 +131,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798126136/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798126136&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798126136&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798126136" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第8回はPassengerの導入です。PassengerとはRailsのアプリケーションサーバの１つで、Apacheと組合せて使う方式はそれなりの時間が立って、熟れているのでネットでの情報も豊富です！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4274068560/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274068560&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274068560&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274068560" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="http://www.amazon.co.jp/gp/product/4274068560/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4274068560&amp;linkCode=as2&amp;tag=morizyun00-22">アジャイルサムライ－達人開発者への道－</a></strong>』を読んだので、この記事でまとめ兼レビューを書きます。この本を読んだ動機は、再来週くらいからアジャイル開発に初めて挑戦することになったので、その前に予備知識を少しでも得たいというのが理由です。</p>
+
+<p>読んだ感想としては、「<strong>初心者に優しい、実践的な内容！</strong>」の一言につきます。アジャイルにこれから挑戦する人や、単純に興味がある人に特にオススメな一品です！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/passenger-install-apache-ruby-rails/">続きを読む</a>
+      <a rel="full-article" href="/blog/agile-samurai-review-book/">続きを読む</a>
     </footer>
   
 
@@ -149,7 +150,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rvm-install-centos-ruby-rails/">さくらVPS/CentOS 6.4へのRVMのインストール手順 [Ruby 2.0.0][Railsサーバへの道]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/gem-zurui-design-sassy-button-comass/">RailsでCompass, Zurui-design, Sassy-Buttons, Bootstrapを使ってUIをかっこ良くしちゃおう！</a></h1>
     
     
     
@@ -168,9 +169,9 @@
 
 
 
-        <time datetime="2013-09-24T06:45:00+09:00" pubdate data-updated="true">Sep 24<span>th</span>, 2013</time>
+        <time datetime="2013-08-20T21:20:00+09:00" pubdate data-updated="true">Aug 20<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rvm-install-centos-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/gem-zurui-design-sassy-button-comass/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -179,14 +180,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/482223472X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=482223472X&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=482223472X&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=482223472X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第7回はRVM(Ruby Version Management)をインストールする手順です。RVMはRubyのバージョンを管理してくれる仕組みで一つのサーバで複数のバージョンのRubyを使う可能性がある場合に使うとオススメなツールです。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4048863231/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048863231&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048863231&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048863231" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Compassやzurui-design, Sassy-Buttonsはエンジニア視点でデザインをちょっと改善するときにすごく役立つツールです。まるでUIもプログラムのパーツのように書けてしまうので、デザインの改善を思い立った時にオススメです。</p>
+
+<p>この記事では、Rails環境にCompass, Zurui-design, Sassy-Buttons, Twitter-Bootstrapを追加するための手順を書きます！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/rvm-install-centos-ruby-rails/">続きを読む</a>
+      <a rel="full-article" href="/blog/gem-zurui-design-sassy-button-comass/">続きを読む</a>
     </footer>
   
 
@@ -197,7 +199,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/apache-setup-sakura-vps-centos63/">さくらVPS/Cent OS 6.4 Apache 2.2導入[Railsサーバへの道]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/twitter-bootstrap-templates/">ひと味ちがうTwitter Bootstrapの18個の無料テンプレート&有料まとめサイト</a></h1>
     
     
     
@@ -216,9 +218,9 @@
 
 
 
-        <time datetime="2013-09-22T15:10:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+        <time datetime="2013-08-19T20:10:00+09:00" pubdate data-updated="true">Aug 19<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/apache-setup-sakura-vps-centos63/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/twitter-bootstrap-templates/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -227,14 +229,22 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774154083/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774154083&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774154083&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774154083" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-さくらVPS 2GB SSDのCentOS 6.4にApacheを導入するための手順です。Apacheは最もメジャーなWebサーバの一つで、競合にはNginxがあります。Webサーバはミッション・クリティカルなので、エンジニアさんの慣れた方をチョイスして下さい。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4873115574/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873115574&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873115574&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4873115574" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+Twitter Bootstrapはデザインが苦手なプログラマのための必須ツールです。今回は、一味違ったBootstrapサイトを作るときにきっと参考になるテンプレートをまとめてみました！</p>
+
+<p><strong>追加情報</strong></p>
+
+<p>最新のBootstrap3に対応したテーマの一覧です。最近はこちらのほうがオススメかも！<br/>
+<strong><a href="http://morizyun.github.io/blog/bootstrap3-twitter-free-theme-list/">Bootstrap3 の無料テーマ・格安有料テーマまとめのまとめ</a></strong></p>
+
+<p>BootstrapをRails4.1に簡単に導入する手順です。RailsでBootstrapを使う場合はこちらもオススメです！<br/>
+<strong><a href="http://morizyun.github.io/blog/bootswatch-rails-setup/">Bootstrap/BootswatchをRails 4.1に導入！ - 酒と泪とRubyとRailsと</a></strong></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/apache-setup-sakura-vps-centos63/">続きを読む</a>
+      <a rel="full-article" href="/blog/twitter-bootstrap-templates/">続きを読む</a>
     </footer>
   
 
@@ -245,7 +255,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/stop-noneed-service-sakura-vps-centos63/">さくらVPS/Cent OS 6.4 ipv6の停止/日本語化/denyhosts導入[Railsサーバへの道]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/twitter-bootstrap-parts-jquery-ui/">ひと味ちがうTwitter Bootstrapリソースまとめ、UIパーツ編</a></h1>
     
     
     
@@ -264,9 +274,9 @@
 
 
 
-        <time datetime="2013-09-22T14:50:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+        <time datetime="2013-08-19T20:00:00+09:00" pubdate data-updated="true">Aug 19<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/stop-noneed-service-sakura-vps-centos63/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/twitter-bootstrap-parts-jquery-ui/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -275,14 +285,20 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844333399/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844333399&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844333399&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844333399" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第4回はCentOSへのipv6の停止/日本語化/denyhostsのインストールです。セキュリティの強化と日本語対応をごった煮にしてみましたw</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4862671063/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4862671063&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4862671063&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4862671063" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Twitter-bootstrapのUIパーツをまとめたページです。素のTwitter Bootstrapにはない、かゆいところに手が届きそうなUIパーツをまとめています。</p>
+
+<p>姉妹ページの『<strong><a href="/blog/twitter-bootstrap-templates/">Twitter Bootstrapについてのテンプレート(レイアウト)のまとめ</a></strong>』もどうかよろしくおねがいします！</p>
+
+<p>この記事は今後も新しいリソースを見つける度に順次アップデートしていく予定です！</p>
+
+<p>(08/19 20:00) 色々内容の加筆修正をしました！<br/>
+(08/20 21:00) Fuel UXを追加<br/></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/stop-noneed-service-sakura-vps-centos63/">続きを読む</a>
+      <a rel="full-article" href="/blog/twitter-bootstrap-parts-jquery-ui/">続きを読む</a>
     </footer>
   
 
@@ -293,7 +309,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/logwatch-sakura-vps-centos63/">さくらVPS/Cent OS 6.4 logwatchの設定[Railsサーバへの道][サーバ監視]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/disney-marketing-repeater-book-review/">ディズニー こころをつかむ 9つの秘密 [書評]</a></h1>
     
     
     
@@ -312,9 +328,9 @@
 
 
 
-        <time datetime="2013-09-22T14:30:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+        <time datetime="2013-08-18T19:10:00+09:00" pubdate data-updated="true">Aug 18<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/logwatch-sakura-vps-centos63/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/disney-marketing-repeater-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -323,14 +339,13 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798038164/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798038164&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798038164&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798038164" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第3回はlogwitchの導入〜設定までです。このlogwatchとはログを整形してメールで1日一回送ってくれるようになるので、サーバのプロセスやログインの履歴確認を簡単に行うことができます。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4478022542/"><img border="0" src="http://ecx.images-amazon.com/images/I/51fh1hsMpYL._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>「<strong><a href="http://www.amazon.co.jp/gp/product/4478022542">ディズニー こころをつかむ 9つの秘密</a></strong>」というマーケティング本の書評です。東京ディズニーランドは、97%がリピーターという驚異的なコンテンツ。このコンテンツを生み出して、育ててきたマーケッターさんの哲学の片鱗に触れることができる良本です。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/logwatch-sakura-vps-centos63/">続きを読む</a>
+      <a rel="full-article" href="/blog/disney-marketing-repeater-book-review/">続きを読む</a>
     </footer>
   
 
@@ -341,7 +356,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/iptable-sakura-vps-centos63/">さくらVPS/Cent OS 6.4 iptableの設定[Railsサーバへの道][セキュリティ]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rvm-ruby-rails-certificate-verify-failed/">OpenSSLエラー Certificate Verify Failed[RVMエラー][Rails][Mac限定]</a></h1>
     
     
     
@@ -360,9 +375,9 @@
 
 
 
-        <time datetime="2013-09-22T12:30:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+        <time datetime="2013-06-21T07:00:00+09:00" pubdate data-updated="true">Jun 21<span>st</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/iptable-sakura-vps-centos63/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rvm-ruby-rails-certificate-verify-failed/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -371,14 +386,20 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774158135/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158135&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158135&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774158135" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第2回はiptableの導入〜設定までです。このiptableの設定を一言で言うと、通信ポートを制限できるファイヤーウオール用のパッケージ。このソフトを使うことでWebサーバとして必要な最低限のポートのみ公開し、それ以外のポートにアクセスできないようにしてサーバのセキュリティを高めることができます！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797371838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797371838&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797371838&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797371838" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />RVM環境のRailsで<code>https</code>プロトコルのURLにアクセスをしたところ下記のエラーが発生しました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">openssl</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">sslerror</span><span class="p">:</span> <span class="n">ssl_connect</span> <span class="n">returned</span><span class="o">=</span><span class="mi">1</span> <span class="n">errno</span><span class="o">=</span><span class="mi">0</span> <span class="n">state</span><span class="o">=</span><span class="n">sslv3</span> <span class="n">read</span> <span class="n">server</span> <span class="n">certificate</span> <span class="n">b</span><span class="p">:</span> <span class="n">certificate</span> <span class="n">verify</span> <span class="n">failed</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ということで対策法を見つけたので、念のためメモしておきます。</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/iptable-sakura-vps-centos63/">続きを読む</a>
+      <a rel="full-article" href="/blog/rvm-ruby-rails-certificate-verify-failed/">続きを読む</a>
     </footer>
   
 
@@ -389,7 +410,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/sakura-vps-centos63-ssh-setup/">さくらVPS/Cent OS 6.4 初期状態から鍵認証SSHでの接続まで[Railsサーバへの道]</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/reactor-pattern-ruby/">[Ruby] Reactorパターンについて</a></h1>
     
     
     
@@ -408,9 +429,9 @@
 
 
 
-        <time datetime="2013-09-22T11:30:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+        <time datetime="2013-06-20T16:55:00+09:00" pubdate data-updated="true">Jun 20<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/sakura-vps-centos63-ssh-setup/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/reactor-pattern-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -419,14 +440,17 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844334247/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844334247&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844334247&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844334247" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズ企画です。第1回は初期状態からSSHで接続できるようにするまでです。一般的にインターネットに公開しているLinuxサーバは色んな所からアクセスが来やすいので契約したらできるだけ早くこのパートを実施して下さい。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844333755/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844333755&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844333755&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844333755" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Reactorパターンとは、複数の入力による同時並行なリクエストを扱うための並列プログラミングパターンのことです。ネットワークなどのI/O待ち時間の影響を最低限にすることができるそうです。</p>
+
+<p>例えばWebサーバは複数のユーザーのブラウザからリクエストを受けます。この複数のリクエストをうまく一つづつ捌くときなどに活躍してくれます。</p>
+
+<p>今回はこのReactorパターンを勉強した際のメモ的記事です。ツッコミ大歓迎です！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/sakura-vps-centos63-ssh-setup/">続きを読む</a>
+      <a rel="full-article" href="/blog/reactor-pattern-ruby/">続きを読む</a>
     </footer>
   
 
@@ -437,7 +461,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ginza-ruby-active-live/">ActionController::Liveで始めるリアルタイムWeb at Ginza.rb</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/everywhere-gem-ruby-rails/">Everywhere ARのnotやlikeクエリーの可読性を上げるgem</a></h1>
     
     
     
@@ -456,9 +480,9 @@
 
 
 
-        <time datetime="2013-09-18T21:30:00+09:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+        <time datetime="2013-06-12T17:00:00+09:00" pubdate data-updated="true">Jun 12<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ginza-ruby-active-live/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/everywhere-gem-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -467,15 +491,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844334476/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844334476&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844334476&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844334476" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />2013年9月17日に開催された<strong><a href="http://ginzarb.github.io/">Ginza.rb</a></strong>の『<strong><a href="http://ginzarb.doorkeeper.jp/events/5492">ActionController::Liveで始めるリアルタイムWeb</a></strong>』に参加しました。 ActionController::Liveの導入部分の説明があったり、ActionController::Liveのコードをガッツリ1時間以上読んだりしました。</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4844327704/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4844327704&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4844327704&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4844327704" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />ActiveRecordでnotやlikeの構文の可読性を上げてくれるgem『<strong><a href="https://github.com/amatsuda/everywhere">everywhere</a></strong>』の紹介です。</p>
 
-<p><a href="https://twitter.com/netwillnet">@netwillnet</a>さん達のクールなコードの読解方法も知ることができたので本当に実りの多い勉強会でした！</p>
+<p>RubyKaigi 2013のamatsudaさんの発表スライドの中にこのgemの一部の機能がRails4に採用された際の話がありました。こちらのスライド『<strong><a href="https://speakerdeck.com/a_matsuda/ruby-on-your-rails">Ruby on Your Rails // Speaker Deck</a></strong>』もRailsのポリシーを垣間見ることができて面白いですよ〜＾＾</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/ginza-ruby-active-live/">続きを読む</a>
+      <a rel="full-article" href="/blog/everywhere-gem-ruby-rails/">続きを読む</a>
     </footer>
   
 
@@ -486,7 +510,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/web-analytics-introduction/">『入門　ウェブ分析論』で学ぶ、Webサイトの課題発見と改善</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/cells-rails-partial-compornents-framework/">Cells - Railsの部分テンプレートとそのロジックを分離するコンポーネントフレームワーク</a></h1>
     
     
     
@@ -505,9 +529,9 @@
 
 
 
-        <time datetime="2013-09-18T20:10:00+09:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+        <time datetime="2013-06-10T17:00:00+09:00" pubdate data-updated="true">Jun 10<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/web-analytics-introduction/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/cells-rails-partial-compornents-framework/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -516,15 +540,15 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4797368845/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797368845&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797368845&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=marketing-morizyun-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4797368845" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="http://www.amazon.co.jp/gp/product/4797368845/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4797368845&amp;linkCode=as2&amp;tag=marketing-morizyun-22">入門　ウェブ分析論</a></strong>』を読みました。基本的な統計や、Google Analyticsをベースとした分析、サイトの課題発見と改善、集客と導線の最適化、Facebookインサイトなどの新しいツールの活用など内容が盛り沢山です。実は職場の先輩からお借りしたんですが、あんまりおもしろい本だったのでさっきamazonでポチッとしましたw、これからずっとお世話になりそうです！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4274067033/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274067033&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274067033&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274067033" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="https://github.com/apotonick/cells">Cells</a></strong>』はRailsの部分テンプレートに付随するロジックをコントローラから分離するためのコンポーネント・フレームワークの紹介です。</p>
 
-<p>今回はGoogle Analyticsを使ったWebサイトの課題発見〜改善までの部分を中心に特に印象に残った部分をピックアップしていきます！</p>
+<p><strong><a href="http://magazine.rubyist.net/?0041-RailsTheBadParts">Rubyist Magazine - Ruby on Rails: The Bad Parts</a></strong>でもRailsの良くないコーティングスタイルを改善するための仕組みとしてCellsの活用が提案されています！</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/web-analytics-introduction/">続きを読む</a>
+      <a rel="full-article" href="/blog/cells-rails-partial-compornents-framework/">続きを読む</a>
     </footer>
   
 
@@ -535,7 +559,7 @@
       
   <header>
     
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/start-with-why-golden-circle/">共感で駆動するプロダクト開発の始め方と進め方の勉強会に参加しました！</a></h1>
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/icon-menu-jquery-plugin-12/">メガメニューや画像を使ったメニュー jQueryプラグインを厳選13個紹介</a></h1>
     
     
     
@@ -554,9 +578,9 @@
 
 
 
-        <time datetime="2013-09-14T00:00:00+09:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+        <time datetime="2013-06-07T12:20:00+09:00" pubdate data-updated="true">Jun 7<span>th</span>, 2013</time>
 <span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/start-with-why-golden-circle/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/icon-menu-jquery-plugin-12/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </span>
 
         
@@ -565,17 +589,17 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798129704/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129704&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798129704&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798129704" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />2013年9月13日にMixiで開催された『<strong><a href="http://changehackers.doorkeeper.jp/events/5485">共感で駆動するプロダクト開発の始め方と進め方</a></strong>』の勉強会に参加しました！</p>
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774148563/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774148563&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774148563&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774148563" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />アイコン付きメニューを簡単に作成することができるjQuery Pluginを100個以上探して、その中から13個を厳選したので紹介します！</p>
 
-<p>Agile開発の入門的位置づけの勉強会ですが、なかなか内容が濃かったので面白かったです。あとは最後の30分はグループを作って他の会社さんのAgileでの苦労話なんかを聞けたのも、すごくためになりました！</p>
+<p>デモやCSS/jQueryの設置方法などもリンク先に書かれているので、導入も楽ちんですよ！</p>
 
-<p>この記事では特に印象に残った部分を残していきます。</p>
+<p><strong>(08/28 10:10) Accessible Mega Menuを追加しました！</strong></p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/start-with-why-golden-circle/">続きを読む</a>
+      <a rel="full-article" href="/blog/icon-menu-jquery-plugin-12/">続きを読む</a>
     </footer>
   
 

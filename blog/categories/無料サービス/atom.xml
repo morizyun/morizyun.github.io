@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 無料サービス | 酒と泪とRubyとRailsと]]></title>
+  <link href="http://morizyun.github.io/blog/categories/無料サービス/atom.xml" rel="self"/>
+  <link href="http://morizyun.github.io/"/>
+  <updated>2016-01-11T21:33:30+09:00</updated>
+  <id>http://morizyun.github.io/</id>
+  <author>
+    <name><![CDATA[morizyun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[短期アルバイトを10秒で探せるiPhone/Androidアプリ「Short.Works」を作っています！]]></title>
+    <link href="http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app/"/>
+    <updated>2014-07-31T12:05:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/short.works-parttimer-sidejob-iphone-app</id>
+    <content type="html"><![CDATA[<p><a href="https://short.works/"><img src="https://farm4.staticflickr.com/3921/14790220145_5a116b8000_z.jpg" width="640" height="388" alt="short.works"></a></p>
+
+<p>短期のアルバイトを10秒で探して、応募ができるiPhone/Androidアプリ『<strong><a href="https://short.works/">Short.Works</a></strong>』を個人開発しています。
+現時点としてはWebサイト・iPhone/Androidアプリを開発中の状態ですが、ヒアリング、デザイン・開発などにご協力頂ける個人・企業様を探したくてティザーサイトを作りました。<br/>
+(つまり、今回は個人開発の広告的記事ですw)</p>
+
+<p>(8/8 16:25) Androidも合わせて9月リリースを目標に変更して開発しています！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>きっかけ</h2>
+
+<p>堀江貴文さんが首都圏コンピュータ技術者株式会社（MCEA)の25周年の講演でお話をされていた記事、『<strong><a href="http://engineer.typemag.jp/article/horie-mcea">「世界が変わらないのはエンジニアのせいでもある」堀江貴文氏がフリーエンジニアに向けて放つ5つの提言 - エンジニアtype</a></strong>』の中でこんなフレーズがありました。</p>
+
+<blockquote>
+社会全体が古くさいシステムに囚われている
+</blockquote>
+
+
+<p>ハードも含めてオープン化が着実に進行して、エンジニアが簡単に実現できることはどんどん増えているのに、エンジニアとして僕は今まで「言われたもの」ばかり作ってきたなと考えさせられました。</p>
+
+<p>また、『<strong><a href="http://www.engineyard.co.jp/blog/2014/software-is-not-soft/">Rubyの言語開発者 Matz(まつもとゆきひろ)さんが、第3回Rubyビジネスフォーラムの基調講演</a></strong>』で紹介されていた『スノーボールエフェクト』という言葉、すげー好きです。
+僕も「<strong>自分ができるスノーボールを作り続けよう</strong>」と強く思いました。</p>
+
+<p>あとは身近なところではこの前、卓球ハウスで行われた『<strong><a href="http://nekova.hatenablog.com/entry/2014/06/28/200324">個人開発を支える技術Night</a></strong>』に行って、めちゃくちゃ刺激を受けたからってのも大きいです。</p>
+
+<p>実際にやってて、個人開発楽しい！です。</p>
+
+<h2>このサービスで実現したいこと</h2>
+
+<p>まずは、「このサービスで実現したいこと・想い」を書きます。
+大きくまとめると、次の３つのファクターだと思います。</p>
+
+<pre>
+* ソーシャル上の「つながり」を通じて、友達や知り合いにアルバイトが拡がる
+* 空いてる時間に「ボタンひとつ」で「すぐ」にアルバイトが見つかる
+* スケジュールを登録すると、自分にあったアルバイトがレコメンドされる
+</pre>
+
+
+<p>ちょっと言い換えると、「<strong>ソーシャル・グットなアルバイトが自然に広がる</strong>」極めてシンプルなアプリを作りたいッス。</p>
+
+<p>あとマーケティング的にまずはベータ版の期間中は『<strong>完全無料</strong>』でアルバイトの募集ができるようにするつもりです！のでそちらもご期待頂ければ幸いです。</p>
+
+<h2>大風呂敷</h2>
+
+<p>この記事を書いていてテンションが上がって、できるだけ大風呂敷を広げたいなってことで将来夢見ている機能なんかも一緒に書いておきますw</p>
+
+<pre>
+* CtoCの頼み事なんかもソーシャル・グットにできるといいな
+* シニア世代の人にでも簡単に使えるUIにしていきたい
+* 多言語化しで誰でも・どこでも、アルバイトを始められるようにしたい
+* 個人の経験、専門性が自然に積み重なって、マッチングの質が高まるようにしたい
+</pre>
+
+
+<p>一応補足っす。この辺りの法律関係は非常に厳しいのは重々承知しておりますので、どうか生暖かく見守って頂ければ幸いです。</p>
+
+<h2>お願い事項</h2>
+
+<p>ということでここが一番言いたかったことですw</p>
+
+<p>次のような方がいらっしゃったら、<a href="mailto:contact@short.works"/>contact@short.works</a>か<a href="https://twitter.com/shortworkus">Twitter@shortworkus</a>にメッセージ下さい。</p>
+
+<pre>
+1) アルバイト募集がしたい企業様
+   (御社に伺って触ってアプリ・管理画面のデモ版を触って頂きながらお話したいです)
+
+2) 短期のアルバイトの経験をお持ちの方
+   (ご都合のいいカフェかどこかで、お茶飲みながらユーザーレビューさせてください)
+
+3) iPhone / Railsアプリの開発に興味を持って頂ける方
+
+4) スマホや管理画面のUI/UXのデザインにご協力頂ける方
+
+5) マーケティングにご協力頂ける方
+</pre>
+
+
+<p>半日〜１日だけとか週末プロジェクトとか、ガッツリやってみたいとかもまずはメッセージ頂ければ幸いです。
+報酬もテンポラリー、レベニューシェア、その他もろもろ何でも相談に乗ります！まずは何でも言ってください。</p>
+
+<h2>あとがき</h2>
+
+<p>もしiPhoneアプリ『<strong><a href="https://short.works/">Short.Works</a></strong>』の最新情報を知りたい場合は</p>
+
+<p>Twitterアカウント: <strong><a href="https://twitter.com/shortworkus">@shortworkus</a></strong></p>
+
+<p>Facebookページ: <strong><a href="https://www.facebook.com/short.work.us">https://www.facebook.com/short.work.us</a></strong></p>
+
+<p>をフォローして頂けると幸いです。宜しくお願い致します！</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+]]></content>
+  </entry>
+  
+</feed>
