@@ -282,7 +282,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>イメージ的には <code>active_decorator</code> のような <code>presenter</code> に近いイメージです。</p>
+<p>イメージ的には <code>active_decorator</code> のようなプレゼンテーション層に近いイメージです。</p>
 
 <h2>CellのView</h2>
 
@@ -309,6 +309,18 @@
 </span><span class='line'>    <span class="o">=</span> <span class="s1">&#39; / &#39;</span>
 </span><span class='line'>    <span class="o">=</span> <span class="n">link_to</span> <span class="s1">&#39;Destroy&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="ss">:confirm</span> <span class="o">=&gt;</span> <span class="s1">&#39;Are you sure?&#39;</span><span class="p">},</span> <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:delete</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
+<p>するとこんな感じで表示できました。</p>
+
+<p><img src="https://farm2.staticflickr.com/1711/23708723064_a1db0517a6.jpg" width="500" height="235" alt="スクリーンショット 2016-01-13 0.06.56"></p>
+
+<p>設計思想を完全には把握できていないですが、以下の説明がしっくりきました。</p>
+
+<pre>
+- ViewModelはUI要素と結合しないプレゼンテーション・ロジックを担当
+- ViewはUI要素に結合したプレゼンテーション・ロジックを担当
+</pre>
 
 
 <h2>Helperメソッドを使いたい場合</h2>
