@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-11T21:36:22+09:00</updated>
+  <updated>2016-01-12T19:33:47+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -765,8 +765,11 @@ books.updated_at
 
 <h2>マテリアライズド・ビューのModelファイル</h2>
 
-<p>```ruby
-class ExpensiveBook &lt; ActiveRecord::Base
+<p>```ruby</p>
+
+<h1>app/models/expensive_book.rb</h1>
+
+<p>class ExpensiveBook &lt; ActiveRecord::Base
   # find_by!とかを使う場合はprimary_keyが必要なので
   self.primary_key = :id</p>
 
