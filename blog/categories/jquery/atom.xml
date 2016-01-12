@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jQuery | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:56:30+09:00</updated>
+  <updated>2016-01-12T23:57:50+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -188,6 +188,142 @@ return
 <h2>変更来歴</h2>
 
 <p>(07-02 20:50) 新規作成</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cells - Railsの部分テンプレートとそのロジックを分離するコンポーネントフレームワーク]]></title>
+    <link href="http://morizyun.github.io/blog/cells-rails-partial-compornents-framework/"/>
+    <updated>2013-06-10T17:00:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/cells-rails-partial-compornents-framework</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4274067033/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274067033&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274067033&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274067033" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="https://github.com/apotonick/cells">Cells</a></strong>』はRailsの部分テンプレートに付随するロジックをコントローラから分離するためのコンポーネント・フレームワークの紹介です。</p>
+
+<p><strong><a href="http://magazine.rubyist.net/?0041-RailsTheBadParts">Rubyist Magazine - Ruby on Rails: The Bad Parts</a></strong>でもRailsの良くないコーティングスタイルを改善するための仕組みとしてCellsの活用が提案されています！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p>{% include custom/google_ads_square.html %}</p>
+
+<h2>Gemのインストール</h2>
+
+<p><code>Gemfile</code>に以下を追加して、コンソールで<code>bundle</code>を実行してください。</p>
+
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>部分テンプレートのロジック分離</h1>
+
+<p>gem 'cells'
+{% endcodeblock %}</p>
+
+<h2>Cellsのファイルの生成</h2>
+
+<p>ここでは、カート(<code>cart</code>)を表示(<code>show</code>)する部分テンプレートをhamlで作成してみます。</p>
+
+<p>{% codeblock lang:ruby %}
+rails generate cell cart show -e haml
+  create  app/cells/
+  create  app/cells/cart
+  create  app/cells/cart_cell.rb
+  create  app/cells/cart/show.html.haml
+  create  test/cells/cart_test.rb
+{% endcodeblock %}</p>
+
+<h2>Cellsのrenderについて</h2>
+
+<p><code>app/cells/cart/show.html.haml</code>を部分テンプレートとして表示させたい箇所に以下を記述します。</p>
+
+<p>{% codeblock lang:ruby %}
+= render_cell :cart, :show, :user => @current_user
+{% endcodeblock %}</p>
+
+<p><code>:user => @current_user</code>は外部から変数をCellsのメソッドに渡しています。</p>
+
+<h2>Cellのコントローラ的メソッドについて</h2>
+
+<p>続いて、先ほどのテンプレートのコントローラ的なメソッド、<code>app/cells/cart_cell.rb</code>を編集します。</p>
+
+<p>{% codeblock lang:ruby %}
+class CartCell &lt; Cell::Rails
+  def show(args)</p>
+
+<pre><code>user    = args[:user]
+@items  = user.items_in_cart
+
+render
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
+
+<p><code>args</code>が、先程の<code>:user => @current_user</code>で受け取った変数の受け渡しを行なっています。</p>
+
+<p><code>render</code>は<code>show.html.haml</code>を描写するための記述です。</p>
+
+<h2>Cellのビューについて</h2>
+
+<p>さらにCellのビュー、<code>app/cells/cart/show.html.haml</code>についてです。</p>
+
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>cart</h1>
+
+<p>  カートには、#{@items.size}件の商品が入っています。
+{% endcodeblock %}</p>
+
+<p>ここでは<code>@items</code>の件数を表示しています。</p>
+
+<h2>Helperメソッドを使いたい場合</h2>
+
+<p>Helperメソッドを使いたい場合は、コントローラ的メソッドの部分に以下を記述。</p>
+
+<p>{% codeblock lang:ruby %}
+class CartCell &lt; Cell::Rails
+  helper MyExtraHelper
+{% endcodeblock %}</p>
+
+<h2>Cellの部分テンプレートを使いたい場合</h2>
+
+<p>Cells内部で部分テンプレートを使いたい場合は、以下のように記述。</p>
+
+<p>{% codeblock lang:ruby %}
+%p
+  = render :view => 'items'
+{% endcodeblock %}</p>
+
+<h2>Rails側の部分テンプレートを使いたい場合</h2>
+
+<p>Cellsの外部に設置している部分テンプレートを使いたい場合は、ビューへのパスを追記。</p>
+
+<p>{% codeblock lang:ruby %}
+class MapCell &lt; Cell::Rails
+  append_view_path "app/views"
+{% endcodeblock %}</p>
+
+<h2>キャッシュを使う</h2>
+
+<p>Cells内でキャッシュを適用したい場合は、次のように書いて下さい。</p>
+
+<p>{% codeblock lang:ruby %}
+class CartCell &lt; Cell::Rails
+  cache :show, :expires_in => 10.minutes
+{% endcodeblock %}</p>
+
+<p>これで<code>show</code>は10分間キャッシュされるようになります。</p>
+
+<p>適切に使いこなせばコードの可読性を向上させることができそうです！</p>
+
+<h2>公式サイト</h2>
+
+<p>CellsのGitHubはこちら。英語ですがわかりやすいのでオススメです。</p>
+
+<p><a href="https://github.com/apotonick/cells" class="button big primary" title="apotonick/cells · GitHub">apotonick/cells · GitHub</a></p>
+
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   
@@ -392,122 +528,6 @@ $(document).ready(function() {
 
 **[「○○氏の声」を次々と表示できるjQueryプラグイン「Quovolver」:phpspot開発日誌](http://phpspot.org/blog/archives/2010/09/jqueryquovolver.html)**
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[TinyNav.js レスポンシブデザインに最適なナビゲーションjQuery Plugin]]></title>
-    <link href="http://morizyun.github.io/blog/tinynav-js-jquery-smart-phone-navigation/"/>
-    <updated>2013-03-27T22:15:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/tinynav-js-jquery-smart-phone-navigation</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4048913913/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048913913&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048913913&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4048913913" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />レスポンシブなデザインのサイトを作っていて、スマホ用のナビゲーションで悩んだりしませんか？そんな時の選択肢の一つとしてオススメなのが、この『<strong><a href="http://tinynav.viljamis.com/">TinyNav.js</a></strong>』です。シンプルなので導入がとても簡単ですが、個人的にサイトを使っていてすごく使いやすいなと感じることができる良いツールです。</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<p>{% include custom/google_ads_square.html %}</p>
-
-<h2>TinyNav.jsって何？</h2>
-
-<p>『<strong><a href="http://tinynav.viljamis.com/">TinyNav.js</a></strong>』はHTMLタグの<code>ol/ul</code>で構成されたメニューをスマホで見た時に、Formのセレクトのようなメニューに変更してくれるjQuery Pluginです。</p>
-
-<p>説明わかりにくいですよね（汗）、ということで画像を貼ってみました。こちらはHTMLタグの<code>ol/ul</code>で構成されたメニューです。</p>
-
-<p><a href="http://tinynav.viljamis.com/" title="TinyNav.js"><img src="http://farm9.staticflickr.com/8522/8594191885_929c0bea27_z.jpg" width="640" height="173" alt="TinyNav.js"></a></p>
-
-<p>この画面を狭めてスマホサイズの横幅にすると、TinyNav.jsが下のようなメニューに変更してくれます。</p>
-
-<p><a href="http://tinynav.viljamis.com/" title="TinyNav.js"><img src="http://farm9.staticflickr.com/8242/8595313344_36fae148a6_n.jpg" width="320" height="140" alt="TinyNav.js"></a></p>
-
-<p>類似のjQuery Pluginは他にもいくつかありますが、DEMOサイトを触った限りではこちらが一番扱い易かったのと、導入手順がシンプルだったのでこれに決めました。</p>
-
-<h2>導入手順</h2>
-
-<p>HTML/javascript/cssは『<strong><a href="http://tinynav.viljamis.com/">公式サイト</a></strong>』にあるので、ここではHAML/Coffeescript/sassでの導入手順を書いていきます。</p>
-
-<h3>(1) TinyNav.jsをダウンロード</h3>
-
-<p><strong><a href="http://github.com/viljamis/TinyNav.js">GitHubからTinyNav.jsをダウンロード</a></strong>。</p>
-
-<h3>(2) jsの読み込み設定</h3>
-
-<p>{% codeblock lang:haml %}
-%script{src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"}
-%script{:src => "tinynav.min.js"}
-{% endcodeblock %}</p>
-
-<h3>(3) ナビゲーションのHTMLを作成</h3>
-
-<p>{% codeblock lang:haml %}
-%ul#nav
-  %li.selected</p>
-
-<pre><code>%a{:href =&gt; "/"} Home
-</code></pre>
-
-<p>  %li</p>
-
-<pre><code>%a{:href =&gt; "/about/"} About
-</code></pre>
-
-<p>  %li</p>
-
-<pre><code>%a{:href =&gt; "/contact/"} Contact
-</code></pre>
-
-<p>{% endcodeblock %}</p>
-
-<h3>(4) スタイルシートの設定</h3>
-
-<p>{% codeblock lang:sass %}
-/* デスクトップ用の設定
-.tinynav
-  display: none</p>
-
-<p>/* モバイル用の設定
-@media screen and (max-width: 600px)
-  .tinynav</p>
-
-<pre><code>display: block
-</code></pre>
-
-<p>  #nav</p>
-
-<pre><code>display: none
-</code></pre>
-
-<p>{% endcodeblock %}</p>
-
-<h3>(5) Coffeescript(js)の設定</h3>
-
-<p>{% codeblock lang:coffeescript %}
-$ ->
-  $("#nav").tinyNav()
-{% endcodeblock %}</p>
-
-<h3>(6) 任意でオプションを設定</h3>
-
-<p>{% codeblock lang:coffeescript %}
-$("#nav").tinyNav
-  active: "selected" # "active"クラスの設定
-  header: "Navigation" # String: Specify text for "header" and show header instead of the active item
-  label: "" # String: Sets the <label> text for the <select> (if not set, no label will be added)
-{% endcodeblock %}</p>
-
-<p>これで、メニューをレスポンシブに出来ます。デザイン的な見栄えは少し微妙かもしれませんが、実際に使ってみると使いやすさの面ではオススメです！</p>
-
-<p>{% include custom/google_ads_square.html %}</p>
-
-<h2>Special Thanks</h2>
-
-<p><a href="http://speckyboy.com/2011/10/24/25-jquery-plugins-to-help-with-responsive-layouts/">25 jQuery Plugins to help with Responsive Layouts - Speckyboy Design Magazine</a></p>
-
-<p><a href="http://www.jquery4u.com/page-layout/30-jquery-responsive-layout-plugins/">30 jQuery Responsive Layout Plugins | jQuery4u</a></p>
-
-<p><a href="http://designbeep.com/2012/03/28/38-useful-and-effective-jquery-plugins-for-responsive-web-design/">38 Useful and Effective jQuery Plugins for Responsive Web Design | Design Inspiration</a></p>
 ]]></content>
   </entry>
   
