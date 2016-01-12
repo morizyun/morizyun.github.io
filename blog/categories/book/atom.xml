@@ -4,7 +4,7 @@
   <title><![CDATA[Category: book | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/book/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -34,7 +34,12 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>組織運営で重要なこと</h2>
 
@@ -180,7 +185,12 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 ]]></content>
   </entry>
   
@@ -196,11 +206,16 @@
 <!-- more -->
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>gitの基本的な開発スタイルについて</h2>
 
-<p><a href="http://blog.asial.co.jp/894">{% img http://farm8.staticflickr.com/7310/9603451209_d94fb11e58_z.jpg %}</a><br/>
+<p><a href="http://blog.asial.co.jp/894"><img src="http://farm8.staticflickr.com/7310/9603451209_d94fb11e58_z.jpg"></a><br/>
 From <a href="http://blog.asial.co.jp/894">イラストでわかる！git入門の入門</a></p>
 
 <p>gitの基本的な開発スタイルは次の通りです。</p>
@@ -218,7 +233,7 @@ From <a href="http://blog.asial.co.jp/894">イラストでわかる！git入門�
 
 <h2>開発の基本的な流れ</h2>
 
-<p>{% img http://farm3.staticflickr.com/2810/9603580319_4df7243b62_z.jpg %}<br/>
+<p><img src="http://farm3.staticflickr.com/2810/9603580319_4df7243b62_z.jpg"><br/>
 From <a href="http://www.slideshare.net/zephiransas/git-14810093">一人でもはじめるGitでバージョン管理</a></p>
 
 <p>gitを使った開発の基本的な流れは次の通りです。</p>
@@ -252,7 +267,7 @@ From <a href="http://www.slideshare.net/zephiransas/git-14810093">一人でも�
 
 <p>gitのコマンドを例題を通して理解できるサイト『<strong><a href="http://k.swd.cc/learnGitBranching-ja/">Learn Git Branching</a></strong>』の紹介です。コマンドを実行すると図が変化するなど、動きがあってわかりやすいです。</p>
 
-<p><a href="http://k.swd.cc/learnGitBranching-ja/">{% img http://farm6.staticflickr.com/5497/9604520241_b159c2e09c_z.jpg %}</a></p>
+<p><a href="http://k.swd.cc/learnGitBranching-ja/"><img src="http://farm6.staticflickr.com/5497/9604520241_b159c2e09c_z.jpg"></a></p>
 
 <h2>rebaseの正しい使い方</h2>
 
@@ -263,7 +278,7 @@ From <a href="http://www.slideshare.net/zephiransas/git-14810093">一人でも�
 
 <h2>A successful Git branching modelについて</h2>
 
-<p>{% img http://farm3.staticflickr.com/2817/9603741657_6ba43d7edd_z.jpg %}<br/>
+<p><img src="http://farm3.staticflickr.com/2817/9603741657_6ba43d7edd_z.jpg"><br/>
 From <a href="http://www.slideshare.net/add20/ss-11951387">バージョン管理のワークフロー</a></p>
 
 <p>ブランチを活用してバージョン管理を行いながら開発をするための代表的なモデル『<strong>A successful Git branching model</strong>』は次の通りです。</p>
@@ -279,47 +294,67 @@ From <a href="http://www.slideshare.net/add20/ss-11951387">バージョン管理
 
 <p>featureブランチでの機能開発の流れは次の通りです。</p>
 
-<p>{% codeblock lang:bash %}
-git checkout -b feature-x.x.x develop #=> developからfeature-x.x.xブランチを作成して移動
-(feature-x.x.xの実装)
-git checkout develop #=> developブランチにスイッチ
-git merge --no-ff feature-x.x.x #=> developとfeature-x.x.xをマージコミットを作ってマージ
-git branch -d feature-x.x.x #=> マージされたfeature-x.x.xブランチを削除
-git push origin develop #=> 共有リポジトリにdevelopをpush
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git checkout -b feature-x.x.x develop <span class="c">#=&gt; developからfeature-x.x.xブランチを作成して移動</span>
+</span><span class='line'><span class="o">(</span>feature-x.x.xの実装<span class="o">)</span>
+</span><span class='line'>git checkout develop <span class="c">#=&gt; developブランチにスイッチ</span>
+</span><span class='line'>git merge --no-ff feature-x.x.x <span class="c">#=&gt; developとfeature-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git branch -d feature-x.x.x <span class="c">#=&gt; マージされたfeature-x.x.xブランチを削除</span>
+</span><span class='line'>git push origin develop <span class="c">#=&gt; 共有リポジトリにdevelopをpush</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>releaseブランチでのリリース準備作業の流れは次の通りです。</p>
 
-<p>{% codeblock lang:bash %}
-git checkout -b release-x.x.x develop #=> developからrelease-x.x.xブランチを作成して移動
-(リリースの準備作業)
-git checkout master #=> masterブランチにスイッチ
-git merge --no-ff release-x.x.x #=> masterとrelease-x.x.xをマージコミットを作ってマージ
-git tag -a x.x.x #=> バージョン情報をタグに書く
-git checkout develop #=> developブランチに移動
-git merge --no-ff release-x.x.x #=> developとrelease-x.x.xをマージコミットを作ってマージ
-git branch -d release-x.x.x #=> マージされたrelease-x.x.xを削除
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git checkout -b release-x.x.x develop <span class="c">#=&gt; developからrelease-x.x.xブランチを作成して移動</span>
+</span><span class='line'><span class="o">(</span>リリースの準備作業<span class="o">)</span>
+</span><span class='line'>git checkout master <span class="c">#=&gt; masterブランチにスイッチ</span>
+</span><span class='line'>git merge --no-ff release-x.x.x <span class="c">#=&gt; masterとrelease-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git tag -a x.x.x <span class="c">#=&gt; バージョン情報をタグに書く</span>
+</span><span class='line'>git checkout develop <span class="c">#=&gt; developブランチに移動</span>
+</span><span class='line'>git merge --no-ff release-x.x.x <span class="c">#=&gt; developとrelease-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git branch -d release-x.x.x <span class="c">#=&gt; マージされたrelease-x.x.xを削除</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>hotfixブランチでのバグ修正作業の流れは次の通りです。</p>
 
-<p>{% codeblock lang:bash %}
-git checkout -b hotﬁx-x.x.x master #=> masterからrelease-x.x.xブランチを作成して移動
-（バグ修正を実施）
-git commit -m “Fix a bug” #=> バグ修正をコミット
-git checkout master #=> masterブランチにスイッチ
-git merge --no-ff hotﬁx-x.x.x #=> masterとhotfix-x.x.xをマージコミットを作ってマージ
-git tag -a x.x.x #=> バージョン情報をタグに書く
-git checkout develop #=> ブランチdevelopにスイッチ
-git merge --no-ff hotﬁx-x.x.x #=> developとhotfix-x.x.xをマージコミットを作ってマージ
-git branch -d hotﬁx-x.x.x #=> ブランチhotfix-x.x.xを削除
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git checkout -b hotﬁx-x.x.x master <span class="c">#=&gt; masterからrelease-x.x.xブランチを作成して移動</span>
+</span><span class='line'>（バグ修正を実施）
+</span><span class='line'>git commit -m “Fix a bug” <span class="c">#=&gt; バグ修正をコミット</span>
+</span><span class='line'>git checkout master <span class="c">#=&gt; masterブランチにスイッチ</span>
+</span><span class='line'>git merge --no-ff hotﬁx-x.x.x <span class="c">#=&gt; masterとhotfix-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git tag -a x.x.x <span class="c">#=&gt; バージョン情報をタグに書く</span>
+</span><span class='line'>git checkout develop <span class="c">#=&gt; ブランチdevelopにスイッチ</span>
+</span><span class='line'>git merge --no-ff hotﬁx-x.x.x <span class="c">#=&gt; developとhotfix-x.x.xをマージコミットを作ってマージ</span>
+</span><span class='line'>git branch -d hotﬁx-x.x.x <span class="c">#=&gt; ブランチhotfix-x.x.xを削除</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>補足として、『A successful Git branching model』のコマンド入力を簡略化するためのツールとして、<strong><a href="https://github.com/nvie/gitflow">git-flow</a></strong>があります。もしこのモデルを踏襲したい場合は是非活用ください。</p>
 
 <h2>逆引きGit</h2>
 
-<p><a href="http://www.backlog.jp/git-guide/reference/">{% img http://farm4.staticflickr.com/3827/9604572059_dc41c8e6cb_z.jpg %}</a></p>
+<p><a href="http://www.backlog.jp/git-guide/reference/"><img src="http://farm4.staticflickr.com/3827/9604572059_dc41c8e6cb_z.jpg"></a></p>
 
 <p>nulabさんが作成されている『<strong><a href="http://www.backlog.jp/git-guide/reference/">逆引きGit</a></strong>』は書籍になったら大ヒットしそうなレベルでまとまっていてオススメです！</p>
 
@@ -333,13 +368,18 @@ git branch -d hotﬁx-x.x.x #=> ブランチhotfix-x.x.xを削除
 
 <p>marge中の2つのブランチでどちらも同じファイルを変更した場合、conflict(矛盾)が発生することがあります。『<strong><a href="http://d.hatena.ne.jp/sinsoku/20110831/1314720280">Gitでコンフリクトした時のための備忘録</a></strong>』にconflictが発生した場合によく使いそうなコマンドが整理されています！</p>
 
-<p><a href="http://d.hatena.ne.jp/sinsoku/20110831/1314720280">{% img http://farm4.staticflickr.com/3734/9607911806_c01fb1e924_z.jpg %}</a></p>
+<p><a href="http://d.hatena.ne.jp/sinsoku/20110831/1314720280"><img src="http://farm4.staticflickr.com/3734/9607911806_c01fb1e924_z.jpg"></a></p>
 
 <p>また、p4margeというconflict時のツールもあります。『<strong><a href="http://wadahiro.hatenablog.com/entry/20111115/1321372150">Gitのマージツールにp4mergeを使ってみた</a></strong>』にgitで利用するための手順がまとめラているのでよかったら試してみてください！</p>
 
-<p><a href="http://wadahiro.hatenablog.com/entry/20111115/1321372150">{% img http://gitextensions.googlecode.com/files/p4Merge.jpg %}</a></p>
+<p><a href="http://wadahiro.hatenablog.com/entry/20111115/1321372150"><img src="http://gitextensions.googlecode.com/files/p4Merge.jpg"></a></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>補足</h2>
 
@@ -349,10 +389,10 @@ git branch -d hotﬁx-x.x.x #=> ブランチhotfix-x.x.xを削除
 
 <h3>ベアリポジトリ(git init --bare)について</h3>
 
-<p>{% img http://farm4.staticflickr.com/3701/9603675283_45565c4632_z.jpg %}<br/>
+<p><img src="http://farm4.staticflickr.com/3701/9603675283_45565c4632_z.jpg"><br/>
 From <a href="http://www.nekotricolor.com/blog/2013/05/01/961/">ベアリポジトリとノンベアリポジトリ：理論編〜GitでWordPressのテーマを管理</a></p>
 
-<p>{% img http://farm3.staticflickr.com/2862/9607305096_a33c09b513_z.jpg %}<br/>
+<p><img src="http://farm3.staticflickr.com/2862/9607305096_a33c09b513_z.jpg"><br/>
 From <a href="http://www.slideshare.net/matsukaz/git-17499005">いつやるの？Git入門</a></p>
 
 <p><code>--bare</code>は、ベアリポジトリを作成する場合につけます。ベアリポジトリとは、更新情報だけを持つリポジトリのことでサーバの共有リポジトリの場合につけます。</p>
@@ -383,7 +423,12 @@ From <a href="http://www.slideshare.net/matsukaz/git-17499005">いつやるの�
 <!-- more -->
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>原則：動くプロダクトを顧客に見せてフィードバックを受ける</h2>
 
@@ -512,7 +557,12 @@ From <a href="http://www.slideshare.net/matsukaz/git-17499005">いつやるの�
 
 <p><strong><a href="http://www.slideshare.net/JunyaSuzuki1/jenkins-13502498">jenkinsのすゝめ - 継続的インテグレーションと継続的デリバリー</a></strong></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>アジャイル特有の用語集</h2>
 

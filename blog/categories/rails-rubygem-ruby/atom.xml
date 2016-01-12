@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails RubyGem Ruby | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails-rubygem-ruby/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://morizyun.github.io/blog/search-form-rails-bootstrap/"/>
     <updated>2012-12-22T21:50:00+09:00</updated>
     <id>http://morizyun.github.io/blog/search-form-rails-bootstrap</id>
-    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Rails 3.2.9とTwitter Bootstrapをつかったアプリに検索機能をつけました。個人的忘備録で、手順のメモを書いておきます。</p>
+    <content type="html"><![CDATA[<p><a href="blog/categories/rails-rubygem-ruby/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Rails 3.2.9とTwitter Bootstrapをつかったアプリに検索機能をつけました。個人的忘備録で、手順のメモを書いておきます。</p>
 
 <!-- more -->
 
@@ -26,58 +26,96 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>ControllerにSearchメソッドを追加</h2>
 
-<p>{% codeblock lang:ruby %}
-class ArticlesController &lt; ApplicationController
-  def search</p>
-
-<pre><code>search_word = URI.decode(params[:q].to_s)
-@articles = ImageSite.where(content: search_word)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">search</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;search_word = URI.decode(params[:q].to_s)</span>
+</span><span class='line'><span class="sr">@articles = ImageSite.where(content: search_word)</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Viewに検索フォームを追加</h2>
 
 <p>HTMLを使っている場合はこちら。</p>
 
-<p>{% codeblock lang:html %}</p>
-
-<div id="search_form_box">
-  <form class="form-search" action="/search" method="get" role="search">
-    <input class="input-medium search-query" name="q" placeholder="Search" type="text" value="<%= params[:q] %>">
-    <input class="btn" alt="検索" value="検索" type="submit">
-  </form>
-</div>
-
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;search_form_box&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">&quot;form-search&quot;</span> <span class="na">action=</span><span class="s">&quot;/search&quot;</span> <span class="na">method=</span><span class="s">&quot;get&quot;</span> <span class="na">role=</span><span class="s">&quot;search&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">&quot;input-medium search-query&quot;</span> <span class="na">name=</span><span class="s">&quot;q&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;Search&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">value=</span><span class="s">&quot;&lt;%= params[:q] %&gt;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">&quot;btn&quot;</span> <span class="na">alt=</span><span class="s">&quot;検索&quot;</span> <span class="na">value=</span><span class="s">&quot;検索&quot;</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/form&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>HAMLを使っている場合はこちら。</p>
 
-<p>{% codeblock lang:haml %}</p>
-
-<h1>search_form_box</h1>
-
-<pre><code>%form.form-search{action: "search", method: "get", role: "search"}
-    %input.input-medium.search-query{name: "q", placeholder: "Search", type: "text", value: params[:q]}
-    %input.btn{alt: "検索", value: "検索", type: "submit"}
-</code></pre>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;search_form_box&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;%form.form-search{action: &quot;search&quot;, method: &quot;get&quot;, role: &quot;search&quot;}
+</span><span class='line'>    <span class="nt">%input</span><span class="nc">.input-medium.search-query</span><span class="p">{</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">placeholder</span><span class="p">:</span> <span class="s2">&quot;Search&quot;</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:q</span><span class="o">]</span><span class="p">}</span>
+</span><span class='line'>    <span class="nt">%input</span><span class="nc">.btn</span><span class="p">{</span><span class="n">alt</span><span class="p">:</span> <span class="s2">&quot;検索&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;検索&quot;</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="s2">&quot;submit&quot;</span><span class="p">}</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>config/route.rbにSearchを追加</h2>
 
-<p>{% codeblock lang:ruby %}
-TestApp::Application.routes.draw do
-  match "search" => "articles#search"
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">TestApp</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">match</span> <span class="s2">&quot;search&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;articles#search&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>以上でコーディングは終了です。
 結果はこんな感じになるとおもいます。(Bootsrap/Bootswatch/Cosmoを適用)</p>
@@ -86,7 +124,12 @@ end
 
 <p>ということで、「<a href="http://doubutsu.qr-matome.info/">どうぶつの森 QRコードまとめ</a>」に検索ボックスを設置しました！</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>補足: 検索系のGemならSolr/sunspotが有名</h2>
 
@@ -113,7 +156,7 @@ end
     <link href="http://morizyun.github.io/blog/yaml-db-rubygem-rails/"/>
     <updated>2012-12-20T21:00:00+09:00</updated>
     <id>http://morizyun.github.io/blog/yaml-db-rubygem-rails</id>
-    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>rakeコマンドでRailsのDBをYAML形式でダンプ(dump)/ロード(load)することが出来るgem yaml_dbの紹介です。ステージング環境のDBをダンプして本番環境と置き換える場合や、HerokuへのDBデータのアップロードなどに使えます。</p>
+    <content type="html"><![CDATA[<p><a href="blog/categories/rails-rubygem-ruby/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>rakeコマンドでRailsのDBをYAML形式でダンプ(dump)/ロード(load)することが出来るgem yaml_dbの紹介です。ステージング環境のDBをダンプして本番環境と置き換える場合や、HerokuへのDBデータのアップロードなどに使えます。</p>
 
 <p><a href="https://github.com/ludicast/yaml_db" class="button big primary">ludicast/yaml_db | GitHub</a></p>
 
@@ -123,41 +166,68 @@ end
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>yaml_dbの導入</h2>
 
 <p>いつもどおり<code>Gemfile</code>に以下の内容を追加して、<code>bundle install</code>を実行。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>DBをYAML形式でダンプ/ロード</h1>
-
-<p>gem 'yaml_db'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;DBをYAML形式でダンプ/</span><span class="err">ロード</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;gem &#39;yaml_db&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>DBのダンプとロード</h2>
 
 <p>gemがインストールされると以下のrakeが追加されます。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>db/data.yamlを生成</h1>
-
-<p>rake db:data:dump</p>
-
-<h1>db/日付フォルダ/tablename.yamlを生成</h1>
-
-<p>rake db:data:dump_dir</p>
-
-<h1>db/data.yamlを読み込み</h1>
-
-<p>rake db:data:load</p>
-
-<h1>db/日付フォルダ/tablename.yamlをDBに読み込み</h1>
-
-<p>rake db:data:load_dir
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;db/data.yamlを生成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rake db:data:dump&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;db/日付フォルダ/tablename.yamlを生成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rake db:data:dump_dir&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;db/data.yamlを読み込み&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rake db:data:load&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;db/日付フォルダ/tablename.yamlをDBに読み込み&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;rake db:data:load_dir
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>公式ページに詳しい説明があります。よかったらご覧になって下さい。</p>
 
@@ -167,22 +237,36 @@ end
 
 <p>Capistranoを使ってダンプしたDBのyamlデータロードをデプロイプロセスに組込みたい場合は<code>config/deploy.rb</code>に以下を追加。</p>
 
-<p>{% codeblock lang:ruby %}
-namespace :deploy do # namespaceは任意
-  desc "Load the seed data from db/data.yml"
-  task :dump_yml_load do</p>
-
-<pre><code>run "cd #{current_path} &amp;&amp; RAILS_ENV=production bundle exec rake db:load"
-</code></pre>
-
-<p>  end
-end
-after :deploy, "deploy:dump_yml_load"
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span> <span class="c1"># namespaceは任意</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Load the seed data from db/data.yml&quot;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:dump_yml_load</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;run &quot;cd </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="sr"> &amp;amp;&amp;amp; RAILS_ENV=production bundle exec rake db:load&quot;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">after :deploy, &quot;deploy:dump_yml_load&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>もし、Deploy プロセスを自動化するGem Capistranoについて興味が有る方は、「<a href="/blog/capistrano-git-rails-deploy">Rals3.2.9で始める Git連携Capistranoによる自動デプロイ</a>」をご覧になってみて下さい。</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>補足: DBをロードした時に日本語が文字化けした場合</h2>
 

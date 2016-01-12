@@ -4,7 +4,7 @@
   <title><![CDATA[Category: geocoder | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/geocoder/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -30,7 +30,12 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>前置き</h2>
 
@@ -41,23 +46,37 @@
 
 <p>ある緯度経度を中心として、その場所から一定距離の範囲内の緯度経度を持つレコードを抽出するコードです。</p>
 
-<p>{% codeblock lang:ruby %}
-class Venue &lt; ActiveRecord::Base
-  reverse_geocoded_by :latitude, :longitude</p>
-
-<p>  class &lt;&lt; self</p>
-
-<pre><code>def within_box(distance, latitude, longitude)
-  distance = distance # 単位はマイル
-  center_point = [latitude, longitude] # 緯度経度
-  box = Geocoder::Calculations.bounding_box(center_point, distance)
-  self.within_bounding_box(box)
-end
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Venue</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">reverse_geocoded_by</span> <span class="ss">:latitude</span><span class="p">,</span> <span class="ss">:longitude</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  class &amp;lt;&amp;lt; self&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">within_box</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">distance</span> <span class="o">=</span> <span class="n">distance</span> <span class="c1"># 単位はマイル</span>
+</span><span class='line'>  <span class="n">center_point</span> <span class="o">=</span> <span class="o">[</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="o">]</span> <span class="c1"># 緯度経度</span>
+</span><span class='line'>  <span class="n">box</span> <span class="o">=</span> <span class="no">Geocoder</span><span class="o">::</span><span class="no">Calculations</span><span class="o">.</span><span class="n">bounding_box</span><span class="p">(</span><span class="n">center_point</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">within_bounding_box</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>あとはコントローラなどで<code>Venue.within_box(distance, latitude, longitude)</code>と呼び出してもらえれば、与えられた緯度経度から一定の距離の範囲内にあるレコードをよしなに抽出してきてくれます。</p>
 
@@ -67,7 +86,12 @@ end
 
 <p>GitHubの説明を斜め読みしただけなので、もし間違ってそうなら是非ツッコミお願いします！</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Bootstrap | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/bootstrap/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -106,7 +106,12 @@ $ rails g kaminari:views bootstrap3
 
 <p><img src="http://farm9.staticflickr.com/8477/8250145044_9193f27280_n.jpg" width="320" height="42" alt="fpu_tmp_1354804296.8519_d61bda"></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>ルーティングの設定</h2>
 
@@ -147,7 +152,12 @@ Draper::CollectionDecorator.delegate :current_page, :total_pages, :limit_value, 
 
 <p><strong><a href="https://github.com/drapergem/draper/issues/401">Kaminari vs Draper · Issue #401 · drapergem/draper</a></strong></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Special Thanks</h2>
 
@@ -181,7 +191,12 @@ Draper::CollectionDecorator.delegate :current_page, :total_pages, :limit_value, 
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>格安でクオリティの高いBootstrap Theme</h2>
 
@@ -224,7 +239,12 @@ Bootsrap3のテンプレートがメインでマトメらているサイト。�
 <p><strong><a href="http://www.bootstrapcdn.com/">Bootstrap CDN</a></strong><br/>
 BootstrapのCDNサイト。サイトにアップロードしなくても使えるので、いろいろ応用がききそう！</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>変更来歴</h2>
 
@@ -255,12 +275,15 @@ BootstrapのCDNサイト。サイトにアップロードしなくても使え�
 
 <p>一応イメージが湧くようにコードを書いておきます。Bootstrap/Bootswatch/Font-Awesomeを使えるようにします。<code>app/view/layouts/application.haml</code>の場合はこちら。</p>
 
-<p>{% codeblock lang:bash %}
-%link{:href=>"//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", :rel=>"stylesheet"}
-%script{:src=>"//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"}
-%link{:href=>"//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css", :rel=>"stylesheet"}
-%link{:href=>"//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css", :rel=>"stylesheet"}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>%link<span class="o">{</span>:href<span class="o">=</span>&gt;<span class="s2">&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css&quot;</span>, :rel<span class="o">=</span>&gt;<span class="s2">&quot;stylesheet&quot;</span><span class="o">}</span>
+</span><span class='line'>%script<span class="o">{</span>:src<span class="o">=</span>&gt;<span class="s2">&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js&quot;</span><span class="o">}</span>
+</span><span class='line'>%link<span class="o">{</span>:href<span class="o">=</span>&gt;<span class="s2">&quot;//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css&quot;</span>, :rel<span class="o">=</span>&gt;<span class="s2">&quot;stylesheet&quot;</span><span class="o">}</span>
+</span><span class='line'>%link<span class="o">{</span>:href<span class="o">=</span>&gt;<span class="s2">&quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css&quot;</span>, :rel<span class="o">=</span>&gt;<span class="s2">&quot;stylesheet&quot;</span><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これを使う場合の問題としては、海外のCDNっぽくってレスポンスがやや悪かったり、たまに落ちてうまくテーマが表示されなくなってしまう点です。さっと試したいときにおすすめです。</p>
 
@@ -270,22 +293,30 @@ BootstrapのCDNサイト。サイトにアップロードしなくても使え�
 
 <p><code>Gemfile</code>に以下のGemを追加して、<code>bundle install</code>を実行。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>Twitter Bootstrap</h1>
-
-<p>gem 'twitter-bootswatch-rails', '~> 3.1.1'
-gem 'twitter-bootswatch-rails-helpers'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Twitter Bootstrap&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;twitter-bootswatch-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.1.1&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;twitter-bootswatch-rails-helpers&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>続いてターミナルで以下のコマンドを実行すると自動でよしなにやってくれます。<br/>
 (<code>readable</code>の部分はbootswatchのテーマ名です)</p>
 
-<p>{% codeblock lang:bash %}
-rails g bootswatch:install readable
-rails g bootswatch:import readable
-rails g bootswatch:layout readable
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g bootswatch:install readable
+</span><span class='line'>rails g bootswatch:import readable
+</span><span class='line'>rails g bootswatch:layout readable
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>あとは出来上がったerb(haml)とcss、javascriptを<code>app/views/layouts/application.haml(erb).html</code>に移植して使うなり、デフォルト側にコピーして使うなりすれば簡単に使えるようになります！</p>
 
@@ -328,7 +359,12 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h1>無料のテンプレート</h1>
 
@@ -408,7 +444,12 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 
 <p><a href="ttp://www.oswt.co.uk/free_bootstrap_templates/" title="スクリーンショット 2013-01-27 22.29.47 by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8233/8419129251_cbdc2fff23_z.jpg" width="640" height="426" alt="スクリーンショット 2013-01-27 22.29.47"></a></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>名前不明</h2>
 
@@ -534,7 +575,12 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Fuel UX</h2>
 
@@ -624,7 +670,12 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 
 <p><a href="http://ivaynberg.github.io/select2/" title="Select2 3.3.2"><img src="http://farm8.staticflickr.com/7287/8737194047_d2efd35886_z.jpg" width="640" height="494" alt="Select2 3.3.2"></a></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Bootstro.js</h2>
 
@@ -687,7 +738,12 @@ Twitter Bootstrapはデザインが苦手なプログラマのための必須ツ
 
 <p><a href="http://www.bootstrapcdn.com/" title="BootstrapCDN"><img src="http://farm8.staticflickr.com/7423/9543450147_fdc79ed452_z.jpg" width="640" height="311" alt="BootstrapCDN"></a></p>
 
-<p>{% include custom/google_ads_yoko_naga.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>このテーマに関連するオススメ本</h2>
 

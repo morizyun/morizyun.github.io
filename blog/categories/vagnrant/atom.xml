@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vagnrant | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/vagnrant/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,7 +28,12 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Vaggrant/Chefとは？</h2>
 
@@ -36,18 +41,21 @@
 
 <h2>Vagrant のメリット</h2>
 
-<p>{% codeblock lang:bash %}
-コマンド1つでVMを立ち上げたり・止めたり・削除したりできる
-ChefやPuppetと併用できるので、複数人で本番と同じ開発環境を共有できる
-(開発環境を構築する際に個人のローカル環境に依存するのを避ける事ができる)
-AWSやDegital Oceanなどのインスタンスもコマンド一つで立ち上げ・削除できる
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>コマンド1つでVMを立ち上げたり・止めたり・削除したりできる
+</span><span class='line'>ChefやPuppetと併用できるので、複数人で本番と同じ開発環境を共有できる
+</span><span class='line'><span class="o">(</span>開発環境を構築する際に個人のローカル環境に依存するのを避ける事ができる<span class="o">)</span>
+</span><span class='line'>AWSやDegital Oceanなどのインスタンスもコマンド一つで立ち上げ・削除できる
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Chef/Puppetのメリット</h2>
 
-<p>{% codeblock lang:bash %}
-サーバの構成情報をgitなどで管理できるので変更点管理・チームでの管理が容易になる
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>サーバの構成情報をgitなどで管理できるので変更点管理・チームでの管理が容易になる
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Vagrant</h2>
 
@@ -56,9 +64,9 @@ AWSやDegital Oceanなどのインスタンスもコマンド一つで立ち上�
 
 <p>vagrantをインストールしたら、boxでchefを使えるようにするためのプラグインをインストール。あと、コミュニティの作ったCookbookのインストール。</p>
 
-<p>{% codeblock lang:bash %}
-vagrant plugin install vagrant-omnibus
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant plugin install vagrant-omnibus
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>VirtualBox</h2>
 
@@ -69,29 +77,41 @@ vagrant plugin install vagrant-omnibus
 
 <p>自分の好きな場所(例は<code>~/Dropbox/Vagrant</code>)に仮想マシン用のフォルダを作成。</p>
 
-<p>{% codeblock lang:bash %}
-mkdir ~/Dropbox/vagrant
-git clone https://github.com/morizyun/vagrant-rails.git vagrant-rails
-cd vagrant-rails
-bundle install
-bundle exec berks install --path site-cookbooks
-vagrant up
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/Dropbox/vagrant
+</span><span class='line'>git clone https://github.com/morizyun/vagrant-rails.git vagrant-rails
+</span><span class='line'><span class="nb">cd </span>vagrant-rails
+</span><span class='line'>bundle install
+</span><span class='line'>bundle <span class="nb">exec </span>berks install --path site-cookbooks
+</span><span class='line'>vagrant up
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Rails プロジェクトの作成</h2>
 
 <p>続いてRails プロジェクトを作成します。本当はスクリプトでプロジェクトを作りたかったんですが、ちょっと失敗中のため、引き続き調査。</p>
 
-<p>{% codeblock lang:bash %}
-vagrant ssh
-cd /vagrant/app
-rails new chef_rails --database=mysql
-cd chef_rails
-echo "gem 'therubyracer', platforms: :ruby" >> Gemfile
-bundle install
-bundle exec rake db:create
-rails s
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant ssh
+</span><span class='line'><span class="nb">cd</span> /vagrant/app
+</span><span class='line'>rails new chef_rails --database<span class="o">=</span>mysql
+</span><span class='line'><span class="nb">cd </span>chef_rails
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;gem &#39;therubyracer&#39;, platforms: :ruby&quot;</span> &gt;&gt; Gemfile
+</span><span class='line'>bundle install
+</span><span class='line'>bundle <span class="nb">exec </span>rake db:create
+</span><span class='line'>rails s
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>ブラウザでのアクセス</h2>
 

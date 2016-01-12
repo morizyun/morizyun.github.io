@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Kaminari | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/kaminari/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -106,7 +106,12 @@ $ rails g kaminari:views bootstrap3
 
 <p><img src="http://farm9.staticflickr.com/8477/8250145044_9193f27280_n.jpg" width="320" height="42" alt="fpu_tmp_1354804296.8519_d61bda"></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>ルーティングの設定</h2>
 
@@ -147,7 +152,12 @@ Draper::CollectionDecorator.delegate :current_page, :total_pages, :limit_value, 
 
 <p><strong><a href="https://github.com/drapergem/draper/issues/401">Kaminari vs Draper · Issue #401 · drapergem/draper</a></strong></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Special Thanks</h2>
 

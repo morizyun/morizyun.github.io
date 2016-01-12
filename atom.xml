@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T22:01:19+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -14,12 +14,13 @@
 
   
   <entry>
-    <title type="html"><![CDATA[PostgreSQL 9.5 の新機能について]]></title>
-    <link href="http://morizyun.github.io/blog/postgresql-9.5-new-functions/"/>
-    <updated>2016-01-12T20:10:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/postgresql-9.5-new-functions</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4839953554/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839953554&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839953554&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839953554" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-PostgreSQL 9.5の新機能</p>
+    <title type="html"><![CDATA[Cells4 - Ruby/Rails でView components を実現する[Rails4.2]]]></title>
+    <link href="http://morizyun.github.io/blog/cells4-rails-partial-compornents-framework/"/>
+    <updated>2016-01-12T23:50:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/cells4-rails-partial-compornents-framework</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4274067033/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274067033&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274067033&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274067033" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> Railsの部分テンプレートに付随するロジックをコントローラから分離するためのView Componentsを実現する『<strong><a href="https://github.com/apotonick/cells">apotonick/cells - GitHub</a></strong>』の紹介です。</p>
+
+<p><strong><a href="http://magazine.rubyist.net/?0041-RailsTheBadParts">Rubyist Magazine - Ruby on Rails: The Bad Parts</a></strong>でもRailsの良くないコーティングスタイルを改善するための仕組みとしてCellsの活用が提案されています！</p>
 
 <!-- more -->
 
@@ -40,9 +41,45 @@ PostgreSQL 9.5の新機能</p>
 </script>
 
 
-<h2>Upsert</h2>
+<h2>Gemのインストール</h2>
 
-<p>Upsertとは簡単に言うと、『INSERTできるならINSERTし、INSERTできない場合は代わりにUPDATEを行う』機能。</p>
+<p><code>Gemfile</code>に以下を追加して、コンソールで<code>bundle</code>を実行してください。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 部分テンプレートのロジック分離</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;cells&#39;</span><span class="p">,</span> <span class="s2">&quot;~&gt; 4.0.0&quot;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;cells-slim&quot;</span> <span class="c1"># cells-erb, cells-haml</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Cellsのファイルの生成</h2>
+
+<p><code>comment</code> に対する</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># book の scaffold</span>
+</span><span class='line'>rails g scaffold book title:string author:string price:integer
+</span><span class='line'>  <span class="o">(</span>省略<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># book の show スタイルを作成</span>
+</span><span class='line'>rails g cell book show
+</span><span class='line'>      create  app/cells/book_cell.rb
+</span><span class='line'>      create  app/cells/book/show.slim
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Cellsのrenderについて</h2>
+
+<p>部分テンプレートとして表示させたい箇所に以下を記述します。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -59,62 +96,25 @@ PostgreSQL 9.5の新機能</p>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="c1">-- 初期こんな感じのデーブル</span>
-</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;aaa&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;bbb&#39;</span><span class="p">);</span>
-</span><span class='line'> <span class="n">id</span> <span class="o">|</span> <span class="k">data</span>
-</span><span class='line'><span class="c1">----+------</span>
-</span><span class='line'>  <span class="mi">1</span> <span class="o">|</span> <span class="n">aaa</span>
-</span><span class='line'>  <span class="mi">2</span> <span class="o">|</span> <span class="n">bbb</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- 初めて、UPSERT文を実行 =&gt; primary key がバッティングしないのでそのまま登録</span>
-</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ccc&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">ON</span> <span class="n">CONFLICT</span> <span class="k">ON</span> <span class="k">CONSTRAINT</span> <span class="n">test_pkey</span>
-</span><span class='line'>  <span class="k">DO</span> <span class="k">UPDATE</span> <span class="k">SET</span> <span class="k">data</span> <span class="o">=</span> <span class="s1">&#39;ccc&#39;</span><span class="p">;</span>
-</span><span class='line'> <span class="n">id</span> <span class="o">|</span> <span class="k">data</span>
-</span><span class='line'><span class="c1">----+------</span>
-</span><span class='line'>  <span class="mi">1</span> <span class="o">|</span> <span class="n">aaa</span>
-</span><span class='line'>  <span class="mi">2</span> <span class="o">|</span> <span class="n">bbb</span>
-</span><span class='line'>  <span class="mi">3</span> <span class="o">|</span> <span class="n">ccc</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- もう一回、UPSERT文を実行 =&gt; primary key がバッティングするのでアップデート</span>
-</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ddd&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">ON</span> <span class="n">CONFLICT</span> <span class="k">ON</span> <span class="k">CONSTRAINT</span> <span class="n">test_pkey</span>
-</span><span class='line'>  <span class="k">DO</span> <span class="k">UPDATE</span> <span class="k">SET</span> <span class="k">data</span> <span class="o">=</span> <span class="s1">&#39;ddd&#39;</span><span class="p">;</span>
-</span><span class='line'> <span class="n">id</span> <span class="o">|</span> <span class="k">data</span>
-</span><span class='line'><span class="c1">----+------</span>
-</span><span class='line'>  <span class="mi">1</span> <span class="o">|</span> <span class="n">aaa</span>
-</span><span class='line'>  <span class="mi">3</span> <span class="o">|</span> <span class="n">ccc</span>
-</span><span class='line'>  <span class="mi">2</span> <span class="o">|</span> <span class="n">ddd</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># app/views/books/index.html.slim</span>
+</span><span class='line'>table
+</span><span class='line'>  thead
+</span><span class='line'>    tr
+</span><span class='line'>      th category
+</span><span class='line'>      th title
+</span><span class='line'>      th author
+</span><span class='line'>      th price
+</span><span class='line'>      th action
+</span><span class='line'>  tbody
+</span><span class='line'>    -# 今回はここで @books をまとめて渡しています
+</span><span class='line'>    -# パラメータとかも渡せます。cell style を指定する事もできます<span class="o">(</span>省略するとshow<span class="o">)</span>
+</span><span class='line'>    <span class="o">=</span> cell<span class="o">(</span><span class="s1">&#39;book&#39;</span>, collection: @books<span class="o">)</span>
+</span><span class='line'>    <span class="c"># =&gt; - @books.each do |book|</span>
+</span><span class='line'>    <span class="c"># =&gt;   = cell(&#39;book&#39;, book) と同義です</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>INSERTかUPDATEかをいちいちテーブルのデータをチェックしなくてもシンプルなSQL一発で登録できる。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;webaudio</span><span class="na">-knob</span> <span class="na">src=</span><span class="s">&quot;img/LittlePhatty.png&quot;</span> <span class="na">sprites=</span><span class="s">&quot;100&quot;</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>/webaudio-knob&gt;
-</span><span class='line'><span class="nt">&lt;webaudio</span><span class="na">-slider</span> <span class="na">src=</span><span class="s">&quot;img/hsliderbody.png&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>/webaudio-slider&gt;
-</span><span class='line'><span class="nt">&lt;webaudio</span><span class="na">-switch</span> <span class="na">src=</span><span class="s">&quot;img/switch_toggle.png&quot;</span> <span class="na">width=</span><span class="s">&quot;32&quot;</span> <span class="na">height=</span><span class="s">&quot;32&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>/webaudio-switch&gt;
-</span><span class='line'><span class="nt">&lt;webaudio</span><span class="na">-param</span> <span class="na">src=</span><span class="s">&quot;&quot;</span> <span class="na">link=</span><span class="s">&quot;knob-1&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>/webaudio-param&gt;
-</span><span class='line'><span class="nt">&lt;webaudio</span><span class="na">-keyboard</span> <span class="na">keys=</span><span class="s">&quot;25&quot;</span> <span class="nt">&gt;</span><span class="err">&lt;</span>/webaudio-keyboard&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p>これで <code>book_cell.rb</code> に対して <code>@books</code> を一括で渡しています。</p>
 
 <script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -128,6 +128,115 @@ PostgreSQL 9.5の新機能</p>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
+
+<h2>Cell::ViewModel について</h2>
+
+<p>続いて 先ほど渡された <code>@books</code> の中の <code>book</code> を受け取って処理する部分です。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/cells/book_cell.rb</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">BookCell</span> <span class="o">&lt;</span> <span class="no">Cell</span><span class="o">::</span><span class="no">ViewModel</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Cell</span><span class="o">::</span><span class="no">Slim</span> <span class="c1"># erb /haml に変更可能</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># キャッシュする時間を設定できます</span>
+</span><span class='line'>  <span class="n">cache</span> <span class="ss">:show</span><span class="p">,</span> <span class="n">expires_in</span><span class="p">:</span> <span class="mi">10</span><span class="o">.</span><span class="n">minutes</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 呼び出しできるフィールドを指定</span>
+</span><span class='line'>  <span class="n">property</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:author</span><span class="p">,</span> <span class="ss">:price</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">show</span>
+</span><span class='line'>    <span class="n">render</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>イメージ的には <code>active_decorator</code> のような <code>presenter</code> に近いイメージです。</p>
+
+<h2>CellのView</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/cells/book/show.slim</span>
+</span><span class='line'><span class="n">tr</span>
+</span><span class='line'>  <span class="n">td</span> <span class="o">=</span> <span class="n">category</span>
+</span><span class='line'>  <span class="n">td</span> <span class="o">=</span> <span class="n">title</span>
+</span><span class='line'>  <span class="n">td</span> <span class="o">=</span> <span class="n">author</span>
+</span><span class='line'>  <span class="n">td</span> <span class="o">=</span> <span class="n">price</span>
+</span><span class='line'>  <span class="n">td</span>
+</span><span class='line'>    <span class="o">=</span> <span class="n">link_to</span> <span class="s1">&#39;Show&#39;</span><span class="p">,</span> <span class="n">model</span>
+</span><span class='line'>    <span class="o">=</span> <span class="s1">&#39; / &#39;</span>
+</span><span class='line'>    <span class="o">=</span> <span class="n">link_to</span> <span class="s1">&#39;Edit&#39;</span><span class="p">,</span> <span class="n">edit_book_path</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">=</span> <span class="s1">&#39; / &#39;</span>
+</span><span class='line'>    <span class="o">=</span> <span class="n">link_to</span> <span class="s1">&#39;Destroy&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="ss">:confirm</span> <span class="o">=&gt;</span> <span class="s1">&#39;Are you sure?&#39;</span><span class="p">},</span> <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:delete</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Helperメソッドを使いたい場合</h2>
+
+<p>Helperメソッドを使いたい場合は、コントローラ的メソッドの部分に以下を記述。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/cells/book_cell.rb</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">BookCell</span> <span class="o">&lt;</span> <span class="no">Cell</span><span class="o">::</span><span class="no">ViewModel</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">UrlHelper</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">ActionView</span><span class="o">::</span><span class="no">Helpers</span><span class="o">::</span><span class="no">CaptureHelper</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">author_link</span>
+</span><span class='line'>    <span class="n">content_tag</span> <span class="ss">:div</span><span class="p">,</span> <span class="n">link_to</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">author_url</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>適切に使いこなせれば、UI Component単位で処理を切り分けられそうです！</p>
+
+<h2>公式サイト</h2>
+
+<p>CellsのGitHubはこちら。英語ですがわかりやすいのでオススメです。</p>
+
+<p><a href="https://github.com/apotonick/cells" class="button big primary" title="apotonick/cells · GitHub">apotonick/cells · GitHub</a></p>
+
+<h2>Trailblazer framework</h2>
+
+<p>Cellsは、Trailblazer frameworkのコンポーネントの一つとしても使われています。</p>
+
+<ul>
+<li><a href="http://qiita.com/kbaba1001/items/e265ad1e40f238931468">Ruby - Rails のアーキテクチャ設計を考える - Qiita</a></li>
+<li><a href="http://trailblazer.to/">Trailblazer: A High-Level Architecture For The Web</a></li>
+</ul>
+
+
+<p>Trailblazerは、チームの学習コストや今後のRailsの進化の方向性によっても導入すべきかは悩ましい&#8230;</p>
 ]]></content>
   </entry>
   

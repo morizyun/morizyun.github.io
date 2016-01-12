@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Guard | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/guard/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://morizyun.github.io/blog/pow-guard-rails/"/>
     <updated>2012-11-28T16:40:00+09:00</updated>
     <id>http://morizyun.github.io/blog/pow-guard-rails</id>
-    <content type="html"><![CDATA[<p><a href="{{ root_url }}{{ page.url }}" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8209/8225589647_c2f4413b3b.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+    <content type="html"><![CDATA[<p><a href="blog/categories/guard/atom.xml" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8209/8225589647_c2f4413b3b.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
 
 <p>「小さなチーム、大きな仕事」でおなじみの <a href="http://37signals.com/">37 signails</a>が開発した「設定が不要なRails &amp; Rackサーバ Pow」を使いはじめました！
 このPowを使うメリットは、</p>
@@ -41,27 +41,32 @@
 
 <p>Powのインストールは以下のコマンドのみ。もし、万一エラーが出るようなら<a href="https://github.com/37signals/pow">37signals/pow GitHub</a>を確認してみてください。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-curl get.pow.cx | sh
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl get.pow.cx | sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Powderのインストール</h2>
 
 <p>Powのコマンド入力支援してくれる<a href="https://github.com/Rodreegez/powder">Powder</a>をインストール。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-gem install powder
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install powder
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Powへのリンクの作成</h2>
 
 <p>Rails/Rackアプリのフォルダで以下を入力するとpowへのリンクを作成できます。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-powder link</p>
-
-<blockquote><p>Your application is now available at http://app_folder_name.dev/
-{% endcodeblock %}</p></blockquote>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>powder link&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Your application is now available at http://app_folder_name.dev/
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
 
 <p>ブラウザで<code>http://app_folder_name.dev/</code>にアクセスするか、<code>powder open</code>と入力するとアプリが表示されます。その他のpowderのコマンドについては、下にまとめています。</p>
 
@@ -70,15 +75,22 @@ powder link</p>
 <p>pow + xip.ioによって、LAN内のスマホ/タブレットからアプリに簡単にアクセスすることができます。
 まず、Mac側のローカルIPを確認。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-ifconfig
-...</p>
-
-<pre><code>    inet 192.168.24.99
-</code></pre>
-
-<p>...
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ifconfig
+</span><span class='line'>...&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;    inet 192.168.24.99
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;...
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次にスマホ/タブレットのブラウザから、<code>http://app_folder_name.192.168.24.99.xip.io/</code>にアクセスするとアプリを表示することができます。</p>
 
@@ -89,9 +101,10 @@ ifconfig
 <p>Railsには、config/environment.rbなど再起動しないと反映されないファイルが幾つかあります。
 これをGem Guardで監視して変更があった場合には、自動でPowが再起動されるようにします。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-gem install guard-pow
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install guard-pow
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Guardファイルの設定</h2>
 
@@ -101,25 +114,37 @@ gem install guard-pow
 
 <p>まず、Guardfileを生成/更新します。</p>
 
-<p>{% codeblock コンソール lang:bash %}
-guard init pow
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>guard init pow
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>このコマンドを実行すると以下のようにプロジェクト直下のGuardfileが更新されます。</p>
 
-<p>{% codeblock Guardfile lang:ruby %}
-guard 'pow' do
-  watch('.powrc')
-  watch('.powenv')
-  watch('.rvmrc')
-  watch('Gemfile')
-  watch('Gemfile.lock')
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch(%r{<sup>config/environments/.*.rb$})</sup>
-  watch(%r{<sup>config/initializers/.*.rb$})</sup>
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Guardfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="s1">&#39;pow&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.powrc&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.powenv&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;.rvmrc&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;Gemfile&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;Gemfile.lock&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;config/application.rb&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="s1">&#39;config/environment.rb&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{&lt;sup&gt;config/environments/.*.rb$}</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
+</span><span class='line'><span class="sr">  watch(%r{&lt;sup&gt;config/ini</span><span class="n">tializers</span><span class="o">/.</span><span class="n">*</span><span class="o">.</span><span class="n">rb</span><span class="err">$</span><span class="p">})</span><span class="o">&lt;</span><span class="sr">/sup&gt;</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>これでGuardがファイルを監視して、変更があった場合には Powを自動で更新してくれます。</p>
 
@@ -127,26 +152,29 @@ end
 
 <p><code>localhost</code>でアクセスするリンク先は以下のコマンドで設定できます。</p>
 
-<p>{% codeblock lang:bash %}
-ln -s /app/path/to/ ~/.pow/default
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -s /app/path/to/ ~/.pow/default
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>補足: Pow-RVMの連携 Rubyのバージョンを指定する</h2>
 
 <p>もし、Powでリンクを張ったプロジェクトのRVMのバージョンを指定したい場合は、まずプロジェクトの直下に<code>.rvmrc</code>を作成して以下を登録。</p>
 
-<p>{% codeblock lang:bash %}
-rvm 1.9.3
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm 1.9.3
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>次に同じくプロジェクトの直下に<code>.powrc</code>を作成して以下を追加。</p>
 
-<p>{% codeblock lang:bash %}
-if [ -f "$rvm_path/scripts/rvm" ] &amp;&amp; [ -f ".rvmrc" ]; then
-  source "$rvm_path/scripts/rvm"
-  source ".rvmrc"
-fi
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> <span class="o">[</span> -f <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span> <span class="o">]</span> &amp;amp;&amp;amp; <span class="o">[</span> -f <span class="s2">&quot;.rvmrc&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">  </span><span class="nb">source</span> <span class="s2">&quot;$rvm_path/scripts/rvm&quot;</span>
+</span><span class='line'>  <span class="nb">source</span> <span class="s2">&quot;.rvmrc&quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>RVM関連の設定詳細は<a href="http://pow.cx/manual.html#section_2.3.2">公式ページの2.3.2 Specifying Ruby Versions with RVM</a>を参照。</p>
 
@@ -246,9 +274,9 @@ powder update
 
 <p>もし何らかの事情でPowをアンインストールしたくなった場合は以下のコマンドを実行。</p>
 
-<p>{% codeblock lang:bash %}
-curl get.pow.cx/uninstall.sh | sh
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl get.pow.cx/uninstall.sh | sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>アンインストールの詳細は<a href="http://pow.cx/manual.html#section_1.2">公式ページの1.2 Uninstalling Pow</a>を参照。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -29,7 +29,12 @@ Javaを使ったAndroid開発で使えるローカルデータベースとして
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Realmの特徴</h2>
 
@@ -61,7 +66,12 @@ Javaを使ったAndroid開発で使えるローカルデータベースとして
 
 <p>こちらもQiitaの記事ですが、Realmを使ってデータ管理するときに使いそうな細かいTipsが書かれている。Qiita素敵！</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 ]]></content>
   </entry>
   
@@ -80,7 +90,12 @@ Androidのアプリ開発の勉強を始めたので、読んでいる入門資�
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>環境構築</h2>
 
@@ -154,7 +169,12 @@ Androidのアプリ開発の勉強を始めたので、読んでいる入門資�
 
 <p>もしオススメの入門資料や書籍をお見かけしたら、ぜひコメントお願いします！</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>変更来歴</h2>
 
@@ -177,7 +197,12 @@ Androidのアプリ開発の勉強を始めたので、読んでいる入門資�
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>前提</h2>
 
@@ -187,28 +212,33 @@ Androidのアプリ開発の勉強を始めたので、読んでいる入門資�
 
 <p>以下のコマンドを実行してjarファイルを生成。</p>
 
-<p>{% codeblock lang:bash %}
-git clone https://github.com/pardom/ActiveAndroid.git
-cd ActiveAndroid
-sh gradlew build
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/pardom/ActiveAndroid.git
+</span><span class='line'><span class="nb">cd </span>ActiveAndroid
+</span><span class='line'>sh gradlew build
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>生成したjarファイルを<code>app/libs</code>にコピー。</p>
 
-<p>{% codeblock lang:bash %}
-cp ActiveAndroid/build/libs/* /android/path/to/app/libs
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cp ActiveAndroid/build/libs/* /android/path/to/app/libs
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Gradleファイルの設定</h2>
 
 <p><code>app/build.gradle</code>の中に以下を追加。</p>
 
-<p>{% codeblock lang:bash %}
-dependencies {
-  # ↓ この行を追加
-  compile 'com.android.support:appcompat-v7:+'
-}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dependencies <span class="o">{</span>
+</span><span class='line'>  <span class="c"># ↓ この行を追加</span>
+</span><span class='line'>  compile <span class="s1">&#39;com.android.support:appcompat-v7:+&#39;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>AndroidManifest.xmlに設定</h2>
 
@@ -222,51 +252,85 @@ dependencies {
 
 <p>ということでサンプルはこんな感じです。</p>
 
-<p>{% codeblock lang:xml %}
-<manifest ...>
-  <application android:name="com.activeandroid.app.Application" ...></p>
-
-<pre><code>&lt;meta-data android:name="AA_DB_NAME" android:value="application.db" /&gt;
-&lt;meta-data android:name="AA_DB_VERSION" android:value="1" /&gt;
-</code></pre>
-
-<p>  </application>
-</manifest>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;manifest</span> <span class="err">...</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;application</span> <span class="na">android:name=</span><span class="s">&quot;com.activeandroid.app.Application&quot;</span> <span class="err">...</span><span class="nt">&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>meta-data android:name=&quot;AA_DB_NAME&quot; android:value=&quot;application.db&quot; /<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>meta-data android:name=&quot;AA_DB_VERSION&quot; android:value=&quot;1&quot; /<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/application&gt;</span>
+</span><span class='line'><span class="nt">&lt;/manifest&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>テーブル定義の設定</h2>
 
 <p>まずはテーブル定義を設定。これはシンプル！</p>
 
-<p>{% codeblock lang:java %}
-// テーブル名の定義
-@Table(name = "Items")
-public class Item extends Model {
-  // フィールドの定義
-  @Column(name = "Name")
-  public String name;</p>
-
-<p>  @Column(name = "Category")
-  public Category category;</p>
-
-<p>  // コンストラクタの定義
-  public Item(){</p>
-
-<pre><code>super();
-</code></pre>
-
-<p>  }</p>
-
-<p>  public Item(String name, Category category) {</p>
-
-<pre><code>super();
-this.name = name;
-this.category = category;
-</code></pre>
-
-<p>  }
-}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// テーブル名の定義</span>
+</span><span class='line'><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Items&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Item</span> <span class="kd">extends</span> <span class="n">Model</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// フィールドの定義</span>
+</span><span class='line'>  <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Name&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Category&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Category</span> <span class="n">category</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="c1">// コンストラクタの定義</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">Item</span><span class="o">(){&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">super</span><span class="o">();</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="kd">public</span> <span class="n">Item</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Category</span> <span class="n">category</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">super</span><span class="o">();</span>
+</span><span class='line'><span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'><span class="k">this</span><span class="o">.</span><span class="na">category</span> <span class="o">=</span> <span class="n">category</span><span class="o">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>さらにテーブル間のリレーションの定義とかは本家GitHubのWikiがわかりやすいのでオススメです！</p>
 
@@ -276,14 +340,19 @@ this.category = category;
 
 <p>新規レコードを作成して保存するinsert文。かなり直感的。</p>
 
-<p>{% codeblock lang:java %}
-// Itemテーブルのレコードを作成
-Item item = new Item();
-item.name = "Outback Steakhouse";</p>
-
-<p>// 作成したレコードを保存
-item.save();
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// Itemテーブルのレコードを作成</span>
+</span><span class='line'><span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">();</span>
+</span><span class='line'><span class="n">item</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&quot;Outback Steakhouse&quot;</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// 作成したレコードを保存</span>
+</span><span class='line'><span class="n">item</span><span class="o">.</span><span class="na">save</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>テーブル間のリレーションを設定して保存したり、Bulk insertしたり、レコードを削除したりは本家GitHubのWikiに詳しく書いてあります。</p>
 
@@ -293,30 +362,51 @@ item.save();
 
 <p>テーブルに保存したレコードを検索する場合はこちら。</p>
 
-<p>{% codeblock lang:java %}
-// nameの一致するレコードを1件取得
-public static Item getItemByName(String name) {
-  return new Select()</p>
-
-<pre><code>.from(Item.class)
-.where("Name = ?", name)
-.executeSingle();
-</code></pre>
-
-<p>}</p>
-
-<p>// List形式で複数件のレコードを取得
-public static List<Item> getAllByName(String name) {
-  return new Select()</p>
-
-<pre><code>.from(Item.class)
-.where("Name = ?", name)
-.orderBy("Name ASC")
-.execute();
-</code></pre>
-
-<p>}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// nameの一致するレコードを1件取得</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="n">Item</span> <span class="nf">getItemByName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">new</span> <span class="nf">Select</span><span class="o">()&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;.</span><span class="na">from</span><span class="o">(</span><span class="n">Item</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span><span class='line'><span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="s">&quot;Name = ?&quot;</span><span class="o">,</span> <span class="n">name</span><span class="o">)</span>
+</span><span class='line'><span class="o">.</span><span class="na">executeSingle</span><span class="o">();</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// List形式で複数件のレコードを取得</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">getAllByName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">new</span> <span class="nf">Select</span><span class="o">()&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;.</span><span class="na">from</span><span class="o">(</span><span class="n">Item</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span><span class='line'><span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="s">&quot;Name = ?&quot;</span><span class="o">,</span> <span class="n">name</span><span class="o">)</span>
+</span><span class='line'><span class="o">.</span><span class="na">orderBy</span><span class="o">(</span><span class="s">&quot;Name ASC&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Date型をつかえるようにする / Type serializers</h2>
 
@@ -325,66 +415,117 @@ public static List<Item> getAllByName(String name) {
 
 <p>ここでは、Date型をDBに保存するときにはLong型にして、DBから取り出したらDate型に戻してくれるクラスを作ります。</p>
 
-<p>{% codeblock lang:java %}
-import com.activeandroid.serializer.TypeSerializer;
-import java.util.Date;</p>
-
-<p>final public class UtilDateSerializer extends TypeSerializer {
-  @Override
-  public Class&lt;?> getDeserializedType() {</p>
-
-<pre><code>return Date.class;
-</code></pre>
-
-<p>  }</p>
-
-<p>  @Override
-  public Class&lt;?> getSerializedType() {</p>
-
-<pre><code>return Long.class;
-</code></pre>
-
-<p>  }</p>
-
-<p>  @Override
-  public Long serialize(Object data) {</p>
-
-<pre><code>if (data == null) {
-  return null;
-}
-
-return ((Date) data).getTime();
-</code></pre>
-
-<p>  }</p>
-
-<p>  @Override
-  public Date deserialize(Object data) {</p>
-
-<pre><code>if (data == null) {
-  return null;
-}
-
-return new Date((Long) data);
-</code></pre>
-
-<p>  }
-}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">com.activeandroid.serializer.TypeSerializer</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UtilDateSerializer</span> <span class="kd">extends</span> <span class="n">TypeSerializer</span> <span class="o">{</span>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&gt;</span> <span class="n">getDeserializedType</span><span class="o">()</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="n">Date</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&gt;</span> <span class="n">getSerializedType</span><span class="o">()</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Long</span> <span class="nf">serialize</span><span class="o">(</span><span class="n">Object</span> <span class="n">data</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="o">((</span><span class="n">Date</span><span class="o">)</span> <span class="n">data</span><span class="o">).</span><span class="na">getTime</span><span class="o">();</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Date</span> <span class="nf">deserialize</span><span class="o">(</span><span class="n">Object</span> <span class="n">data</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="k">new</span> <span class="nf">Date</span><span class="o">((</span><span class="n">Long</span><span class="o">)</span> <span class="n">data</span><span class="o">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>作成が完了したら、<code>AndroidManifest.xml</code>に次の設定を追加！</p>
 
-<p>{% codeblock lang:xml %}
-<manifest ...>
-  <application android:name="com.activeandroid.app.Application" ...></p>
-
-<pre><code>// ↓ 追加する行
-&lt;meta-data android:name="AA_SERIALIZERS" android:value="パッケージ名.UtilDateSerializer" /&gt;
-</code></pre>
-
-<p>  </application>
-</manifest>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;manifest</span> <span class="err">...</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;application</span> <span class="na">android:name=</span><span class="s">&quot;com.activeandroid.app.Application&quot;</span> <span class="err">...</span><span class="nt">&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>// ↓ 追加する行
+</span><span class='line'><span class="ni">&amp;lt;</span>meta-data android:name=&quot;AA_SERIALIZERS&quot; android:value=&quot;パッケージ名.UtilDateSerializer&quot; /<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/application&gt;</span>
+</span><span class='line'><span class="nt">&lt;/manifest&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>更に使いこなすために</h2>
 
@@ -407,7 +548,12 @@ return new Date((Long) data);
 
 <p>かなりハマりましたorz...</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Special Thanks</h2>
 
@@ -432,7 +578,12 @@ CookpadさんがOSSで先日OSSで公開されたGarageはRestfulなAPI + Oauth(
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>今回のサンプル実装</h2>
 
@@ -448,201 +599,338 @@ GET /v1/users/:id => 個々のユーザー情報の出力
 
 <p><code>Gemfile</code>に以下を追加して、<code>bundle install</code>。</p>
 
-<p>{% codeblock lang:ruby %}
-gem 'garage', github: 'cookpad/garage'
-gem 'responders', '~> 2.0' # If you use Rails4.2+</p>
-
-<p>group :development, :test do
-  gem 'factory_girl_rails', '~> 4.5.0'
-  gem 'rspec-rails', '~> 3.1.0'
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;garage&#39;</span><span class="p">,</span> <span class="n">github</span><span class="p">:</span> <span class="s1">&#39;cookpad/garage&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;responders&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 2.0&#39;</span> <span class="c1"># If you use Rails4.2+&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;factory_girl_rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.5.0&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.1.0&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>DBの設定(Migration)</h2>
 
 <p>GagrageやRspecの初期設定とか、マイグレーションとかを実行。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Doorkeeper(Oauth認証)の初期設定</h1>
-
-<p>$ bundle exec rails generate doorkeeper:install</p>
-
-<h1>Doorkeeper(Oauth認証)のMigrationファイル生成</h1>
-
-<p>$ bundle exec rails generate doorkeeper:migration</p>
-
-<h1>DBの作成</h1>
-
-<p>$ bundle exec rake db:create</p>
-
-<h1>認証用のユーザーモデル作成</h1>
-
-<p>$ bundle exec rails g model user name:string email:string</p>
-
-<h1>マイグレーション処理の実行</h1>
-
-<p>$ bundle exec rake db:migrate
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Doorkeeper<span class="o">(</span>Oauth認証<span class="o">)</span>の初期設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rails generate doorkeeper:install&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Doorkeeper<span class="o">(</span>Oauth認証<span class="o">)</span>のMigrationファイル生成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rails generate doorkeeper:migration&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;DBの作成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:create&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;認証用のユーザーモデル作成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rails g model user name:string email:string&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;マイグレーション処理の実行&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:migrate
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Garageの設定</h2>
 
 <p><code>config/initializers/garage.rb</code>を作成して、Garageの設定を記述。</p>
 
-<p>{% codeblock lang:ruby %}
-Garage.configure {}</p>
-
-<p>Garage::TokenScope.configure do
-  register :public, desc: 'accessing publicly available data' do</p>
-
-<pre><code>access :read,   User
-access :write,  User
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>Doorkeeper.configure do
-  orm :active_record</p>
-
-<p>  # デフォルトのスコープ
-  default_scopes :public</p>
-
-<p>  optional_scopes(*Garage::TokenScope.optional_scopes)</p>
-
-<p>  # アプリケーションのオーナーの認証
-  resource_owner_from_credentials do |routes|</p>
-
-<pre><code>User.find_by(email: params[:username])
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Garage</span><span class="o">.</span><span class="n">configure</span> <span class="p">{}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Garage::TokenScope.configure do</span>
+</span><span class='line'><span class="sr">  register :public, desc: &#39;accessing publicly available data&#39; do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">access</span> <span class="ss">:read</span><span class="p">,</span>   <span class="no">User</span>
+</span><span class='line'><span class="n">access</span> <span class="ss">:write</span><span class="p">,</span>  <span class="no">User</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Doorkeeper.configure do</span>
+</span><span class='line'><span class="sr">  orm :active_record&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># デフォルトのスコープ</span>
+</span><span class='line'>  <span class="n">default_scopes</span> <span class="ss">:public</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  optional_scopes(*Garage::TokenScope.optional_scopes)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># アプリケーションのオーナーの認証</span>
+</span><span class='line'>  <span class="n">resource_owner_from_credentials</span> <span class="k">do</span> <span class="o">|</span><span class="n">routes</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;User.find_by(email: params[:username])</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>ルーティングの設定</h2>
 
 <p><code>config/routes.rb</code>にルーティングを追記。</p>
 
-<p>{% codeblock lang:ruby %}
-Rails.application.routes.draw do
-  use_doorkeeper</p>
-
-<p>  scope :v1 do</p>
-
-<pre><code>resources :users, only: %i(index show update)
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">use_doorkeeper</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  scope :v1 do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">resources</span> <span class="ss">:users</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="o">%</span><span class="n">i</span><span class="p">(</span><span class="n">index</span> <span class="n">show</span> <span class="n">update</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>コントローラの作成</h2>
 
 <p><code>app/controllers/application_controller.rb</code>に共通の設定を追記。</p>
 
-<p>{% codeblock lang:ruby %}
-class ApplicationController &lt; ActionController::Base
-  # ↓ 以下追記する内容
-  include Garage::ControllerHelper</p>
-
-<p>  def current_resource_owner</p>
-
-<pre><code>@current_resource_owner ||= User.find(resource_owner_id) if resource_owner_id
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="c1"># ↓ 以下追記する内容</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Garage</span><span class="o">::</span><span class="no">ControllerHelper</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def current_resource_owner&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@current_resource_owner</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">resource_owner_id</span><span class="p">)</span> <span class="k">if</span> <span class="n">resource_owner_id</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><code>app/controllers/users_controller.rb</code>を作成して、設定を追記。</p>
 
-<p>{% codeblock lang:ruby %}
-class UsersController &lt; ApplicationController
-  include Garage::RestfulActions</p>
-
-<p>  # index
-  def require_resources</p>
-
-<pre><code>@resources = User.all
-</code></pre>
-
-<p>  end</p>
-
-<p>  # show
-  def require_resource</p>
-
-<pre><code>@resources = User.find(params[:id])
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Garage</span><span class="o">::</span><span class="no">RestfulActions</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # index</span>
+</span><span class='line'><span class="sr">  def require_resources&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@resources</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  # show</span>
+</span><span class='line'><span class="sr">  def require_resource&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vi">@resources</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>モデルの設定</h2>
 
 <p>更に<code>app/models/user.rb</code>にモデルの設定を追記。</p>
 
-<p>{% codeblock lang:ruby %}
-class User &lt; ActiveRecord::Base
-  include Garage::Representer
-  include Garage::Authorizable</p>
-
-<p>  property :id
-  property :name
-  property :email</p>
-
-<p>  # index
-  def self.build_permissions(perms, other, target)</p>
-
-<pre><code>perms.permits! :read
-</code></pre>
-
-<p>  end</p>
-
-<p>  # create/update/show/destory
-  def build_permissions(perms, other)</p>
-
-<pre><code>perms.permits! :read
-perms.permits! :write
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">User</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Garage</span><span class="o">::</span><span class="no">Representer</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Garage</span><span class="o">::</span><span class="no">Authorizable</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  property :id</span>
+</span><span class='line'><span class="sr">  property :name</span>
+</span><span class='line'><span class="sr">  property :email&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># index</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">build_permissions</span><span class="p">(</span><span class="n">perms</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;perms.permits! :read</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1"># create/update/show/destory</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">build_permissions</span><span class="p">(</span><span class="n">perms</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;perms.permits! :read</span>
+</span><span class='line'><span class="sr">perms.permits! :write</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>動作確認</h2>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>テストユーザーの作成</h1>
-
-<p>$ bundle exec rails runner 'User.create(name: "morizyun", email: "morizyun@example.com")'</p>
-
-<h1>サーバーの起動</h1>
-
-<p>$ bundle exec rails s
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;テストユーザーの作成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rails runner <span class="s1">&#39;User.create(name: &quot;morizyun&quot;, email: &quot;morizyun@example.com&quot;)&#39;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;サーバーの起動&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rails s
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><strong><a href="http://localhost:3000/oauth/applications">http://localhost:3000/oauth/applications</a></strong></p>
 
 <p>上のURLにアクセスして、テスト用のクライアントを登録します。
 登録したら、<code>APPLICTION_ID</code>と<code>APPLICATION_SECRET</code>を登録します。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>APPLICTION_IDとAPPLICATION_SECRETを使って、ACCESS_TOKENを取得</h1>
-
-<p>curl -u "$APPLICTION_ID:$APPLICATION_SECRET" -XPOST http://localhost:3000/oauth/token -d 'grant_type=password&amp;username=morizyun@example.com'</p>
-
-<h1>上で取得したACCESS_TOKENを使ってAPIでuserの一覧を取得</h1>
-
-<p>curl -s -XGET -H "Authorization: Bearer $ACCESS_TOKEN" http://localhost:3000/v1/users | jq '.'</p>
-
-<h1>上で取得したaccess_tokenを使ってAPIでuserの一覧を取得</h1>
-
-<p>curl -s -XGET -H "Authorization: Bearer $ACCESS_TOKEN" http://localhost:3000/v1/users/1 | jq '.'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;APPLICTION_IDとAPPLICATION_SECRETを使って、ACCESS_TOKENを取得&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;curl -u <span class="s2">&quot;$APPLICTION_ID:$APPLICATION_SECRET&quot;</span> -XPOST http://localhost:3000/oauth/token -d <span class="s1">&#39;grant_type=password&amp;amp;username=morizyun@example.com&#39;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;上で取得したACCESS_TOKENを使ってAPIでuserの一覧を取得&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;curl -s -XGET -H <span class="s2">&quot;Authorization: Bearer $ACCESS_TOKEN&quot;</span> http://localhost:3000/v1/users | jq <span class="s1">&#39;.&#39;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;上で取得したaccess_tokenを使ってAPIでuserの一覧を取得&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;curl -s -XGET -H <span class="s2">&quot;Authorization: Bearer $ACCESS_TOKEN&quot;</span> http://localhost:3000/v1/users/1 | jq <span class="s1">&#39;.&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>より複雑な処理のためにテストを書く</h2>
 
@@ -652,166 +940,282 @@ end
 
 <p>RSpecの設定。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>RSpecの初期設定</h1>
-
-<p>$ bundle exec rails g rspec:install
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;RSpecの初期設定&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rails g rspec:install
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>spec_helper.rbの設定</h2>
 
 <p><code>spec/spec_helper.rb</code>にFactoryGirl関連の設定を追加。</p>
 
-<p>{% codeblock lang:ruby %}
-require 'factory_girl_rails'</p>
-
-<p>RSpec.configure do |config|
-  config.before :all do</p>
-
-<pre><code>FactoryGirl.reload
-FactoryGirl.factories.clear
-FactoryGirl.sequences.clear
-FactoryGirl.find_definitions
-</code></pre>
-
-<p>  end</p>
-
-<p>  config.include FactoryGirl::Syntax::Methods</p>
-
-<p>  config.expect_with :rspec do |expectations|</p>
-
-<pre><code>expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;factory_girl_rails&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;RSpec.configure do |config|</span>
+</span><span class='line'><span class="sr">  config.before :all do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">reload</span>
+</span><span class='line'><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">factories</span><span class="o">.</span><span class="n">clear</span>
+</span><span class='line'><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">sequences</span><span class="o">.</span><span class="n">clear</span>
+</span><span class='line'><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">find_definitions</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  config.include FactoryGirl::Syntax::Methods&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">config</span><span class="o">.</span><span class="n">expect_with</span> <span class="ss">:rspec</span> <span class="k">do</span> <span class="o">|</span><span class="n">expectations</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;expectations.include_chain_clauses_in_custom_matcher_descriptions = true</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>request_helper.rbの設定</h2>
 
 <p>RSpec実行時にOauthの認証処理を予めやってくれて、access_tokenを取得してくれるhelperの作成。
 <code>spec/request_helper.rb</code>を作成して以下を追加。</p>
 
-<p>{% codeblock lang:bash %}
-require 'active_support/concern'</p>
-
-<p>module RequestHelper
-  extend ActiveSupport::Concern</p>
-
-<p>  included do</p>
-
-<pre><code>let(:params) { {} }
-
-let(:report_status_env) do
-  {
-      accept: 'application/json',
-      authorization: report_status_authorization_header_value
-  }
-end
-
-let(:report_status_authorization_header_value) { "Bearer #{report_status_access_token.token}" }
-
-let(:report_status_access_token) do
-  FactoryGirl.create(
-      :access_token,
-      resource_owner_id: resource_owner.id,
-      scopes: public,
-      application: application
-  )
-end
-
-let(:resource_owner) { FactoryGirl.create(:user) }
-let(:report_status_scopes) { 'public' }
-let(:application) { FactoryGirl.create(:application) }
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>require <span class="s1">&#39;active_support/concern&#39;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;module RequestHelper
+</span><span class='line'>  extend ActiveSupport::Concern&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  included <span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;let<span class="o">(</span>:params<span class="o">)</span> <span class="o">{</span> <span class="o">{}</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">let</span><span class="o">(</span>:report_status_env<span class="o">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">{</span>
+</span><span class='line'>      accept: <span class="s1">&#39;application/json&#39;</span>,
+</span><span class='line'>      authorization: report_status_authorization_header_value
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'><span class="nb">let</span><span class="o">(</span>:report_status_authorization_header_value<span class="o">)</span> <span class="o">{</span> <span class="s2">&quot;Bearer #{report_status_access_token.token}&quot;</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">let</span><span class="o">(</span>:report_status_access_token<span class="o">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>FactoryGirl.create<span class="o">(</span>
+</span><span class='line'>      :access_token,
+</span><span class='line'>      resource_owner_id: resource_owner.id,
+</span><span class='line'>      scopes: public,
+</span><span class='line'>      application: application
+</span><span class='line'>  <span class="o">)</span>
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'><span class="nb">let</span><span class="o">(</span>:resource_owner<span class="o">)</span> <span class="o">{</span> FactoryGirl.create<span class="o">(</span>:user<span class="o">)</span> <span class="o">}</span>
+</span><span class='line'><span class="nb">let</span><span class="o">(</span>:report_status_scopes<span class="o">)</span> <span class="o">{</span> <span class="s1">&#39;public&#39;</span> <span class="o">}</span>
+</span><span class='line'><span class="nb">let</span><span class="o">(</span>:application<span class="o">)</span> <span class="o">{</span> FactoryGirl.create<span class="o">(</span>:application<span class="o">)</span> <span class="o">}</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>FactoryGirl(Fixture)の設定</h2>
 
 <p><code>spec/factories/users.rb</code>で以下を追加。</p>
 
-<p>{% codeblock lang:ruby %}
-FactoryGirl.define do
-  factory :user do</p>
-
-<pre><code>name "MyString"
-email "MyString"
-sequence(:name) {|n| "user#{n}" }
-email { "#{name}@example.com" }
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">factory</span> <span class="ss">:user</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;name &quot;MyString&quot;</span>
+</span><span class='line'><span class="sr">email &quot;MyString&quot;</span>
+</span><span class='line'><span class="sr">sequence(:name) {|n| &quot;user</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="sr">&quot; }</span>
+</span><span class='line'><span class="sr">email { &quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="sr">@example.com&quot; }</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Doorkeeper用の設定として、<code>spec/factories/doorkeeper.rb</code>を追加。</p>
 
-<p>{% codeblock lang:ruby %}
-FactoryGirl.define do
-  factory :access_token, class: Doorkeeper::AccessToken do</p>
-
-<pre><code>sequence(:resource_owner_id) { |n| n }
-application
-expires_in 1.hours
-</code></pre>
-
-<p>  end</p>
-
-<p>  factory :application, class: Doorkeeper::Application do</p>
-
-<pre><code>sequence(:name){ |n| "Application #{n}" }
-redirect_uri 'https://example.com/callback'
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">factory</span> <span class="ss">:access_token</span><span class="p">,</span> <span class="n">class</span><span class="p">:</span> <span class="no">Doorkeeper</span><span class="o">::</span><span class="no">AccessToken</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;sequence(:resource_owner_id) { |n| n }</span>
+</span><span class='line'><span class="sr">application</span>
+</span><span class='line'><span class="sr">expires_in 1.hours</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">factory</span> <span class="ss">:application</span><span class="p">,</span> <span class="n">class</span><span class="p">:</span> <span class="no">Doorkeeper</span><span class="o">::</span><span class="no">Application</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;sequence(:name){ |n| &quot;Application </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="sr">&quot; }</span>
+</span><span class='line'><span class="sr">redirect_uri &#39;https:/</span><span class="o">/</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">callback</span><span class="err">&#39;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Specファイルの作成</h2>
 
 <p><code>spec/requests/users_spec.rb</code>を以下の様に変更。</p>
 
-<p>{% codeblock lang:ruby %}
-require 'rspec_helper'
-require 'request_helper'</p>
-
-<p>RSpec.describe 'users', type: :request do
-  include RequestHelper</p>
-
-<p>  describe 'GET /v1/users' do</p>
-
-<pre><code>let!(:users) { create_list(:user, 3) }
-
-it 'returns user resources' do
-  get '/v1/users', params, env
-  expect(response).to have_http_status(200)
-end
-</code></pre>
-
-<p>  end
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rspec_helper&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;request_helper&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;RSpec.describe &#39;users&#39;, type: :request do</span>
+</span><span class='line'><span class="sr">  include RequestHelper&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">describe</span> <span class="s1">&#39;GET /v1/users&#39;</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;let!(:users) { create_list(:user, 3) }</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">it &#39;returns user resources&#39; do</span>
+</span><span class='line'><span class="sr">  get &#39;/</span><span class="n">v1</span><span class="o">/</span><span class="n">users</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">env</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>RSpecの実施</h2>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Test環境用のDBの作成</h1>
-
-<p>$ RAILS_ENV=test bundle exec rake db:create migrate</p>
-
-<h1>migrationの実施</h1>
-
-<p>$ RAILS_ENV=test bundle exec rake db:migrate</p>
-
-<h1>users_specの実施</h1>
-
-<p>$ bundle exec rspec -fp spec/requests/users_spec.rb
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Test環境用のDBの作成&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>bundle <span class="nb">exec </span>rake db:create migrate&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;migrationの実施&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>bundle <span class="nb">exec </span>rake db:migrate&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;users_specの実施&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle <span class="nb">exec </span>rspec -fp spec/requests/users_spec.rb
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>ここから使いこなすのに参考になりそうな資料</h2>
 
@@ -827,7 +1231,12 @@ end
 
 <p><strong><a href="http://qiita.com/217/items/389de32ac340de81d532">RESTful Hypermedia APIをRailsで実現するcookpad/garageが凄い - Qiita</a></strong></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 ]]></content>
   </entry>
   
@@ -850,7 +1259,12 @@ end
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>きっかけ</h2>
 
@@ -934,7 +1348,12 @@ end
 
 <p>をフォローして頂けると幸いです。宜しくお願い致します！</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 ]]></content>
   </entry>
   

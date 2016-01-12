@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 文字列操作 | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/文字列操作/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -26,7 +26,12 @@
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>サンプル問題(AOJ)</h2>
 
@@ -35,87 +40,159 @@ Aizu Online Judge。"m"，"c"，"x"，"i" の4個の文字と "2"，"3"，"4"，
 
 <h2>Rubyのサンプルソース</h2>
 
-<p>{% codeblock lang:bash %}
-DICT = { 'm' => 1000, 'c' => 100, 'x' => 10, 'i' => 1 }.freeze</p>
-
-<p>def mcxi_to_digit(s)
-  sum = 0
-  DICT.each do |k, v|</p>
-
-<pre><code>if s.include?(k)
-  if s[s.index(k)-1] &gt;= '2' and s[s.index(k)-1] &lt;= '9'
-    sum += s[s.index(k)-1].to_i * v
-  else
-    sum += v
-  end
-end
-</code></pre>
-
-<p>  end
-  return sum
-end</p>
-
-<p>def digit_to_mcxi(n)
-  str = ''
-  DICT.to_a.map do |k, v|</p>
-
-<pre><code>val = n/v
-n = n%v
-if val &gt;= 2
-  str += "#{val}#{k}"
-elsif val == 1
-  str += k
-end
-</code></pre>
-
-<p>  end
-  return str
-end</p>
-
-<p>n = gets.to_i
-n.times do
-  a, b = gets.chomp.split(' ')
-  sum = mcxi_to_digit(a) + mcxi_to_digit(b)
-  puts digit_to_mcxi(sum)
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">DICT</span> <span class="o">=</span> <span class="o">{</span> <span class="s1">&#39;m&#39;</span> <span class="o">=</span>&gt; 1000, <span class="s1">&#39;c&#39;</span> <span class="o">=</span>&gt; 100, <span class="s1">&#39;x&#39;</span> <span class="o">=</span>&gt; 10, <span class="s1">&#39;i&#39;</span> <span class="o">=</span>&gt; 1 <span class="o">}</span>.freeze&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;def mcxi_to_digit<span class="o">(</span>s<span class="o">)</span>
+</span><span class='line'>  <span class="nv">sum</span> <span class="o">=</span> 0
+</span><span class='line'>  DICT.each <span class="k">do</span> |k, v|&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;if s.include?<span class="o">(</span>k<span class="o">)</span>
+</span><span class='line'>  <span class="k">if </span>s<span class="o">[</span>s.index<span class="o">(</span>k<span class="o">)</span>-1<span class="o">]</span> &amp;gt;<span class="o">=</span> <span class="s1">&#39;2&#39;</span> and s<span class="o">[</span>s.index<span class="o">(</span>k<span class="o">)</span>-1<span class="o">]</span> &amp;lt;<span class="o">=</span> <span class="s1">&#39;9&#39;</span>
+</span><span class='line'>    sum +<span class="o">=</span> s<span class="o">[</span>s.index<span class="o">(</span>k<span class="o">)</span>-1<span class="o">]</span>.to_i * v
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'><span class="k">    </span>sum +<span class="o">=</span> v
+</span><span class='line'>  end
+</span><span class='line'>end
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>  <span class="k">return </span>sum
+</span><span class='line'>end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;def digit_to_mcxi<span class="o">(</span>n<span class="o">)</span>
+</span><span class='line'>  <span class="nv">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  DICT.to_a.map <span class="k">do</span> |k, v|&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;val <span class="o">=</span> n/v
+</span><span class='line'><span class="nv">n</span> <span class="o">=</span> n%v
+</span><span class='line'><span class="k">if </span>val &amp;gt;<span class="o">=</span> 2
+</span><span class='line'>  str +<span class="o">=</span> <span class="s2">&quot;#{val}#{k}&quot;</span>
+</span><span class='line'>elsif <span class="nv">val</span> <span class="o">==</span> 1
+</span><span class='line'>  str +<span class="o">=</span> k
+</span><span class='line'>end
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>  <span class="k">return </span>str
+</span><span class='line'>end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;n <span class="o">=</span> gets.to_i
+</span><span class='line'>n.times <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>a, <span class="nv">b</span> <span class="o">=</span> gets.chomp.split<span class="o">(</span><span class="s1">&#39; &#39;</span><span class="o">)</span>
+</span><span class='line'>  <span class="nv">sum</span> <span class="o">=</span> mcxi_to_digit<span class="o">(</span>a<span class="o">)</span> + mcxi_to_digit<span class="o">(</span>b<span class="o">)</span>
+</span><span class='line'>  puts digit_to_mcxi<span class="o">(</span>sum<span class="o">)</span>
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Pythonのサンプルソース</h2>
 
-<p>{% codeblock lang:bash %}
-def mxciToDegit(s):
-  dict = {'m': 1000, 'c': 100, 'x': 10, 'i': 1}
-  sum = 0
-  for c in dict:</p>
-
-<pre><code>if c in s:
-  if "2" &lt;= s[s.index(c)-1] &lt;= "9":
-    sum += int(s[s.index(c)-1])*dict[c]
-  else:
-    sum += dict[c]
-</code></pre>
-
-<p>  return sum</p>
-
-<p>n = int(raw_input())
-for i in range(n):
-  a, b = raw_input().split()
-  sum = mxciToDegit(a) + mxciToDegit(b)</p>
-
-<p>  st = ""
-  list =((1000, "m"), (100, "c"), (10, "x"), (1, "i"))
-  for d, c in list:</p>
-
-<pre><code>val = sum/d
-if val &gt;= 2:
-  st += str(val) + c
-elif val == 1:
-  st += c
-sum = sum%d
-</code></pre>
-
-<p>  print st
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>def mxciToDegit<span class="o">(</span>s<span class="o">)</span>:
+</span><span class='line'>  <span class="nv">dict</span> <span class="o">=</span> <span class="o">{</span><span class="s1">&#39;m&#39;</span>: 1000, <span class="s1">&#39;c&#39;</span>: 100, <span class="s1">&#39;x&#39;</span>: 10, <span class="s1">&#39;i&#39;</span>: 1<span class="o">}</span>
+</span><span class='line'>  <span class="nv">sum</span> <span class="o">=</span> 0
+</span><span class='line'>  <span class="k">for </span>c in dict:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;if c in s:
+</span><span class='line'>  <span class="k">if</span> <span class="s2">&quot;2&quot;</span> &amp;lt;<span class="o">=</span> s<span class="o">[</span>s.index<span class="o">(</span>c<span class="o">)</span>-1<span class="o">]</span> &amp;lt;<span class="o">=</span> <span class="s2">&quot;9&quot;</span>:
+</span><span class='line'>    sum +<span class="o">=</span> int<span class="o">(</span>s<span class="o">[</span>s.index<span class="o">(</span>c<span class="o">)</span>-1<span class="o">])</span>*dict<span class="o">[</span>c<span class="o">]</span>
+</span><span class='line'>  <span class="k">else</span>:
+</span><span class='line'>    sum +<span class="o">=</span> dict<span class="o">[</span>c<span class="o">]</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">return </span>sum&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;n <span class="o">=</span> int<span class="o">(</span>raw_input<span class="o">())</span>
+</span><span class='line'><span class="k">for </span>i in range<span class="o">(</span>n<span class="o">)</span>:
+</span><span class='line'>  a, <span class="nv">b</span> <span class="o">=</span> raw_input<span class="o">()</span>.split<span class="o">()</span>
+</span><span class='line'>  <span class="nv">sum</span> <span class="o">=</span> mxciToDegit<span class="o">(</span>a<span class="o">)</span> + mxciToDegit<span class="o">(</span>b<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="nv">st</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>  <span class="nv">list</span> <span class="o">=((</span>1000, <span class="s2">&quot;m&quot;</span><span class="o">)</span>, <span class="o">(</span>100, <span class="s2">&quot;c&quot;</span><span class="o">)</span>, <span class="o">(</span>10, <span class="s2">&quot;x&quot;</span><span class="o">)</span>, <span class="o">(</span>1, <span class="s2">&quot;i&quot;</span><span class="o">))</span>
+</span><span class='line'>  <span class="k">for </span>d, c in list:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;val <span class="o">=</span> sum/d
+</span><span class='line'><span class="k">if </span>val &amp;gt;<span class="o">=</span> 2:
+</span><span class='line'>  st +<span class="o">=</span> str<span class="o">(</span>val<span class="o">)</span> + c
+</span><span class='line'><span class="k">elif </span><span class="nv">val</span> <span class="o">==</span> 1:
+</span><span class='line'>  st +<span class="o">=</span> c
+</span><span class='line'><span class="nv">sum</span> <span class="o">=</span> sum%d
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  print st
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Aizu Online Judgeのサンプルソース</h2>
 
@@ -127,7 +204,12 @@ sum = sum%d
 
 <p><strong><a href="/blog/categories/AOJ/">AOJタグのついた最近解いた問題一覧</a></strong></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 ]]></content>
   </entry>
   
@@ -146,7 +228,12 @@ sum = sum%d
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>サンプル問題(AOJ)</h2>
 
@@ -155,56 +242,97 @@ Aizu Online Judge。与えられる文字列は，丸括弧(“( )”)と角括�
 
 <h2>Rubyのサンプルソース</h2>
 
-<p>{% codeblock lang:bash %}
-def check_block(str)
-  q = []
-  str.gsub(/[<sup>()[]]/,</sup> '').chars.each do |c|</p>
-
-<pre><code>if c == '(' or c == '['
-  q.push(c)
-elsif c == ')'
-  r = q.pop() rescue nil
-  return 'no' if r != '('
-elsif c == ']'
-  r = q.pop() rescue nil
-  return 'no' if r != '['
-end
-</code></pre>
-
-<p>  end
-  q.count == 0 ? 'yes' : 'no'
-end</p>
-
-<p>while gets
-  break if $<em>.chomp == '.'
-  puts check_block($</em>.chomp)
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>def check_block<span class="o">(</span>str<span class="o">)</span>
+</span><span class='line'>  <span class="nv">q</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  str.gsub<span class="o">(</span>/<span class="o">[</span>&lt;sup&gt;<span class="o">()[]]</span>/,&lt;/sup&gt; <span class="s1">&#39;&#39;</span><span class="o">)</span>.chars.each <span class="k">do</span> |c|&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;if <span class="nv">c</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span> or <span class="nv">c</span> <span class="o">==</span> <span class="s1">&#39;[&#39;</span>
+</span><span class='line'>  q.push<span class="o">(</span>c<span class="o">)</span>
+</span><span class='line'>elsif <span class="nv">c</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span>
+</span><span class='line'>  <span class="nv">r</span> <span class="o">=</span> q.pop<span class="o">()</span> rescue nil
+</span><span class='line'>  <span class="k">return</span> <span class="s1">&#39;no&#39;</span> <span class="k">if </span>r !<span class="o">=</span> <span class="s1">&#39;(&#39;</span>
+</span><span class='line'>elsif <span class="nv">c</span> <span class="o">==</span> <span class="s1">&#39;]&#39;</span>
+</span><span class='line'>  <span class="nv">r</span> <span class="o">=</span> q.pop<span class="o">()</span> rescue nil
+</span><span class='line'>  <span class="k">return</span> <span class="s1">&#39;no&#39;</span> <span class="k">if </span>r !<span class="o">=</span> <span class="s1">&#39;[&#39;</span>
+</span><span class='line'>end
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>  q.count <span class="o">==</span> 0 ? <span class="s1">&#39;yes&#39;</span> : <span class="s1">&#39;no&#39;</span>
+</span><span class='line'>end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;while gets
+</span><span class='line'>  <span class="nb">break </span><span class="k">if</span> <span class="nv">$&lt;</span>em&gt;.chomp <span class="o">==</span> <span class="s1">&#39;.&#39;</span>
+</span><span class='line'>  puts check_block<span class="o">(</span><span class="nv">$&lt;</span>/em&gt;.chomp<span class="o">)</span>
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Pythonのサンプルソース</h2>
 
-<p>{% codeblock lang:bash %}
-while True:
-  s = raw_input()
-  if s == '.': break</p>
-
-<p>  ns = ''
-  for c in s:</p>
-
-<pre><code>if c in ['(', ')', '[', ']']:
-  ns += c
-</code></pre>
-
-<p>  while True:</p>
-
-<pre><code>tmp = ns
-ns = ns.replace('[]', '')
-ns = ns.replace('()', '')
-if (tmp == ns): break
-</code></pre>
-
-<p>  print 'no' if ns else 'yes'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">while </span>True:
+</span><span class='line'>  <span class="nv">s</span> <span class="o">=</span> raw_input<span class="o">()</span>
+</span><span class='line'>  <span class="k">if </span><span class="nv">s</span> <span class="o">==</span> <span class="s1">&#39;.&#39;</span>: <span class="nb">break</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="nv">ns</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">for </span>c in s:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;if c in <span class="o">[</span><span class="s1">&#39;(&#39;</span>, <span class="s1">&#39;)&#39;</span>, <span class="s1">&#39;[&#39;</span>, <span class="s1">&#39;]&#39;</span><span class="o">]</span>:
+</span><span class='line'>  ns +<span class="o">=</span> c
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="k">while </span>True:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;tmp <span class="o">=</span> ns
+</span><span class='line'><span class="nv">ns</span> <span class="o">=</span> ns.replace<span class="o">(</span><span class="s1">&#39;[]&#39;</span>, <span class="s1">&#39;&#39;</span><span class="o">)</span>
+</span><span class='line'><span class="nv">ns</span> <span class="o">=</span> ns.replace<span class="o">(</span><span class="s1">&#39;()&#39;</span>, <span class="s1">&#39;&#39;</span><span class="o">)</span>
+</span><span class='line'><span class="k">if</span> <span class="o">(</span><span class="nv">tmp</span> <span class="o">==</span> ns<span class="o">)</span>: <span class="nb">break</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  print <span class="s1">&#39;no&#39;</span> <span class="k">if </span>ns <span class="k">else</span> <span class="s1">&#39;yes&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Aizu Online Judgeのサンプルソース</h2>
 
@@ -216,7 +344,12 @@ if (tmp == ns): break
 
 <p><strong><a href="/blog/categories/AOJ/">AOJタグのついた最近解いた問題一覧</a></strong></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 ]]></content>
   </entry>
   
@@ -233,7 +366,12 @@ if (tmp == ns): break
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>サンプル問題(AOJ)</h2>
 
@@ -242,63 +380,113 @@ Aizu Online Judge。2 個の文字列が与えられたとき, 両方の文字�
 
 <h2>Rubyのサンプルソース</h2>
 
-<p>{% codeblock lang:bash %}
-loop do
-  s, t = gets.chomp, gets.chomp rescue break
-  s, t = t, s if s.length > t.length
-  max_l = (s.chars &amp; t.chars).map do |a|</p>
-
-<pre><code>[s.count(a), t.count(a)].min
-</code></pre>
-
-<p>  end.inject(:+).to_i</p>
-
-<p>  answer = 0
-  0.upto(t.length).each do |i|</p>
-
-<pre><code>break if t.length - i &lt;= answer
-max = [max_l+1, t.length - i + 1].min - 1
-(answer + 1).upto(max) do |j|
-  if s.include?(t[i...i+j])
-    answer = j
-  else
-    break
-  end
-end
-</code></pre>
-
-<p>  end
-  puts answer
-end
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>loop <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>s, <span class="nv">t</span> <span class="o">=</span> gets.chomp, gets.chomp rescue <span class="nb">break</span>
+</span><span class='line'><span class="nb">  </span>s, <span class="nv">t</span> <span class="o">=</span> t, s <span class="k">if </span>s.length &gt; t.length
+</span><span class='line'>  <span class="nv">max_l</span> <span class="o">=</span> <span class="o">(</span>s.chars &amp;amp; t.chars<span class="o">)</span>.map <span class="k">do</span> |a|&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;<span class="o">[</span>s.count<span class="o">(</span>a<span class="o">)</span>, t.count<span class="o">(</span>a<span class="o">)]</span>.min
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end.inject<span class="o">(</span>:+<span class="o">)</span>.to_i&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  <span class="nv">answer</span> <span class="o">=</span> 0
+</span><span class='line'>  0.upto<span class="o">(</span>t.length<span class="o">)</span>.each <span class="k">do</span> |i|&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;break <span class="k">if </span>t.length - i &amp;lt;<span class="o">=</span> answer
+</span><span class='line'><span class="nv">max</span> <span class="o">=</span> <span class="o">[</span>max_l+1, t.length - i + 1<span class="o">]</span>.min - 1
+</span><span class='line'><span class="o">(</span>answer + 1<span class="o">)</span>.upto<span class="o">(</span>max<span class="o">)</span> <span class="k">do</span> |j|
+</span><span class='line'>  <span class="k">if </span>s.include?<span class="o">(</span>t<span class="o">[</span>i...i+j<span class="o">])</span>
+</span><span class='line'>    <span class="nv">answer</span> <span class="o">=</span> j
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'><span class="k">    </span><span class="nb">break</span>
+</span><span class='line'><span class="nb">  </span>end
+</span><span class='line'>end
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  end
+</span><span class='line'>  puts answer
+</span><span class='line'>end
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Pythonのサンプルソース</h2>
 
-<p>{% codeblock lang:bash %}
-while True:
-  try:</p>
-
-<pre><code>s, t = raw_input(), raw_input()
-if len(s) &lt; len(t): s, t = t, s
-MAXL = sum(min(s.count(i), t.count(i)) for i in set(list(s)) &amp; set(list(t)))
-ans = 0
-for sp in range(len(t)):
-  if len(t) - sp &lt;= ans:
-    break
-  for l in range(ans+1, min(MAXL+1, len(t)-sp+1)):
-    if t[sp:sp+l] in s:
-      ans = l
-    else:
-      break
-print ans
-</code></pre>
-
-<p>  except:</p>
-
-<pre><code>break
-</code></pre>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">while </span>True:
+</span><span class='line'>  try:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;s, <span class="nv">t</span> <span class="o">=</span> raw_input<span class="o">()</span>, raw_input<span class="o">()</span>
+</span><span class='line'><span class="k">if </span>len<span class="o">(</span>s<span class="o">)</span> &amp;lt; len<span class="o">(</span>t<span class="o">)</span>: s, <span class="nv">t</span> <span class="o">=</span> t, s
+</span><span class='line'><span class="nv">MAXL</span> <span class="o">=</span> sum<span class="o">(</span>min<span class="o">(</span>s.count<span class="o">(</span>i<span class="o">)</span>, t.count<span class="o">(</span>i<span class="o">))</span> <span class="k">for </span>i in <span class="nb">set</span><span class="o">(</span>list<span class="o">(</span>s<span class="o">))</span> &amp;amp; <span class="nb">set</span><span class="o">(</span>list<span class="o">(</span>t<span class="o">)))</span>
+</span><span class='line'><span class="nv">ans</span> <span class="o">=</span> 0
+</span><span class='line'><span class="k">for </span>sp in range<span class="o">(</span>len<span class="o">(</span>t<span class="o">))</span>:
+</span><span class='line'>  <span class="k">if </span>len<span class="o">(</span>t<span class="o">)</span> - sp &amp;lt;<span class="o">=</span> ans:
+</span><span class='line'>    <span class="nb">break</span>
+</span><span class='line'><span class="nb">  </span><span class="k">for </span>l in range<span class="o">(</span>ans+1, min<span class="o">(</span>MAXL+1, len<span class="o">(</span>t<span class="o">)</span>-sp+1<span class="o">))</span>:
+</span><span class='line'>    <span class="k">if </span>t<span class="o">[</span>sp:sp+l<span class="o">]</span> in s:
+</span><span class='line'>      <span class="nv">ans</span> <span class="o">=</span> l
+</span><span class='line'>    <span class="k">else</span>:
+</span><span class='line'>      <span class="nb">break</span>
+</span><span class='line'>print ans
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  except:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;break
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Aizu Online Judgeのサンプルソース</h2>
 
@@ -310,7 +498,12 @@ print ans
 
 <p><strong><a href="/blog/categories/AOJ/">AOJタグのついた最近解いた問題一覧</a></strong></p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 ]]></content>
   </entry>
   

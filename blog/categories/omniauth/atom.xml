@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Omniauth | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/omniauth/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:57:50+09:00</updated>
+  <updated>2016-01-12T23:59:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -37,18 +37,28 @@ Ruby 2.3.0
 <br style="clear:both;"/>
 
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Gemのインストール</h2>
 
 <p><code>Gemfile</code>に以下を追加して、コンソールで<code>bundle</code>を実行してください。</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<h1>Facebook/Twitter/GitHubログイン機能</h1>
-
-<p>gem 'minimum-omniauth-scaffold'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;Facebook/</span><span class="no">Twitter</span><span class="o">/</span><span class="no">GitHub</span><span class="err">ログイン機能</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;gem &#39;minimum-omniauth-scaffold&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ちなみにこちらのgemは、Ruby2.0+、Rails4.0+環境用とのことです。</p>
 
@@ -56,9 +66,9 @@ Ruby 2.3.0
 
 <p>以下のコマンドを実行して、OmniAuth用のScaffoldを作成。</p>
 
-<p>{% codeblock lang:bash %}
-rails g minimum:omniauth:scaffold
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rails g minimum:omniauth:scaffold
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Facebook/Twitter/GitHubでアプリを作成してキーを登録</h2>
 
@@ -85,34 +95,52 @@ rails g minimum:omniauth:scaffold
 
 <p>キー情報などはgitリポジトリに含めないほうがいいです。ということでHerokuを使って環境変数にキー情報を登録するのはこちら。</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<h1>Twitter</h1>
-
-<p>heroku config:set TWITTER_KEY=xxxxxxxxxx TWITTER_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-
-<h1>Facebook</h1>
-
-<p>heroku config:set FACEBOOK_APP_ID=xxxxxxxxxx FACEBOOK_APP_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-
-<h1>GitHub</h1>
-
-<p>heroku config:set GITHUB_CLIENT_ID=xxxxxxxxxx GITHUB_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Twitter&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;heroku config:set <span class="nv">TWITTER_KEY</span><span class="o">=</span>xxxxxxxxxx <span class="nv">TWITTER_SECRET</span><span class="o">=</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Facebook&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;heroku config:set <span class="nv">FACEBOOK_APP_ID</span><span class="o">=</span>xxxxxxxxxx <span class="nv">FACEBOOK_APP_SECRET</span><span class="o">=</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;GitHub&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;heroku config:set <span class="nv">GITHUB_CLIENT_ID</span><span class="o">=</span>xxxxxxxxxx <span class="nv">GITHUB_SECRET</span><span class="o">=</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>認証用のテーブルを作成</h3>
 
 <p>マイグレーションコマンドを実行して、認証に必要なテーブルを作成。</p>
 
-<p>{% codeblock lang:bash %}
-rake db:migrate
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake db:migrate
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>と、たったこれだけのコマンドでログイン認証に必要な機能をひと通り実装できてしまいます！</p>
 
 <p>継続的に開発を続けてこられている作者の<strong><a href="https://twitter.com/shu_0115">@shu0115</a></strong>さんには感謝感謝です＾＾</p>
 
-<p>{% include custom/google_ads_square.html %}</p>
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
 
 <h2>Special Thanks</h2>
 
