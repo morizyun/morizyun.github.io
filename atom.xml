@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T23:59:28+09:00</updated>
+  <updated>2016-01-13T00:02:07+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -18,9 +18,7 @@
     <link href="http://morizyun.github.io/blog/cells4-rails-partial-compornents-framework/"/>
     <updated>2016-01-12T23:50:00+09:00</updated>
     <id>http://morizyun.github.io/blog/cells4-rails-partial-compornents-framework</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4274067033/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274067033&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274067033&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4274067033" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> Railsの部分テンプレートに付随するロジックをコントローラから分離するためのView Componentsを実現する『<strong><a href="https://github.com/apotonick/cells">apotonick/cells - GitHub</a></strong>』の紹介です。</p>
-
-<p><strong><a href="http://magazine.rubyist.net/?0041-RailsTheBadParts">Rubyist Magazine - Ruby on Rails: The Bad Parts</a></strong>でもRailsの良くないコーティングスタイルを改善するための仕組みとしてCellsの活用が提案されています！</p>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774178020/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774178020&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774178020&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774178020" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> Railsの部分テンプレートに付随するロジックをコントローラから分離するためのView Componentsを実現する『<strong><a href="https://github.com/apotonick/cells">apotonick/cells - GitHub</a></strong>』の紹介です。</p>
 
 <!-- more -->
 
@@ -95,12 +93,10 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-<span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># app/views/books/index.html.slim</span>
 </span><span class='line'>table
 </span><span class='line'>  thead
 </span><span class='line'>    tr
-</span><span class='line'>      th category
 </span><span class='line'>      th title
 </span><span class='line'>      th author
 </span><span class='line'>      th price
@@ -179,10 +175,8 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/cells/book/show.slim</span>
 </span><span class='line'><span class="n">tr</span>
-</span><span class='line'>  <span class="n">td</span> <span class="o">=</span> <span class="n">category</span>
 </span><span class='line'>  <span class="n">td</span> <span class="o">=</span> <span class="n">title</span>
 </span><span class='line'>  <span class="n">td</span> <span class="o">=</span> <span class="n">author</span>
 </span><span class='line'>  <span class="n">td</span> <span class="o">=</span> <span class="n">price</span>
