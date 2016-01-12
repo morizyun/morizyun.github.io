@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="最近アルゴリズム勉強・Python/C++の勉強のためにAizu Online Judge(AOJ)を継続しています。今回は、『島の数を数える』問題です。 0と1で表されたmap上の島の数を数える問題です。 今回は戦略を思いつかずに、かなり試行錯誤をしました。ただ、こういう問題を通して柔軟な発想と &hellip;">
+  <meta name="description" content="今回は、『二股に分かれている容器にボールを入れる』問題です。 二股にわかれた容器に番号のついたボールを番号の大小関係の制約を守って並べていく問題です。 これはどれだけ問題をシンプルに考えられるかという点の思考が必要になるので、難しい戦略を考えるのとは別の思考が必要で、これはこれで面白かったです！ ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="最近アルゴリズム勉強・Python/C++の勉強のためにAizu Online Judge(AOJ)を継続しています。今回は、『島の数を数える』問題です。 0と1で表されたmap上の島の数を数える問題です。 今回は戦略を思いつかずに、かなり試行錯誤をしました。ただ、こういう問題を通して柔軟な発想と &hellip;" />
+<meta property="og:description" content="今回は、『二股に分かれている容器にボールを入れる』問題です。 二股にわかれた容器に番号のついたボールを番号の大小関係の制約を守って並べていく問題です。 これはどれだけ問題をシンプルに考えられるかという点の思考が必要になるので、難しい戦略を考えるのとは別の思考が必要で、これはこれで面白かったです！ " />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/16/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ball-algorithm-aoj-0033/">アルゴリズムの勉強: 二股に分かれている容器にボールを入れる[AOJ 0033][Ruby/Python/c++]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-05-18T19:15:00+09:00" pubdate data-updated="true">May 18<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ball-algorithm-aoj-0033/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4839941068/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839941068&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839941068&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839941068" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />今回は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0033">二股に分かれている容器にボールを入れる</a></strong>』問題です。</p>
+
+<p>二股にわかれた容器に番号のついたボールを番号の大小関係の制約を守って並べていく問題です。</p>
+
+<p>これはどれだけ問題をシンプルに考えられるかという点の思考が必要になるので、難しい戦略を考えるのとは別の思考が必要で、これはこれで面白かったです！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/ball-algorithm-aoj-0033/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -525,55 +576,6 @@ pubyやpythonならほんとうに簡単に解けてしまうんですが、c言
   
     <footer>
       <a rel="full-article" href="/blog/breadth-first-search-algorithm-aoj-129/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/elastic-block-store-aws-amazon-strage/">Elastic Block Store(EBS)をAWSのEC2にヒモ付</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2014-05-02T21:30:00+09:00" pubdate data-updated="true">May 2<span>nd</span>, 2014</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/elastic-block-store-aws-amazon-strage/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774158135/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158135&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158135&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774158135" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />AWSのEC2にElastic Block Store(EBS)を紐付けする手順です。サーバを新規作成した際には、仕様に応じて事前にストレージの容量設計をしておくと後で不要なエラーを発生させずに、捗ります。てか、よくそこで数カ月後にハマりますw</p>
-
-<p>昨日やっていて設定でハマってしまったので忘備録を兼ねてメモです。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/elastic-block-store-aws-amazon-strage/">続きを読む</a>
     </footer>
   
 

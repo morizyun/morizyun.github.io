@@ -9,8 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="GoFのデザインパターン(Design Pattern)の一つ、デコレータ(Decorator)をRubyのサンプルコードで紹介します。 デコレータは、既存のオブジェクトに対して簡単に機能の追加をするためのパターンです。
-デコレータパターンを使うと、レイヤ状に機能を積み重ねて、 &hellip;">
+  <meta name="description" content="GoFのデザインパターン(Design Pattern)の一つ、シングルトン(Singleton)をRubyのサンプルコードで紹介します。 シングルトンパターンは、１つだけに限定されたインスタンスを複数のオブジェクト内で共有する場合に用います。例えば、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -48,8 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="GoFのデザインパターン(Design Pattern)の一つ、デコレータ(Decorator)をRubyのサンプルコードで紹介します。 デコレータは、既存のオブジェクトに対して簡単に機能の追加をするためのパターンです。
-デコレータパターンを使うと、レイヤ状に機能を積み重ねて、 &hellip;" />
+<meta property="og:description" content="GoFのデザインパターン(Design Pattern)の一つ、シングルトン(Singleton)をRubyのサンプルコードで紹介します。 シングルトンパターンは、１つだけに限定されたインスタンスを複数のオブジェクト内で共有する場合に用います。例えば、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/35/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -97,6 +95,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/ruby-design-pattern-10-singleton/">シングルトン Ruby 2.0.0 デザインパターン速攻習得[Singleton][Design Pattern]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2012-12-09T15:30:00+09:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/ruby-design-pattern-10-singleton/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4894712857/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4894712857&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4894712857&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="200" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4894712857" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />GoFのデザインパターン(Design Pattern)の一つ、シングルトン(Singleton)をRubyのサンプルコードで紹介します。</p>
+
+<p>シングルトンパターンは、１つだけに限定されたインスタンスを複数のオブジェクト内で共有する場合に用います。例えば、ログの書込処理を行うメソッドでのファイルへのアクセスや、システム内で共通のキャッシュテーブルを参照する場合などです。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/ruby-design-pattern-10-singleton/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -553,71 +600,6 @@ GoFのデザインパターン(Design Pattern)のストラテジー(Strategy)の
   
     <footer>
       <a rel="full-article" href="/blog/uilabel-blink-objectivec/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/doubutsu-qr-matome-release/">Rails 3.2.9/Bootstrap/Bootswatchで「どうぶつの森 QRコードまとめ」作ってみた！</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2012-12-07T00:20:00+09:00" pubdate data-updated="true">Dec 7<span>th</span>, 2012</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/doubutsu-qr-matome-release/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<p><a href="http://doubutsu.qr-matome.info/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8198/8249134787_edd7bab851.jpg" width="200" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
-
-<p>2012年11月最高に輝いてたテック記事「<a href="http://d.hatena.ne.jp/inouetakuya/20121117/1353145846">Rails3、Twitter Bootstrap、Bootswatch を使ったレスポンシブなエロサイト「babyshark」をリリースしました</a>」を見て泪流したので、Railsで「<a href="http://doubutsu.qr-matome.info/">どうぶつの森 QRコードまとめ</a>」を作ってみました。
-ということで今回やったことまとめと反省、今後の目標です。</p>
-
-<p><a href="http://doubutsu.qr-matome.info/" class="button big primary">どうぶつの森 QR コードまとめ</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/doubutsu-qr-matome-release/">続きを読む</a>
     </footer>
   
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: industrial | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/industrial/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -34,12 +34,7 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>オープンソースによるものづくり</h2>
 
@@ -75,12 +70,7 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   

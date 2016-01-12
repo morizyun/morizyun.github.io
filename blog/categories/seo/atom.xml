@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SEO | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/seo/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -37,30 +37,19 @@ sitemap_generator : サイトマップを生成してくれる
 <!-- more -->
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Gemのインストール</h2>
 
 <p><code>Gemfile</code>に以下のコードを追加して、<code>bundle install</code>を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;SEO&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;meta-tags&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="s1">&#39;meta_tags&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sitemap_generator&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>SEO</h1>
+
+<p>gem 'meta-tags', :require => 'meta_tags'
+gem 'sitemap_generator'
+{% endcodeblock %}</p>
 
 <h2>meta-tagsの設定</h2>
 
@@ -70,283 +59,157 @@ sitemap_generator : サイトマップを生成してくれる
 
 <p><code>app/views/layouts/application.html.haml</code>に次のコードを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nn">!!! 5</span>
-</span><span class='line'><span class="nt">%html</span><span class="p">{</span><span class="n">dir</span><span class="p">:</span> <span class="s2">&quot;ltr&quot;</span><span class="p">,</span> <span class="s2">&quot;xmlns:fb&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.facebook.com/2008/fbml&quot;</span><span class="p">,</span> <span class="s2">&quot;xmlns:og&quot;</span><span class="p">:</span> <span class="s2">&quot;http://ogp.me/ns#&quot;</span><span class="p">}</span>
-</span><span class='line'>  <span class="nt">%head</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;= render partial: &#39;layouts/meta_tags&#39;
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:haml %}
+!!! 5
+%html{dir: "ltr", "xmlns:fb": "http://www.facebook.com/2008/fbml", "xmlns:og": "http://ogp.me/ns#"}
+  %head</p>
+
+<pre><code>= render partial: 'layouts/meta_tags'
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h3>view partial meta_tags</h3>
 
 <p><code>app/views/layouts/_meta_tags.html.haml</code>に次のコードを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nt">%meta</span><span class="p">{</span><span class="n">charset</span><span class="p">:</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">}</span>/&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;-# デスクリプションを不用意に変更されないようにする
-</span><span class='line'><span class="nt">%META</span><span class="p">{</span><span class="no">CONTENT</span><span class="p">:</span> <span class="s1">&#39;NOYDIR&#39;</span><span class="p">,</span> <span class="no">NAME</span><span class="p">:</span> <span class="s1">&#39;ROBOTS&#39;</span><span class="p">}</span>
-</span><span class='line'><span class="nt">%META</span><span class="p">{</span><span class="no">CONTENT</span><span class="p">:</span> <span class="s1">&#39;NOODP&#39;</span><span class="p">,</span> <span class="no">NAME</span><span class="p">:</span> <span class="s1">&#39;ROBOTS&#39;</span><span class="p">}</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;-# Twitter用のTwitter Cart対策
-</span><span class='line'><span class="nt">%meta</span><span class="p">{</span><span class="n">content</span><span class="p">:</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;twitter:card&#39;</span><span class="p">}</span>
-</span><span class='line'><span class="nt">%meta</span><span class="p">{</span><span class="n">content</span><span class="p">:</span> <span class="s1">&#39;@twitter_user_name&#39;</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;twitter:site&#39;</span><span class="p">}</span>/&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;-# モバイルに対応している場合のみ書く
-</span><span class='line'><span class="nt">%link</span><span class="p">{</span><span class="n">media</span><span class="p">:</span> <span class="s1">&#39;handheld&#39;</span><span class="p">,</span> <span class="n">rel</span><span class="p">:</span> <span class="s1">&#39;alternate&#39;</span><span class="p">,</span> <span class="n">href</span><span class="p">:</span> <span class="n">canonical_url</span><span class="p">}</span>/&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;-# RSSを作成している場合のみ書く
-</span><span class='line'><span class="nt">%link</span><span class="nf">#gallery</span><span class="p">{</span><span class="n">href</span><span class="p">:</span> <span class="s1">&#39;RSS-URL&#39;</span><span class="p">,</span> <span class="n">rel</span><span class="p">:</span> <span class="s1">&#39;alternate&#39;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="s1">&#39;application/rss+xml&#39;</span><span class="p">}</span>/&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>&lt;li&gt;set_meta_tags title: page_title, site: Settings.site.title, reverse: true&lt;/li&gt;
-</span><span class='line'>&lt;li&gt;set_meta_tags description: page_description&lt;/li&gt;
-</span><span class='line'>&lt;li&gt;set_meta_tags keywords: page_keywords&lt;/li&gt;
-</span><span class='line'>&lt;li&gt;set_meta_tags canonical: canonical_url&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;:ruby
-</span><span class='line'>  opg = {&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;title: page_title,
-</span><span class='line'>type: &#39;website&#39;,
-</span><span class='line'>url: canonical_url,
-</span><span class='line'>image: page_og_image,
-</span><span class='line'>site_name: Settings.site.title,
-</span><span class='line'>description: page_description,
-</span><span class='line'>locale: &#39;ja_JP&#39; # 英語版を作る場合は要変更
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  }&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>&lt;li&gt;set_meta_tags :open_graph =&gt; opg
-</span><span class='line'><span class="p">=</span> <span class="n">display_meta_tags</span>
-</span><span class='line'><span class="nt">%meta</span><span class="p">{</span><span class="n">content</span><span class="p">:</span> <span class="err">&#39;</span><span class="c1">#{Settings.facebook.app_id}</span>&#39;, property: &#39;fb:app_id&#39;}/
-</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+<p>{% codeblock lang:haml %}
+%meta{charset: 'UTF-8'}/</p>
+
+<p>-# デスクリプションを不用意に変更されないようにする
+%META{CONTENT: 'NOYDIR', NAME: 'ROBOTS'}
+%META{CONTENT: 'NOODP', NAME: 'ROBOTS'}</p>
+
+<p>-# Twitter用のTwitter Cart対策
+%meta{content: 'summary', name: 'twitter:card'}
+%meta{content: '@twitter_user_name', name: 'twitter:site'}/</p>
+
+<p>-# モバイルに対応している場合のみ書く
+%link{media: 'handheld', rel: 'alternate', href: canonical_url}/</p>
+
+<p>-# RSSを作成している場合のみ書く
+%link#gallery{href: 'RSS-URL', rel: 'alternate', title: '', type: 'application/rss+xml'}/</p>
+
+<ul>
+<li>set_meta_tags title: page_title, site: Settings.site.title, reverse: true</li>
+<li>set_meta_tags description: page_description</li>
+<li>set_meta_tags keywords: page_keywords</li>
+<li>set_meta_tags canonical: canonical_url</li>
+</ul>
+
+
+<p>:ruby
+  opg = {</p>
+
+<pre><code>title: page_title,
+type: 'website',
+url: canonical_url,
+image: page_og_image,
+site_name: Settings.site.title,
+description: page_description,
+locale: 'ja_JP' # 英語版を作る場合は要変更
+</code></pre>
+
+<p>  }</p>
+
+<ul>
+<li>set_meta_tags :open_graph => opg
+= display_meta_tags
+%meta{content: '#{Settings.facebook.app_id}', property: 'fb:app_id'}/
+{% endcodeblock %}</li>
 </ul>
 
 
 <p>slimの場合はこちら！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;-# デスクリプションを不用意に変更されないようにする</span>
-</span><span class='line'><span class="sr">meta content=&#39;NOYDIR&#39; name=&#39;ROBOTS&#39;</span>
-</span><span class='line'><span class="sr">meta content=&#39;NOODP&#39; name=&#39;ROBOTS&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;-</span><span class="c1"># Twitter用のTwitter Cart対策</span>
-</span><span class='line'><span class="n">meta</span> <span class="n">content</span><span class="o">=</span><span class="s1">&#39;summary&#39;</span> <span class="nb">name</span><span class="o">=</span><span class="s1">&#39;twitter:card&#39;</span>
-</span><span class='line'><span class="n">meta</span> <span class="n">content</span><span class="o">=</span><span class="s1">&#39;@twitter_user_name&#39;</span> <span class="nb">name</span><span class="o">=</span><span class="s1">&#39;twitter:site&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;-# モバイルに対応している場合のみ書く</span>
-</span><span class='line'><span class="sr">link media=&#39;handheld&#39; rel=&#39;alternate&#39; href=&quot;</span><span class="si">#{</span><span class="n">canonical_url</span><span class="si">}</span><span class="sr">&quot;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;-</span><span class="c1"># RSSを作成している場合のみ書く</span>
-</span><span class='line'><span class="n">link</span><span class="c1">#gallery href=&#39;RSS-URL&#39; rel=&#39;alternate&#39; title=&#39;&#39; type=&#39;application/rss+xml&#39;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">set_meta_tags</span> <span class="n">site</span><span class="p">:</span> <span class="n">page_title</span><span class="o">&lt;</span><span class="sr">/li&gt;</span>
-</span><span class='line'><span class="sr">&lt;li&gt;set_meta_tags description: page_description&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">set_meta_tags</span> <span class="n">keywords</span><span class="p">:</span> <span class="n">page_keywords</span><span class="o">&lt;</span><span class="sr">/li&gt;</span>
-</span><span class='line'><span class="sr">&lt;li&gt;set_meta_tags canonical: canonical_url&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/ul&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;ruby:</span>
-</span><span class='line'><span class="sr">  opg = {&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">title</span><span class="p">:</span> <span class="n">page_title</span><span class="p">,</span>
-</span><span class='line'><span class="n">type</span><span class="p">:</span> <span class="s1">&#39;website&#39;</span><span class="p">,</span>
-</span><span class='line'><span class="n">url</span><span class="p">:</span> <span class="n">canonical_url</span><span class="p">,</span>
-</span><span class='line'><span class="n">image</span><span class="p">:</span> <span class="n">page_og_image</span><span class="p">,</span>
-</span><span class='line'><span class="n">site_name</span><span class="p">:</span> <span class="no">Settings</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
-</span><span class='line'><span class="n">description</span><span class="p">:</span> <span class="n">page_description</span><span class="p">,</span>
-</span><span class='line'><span class="n">locale</span><span class="p">:</span> <span class="s1">&#39;ja_JP&#39;</span> <span class="c1"># 英語版を作る場合は要変更</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;ul&gt;</span>
-</span><span class='line'><span class="sr">&lt;li&gt;set_meta_tags :open_graph =&gt; opg</span>
-</span><span class='line'><span class="sr">= display_meta_tags</span>
-</span><span class='line'><span class="sr">meta content=&quot;</span><span class="si">#{</span><span class="no">Settings</span><span class="o">.</span><span class="n">facebook</span><span class="o">.</span><span class="n">app_id</span><span class="si">}</span><span class="sr">&quot; property=&#39;fb:app_id&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+<p>{% codeblock lang:ruby %}
+meta charset='UTF-8'</p>
+
+<p>-# デスクリプションを不用意に変更されないようにする
+meta content='NOYDIR' name='ROBOTS'
+meta content='NOODP' name='ROBOTS'</p>
+
+<p>-# Twitter用のTwitter Cart対策
+meta content='summary' name='twitter:card'
+meta content='@twitter_user_name' name='twitter:site'</p>
+
+<p>-# モバイルに対応している場合のみ書く
+link media='handheld' rel='alternate' href="#{canonical_url}"</p>
+
+<p>-# RSSを作成している場合のみ書く
+link#gallery href='RSS-URL' rel='alternate' title='' type='application/rss+xml'</p>
+
+<ul>
+<li>set_meta_tags site: page_title</li>
+<li>set_meta_tags description: page_description</li>
+<li>set_meta_tags keywords: page_keywords</li>
+<li>set_meta_tags canonical: canonical_url</li>
+</ul>
+
+
+<p>ruby:
+  opg = {</p>
+
+<pre><code>title: page_title,
+type: 'website',
+url: canonical_url,
+image: page_og_image,
+site_name: Settings.site.title,
+description: page_description,
+locale: 'ja_JP' # 英語版を作る場合は要変更
+</code></pre>
+
+<p>  }</p>
+
+<ul>
+<li>set_meta_tags :open_graph => opg
+= display_meta_tags
+meta content="#{Settings.facebook.app_id}" property='fb:app_id'
+{% endcodeblock %}</li>
 </ul>
 
 
 <h3>app/helpers/seo_helper.rb</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">SeoHelper</span>
-</span><span class='line'>  <span class="c1"># canonical url</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">canonical_url</span>
-</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  # 各ページ毎のデスクリプション</span>
-</span><span class='line'><span class="sr">  def page_description&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="s2">&quot;meta.description.</span><span class="si">#{</span><span class="n">controller_name</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">action_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  # 各ページ毎の代表画像</span>
-</span><span class='line'><span class="sr">  def page_og_image&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">Settings</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">url</span><span class="si">}#{</span><span class="no">Settings</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">og</span><span class="o">.</span><span class="n">image</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  # 各ページ毎のキーワード</span>
-</span><span class='line'><span class="sr">  def page_keywords&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="s2">&quot;meta.keywords.</span><span class="si">#{</span><span class="n">controller_name</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">action_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  # 各ページ毎のタイトル</span>
-</span><span class='line'><span class="sr">  def page_title&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="s2">&quot;meta.title.</span><span class="si">#{</span><span class="n">controller_name</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">action_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+module SeoHelper
+  # canonical url
+  def canonical_url
+  end</p>
+
+<p>  # 各ページ毎のデスクリプション
+  def page_description</p>
+
+<pre><code>t("meta.description.#{controller_name}.#{action_name}")
+</code></pre>
+
+<p>  end</p>
+
+<p>  # 各ページ毎の代表画像
+  def page_og_image</p>
+
+<pre><code>"#{Settings.site.url}#{Settings.site.meta.og.image}"
+</code></pre>
+
+<p>  end</p>
+
+<p>  # 各ページ毎のキーワード
+  def page_keywords</p>
+
+<pre><code>t("meta.keywords.#{controller_name}.#{action_name}")
+</code></pre>
+
+<p>  end</p>
+
+<p>  # 各ページ毎のタイトル
+  def page_title</p>
+
+<pre><code>t("meta.title.#{controller_name}.#{action_name}")
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <h3>Facebook app_id/og_type の入手</h3>
 
@@ -360,41 +223,27 @@ sitemap_generator : サイトマップを生成してくれる
 
 <h3>config/settings.yml</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>site:
-</span><span class='line'>  title: <span class="s2">&quot;Site Title&quot;</span>
-</span><span class='line'>  meta:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;description: <span class="s2">&quot;sample page description&quot;</span>
-</span><span class='line'>keywords: <span class="o">[</span><span class="s2">&quot;sample&quot;</span>, <span class="s2">&quot;page&quot;</span>, <span class="s2">&quot;keyword&quot;</span><span class="o">]</span>
-</span><span class='line'>og:
-</span><span class='line'>  app_id: <span class="s2">&quot;app id&quot;</span>
-</span><span class='line'>  image: <span class="s2">&quot;og_image_path&quot;</span>
-</span><span class='line'>  <span class="nb">type</span>: <span class="s2">&quot;website&quot;</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+site:
+  title: "Site Title"
+  meta:</p>
+
+<pre><code>description: "sample page description"
+keywords: ["sample", "page", "keyword"]
+og:
+  app_id: "app id"
+  image: "og_image_path"
+  type: "website"
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h3>confing/settings/xxx.yml について</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>site:
-</span><span class='line'>  url: <span class="s2">&quot;Site URL&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+site:
+  url: "Site URL"
+{% endcodeblock %}</p>
 
 <p>これで</p>
 
@@ -431,67 +280,48 @@ sitemap_generator : サイトマップを生成してくれる
 
 <p><code>config/sitemap.rb</code>を生成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake sitemap:install
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rake sitemap:install
+{% endcodeblock %}</p>
 
 <p><code>config/sitemap.rb</code>をサイト構成に合わせて修正。<br/>
 ここでは、sitemapを生成できるようにするために、<code>SitemapGenerator::Sitemap.default_host</code>のみ修正。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">SitemapGenerator</span><span class="o">::</span><span class="no">Sitemap</span><span class="o">.</span><span class="n">default_host</span> <span class="o">=</span> <span class="s1">&#39;http://example.com&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+SitemapGenerator::Sitemap.default_host = 'http://example.com'
+{% endcodeblock %}</p>
 
 <p>詳細は、<a href="https://github.com/kjvarga/sitemap_generator#sitemap-configuration">Sitemap Configuration | kjvarga/sitemap_generator | GitHub</a>を参照。</p>
 
 <p>sitemapファイルを<code>public/</code>に生成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Development/Testの場合<span class="o">(</span>pingをsearchエンジンに送付しない<span class="o">)</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake sitemap:refresh:no_ping&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Productionの場合<span class="o">(</span>pingをsearchエンジンに送付する<span class="o">)</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake sitemap:refresh
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>Development/Testの場合(pingをsearchエンジンに送付しない)</h1>
+
+<p>rake sitemap:refresh:no_ping</p>
+
+<h1>Productionの場合(pingをsearchエンジンに送付する)</h1>
+
+<p>rake sitemap:refresh
+{% endcodeblock %}</p>
 
 <p>実行結果が以下の様になっていれば成功です。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake sitemap:refresh:no_ping&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;In /app_path/to/public/
-</span><span class='line'>+ sitemap1.xml.gz                                          1 links &gt; /  340 Bytes
-</span><span class='line'>+ sitemap_index.xml.gz                                  1 sitemaps &gt; /  241 Bytes
-</span><span class='line'>Sitemap stats: 1 links / 1 sitemaps / 0m00s
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+rake sitemap:refresh:no_ping</p>
+
+<blockquote><p>In /app_path/to/public/
++ sitemap1.xml.gz                                          1 links > /  340 Bytes
++ sitemap_index.xml.gz                                  1 sitemaps > /  241 Bytes
+Sitemap stats: 1 links / 1 sitemaps / 0m00s
+{% endcodeblock %}</p></blockquote>
 
 <p>sitemap_genreatorはCapistranoと連携してデプロイ時に自動生成することもできるので、良かったら公式サイトも見て下さい。</p>
 
 <p><a href="https://github.com/kjvarga/sitemap_generator" class="button big primary">sitemap_generator GitHub</a></p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -822,12 +652,7 @@ Turban
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>titleタグのルール</h2>
 
@@ -869,11 +694,10 @@ Turban
 
 <p><code>header</code>で次のような宣言をすると<strong>XHTML 1.0 Transition DTD</strong>として認識されます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="ni">&amp;lt;</span>!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
-</span><span class='line'>  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:html %}
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% endcodeblock %}</p>
 
 <p>XHTML 1.0のルールを遵守することは、検索エンジンのクローラに対して親切になります。<br />
 <strong>XHTML 1.0 Transition DTD</strong>の代表的なルールは次の通りです。</p>
@@ -888,15 +712,15 @@ Turban
 
 <p>(1) 文字コードの指定</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html;charset=UTF-8&quot;</span> <span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:html %}
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+{% endcodeblock %}</p>
 
 <p>(2) HTMLのデフォルト言語</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Language&quot;</span> <span class="na">content=</span><span class="s">&quot;ja&quot;</span> <span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:html %}
+<meta http-equiv="Content-Language" content="ja" />
+{% endcodeblock %}</p>
 
 <p>(3) スタイルシートの指定<br />
 (4) javascriptの指定<br />
@@ -924,12 +748,7 @@ Turban
 
 <p>以上、SEO内部対策の基礎部分をしっかり勉強したいときにはオススメの良本です！</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   

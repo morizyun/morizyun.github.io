@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Algorithm | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/algorithm/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -30,267 +30,138 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>最大公約数、最小公倍数のRubyサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;最大公約数&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span>
-</span><span class='line'>  <span class="k">until</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;a, b = b%a, a</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">  return b</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">最小公倍数</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;def lcm(a, b)</span>
-</span><span class='line'><span class="sr">  a*b/</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;while gets do</span>
-</span><span class='line'><span class="sr">  a, b = $_.chomp.split(&#39; &#39;).map(&amp;amp;:to_i)</span>
-</span><span class='line'><span class="sr">  puts &quot;</span><span class="si">#{</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="sr"> </span><span class="si">#{</span><span class="n">lcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="sr">&quot;</span>
-</span><span class='line'><span class="sr">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>最大公約数</h1>
+
+<p>def gcd(a, b)
+  a, b = b, a if a > b
+  until a == 0</p>
+
+<pre><code>a, b = b%a, a
+</code></pre>
+
+<p>  end
+  return b
+end</p>
+
+<h1>最小公倍数</h1>
+
+<p>def lcm(a, b)
+  a*b/gcd(a, b)
+end</p>
+
+<p>while gets do
+  a, b = $_.chomp.split(' ').map(&amp;:to_i)
+  puts "#{gcd(a, b)} #{lcm(a, b)}"
+end
+{% endcodeblock %}</p>
 
 <h2>最大公約数、最小公倍数のPythonサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">coding</span><span class="p">:</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">sys</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">最大公約数</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">while</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">%</span><span class="n">b</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">return</span> <span class="n">a</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">最小公倍数</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">lcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">/</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-</span><span class='line'>  <span class="n">gcd_num</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">lcm_num</span> <span class="o">=</span> <span class="n">lcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s"> </span><span class="si">%d</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">gcd_num</span><span class="p">,</span> <span class="n">lcm_num</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">output</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="mi">2</span> <span class="mi">24</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="mi">10000000</span> <span class="mi">150000000</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}</p>
+
+<h1>coding:utf-8</h1>
+
+<p>import sys</p>
+
+<h1>最大公約数</h1>
+
+<p>def gcd(a, b):
+  while b > 0:</p>
+
+<pre><code>a, b = b, a%b
+</code></pre>
+
+<p>  return a</p>
+
+<h1>最小公倍数</h1>
+
+<p>def lcm(a, b):
+  return a*b/gcd(a, b)</p>
+
+<p>for s in sys.stdin:
+  a, b = map(int,s.split())
+  gcd_num = gcd(a, b)
+  lcm_num = lcm(a, b)
+  print "%d %d"%(gcd_num, lcm_num)</p>
+
+<h1>output</h1>
+
+<h1>2 24</h1>
+
+<h1>10000000 150000000</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h2>最大公約数、最小公倍数のJavaのサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.Exception</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.String</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.lang.System</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">a</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">BufferedReader</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
-</span><span class='line'>    <span class="kt">long</span> <span class="n">num</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
-</span><span class='line'>    <span class="kt">long</span> <span class="n">gcd</span><span class="o">,</span> <span class="n">lcm</span><span class="o">;</span>
-</span><span class='line'>    <span class="n">String</span> <span class="n">numStr</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
-</span><span class='line'>    <span class="n">String</span> <span class="n">str</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">while</span><span class="o">((</span><span class="n">str</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">numStr</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span> <span class="n">numStr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">numStr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="n">gcd</span> <span class="o">=</span> <span class="n">getGCD</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">num</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
-</span><span class='line'>        <span class="n">lcm</span> <span class="o">=</span> <span class="n">getLCM</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">num</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
-</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;%d %d\n&quot;</span><span class="o">,</span> <span class="n">gcd</span><span class="o">,</span> <span class="n">lcm</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// a, bの最大公約数を求める</span>
-</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">getGCD</span><span class="o">(</span><span class="kt">long</span> <span class="n">a</span><span class="o">,</span> <span class="kt">long</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kt">long</span> <span class="n">tmp</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">tmp</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">b</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">while</span><span class="o">(</span><span class="n">a</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kt">long</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">%</span><span class="n">a</span><span class="o">;</span>
-</span><span class='line'>        <span class="n">b</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">b</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// a, bの最小公倍数を求める</span>
-</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">getLCM</span><span class="o">(</span><span class="kt">long</span> <span class="n">a</span><span class="o">,</span> <span class="kt">long</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="o">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">)/</span><span class="n">getGCD</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">output</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="mi">2</span> <span class="mi">24</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="mi">10000000</span> <span class="mi">150000000</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:java %}
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.Exception;
+import java.lang.String;
+import java.lang.System;</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>public class Main {</p>
+
+<pre><code>public static void main(String[] a) throws Exception {
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+    long num[] = new long[2];
+    long gcd, lcm;
+    String numStr[] = new String[2];
+    String str;
+
+    while((str = r.readLine()) != null) {
+        numStr = str.split(" ");
+        for(int i = 0; i &lt; numStr.length; i++) {
+            num[i] = Long.parseLong(numStr[i]);
+        }
+        gcd = getGCD(num[0], num[1]);
+        lcm = getLCM(num[0], num[1]);
+        System.out.printf("%d %d\n", gcd, lcm);
+    }
+}
+
+// a, bの最大公約数を求める
+private static long getGCD(long a, long b) {
+    if(a &gt; b) {
+        long tmp;
+        tmp = a;
+        a = b;
+        b = tmp;
+    }
+
+    while(a != 0) {
+        long tmp = a;
+        a = b%a;
+        b = tmp;
+    }
+
+    return b;
+}
+
+// a, bの最小公倍数を求める
+private static long getLCM(long a, long b) {
+    return (a * b)/getGCD(a, b);
+}
+</code></pre>
+
+<p>}</p>
+
+<h1>output</h1>
+
+<h1>2 24</h1>
+
+<h1>10000000 150000000</h1>
+
+<p>{% endcodeblock %}</p>
+
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Aizu Online Judgeのサンプルソース</h2>
 
@@ -327,104 +198,59 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Ruby サンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">to_i</span>
-</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="ss">:to_i</span><span class="p">)</span>
-</span><span class='line'><span class="n">answer</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">]&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;dp = n.times.map { [0]*21 }</span>
-</span><span class='line'><span class="sr">dp[0][arr[0]] = 1</span>
-</span><span class='line'><span class="sr">1.upto(n-2) do |i|</span>
-</span><span class='line'><span class="sr">  0.upto(20) do |j|&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">next</span> <span class="k">if</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">cp</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-</span><span class='line'><span class="n">cm</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">cp</span><span class="o">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="k">if</span> <span class="n">cp</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">20</span>
-</span><span class='line'><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">cm</span><span class="o">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="k">if</span> <span class="n">cm</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts dp[n-2][answer]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+n = gets.to_i
+arr = gets.split(' ').map(&amp;:to_i)
+answer = arr[n-1]</p>
+
+<p>dp = n.times.map { [0]*21 }
+dp[0][arr[0]] = 1
+1.upto(n-2) do |i|
+  0.upto(20) do |j|</p>
+
+<pre><code>next if dp[i-1][j] &lt;= 0
+cp = j + arr[i]
+cm = j - arr[i]
+
+dp[i][cp] += dp[i-1][j] if cp &lt;= 20
+dp[i][cm] += dp[i-1][j] if cm &gt;= 0
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>puts dp[n-2][answer]
+{% endcodeblock %}</p>
 
 <h2>Python サンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">n</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
-</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">raw_input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-</span><span class='line'><span class="n">answer</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">21</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-</span><span class='line'><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">):</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">continue</span>
-</span><span class='line'><span class="n">vp</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'><span class="n">vm</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">vp</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">20</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">vp</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-</span><span class='line'><span class="k">if</span> <span class="n">vm</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">vm</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">print</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="n">answer</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+n = input()
+arr = map(int, raw_input().split())
+answer = arr[n-1]</p>
+
+<p>dp = [[0]*21 for i in range(n)]
+dp[0][arr[0]] = 1</p>
+
+<p>for i in range(1, n-1):
+  for j in range(21):</p>
+
+<pre><code>if dp[i-1][j] == 0: continue
+vp = j + arr[i]
+vm = j - arr[i]
+
+if vp &lt;= 20:
+  dp[i][vp] += dp[i-1][j]
+if vm &gt;= 0:
+  dp[i][vm] += dp[i-1][j]
+</code></pre>
+
+<p>print dp[n-2][answer]
+{% endcodeblock %}</p>
 
 <p>シンプルですがかなり強力なアルゴリズムなので知っておいて損はないと思います。是非トライしてみてください！</p>
 
@@ -438,12 +264,7 @@
 
 <p><strong><a href="/blog/categories/AOJ/">AOJタグのついた最近解いた問題一覧</a></strong></p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   
@@ -462,110 +283,59 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>クイックソートのRubyサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">get_leap_years</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">res</span> <span class="o">=</span> <span class="o">[]</span>
-</span><span class='line'>  <span class="n">from</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">to</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;if i%400 == 0</span>
-</span><span class='line'><span class="sr">  res &amp;lt;&amp;lt; i</span>
-</span><span class='line'><span class="sr">elsif i%100 == 0</span>
-</span><span class='line'><span class="sr">  next</span>
-</span><span class='line'><span class="sr">elsif i%4 == 0</span>
-</span><span class='line'><span class="sr">  res &amp;lt;&amp;lt; i</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">  res</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">is_first_line</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'><span class="k">while</span> <span class="nb">gets</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="vg">$_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="ss">:to_i</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">break</span> <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  if is_first_line&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">is_first_line</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">else</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &#39;&#39;</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">res</span> <span class="o">=</span> <span class="n">get_leap_years</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &#39;NA&#39;</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  else&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="n">res</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+def get_leap_years(from, to)
+  res = []
+  from.upto(to) do |i|</p>
+
+<pre><code>if i%400 == 0
+  res &lt;&lt; i
+elsif i%100 == 0
+  next
+elsif i%4 == 0
+  res &lt;&lt; i
+end
+</code></pre>
+
+<p>  end
+  res
+end</p>
+
+<p>is_first_line = true
+while gets do
+  a, b = $_.split(' ').map(&amp;:to_i)
+  break if a == 0 &amp;&amp; b == 0</p>
+
+<p>  if is_first_line</p>
+
+<pre><code>is_first_line = false
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>puts ''
+</code></pre>
+
+<p>  end</p>
+
+<p>  res = get_leap_years(a, b)
+  if res.count == 0</p>
+
+<pre><code>puts 'NA'
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>puts res
+</code></pre>
+
+<p>  end
+end
+{% endcodeblock %}</p>
 
 <h2>Aizu Online Judgeのサンプルソース</h2>
 
@@ -577,12 +347,7 @@
 
 <p><strong><a href="/blog/categories/AOJ/">AOJタグのついた最近解いた問題一覧</a></strong></p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   
@@ -601,138 +366,76 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>クイックソートのRubyサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Array</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">quick_sort</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;return self if length &amp;lt;= 1</span>
-</span><span class='line'><span class="sr">base = pop</span>
-</span><span class='line'><span class="sr">smaller, bigger = partition { |e| e &amp;lt; base }</span>
-</span><span class='line'><span class="sr">push base</span>
-</span><span class='line'><span class="sr">smaller.quick_sort + [base] + bigger.quick_sort</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">n</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">to_i</span>
-</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="ss">:to_i</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts arr.quick_sort.join(&#39; &#39;)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+class Array
+  def quick_sort</p>
+
+<pre><code>return self if length &lt;= 1
+base = pop
+smaller, bigger = partition { |e| e &lt; base }
+push base
+smaller.quick_sort + [base] + bigger.quick_sort
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>n = gets.to_i
+arr = gets.split(' ').map(&amp;:to_i)</p>
+
+<p>puts arr.quick_sort.join(' ')
+{% endcodeblock %}</p>
 
 <h2>マージソートのRubyサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Array</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">merge_sort</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;tmp = self.dup</span>
-</span><span class='line'><span class="sr">return tmp if tmp.length &amp;lt;= 1</span>
-</span><span class='line'><span class="sr">a, b = self.half.map { |e| e.merge_sort }</span>
-</span><span class='line'><span class="sr">marge(a, b)</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">half</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;mid = length/</span><span class="mi">2</span>
-</span><span class='line'><span class="k">return</span> <span class="n">slice</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">mid</span><span class="p">),</span> <span class="n">slice</span><span class="p">(</span><span class="n">mid</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  def marge(a, b)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">res</span> <span class="o">=</span> <span class="o">[]</span>
-</span><span class='line'><span class="k">until</span> <span class="n">a</span><span class="o">.</span><span class="n">empty?</span> <span class="ow">and</span> <span class="n">b</span><span class="o">.</span><span class="n">empty?</span>
-</span><span class='line'>  <span class="n">res</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">case</span>
-</span><span class='line'>        <span class="k">when</span> <span class="n">a</span><span class="o">.</span><span class="n">empty?</span> <span class="k">then</span> <span class="n">b</span><span class="o">.</span><span class="n">shift</span>
-</span><span class='line'>        <span class="k">when</span> <span class="n">b</span><span class="o">.</span><span class="n">empty?</span> <span class="k">then</span> <span class="n">a</span><span class="o">.</span><span class="n">shift</span>
-</span><span class='line'>        <span class="k">when</span> <span class="n">a</span><span class="o">.</span><span class="n">first</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">b</span><span class="o">.</span><span class="n">first</span> <span class="k">then</span> <span class="n">b</span><span class="o">.</span><span class="n">shift</span>
-</span><span class='line'>        <span class="k">else</span> <span class="n">a</span><span class="o">.</span><span class="n">shift</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">res</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;n = gets.to_i</span>
-</span><span class='line'><span class="sr">arr = gets.split(&#39; &#39;).map(&amp;amp;:to_i)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">res</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">merge_sort</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">res</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+class Array
+  def merge_sort</p>
+
+<pre><code>tmp = self.dup
+return tmp if tmp.length &lt;= 1
+a, b = self.half.map { |e| e.merge_sort }
+marge(a, b)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def half</p>
+
+<pre><code>mid = length/2
+return slice(0...mid), slice(mid..-1)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def marge(a, b)</p>
+
+<pre><code>res = []
+until a.empty? and b.empty?
+  res &lt;&lt;
+      case
+        when a.empty? then b.shift
+        when b.empty? then a.shift
+        when a.first &gt; b.first then b.shift
+        else a.shift
+      end
+end
+res
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>n = gets.to_i
+arr = gets.split(' ').map(&amp;:to_i)</p>
+
+<p>res = arr.merge_sort
+puts res.join(' ')
+{% endcodeblock %}</p>
 
 <h2>2つのサンプルを使って比較</h2>
 
@@ -746,89 +449,47 @@
 
 <p>比較結果は次の通り。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h6&gt;#&lt;/</span><span class="n">h6</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">sample</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">sort_by</span> <span class="p">{</span> <span class="nb">rand</span> <span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts Benchmark::CAPTION</span>
-</span><span class='line'><span class="sr">puts &#39;quick_sort: &#39; + Benchmark.measure { sample.quick_sort }.to_s</span>
-</span><span class='line'><span class="sr">puts &#39;marge_sort: &#39; + Benchmark.measure { sample.merge_sort }.to_s</span>
-</span><span class='line'><span class="sr">puts &#39;ruby_sort:  &#39; + Benchmark.measure { sample.sort }.to_s&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">-</span><span class="mi">100000</span><span class="err">の数字を</span><span class="mi">100</span><span class="p">,</span><span class="mo">000</span><span class="err">個、ランダムに並べる場合</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;user     system      total        real&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">quick_sort</span><span class="p">:</span>   <span class="mi">0</span><span class="o">.</span><span class="mi">250000</span>   <span class="mi">0</span><span class="o">.</span><span class="mo">000000</span>   <span class="mi">0</span><span class="o">.</span><span class="mi">250000</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">.</span><span class="mi">253962</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;marge_sort:   0.340000   0.000000   0.340000 (  0.349896)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ruby_sort</span><span class="p">:</span>    <span class="mi">0</span><span class="o">.</span><span class="mo">020000</span>   <span class="mi">0</span><span class="o">.</span><span class="mo">010000</span>   <span class="mi">0</span><span class="o">.</span><span class="mo">030000</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">.</span><span class="mo">015256</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h6&gt;#&lt;/</span><span class="n">h6</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">sample</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sort_by</span> <span class="p">{</span> <span class="nb">rand</span> <span class="p">}</span> <span class="p">}</span><span class="o">.</span><span class="n">flatten</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts Benchmark::CAPTION</span>
-</span><span class='line'><span class="sr">puts &#39;quick_sort: &#39; + Benchmark.measure { sample.quick_sort }.to_s</span>
-</span><span class='line'><span class="sr">puts &#39;marge_sort: &#39; + Benchmark.measure { sample.merge_sort }.to_s</span>
-</span><span class='line'><span class="sr">puts &#39;ruby_sort:  &#39; + Benchmark.measure { sample.sort }.to_s&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">-</span><span class="mi">100</span><span class="err">の数字を</span><span class="mi">100</span><span class="p">,</span><span class="mo">000</span><span class="err">個、ランダムに並べる場合</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;user     system      total        real&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">quick_sort</span><span class="p">:</span>   <span class="mi">4</span><span class="o">.</span><span class="mi">490000</span>   <span class="mi">0</span><span class="o">.</span><span class="mo">040000</span>   <span class="mi">4</span><span class="o">.</span><span class="mi">530000</span> <span class="p">(</span>  <span class="mi">4</span><span class="o">.</span><span class="mi">529826</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;marge_sort:   0.370000   0.010000   0.380000 (  0.371850)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ruby_sort</span><span class="p">:</span>    <span class="mi">0</span><span class="o">.</span><span class="mo">000000</span>   <span class="mi">0</span><span class="o">.</span><span class="mo">000000</span>   <span class="mi">0</span><span class="o">.</span><span class="mo">000000</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">.</span><span class="mo">006622</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h6>#</h6>
+
+<p>sample = (0..100000).sort_by { rand }</p>
+
+<p>puts Benchmark::CAPTION
+puts 'quick_sort: ' + Benchmark.measure { sample.quick_sort }.to_s
+puts 'marge_sort: ' + Benchmark.measure { sample.merge_sort }.to_s
+puts 'ruby_sort:  ' + Benchmark.measure { sample.sort }.to_s</p>
+
+<h1>0-100000の数字を100,000個、ランダムに並べる場合</h1>
+
+<h1>user     system      total        real</h1>
+
+<h1>quick_sort:   0.250000   0.000000   0.250000 (  0.253962)</h1>
+
+<h1>marge_sort:   0.340000   0.000000   0.340000 (  0.349896)</h1>
+
+<h1>ruby_sort:    0.020000   0.010000   0.030000 (  0.015256)</h1>
+
+<h6>#</h6>
+
+<p>sample = (1..1000).map{ (0..100).sort_by { rand } }.flatten</p>
+
+<p>puts Benchmark::CAPTION
+puts 'quick_sort: ' + Benchmark.measure { sample.quick_sort }.to_s
+puts 'marge_sort: ' + Benchmark.measure { sample.merge_sort }.to_s
+puts 'ruby_sort:  ' + Benchmark.measure { sample.sort }.to_s</p>
+
+<h1>0-100の数字を100,000個、ランダムに並べる場合</h1>
+
+<h1>user     system      total        real</h1>
+
+<h1>quick_sort:   4.490000   0.040000   4.530000 (  4.529826)</h1>
+
+<h1>marge_sort:   0.370000   0.010000   0.380000 (  0.371850)</h1>
+
+<h1>ruby_sort:    0.000000   0.000000   0.000000 (  0.006622)</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p>マージソートはどちらも安定していますが、クイックソートは入力の配列に寄っては計算量がかなり増加しています。これはクイックソートが入力の配列によっては、1:N-1のソートを繰り返すためとのこと。</p>
 
@@ -848,12 +509,7 @@
 
 <p><strong><a href="/blog/categories/AOJ/">AOJタグのついた最近解いた問題一覧</a></strong></p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -880,198 +536,107 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Rubyのサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">num</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">to_i</span>
-</span><span class='line'><span class="n">num</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">[]</span><span class="p">,</span> <span class="o">[]</span>
-</span><span class='line'>  <span class="n">arr</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="ss">:to_i</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">arr</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;if (left.last || 0) &amp;lt; a</span>
-</span><span class='line'><span class="sr">  left &amp;lt;&amp;lt; a</span>
-</span><span class='line'><span class="sr">elsif (right.last || 0) &amp;lt; a</span>
-</span><span class='line'><span class="sr">  right &amp;lt;&amp;lt; a</span>
-</span><span class='line'><span class="sr">else</span>
-</span><span class='line'><span class="sr">  break</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">  puts (arr.size == (left.size + right.size)) ? &#39;YES&#39; : &#39;NO&#39;</span>
-</span><span class='line'><span class="sr">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+num = gets.to_i
+num.times do
+  left, right = [], []
+  arr = gets.chomp.split(' ').map(&amp;:to_i)
+  arr.each do |a|</p>
+
+<pre><code>if (left.last || 0) &lt; a
+  left &lt;&lt; a
+elsif (right.last || 0) &lt; a
+  right &lt;&lt; a
+else
+  break
+end
+</code></pre>
+
+<p>  end
+  puts (arr.size == (left.size + right.size)) ? 'YES' : 'NO'
+end
+{% endcodeblock %}</p>
 
 <h2>Pythonのサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="n">arr</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">raw_input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">left</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">a</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">left</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</span><span class='line'><span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">right</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">a</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">right</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">break</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">):</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">print</span> <span class="s">&#39;YES&#39;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">else</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">print</span> <span class="s">&#39;NO&#39;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:python %}
+n = int(raw_input())
+for i in range(n):
+  left, right = [], []
+  arr = map(int, raw_input().split(' '))
+  for a in arr:</p>
+
+<pre><code>if len(left) == 0 or left[len(left)-1] &lt; a:
+  left.append(a)
+elif len(right) == 0 or right[len(right)-1] &lt; a:
+  right.append(a)
+else:
+  break
+</code></pre>
+
+<p>  if len(arr) == len(left) + len(right):</p>
+
+<pre><code>print 'YES'
+</code></pre>
+
+<p>  else:</p>
+
+<pre><code>print 'NO'
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h2>c++のサンプルソース</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">iostream</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">bool</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="n">bool</span> <span class="n">ans</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">left</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ans</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">right</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">right</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">ans</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
-</span><span class='line'>  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">n</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="n">cout</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="s">&quot;YES&quot;</span> <span class="o">:</span> <span class="s">&quot;NO&quot;</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">endl</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:c %}</p>
+
+<h1>include <iostream></h1>
+
+<h1>include &lt;stdio.h></h1>
+
+<p>using namespace std;</p>
+
+<p>int a[10];</p>
+
+<p>bool dfs(int i, int left, int right) {
+  if(i == 10) { return true; }</p>
+
+<p>  bool ans = false;
+  if(left &lt; a[i]) {</p>
+
+<pre><code>ans = dfs(i+1, a[i], right);
+</code></pre>
+
+<p>  }
+  if(right &lt; a[i]) {</p>
+
+<pre><code>ans = dfs(i+1, left, a[i]);
+</code></pre>
+
+<p>  }
+  return ans;
+}</p>
+
+<p>int main() {
+  int n;
+  scanf("%d", &amp;n);</p>
+
+<p>  for(int i = 0; i &lt; n; i++) {</p>
+
+<pre><code>for(int j = 0; j &lt; 10; j++) {
+  scanf("%d", &amp;a[j]);
+}
+cout &lt;&lt; (dfs(0, 0, 0) ? "YES" : "NO") &lt;&lt; endl;
+</code></pre>
+
+<p>  }
+  return 0;
+}
+{% endcodeblock %}</p>
 
 <h2>Aizu Online Judgeのサンプルソース</h2>
 
@@ -1083,12 +648,7 @@
 
 <p><strong><a href="/blog/categories/AOJ/">AOJタグのついた最近解いた問題一覧</a></strong></p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   

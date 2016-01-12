@@ -4,7 +4,7 @@
   <title><![CDATA[Category: free | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/free/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -33,12 +33,7 @@ iPhoneアプリのユーザーテストを行うにあたってクラッシュ�
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>BugSenseにユーザー登録/アプリ登録</h2>
 
@@ -50,33 +45,24 @@ iPhoneアプリのユーザーテストを行うにあたってクラッシュ�
 
 <p><code>Podfile</code>に以下の内容を追記して、<code>pod install</code>を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="s1">&#39;BugSense&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+pod 'BugSense'
+{% endcodeblock %}</p>
 
 <h2>コード側への追記</h2>
 
 <p><code>AppDelegate.m</code>に以下ようにコードを追記。BugSense_API_KEYに先ほど出たAPI_KEYを記入。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;import &amp;lt;BugSense-iOS/BugSenseController.h&gt;&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>&lt;li&gt;<span class="o">(</span>BOOL<span class="o">)</span> application:<span class="o">(</span>UIApplication &lt;em&gt;<span class="o">)</span>application didFinishLaunchingWithOptions:<span class="o">(</span>NSDictionary &lt;/em&gt;<span class="o">)</span>launchOptions <span class="o">{</span>
-</span><span class='line'><span class="o">[</span>BugSenseController sharedControllerWithBugSenseAPIKey:@<span class="s2">&quot;BugSense_API_KEY&quot;</span><span class="o">]</span>;
-</span><span class='line'><span class="k">return </span>YES;
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>import &lt;BugSense-iOS/BugSenseController.h></h1>
+
+<ul>
+<li>(BOOL) application:(UIApplication <em>)application didFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions {
+[BugSenseController sharedControllerWithBugSenseAPIKey:@"BugSense_API_KEY"];
+return YES;
+}
+{% endcodeblock %}</li>
 </ul>
 
 
@@ -84,24 +70,17 @@ iPhoneアプリのユーザーテストを行うにあたってクラッシュ�
 
 <p>実際にクラッシュしそうなコードをどこかに追記します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>// クラッシュ・テストコード
-</span><span class='line'>NSArray *array <span class="o">=</span> <span class="o">[</span>NSArray array<span class="o">]</span>;
-</span><span class='line'>id <span class="nv">data</span> <span class="o">=</span> array<span class="o">[</span>0<span class="o">]</span>;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+// クラッシュ・テストコード
+NSArray *array = [NSArray array];
+id data = array[0];
+{% endcodeblock %}</p>
 
 <p>あとは普通にビルドじて実行して、クラッシュすると数分待つとWeb側にレポートが表示されます。</p>
 
 <p><img src="https://farm6.staticflickr.com/5580/14866292585_363739c6b4_z.jpg" width="640" height="352" alt="スクリーンショット_2014-08-09_19_37_35"></p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 

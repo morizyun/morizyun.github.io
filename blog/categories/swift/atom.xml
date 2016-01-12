@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Swift | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/swift/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -34,12 +34,7 @@ Warning: Attempt to present <UIAlertController: 0x155d2cc70>  on <UINavigationCo
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <p>Swift初心者なので、もう少しいい書き方があれば教えて下さい。</p>
 
@@ -62,12 +57,7 @@ baseView.presentViewController(alertController, animated: true, completion: nil)
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -92,12 +82,7 @@ baseView.presentViewController(alertController, animated: true, completion: nil)
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Swiftで UIAlertController を呼び出す</h2>
 
@@ -129,12 +114,7 @@ presentViewController(alertController, animated: true, completion: nil)</p>
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -161,12 +141,7 @@ presentViewController(alertController, animated: true, completion: nil)</p>
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>[動画]Swift入門 - ドットインストール</h2>
 
@@ -256,12 +231,7 @@ iOS Simulator -> Hardware -> Keyboard ->「Connect Hardware Keyboard」のチェ
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -287,12 +257,7 @@ Javaを使ったAndroid開発で使えるローカルデータベースとして
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Realmの特徴</h2>
 
@@ -324,12 +289,7 @@ Javaを使ったAndroid開発で使えるローカルデータベースとして
 
 <p>こちらもQiitaの記事ですが、Realmを使ってデータ管理するときに使いそうな細かいTipsが書かれている。Qiita素敵！</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   
@@ -348,70 +308,44 @@ UIActionSheetがiOS8でdeprecatedになりましたが、この『<strong><a hre
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Cocoapodsによるライブラリのインストール</h2>
 
 <p>基本的にはブリッジするためのヘッダファイルさえ書けば大丈夫でした。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;プロジェクトフォルダの直下に移動&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;cd /path/to/project&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Podfileの初期化 <span class="o">(</span>Podfileが存在しない場合のみ<span class="o">)</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;pod init
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>プロジェクトフォルダの直下に移動</h1>
+
+<p>cd /path/to/project</p>
+
+<h1>Podfileの初期化 (Podfileが存在しない場合のみ)</h1>
+
+<p>pod init
+{% endcodeblock %}</p>
 
 <p><code>Podfile</code>が作成されるので、そこに次のように設定を追記します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>platform :ios, <span class="s1">&#39;8.0&#39;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;target <span class="s1">&#39;APP_NAME&#39;</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  </span>pod <span class="s1">&#39;ActionSheetPicker-3.0&#39;</span>
-</span><span class='line'>end&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;target <span class="s1">&#39;APP_NAME_TEST&#39;</span> <span class="k">do</span>
-</span><span class='line'>end
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+platform :ios, '8.0'</p>
+
+<p>target 'APP_NAME' do
+  pod 'ActionSheetPicker-3.0'
+end</p>
+
+<p>target 'APP_NAME_TEST' do
+end
+{% endcodeblock %}</p>
 
 <p>あとは、Podfileに書かれたファイルをインストールします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Podfileをインストール&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;pod install
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>Podfileをインストール</h1>
+
+<p>pod install
+{% endcodeblock %}</p>
 
 <h2>ブリッジのためのヘッダファイルの作成/追記</h2>
 
@@ -419,17 +353,11 @@ UIActionSheetがiOS8でdeprecatedになりましたが、この『<strong><a hre
 <code>APP_NAME-Bridging-Header.h</code>ファイルを追加して、
 以下を追加します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;import <span class="s2">&quot;ActionSheetPicker.h&quot;</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>import "ActionSheetPicker.h"</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p><code>プロジェクトを選択 => TARGETS => Build Settings => Objective-C Bridging Header</code> に<code>$(SRCROOT)/$(PROJECT)/SwiftProject-Bridging-Header.h</code>を追加</p>
 
@@ -474,12 +402,7 @@ return
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   

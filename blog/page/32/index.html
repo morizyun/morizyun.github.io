@@ -9,10 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="ある記事にCookpadではユーザーへのレスポンスタイム　200ms/reqを目標にしていると書かれていました。あれだけ大きなWebサービスなのにすごいですよね！
-ということでレスポンス向上を目指して以下の対策を行ないます。 (1) N + 1問題の対策
-(2) ページキャッシュの導入
-(3) &hellip;">
+  <meta name="description" content="Capistranoはデプロイプロセスを自動化してくれるGemです。今回はCapistranoを使ってローカルのステージング環境とサーバの本番環境にデプロイする手順を書きます。 もし、ProductionサーバへのデプロイとBitbucketのGitリポジトリを使う場合は、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -50,10 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="ある記事にCookpadではユーザーへのレスポンスタイム　200ms/reqを目標にしていると書かれていました。あれだけ大きなWebサービスなのにすごいですよね！
-ということでレスポンス向上を目指して以下の対策を行ないます。 (1) N + 1問題の対策
-(2) ページキャッシュの導入
-(3) &hellip;" />
+<meta property="og:description" content="Capistranoはデプロイプロセスを自動化してくれるGemです。今回はCapistranoを使ってローカルのステージング環境とサーバの本番環境にデプロイする手順を書きます。 もし、ProductionサーバへのデプロイとBitbucketのGitリポジトリを使う場合は、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/32/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -101,6 +95,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/capistrano-localhost-multi-deploy/">Capistrano2系 複数環境へのデプロイ[localhostへのデプロイ][Rails]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-01-10T12:00:00+09:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/capistrano-localhost-multi-deploy/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/blog/capistrano-localhost-multi-deploy/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14_m.jpg" width="150" alt="Eye Catch Image" style="float: left; margin: 0 20px 20px 0;"></a></p>
+
+<p>Capistranoはデプロイプロセスを自動化してくれるGemです。今回はCapistranoを使ってローカルのステージング環境とサーバの本番環境にデプロイする手順を書きます。</p>
+
+<p>もし、ProductionサーバへのデプロイとBitbucketのGitリポジトリを使う場合は、2012年12月に書いた<strong><a href="/blog/capistrano-git-rails-deploy">Rals3.2.9で始める Git連携Capistranoによる自動デプロイ</a></strong>がオススメっす。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/capistrano-localhost-multi-deploy/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -561,55 +606,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/exception_notification-gem-ruby-rails/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/SmillaEnlarger-mac-app-image-enlarge/">SmillaEnlarger Jpg/png画像を美しく拡大 [Mac App]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2012-12-27T23:00:00+09:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/SmillaEnlarger-mac-app-image-enlarge/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="/blog/SmillaEnlarger-mac-app-image-enlarge/" title="by morizyun, on Flickr"><img src="http://farm9.staticflickr.com/8338/8241799166_0992ebfd14.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>Macアプリで、jpeg/png画像を荒くせずに綺麗に拡大してくれるフリー(無料)ソフト SmillaEnlargerを紹介します。</p>
-
-<p><a href="http://sourceforge.jp/projects/sfnet_imageenlarger/" title="SmillaEnlarger" class="button big primary">SmillaEnlarger</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/SmillaEnlarger-mac-app-image-enlarge/">続きを読む</a>
     </footer>
   
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GAE | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/gae/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -27,12 +27,7 @@
 <!-- more -->
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- responsive -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>テスト駆動開発(TDD)と振る舞い駆動開発(BDD)</h2>
 
@@ -89,12 +84,7 @@ End-to-Endのテストとは，リクエストがクライアント，たとえ�
 
 <p>Cucumberはその思想こそ素晴らしいですが、バージョンによる進化のスピードが速いことや、記述に必要なノウハウやスキルの高さが要求されるため、なかなか普及していません。それを踏まえて、RspecやCapybaraと互換のある<strong><a href="https://github.com/jnicklas/turnip">Turnip</a></strong>というツールが注目を集めています。この<strong><a href="https://github.com/jnicklas/turnip">Turnip</a></strong>についての入門記事『<strong><a href="http://magazine.rubyist.net/?0042-FromCucumberToTurnip">エンドツーエンドテストの自動化は Cucumber から Turnip へ</a></strong>』がオススメです！</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- responsive -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>補足：BDDの理解を深めよう</h2>
 
@@ -143,12 +133,7 @@ End-to-Endのテストとは，リクエストがクライアント，たとえ�
 <!-- more -->
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Google App Engineの紹介</h2>
 
@@ -190,12 +175,7 @@ End-to-Endのテストとは，リクエストがクライアント，たとえ�
 
 <p>本当は資料を公開したかったんですが、セミナー限定っぽいので。。。ご興味があれば、<strong><a href="http://school.rainbowapps.com/yokohama">Rainbow Apps 横浜校さん</a></strong>に「資料ください」と問い合わせしてみてくださいまし。</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>あとがき</h2>
 

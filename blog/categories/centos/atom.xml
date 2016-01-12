@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CentOS | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/centos/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -30,12 +30,7 @@ Railsの簡単なサーバーの構築から、各種ミドルウェアの導入
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>最近のサーバのお気に入り</h2>
 
@@ -173,87 +168,75 @@ Railsの簡単なサーバーの構築から、各種ミドルウェアの導入
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>CentOSへのインストール</h2>
 
 <p>まずは本家の<a href="http://yum.postgresql.org/repopackages.php">PostgreSQL RPM Repository (with Yum)</a>で自分の環境にマッチした<code>rpm</code>を探して以下のコマンドを実行。(URLの部分は自分の環境のものに書き換えて下さい)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget -P /tmp http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-6.noarch.rpm
-</span><span class='line'>sudo rpm -ivh /tmp/pgdg-centos92-9.2-6.noarch.rpm
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+wget -P /tmp http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-6.noarch.rpm
+sudo rpm -ivh /tmp/pgdg-centos92-9.2-6.noarch.rpm
+{% endcodeblock %}</p>
 
 <p>続いて、<code>postgres9.2</code>をインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum install -y postgresql92-server postgresql92-devel postgresql92-contrib
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo yum install -y postgresql92-server postgresql92-devel postgresql92-contrib
+{% endcodeblock %}</p>
 
 <p>DBを初期化。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/rc.d/init.d/postgresql-9.2 initdb
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo /etc/rc.d/init.d/postgresql-9.2 initdb
+{% endcodeblock %}</p>
 
 <p>Postgresを起動。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/rc.d/init.d/postgresql-9.2 start
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo /etc/rc.d/init.d/postgresql-9.2 start
+{% endcodeblock %}</p>
 
 <p>さらにサーバの起動時にPostgresが起動するように設定します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chkconfig postgresql-9.2 on
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo chkconfig postgresql-9.2 on
+{% endcodeblock %}</p>
 
 <p>自動起動の設定が成功したか確認。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chkconfig --list | grep postgresql-9.2&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;postgresql-9.2  0:off   1:off   2:on    3:on    4:on    5:on    6:off <span class="c">#&amp;lt;= となっていれば成功</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+chkconfig --list | grep postgresql-9.2</p>
+
+<blockquote><p>postgresql-9.2  0:off   1:off   2:on    3:on    4:on    5:on    6:off #&lt;= となっていれば成功
+{% endcodeblock %}</p></blockquote>
 
 <h2>Postgresqlの設定修正</h2>
 
 <p>9.2の初期設定だと、unixのユーザー名がPostgreSQLのユーザー名と一致していないといけないようになっているそうです。
 その修正方法です。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vi /var/lib/pgsql/9.2/data/pg_hba.conf
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo vi /var/lib/pgsql/9.2/data/pg_hba.conf
+{% endcodeblock %}</p>
 
 <p>上のファイルの中の以下の部分を修正。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">local   </span>all             postgres                                peer&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;↓ <span class="nv">peer</span> <span class="o">=</span>&gt; md5に修正&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;local   all             postgres                                md5
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+local   all             postgres                                peer</p>
+
+<h1>↓ peer => md5に修正</h1>
+
+<p>local   all             postgres                                md5
+{% endcodeblock %}</p>
 
 <h2>CentOSへのpgのインストール</h2>
 
 <p>CentOSへpgをインストールする場合は、<code>vim ~/.bashrc</code>で事前に以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">PATH</span><span class="k">}</span>:/usr/pgsql-9.2/bin
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+export PATH=${PATH}:/usr/pgsql-9.2/bin
+{% endcodeblock %}</p>
 
 <p>続いて、<code>source ~/.bashrc</code>を実行して設定を反映。</p>
 
@@ -266,191 +249,123 @@ Railsの簡単なサーバーの構築から、各種ミドルウェアの導入
 <p>インストールが完了すると、postgresユーザーが追加されます。このユーザーになってから、createuserコマンドを実行するとユーザーが作成されます。
 <code>[ユーザー名]</code>には任意のユーザー名を追加してください。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo su -
-</span><span class='line'>su - postgres
-</span><span class='line'>createuser -s <span class="o">[</span>ユーザー名<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo su -
+su - postgres
+createuser -s [ユーザー名]
+{% endcodeblock %}</p>
 
 <h2>Macへのインストール(Homebrew)</h2>
 
 <p>Macの『<a href="http://mxcl.github.com/homebrew/">Homebrew</a>』をつかってのインストール手順です。まずは<code>postgres</code>をインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install postgresql
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+brew install postgresql
+{% endcodeblock %}</p>
 
 <p>続いて、DBを初期化する前に既存のposgreSQL環境を移動。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mv /usr/local/var/postgres /usr/local/var/postgres.org
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+mv /usr/local/var/postgres /usr/local/var/postgres.org
+{% endcodeblock %}</p>
 
 <p>でもってDB初期化。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>initdb /usr/local/var/postgres -E utf8&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;The files belonging to this database system will be owned by user <span class="s2">&quot;xxxx&quot;</span>.
-</span><span class='line'>This user must also own the server process.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;The database cluster will be initialized with locale <span class="s2">&quot;ja_JP.UTF-8&quot;</span>.
-</span><span class='line'>initdb: could not find suitable text search configuration <span class="k">for </span>locale <span class="s2">&quot;ja_JP.UTF-8&quot;</span>
-</span><span class='line'>The default text search configuration will be <span class="nb">set </span>to <span class="s2">&quot;simple&quot;</span>.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;fixing permissions on existing directory /usr/local/var/postgres ... ok
-</span><span class='line'>creating subdirectories ... ok
-</span><span class='line'>selecting default max_connections ... 20
-</span><span class='line'>selecting default shared_buffers ... 1600kB
-</span><span class='line'>creating configuration files ... ok
-</span><span class='line'>creating template1 database in /usr/local/var/postgres/base/1 ... ok
-</span><span class='line'>initializing pg_authid ... ok
-</span><span class='line'>initializing dependencies ... ok
-</span><span class='line'>creating system views ... ok
-</span><span class='line'>loading system objects<span class="err">&#39;</span> descriptions ... ok
-</span><span class='line'>creating collations ... ok
-</span><span class='line'>creating conversions ... ok
-</span><span class='line'>creating dictionaries ... ok
-</span><span class='line'>setting privileges on built-in objects ... ok
-</span><span class='line'>creating information schema ... ok
-</span><span class='line'>loading PL/pgSQL server-side language ... ok
-</span><span class='line'>vacuuming database template1 ... ok
-</span><span class='line'>copying template1 to template0 ... ok
-</span><span class='line'>copying template1 to postgres ... ok&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;WARNING: enabling <span class="s2">&quot;trust&quot;</span> authentication <span class="k">for </span><span class="nb">local </span>connections
-</span><span class='line'>You can change this by editing pg_hba.conf or using the option -A, or
-</span><span class='line'>--auth-local and --auth-host, the next <span class="nb">time </span>you run initdb.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Success. You can now start the database server using:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;postgres -D /usr/local/var/postgres
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;or&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;pg_ctl -D /usr/local/var/postgres -l logfile start
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+initdb /usr/local/var/postgres -E utf8</p>
+
+<blockquote><p>The files belonging to this database system will be owned by user "xxxx".
+This user must also own the server process.</p>
+
+<p>The database cluster will be initialized with locale "ja_JP.UTF-8".
+initdb: could not find suitable text search configuration for locale "ja_JP.UTF-8"
+The default text search configuration will be set to "simple".</p>
+
+<p>fixing permissions on existing directory /usr/local/var/postgres ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 20
+selecting default shared_buffers ... 1600kB
+creating configuration files ... ok
+creating template1 database in /usr/local/var/postgres/base/1 ... ok
+initializing pg_authid ... ok
+initializing dependencies ... ok
+creating system views ... ok
+loading system objects' descriptions ... ok
+creating collations ... ok
+creating conversions ... ok
+creating dictionaries ... ok
+setting privileges on built-in objects ... ok
+creating information schema ... ok
+loading PL/pgSQL server-side language ... ok
+vacuuming database template1 ... ok
+copying template1 to template0 ... ok
+copying template1 to postgres ... ok</p>
+
+<p>WARNING: enabling "trust" authentication for local connections
+You can change this by editing pg_hba.conf or using the option -A, or
+--auth-local and --auth-host, the next time you run initdb.</p>
+
+<p>Success. You can now start the database server using:</p>
+
+<pre><code>postgres -D /usr/local/var/postgres
+</code></pre>
+
+<p>or</p>
+
+<pre><code>pg_ctl -D /usr/local/var/postgres -l logfile start
+</code></pre>
+
+<p>{% endcodeblock %}</p></blockquote>
 
 <p>Macにプリインストール(?)されているpostgresを見に行かないように設定を修正。(詳細は<strong><a href="http://d.hatena.ne.jp/hiro_nemu/20120302/1330679054">こちら</a></strong>)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget http://nextmarvel.net/blog/downloads/fixBrewLionPostgres.sh
-</span><span class='line'>sh fixBrewLionPostgres.sh
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+wget http://nextmarvel.net/blog/downloads/fixBrewLionPostgres.sh
+sh fixBrewLionPostgres.sh
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo mkdir /var/pgsql_socket
-</span><span class='line'>sudo chmod 777 /var/pgsql_socket
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo mkdir /var/pgsql_socket
+sudo chmod 777 /var/pgsql_socket
+{% endcodeblock %}</p>
 
 <p>PostgreSQLの起動。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+{% endcodeblock %}</p>
 
 <p>PostgreSQLの動作確認。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>psql -l&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;                          List of databases
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;   Name    | Owner | Encoding |   Collate   |    Ctype    | Access privileges
-</span><span class='line'>-----------+-------+----------+-------------+-------------+-------------------
-</span><span class='line'> postgres  | komji | UTF8     | ja_JP.UTF-8 | ja_JP.UTF-8 |
-</span><span class='line'> template0 | komji | UTF8     | ja_JP.UTF-8 | ja_JP.UTF-8 | <span class="o">=</span>c/komji         +&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;       |       |          |             |             | <span class="nv">komji</span><span class="o">=</span>CTc/komji
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt; template1 | komji | UTF8     | ja_JP.UTF-8 | ja_JP.UTF-8 | <span class="o">=</span>c/komji         +&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;       |       |          |             |             | <span class="nv">komji</span><span class="o">=</span>CTc/komji
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+psql -l</p>
+
+<pre><code>                          List of databases
+</code></pre>
+
+<p>   Name    | Owner | Encoding |   Collate   |    Ctype    | Access privileges
+-----------+-------+----------+-------------+-------------+-------------------
+ postgres  | komji | UTF8     | ja_JP.UTF-8 | ja_JP.UTF-8 |
+ template0 | komji | UTF8     | ja_JP.UTF-8 | ja_JP.UTF-8 | =c/komji         +</p>
+
+<pre><code>       |       |          |             |             | komji=CTc/komji
+</code></pre>
+
+<p> template1 | komji | UTF8     | ja_JP.UTF-8 | ja_JP.UTF-8 | =c/komji         +</p>
+
+<pre><code>       |       |          |             |             | komji=CTc/komji
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>となっていれば成功。もしエラーが発生するようなら、対策を下の方のおまけに書いたのでやってみて下さい。</p>
 
 <p>次に、PostgreSQLを自動起動するように設定。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-</span><span class='line'>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+{% endcodeblock %}</p>
 
 <h2>MacでのGem pgのインストール</h2>
 
@@ -458,134 +373,78 @@ Railsの簡単なサーバーの構築から、各種ミドルウェアの導入
 
 <p>ではいよいよインストールですが、<code>gem install pg</code>ではNGらしいです。詳しくは以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew info postgresql&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;If you want to install the postgres gem, including ARCHFLAGS is recommended:
-</span><span class='line'>env <span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch x86_64&quot;</span> gem install pg
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+brew info postgresql</p>
+
+<blockquote><p>If you want to install the postgres gem, including ARCHFLAGS is recommended:
+env ARCHFLAGS="-arch x86_64" gem install pg
+{% endcodeblock %}</p></blockquote>
 
 <p>ということで以下のコマンドを実行して<code>pg</code>をインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>env <span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch x86_64&quot;</span> gem install pg
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+env ARCHFLAGS="-arch x86_64" gem install pg
+{% endcodeblock %}</p>
 
 <h2>コンソールからのPostgreSQLの操作</h2>
 
 <p>コマンドラインからのpostgresへの操作です。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ユーザーの作成<span class="o">(</span>DBの作成権限のあるユーザー<span class="o">)</span> パスワード省略&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;createuser -s <span class="o">[</span>ユーザー名<span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ユーザーの作成<span class="o">(</span>DBの作成権限のあるユーザー<span class="o">)</span> パスワード付き&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;createuser -s <span class="o">[</span>ユーザー名<span class="o">]</span> -P
-</span><span class='line'>新しいロールのためのパスワード: &amp;lt;<span class="o">=</span> パスワード入力
-</span><span class='line'>もう一度入力してください： &amp;lt;<span class="o">=</span> パスワード入力&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ユーザーの削除&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;dropuser <span class="o">[</span>ユーザー名<span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;データベースの作成<span class="o">(</span>superuserではない<span class="o">)</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;createdb <span class="o">[</span>データベース名<span class="o">]</span> -O <span class="o">[</span>ユーザー名<span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;データベースの作成<span class="o">(</span>superuser<span class="o">)</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;createdb <span class="o">[</span>データベース名<span class="o">]</span> -O <span class="o">[</span>ユーザー名<span class="o">]</span> -s&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;データベースの削除&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;dropdb <span class="o">[</span>データベース名<span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;データベース一覧の表示&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;psql -l
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>ユーザーの作成(DBの作成権限のあるユーザー) パスワード省略</h1>
+
+<p>createuser -s [ユーザー名]</p>
+
+<h1>ユーザーの作成(DBの作成権限のあるユーザー) パスワード付き</h1>
+
+<p>createuser -s [ユーザー名] -P
+新しいロールのためのパスワード: &lt;= パスワード入力
+もう一度入力してください： &lt;= パスワード入力</p>
+
+<h1>ユーザーの削除</h1>
+
+<p>dropuser [ユーザー名]</p>
+
+<h1>データベースの作成(superuserではない)</h1>
+
+<p>createdb [データベース名] -O [ユーザー名]</p>
+
+<h1>データベースの作成(superuser)</h1>
+
+<p>createdb [データベース名] -O [ユーザー名] -s</p>
+
+<h1>データベースの削除</h1>
+
+<p>dropdb [データベース名]</p>
+
+<h1>データベース一覧の表示</h1>
+
+<p>psql -l
+{% endcodeblock %}</p>
 
 <p>PostgreSQLのコマンドラインツール<code>psql</code>の主要コマンド一覧です。<br/>MySQLのmysqlに近いツールのようです。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;PostgreSQLの再起動&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log restart&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;psql の起動&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;psql <span class="o">[</span>データベース名<span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;psql の終了&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="se">\q</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;psqlで使えるコマンド一覧&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="se">\?</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<h1>PostgreSQLの再起動</h1>
+
+<p>pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log restart</p>
+
+<h1>psql の起動</h1>
+
+<p>psql [データベース名]</p>
+
+<h1>psql の終了</h1>
+
+<p>\q</p>
+
+<h1>psqlで使えるコマンド一覧</h1>
+
+<p>\?
+{% endcodeblock %}</p>
+
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>おまけ：[エラー] connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"? の対策</h2>
 
@@ -602,33 +461,20 @@ connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
 
 <p>対策用のシェルスクリプトを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;シェルスクリプトの取得&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;curl -o fixBrewLionPostgresql.sh http://nextmarvel.net/blog/downloads/fixBrewLionPostgres.sh&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;シェルスクリプトの実行権限を追加&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;chmod a+x fixBrewLionPostgresql.sh&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;シェルスクリプトの実行&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;./fixBrewLionPostgresql.sh
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>シェルスクリプトの取得</h1>
+
+<p>curl -o fixBrewLionPostgresql.sh http://nextmarvel.net/blog/downloads/fixBrewLionPostgres.sh</p>
+
+<h1>シェルスクリプトの実行権限を追加</h1>
+
+<p>chmod a+x fixBrewLionPostgresql.sh</p>
+
+<h1>シェルスクリプトの実行</h1>
+
+<p>./fixBrewLionPostgresql.sh
+{% endcodeblock %}</p>
 
 <p>これで<code>psql -l</code>でエラーが発生しなくなれば成功です。</p>
 
@@ -636,25 +482,16 @@ connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
 
 <p>以下のコマンドを実行してフォルダを初期化。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;フォルダの削除&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rm -rf /usr/local/var/postgres&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;初期化&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;initdb /usr/local/var/postgres
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>フォルダの削除</h1>
+
+<p>rm -rf /usr/local/var/postgres</p>
+
+<h1>初期化</h1>
+
+<p>initdb /usr/local/var/postgres
+{% endcodeblock %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -703,117 +540,86 @@ connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>CentOS 6.xへのインストール</h2>
 
 <p>まずは、CentOS 6.xにyumをつかってRedisをインストールする前にEPELを追加。追加済の場合はスキップ。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum --enablerepo<span class="o">=</span>epel -y install redis
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo yum --enablerepo=epel -y install redis
+{% endcodeblock %}</p>
 
 <p>Redisを起動。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/init.d/redis start
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo /etc/init.d/redis start
+{% endcodeblock %}</p>
 
 <p>次に動作確認してみます。<code>redis-cli</code>でRedisに接続できます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>redis-cli&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;set <span class="s1">&#39;test&#39;</span> 10
-</span><span class='line'>OK
-</span><span class='line'>get <span class="s1">&#39;test&#39;</span>
-</span><span class='line'><span class="s2">&quot;10&quot;</span>
-</span><span class='line'><span class="nb">exit</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+redis-cli</p>
+
+<blockquote><p>set 'test' 10
+OK
+get 'test'
+"10"
+exit
+{% endcodeblock %}</p></blockquote>
 
 <p>さらにサーバの起動時にRedisが起動するように設定します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chkconfig redis on
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo chkconfig redis on
+{% endcodeblock %}</p>
 
 <p>自動起動の設定が成功したか確認。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chkconfig --list | grep redis&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;redis           0:off   1:off   2:on    3:on    4:on    5:on    6:off <span class="c">#&amp;lt;= となっていれば成功</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+chkconfig --list | grep redis</p>
+
+<blockquote><p>redis           0:off   1:off   2:on    3:on    4:on    5:on    6:off #&lt;= となっていれば成功
+{% endcodeblock %}</p></blockquote>
 
 <h2>Macへのインストール(Homebrew)</h2>
 
 <p>Macの『<a href="http://mxcl.github.com/homebrew/">Homebrew</a>』をつかってのインストール手順はこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install redis&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;<span class="o">==</span>&gt; Downloading http://redis.googlecode.com/files/redis-2.6.7.tar.gz
-</span><span class='line'>Already downloaded: /Library/Caches/Homebrew/redis-2.6.7.tar.gz
-</span><span class='line'><span class="o">==</span>&gt; make -C /private/tmp/redis-KHTm/redis-2.6.7/src <span class="nv">CC</span><span class="o">=</span><span class="nv">cc</span>
-</span><span class='line'><span class="o">==</span>&gt; Caveats
-</span><span class='line'>You should reload redis:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
-</span><span class='line'>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;/usr/local/Cellar/redis/2.6.7: 9 files, 744K, built in 2 seconds
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+brew install redis</p>
+
+<blockquote><p>==> Downloading http://redis.googlecode.com/files/redis-2.6.7.tar.gz
+Already downloaded: /Library/Caches/Homebrew/redis-2.6.7.tar.gz
+==> make -C /private/tmp/redis-KHTm/redis-2.6.7/src CC=cc
+==> Caveats
+You should reload redis:</p>
+
+<pre><code>launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+</code></pre>
+
+<p>/usr/local/Cellar/redis/2.6.7: 9 files, 744K, built in 2 seconds
+{% endcodeblock %}</p></blockquote>
 
 <p>Macの起動時にRedisが自動起動するように設定。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
-</span><span class='line'>launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+{% endcodeblock %}</p>
 
 <p>redisの接続確認はこちら。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>redis-cli
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+redis-cli
+{% endcodeblock %}</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -849,60 +655,49 @@ connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>リポジトリの登録</h2>
 
 <p>以下のコマンドを実行して、nginxのリポジトリを登録。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+{% endcodeblock %}</p>
 
 <p>nginxのリポジトリ登録確認。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum list nginx --disablerepo<span class="o">=</span>* --enablerepo<span class="o">=</span>nginx
-</span><span class='line'>nginx            | 2.9 kB     00:00
-</span><span class='line'>nginx/primary_db |  24 kB     00:00
-</span><span class='line'>Available Packages
-</span><span class='line'>nginx.x86_64 1.4.2-1.el6.ngx nginx
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+yum list nginx --disablerepo=* --enablerepo=nginx
+nginx            | 2.9 kB     00:00
+nginx/primary_db |  24 kB     00:00
+Available Packages
+nginx.x86_64 1.4.2-1.el6.ngx nginx
+{% endcodeblock %}</p>
 
 <h2>Nginxのインストール</h2>
 
 <p>次のコマンドを実行してNginxをインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum install -y nginx --disablerepo<span class="o">=</span>* --enablerepo<span class="o">=</span>nginx
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo yum install -y nginx --disablerepo=* --enablerepo=nginx
+{% endcodeblock %}</p>
 
 <h2>Nginxの設定</h2>
 
 <p>Nginxを起動及び、自動起動を設定。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo service nginx start
-</span><span class='line'>sudo chkconfig nginx on
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo service nginx start
+sudo chkconfig nginx on
+{% endcodeblock %}</p>
 
 <p>自動機能の確認。以下のようになっていれば成功。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chkconfig --list nginx
-</span><span class='line'>nginx           0:off   1:off   2:on    3:on    4:on    5:on    6:off
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+chkconfig --list nginx
+nginx           0:off   1:off   2:on    3:on    4:on    5:on    6:off
+{% endcodeblock %}</p>
 
 <p>実際のRailsへの利用は僕自身の検証が追いついていません。という申し訳ない状況です。完熟トマトというブログの<strong><a href="http://kanjuku-tomato.blogspot.jp/2013/02/centos-63railsnginxrailsunicornpostgres.html">CentOS 6.3にRails実行環境を構築する(Nginx+Rails+Unicorn+PostgreSQL)</a></strong>がとても良くまとまっていてわかりやすいので、是非ご覧ください。改めて検証をやりきったらアップデートします！</p>
 
@@ -912,107 +707,69 @@ connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
 
 <p>まずはオレオレ証明を作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo su -
-</span><span class='line'>mkdir /etc/nginx/ssl
-</span><span class='line'><span class="nb">cd</span> /etc/nginx/ssl
-</span><span class='line'>openssl genrsa -des3 -out server.key 1024
-</span><span class='line'>openssl req -new -key server.key -out server.csr
-</span><span class='line'>cp server.key server.key.org
-</span><span class='line'>openssl rsa -in server.key.org -out server.key
-</span><span class='line'>openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo su -
+mkdir /etc/nginx/ssl
+cd /etc/nginx/ssl
+openssl genrsa -des3 -out server.key 1024
+openssl req -new -key server.key -out server.csr
+cp server.key server.key.org
+openssl rsa -in server.key.org -out server.key
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+{% endcodeblock %}</p>
 
 <p>作った証明書を<code>nginx.conf</code>側に反映。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;# 以下を443側に追記
-</span><span class='line'>listen 443 default ssl;
-</span><span class='line'>ssl on;
-</span><span class='line'>ssl_certificate /etc/nginx/ssl/server.crt;
-</span><span class='line'>ssl_certificate_key /etc/nginx/ssl/server.key;
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+server {</p>
+
+<pre><code># 以下を443側に追記
+listen 443 default ssl;
+ssl on;
+ssl_certificate /etc/nginx/ssl/server.crt;
+ssl_certificate_key /etc/nginx/ssl/server.key;
+</code></pre>
+
+<p>}
+{% endcodeblock %}</p>
 
 <h2>httpのアクセスをhttpsにリダイレクトさせる</h2>
 
 <p><code>nginx.conf</code>を以下の様に書き換え！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;listen 80;
-</span><span class='line'>server_name example.com;
-</span><span class='line'><span class="k">return </span>301 https:/<span class="nv">$host$request_uri</span>;
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;server <span class="o">{</span>
-</span><span class='line'>  listen 443 default ssl;
-</span><span class='line'>  server_name example.com;
-</span><span class='line'>  root /var/rails/example.com;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;  ssl on;
-</span><span class='line'>  ssl_certificate /etc/nginx/ssl/server.crt;
-</span><span class='line'>  ssl_certificate_key /etc/nginx/ssl/server.key;
-</span><span class='line'>  location / <span class="o">{</span> proxy_pass http://127.0.0.1:5001; <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+server {</p>
+
+<pre><code>listen 80;
+server_name example.com;
+return 301 https:/$host$request_uri;
+</code></pre>
+
+<p>}</p>
+
+<p>server {
+  listen 443 default ssl;
+  server_name example.com;
+  root /var/rails/example.com;</p>
+
+<p>  ssl on;
+  ssl_certificate /etc/nginx/ssl/server.crt;
+  ssl_certificate_key /etc/nginx/ssl/server.key;
+  location / { proxy_pass http://127.0.0.1:5001; }
+}
+{% endcodeblock %}</p>
 
 <h2>AWS ELB経由でnginxに繋げる場合にクライアントIPを取得する方法</h2>
 
 <p>AWS ELB経由でnginxに繋げる場合にクライアントIPを取得する方法です。正直言って、かなりハマったので忘備録がてらのメモです！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>http <span class="o">{</span>
-</span><span class='line'>  <span class="c"># 以下のコードをhttp/serverなどの中に追記</span>
-</span><span class='line'>  real_ip_header     X-Forwarded-For;
-</span><span class='line'>  set_real_ip_from   0.0.0.0/0;
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+http {
+  # 以下のコードをhttp/serverなどの中に追記
+  real_ip_header     X-Forwarded-For;
+  set_real_ip_from   0.0.0.0/0;
+}
+{% endcodeblock %}</p>
 
 <p>IP制限などを行いたいときに超便利です！</p>
 
@@ -1045,12 +802,7 @@ connections on Unix domain socket "/var/pgsql_socket/.s.PGSQL.5432"?
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>VirtualBox</h2>
 
@@ -1094,29 +846,23 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <p>vagrantをインストールしたら、boxでchefを使えるようにするためのプラグインをインストールします。コマンドプロンプトを開いて以下のコマンドを入力。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant plugin install vagrant-omnibus
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant plugin install vagrant-omnibus
+{% endcodeblock %}</p>
 
 <h2>仮想マシンの作成</h2>
 
 <p>自分の好きな場所(例は<code>~/Dropbox/vagrant</code>)に仮想マシン用のフォルダを作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir vagrant
-</span><span class='line'><span class="nb">cd </span>vagrant
-</span><span class='line'>git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp
-</span><span class='line'><span class="nb">cd </span>cakephp
-</span><span class='line'>gem install bundler
-</span><span class='line'>bundle install
-</span><span class='line'>vagrant up
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+mkdir vagrant
+cd vagrant
+git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp
+cd cakephp
+gem install bundler
+bundle install
+vagrant up
+{% endcodeblock %}</p>
 
 <p>Network系でエラーが出る場合は、一度Windows側を再起動をしてみてください。</p>
 
@@ -1125,9 +871,9 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 <p>1) C:\Windows\System32\drivers\etc\hostsを管理者権限のメモ帳で開く<br/>
 2) 次の内容を追記<br/></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>192.168.33.10 cakephp.dev
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+192.168.33.10 cakephp.dev
+{% endcodeblock %}</p>
 
 <h2>ブラウザでのアクセス</h2>
 
@@ -1145,26 +891,18 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <h2>Vagrantの基本コマンド</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant up : vagrantの起動<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant halt : vagrantを終了<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant provision : vagrantに設定を反映<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant ssh : vagrantにログイン
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant up : vagrantの起動(Vagrantfileがあるフォルダで実行)
+vagrant halt : vagrantを終了(Vagrantfileがあるフォルダで実行)
+vagrant provision : vagrantに設定を反映(Vagrantfileがあるフォルダで実行)
+vagrant ssh : vagrantにログイン
+{% endcodeblock %}</p>
 
 <h2>GitHubのリポジトリ</h2>
 
 <p>このvagrantの詳細はGitHubのリポジトリ『<strong><a href="https://github.com/morizyun/vagrant-centos-cakephp">morizyun/vagrant-centos-cakephp</a></strong>』にあります！</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>お願い</h2>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: PHP | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/php/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,12 +28,7 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>VirtualBox</h2>
 
@@ -77,29 +72,23 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <p>vagrantをインストールしたら、boxでchefを使えるようにするためのプラグインをインストールします。コマンドプロンプトを開いて以下のコマンドを入力。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant plugin install vagrant-omnibus
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant plugin install vagrant-omnibus
+{% endcodeblock %}</p>
 
 <h2>仮想マシンの作成</h2>
 
 <p>自分の好きな場所(例は<code>~/Dropbox/vagrant</code>)に仮想マシン用のフォルダを作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir vagrant
-</span><span class='line'><span class="nb">cd </span>vagrant
-</span><span class='line'>git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp
-</span><span class='line'><span class="nb">cd </span>cakephp
-</span><span class='line'>gem install bundler
-</span><span class='line'>bundle install
-</span><span class='line'>vagrant up
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+mkdir vagrant
+cd vagrant
+git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp
+cd cakephp
+gem install bundler
+bundle install
+vagrant up
+{% endcodeblock %}</p>
 
 <p>Network系でエラーが出る場合は、一度Windows側を再起動をしてみてください。</p>
 
@@ -108,9 +97,9 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 <p>1) C:\Windows\System32\drivers\etc\hostsを管理者権限のメモ帳で開く<br/>
 2) 次の内容を追記<br/></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>192.168.33.10 cakephp.dev
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+192.168.33.10 cakephp.dev
+{% endcodeblock %}</p>
 
 <h2>ブラウザでのアクセス</h2>
 
@@ -128,26 +117,18 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <h2>Vagrantの基本コマンド</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant up : vagrantの起動<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant halt : vagrantを終了<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant provision : vagrantに設定を反映<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant ssh : vagrantにログイン
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant up : vagrantの起動(Vagrantfileがあるフォルダで実行)
+vagrant halt : vagrantを終了(Vagrantfileがあるフォルダで実行)
+vagrant provision : vagrantに設定を反映(Vagrantfileがあるフォルダで実行)
+vagrant ssh : vagrantにログイン
+{% endcodeblock %}</p>
 
 <h2>GitHubのリポジトリ</h2>
 
 <p>このvagrantの詳細はGitHubのリポジトリ『<strong><a href="https://github.com/morizyun/vagrant-centos-cakephp">morizyun/vagrant-centos-cakephp</a></strong>』にあります！</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>お願い</h2>
 
@@ -187,12 +168,7 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Vagrant</h2>
 
@@ -201,9 +177,9 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <p>vagrantをインストールしたら、boxでchefを使えるようにするためのプラグインをインストール。あと、コミュニティの作ったCookbookのインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant plugin install vagrant-omnibus
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant plugin install vagrant-omnibus
+{% endcodeblock %}</p>
 
 <h2>VirtualBox</h2>
 
@@ -214,19 +190,14 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <p>自分の好きな場所(例は<code>~/Dropbox/vagrant</code>)に仮想マシン用のフォルダを作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/Dropbox/vagrant
-</span><span class='line'>git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp
-</span><span class='line'><span class="nb">cd </span>cakephp
-</span><span class='line'>bundle install
-</span><span class='line'>bundle <span class="nb">exec </span>berks install --path site-cookbooks
-</span><span class='line'>vagrant up
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+mkdir ~/Dropbox/vagrant
+git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp
+cd cakephp
+bundle install
+bundle exec berks install --path site-cookbooks
+vagrant up
+{% endcodeblock %}</p>
 
 <p>もし<code>bundle install</code>などでエラーが出る場合は、<code>homebrew, ruby</code>の問題の可能性があるので『<strong><a href="http://morizyun.github.io/blog/mountain-lion-rails-setup-ruby-rvm-msyql/">Mountain Lion Rails 最新環境 詳解 構築手順 [Homebrew][MySQL][rbenv][Ruby]</a></strong>』を参照して「Homebrew、rbenv」をインストールしてください。</p>
 
@@ -234,9 +205,9 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <p>Macの場合は、<code>sudo vim /etc/hosts</code>でhostsに以下の内容を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>192.168.33.10 cakephp.dev
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+192.168.33.10 cakephp.dev
+{% endcodeblock %}</p>
 
 <h2>ブラウザでのアクセス</h2>
 
@@ -254,13 +225,11 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <h2>Vagrantの基本コマンド</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant up : vagrantの起動<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant halt : vagrantを終了<span class="o">(</span>Vagrantfileがあるフォルダで実行<span class="o">)</span>
-</span><span class='line'>vagrant ssh : vagrantにログイン
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant up : vagrantの起動(Vagrantfileがあるフォルダで実行)
+vagrant halt : vagrantを終了(Vagrantfileがあるフォルダで実行)
+vagrant ssh : vagrantにログイン
+{% endcodeblock %}</p>
 
 <h2>GitHubのリポジトリ</h2>
 
@@ -278,12 +247,7 @@ Linuxコマンドが無いと生きていけないのでダウンロードして
 
 <p>ごっちゃになってしまいがちな知識を整理してくれています。素晴らしい！</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>エラーに関するメモ</h2>
 
@@ -356,58 +320,39 @@ README.mdのテンプレート。かなり重宝しています！</p>
 
 <h2>Vagrantの基本的な構成</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apache2
-</span><span class='line'>php5 <span class="o">(</span>5.5<span class="o">)</span>
-</span><span class='line'>php5-cli
-</span><span class='line'>php5-mysql
-</span><span class='line'>php5-dev
-</span><span class='line'>php-pear
-</span><span class='line'>PHPUnit
-</span><span class='line'>PHP_CodeSniffer
-</span><span class='line'>CakePHP_CodeSniffer
-</span><span class='line'>mysql-server
-</span><span class='line'>phpMyAdmin
-</span><span class='line'>git-core
-</span><span class='line'>vim
-</span><span class='line'>curl
-</span><span class='line'>composer
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+apache2
+php5 (5.5)
+php5-cli
+php5-mysql
+php5-dev
+php-pear
+PHPUnit
+PHP_CodeSniffer
+CakePHP_CodeSniffer
+mysql-server
+phpMyAdmin
+git-core
+vim
+curl
+composer
+{% endcodeblock %}</p>
 
 <p>2014/02/23時点です。最新は<strong><a href="https://github.com/borivojevic/cakephp-vagrant">borivojevic/cakephp-vagrant</a></strong></p>
 
 <!-- more -->
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>[Mac限定] Homebrew</h2>
 
 <p><strong><a href="http://brew.sh/index_ja.html">Homebrew</a></strong><br/>
 Homebrewの公式サイトに書かれた手順でCUIパッケージ管理のHomebrewをインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+{% endcodeblock %}</p>
 
 <h2>Vagrant</h2>
 
@@ -423,37 +368,31 @@ Homebrewの公式サイトに書かれた手順でCUIパッケージ管理のHom
 
 <p>自分の好きな場所(例は<code>~/Dropbox/Vagrant</code>)に仮想マシン用のフォルダを作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir ~/Dropbox/vagrant
-</span><span class='line'>git clone git://github.com/borivojevic/cakephp-vagrant.git cakephp
-</span><span class='line'><span class="nb">cd </span>cakephp
-</span><span class='line'>vagrant up
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+mkdir ~/Dropbox/vagrant
+git clone git://github.com/borivojevic/cakephp-vagrant.git cakephp
+cd cakephp
+vagrant up
+{% endcodeblock %}</p>
 
 <h2>/etc/hostsの変更</h2>
 
 <p><code>sudo vim /etc/hosts</code>でファイルを開いて以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>33.33.33.10 dev.mirkoborivojevic.localhost
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+33.33.33.10 dev.mirkoborivojevic.localhost
+{% endcodeblock %}</p>
 
 <h2>CakePHPのダウンロード</h2>
 
 <p><code>webroot</code>フォルダはVagrantと共有できるので、主にここで作業していきます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>webroot
-</span><span class='line'>git clone git@github.com:cakephp/cakephp.git sample1
-</span><span class='line'><span class="nb">cd </span>sample1
-</span><span class='line'>chmod -R 777 app/tmp
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cd webroot
+git clone git@github.com:cakephp/cakephp.git sample1
+cd sample1
+chmod -R 777 app/tmp
+{% endcodeblock %}</p>
 
 <h2>CakePHPのセキュリティ設定を変更</h2>
 
@@ -463,122 +402,79 @@ Homebrewの公式サイトに書かれた手順でCUIパッケージ管理のHom
 
 <p><strong><a href="https://github.com/cakephp/debug_kit">cakephp/debug_kit</a></strong>をインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>app/Plugin
-</span><span class='line'>git clone git@github.com:cakephp/debug_kit.git
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+cd app/Plugin
+git clone git@github.com:cakephp/debug_kit.git
+{% endcodeblock %}</p>
 
 <p><code>vim app/Config/bootstrap.php</code>でファイルを開いて以下の行を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="x">CakePlugin::load(&#39;DebugKit&#39;);</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:php %}
+CakePlugin::load('DebugKit');
+{% endcodeblock %}</p>
 
 <p><code>vim app/Controller/AppController.php</code>でファイルを開いて以下の行を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="x">class AppController extends Controller {&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">&lt;pre&gt;&lt;code&gt;public $components = array(&#39;DebugKit.Toolbar&#39;); // この行の追加</span>
-</span><span class='line'><span class="x">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">&lt;p&gt;}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:php %}
+class AppController extends Controller {</p>
+
+<pre><code>public $components = array('DebugKit.Toolbar'); // この行の追加
+</code></pre>
+
+<p>}
+{% endcodeblock %}</p>
 
 <h2>sshでのサーバーへのアクセス &amp; DBの作成</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vagrant ssh
-</span><span class='line'><span class="nb">cd</span> /vagrant/webroot/
-</span><span class='line'>cp app/Config/database.php.default app/Config/database.php
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+vagrant ssh
+cd /vagrant/webroot/
+cp app/Config/database.php.default app/Config/database.php
+{% endcodeblock %}</p>
 
 <p><code>vim app/Config/database.php</code>でファイルを開いて、以下の通り変更。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="x">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">&lt;pre&gt;&lt;code&gt;public $default = array(</span>
-</span><span class='line'><span class="x">    &#39;datasource&#39; =&amp;gt; &#39;Database/Mysql&#39;,</span>
-</span><span class='line'><span class="x">    &#39;persistent&#39; =&amp;gt; false,</span>
-</span><span class='line'><span class="x">    &#39;host&#39; =&amp;gt; &#39;localhost&#39;,</span>
-</span><span class='line'><span class="x">    &#39;login&#39; =&amp;gt; &#39;root&#39;,</span>
-</span><span class='line'><span class="x">    &#39;password&#39; =&amp;gt; &#39;root&#39;,</span>
-</span><span class='line'><span class="x">    &#39;database&#39; =&amp;gt; &#39;sample1_default&#39;, // 通常使うDB名を設定</span>
-</span><span class='line'><span class="x">    &#39;prefix&#39; =&amp;gt; &#39;&#39;,</span>
-</span><span class='line'><span class="x">    //&#39;encoding&#39; =&amp;gt; &#39;utf8&#39;,</span>
-</span><span class='line'><span class="x">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">public $test = array(</span>
-</span><span class='line'><span class="x">    &#39;datasource&#39; =&amp;gt; &#39;Database/Mysql&#39;,</span>
-</span><span class='line'><span class="x">    &#39;persistent&#39; =&amp;gt; false,</span>
-</span><span class='line'><span class="x">    &#39;host&#39; =&amp;gt; &#39;localhost&#39;,</span>
-</span><span class='line'><span class="x">    &#39;login&#39; =&amp;gt; &#39;root&#39;,</span>
-</span><span class='line'><span class="x">    &#39;password&#39; =&amp;gt; &#39;root&#39;,</span>
-</span><span class='line'><span class="x">    &#39;database&#39; =&amp;gt; &#39;sample1_test&#39;, // テスト用のDB名を設定</span>
-</span><span class='line'><span class="x">    &#39;prefix&#39; =&amp;gt; &#39;&#39;,</span>
-</span><span class='line'><span class="x">    //&#39;encoding&#39; =&amp;gt; &#39;utf8&#39;,</span>
-</span><span class='line'><span class="x">);</span>
-</span><span class='line'><span class="x">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:php %}</p>
+
+<pre><code>public $default = array(
+    'datasource' =&gt; 'Database/Mysql',
+    'persistent' =&gt; false,
+    'host' =&gt; 'localhost',
+    'login' =&gt; 'root',
+    'password' =&gt; 'root',
+    'database' =&gt; 'sample1_default', // 通常使うDB名を設定
+    'prefix' =&gt; '',
+    //'encoding' =&gt; 'utf8',
+);
+
+public $test = array(
+    'datasource' =&gt; 'Database/Mysql',
+    'persistent' =&gt; false,
+    'host' =&gt; 'localhost',
+    'login' =&gt; 'root',
+    'password' =&gt; 'root',
+    'database' =&gt; 'sample1_test', // テスト用のDB名を設定
+    'prefix' =&gt; '',
+    //'encoding' =&gt; 'utf8',
+);
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>続いて、MySQLにDBを作成。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql -u root -p <span class="c">#&amp;lt;= パスワードはroot</span>
-</span><span class='line'>create database sample1_default
-</span><span class='line'>create database sample1_test
-</span><span class='line'><span class="nb">exit</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+mysql -u root -p #&lt;= パスワードはroot
+create database sample1_default
+create database sample1_test
+exit
+{% endcodeblock %}</p>
 
 <h2>ブラウザでのアクセス</h2>
 
 <p><code>http://dev.mirkoborivojevic.localhost/sample1</code>にブラウザをアクセスすると<code>webroot/sample1</code>フォルダの中のファイルにアクセスできます。</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 

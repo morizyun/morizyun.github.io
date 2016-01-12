@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GemJam | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/gemjam/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -34,12 +34,7 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- responsive -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>プログラムのモチベーション</h2>
 
@@ -78,85 +73,55 @@
 
 <p>次にプロジェクトフォルダ直下で、Gemfile作成して以下の様に追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;debug用&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;pry&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;stackを表示&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;pry-stack_explorer&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;各種便利ユーティリティ&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;activesupport&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+source 'https://rubygems.org'</p>
+
+<h1>debug用</h1>
+
+<p>gem 'pry'</p>
+
+<h1>stackを表示</h1>
+
+<p>gem 'pry-stack_explorer'</p>
+
+<h1>各種便利ユーティリティ</h1>
+
+<p>gem 'activesupport'
+{% endcodeblock %}</p>
 
 <p>以下のコマンドを実行して、Gemをインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Gemを追加するためのディレクトリを作成&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;mkdir vendor&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Gemをディレクトリに保存&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bundle install --path vendor/bundle --jobs<span class="o">=</span>4
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>Gemを追加するためのディレクトリを作成</h1>
+
+<p>mkdir vendor</p>
+
+<h1>Gemをディレクトリに保存</h1>
+
+<p>bundle install --path vendor/bundle --jobs=4
+{% endcodeblock %}</p>
 
 <h4>(2) 実際に動かしてみる</h4>
 
 <p>例えば、<code>sample.rb</code>を作成して以下のようにコードを記入。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;pry&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;pry-byebug&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts 2.days.ago</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'pry'
+require 'pry-byebug'
+require 'active_support/all'</p>
+
+<p>puts 2.days.ago
+{% endcodeblock %}</p>
 
 <p>これを実行するとactive supportの機能である2日前の日付を取得する事ができます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bunlde <span class="nb">exec </span>ruby sample.rb&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; 2014-12-25 14:09:42 +0900&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bunlde exec ruby sample.rb</p>
+
+<h1>=> 2014-12-25 14:09:42 +0900</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h4>(3) デバッガの準備</h4>
 
@@ -165,135 +130,74 @@
 <p>まずは、<code>vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/numeric/time.rb</code>
 を開いて、daysメソッドに以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">def</span> <span class="nf">days</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;binding.pry # &amp;lt;= この行を追加</span>
-</span><span class='line'><span class="sr">ActiveSupport::Duration.new(self * 24.hours, [[:days, self]])</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+  def days</p>
+
+<pre><code>binding.pry # &lt;= この行を追加
+ActiveSupport::Duration.new(self * 24.hours, [[:days, self]])
+</code></pre>
+
+<p>  end
+{% endcodeblock %}</p>
 
 <p>そしてもう一度以下のコマンドを実行すると今度は、<code>binding.pry</code>を書いた地点で停止します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bunlde <span class="nb">exec </span>ruby sample.rb&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;デバッカが表示&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; From:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;/active_support_reading/vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/numeric/time.rb @ line 50 Numeric#days:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;     49: def days&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;  <span class="o">=</span>&gt; 50:   binding.pry&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;     51:   ActiveSupport::Duration.new<span class="o">(</span>self * 24.hours, <span class="o">[[</span>:days, self<span class="o">]])</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;     52: end&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;呼び出しの関係を取得&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;2.1.4 <span class="o">(</span>2<span class="o">)</span>:0 &gt; show-stack&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Showing all accessible frames in stack <span class="o">(</span>2 in total<span class="o">)</span>:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; --&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; <span class="o">=</span>&gt; <span class="c">#0  days &amp;lt;Numeric#days()&gt;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;    <span class="c">#1 [main]    &lt;main&gt;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;2.1.4 <span class="o">(</span>main<span class="o">)</span>:0 &gt; show-source Benchmark.ms&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; From:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;/active_support_reading/vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/benchmark.rb @ line 11:&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Owner: <span class="c">#&amp;lt;Class:Benchmark&gt;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Visibility: public&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; Number of lines: 3&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; def ms&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt;   1000 * realtime <span class="o">{</span> yield <span class="o">}</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;<span class="o">=</span>&gt; end&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;ここでstepを実行すると処理の中身に移動、nextで次の処理を見ることができる&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bunlde exec ruby sample.rb</p>
+
+<h1>デバッカが表示</h1>
+
+<h1>=> From:</h1>
+
+<h1>=>/active_support_reading/vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/numeric/time.rb @ line 50 Numeric#days:</h1>
+
+<h1>=></h1>
+
+<h1>=>     49: def days</h1>
+
+<h1>=>  => 50:   binding.pry</h1>
+
+<h1>=>     51:   ActiveSupport::Duration.new(self * 24.hours, [[:days, self]])</h1>
+
+<h1>=>     52: end</h1>
+
+<h1>呼び出しの関係を取得</h1>
+
+<p>2.1.4 (2):0 > show-stack</p>
+
+<h1>=> Showing all accessible frames in stack (2 in total):</h1>
+
+<h1>=> --</h1>
+
+<h1>=> => #0  days &lt;Numeric#days()></h1>
+
+<h1>=>    #1 [main]    <main></h1>
+
+<p>2.1.4 (main):0 > show-source Benchmark.ms</p>
+
+<h1>=></h1>
+
+<h1>=> From:</h1>
+
+<h1>=>/active_support_reading/vendor/bundle/ruby/2.1.0/gems/activesupport-4.2.0/lib/active_support/core_ext/benchmark.rb @ line 11:</h1>
+
+<h1>=> Owner: #&lt;Class:Benchmark></h1>
+
+<h1>=> Visibility: public</h1>
+
+<h1>=> Number of lines: 3</h1>
+
+<h1>=></h1>
+
+<h1>=> def ms</h1>
+
+<h1>=>   1000 * realtime { yield }</h1>
+
+<h1>=> end</h1>
+
+<h1>ここでstepを実行すると処理の中身に移動、nextで次の処理を見ることができる</h1>
+
+<p>{% endcodeblock %}</p>
 
 <p>あとはちょっと変更して見て動かしたりしてみてください。</p>
 
@@ -311,12 +215,7 @@
 </pre>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- responsive -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>ActiveSupportの面白い機能</h2>
 
@@ -328,110 +227,72 @@
 <p><code>Benchmark.ms</code>はブロックを渡すとブロックを評価して実行時間を計測します。<br/>
 (Benchmark.realtimeのラッパーです)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts Benchmark.ms {  sleep 1 } # =&gt; 1000.234</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<p>puts Benchmark.ms {  sleep 1 } # => 1000.234
+{% endcodeblock %}</p>
 
 <h3>cattr_accessor</h3>
 
 <p><code>attr_accessor</code>はインスタンス変数へのアクセッサを提供するメソッド。<br/>
 <code>cattr_accessor</code>は、クラス変数へのアクセッサを提供するメソッド。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;class Sample</span>
-</span><span class='line'><span class="sr">  cattr_accessor :hoge</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Sample</span><span class="o">.</span><span class="n">hoge</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="nb">puts</span> <span class="no">Sample</span><span class="o">.</span><span class="n">hoge</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<p>class Sample
+  cattr_accessor :hoge
+end</p>
+
+<p>Sample.hoge = 1
+puts Sample.hoge
+{% endcodeblock %}</p>
 
 <h3>descendants</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;class Parent</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">class Child &amp;lt; Parent</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">class GrandChild &amp;lt; Child</span>
-</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">継承してくれている先を出す</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts Parent.descendants.to_s #=&gt; [Child, GrandChild]&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="err">継承元を出すメソッド</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;puts GrandChild.ancestors.to_s&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;=&gt;</span> <span class="o">[</span><span class="no">GrandChild</span><span class="p">,</span> <span class="no">Child</span><span class="p">,</span> <span class="no">Parent</span><span class="p">,</span> <span class="no">Object</span><span class="p">,</span> <span class="no">JSON</span><span class="o">::</span><span class="no">Ext</span><span class="o">::</span><span class="no">Generator</span><span class="o">::</span><span class="no">GeneratorMethods</span><span class="o">::</span><span class="no">Object</span><span class="p">,</span> <span class="no">PP</span><span class="o">::</span><span class="no">ObjectMixin</span><span class="p">,</span> <span class="no">Kernel</span><span class="p">,</span> <span class="no">BasicObject</span><span class="o">]&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<p>class Parent
+end
+class Child &lt; Parent
+end
+class GrandChild &lt; Child
+end</p>
+
+<h1>継承してくれている先を出す</h1>
+
+<p>puts Parent.descendants.to_s #=> [Child, GrandChild]</p>
+
+<h1>継承元を出すメソッド</h1>
+
+<p>puts GrandChild.ancestors.to_s</p>
+
+<h1>=> [GrandChild, Child, Parent, Object, JSON::Ext::Generator::GeneratorMethods::Object, PP::ObjectMixin, Kernel, BasicObject]</h1>
+
+<p>{% endcodeblock %}</p>
 
 <h2>Hash.except</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;ハッシュから特定のキーを削除&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="n">hoge</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">huga</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
-</span><span class='line'><span class="nb">puts</span> <span class="nb">hash</span><span class="o">.</span><span class="n">except</span><span class="p">(</span><span class="ss">:hoge</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span> <span class="c1"># =&gt; {:huga =&gt; 2}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<h1>ハッシュから特定のキーを削除</h1>
+
+<p>hash = { hoge: 1, huga: 2 }
+puts hash.except(:hoge).to_s # => {:huga => 2}
+{% endcodeblock %}</p>
 
 <h2>Time#change</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;その日の4時0分0秒を取得&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">hour</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">minute</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">second</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">#=&gt; 2014-12-27 04:00:00 +0900</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/all'</p>
+
+<h1>その日の4時0分0秒を取得</h1>
+
+<p>Time.now.change(hour: 4, minute: 0, second: 0) #=> 2014-12-27 04:00:00 +0900
+{% endcodeblock %}</p>
 
 <p>ここの記事が大変参考になりました！</p>
 
@@ -480,12 +341,7 @@
 
 <p><strong><a href="http://qiita.com/shiro615">shiro615 - Qiita</a></strong></p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- responsive -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="2106406992" data-ad-format="auto"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_yoko_naga.html %}</p>
 
 <h2>Special Thanks</h2>
 

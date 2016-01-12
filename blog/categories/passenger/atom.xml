@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Passenger | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/passenger/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -27,53 +27,48 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Passengerのインストール手順</h2>
 
 <p>gem install時にドキュメント生成を行わないようにする。<br/>
 <code>vim ~/.gemrc</code>に以下の項目を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem: --no-rdoc --no-ri
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+gem: --no-rdoc --no-ri
+{% endcodeblock %}</p>
 
 <p>RVM環境の場合はpassengerのインストール前にgemsetをgrobalにする。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm gemset use global
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+rvm gemset use global
+{% endcodeblock %}</p>
 
 <p>gem passengerをインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install passenger
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+gem install passenger
+{% endcodeblock %}</p>
 
 <p>passengerのapacheモジュールのインストール。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>passenger-install-apache2-module
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+passenger-install-apache2-module
+{% endcodeblock %}</p>
 
 <p>インストールが完了したら、以下のコマンドを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>passenger-install-apache2-module --snippet
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+passenger-install-apache2-module --snippet
+{% endcodeblock %}</p>
 
 <h1>Passengerの設定</h1>
 
 <p>以下のコマンドを実行すると、</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>passenger-install-apache2-module --snippet
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+passenger-install-apache2-module --snippet
+{% endcodeblock %}</p>
 
 <p>apacheとの連携に必要な設定が次のように出力されます。</p>
 
@@ -87,79 +82,52 @@ PassengerDefaultRuby /usr/local/rvm/wrappers/ruby-2.0.0-p247@global/ruby
 
 <p><code>sudo vim /etc/httpd/conf.d/passnger.conf</code>で以下の内容を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Passengerの基本設定&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;LoadModule passenger_module /usr/local/rvm/gems/ruby-2.0.0-p247@global/gems/passenger-4.0.18/buildout/apache2/mod_passenger.so
-</span><span class='line'>PassengerRoot /usr/local/rvm/gems/ruby-2.0.0-p247@global/gems/passenger-4.0.18
-</span><span class='line'>PassengerDefaultRuby /usr/local/rvm/wrappers/ruby-2.0.0-p247@global/ruby&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Passengerが追加するHTTPヘッダを削除するための設定&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Header always <span class="nb">unset</span> <span class="s2">&quot;X-Powered-By&quot;</span>
-</span><span class='line'>Header always <span class="nb">unset</span> <span class="s2">&quot;X-Rack-Cache&quot;</span>
-</span><span class='line'>Header always <span class="nb">unset</span> <span class="s2">&quot;X-Content-Digest&quot;</span>
-</span><span class='line'>Header always <span class="nb">unset</span> <span class="s2">&quot;X-Runtime&quot;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;必要に応じてPassengerのチューニングのための設定を追加&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;PassengerMaxPoolSize 20
-</span><span class='line'>PassengerMaxInstancesPerApp 4
-</span><span class='line'>PassengerPoolIdleTime 3600
-</span><span class='line'>PassengerHighPerformance on
-</span><span class='line'>PassengerStatThrottleRate 10
-</span><span class='line'>RailsSpawnMethod smart
-</span><span class='line'>RailsAppSpawnerIdleTime 86400
-</span><span class='line'>PassengerMaxPreloaderIdleTime 0
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>Passengerの基本設定</h1>
+
+<p>LoadModule passenger_module /usr/local/rvm/gems/ruby-2.0.0-p247@global/gems/passenger-4.0.18/buildout/apache2/mod_passenger.so
+PassengerRoot /usr/local/rvm/gems/ruby-2.0.0-p247@global/gems/passenger-4.0.18
+PassengerDefaultRuby /usr/local/rvm/wrappers/ruby-2.0.0-p247@global/ruby</p>
+
+<h1>Passengerが追加するHTTPヘッダを削除するための設定</h1>
+
+<p>Header always unset "X-Powered-By"
+Header always unset "X-Rack-Cache"
+Header always unset "X-Content-Digest"
+Header always unset "X-Runtime"</p>
+
+<h1>必要に応じてPassengerのチューニングのための設定を追加</h1>
+
+<p>PassengerMaxPoolSize 20
+PassengerMaxInstancesPerApp 4
+PassengerPoolIdleTime 3600
+PassengerHighPerformance on
+PassengerStatThrottleRate 10
+RailsSpawnMethod smart
+RailsAppSpawnerIdleTime 86400
+PassengerMaxPreloaderIdleTime 0
+{% endcodeblock %}</p>
 
 <p>Apacheの文法チェックです。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apachectl configtest&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;sintax ok &amp;lt;<span class="o">=</span> と出れば成功。
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock lang:bash %}
+apachectl configtest</p>
+
+<blockquote><p>sintax ok &lt;= と出れば成功。
+{% endcodeblock %}</p></blockquote>
 
 <p>以下でApacheを再起動してブラウザで表示確認。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo /etc/rc.d/init.d/httpd restart
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+sudo /etc/rc.d/init.d/httpd restart
+{% endcodeblock %}</p>
 
 <p>もし本番環境の場合は、<code>vim ~/.bashrc</code>で以下を追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>production
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+RAILS_ENV=production
+{% endcodeblock %}</p>
 
 <p><code>source ~/.bashrc</code>を実行して設定を反映。</p>
 
@@ -171,16 +139,12 @@ PassengerDefaultRuby /usr/local/rvm/wrappers/ruby-2.0.0-p247@global/ruby
 
 <p>Apacheのバーチャルホストの設定ファイル(<code>sudo vim /etc/http/conf.d/vhost.conf</code>など)を<strong><a href="/blog/apache-virtualhost-conf-passenger/">Apache VirtualHostの設定</a></strong>を参考に編集。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>コンソール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apachectl -t&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;Syntax OK
-</span><span class='line'>touch tmp/restart.txt
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote>
+<p>{% codeblock コンソール lang:bash %}
+apachectl -t</p>
+
+<blockquote><p>Syntax OK
+touch tmp/restart.txt
+{% endcodeblock %}</p></blockquote>
 
 <h2>Special Thanks</h2>
 

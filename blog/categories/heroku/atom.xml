@@ -4,7 +4,7 @@
   <title><![CDATA[Category: heroku | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/heroku/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,12 +28,7 @@ HerokuやDokkuで使う環境変数を管理するGem「<strong><a href="https:/
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Twelve-Factor App</h2>
 
@@ -164,12 +159,7 @@ Travis CIのRSpecがコケてて散々悩みながら、デバックしてたら
 
 <p><code>Pull Request</code> うまくいくといいなぁ</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Special Thanks</h2>
 
@@ -200,12 +190,7 @@ Travis CIのRSpecがコケてて散々悩みながら、デバックしてたら
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Errbitスクリーンショット</h2>
 
@@ -236,100 +221,82 @@ airbrakeのgemを使って、複数アプリのエラー情報を収集・表示
 
 <p>ローカルにErrbitのソースをダウンロード。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone http://github.com/errbit/errbit.git
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git clone http://github.com/errbit/errbit.git
+{% endcodeblock %}</p>
 
 <p>Gemfileの以下のコードのRubyのバージョン指定の部分を修正。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby <span class="s1">&#39;2.1.2&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+ruby '2.1.2'
+{% endcodeblock %}</p>
 
 <p>つづいてBundle installを実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+bundle install
+{% endcodeblock %}</p>
 
 <p><code>db/seeds.rb</code>のログイン設定を修正。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">admin_email</span> <span class="o">=</span> <span class="s2">&quot;xxx@example.com&quot;</span>
-</span><span class='line'><span class="nv">admin_pass</span>  <span class="o">=</span> <span class="s1">&#39;password&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+admin_email = "xxx@example.com"
+admin_pass  = 'password'
+{% endcodeblock %}</p>
 
 <p>アプリ名をherokuに登録。<br/>
 xxxxの部分に自分のアプリ名を指定して下さい。アプリ名は早いもの順なので、他のユーザーとかぶっていたらエラーが出ます。被らない名前にしてください。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku create xxxx
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku create xxxx
+{% endcodeblock %}</p>
 
 <p>アプリの登録が成功すると、<code>http://xxxx.herokuapp.com/</code>というURLがもらえます。これが自分のErrbitのURLになります。<br/>
 (ちなみに、この時点ではまだ見れないと思います)</p>
 
 <p>続いてアドオンの有効化と各種設定を行います。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku addons:add mongolab:sandbox
-</span><span class='line'>heroku addons:add sendgrid:starter
-</span><span class='line'>heroku config:add <span class="nv">HEROKU</span><span class="o">=</span><span class="nb">true</span>
-</span><span class='line'>heroku config:add <span class="nv">SECRET_TOKEN</span><span class="o">=</span><span class="s2">&quot;$(bundle exec rake secret)&quot;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;heroku createで作成されたホスト名に置き換え&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku config:add <span class="nv">ERRBIT_HOST</span><span class="o">=</span>xxxx.herokuapp.com&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;エラーメールのFrom<span class="o">(</span>振り分けし易いメアドにするのがオススメ<span class="o">)</span>&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku config:add <span class="nv">ERRBIT_EMAIL_FROM</span><span class="o">=</span>example@example.com
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku addons:add mongolab:sandbox
+heroku addons:add sendgrid:starter
+heroku config:add HEROKU=true
+heroku config:add SECRET_TOKEN="$(bundle exec rake secret)"</p>
+
+<h1>heroku createで作成されたホスト名に置き換え</h1>
+
+<p>heroku config:add ERRBIT_HOST=xxxx.herokuapp.com</p>
+
+<h1>エラーメールのFrom(振り分けし易いメアドにするのがオススメ)</h1>
+
+<p>heroku config:add ERRBIT_EMAIL_FROM=example@example.com
+{% endcodeblock %}</p>
 
 <p>設定画完了したら、herokuにpushします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add . -A &amp;amp;&amp;amp; git commit -m <span class="s1">&#39;first commit&#39;</span>
-</span><span class='line'>git push heroku master
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git add . -A &amp;&amp; git commit -m 'first commit'
+git push heroku master
+{% endcodeblock %}</p>
 
 <p>さらに、seedファイル(DBの初期設定データ)の読み込みを行います。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku run bundle <span class="nb">exec </span>rake <span class="nv">RAILS_ENV</span><span class="o">=</span>production db:seed
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku run bundle exec rake RAILS_ENV=production db:seed
+{% endcodeblock %}</p>
 
 <p>mongo DBにインデックスを追加。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku run bundle <span class="nb">exec </span>rake <span class="nv">RAILS_ENV</span><span class="o">=</span>production db:mongoid:create_indexes
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku run bundle exec rake RAILS_ENV=production db:mongoid:create_indexes
+{% endcodeblock %}</p>
 
 <p>あとは次のコマンドを実行すると、ブラウザにerrbitのページが表示されます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku open
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+heroku open
+{% endcodeblock %}</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>ErrbitにWebアプリを登録</h2>
 
@@ -353,35 +320,25 @@ xxxxの部分に自分のアプリ名を指定して下さい。アプリ名は�
 
 <p><code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行してください。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Errbitと連携&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;airbrake&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>Errbitと連携</h1>
+
+<p>gem 'airbrake'
+{% endcodeblock %}</p>
 
 <p>続いて、Railsの場合は<code>config/initializers/errbit.rb</code>を作成して以下を追加します。</p>
 
 <p>ちなみに、Pure RubyのスクリプトでAirbrakeを使いたい場合もそれも同じコードで大丈夫でした！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Airbrake</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;Errbitにアプリを登録完了するともらえます&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">host</span>    <span class="o">=</span> <span class="s1">&#39;example-errbit.herokuapp.com&#39;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">port</span>    <span class="o">=</span> <span class="mi">80</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">secure</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">port</span> <span class="o">==</span> <span class="mi">443</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+Airbrake.configure do |config|
+  config.api_key = 'Errbitにアプリを登録完了するともらえます'
+  config.host    = 'example-errbit.herokuapp.com'
+  config.port    = 80
+  config.secure  = config.port == 443
+end
+{% endcodeblock %}</p>
 
 <p>これで設定は完了です。これでエラーが発生したら、Userタブで登録したメールアドレスにメールが届くようになります。ちなみに、テストでエラーを発生させた時の結果はしたようになりました。</p>
 
@@ -394,47 +351,34 @@ xxxxの部分に自分のアプリ名を指定して下さい。アプリ名は�
 <p>Herokuは1時間以上アクセスがないとアイドリング状態になりますが、その際にAPIを叩くとうまく拾えない場合があります。
 そんな時には、NewRelicのAvailability Monitorを使いましょう。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;New Relicの追加&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku addons:add newrelic:stark&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;New Relicの画面をブラウザで表示&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku addons:open newrelic
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}</p>
+
+<h1>New Relicの追加</h1>
+
+<p>heroku addons:add newrelic:stark</p>
+
+<h1>New Relicの画面をブラウザで表示</h1>
+
+<p>heroku addons:open newrelic
+{% endcodeblock %}</p>
 
 <p>New Relicの画面からlicense keyを生成してnewrelic.ymlをダウンロード。<code>./config</code>にコピー。</p>
 
 <p>また、Gemfileに以下を追加して<code>bundle install</code>。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem <span class="s1">&#39;newrelic_rpm&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+gem 'newrelic_rpm'
+{% endcodeblock %}</p>
 
 <p>変更点をherokuにPush。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add . -A &amp;amp;&amp;amp; git commit -m <span class="s1">&#39;add New Relic gem&#39;</span> &amp;amp;&amp;amp; git push heroku master&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;New Relicの画面をブラウザで表示&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;heroku addons:open newrelic
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+git add . -A &amp;&amp; git commit -m 'add New Relic gem' &amp;&amp; git push heroku master</p>
+
+<h1>New Relicの画面をブラウザで表示</h1>
+
+<p>heroku addons:open newrelic
+{% endcodeblock %}</p>
 
 <p>New Relicでアプリの中の『Availability Monitor』に進んで、監視対象のURLを設定。</p>
 

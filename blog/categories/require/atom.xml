@@ -4,7 +4,7 @@
   <title><![CDATA[Category: require | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/require/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-12T19:33:47+09:00</updated>
+  <updated>2016-01-12T23:53:37+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,12 +28,7 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Gemのインストール</h2>
 
@@ -41,17 +36,12 @@
 
 <p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Facebook Graph API&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">gem</span> <span class="s1">&#39;fb_graph&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>Facebook Graph API</h1>
+
+<p>gem 'fb_graph'
+{% endcodeblock %}</p>
 
 <h2>Facebookのアクセストークンの種類</h2>
 
@@ -77,9 +67,9 @@
 
 <p>このままだとアクセストークンの期間が短いので、有効期限を60日間に延長します。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>https://graph.facebook.com/oauth/access_token?grant_type<span class="o">=</span>fb_exchange_token&amp;amp;client_id<span class="o">=</span>&lt;App ID&gt;&amp;amp;client_secret<span class="o">=</span>&amp;lt;アプリのシークレットキー&gt;&amp;amp;fb_exchange_token<span class="o">=</span>&lt;Graph API Explorerで取得したアクセストークン&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:bash %}
+https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&amp;client_id=<App ID>&amp;client_secret=&lt;アプリのシークレットキー>&amp;fb_exchange_token=<Graph API Explorerで取得したアクセストークン>
+{% endcodeblock %}</p>
 
 <p>このURLにブラウザでアクセスすると、有効期限が60日のアクセストークンが取得できます。</p>
 
@@ -89,61 +79,34 @@
 
 <p>ということで、早速Rubyスクリプトからアクセス。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Eventを検索するためのキーワード&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">keyword</span> <span class="o">=</span> <span class="s2">&quot;ハッカソン&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;上で取得したFacebook Userのアクセストークン&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;xxxx&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Facebook Eventの公開されているイベントを検索 (sinceは未来のeventに限定する条件)&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">events</span> <span class="o">=</span> <span class="no">FbGraph</span><span class="o">::</span><span class="no">Event</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">access_token</span><span class="p">:</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">since</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">to_i</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;Eventの詳細情報の取得&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">events</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;detail = FbGraph::Event.fetch(event.identifier, access_token: access_token)</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr"># 公開されているイベントのみ</span>
-</span><span class='line'><span class="sr">if detail.privacy == &quot;OPEN&quot;</span>
-</span><span class='line'><span class="sr">    # detail をゴニョゴニョ</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>Eventを検索するためのキーワード</h1>
+
+<p>keyword = "ハッカソン"</p>
+
+<h1>上で取得したFacebook Userのアクセストークン</h1>
+
+<p>access_token = 'xxxx'</p>
+
+<h1>Facebook Eventの公開されているイベントを検索 (sinceは未来のeventに限定する条件)</h1>
+
+<p>events = FbGraph::Event.search(keyword, access_token: access_token, since: Time.now.to_i)</p>
+
+<h1>Eventの詳細情報の取得</h1>
+
+<p>events.each do |event|</p>
+
+<pre><code>detail = FbGraph::Event.fetch(event.identifier, access_token: access_token)
+
+# 公開されているイベントのみ
+if detail.privacy == "OPEN"
+    # detail をゴニョゴニョ
+end
+</code></pre>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>ということで、Facebook Eventがますます身近になりそうです！</p>
 
@@ -163,12 +126,7 @@
 
 <p><strong><a href="http://stackoverflow.com/questions/4125191/search-facebook-events-and-pagination-graph-api">Search Facebook events and pagination (Graph API) - Stack Overflow</a></strong></p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   
@@ -189,28 +147,19 @@
 <br style="clear:both;"/>
 
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 
 <h2>Rubyの標準ライブラリとか、外部ファイルの読み込み</h2>
 
 <p>Rubyの標準ライブラリとか、外部ファイルを読み込む場合。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;ローカルファイルのrequireは、&#39;./</span><span class="s1">&#39;と書くべき&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s1">&lt;p&gt;require &#39;</span><span class="o">.</span><span class="n">/hoge</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'erb'</p>
+
+<h1>ローカルファイルのrequireは、'./'と書くべき</h1>
+
+<p>require './hoge'
+{% endcodeblock %}</p>
 
 <h3>Special Thanks</h3>
 
@@ -222,35 +171,29 @@
 
 <p>実行ファイル絡みた相対パスで require する場合は、<code>require_relative</code>とします。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;my_library&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require_relative 'my_library'
+{% endcodeblock %}</p>
 
 <h2>$LOAD_PATHを追加</h2>
 
 <p>requireでは、<code>$LOAD_PATH</code>に登録されている探索パスから検索します。ということで、<code>$LOAD_PATH</code>にパスを追加すると、<code>require</code>するときに相対パスにすることができます。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h2&gt;実行ファイルのあるディレクトリを$LOAD_PATHに追加&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="vg">$LOAD_PATH</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="no">FILE</span><span class="o">&lt;</span><span class="sr">/strong&gt;)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}</p>
+
+<h2>実行ファイルのあるディレクトリを$LOAD_PATHに追加</h2>
+
+<p>$LOAD_PATH &lt;&lt; File.dirname(<strong>FILE</strong>)
+{% endcodeblock %}</p>
 
 <h2>RubyでActiveSupportの自動requireを使う</h2>
 
 <p>RailsのActiveSupportがやってくれる自動requireを、Rubyスクリプト内で実行する方法がかなり便利そうだったので共有！</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;active_support/dependencies&#39;</span>
-</span><span class='line'><span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Dependencies</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="s2">&quot;/path/to/my_library&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:ruby %}
+require 'active_support/dependencies'
+ActiveSupport::Dependencies.autoload_paths &lt;&lt; "/path/to/my_library"
+{% endcodeblock %}</p>
 
 <p>これで、<code> /path/to/my_library</code>以下にあるファイルを自動でRequireしてくれるそうです。</p>
 
@@ -262,12 +205,7 @@
 
 <p>Rubyスクリプトを書く上で、基礎中の基礎だと思いますが今までちゃんと理解できていませんでした。ちゃんと理解してRubyスクリプトをしっかり使えるようになりたい！</p>
 
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
+<p>{% include custom/google_ads_square.html %}</p>
 ]]></content>
   </entry>
   
