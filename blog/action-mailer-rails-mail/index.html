@@ -180,7 +180,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>TestApp::Application.configure</code>内にメール送信用の設定をして下さい。今回はGmailを使う場合の設定を載せています。</p>
+<p><code>TestApp::Application.configure</code>内にメール送信用の設定をして下さい。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -193,22 +193,26 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/environments/development.rb</span>
 </span><span class='line'><span class="c1"># ↓ 以下を追加</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">default_url_options</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:host</span> <span class="o">=&gt;</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">3000</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">delivery_method</span> <span class="o">=</span> <span class="ss">:smtp</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>    <span class="ss">:address</span> <span class="o">=&gt;</span> <span class="s2">&quot;smtp.gmail.com&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">587</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">&#39;example.com&#39;</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:user_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;メールサーバ認証用ユーザー&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">&quot;メールサーバ認証用パスワード&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:authentication</span> <span class="o">=&gt;</span> <span class="s1">&#39;plain&#39;</span><span class="p">,</span>
-</span><span class='line'>    <span class="ss">:enable_starttls_auto</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
-</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">default_url_options</span> <span class="o">=</span> <span class="p">{</span> <span class="n">host</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="mi">3000</span> <span class="p">}</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">delivery_method</span> <span class="o">=</span> <span class="ss">:smtp</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">action_mailer</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">address</span><span class="p">:</span> <span class="s2">&quot;SMTPのメールサーバ&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">port</span><span class="p">:</span> <span class="mi">587</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">domain</span><span class="p">:</span> <span class="s1">&#39;送付するドメイン&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">user_name</span><span class="p">:</span> <span class="s2">&quot;メールサーバ認証用ユーザー&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">password</span><span class="p">:</span> <span class="s2">&quot;メールサーバ認証用パスワード&quot;</span>
+</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
+<p>ここの設定情報等はサンプルです。以下のようなサービスを設定して、送付情報をセットするといいと思います！</p>
+
+<ul>
+<li><strong><a href="https://aws.amazon.com/jp/ses/">Amazon Simple Email Service（クラウドベースのメールサービス） | AWS</a></strong></li>
+<li><strong><a href="https://mandrill.com/">Transactional Email from MailChimp - Mandrill</a></strong></li>
+</ul>
 
 
 <h2>ActionMailerのクラスを生成</h2>
@@ -273,6 +277,7 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
+<span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/mailers/message.rb</span>
 </span><span class='line'><span class="k">class</span> <span class="nc">Message</span> <span class="o">&lt;</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span>
 </span><span class='line'>  <span class="c1"># デフォルトでの送信元のアドレス</span>
@@ -286,6 +291,7 @@
 </span><span class='line'>    <span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
 </span><span class='line'>      <span class="nb">format</span><span class="o">.</span><span class="n">html</span>
 </span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -324,11 +330,9 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/mailers/message.rb</span>
 </span><span class='line'><span class="k">class</span> <span class="nc">Message</span> <span class="o">&lt;</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span>
 </span><span class='line'>  <span class="n">add_template_helper</span><span class="p">(</span><span class="no">ApplicationHelper</span><span class="p">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 

@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズ企画です。第1回は初期状態からSSHで接続できるようにするまでです。 &hellip;">
+  <meta name="description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第2回はiptableの導入〜設定までです。このiptableの設定を一言で言うと、通信ポートを制限できるファイヤーウオール用のパッケージ。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズ企画です。第1回は初期状態からSSHで接続できるようにするまでです。 &hellip;" />
+<meta property="og:description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第2回はiptableの導入〜設定までです。このiptableの設定を一言で言うと、通信ポートを制限できるファイヤーウオール用のパッケージ。 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/26/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/iptable-sakura-vps-centos63/">さくらVPS/Cent OS 6.4 iptableの設定[Railsサーバへの道][セキュリティ]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-09-22T12:30:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/iptable-sakura-vps-centos63/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774158135/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158135&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158135&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774158135" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第2回はiptableの導入〜設定までです。このiptableの設定を一言で言うと、通信ポートを制限できるファイヤーウオール用のパッケージ。このソフトを使うことでWebサーバとして必要な最低限のポートのみ公開し、それ以外のポートにアクセスできないようにしてサーバのセキュリティを高めることができます！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/iptable-sakura-vps-centos63/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -540,62 +588,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/the-rspec-book-review-rails/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/smartphone-marketing-3-tips-book-review/">スマホで世界を狙うために知っておきたい3つのことで学んだスマホ・マーケティングの基礎</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-08-29T16:20:00+09:00" pubdate data-updated="true">Aug 29<span>th</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/smartphone-marketing-3-tips-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4532318041/"><img border="0" src="http://ecx.images-amazon.com/images/I/51OqxDPvV3L._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>『<strong><a href="http://www.amazon.co.jp/gp/product/4532318041/">スマホで世界をねらうために知っておきたい3つのこと</a></strong>』は2012年6月に出版された書籍です。出版で1年が経っているのでスマホ業界では既に幾つかの変化がおきていますが、客観的にスマホ業界の要点がわかる良本です。</p>
-
-<p>ループスの許 直人さんのブログ記事『<strong><a href="http://media.looops.net/naoto/2012/09/10/smartphone-business/">「スマホで世界を狙うために知っておきたい3つのこと」から学んだ5つのこと</a></strong>』には、この書籍の素晴らしい要約がありました。</p>
-
-<BLOCKQUOTE>
-市場環境(特に北米とアジア)、ビジネスモデルの考え方、マーケティング(集客、運用)、プラットフォーム特性など幅広い範囲の情報が、必要最小限のデータと著者である佐藤航陽氏の肌感覚を元にすっきりとまとめられています。
-</BLOCKQUOTE>
-
-
-<p>今回は本の中から特にインパクトの強かった部分を中心にピックアップしていきます！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/smartphone-marketing-3-tips-book-review/">続きを読む</a>
     </footer>
   
 
