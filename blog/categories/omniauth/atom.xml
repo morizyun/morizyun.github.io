@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Omniauth | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/omniauth/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-17T19:57:55+09:00</updated>
+  <updated>2016-01-17T21:45:33+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -14,9 +14,9 @@
 
   
   <entry>
-    <title type="html"><![CDATA[「minimum-omniauth-scaffold」　Facebook/Twitter/GitHubログインを高速実装！]]></title>
+    <title type="html"><![CDATA[「minimum-omniauth-scaffold」 Facebook/Twitter/GitHubログインを高速実装！]]></title>
     <link href="http://morizyun.github.io/blog/minimum-omniauth-scaffold/"/>
-    <updated>2015-12-26T19:45:00+09:00</updated>
+    <updated>2016-01-17T19:40:00+09:00</updated>
     <id>http://morizyun.github.io/blog/minimum-omniauth-scaffold</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4839926689/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4839926689&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4839926689&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4839926689" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />プロダクトを作る時にFacebookやTwitter、GitHubのログイン機能を組み込むのはかなり普通に必要になってきました。そんな時にすごく便利なのが、この「<strong><a href="https://github.com/shu0115/minimum-omniauth-scaffold">minimum-omniauth-scaffold</a></strong>」です。</p>
 
@@ -79,7 +79,7 @@ Ruby 2.3.0
 
 <h3>Twitter</h3>
 
-<p><strong><a href="https://dev.twitter.com/">Twitter Developers</a></strong>でアプリを作成して、キーを取得。<br/>
+<p><strong><a href="https://apps.twitter.com/">Twitter Developers</a></strong>でアプリを作成して、キーを取得。<br/>
 ※　「新しいアプリを作成」作成後「Facebookでログインするウェブサイト」に「http://0.0.0.0:3000/」を入力</p>
 
 <h3>GitHub</h3>
@@ -147,6 +147,10 @@ Ruby 2.3.0
 <p><strong><a href="https://github.com/shu0115/minimum-omniauth-scaffold">shu0115/minimum-omniauth-scaffold</a></strong></p>
 
 <p><strong><a href="http://qiita.com/shu_0115/items/6f5f0c210e9999da66be">Ruby 2.0.0-p247 + Rails 4.0.0 + minimum-omniauth-scaffold - Qiita [キータ]</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(2016/01/17 19:40) 記述修正</p>
 ]]></content>
   </entry>
   
