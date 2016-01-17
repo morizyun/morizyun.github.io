@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>自分の仕事に対する心構えや、取り組み方@2016 - 酒と泪とRubyとRailsと</title>
+  <title>xray-rails Railsのviewがどこに表示されているかをわかりやすくする - 酒と泪とRubyとRailsと</title>
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="『7年働いた時点での私の仕事の極意』に感銘を受けて、自分の仕事に対する心構えや、取り組み方、考え方を言語化したくて書きました。
-オレオレ・ポエムですが、良ければぜひ。 (adsbygoogle = window.adsbygoogle || []).push({}); 自ら率先して良くしよう &hellip;">
+  <meta name="description" content="『brentd/xray-rails - GitHub』RailsのテンプレートやBackboneのviewが画面上のどこに表示されているかを視覚的に表示してくれるGemです。 Railsの開発時に便利なのでぜひ使ってみてください。 (adsbygoogle = window. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://morizyun.github.io/blog/myself-work-principle/">
+  <link rel="canonical" href="http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/">
   <link rel="shortcut icon" href="/favicon.ico">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -47,10 +46,9 @@
   </script>
 
 
-  <meta property="og:title" content="自分の仕事に対する心構えや、取り組み方@2016 - 酒と泪とRubyとRailsと" />
-<meta property="og:description" content="『7年働いた時点での私の仕事の極意』に感銘を受けて、自分の仕事に対する心構えや、取り組み方、考え方を言語化したくて書きました。
-オレオレ・ポエムですが、良ければぜひ。 (adsbygoogle = window.adsbygoogle || []).push({}); 自ら率先して良くしよう &hellip;" />
-<meta property="og:url" content="http://morizyun.github.io/blog/myself-work-principle/" />
+  <meta property="og:title" content="xray-rails Railsのviewがどこに表示されているかをわかりやすくする - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="『brentd/xray-rails - GitHub』RailsのテンプレートやBackboneのviewが画面上のどこに表示されているかを視覚的に表示してくれるGemです。 Railsの開発時に便利なのでぜひ使ってみてください。 (adsbygoogle = window. &hellip;" />
+<meta property="og:url" content="http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
 <meta property="og:site_name" content="酒と泪とRubyとRailsと" />
@@ -100,7 +98,7 @@
   
   <header>
     
-      <h1 class="entry-title">自分の仕事に対する心構えや、取り組み方@2016</h1>
+      <h1 class="entry-title">Xray-rails Railsのviewがどこに表示されているかをわかりやすくする</h1>
     
     
     
@@ -119,19 +117,19 @@
 
 
 
-        <time datetime="2016-01-14T23:55:00+09:00" pubdate data-updated="true">Jan 14<span>th</span>, 2016</time>
+        <time datetime="2016-01-17T19:50:00+09:00" pubdate data-updated="true">Jan 17<span>th</span>, 2016</time>
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
-      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/myself-work-principle/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li class="twitter">
       
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/myself-work-principle/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/myself-work-principle/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/" >Tweet</a>
       
     </li>
     <li class="facebook">
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/myself-work-principle/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/"></div>
     </li>
   </ul>
 </span>
@@ -142,9 +140,10 @@
   </header>
 
 
-<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00NQ3QONK/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00NQ3QONK&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00NQ3QONK&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00NQ3QONK" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-『<strong><a href="http://blog.kengo-toda.jp/entry/2015/03/22/215005">7年働いた時点での私の仕事の極意</a></strong>』に感銘を受けて、自分の仕事に対する心構えや、取り組み方、考え方を言語化したくて書きました。
-オレオレ・ポエムですが、良ければぜひ。</p>
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4883379930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4883379930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4883379930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4883379930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="https://github.com/brentd/xray-rails">brentd/xray-rails - GitHub</a></strong>』RailsのテンプレートやBackboneのviewが画面上のどこに表示されているかを視覚的に表示してくれるGemです。</p>
+
+<p>Railsの開発時に便利なのでぜひ使ってみてください。</p>
 
 <!-- more -->
 
@@ -165,44 +164,58 @@
 </script>
 
 
-<h2>自ら率先して良くしよう</h2>
+<h2>サンプル</h2>
 
-<p>僕は攻殻機動隊の草薙素子が言った「<strong>世の中に不満があるなら自分を変えろ。それが嫌なら耳と目を閉じ、口をつぐんで孤独に暮らせ</strong>」
-というセリフが好きだ。世の中や他人に対する不満をいうのではなく、自ら率先して行動して「よりよくなるために変化」を生み出すことを重視したい。
-そのために、なによりも『<strong>実行すること</strong>』を大切に行動をしていく。</p>
+<p><img src="http://f.cl.ly/items/1A0o3y1y3Q13103V3F1l/xray-rails-large.gif" /></p>
 
-<h2>誠実な手段で結果を目指そう</h2>
+<h2>Gemインストール</h2>
 
-<p>正しく問題を見極めて、問題を解決することに全力を注ぐ。大切なのは「<strong>誠実な手段で結果を手に入れる</strong>」ことだ。
-僕らは社会の一員であり、手段は私欲にとらわれたり、ルールを犯すことは許されない。誠実な手段で、ベストな結果を得ることが大切だ。</p>
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
 
-<h2>自分を組織に最適化する</h2>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
+</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># viewの構造を表示 (cmd+shift+x)</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;xray-rails&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>1人でできる仕事には限界がある。組織で仕事をするのなら、その組織で最も最適な『<strong>役割</strong>』を探求して、自分を組織に最適化することが大切だ。
-ただし、それは自分の専門性や趣味嗜好を捨てるということではない。自分の専門性は大切なアイデンティティだし、何より仕事を楽しくするはずだ。
-自分の専門性を組織にフィットさせることが『<strong>役割</strong>』を見つけることを常に意識したい。</p>
 
-<h2>マネージメント = 給与を上げること</h2>
+<h2>キャッシュクリア</h2>
 
-<p>僕の最も尊敬する上司は自分の仕事は、『<strong>自分のチームメンバーの給料を上げること</strong>』だと言っていた。僕はこの言葉の宝物だと思っています。
-チームメンバーの給与を上げるために、その人の成果を正しく伝え、その人のスキルアップを手助けすることが僕にとって最も大切なことだと考える。</p>
+<p>一旦キャッシュを削除</p>
 
-<h2>組織の生産性を上げる</h2>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rm -rf tmp/cache/assets
+</span></code></pre></td></tr></table></div></figure>
 
-<p>『<strong><a href="http://www.4gamer.net/games/999/G999905/20151225009/">【岩田 聡氏 追悼企画】岩田さんは最後の最後まで“問題解決”に取り組んだエンジニアだった。「ゲーマーはもっと経営者を目指すべき！」特別編</a></strong>』には感動して涙が出た。岩田 聡さんはエンジニアとして最も尊敬する人だ。</p>
 
-<p>「私の名刺には社長と書いてありますが、頭の中はゲーム開発者です。心はゲーマーです。」という言葉はあまりにも有名だと思う。
-岩田さんは経営者としてもエンジニアとしても超一流だったと思う。特にこの記事にある組織の生産性を上げるために、メールの導入、ネットワークベースの
-バージョン管理システムを導入したり、ライブラリやコンポーネントを導入する。挙句には、最も難易度の高い部分のプログラムを自分がやる等々、
-組織全体のプロダクティビティを最も大切にする事に誰よりも努力している点は何よりも見習うべき点だと感じた。</p>
+<h2>application.js の変更</h2>
 
-<h2>個人の問題解決能力を高める</h2>
+<p>あとは以下を追加するだけ。</p>
 
-<p>先ほどの岩田聡さんの記事は、根底には岩田聡さん個人の能力が高かったからこそ実現できたエピソードだと思う。
-個人として高いプロダクティビティを発揮することは、周りを動かし、人をリードしていくために重要な能力だと思う。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// application.js</span>
+</span><span class='line'><span class="c1">//= require jquery</span>
+</span><span class='line'><span class="c1">//= require xray</span>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'><span class="c1">// 以下、backboneを使っている場合のみ</span>
+</span><span class='line'><span class="c1">//= require backbone</span>
+</span><span class='line'><span class="c1">//= require xray-backbone</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>もう一点、絶対に忘れてはならない原則として、エンジニアの本質的な能力は「<strong>真の問題が何なのかを見極め、解決策を考える</strong>」ことだと感じている。
-エンジニアとしてのエゴを捨て「問題解決」に重きを置き、極力コードを書く量を減らすことに努めていきたい。</p>
+
+<p>これは開発捗りそう♪</p>
 
 <br style="clear:both;"/>
 
@@ -223,7 +236,7 @@
 <h2>Special Thanks</h2>
 
 <ul>
-<li><a href="http://laughy.jp/1436844043122196337">岩田聡元任天堂社長の名言がかっこよすぎる！【天才の定義とは】 | LAUGHY [ラフィ]</a></li>
+<li><strong><a href="http://qiita.com/joker1007/items/be5dc3f3b1e93132a4f7">俺がGitHubでスターを付けたリポジトリ一覧 - Qiita</a></strong></li>
 </ul>
 
 </div>
@@ -260,12 +273,12 @@
   
 
 
-<time datetime="2016-01-14T23:55:00+09:00" pubdate data-updated="true">Jan 14<span>th</span>, 2016</time>
+<time datetime="2016-01-17T19:50:00+09:00" pubdate data-updated="true">Jan 17<span>th</span>, 2016</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/work/'>work</a>
+    <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
   
 </span>
 
@@ -276,19 +289,19 @@
     <ul class="social" style="margin-left: 0;">
         <li class="hatena">
             
-            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/myself-work-principle/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
             
         </li>
         <li class="twitter">
             
                 
-                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/myself-work-principle/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/myself-work-principle/" >Tweet</a>
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/" >Tweet</a>
                 
             
         </li>
         <li class="facebook">
             
-            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/myself-work-principle/"></div>
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/"></div>
             
         </li>
     </ul>
@@ -296,10 +309,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/aws-ses-rails-action-mailer/" title="Previous Post: aws-sdk-rails AWS SESを使ってRails4.2からメールを送付する">&laquo; aws-sdk-rails AWS SESを使ってRails4.2からメールを送付する</a>
+        <a class="basic-alignment left" href="/blog/myself-work-principle/" title="Previous Post: 自分の仕事に対する心構えや、取り組み方@2016">&laquo; 自分の仕事に対する心構えや、取り組み方@2016</a>
       
-      
-        <a class="basic-alignment right" href="/blog/xray-rails-view-checker-ui-bone/" title="Next Post: xray-rails Railsのviewがどこに表示されているかをわかりやすくする">xray-rails Railsのviewがどこに表示されているかをわかりやすくする &raquo;</a>
       
     </p>
   </footer>
@@ -423,8 +434,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://morizyun.github.io/blog/myself-work-principle/';
-        var disqus_url = 'http://morizyun.github.io/blog/myself-work-principle/';
+        var disqus_identifier = 'http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/';
+        var disqus_url = 'http://morizyun.github.io/blog/xray-rails-view-checker-ui-bone/';
         var disqus_script = 'embed.js';
       
     (function () {
