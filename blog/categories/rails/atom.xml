@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-18T23:49:37+09:00</updated>
+  <updated>2016-01-18T23:58:12+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,103 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Brakeman Railsのセキュリティチェックを行うためのGem]]></title>
+    <link href="http://morizyun.github.io/blog/brakeman-rails-security-checker/"/>
+    <updated>2016-01-18T23:55:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/brakeman-rails-security-checker</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00WJQCVPU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00WJQCVPU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00WJQCVPU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00WJQCVPU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="https://github.com/presidentbeef/brakeman">presidentbeef/brakeman - GitHub</a></strong>』は、
+Railsのセキュリティの問題点等をコマンド1つでチェックしてくれるGemです。
+企業等のサイト開発などでも気軽に使えるので是非試してみてください。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>サンプル</h2>
+
+<p>こんな感じでコマンド一つでアプリのセキュリティをチェックしてくれます。</p>
+
+<p>```bash
+bundle exec brakeman</p>
+
+<p>+BRAKEMAN REPORT+</p>
+
+<p>Application path: /path/to/rails_app
+Rails version: 4.2.5
+Brakeman version: 3.1.4
+Started at 2016-01-18 23:46:28 +0900
+Duration: 0.805318 seconds
+Checks run: BasicAuth, ContentTag, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NumberToCurrency, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionManipulation, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoSCVE, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing</p>
+
+<p>+SUMMARY+</p>
+
+<p>+-------------------+-------+
+| Scanned/Reported  | Total |
++-------------------+-------+
+| Controllers       | 6     |
+| Models            | 5     |
+| Templates         | 26    |
+| Errors            | 0     |
+| Security Warnings | 0 (0) |
++-------------------+-------+
+```</p>
+
+<p>結果はファイルやjsonで出力できますし、JenkinsなどのCIなどと連携して出力させる事もできます。</p>
+
+<p>ちなみに、『<strong><a href="http://brakemanscanner.org/docs/jenkins/">Jenkinsのプラグイン</a></strong>』はこちらです。</p>
+
+<p><img src="http://brakemanscanner.org/images/brakeman_trend_graph.png" /></p>
+
+<h2>Gemインストール</h2>
+
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<p>```ruby</p>
+
+<h1>Gemfile</h1>
+
+<p>group :development do
+  # セキュリティチェック
+  gem 'brakeman', require: false
+end
+```</p>
+
+<h2>application.js の変更</h2>
+
+<p>あとは以下のコマンドを実行するだけ。</p>
+
+<p><code>bash
+bundle exec brakeman
+</code></p>
+
+<p>これで安心して仕事を進められそうです！</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="http://qiita.com/joker1007/items/be5dc3f3b1e93132a4f7">俺がGitHubでスターを付けたリポジトリ一覧 - Qiita</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[xray-rails Railsのviewがどこに表示されているかをわかりやすくする]]></title>
@@ -630,263 +727,6 @@ Redirect (beta)
 <li><strong><a href="http://blog.mochromatic.com/2014/12/17/setting-up-dokku-on-digital-ocean/">Setting up Dokku on Digital Ocean</a></strong></li>
 <li><strong><a href="http://donpottinger.net/blog/2014/11/17/bye-bye-heroku-hello-dokku.html">Bye Bye Heroku, Hello Dokku: Migrating a Rails App from Heroku to Dokku (Part 1) | by @donpottinger</a></strong></li>
 <li><strong><a href="http://donpottinger.net/blog/2014/11/22/bye-bye-heroku-hello-dokku-part-2.html">Bye Bye Heroku, Hello Dokku: Migrating a Rails App from Heroku to Dokku (Part 2) | by @donpottinger</a></strong></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[scenic RailsでMaterialized Viewを使う]]></title>
-    <link href="http://morizyun.github.io/blog/materialized-view-rails-soic/"/>
-    <updated>2016-01-06T22:20:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/materialized-view-rails-soic</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00NM7VROQ/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00NM7VROQ&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00NM7VROQ&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00NM7VROQ" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-RailsでPostgreSQLのビュー(View)やマテリアライズド・ビュー(Materialized View)を使うためのGem「<strong><a href="https://github.com/thoughtbot/scenic">thoughtbot/scenic</a></strong>」の紹介です。
-thoughtbot謹製なので、安心して使えそうなのも魅力です！</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
-
-<h2>PostgreSQLのViewとMaterialized View</h2>
-
-<p>PostgreSQLのViewとMaterialized Viewの大まかかな説明は次の通りです。</p>
-
-<h3>View(ビュー)について</h3>
-
-<ul>
-<li>ViewとはSQLで構成された実態のな仮想的なテーブルのこと。Viewの作成時にSQLを定義する</li>
-<li>Viewを呼び出すとSQLが即時実行される</li>
-<li>最新の情報を常に取得できるが、SQLが複雑だったり、レコードが多いと負荷がかかる</li>
-</ul>
-
-
-<h3>Materialized View(マテリアライズド・ビュー)について</h3>
-
-<ul>
-<li>実態を持ったViewのことである。作成するときにSQLの実行結果のテーブルを作る</li>
-<li>最新の情報を反映するためにはリフレッシュ処理を行う必要がある</li>
-<li>SQLが複雑だったり、レコードが多い処理の負荷を下げるのに有効なアプローチである</li>
-</ul>
-
-
-<h2>PostgreSQLのMaterialized Viewの機能</h2>
-
-<p>『<strong><a href="http://goo.gl/WiA4wK">RailsでPostgreSQLのマテリアライズドビューを使う | 日々雑記</a></strong>』にある通り、
-PosgreSQLにはリフレッシュ時にSELECTコマンドを発行した時にロックされて応答が遅延しないように、<code>CONCURRENTLY</code>
-というパラメータをつけるといいようです！</p>
-
-<p><code>
-REFRESH MATERIALIZED VIEW CONCURRENTLY materialized_view;
-</code></p>
-
-<h2>Gemのインストール</h2>
-
-<p>ではいよいよ、Viewを扱いやすくするGem「<strong><a href="https://github.com/thoughtbot/scenic">thoughtbot/scenic</a></strong>」の紹介です。</p>
-
-<p><code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行してください。</p>
-
-<p>```ruby</p>
-
-<h1>View &amp; Materialized View (GitHubじゃないとちょっと古い気がします)</h1>
-
-<p>gem 'scenic', git: 'git@github.com:thoughtbot/scenic.git'</p>
-
-<h1>Fake Data(サンプルデータを作るために使います)</h1>
-
-<p>gem 'faker'
-```</p>
-
-<h2>Viewを作成するためのModelを作成</h2>
-
-<p>まずは、Viewを作成するための元となるテーブルをScaffoldで作成します。</p>
-
-<p>```</p>
-
-<h1>新しい Rails プロジェクトを作成</h1>
-
-<p>$ rails new scenic_sample
-$ cd scenic_sample</p>
-
-<h1>scaffoldで一通り作成</h1>
-
-<p>$ rails g scaffold book title:string author:string price:float
-```</p>
-
-<p>次にサンプルデータを作ります。</p>
-
-<p>```ruby</p>
-
-<h1>db/seeds.rb</h1>
-
-<p>require 'faker'</p>
-
-<p>1000.times do |i|
-  Book.create(</p>
-
-<pre><code>  title: Faker::Name.title,
-  author: Faker::Name.name,
-  price: Faker::Commerce.price
-</code></pre>
-
-<p>  )
-end
-```</p>
-
-<p>ではテーブルを作って、テストデータを投入します。</p>
-
-<p>```</p>
-
-<h1>テーブルを作成</h1>
-
-<p>$ bundle exec rake db:migrate</p>
-
-<h1>テストデータを投入</h1>
-
-<p>$ bundle exec rake db:seed
-```</p>
-
-<p>これでサンプルデータが作成されました。</p>
-
-<h2>いよいよマテリアライズド・ビューを作成</h2>
-
-<p>次にマテリアライズド・ビューを作成します。</p>
-
-<p>今回は$50以上のBookを<code>ExpensiveBook</code>として、それを抽出するテーブルにします。</p>
-
-<p>```</p>
-
-<h1>ExpensiveBookの作成</h1>
-
-<p>$ rails generate scenic:model expensive_book --materialized</p>
-
-<pre><code>  invoke  active_record
-  create    app/models/expensive_book.rb
-  invoke    rspec
-  create      spec/models/expensive_book_spec.rb
-  invoke      factory_girl
-  create        spec/factories/expensive_books.rb
-  create  db/views/expensive_books_v01.sql
-  create  db/migrate/20160106124232_update_expensive_books.rb
-</code></pre>
-
-<p>```</p>
-
-<h2>マテリアライズド・ビューのSQL</h2>
-
-<p>そんなマテリアライズド・ビューのSQLがこちら。</p>
-
-<p>```sql</p>
-
-<h1>db/views/expensive_books_v01.sql</h1>
-
-<p>SELECT
-  *
-FROM
-  books
-WHERE
-  price >= 50.0
-```</p>
-
-<p>あとはリフレッシュ時に<code>CONCURRENTLY</code>を使うために、UNIQ INEXを追加します。</p>
-
-<p>```ruby</p>
-
-<h1>db/migrate/20160106123247_create_expensive_books.rb</h1>
-
-<p>class CreateExpensiveBooks &lt; ActiveRecord::Migration
-  def change</p>
-
-<pre><code>create_view :expensive_books, materialized: true
-# 追加
-add_index :expensive_books, :id, unique: true
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<p>ではマテリアライズド・ビューを作成します。</p>
-
-<p><code>
-$ bundle exec rake db:migrate
-== 20160106123247 CreateExpensiveBooks: migrating =============================
--- create_view(:expensive_books)
-   -&gt; 0.0272s
-== 20160106123247 CreateExpensiveBooks: migrated (0.0272s) ====================
-</code></p>
-
-<p>こんな感じのSQLが実行されたようです。</p>
-
-<p>```sql
-CREATE OR REPLACE VIEW public.expensive_books AS SELECT books.id,</p>
-
-<pre><code>books.title,
-books.author,
-books.price,
-books.created_at,
-books.updated_at
-</code></pre>
-
-<p>   FROM books
-  WHERE (books.price >= (50.0)::double precision);
-```</p>
-
-<p>SQLを変更する場合は、<code>rails g scenic:view expensive_book</code> とすれば変更用のSQLのmigrationファイル生成されます。</p>
-
-<h2>マテリアライズド・ビューのModelファイル</h2>
-
-<p>```ruby</p>
-
-<h1>app/models/expensive_book.rb</h1>
-
-<p>class ExpensiveBook &lt; ActiveRecord::Base
-  # find_by!とかを使う場合はprimary_keyが必要なので
-  self.primary_key = :id</p>
-
-<p>  # このメソッドを実行するとマテリアライズド・ビューが更新される
-  def self.refresh</p>
-
-<pre><code>Scenic.database.refresh_materialized_view(table_name, concurrently: true)
-</code></pre>
-
-<p>  end</p>
-
-<p>  private
-  # マテリアライズド・ビューは書き込みができないので読み込み専用のViewとして作成
-  def readonly?</p>
-
-<pre><code>true
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<p>一点GemのREADMEに書いていた注意点として、リフレッシュ時のパラメータに<code>concurrently: true</code>とした場合
-はlockがかからないけど、<code>PostgreSQL 9.4 以上 &amp;&amp; uniq index</code> が必須なので注意してください。</p>
-
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
-
-<h2>Special Thanks</h2>
-
-<ul>
-<li><strong><a href="https://github.com/stympy/faker">stympy/faker - GitHub</a></strong></li>
-<li><strong><a href="http://qiita.com/yaotti/items/510779877e515a1155db">Ruby - Gemfileでのgem指定色々 - Qiita</a></strong></li>
 </ul>
 
 ]]></content>

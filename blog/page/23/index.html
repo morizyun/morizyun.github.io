@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="完全に時代に取り残されつつ、『パーフェクト Ruby』を読んでいます。 この記事では、「3章の制御構造、4章のクラスとモジュール、5章の組み込みクラス」を読んでいる中で、忘れたくない部分を中心に備忘録メモしました！ ">
+  <meta name="description" content="Herokuのworkerプロセスは、crashした場合に自動的に再起動してくれるそうなので、eventmachineを使ったスクリプトを動かすのには最適です。例えば、Twitterを監視したり、イベント・ドリブン、定期的に実施したい処理の場合におすすめです。 また、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="完全に時代に取り残されつつ、『パーフェクト Ruby』を読んでいます。 この記事では、「3章の制御構造、4章のクラスとモジュール、5章の組み込みクラス」を読んでいる中で、忘れたくない部分を中心に備忘録メモしました！ " />
+<meta property="og:description" content="Herokuのworkerプロセスは、crashした場合に自動的に再起動してくれるそうなので、eventmachineを使ったスクリプトを動かすのには最適です。例えば、Twitterを監視したり、イベント・ドリブン、定期的に実施したい処理の場合におすすめです。 また、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/23/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rails4-with-eventmachine/">Rails4 × Heroku × Eventmachine(worker)を爆速でスタートする</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2014-01-04T09:05:00+09:00" pubdate data-updated="true">Jan 4<span>th</span>, 2014</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rails4-with-eventmachine/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774158062/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158062&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158062&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774158062" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Herokuのworkerプロセスは、crashした場合に自動的に再起動してくれるそうなので、eventmachineを使ったスクリプトを動かすのには最適です。例えば、Twitterを監視したり、イベント・ドリブン、定期的に実施したい処理の場合におすすめです。</p>
+
+<p>また、今回eventmachineのスクリプト単体ではなく、Railsに組み込みました。理由は僕がRailsのフレームワークに慣れきって、Rspecのテスト書いたり、便利なgemを使いやすいからです。多分、生産性の高さと、Railsのオーバヘッドとの兼ね合いだと思います。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/rails4-with-eventmachine/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -538,65 +587,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/dejizo-api-dictionary-api-ruby/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/rspec-changelog-rails-tokyo-90/">RailsのテストやRails4.1のChange Logについて【Rails東京 第90回】</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-12-21T20:00:00+09:00" pubdate data-updated="true">Dec 21<span>st</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rspec-changelog-rails-tokyo-90/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798121932/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798121932&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798121932&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798121932" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />12/21(土)に開催された<strong><a href="http://railsmeetingtokyo.doorkeeper.jp/events/7642">Rails東京 第90回</a></strong>の勉強会のレポート記事です。</p>
-
-<p>この勉強会は全員参加型で議論し合うので、そこで出た多様な意見や答えを通して、考えを広げることができます。本当にためになる勉強会です＾＾</p>
-
-<p>今回は僕が参加した次の2つのセッションについてレポートします。</p>
-
-<pre>
-(1) Railsのテストについて
-(2) Rails 4.1のChangeLogについて
-</pre>
-
-
-<p>この記事は基本的には僕の忘備録なので、読みにくいかもです。こうして欲しいなどのリクエストがあればどんどんコメントください。あと、病み上がりで若干ぼけてたので、変なところがあればツッコミよろしくお願いします！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/rspec-changelog-rails-tokyo-90/">続きを読む</a>
     </footer>
   
 
