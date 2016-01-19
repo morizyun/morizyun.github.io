@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Brakeman Railsのセキュリティチェックを行うためのGem - 酒と泪とRubyとRailsと</title>
+  <title>Arproxy ActiveRecordが発行したSQLを加工できるGem - 酒と泪とRubyとRailsと</title>
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="『presidentbeef/brakeman - GitHub』は、
-Railsのセキュリティの問題点等をコマンド1つでチェックしてくれるGemです。
-企業等のサイト開発などでも気軽に使えるので是非試してみてください。 (adsbygoogle = window.adsbygoogle &hellip;">
+  <meta name="description" content="『cookpad/arproxy - GitHub』は、
+Arproxy ActiveRecordが発行したSQLを加工できるGemです。
+Slow Queryを調査したり、SQLにコメントを付与したり、SQLをReadonlyに制限したりできます！ (adsbygoogle = window. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://morizyun.github.io/blog/brakeman-rails-security-checker/">
+  <link rel="canonical" href="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/">
   <link rel="shortcut icon" href="/favicon.ico">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -48,11 +48,11 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
   </script>
 
 
-  <meta property="og:title" content="Brakeman Railsのセキュリティチェックを行うためのGem - 酒と泪とRubyとRailsと" />
-<meta property="og:description" content="『presidentbeef/brakeman - GitHub』は、
-Railsのセキュリティの問題点等をコマンド1つでチェックしてくれるGemです。
-企業等のサイト開発などでも気軽に使えるので是非試してみてください。 (adsbygoogle = window.adsbygoogle &hellip;" />
-<meta property="og:url" content="http://morizyun.github.io/blog/brakeman-rails-security-checker/" />
+  <meta property="og:title" content="Arproxy ActiveRecordが発行したSQLを加工できるGem - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="『cookpad/arproxy - GitHub』は、
+Arproxy ActiveRecordが発行したSQLを加工できるGemです。
+Slow Queryを調査したり、SQLにコメントを付与したり、SQLをReadonlyに制限したりできます！ (adsbygoogle = window. &hellip;" />
+<meta property="og:url" content="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
 <meta property="og:site_name" content="酒と泪とRubyとRailsと" />
@@ -102,7 +102,7 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
   
   <header>
     
-      <h1 class="entry-title">Brakeman Railsのセキュリティチェックを行うためのGem</h1>
+      <h1 class="entry-title">Arproxy ActiveRecordが発行したSQLを加工できるGem</h1>
     
     
     
@@ -121,19 +121,19 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
 
 
 
-        <time datetime="2016-01-18T23:55:00+09:00" pubdate data-updated="true">Jan 18<span>th</span>, 2016</time>
+        <time datetime="2016-01-19T23:40:00+09:00" pubdate data-updated="true">Jan 19<span>th</span>, 2016</time>
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
-      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/brakeman-rails-security-checker/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/brakeman-rails-security-checker.1/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     <li class="twitter">
       
-      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/brakeman-rails-security-checker/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/brakeman-rails-security-checker/" >Tweet</a>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/" >Tweet</a>
       
     </li>
     <li class="facebook">
-      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/brakeman-rails-security-checker/"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/"></div>
     </li>
   </ul>
 </span>
@@ -144,10 +144,10 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
   </header>
 
 
-<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00SF6JN4K/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00SF6JN4K&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00SF6JN4K&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00SF6JN4K" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-『<strong><a href="https://github.com/presidentbeef/brakeman">presidentbeef/brakeman - GitHub</a></strong>』は、
-Railsのセキュリティの問題点等をコマンド1つでチェックしてくれるGemです。
-企業等のサイト開発などでも気軽に使えるので是非試してみてください。</p>
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00SF6JN4U/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00SF6JN4U&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00SF6JN4U&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00SF6JN4U" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="https://github.com/cookpad/arproxy">cookpad/arproxy - GitHub</a></strong>』は、
+Arproxy ActiveRecordが発行したSQLを加工できるGemです。
+Slow Queryを調査したり、SQLにコメントを付与したり、SQLをReadonlyに制限したりできます！</p>
 
 <!-- more -->
 
@@ -181,9 +181,70 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
 </script>
 
 
-<h2>サンプル</h2>
+<h2>Gemインストール</h2>
 
-<p>こんな感じでコマンド一つでアプリのセキュリティをチェックしてくれます。</p>
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
+</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># ActiveRecordのSQLを加工</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;arproxy&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>SQLをログに出力</h2>
+
+<p>以下のようになSQLを実行する部分をProxyします。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">+-------------------------+</span>                       <span class="o">+------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="c1">#find |--execute(sql, name)--&gt;| Database Adapter |</span>
+</span><span class='line'><span class="o">+-------------------------+</span>                       <span class="o">+------------------+</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>SQLをログに出力するサンプルはこちら。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">QueryTracer</span> <span class="o">&lt;</span> <span class="no">Arproxy</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span> <span class="n">sql</span>
+</span><span class='line'>    <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span> <span class="nb">caller</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">super</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Arproxy</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">adapter</span> <span class="o">=</span> <span class="s2">&quot;mysql2&quot;</span> <span class="c1"># A DB Apdapter name which is used in your database.yml</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">use</span> <span class="no">QueryTracer</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Arproxy</span><span class="o">.</span><span class="n">enable!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Slow Queryのログを出力</h2>
+
+<p>Slow Queryのログを出力する場合はこちら。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -203,79 +264,47 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>brakeman
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">SlowQueryLogger</span> <span class="o">&lt;</span> <span class="no">Arproxy</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">slow_ms</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@slow_ms</span> <span class="o">=</span> <span class="n">slow_ms</span>
+</span><span class='line'>  <span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>+BRAKEMAN REPORT+
+</span><span class='line'>  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>    <span class="n">ms</span> <span class="o">=</span> <span class="no">Benchmark</span><span class="o">.</span><span class="n">ms</span> <span class="p">{</span> <span class="n">result</span> <span class="o">=</span> <span class="k">super</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">ms</span> <span class="o">&gt;=</span> <span class="vi">@slow_ms</span>
+</span><span class='line'>      <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Slow(</span><span class="si">#{</span><span class="n">ms</span><span class="o">.</span><span class="n">to_i</span><span class="si">}</span><span class="s2">ms): </span><span class="si">#{</span><span class="n">sql</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">result</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>Application path: /path/to/rails_app
-</span><span class='line'>Rails version: 4.2.5
-</span><span class='line'>Brakeman version: 3.1.4
-</span><span class='line'>Started at 2016-01-18 23:46:28 +0900
-</span><span class='line'>Duration: 0.805318 seconds
-</span><span class='line'>Checks run: BasicAuth, ContentTag, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NumberToCurrency, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionManipulation, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoSCVE, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>+SUMMARY+
-</span><span class='line'>
-</span><span class='line'>+-------------------+-------+
-</span><span class='line'>| Scanned/Reported  | Total |
-</span><span class='line'>+-------------------+-------+
-</span><span class='line'>| Controllers       | 6     |
-</span><span class='line'>| Models            | 5     |
-</span><span class='line'>| Templates         | 26    |
-</span><span class='line'>| Errors            | 0     |
-</span><span class='line'>| Security Warnings | 0 <span class="o">(</span>0<span class="o">)</span> |
-</span><span class='line'>+-------------------+-------+
+</span><span class='line'><span class="no">Arproxy</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">use</span> <span class="no">SlowQueryLogger</span><span class="p">,</span> <span class="mi">1000</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>結果はファイルやjsonで出力できますし、JenkinsなどのCIなどと連携して出力させる事もできます。</p>
+<h2>SQLにコメントを差し込む</h2>
 
-<p>ちなみに、『<strong><a href="http://brakemanscanner.org/docs/jenkins/">Jenkinsのプラグイン</a></strong>』はこちらです。</p>
-
-<p><a href="http://brakemanscanner.org/docs/jenkins/" target="_blank">
-  <img src="http://brakemanscanner.org/images/brakeman_trend_graph.png" />
-</a></p>
-
-<h2>Gemインストール</h2>
-
-<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+<p>SQLにコメントを差し込む場合はこちら。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
-</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
-</span><span class='line'>  <span class="c1"># セキュリティチェック</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;brakeman&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">CommentAdder</span> <span class="o">&lt;</span> <span class="no">Arproxy</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">sql</span> <span class="o">+=</span> <span class="s2">&quot; /*this_is_comment*/&quot;</span>
+</span><span class='line'>    <span class="k">super</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>application.js の変更</h2>
-
-<p>あとは以下のコマンドを実行するだけ。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>brakeman
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>これで安心して仕事を進められそうです！</p>
-
-<h2>Special Thanks</h2>
-
-<ul>
-<li><strong><a href="http://qiita.com/joker1007/items/be5dc3f3b1e93132a4f7">俺がGitHubでスターを付けたリポジトリ一覧 - Qiita</a></strong></li>
-</ul>
-
+<p>これは面白いかも！</p>
 </div>
 
   <div>
@@ -310,7 +339,7 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
   
 
 
-<time datetime="2016-01-18T23:55:00+09:00" pubdate data-updated="true">Jan 18<span>th</span>, 2016</time>
+<time datetime="2016-01-19T23:40:00+09:00" pubdate data-updated="true">Jan 19<span>th</span>, 2016</time>
       
 
 <span class="categories">
@@ -326,19 +355,19 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
     <ul class="social" style="margin-left: 0;">
         <li class="hatena">
             
-            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/brakeman-rails-security-checker/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/brakeman-rails-security-checker.1/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
             
         </li>
         <li class="twitter">
             
                 
-                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/brakeman-rails-security-checker/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/brakeman-rails-security-checker/" >Tweet</a>
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/" >Tweet</a>
                 
             
         </li>
         <li class="facebook">
             
-            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/brakeman-rails-security-checker/"></div>
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/"></div>
             
         </li>
     </ul>
@@ -346,10 +375,8 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/xray-rails-view-checker-ui-bone/" title="Previous Post: xray-rails Railsのviewがどこに表示されているかをわかりやすくする">&laquo; xray-rails Railsのviewがどこに表示されているかをわかりやすくする</a>
+        <a class="basic-alignment left" href="/blog/brakeman-rails-security-checker/" title="Previous Post: Brakeman Railsのセキュリティチェックを行うためのGem">&laquo; Brakeman Railsのセキュリティチェックを行うためのGem</a>
       
-      
-        <a class="basic-alignment right" href="/blog/brakeman-rails-security-checker.1/" title="Next Post: Arproxy ActiveRecordが発行したSQLを加工できるGem">Arproxy ActiveRecordが発行したSQLを加工できるGem &raquo;</a>
       
     </p>
   </footer>
@@ -473,8 +500,8 @@ Railsのセキュリティの問題点等をコマンド1つでチェックし�
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://morizyun.github.io/blog/brakeman-rails-security-checker/';
-        var disqus_url = 'http://morizyun.github.io/blog/brakeman-rails-security-checker/';
+        var disqus_identifier = 'http://morizyun.github.io/blog/brakeman-rails-security-checker.1/';
+        var disqus_url = 'http://morizyun.github.io/blog/brakeman-rails-security-checker.1/';
         var disqus_script = 'embed.js';
       
     (function () {

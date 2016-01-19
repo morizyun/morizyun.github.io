@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-19T00:01:35+09:00</updated>
+  <updated>2016-01-19T23:40:03+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,175 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Arproxy ActiveRecordが発行したSQLを加工できるGem]]></title>
+    <link href="http://morizyun.github.io/blog/brakeman-rails-security-checker.1/"/>
+    <updated>2016-01-19T23:40:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/brakeman-rails-security-checker.1</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00SF6JN4U/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00SF6JN4U&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00SF6JN4U&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00SF6JN4U" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+『<strong><a href="https://github.com/cookpad/arproxy">cookpad/arproxy - GitHub</a></strong>』は、
+Arproxy ActiveRecordが発行したSQLを加工できるGemです。
+Slow Queryを調査したり、SQLにコメントを付与したり、SQLをReadonlyに制限したりできます！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>Gemインストール</h2>
+
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
+</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># ActiveRecordのSQLを加工</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;arproxy&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>SQLをログに出力</h2>
+
+<p>以下のようになSQLを実行する部分をProxyします。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">+-------------------------+</span>                       <span class="o">+------------------+</span>
+</span><span class='line'><span class="o">|</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="c1">#find |--execute(sql, name)--&gt;| Database Adapter |</span>
+</span><span class='line'><span class="o">+-------------------------+</span>                       <span class="o">+------------------+</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>SQLをログに出力するサンプルはこちら。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">QueryTracer</span> <span class="o">&lt;</span> <span class="no">Arproxy</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span> <span class="n">sql</span>
+</span><span class='line'>    <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span> <span class="nb">caller</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">super</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Arproxy</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">adapter</span> <span class="o">=</span> <span class="s2">&quot;mysql2&quot;</span> <span class="c1"># A DB Apdapter name which is used in your database.yml</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">use</span> <span class="no">QueryTracer</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Arproxy</span><span class="o">.</span><span class="n">enable!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Slow Queryのログを出力</h2>
+
+<p>Slow Queryのログを出力する場合はこちら。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">SlowQueryLogger</span> <span class="o">&lt;</span> <span class="no">Arproxy</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">slow_ms</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@slow_ms</span> <span class="o">=</span> <span class="n">slow_ms</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>    <span class="n">ms</span> <span class="o">=</span> <span class="no">Benchmark</span><span class="o">.</span><span class="n">ms</span> <span class="p">{</span> <span class="n">result</span> <span class="o">=</span> <span class="k">super</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">ms</span> <span class="o">&gt;=</span> <span class="vi">@slow_ms</span>
+</span><span class='line'>      <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Slow(</span><span class="si">#{</span><span class="n">ms</span><span class="o">.</span><span class="n">to_i</span><span class="si">}</span><span class="s2">ms): </span><span class="si">#{</span><span class="n">sql</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">result</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Arproxy</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">use</span> <span class="no">SlowQueryLogger</span><span class="p">,</span> <span class="mi">1000</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>SQLにコメントを差し込む</h2>
+
+<p>SQLにコメントを差し込む場合はこちら。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">CommentAdder</span> <span class="o">&lt;</span> <span class="no">Arproxy</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">sql</span> <span class="o">+=</span> <span class="s2">&quot; /*this_is_comment*/&quot;</span>
+</span><span class='line'>    <span class="k">super</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これは面白いかも！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Brakeman Railsのセキュリティチェックを行うためのGem]]></title>
@@ -3868,199 +4037,6 @@ Nokogiriを使ったサンプルアプリを作ります！</p>
 <h2>Special Thanks</h2>
 
 <p><strong><a href="http://www.u-ziq.com/blog/2007/12/ruby_on_rails.html">初心者向けのRuby on Railsの用語説明</a></strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hard Things 成長する組織で大切なことを知ることができる [書評]]]></title>
-    <link href="http://morizyun.github.io/blog/hard-things-ben-horowitz-book-review/"/>
-    <updated>2015-12-31T21:35:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/hard-things-ben-horowitz-book-review</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00W535LOU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00W535LOU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00W535LOU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00W535LOU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-ベンチャーキャピタル「アンドリーセン・ホロウィッツ」の共同創業者ベン・ホロウィッツが書いた
-『<strong><a href="http://www.amazon.co.jp/gp/product/B00W535LOU/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B00W535LOU&amp;linkCode=as2&amp;tag=morizyun00-22">Hard Things</a></strong>』
-を読んだのでその感想です。</p>
-
-<p>題名の「Hard Things(困難)」通り、ベン・ホロウィッツが経験した様々な苦難が切実に語られている書籍。
-華々しく語られるスタートアップ業界は、実は本当はそんなに素晴らしいことばかりではなく、様々な困難を切り開いてきたのだと知ることができます。</p>
-
-<p>この本の中から特に面白かった点を中心に書いていきます。</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h2>組織運営で重要なこと</h2>
-
-<pre>
-- 組織が何をこれからすべきかを知ること
-- 組織がすべきことを実行していくこと
-</pre>
-
-
-<p>「組織が何をこれからすべきかを見つけられる」タイプのマネージャーは、たくさんの情報を収集し、大きな決断を躊躇なくこなすことができる。</p>
-
-<p>「組織がすべきことを実行していくのが特異」なタイプのマネージャーは、実行・改善することに価値を置く。一方で不完全な状態で判断をしないと
-いけないため、大きな決断をするときに、躊躇しやすい傾向にある</p>
-
-<h2>リーダーの属性</h2>
-
-<pre>
-- スティーブ・ジョブズのようにビジョンを語り、優秀な人を惹きつけ続ける力
-- 心の底から部下を気遣って行動することで、組織に属することに誇りを持って行動させられる力
-- 素晴らしいアイデアを選りすぐり、実現にこぎつける純然たる経営能力
-</pre>
-
-
-<h2>正しい動機からフィードバックを与える</h2>
-
-<pre>
-- 相手の成功を助けるための、フィードバックを与えよう
-- 相手に味方だと伝え、感情を伝える努力をしよう
-- フィードバックは迅速に、頻繁に行おう
-</pre>
-
-
-<h2>社員が直面する問題解決に貢献しやすい環境を提供出来ているか？</h2>
-
-<pre>
-- 仕事をやり遂げれば、良いことが訪れると確信できる(動機付け)
-- コミュニケーションが活発化され、大量の知識が共有されることでコンテキストが明確になっていること
-- 社員が新たなスキルを身につけるために、組織は出来る限りの投資を行う
-</pre>
-
-
-<h2>苦闘を愛せ</h2>
-
-<p>個々人独自の性格を愛し、自分の生い立ちを愛し、自分の直感を信じよう。
-困難に直面した時、何をすべきかは自らが判断するしかないのだから。
-この言葉はスタートアップのCEOに当てたメッセージだが、本質的にはどんな仕事の人にも当てはまると思う。</p>
-
-<h2>プロダクト・マネージャーのあるべき姿</h2>
-
-<pre>
-- 何をすべきかを明確にして、実現するまでを管理する
-- ドキュメントと口頭の両方で明確なコミュニケーションを取る
-- 他のメンバーに役立つドキュメントの整備を徹底する
-- 製品の欠陥を予測して、真の解決策を準備する
-- 計画をたてる段階では「優れた価値を届けること」に注力し、リリース後は売上を基準に考える
-- マスコミに書いてもらいたいストーリーを考える
-- 規律を重んじて、毎週時間通りに状況報告を行う
-</pre>
-
-
-<h2>経営の品質は社員のライフサイクルにある</h2>
-
-<p>社員のモチベーションが、経営の品質を図る上で特に重要な指標となる。</p>
-
-<pre>
-- 社員は胸を躍らせて出社しているか？
-- 社員は会社のミッションを信じているか？
-- 会社に出社することを、心から楽しみにしているか？
-- 社員は自分が期待されていることを明確に理解しているか？
-</pre>
-
-
-<p>人事責任者はプロセスを正確に設計し、マネージャーの改善に心から貢献する。</p>
-
-<h2>目の前で行われていることを理解する</h2>
-
-<p>目に見える成果だけを追ってはダメだ。ソフトウェアの開発責任者が欠陥のあるプラットフォームを放置して、
-無理やり幾つもの新機能を追加すれば、その場では目標が達成できるように見えるかもしれないが、次の
-バージョンアップが不可能になる。目の前で何が行われているかを正確に理解すべきだ。</p>
-
-<h2>個人面談で役立つ質問の例</h2>
-
-<pre>
-- やり方を改善するとしたら、どんな点をどうすればいいと思う？
-- 組織で最大の問題点は何だと思う？ その理由は？
-- この職場で働く、一番不愉快な点は何？
-- 一番頑張って貢献しているのは誰だと思う？誰を尊敬する？
-- キミがCEOだとしたら、どんな改革をしたい？
-- 我々の製品で一番気に入らない点はどこ？
-- われわれがチャンスを逃している点があるとしたらどこだろう？
-- 本来やらなければならないのに、今やっていないことは何だろう？
-- この会社で働くのは楽しい？
-</pre>
-
-
-<h2>企業文化の重要性</h2>
-
-<p>企業文化は、「働くのに楽しい場所」という根本的な価値を維持するのに大きな意味を持つ。
-そして、顧客に価値を届け、美しい製品を作り続けられるような仕事のやり方を根付かせる。
-長時間にわたって、大勢の社員の行動に影響を与えられるような重要な点に絞って企業文化を考えるべきだ。</p>
-
-<h2>組織が大きくなることによる課題</h2>
-
-<p>組織が大きくなることによる課題は以下の様なことだ。</p>
-
-<pre>
-- 組織内のコミュニケーション
-- 共通認識
-- 意思決定
-</pre>
-
-
-<p>専門性を担保するための組織構造が必要となる。だが、すべての組織デザインは悪だという原則を忘れるな。
-会社のある部分のコミュニケーションを犠牲にする事によって、他の部分のコミュニケーションを改善していることが重要だ。</p>
-
-<h2>組織のデザイン</h2>
-
-<p>組織デザインのフローは次の通り。</p>
-
-<pre>
-(1) どの部分に最も強いコミュニケーション経路が必要かを考える
-(2) どんな意思決定が必要なのかを検討する
-(3) 重要度の高い意思決定・コミュニケーション経路を優先する
-(4) それぞれの部門が誰を管理するのかを決める
-(5) 優先しなかったコミュニケーション経路を認識する
-(6) 優先しなかったコミュニケーション経路から出る問題を最小限にする
-</pre>
-
-
-<h2>ワークフローのデザイン</h2>
-
-<p>ワークフローのデザインにおける重要な点は次の通り。</p>
-
-<pre>
-- 成果に集中すること。プロセス化によって何を得られるのか？
-- プロセスのそれぞれのステップごとに、何が必要か？それが正しく得られているかを確認すること
-- 責任の所在を明確にする。社員のパフォーマンスを可視化する
-</pre>
-
-
-
-
-<br style="clear:both;"/>
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 ]]></content>
   </entry>
   
