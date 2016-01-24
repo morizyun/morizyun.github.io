@@ -388,11 +388,13 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
+<span class='line-number'>12</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># gitの情報を読んで、herokutoolbelt</span>
 </span><span class='line'><span class="n">gem</span> <span class="n">install</span> <span class="n">dokku</span><span class="o">-</span><span class="n">cli</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># secret keyをセット</span>
-</span><span class='line'><span class="n">dokku</span> <span class="n">config</span><span class="ss">:set</span> <span class="no">SECRET_KEY_BASE</span><span class="o">=</span><span class="sb">`bundle exec rake secret`</span>
+</span><span class='line'><span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">secret</span>
+</span><span class='line'><span class="n">dokku</span> <span class="n">config</span><span class="ss">:set</span> <span class="no">SECRET_KEY_BASE</span><span class="o">=</span><span class="s2">&quot;上で生成された文字列&quot;</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># サーバにdeploy</span>
 </span><span class='line'><span class="n">git</span> <span class="n">push</span> <span class="n">dokku</span> <span class="n">master</span>

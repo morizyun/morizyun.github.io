@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-24T20:01:45+09:00</updated>
+  <updated>2016-01-24T20:02:49+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -228,7 +228,8 @@ end
 
 <h1>secret keyをセット</h1>
 
-<p>dokku config:set SECRET_KEY_BASE=<code>bundle exec rake secret</code></p>
+<p>bundle exec rake secret
+dokku config:set SECRET_KEY_BASE="上で生成された文字列"</p>
 
 <h1>サーバにdeploy</h1>
 
