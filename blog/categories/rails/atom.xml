@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-24T19:29:52+09:00</updated>
+  <updated>2016-01-24T19:40:13+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -127,6 +127,21 @@ apps.yourdomain.com   A 123.123.123.123
 
 <p>ちなみに、Dokkuで使えるPluginの一覧はこちら『<strong><a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - Dokku</a></strong>』。</p>
 
+<h2>日本語環境の設定</h2>
+
+<p><code>language-pack-ja</code>をインストールして日本語パッケージを入れましょう。</p>
+
+<p>```</p>
+
+<h1>ssh でサーバにログイン</h1>
+
+<p>ssh root@123.123.123.123</p>
+
+<h1>apt-get を最新の状態にして language-pack-ja をインストール</h1>
+
+<p>sudo apt-get update &amp;&amp; sudo apt-get install language-pack-ja
+```</p>
+
 <h2>スワップ領域の設定</h2>
 
 <p>安定動作のためにスワップ領域を設定しましょう。
@@ -156,6 +171,22 @@ apps.yourdomain.com   A 123.123.123.123
 <h1>Bookでscaffold</h1>
 
 <p>rails g scaffold book title:string auther:string price:float
+```</p>
+
+<p>Rubyのバージョンを指定します。2016/2/25時点では <code>2.2.3</code> まで対応しているようです。</p>
+
+<p>```ruby</p>
+
+<h1>Gemfile</h1>
+
+<p>ruby '2.2.3'
+```</p>
+
+<p>```ruby</p>
+
+<h1>.ruby-version</h1>
+
+<p>2.2.3
 ```</p>
 
 <p>routesにrootを追加します。</p>
