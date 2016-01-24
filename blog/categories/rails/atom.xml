@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-24T20:02:49+09:00</updated>
+  <updated>2016-01-25T00:09:03+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,124 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[redis-rails RailsのセッションをRedisで管理]]></title>
+    <link href="http://morizyun.github.io/blog/redis-rails-session-ruby/"/>
+    <updated>2016-01-24T23:55:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/redis-rails-session-ruby</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00C2ONQIU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00C2ONQIU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00C2ONQIU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00C2ONQIU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+サーバーサイドでのセッション管理はセキュリティを向上させたり、通信で無用なCookieを送らない等の意味でメリットがあります。
+今回は『<strong><a href="https://github.com/redis-store/redis-rails">redis-store/redis-rails - GitHub</a></strong>』を使う手順のメモです！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>サーバーサイド/クライアントでのセッション管理のPros/Cons</h2>
+
+<p>セッションに関する説明は以下のサイトがおすすめです。注意点としては次の2点と考えられます。</p>
+
+<ul>
+<li><strong><a href="http://qiita.com/jkr_2255/items/075d1d518ae7a98141b3">セッション管理の要注意点 - Qiita</a></strong></li>
+<li><strong><a href="http://railsguides.jp/security.html">Rails セキュリティガイド | Rails ガイド</a></strong></li>
+</ul>
+
+
+<pre>
+- セッションの基礎
+  - Webアプリでは、接続ごとに固有の識別子(セッションID)を割り当て、一時的なidを割り振る
+  - セッションは他のCookieと合わせて通信のたびにやり取りされる
+  - Cookieのサイズは4 KBと厳密に定められている
+
+- セッションにおけるセキュリティのリスク
+  - 他人のセッションを取得すると他人に一時的になりすましてログインができてしまう
+  - セッション/Cookieにデータを保持するとクライアント側でデータを復元出来てしまう
+
+- サーバーサイドでセッションを管理するメリット
+  - 通信時にやりとりされるCookieの通信量を減らす
+
+- Rails固有の話
+  - Railsではセッションidは、32バイトのMD5ハッシュ値である
+
+- セキュリティ強度を上げるための対策
+  - Cookieのsecure属性とSSL => HTTPSでの通信でのみ使い、暗号化
+  - Cookieのhttponly属性 => JavaScriptから読み書きさせない
+</pre>
+
+
+<h2>開発環境の準備</h2>
+
+<p>Mac等でのRedisの導入については、拙著
+『<strong><a href="http://morizyun.github.io/blog/redis-mac-centos-rails/">CentOS/Mac OSXへのRedis導入手順 - memcacheライクなKey-Value方式と、永続化対応のインメモリDB</a></strong>』
+がおすすめです。</p>
+
+<h2>Gemインストール</h2>
+
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<p>```ruby</p>
+
+<h1>Gemfile</h1>
+
+<p>gem "redis-rails"
+```</p>
+
+<h2>設定の修正</h2>
+
+<p>まずはキャッシュの保存先をRedisに設定。</p>
+
+<p>```ruby</p>
+
+<h1>config/application.rb</h1>
+
+<h1>/cache はアプリ名や、Rails．env等の環境情報をいれてもいいかも</h1>
+
+<p>config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }</p>
+
+<h1>ちなみに環境変数に入れてしまうのもおすすめです</h1>
+
+<h1>config.cache_store = :redis_store, ENV['REDIS_URL'], { expires_in: 90.minutes }</h1>
+
+<p>```</p>
+
+<p>続いてバックエンドのセッションの保存先を設定。</p>
+
+<p>```ruby</p>
+
+<h1>config/initializers/session_store.rb</h1>
+
+<p>MyApplication::Application.config.session_store :redis_store, servers: "redis://localhost:6379/0/cache"</p>
+
+<h1>環境変数で設定する場合</h1>
+
+<h1>MyApplication::Application.config.session_store :redis_store, servers: ENV['REDIS_URL']</h1>
+
+<p>```</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><a href="http://qiita.com/Kta-M/items/b4852c849d408e7445c6">RailsのセッションストアとしてRedisを使う(Mac/EC2:AmazonLinux) - Qiita</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dokku プライベートなherokuを作ってRailsアプリをデプロイ[DegitalOclean]]]></title>
@@ -310,6 +428,35 @@ Redirect (beta)
 <p>また公式サポートされているPlugin以外にもコミュニティや個人が様々なPluginを提供しています。
 詳しくは、『<a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - GitHub</a>**』を見てみてください。</p>
 
+<h2>Redis のインストール</h2>
+
+<p>Dokku PluginとしてRedisを入れてみました！</p>
+
+<p>```</p>
+
+<h1>ssh でサーバにログイン</h1>
+
+<p>ssh root@123.123.123.123</p>
+
+<h1>redis plugin をインストール</h1>
+
+<p>dokku plugin:install https://github.com/dokku/dokku-redis.git redis</p>
+
+<h1>新しいRedisのサービスを立ち上げ</h1>
+
+<p>dokku redis:create dokku_sample_redis</p>
+
+<h1>Dokku => Redis をひも付け</h1>
+
+<p>dokku redis:link dokku_sample_redis dokku_sample_app
+```</p>
+
+<p>これで、アプリ側のconfigに以下が設定されるようになります。</p>
+
+<p><code>REDIS_URL: redis://dokku-redis-dokku_sample_redis:6379/0</code></p>
+
+<p>上記のサービスを使えば、RailsのアプリからRedisが使えるようになります！</p>
+
 <h2>感想</h2>
 
 <p>まだ、簡単なアプリをデプロイしただけなので、もう少し色々試した上でですが、今のところの感触はかなりありな気がします＾＾</p>
@@ -327,7 +474,7 @@ Redirect (beta)
 
 <h2>変更来歴</h2>
 
-<p>(2016/01/24 19:30) 記述ミスの修正</p>
+<p>(2016/01/24 19:30) Redisの設定方法を追記</p>
 ]]></content>
   </entry>
   
@@ -630,105 +777,6 @@ $ rm -rf tmp/cache/assets
 
 <ul>
 <li><strong><a href="http://qiita.com/joker1007/items/be5dc3f3b1e93132a4f7">俺がGitHubでスターを付けたリポジトリ一覧 - Qiita</a></strong></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ActiveModelを使って、Classにバリデーションなどの便利機能を追加 [Rails4.2]]]></title>
-    <link href="http://morizyun.github.io/blog/activemodel-rails-basic-usage/"/>
-    <updated>2016-01-11T21:10:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/activemodel-rails-basic-usage</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00NM7VROQ/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00NM7VROQ&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00NM7VROQ&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00NM7VROQ" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-RailsのModelで便利に使っているバリデーションなどの機能をオブジェクトに追加する際には、<code>include ActiveModel::Model</code> がお手軽で便利ですよというお話です。
-ちょっとボケて失念してしまっていたので、念のためメモです。</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
-
-<h2>できること</h2>
-
-<p>この <code>include ActiveModel::Model</code> でできることはこちら。</p>
-
-<ul>
-<li><code>Hoge.new({fuga: pugi})</code> みたいなイニシャライズができる</li>
-<li>attributeのバリデーションを作れる</li>
-<li><code>form_for</code> などで使える</li>
-</ul>
-
-
-<h2>実装例</h2>
-
-<p>オブジェクトの実装はこちら。</p>
-
-<p>```ruby</p>
-
-<h1>app/forms/non_model.rb</h1>
-
-<p>class Form::NonModel
-  # ------------------------------------------------------------------
-  # Modules
-  # ------------------------------------------------------------------
-  include ActiveModel::Model # Modelの便利機能とか</p>
-
-<p>  # ------------------------------------------------------------------
-  # Attributes
-  # ------------------------------------------------------------------
-  attr_accessor :foo, :bar</p>
-
-<p>  # ------------------------------------------------------------------
-  # Validations
-  # ------------------------------------------------------------------
-  validates :foo, presence: true
-  validates :bar, presence: true
-end
-```</p>
-
-<p>オブジェクトを使う際はこちら。</p>
-
-<p>```ruby</p>
-
-<h1>バリデーションOKのオブジェクト</h1>
-
-<p>vaiid_form = Form::NonModel.new(foo: 'foooo', bar: 'baaaan!')
-vaiid_form.valid? #=> true</p>
-
-<h1>バリデーションNGのオブジェクト</h1>
-
-<p>invalid_form = Form::NonModel.new(foo: 'foooo')
-invalid_form.valid? #=> false
-invalid_form.errors #=> #&lt;ActiveModel::Errors:0x007fe6bb19df58 @base=#&lt;Form::NonModel:0x007fe6beec6038 @errors=#&lt;ActiveModel::Errors:0x007fe6bb19df58 ...>, @foo="foooo", @validation_context=nil>, @messages={:bar=>["を入力してください。"]}>
-```</p>
-
-<p>地味だけど、便利です。Fat Modelを避けるために、責務に応じたオブジェクトを作る際に適用範囲は広いです。</p>
-
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
-
-<h2>あどがき</h2>
-
-<p>「<strong><a href="http://qiita.com/kbaba1001/items/e265ad1e40f238931468">Ruby - Rails のアーキテクチャ設計を考える - Qiita</a></strong>」も勉強になる。
-チームへの導入コスト等も考えつつ、検討していきたい！</p>
-
-<h2>Special Thanks</h2>
-
-<ul>
-<li><a href="http://tanihiro.hatenablog.com/entry/2014/01/09/193720">【ruby】ActiveModelを使ってDBと関係ないFormを作成する【Rails】 - tanihiro.log</a></li>
 </ul>
 
 ]]></content>

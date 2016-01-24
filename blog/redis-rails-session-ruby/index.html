@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: redis - 酒と泪とRubyとRailsと</title>
+  <title>redis-rails RailsのセッションをRedisで管理 - 酒と泪とRubyとRailsと</title>
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="Category: redis">
+  <meta name="description" content="サーバーサイドでのセッション管理はセキュリティを向上させたり、通信で無用なCookieを送らない等の意味でメリットがあります。
+今回は『redis-store/redis-rails - GitHub』を使う手順のメモです！ (adsbygoogle = window.adsbygoogle &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://morizyun.github.ioblog/categories/redis/">
+  <link rel="canonical" href="http://morizyun.github.io/blog/redis-rails-session-ruby/">
   <link rel="shortcut icon" href="/favicon.ico">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -46,9 +47,10 @@
   </script>
 
 
-  <meta property="og:title" content="Category: redis - 酒と泪とRubyとRailsと" />
-<meta property="og:description" content="Category: redis" />
-<meta property="og:url" content="http://morizyun.github.ioblog/categories/redis/" />
+  <meta property="og:title" content="redis-rails RailsのセッションをRedisで管理 - 酒と泪とRubyとRailsと" />
+<meta property="og:description" content="サーバーサイドでのセッション管理はセキュリティを向上させたり、通信で無用なCookieを送らない等の意味でメリットがあります。
+今回は『redis-store/redis-rails - GitHub』を使う手順のメモです！ (adsbygoogle = window.adsbygoogle &hellip;" />
+<meta property="og:url" content="http://morizyun.github.io/blog/redis-rails-session-ruby/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
 <meta property="og:site_name" content="酒と泪とRubyとRailsと" />
@@ -94,31 +96,176 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Redis</h1>
+    
+      <h1 class="entry-title">Redis-rails RailsのセッションをRedisで管理</h1>
+    
+    
+    
+      <p class="meta" style="top: -25px;">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2016-01-24T23:55:00+09:00" pubdate data-updated="true">Jan 24<span>th</span>, 2016</time>
+<span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/redis-rails-session-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/redis-rails-session-ruby/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/redis-rails-session-ruby/" >Tweet</a>
+      
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/redis-rails-session-ruby/"></div>
+    </li>
+  </ul>
+</span>
+
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/B00C2ONQIU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00C2ONQIU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00C2ONQIU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00C2ONQIU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+サーバーサイドでのセッション管理はセキュリティを向上させたり、通信で無用なCookieを送らない等の意味でメリットがあります。
+今回は『<strong><a href="https://github.com/redis-store/redis-rails">redis-store/redis-rails - GitHub</a></strong>』を使う手順のメモです！</p>
 
-  
-  <h2>2016</h2>
-
-<article>
-  
-<h1><a href="/blog/redis-rails-session-ruby/">redis-rails RailsのセッションをRedisで管理</a></h1>
-<time datetime="2016-01-24T23:55:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>24</span> <span class='year'>2016</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/redis/'>redis</a></span>
-</footer>
+<!-- more -->
 
 
-</article>
+<br style="clear:both;"/>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>サーバーサイド/クライアントでのセッション管理のPros/Cons</h2>
+
+<p>セッションに関する説明は以下のサイトがおすすめです。注意点としては次の2点と考えられます。</p>
+
+<ul>
+<li><strong><a href="http://qiita.com/jkr_2255/items/075d1d518ae7a98141b3">セッション管理の要注意点 - Qiita</a></strong></li>
+<li><strong><a href="http://railsguides.jp/security.html">Rails セキュリティガイド | Rails ガイド</a></strong></li>
+</ul>
+
+
+<pre>
+- セッションの基礎
+  - Webアプリでは、接続ごとに固有の識別子(セッションID)を割り当て、一時的なidを割り振る
+  - セッションは他のCookieと合わせて通信のたびにやり取りされる
+  - Cookieのサイズは4 KBと厳密に定められている
+
+- セッションにおけるセキュリティのリスク
+  - 他人のセッションを取得すると他人に一時的になりすましてログインができてしまう
+  - セッション/Cookieにデータを保持するとクライアント側でデータを復元出来てしまう
+
+- サーバーサイドでセッションを管理するメリット
+  - 通信時にやりとりされるCookieの通信量を減らす
+
+- Rails固有の話
+  - Railsではセッションidは、32バイトのMD5ハッシュ値である
+
+- セキュリティ強度を上げるための対策
+  - Cookieのsecure属性とSSL => HTTPSでの通信でのみ使い、暗号化
+  - Cookieのhttponly属性 => JavaScriptから読み書きさせない
+</pre>
+
+
+<h2>開発環境の準備</h2>
+
+<p>Mac等でのRedisの導入については、拙著
+『<strong><a href="http://morizyun.github.io/blog/redis-mac-centos-rails/">CentOS/Mac OSXへのRedis導入手順 - memcacheライクなKey-Value方式と、永続化対応のインメモリDB</a></strong>』
+がおすすめです。</p>
+
+<h2>Gemインストール</h2>
+
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;redis-rails&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>設定の修正</h2>
+
+<p>まずはキャッシュの保存先をRedisに設定。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/application.rb</span>
+</span><span class='line'><span class="c1"># /cache はアプリ名や、Rails．env等の環境情報をいれてもいいかも</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">cache_store</span> <span class="o">=</span> <span class="ss">:redis_store</span><span class="p">,</span> <span class="s2">&quot;redis://localhost:6379/0/cache&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">expires_in</span><span class="p">:</span> <span class="mi">90</span><span class="o">.</span><span class="n">minutes</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># ちなみに環境変数に入れてしまうのもおすすめです</span>
+</span><span class='line'><span class="c1"># config.cache_store = :redis_store, ENV[&#39;REDIS_URL&#39;], { expires_in: 90.minutes }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>続いてバックエンドのセッションの保存先を設定。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/initializers/session_store.rb</span>
+</span><span class='line'><span class="no">MyApplication</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">session_store</span> <span class="ss">:redis_store</span><span class="p">,</span> <span class="n">servers</span><span class="p">:</span> <span class="s2">&quot;redis://localhost:6379/0/cache&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 環境変数で設定する場合</span>
+</span><span class='line'><span class="c1">#MyApplication::Application.config.session_store :redis_store, servers: ENV[&#39;REDIS_URL&#39;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><a href="http://qiita.com/Kta-M/items/b4852c849d408e7445c6">RailsのセッションストアとしてRedisを使う(Mac/EC2:AmazonLinux) - Qiita</a></li>
+</ul>
 
 </div>
 
@@ -135,8 +282,77 @@
     <a href="http://www.amazon.co.jp/gp/product/B01A6LP8K4/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B01A6LP8K4&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B01A6LP8K4&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B01A6LP8K4" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
     <a href="http://www.amazon.co.jp/gp/product/B01AIB438A/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B01AIB438A&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B01AIB438A&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B01AIB438A" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 </div>
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">morizyun</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-24T23:55:00+09:00" pubdate data-updated="true">Jan 24<span>th</span>, 2016</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/redis/'>redis</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing social_box">
+    <ul class="social" style="margin-left: 0;">
+        <li class="hatena">
+            
+            <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/redis-rails-session-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+            
+        </li>
+        <li class="twitter">
+            
+                
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/redis-rails-session-ruby/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/redis-rails-session-ruby/" >Tweet</a>
+                
+            
+        </li>
+        <li class="facebook">
+            
+            <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/redis-rails-session-ruby/"></div>
+            
+        </li>
+    </ul>
+</div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/dokku-postgresql-rails-degitalocean/" title="Previous Post: Dokku プライベートなherokuを作ってRailsアプリをデプロイ[DegitalOclean]">&laquo; Dokku プライベートなherokuを作ってRailsアプリをデプロイ[DegitalOclean]</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h5>
+      いかがだったでしょうか？<br/>
+      もし説明がわかりにくかったり、間違っている場所があればぜひ一言！
+    </h5>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -231,7 +447,6 @@
 <!-- Paste this code right after the <body> tag on every page of your site. -->
 <script type="text/javascript">var _kiq = _kiq || [];</script>
 <script type="text/javascript" src="//s3.amazonaws.com/ki.js/46012/96Y.js" async="true"></script>
-
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -246,7 +461,10 @@
       var disqus_shortname = 'morizyun';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://morizyun.github.io/blog/redis-rails-session-ruby/';
+        var disqus_url = 'http://morizyun.github.io/blog/redis-rails-session-ruby/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

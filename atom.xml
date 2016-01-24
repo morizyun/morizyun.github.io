@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-24T20:02:49+09:00</updated>
+  <updated>2016-01-25T00:09:03+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,139 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[redis-rails RailsのセッションをRedisで管理]]></title>
+    <link href="http://morizyun.github.io/blog/redis-rails-session-ruby/"/>
+    <updated>2016-01-24T23:55:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/redis-rails-session-ruby</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00C2ONQIU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00C2ONQIU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00C2ONQIU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00C2ONQIU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+サーバーサイドでのセッション管理はセキュリティを向上させたり、通信で無用なCookieを送らない等の意味でメリットがあります。
+今回は『<strong><a href="https://github.com/redis-store/redis-rails">redis-store/redis-rails - GitHub</a></strong>』を使う手順のメモです！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>サーバーサイド/クライアントでのセッション管理のPros/Cons</h2>
+
+<p>セッションに関する説明は以下のサイトがおすすめです。注意点としては次の2点と考えられます。</p>
+
+<ul>
+<li><strong><a href="http://qiita.com/jkr_2255/items/075d1d518ae7a98141b3">セッション管理の要注意点 - Qiita</a></strong></li>
+<li><strong><a href="http://railsguides.jp/security.html">Rails セキュリティガイド | Rails ガイド</a></strong></li>
+</ul>
+
+
+<pre>
+- セッションの基礎
+  - Webアプリでは、接続ごとに固有の識別子(セッションID)を割り当て、一時的なidを割り振る
+  - セッションは他のCookieと合わせて通信のたびにやり取りされる
+  - Cookieのサイズは4 KBと厳密に定められている
+
+- セッションにおけるセキュリティのリスク
+  - 他人のセッションを取得すると他人に一時的になりすましてログインができてしまう
+  - セッション/Cookieにデータを保持するとクライアント側でデータを復元出来てしまう
+
+- サーバーサイドでセッションを管理するメリット
+  - 通信時にやりとりされるCookieの通信量を減らす
+
+- Rails固有の話
+  - Railsではセッションidは、32バイトのMD5ハッシュ値である
+
+- セキュリティ強度を上げるための対策
+  - Cookieのsecure属性とSSL => HTTPSでの通信でのみ使い、暗号化
+  - Cookieのhttponly属性 => JavaScriptから読み書きさせない
+</pre>
+
+
+<h2>開発環境の準備</h2>
+
+<p>Mac等でのRedisの導入については、拙著
+『<strong><a href="http://morizyun.github.io/blog/redis-mac-centos-rails/">CentOS/Mac OSXへのRedis導入手順 - memcacheライクなKey-Value方式と、永続化対応のインメモリDB</a></strong>』
+がおすすめです。</p>
+
+<h2>Gemインストール</h2>
+
+<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;redis-rails&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>設定の修正</h2>
+
+<p>まずはキャッシュの保存先をRedisに設定。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/application.rb</span>
+</span><span class='line'><span class="c1"># /cache はアプリ名や、Rails．env等の環境情報をいれてもいいかも</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">cache_store</span> <span class="o">=</span> <span class="ss">:redis_store</span><span class="p">,</span> <span class="s2">&quot;redis://localhost:6379/0/cache&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">expires_in</span><span class="p">:</span> <span class="mi">90</span><span class="o">.</span><span class="n">minutes</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># ちなみに環境変数に入れてしまうのもおすすめです</span>
+</span><span class='line'><span class="c1"># config.cache_store = :redis_store, ENV[&#39;REDIS_URL&#39;], { expires_in: 90.minutes }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>続いてバックエンドのセッションの保存先を設定。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/initializers/session_store.rb</span>
+</span><span class='line'><span class="no">MyApplication</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">session_store</span> <span class="ss">:redis_store</span><span class="p">,</span> <span class="n">servers</span><span class="p">:</span> <span class="s2">&quot;redis://localhost:6379/0/cache&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 環境変数で設定する場合</span>
+</span><span class='line'><span class="c1">#MyApplication::Application.config.session_store :redis_store, servers: ENV[&#39;REDIS_URL&#39;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><a href="http://qiita.com/Kta-M/items/b4852c849d408e7445c6">RailsのセッションストアとしてRedisを使う(Mac/EC2:AmazonLinux) - Qiita</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dokku プライベートなherokuを作ってRailsアプリをデプロイ[DegitalOclean]]]></title>
@@ -384,6 +517,41 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 <p>また公式サポートされているPlugin以外にもコミュニティや個人が様々なPluginを提供しています。
 詳しくは、『<a href="https://github.com/dokku/dokku/blob/master/docs/plugins.md">dokku/plugins.md - GitHub</a>**』を見てみてください。</p>
 
+<h2>Redis のインストール</h2>
+
+<p>Dokku PluginとしてRedisを入れてみました！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># ssh でサーバにログイン</span>
+</span><span class='line'><span class="n">ssh</span> <span class="n">root</span><span class="err">@</span><span class="mi">123</span><span class="o">.</span><span class="mi">123</span><span class="o">.</span><span class="mi">123</span><span class="o">.</span><span class="mi">123</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># redis plugin をインストール</span>
+</span><span class='line'><span class="n">dokku</span> <span class="n">plugin</span><span class="ss">:install</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">dokku</span><span class="o">/</span><span class="n">dokku</span><span class="o">-</span><span class="n">redis</span><span class="o">.</span><span class="n">git</span> <span class="n">redis</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 新しいRedisのサービスを立ち上げ</span>
+</span><span class='line'><span class="n">dokku</span> <span class="n">redis</span><span class="ss">:create</span> <span class="n">dokku_sample_redis</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Dokku =&gt; Redis をひも付け</span>
+</span><span class='line'><span class="n">dokku</span> <span class="n">redis</span><span class="ss">:link</span> <span class="n">dokku_sample_redis</span> <span class="n">dokku_sample_app</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで、アプリ側のconfigに以下が設定されるようになります。</p>
+
+<p><code>REDIS_URL: redis://dokku-redis-dokku_sample_redis:6379/0</code></p>
+
+<p>上記のサービスを使えば、RailsのアプリからRedisが使えるようになります！</p>
+
 <h2>感想</h2>
 
 <p>まだ、簡単なアプリをデプロイしただけなので、もう少し色々試した上でですが、今のところの感触はかなりありな気がします＾＾</p>
@@ -401,7 +569,7 @@ herokuライクなプライベートなPaaSを作るためのOSS『<strong><a hr
 
 <h2>変更来歴</h2>
 
-<p>(2016/01/24 19:30) 記述ミスの修正</p>
+<p>(2016/01/24 19:30) Redisの設定方法を追記</p>
 ]]></content>
   </entry>
   
@@ -3765,209 +3933,6 @@ E) Zohoで指定されたSPFレコードをムームドメインに設定
 <li><strong><a href="http://ruby-rails.hatenadiary.com/entry/20151018/1445142266">RailsでElasticsearch: 全文検索を実装 - Rails Webook</a></strong></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Elasticsearch 2.1 + Kibana 4.3 + Marvel のMacへのセットアップ]]></title>
-    <link href="http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac/"/>
-    <updated>2016-01-02T21:40:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00MPDUQQI/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00MPDUQQI&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00MPDUQQI&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00MPDUQQI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-Mac Yosemiteに以下の環境構築する手順をまとめました！</p>
-
-<ul>
-<li>全文検索エンジンの『<strong><a href="https://www.elastic.co/products/elasticsearch">Elasticsearch 2.1</a></strong>』</li>
-<li>Elasticsearchのデータ表示のツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana 4.3.1</a></strong>』</li>
-<li>Elasticsearchの管理ツール『<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>』</li>
-</ul>
-
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h2>Elasticsearchとは</h2>
-
-<p>ElasticSearchは、Apache Lucene 上で稼働するオープンソースの全文検索システムのことです。
-REST APIを使うことができ、jsonでやり取りを行う事ができる。</p>
-
-<h2>Elasticsearch のインストール</h2>
-
-<p>Macの場合は、まずはJavaのインストールです。
-<strong><a href="http://www.amazon.co.jp/gp/bestsellers/computers/2151977051/ref=pd_zg_hrsr_computers_1_3_last">Java SE - Downloads | Oracle</a></strong>
-からファイルをダウンロードして、インストールします。</p>
-
-<p>次に『<strong><a href="https://www.elastic.co/downloads/past-releases/">Download Elasticsearch | Elastic</a></strong>』からファイルをダウンロードします。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">brew</span> <span class="n">install</span> <span class="n">elasticsearch</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 自動起動の設定</span>
-</span><span class='line'><span class="n">ln</span> <span class="o">-</span><span class="n">sfv</span> <span class="sr">/usr/</span><span class="n">local</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/*.</span><span class="n">plist</span> <span class="o">~</span><span class="sr">/Library/</span><span class="no">LaunchAgents</span>
-</span><span class='line'><span class="n">launchctl</span> <span class="nb">load</span> <span class="o">~</span><span class="sr">/Library/</span><span class="no">LaunchAgents</span><span class="o">/</span><span class="n">homebrew</span><span class="o">.</span><span class="n">mxcl</span><span class="o">.</span><span class="n">elasticsearch</span><span class="o">.</span><span class="n">plist</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>http://localhost:9200/_plugin/head/</code>が見れたら動いていると思います！</p>
-
-<p><img src="https://farm2.staticflickr.com/1600/24036707412_4258a9701a.jpg" width="500" height="376"></p>
-
-<h2>日本語対応で elasticsearch-analysis-kuromoji をインストール</h2>
-
-<p>ターミナルで以下を実行。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">plugin</span> <span class="n">install</span> <span class="n">analysis</span><span class="o">-</span><span class="n">kuromoji</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>vi /usr/local/etc/elasticsearch/elasticsearch.yml</code>でファイルを開いて以下を追加。デフォルトで kurmoji を使うようにします。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">################################## Custom ################################</span>
-</span><span class='line'><span class="c1"># Using kuromoji in default</span>
-</span><span class='line'><span class="n">index</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">analyzer</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">type</span><span class="p">:</span> <span class="n">custom</span>
-</span><span class='line'><span class="n">index</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">analyzer</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">:</span> <span class="n">kuromoji_tokenizer</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ということでElasticsearchを再起動します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">launchctl</span> <span class="n">unload</span> <span class="o">~</span><span class="sr">/Library/</span><span class="no">LaunchAgents</span><span class="o">/</span><span class="n">homebrew</span><span class="o">.</span><span class="n">mxcl</span><span class="o">.</span><span class="n">elasticsearch</span><span class="o">.</span><span class="n">plist</span>
-</span><span class='line'><span class="n">launchctl</span> <span class="nb">load</span> <span class="o">~</span><span class="sr">/Library/</span><span class="no">LaunchAgents</span><span class="o">/</span><span class="n">homebrew</span><span class="o">.</span><span class="n">mxcl</span><span class="o">.</span><span class="n">elasticsearch</span><span class="o">.</span><span class="n">plist</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h2>データビジュアライゼーション Kibana</h2>
-
-<p>ミーハーなので データのビジュアライゼーションツール『<strong><a href="https://www.elastic.co/products/kibana">Kibana</a></strong>』
-もインストールします。後で使うかもくらいですww</p>
-
-<p>まずはnodeとnmpが必要となります。もしまだの場合は、
-『<strong><a href="http://qiita.com/tagosaku324/items/bf1fe149c38c99728c72">macでNode.jsの環境設定 - Qiita</a></strong>』
-を参考にしながらインストールしてみてください。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 最新版のURLに置き換えてください</span>
-</span><span class='line'><span class="n">wget</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">download</span><span class="o">.</span><span class="n">elastic</span><span class="o">.</span><span class="n">co</span><span class="o">/</span><span class="n">kibana</span><span class="o">/</span><span class="n">kibana</span><span class="o">/</span><span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-</span><span class='line'><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-</span><span class='line'><span class="n">mv</span> <span class="n">kibana</span><span class="o">-</span><span class="mi">4</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">darwin</span><span class="o">-</span><span class="n">x64</span> <span class="n">kibana</span>
-</span><span class='line'><span class="n">cd</span> <span class="n">kibana</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># kibana のサーバを起動</span>
-</span><span class='line'><span class="n">bin</span><span class="o">/</span><span class="n">kibana</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>http://localhost:5601/</code> にアクセスするとKibanaの画面が見れると思います。</p>
-
-<p><img src="https://farm6.staticflickr.com/5659/23996427772_e8904e5b3a.jpg" width="500" height="340"></p>
-
-<p>こんな感じの画面が見れれば成功だと思います！</p>
-
-<h2>Elasticsearchの管理プラグイン Mervel</h2>
-
-<p>つづいて、Elasticsearchの管理プラグイン「<strong><a href="https://www.elastic.co/products/marvel">Marvel</a></strong>」をインストールします。
-クラスタやインデックスのキャッシュヒット、ドキュメント数などを閲覧できます。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Elasticsearchの plugin をインストール</span>
-</span><span class='line'><span class="c1"># インストール手順: https://www.elastic.co/downloads/marvel</span>
-</span><span class='line'><span class="n">plugin</span> <span class="n">install</span> <span class="n">license</span>
-</span><span class='line'><span class="n">plugin</span> <span class="n">install</span> <span class="n">marvel</span><span class="o">-</span><span class="n">agent</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Kibanaのプラグインとして Marvelをインストール</span>
-</span><span class='line'><span class="n">cd</span> <span class="n">kibana</span>
-</span><span class='line'><span class="o">.</span><span class="n">/bin</span><span class="o">/</span><span class="n">kibana</span> <span class="n">plugin</span> <span class="o">-</span><span class="n">i</span> <span class="n">elasticsearch</span><span class="o">/</span><span class="n">marvel</span><span class="o">/</span><span class="n">latest</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>インストールしたら、 ElasticsearchとKibanaを再起動させてください。そして</p>
-
-<p><code>http://localhost:5601/app/marvel</code> にアクセスすると Marvelの画面が見れ得ると思います。</p>
-
-<p><img src="https://farm6.staticflickr.com/5799/24038862862_1fe60fe02e.jpg" width="500" height="365"></p>
-
-<h2>ありがとうございました！</h2>
-
-<blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/zyunnosuke">@zyunnosuke</a> 2.xからはkuromojiのインストールはこのようになっています。1.7を選択した理由はそれ以外にもあるんでしょうか？ <a href="https://t.co/M3DOakc4Um">https://t.co/M3DOakc4Um</a></p>&mdash; Jun Ohtani (@johtani) <a href="https://twitter.com/johtani/status/683263779988082688">2016, 1月 2</a></blockquote>
-
-
-<script async src="http://morizyun.github.io//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-<p>ということで、 <a href="https://twitter.com/johtani">@johtani</a> さんのおかげで、無事2.1系で手順をかけました。ありがとうございました＾＾</p>
-
-<br style="clear:both;"/>
-
-
-<h2>Special Thanks</h2>
-
-<ul>
-<li><strong><a href="http://qiita.com/watermint/items/fc04baa184be8cbfb251">Using ELK(ElasticSearch 1.4.2 + Logstash 1.4.2 + Kibana 4 Beta3) - Qiita</a></strong></li>
-<li><strong><a href="http://qiita.com/atsuya046/items/c53987153487f05e31fd">MacでElasticsearch(1.5.x) + Kuromojiをインストール - Qiita</a></strong></li>
-<li><strong><a href="http://ruby-rails.hatenadiary.com/entry/20151018/1445142266">RailsでElasticsearch: 全文検索を実装 - Rails Webook</a></strong></li>
-</ul>
-
-
-<h2>変更来歴</h2>
-
-<p>(2016-01-02 21:40) 新規作成
-(2016-01-03 19:40) 記述ミスの修正</p>
 ]]></content>
   </entry>
   

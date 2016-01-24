@@ -9,7 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第7回はRVM(Ruby Version Management)をインストールする手順です。 &hellip;">
+  <meta name="description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第8回はPassengerの導入です。PassengerとはRailsのアプリケーションサーバの１つで、Apacheと組合せて使う方式はそれなりの時間が立って、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -47,7 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第7回はRVM(Ruby Version Management)をインストールする手順です。 &hellip;" />
+<meta property="og:description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第8回はPassengerの導入です。PassengerとはRailsのアプリケーションサーバの１つで、Apacheと組合せて使う方式はそれなりの時間が立って、 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/page/26/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -95,6 +95,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/passenger-install-apache-ruby-rails/">さくらVPS/entOS 6.4 Passengerのインストール手順 [Apache][Railsサーバへの道]</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2013-09-24T07:20:00+09:00" pubdate data-updated="true">Sep 24<span>th</span>, 2013</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/passenger-install-apache-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4798126136/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798126136&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798126136&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798126136" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケてるRailsサーバに仕上げるまでのシリーズです。第8回はPassengerの導入です。PassengerとはRailsのアプリケーションサーバの１つで、Apacheと組合せて使う方式はそれなりの時間が立って、熟れているのでネットでの情報も豊富です！</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/passenger-install-apache-ruby-rails/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -528,55 +576,6 @@
   
     <footer>
       <a rel="full-article" href="/blog/start-with-why-golden-circle/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/37signals-success-rule-review-book/">『小さなチーム、大きな仕事　完全場』で学ぶエンジニア主導のものづくり</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2013-09-05T00:10:00+09:00" pubdate data-updated="true">Sep 5<span>th</span>, 2013</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/37signals-success-rule-review-book/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/415209267X/"><img border="0" src="http://ecx.images-amazon.com/images/I/51Uwn-WBcTL._SS400_.jpg" width="150" style="float: left; margin: 0 20px 20px 0;" ></a>『<strong><a href="http://www.amazon.co.jp/gp/product/415209267X/">小さなチーム、大きな仕事　完全場</a></strong>』を読みました。「自分に必要なもの」を「作る」こと。その行為こそが、一番大切だという言葉は37signailsを世界的なネットサービスの企業に育て上げた著者だからこそ伝えられる言葉だと思います。</p>
-
-<p>一般的なメディアで持ち上げられるような成功者とは違う、『成功する確率を上げる』ために必要なことをシンプルに貫く<strong>実践論</strong>が書かれた良本です！</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/37signals-success-rule-review-book/">続きを読む</a>
     </footer>
   
 
