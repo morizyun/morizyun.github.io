@@ -4,7 +4,7 @@
   <title><![CDATA[Category: redis | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/redis/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-25T00:15:30+09:00</updated>
+  <updated>2016-01-25T00:16:50+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -28,6 +28,16 @@
 <br style="clear:both;"/>
 
 
+<h2>サーバーサイド/クライアントでのセッション管理のPros/Cons</h2>
+
+<p>セッションに関する説明は以下のサイトがおすすめです。注意点としては次の2点と考えられます。</p>
+
+<ul>
+<li><strong><a href="http://qiita.com/jkr_2255/items/075d1d518ae7a98141b3">セッション管理の要注意点 - Qiita</a></strong></li>
+<li><strong><a href="http://railsguides.jp/security.html">Rails セキュリティガイド | Rails ガイド</a></strong></li>
+</ul>
+
+
 <p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- square -->
 <ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
@@ -40,16 +50,6 @@
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script></p>
-
-<h2>サーバーサイド/クライアントでのセッション管理のPros/Cons</h2>
-
-<p>セッションに関する説明は以下のサイトがおすすめです。注意点としては次の2点と考えられます。</p>
-
-<ul>
-<li><strong><a href="http://qiita.com/jkr_2255/items/075d1d518ae7a98141b3">セッション管理の要注意点 - Qiita</a></strong></li>
-<li><strong><a href="http://railsguides.jp/security.html">Rails セキュリティガイド | Rails ガイド</a></strong></li>
-</ul>
-
 
 <pre>
 - セッションの基礎
