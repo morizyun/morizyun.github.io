@@ -9,9 +9,7 @@
   <meta name="author" content="morizyun">
 
   
-  <meta name="description" content="
-サーバーサイドでのセッション管理はセキュリティを向上させたり、通信で無用なCookieを送らない等の意味でメリットがあります。
-今回は『redis-store/redis-rails - GitHub』を使う手順のメモです！ ">
+  <meta name="description" content="1/26(火)にRails 4.2.5.1, 4.1.14.1, 5.0.0.beta1.1等のセキュリティフィックスが出たのでそのメモ。 Riding Rails: Rails 5.0.0.beta1.1, 4.2.5.1, 4.1.14.1, 3.2.22.1, and rails-html &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,9 +47,7 @@
 
 
   <meta property="og:title" content="酒と泪とRubyとRailsと" />
-<meta property="og:description" content="
-サーバーサイドでのセッション管理はセキュリティを向上させたり、通信で無用なCookieを送らない等の意味でメリットがあります。
-今回は『redis-store/redis-rails - GitHub』を使う手順のメモです！ " />
+<meta property="og:description" content="1/26(火)にRails 4.2.5.1, 4.1.14.1, 5.0.0.beta1.1等のセキュリティフィックスが出たのでそのメモ。 Riding Rails: Rails 5.0.0.beta1.1, 4.2.5.1, 4.1.14.1, 3.2.22.1, and rails-html &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/" />
 <meta property="og:image" content="http://morizyun.github.io/images/default_ogp_image.png" />
 <meta property="og:author" content="zyunnosuke" />
@@ -99,6 +95,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/security-fix-rails-4.2.5.1/">Rails セキュリティフィックス 4.2.5.1, 4.1.14.1, 5.0.0.beta1.1 のメモ</a></h1>
+    
+    
+    
+      <p class="meta">
+    
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+        <time datetime="2016-01-28T22:35:00+09:00" pubdate data-updated="true">Jan 28<span>th</span>, 2016</time>
+<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
+  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/security-fix-rails-4.2.5.1/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</span>
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4883379930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4883379930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4883379930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4883379930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+1/26(火)にRails 4.2.5.1, 4.1.14.1, 5.0.0.beta1.1等のセキュリティフィックスが出たのでそのメモ。</p>
+
+<p><strong><a href="http://weblog.rubyonrails.org/2016/1/25/Rails-5-0-0-beta1-1-4-2-5-1-4-1-14-1-3-2-22-1-and-rails-html-sanitizer-1-0-3-have-been-released/">Riding Rails: Rails 5.0.0.beta1.1, 4.2.5.1, 4.1.14.1, 3.2.22.1, and rails-html-sanitizer 1.0.3 have been released!</a></strong></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/security-fix-rails-4.2.5.1/">続きを読む</a>
+    </footer>
+  
+
+    </article>
   
   
     <article>
@@ -556,53 +602,6 @@ Ruby 2.3.0
   
     <footer>
       <a rel="full-article" href="/blog/aws-ses-rails-action-mailer/">続きを読む</a>
-    </footer>
-  
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title" style="margin-top: 20px;"><a href="/blog/cells4-rails-partial-compornents-framework/">Cells4 - Ruby/Rails でView Components を実現する[Rails4.2]</a></h1>
-    
-    
-    
-      <p class="meta">
-    
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-        <time datetime="2016-01-12T23:50:00+09:00" pubdate data-updated="true">Jan 12<span>th</span>, 2016</time>
-<span class="sharing social_box" style="margin: 3px 0 0 10px; display: inline-table;">
-  <a href="http://b.hatena.ne.jp/entry/http://morizyun.github.io/blog/cells4-rails-partial-compornents-framework/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</span>
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.co.jp/gp/product/4774178020/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774178020&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774178020&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774178020" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> Railsの部分テンプレートに付随するロジックをコントローラから分離するためのView Componentsを実現する『<strong><a href="https://github.com/apotonick/cells">apotonick/cells - GitHub</a></strong>』の紹介です。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/cells4-rails-partial-compornents-framework/">続きを読む</a>
     </footer>
   
 

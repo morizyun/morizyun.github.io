@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-27T23:53:58+09:00</updated>
+  <updated>2016-01-28T22:38:30+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,180 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails セキュリティフィックス 4.2.5.1, 4.1.14.1, 5.0.0.beta1.1 のメモ]]></title>
+    <link href="http://morizyun.github.io/blog/security-fix-rails-4.2.5.1/"/>
+    <updated>2016-01-28T22:35:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/security-fix-rails-4.2.5.1</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4883379930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4883379930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4883379930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4883379930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+1/26(火)にRails 4.2.5.1, 4.1.14.1, 5.0.0.beta1.1等のセキュリティフィックスが出たのでそのメモ。</p>
+
+<p><strong><a href="http://weblog.rubyonrails.org/2016/1/25/Rails-5-0-0-beta1-1-4-2-5-1-4-1-14-1-3-2-22-1-and-rails-html-sanitizer-1-0-3-have-been-released/">Riding Rails: Rails 5.0.0.beta1.1, 4.2.5.1, 4.1.14.1, 3.2.22.1, and rails-html-sanitizer 1.0.3 have been released!</a></strong></p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>ベーシック認証の文字列比較の応答時間での推測を防ぐ</h2>
+
+<p><strong><a href="https://groups.google.com/forum/#!msg/rubyonrails-security/ANv0HDHEC3k/mt7wNGxbFQAJ">[CVE-2015-7576] Timing attack vulnerability in basic authentication in Action Controller</a></strong></p>
+
+<p>ベーシック認証の文字列比較をした時の応答時間で、処理時間が推測されるのを防ぐ。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">## こっちは直ぐ違うとわかる</span>
+</span><span class='line'>  <span class="s2">&quot;foo&quot;</span> <span class="o">==</span> <span class="s2">&quot;bar&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## 上よりは時間がかかる</span>
+</span><span class='line'>  <span class="s2">&quot;foo&quot;</span> <span class="o">==</span> <span class="s2">&quot;fo1&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>DoS(Denial of Service)攻撃でmine-typeを大量に送ったらサーバが落ちてしまう問題の対応</h2>
+
+<p><strong><a href="https://groups.google.com/d/msg/rubyonrails-security/9oLY_FCzvoc/w9oI9XxbFQAJ">CVE-2016-0751 Possible Object Leak and Denial of Service attack in Action Pack</a></strong></p>
+
+<p>mime-typeをglobal cacheしていたため、大量な不正アクセスでメモリを圧迫してサービス停止しないようにするための対策。</p>
+
+<p>ちなみに「mime-type」とはデータの種類を表すコードのことで、画像の <code>image/jpeg</code> やHTMLの <code>text/html</code> などがある。</p>
+
+<h2>allow_destroy: false が効かないバグの修正</h2>
+
+<p><strong><a href="https://groups.google.com/forum/#!msg/rubyonrails-security/cawsWcQ6c8g/tegZtYdbFQAJ">[CVE-2015-7577] Nested attributes rejection proc bypass in Active Record</a></strong></p>
+
+<p><code>accepts_nested_attributes_for</code> をつけて親子クラスを一括で登録、更新する際に <code>allow_destroy: false</code>(削除を許可しない)を設定したにもかかわらず、
+proc の <code>:reject_if</code> が優先されて削除される不具合があったのを修正。</p>
+
+<h2>renderにパラメータを渡した場合にアプリ外のファイルが参照できる不具合の対応</h2>
+
+<p><strong><a href="https://groups.google.com/forum/#!msg/rubyonrails-security/335P1DcLG00/OfB9_LhbFQAJ">[CVE-2016-0752] Possible Information Leak Vulnerability in Action View</a></strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>  <span class="n">render</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>上記の様にパラメータを渡した場合に、アプリ外のファイルが参照できてしまう不具合があったので対策。この修正は難しい&#8230;追い切れない&#8230;.orz&#8230;</p>
+
+<h2>Strong Parameterを使わないモデルへのデータの受け渡しでValidationを通すようにする</h2>
+
+<p><strong><a href="https://groups.google.com/forum/#!msg/rubyonrails-security/6jQVC1geukQ/8oYETcxbFQAJ">[CVE-2016-0753] Possible Input Validation Circumvention in Active Model</a></strong></p>
+
+<p>Strong Parameterを使わずに、ActiveRecord等を使う場合に、</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">SomeModel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">unverified_user_input</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>により、Validationを通さずに値が保存できてしまうバグの対応。</p>
+
+<h2>routesに :controller があるとメモリリークするバグの回避</h2>
+
+<p><strong><a href="https://groups.google.com/forum/#!msg/rubyonrails-security/dthJ5wL69JE/YzPnFelbFQAJ">CVE-2015-7581 Object leak vulnerability for wildcard controller routes in Action Pack</a></strong></p>
+
+<p>めっちゃ勉強になります</p>
+
+<h2>rails-html-sanitizerの重要なセキュリティフィックス</h2>
+
+<p>rails-html-sanitizerの重要なセキュリティフィックスが発生しました。</p>
+
+<ul>
+<li><strong><a href="https://groups.google.com/d/msg/rubyonrails-security/uh--W4TDwmI/JbvSRpdbFQAJ">CVE-2015-7578 Possible XSS vulnerability in rails-html-sanitizer</a></strong></li>
+<li><strong><a href="https://groups.google.com/d/msg/rubyonrails-security/OU9ugTZcbjc/PjEP46pbFQAJ">CVE-2015-7579 XSS vulnerability in rails-html-sanitizer</a></strong></li>
+<li><strong><a href="https://groups.google.com/d/msg/rubyonrails-security/uh--W4TDwmI/m_CVZtdbFQAJ">CVE-2015-7580 Possible XSS vulnerability in rails-html-sanitizer</a></strong></li>
+</ul>
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>rails-html-sanitizer 1.0.2 => 1.0.3の差分</h2>
+
+<p>rails-html-sanitizer 1.0.2 => 1.0.3にバージョンアップされた差分はこちら。</p>
+
+<ul>
+<li><strong><a href="https://github.com/rails/rails-html-sanitizer/compare/v1.0.2...v1.0.3">Comparing v1.0.2&#8230;v1.0.3 · rails/rails-html-sanitizer</a></strong></li>
+</ul>
+
+
+<p>これにより、<code>rails-html-sanitizer</code> のフィルターがより厳格化される。</p>
+
+<h2>rails 4.2.5.0 => 4.2.5.1 の差分</h2>
+
+<ul>
+<li><strong><a href="https://github.com/rails/rails/compare/v4.2.5...v4.2.5.1">Comparing v4.2.5&#8230;v4.2.5.1 · rails/rails</a></strong></li>
+</ul>
+
+
+<h2>4.2.5.1 で RSpec のパフォーマンスが悪くなる？</h2>
+
+<ul>
+<li><strong><a href="https://github.com/rspec/rspec-rails/issues/1532">Undefined Method <code>cache</code> in Tests for Rails 4.2.5.1 · Issue #1532 · rspec/rspec-rails - GitHub</a></strong></li>
+</ul>
+
+
+<p>4.2.5.1にした場合、RSpecで上記のエラーがでるようになったそうですが、こちらは対応/Closeされました。
+その結果として、RSpecのパフォーマンスが落ちている(処理が遅くなった)人が出ているようです。</p>
+
+<ul>
+<li><strong><a href="https://github.com/rspec/rspec-rails/issues/1537">Performance Regression in 3.4.1 · Issue #1537 · rspec/rspec-rails</a></strong></li>
+</ul>
+
+
+<p>本番への適用はもう少しだけ様子を見たほうが良さそうです。</p>
+
+<h2>あとがき</h2>
+
+<p>y_yagiさんのブログ「<strong><a href="http://y-yagi.hatenablog.com/">なるようになるブログ</a></strong>」めっちゃ勉強になる。</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="http://y-yagi.hatenablog.com/entry/2016/01/27/063153">rails commit log流し読み(2016/01/26) - なるようになるブログ</a></strong></li>
+<li><strong><a href="http://qiita.com/hmuronaka/items/818c421dc632e3efb7a6">Rails4 - 複数の子レコードを作成・更新する. accepts_nested_attributes_for - Qiita</a></strong></li>
+<li><strong><a href="http://qiita.com/umanoda/items/3ceff00aae2309e4f9ba">RubyのGCと仲良くしたい〜WeakRefオブジェクトを削除するぞ編〜 - Qiita</a></strong></li>
+<li><strong><a href="http://www.softantenna.com/wp/software/rails-4-2-5-1-released/">「Rails 5.0.0.beta1.1 / 4.2.5.1 / 4.1.14.1 / 3.2.22.1」がリリース – 重要なセキュリティ修正を含む</a></strong></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[redis-rails RailsのセッションをRedisで管理]]></title>
@@ -3491,449 +3665,6 @@ E) Zohoで指定されたSPFレコードをムームドメインに設定
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Elasticsearchを使ったRailsサンプルアプリの作成]]></title>
-    <link href="http://morizyun.github.io/blog/elasticsearch-rails-tutorial/"/>
-    <updated>2016-01-03T21:50:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/elasticsearch-rails-tutorial</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00J4KDYZU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00J4KDYZU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00J4KDYZU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00J4KDYZU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-検索機能を実装するときによく使われているElasticsearchをRailsで使うためのサンプルアプリの作成の手順を作りました。入門レベルです！</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h2>Elasticsearchの導入</h2>
-
-<p>拙著『<strong><a href="http://morizyun.github.io/blog/elasticsearch-kibana-setup-mac/">Elasticsearch 2.1 + Kibana 4.1 + Marvel のMacへのセットアップ</a></strong>』を良ければご参考ください。</p>
-
-<h2>Rails サンプルアプリ</h2>
-
-<p>Railsのサンプルアプリを作成します。今回は <code>Article</code>(記事) のモデルを持つことにします。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Railsアプリの作成
-</span><span class='line'>rails new elasticsearch_sample --skip-bundle
-</span><span class='line'>
-</span><span class='line'># フォルダを移動
-</span><span class='line'>cd elasticsearch_sample
-</span><span class='line'>
-</span><span class='line'># DBの作成
-</span><span class='line'>rake db:create
-</span><span class='line'>
-</span><span class='line'># article テーブルの定義を作成
-</span><span class='line'>bundle exec rails g scaffold article title:string body:text
-</span><span class='line'>
-</span><span class='line'># article テーブルを作成
-</span><span class='line'>bundle exec rake db:migrate</span></code></pre></td></tr></table></div></figure>
-
-
-<p>GemfileにElasticsearch用のgemを追加します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Gemfile</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Elasticsearch</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;elasticsearch-model&#39;</span><span class="p">,</span> <span class="n">git</span><span class="p">:</span> <span class="s1">&#39;git://github.com/elasticsearch/elasticsearch-rails.git&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;elasticsearch-rails&#39;</span><span class="p">,</span> <span class="n">git</span><span class="p">:</span> <span class="s1">&#39;git://github.com/elasticsearch/elasticsearch-rails.git&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>追加したらターミナルで以下のコマンドを実行してgemをインストールします。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">bundle</span> <span class="n">install</span> <span class="o">--</span><span class="n">jobs</span><span class="o">=</span><span class="mi">4</span> <span class="o">--</span><span class="n">path</span><span class="o">=</span><span class="n">vendor</span><span class="o">/</span><span class="n">bundle</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>ModelにElasticsearchを使うための設定</h2>
-
-<p>次に<code>Article</code>モデルにElasticsearchを使うための設定をします。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/models/article.rb</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">ArticleSearchable</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>今回はconcernにElasticsearchに関する処理を切り出します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/models/concerns/article_searcable.rb</span>
-</span><span class='line'><span class="k">module</span> <span class="nn">ArticleSearchable</span>
-</span><span class='line'>  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">included</span> <span class="k">do</span>
-</span><span class='line'>    <span class="kp">include</span> <span class="no">Elasticsearch</span><span class="o">::</span><span class="no">Model</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1"># インデックスするフィールドの一覧</span>
-</span><span class='line'>    <span class="no">INDEX_FIELDS</span> <span class="o">=</span> <span class="sx">%w(title body)</span><span class="o">.</span><span class="n">freeze</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1"># インデックス名</span>
-</span><span class='line'>    <span class="n">index_name</span> <span class="s2">&quot;es_sample_article_</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1"># マッピング情報</span>
-</span><span class='line'>    <span class="n">settings</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">mappings</span> <span class="n">dynamic</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span> <span class="k">do</span> <span class="c1"># 動的にマッピングを生成しない</span>
-</span><span class='line'>        <span class="n">indexes</span> <span class="ss">:title</span><span class="p">,</span> <span class="n">analyzer</span><span class="p">:</span> <span class="s1">&#39;kuromoji&#39;</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span>
-</span><span class='line'>        <span class="n">indexes</span> <span class="ss">:body</span><span class="p">,</span>  <span class="n">analyzer</span><span class="p">:</span> <span class="s1">&#39;kuromoji&#39;</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1"># インデックスするデータを生成</span>
-</span><span class='line'>    <span class="c1"># @return [Hash]</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">as_indexed_json</span><span class="p">(</span><span class="n">option</span> <span class="o">=</span> <span class="p">{})</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">as_json</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">_</span><span class="o">|</span> <span class="no">INDEX_FIELDS</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">module</span> <span class="nn">ClassMethods</span>
-</span><span class='line'>    <span class="c1"># indexの作成メソッド</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">create_index!</span>
-</span><span class='line'>      <span class="n">client</span> <span class="o">=</span> <span class="n">__elasticsearch__</span><span class="o">.</span><span class="n">client</span>
-</span><span class='line'>      <span class="n">client</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">delete</span> <span class="n">index</span><span class="p">:</span> <span class="nb">self</span><span class="o">.</span><span class="n">index_name</span> <span class="k">rescue</span> <span class="kp">nil</span>
-</span><span class='line'>      <span class="n">client</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">self</span><span class="o">.</span><span class="n">index_name</span><span class="p">,</span>
-</span><span class='line'>                            <span class="n">body</span><span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>                                <span class="n">settings</span><span class="p">:</span> <span class="nb">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">to_hash</span><span class="p">,</span>
-</span><span class='line'>                                <span class="n">mappings</span><span class="p">:</span> <span class="nb">self</span><span class="o">.</span><span class="n">mappings</span><span class="o">.</span><span class="n">to_hash</span>
-</span><span class='line'>                            <span class="p">})</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>インデックス名には環境情報をつけておきます。</p>
-
-<p>理由はlocalでのテストをしやすくするためです。</p>
-
-<h2>index作成のrakeタスクを作成</h2>
-
-<p>続いてindexを作成するrake タスクを作ります。</p>
-
-<p>まずはrakeタスクを作成するために、以下のコマンドをターミナルで実行します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rails</span> <span class="n">g</span> <span class="n">task</span> <span class="n">elasticsearch</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>作成されたrakeタスクを以下の様に変更します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># lib/tasks/elasticsearch.rake</span>
-</span><span class='line'><span class="n">namespace</span> <span class="ss">:elasticsearch</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">desc</span> <span class="s1">&#39;Elasticsearch のindex作成&#39;</span>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:create_index</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
-</span><span class='line'>    <span class="no">Article</span><span class="o">.</span><span class="n">create_index!</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">desc</span> <span class="s1">&#39;Article を Elasticsearch に登録&#39;</span>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:import_article</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
-</span><span class='line'>    <span class="no">Article</span><span class="o">.</span><span class="n">import</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ではインデックスを作成します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">elasticsearch</span><span class="ss">:create_index</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>http://localhost:9200/_plugin/head/</code> にアクセスして「es_sample_article_development => info => Metadata」
-の中身が以下の様になっていたら成功です！</p>
-
-<p><img src="https://farm2.staticflickr.com/1510/24062169671_9781dc7e17_z.jpg" width="556" height="640"></p>
-
-<p>ちなみに、curlコマンドでもマッピングを確認できます。
-ターミナルで以下のコマンドを実行してみてください。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">curl</span> <span class="o">-</span><span class="no">XGET</span> <span class="s1">&#39;localhost:9200/es_sample_article_development/_mapping/article?pretty=true&#39;</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="s2">&quot;es_sample_article_development&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>    <span class="s2">&quot;mappings&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="s2">&quot;article&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>        <span class="s2">&quot;dynamic&quot;</span> <span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
-</span><span class='line'>        <span class="s2">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>          <span class="s2">&quot;body&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>            <span class="s2">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-</span><span class='line'>            <span class="s2">&quot;analyzer&quot;</span> <span class="p">:</span> <span class="s2">&quot;kuromoji&quot;</span>
-</span><span class='line'>          <span class="p">},</span>
-</span><span class='line'>          <span class="s2">&quot;title&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>            <span class="s2">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-</span><span class='line'>            <span class="s2">&quot;analyzer&quot;</span> <span class="p">:</span> <span class="s2">&quot;kuromoji&quot;</span>
-</span><span class='line'>          <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>サンプルデータの作成</h2>
-
-<p>サンプルデータを作成します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># db/seeds.rb</span>
-</span><span class='line'><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">transaction</span> <span class="k">do</span>
-</span><span class='line'>  <span class="c1"># ===========================</span>
-</span><span class='line'>  <span class="c1"># 記事(Article)</span>
-</span><span class='line'>  <span class="c1"># ===========================</span>
-</span><span class='line'>  <span class="no">Article</span><span class="o">.</span><span class="n">delete_all</span>
-</span><span class='line'>  <span class="mi">10</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">idx</span><span class="o">|</span>
-</span><span class='line'>    <span class="no">Article</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span>
-</span><span class='line'>        <span class="n">title</span><span class="p">:</span> <span class="s2">&quot;タイトル </span><span class="si">#{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-</span><span class='line'>        <span class="n">body</span><span class="p">:</span> <span class="s2">&quot;本文 </span><span class="si">#{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>    <span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Elasticsearchにデータを登録します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># サンプルデータの生成</span>
-</span><span class='line'><span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">db</span><span class="ss">:seed</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Elasticsearchへの登録</span>
-</span><span class='line'><span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="n">elasticsearch</span><span class="ss">:import_article</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>http://localhost:9200/_plugin/head/</code> から「Structured Query」を選択して色々いじるとデータが格納されていることがわかると思います！</p>
-
-<p><img src="https://farm2.staticflickr.com/1607/24037229962_fc29541c95.jpg" width="500" height="346"></p>
-
-<p>ちなみに、<code>rails console</code> からでも色々試せるのでぜひ色々遊んでみてください！</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Article</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;9&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">count</span>
-</span><span class='line'><span class="c1">#=&gt; 1</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Article</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;9&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">first</span>
-</span><span class='line'><span class="c1">#=&gt; #&lt;Elasticsearch::Model::Response::Result:0x007fb7ebac0a08 @result=#&lt;Hashie::Mash _id=&quot;10&quot; _index=&quot;es_sample_article_development&quot; _score=1.1972358 _source=#&lt;Hashie::Mash body=&quot;本文 9&quot; created_at=&quot;2016-01-03T11:02:46.578Z&quot; id=10 title=&quot;タイトル 9&quot; updated_at=&quot;2016-01-03T11:02:46.578Z&quot;&gt; _type=&quot;article&quot;&gt;&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="no">Article</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="p">{</span><span class="n">term</span><span class="p">:</span> <span class="p">{</span><span class="n">title</span><span class="p">:</span> <span class="s2">&quot;5&quot;</span><span class="p">}</span> <span class="p">})</span><span class="o">.</span><span class="n">records</span><span class="o">.</span><span class="n">first</span>
-</span><span class='line'><span class="c1">#=&gt; Article Load (0.1ms)  SELECT &quot;articles&quot;.* FROM &quot;articles&quot; WHERE &quot;articles&quot;.&quot;id&quot; = 6</span>
-</span><span class='line'><span class="c1">#=&gt; #&lt;Article id: 6, title: &quot;タイトル 5&quot;, body: &quot;本文 5&quot;, created_at: &quot;2016-01-03 11:02:46&quot;, updated_at: &quot;2016-01-03 11:02:46&quot;&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>とりあえず一覧の検索を実装</h2>
-
-<p><code>articles_controller</code> の <code>index</code> を以下のように変更。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/controllers/articles_controller.rb</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
-</span><span class='line'>    <span class="vi">@articles</span> <span class="o">=</span><span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">]</span>
-</span><span class='line'>                 <span class="no">Article</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">records</span>
-</span><span class='line'>               <span class="k">else</span>
-</span><span class='line'>                 <span class="no">Article</span><span class="o">.</span><span class="n">all</span>
-</span><span class='line'>               <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>viewも以下を追加。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/views/articles/index.html.erb</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sx">%= form_tag articles_path, :method =</span><span class="o">&gt;</span> <span class="ss">:get</span> <span class="k">do</span> <span class="sx">%&gt;</span>
-</span><span class='line'><span class="sx">    &lt;%= text_field_tag :search, params[:search] %&gt;</span>
-</span><span class='line'>    <span class="o">&lt;</span><span class="sx">%= submit_tag &#39;Search&#39;, :name =</span><span class="o">&gt;</span> <span class="kp">nil</span> <span class="sx">%&gt;</span>
-</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>http://localhost:3000/articles</code> にアクセスすれば検索できると思います！</p>
-
-<p><img src="https://farm6.staticflickr.com/5799/24038700492_75081a1440.jpg" width="500" height="317"></p>
-
-<br style="clear:both;"/>
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h2>Special Thanks</h2>
-
-<ul>
-<li><strong><a href="http://qiita.com/k-shogo/items/8657e0a5fdf20a25bba0">Ruby - railsから全文検索エンジンelasticsearchを利用する - Qiita</a></strong></li>
-<li><strong><a href="http://qiita.com/moriyaman/items/373107a3870c33229bac">既存のRailsアプリの検索にElasticSearchを導入してみる - Qiita</a></strong></li>
-<li><strong><a href="http://qiita.com/yuku_t/items/d749111f589c88c8315b">Elasticsearch - Qiitaがquery-stringっぽい構文を自前実装した理由 - Qiita</a></strong></li>
-<li><strong><a href="http://qiita.com/mosson/items/9a9b0703ac4c76ebfd4e">Rails - Rakeタスクをつくる - Qiita</a></strong></li>
-<li><strong><a href="http://ruby-rails.hatenadiary.com/entry/20151018/1445142266">RailsでElasticsearch: 全文検索を実装 - Rails Webook</a></strong></li>
-</ul>
 
 ]]></content>
   </entry>
