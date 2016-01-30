@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-30T10:25:16+09:00</updated>
+  <updated>2016-01-30T22:29:52+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -445,6 +445,344 @@ APIドキュメント - serves as a reference.
 <li><a href="http://thinking-megane.blogspot.jp/2012/09/git-pull-rebase.html">Thinking megane: git pull 時の rebase オプションのススメ</a></li>
 </ul>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[carrierwave + rails 4.2.5 画像アップローダー]]></title>
+    <link href="http://morizyun.github.io/blog/carrierwave-image-uploader-rails/"/>
+    <updated>2016-01-30T09:30:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/carrierwave-image-uploader-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4774164283/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774164283&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774164283&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4774164283" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+今回は、carrierwave + rails 4.2.5.1で作る簡単画像アップローダーの作成ネタです。目次はこんなかんじです！</p>
+
+<pre>
+(1) carrierwave + rails 4.2.5.1で作る簡単画像アップローダーを作る
+(2) simple_formと組み合わせる
+(3) アップロード画像のサイズのvalidationを行う
+</pre>
+
+
+
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>前置き</h2>
+
+<pre>
+(A) Model product.imageカラムをcarrierwave対応
+(B) carrierwaveのアップローダはImageUploader
+</pre>
+
+
+<h2>(1) carrierwave + rails 4.1で作る簡単画像アップローダーを作る</h2>
+
+<h3>ImageMagickのインストール</h3>
+
+<p>Macの場合は以下のコマンドをコマンドラインから実行。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install imagemagick
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Gemfileの登録</h3>
+
+<p><code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Image Uploader</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;carrierwave&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rmagick&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="s1">&#39;RMagick&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>carrierwaveのアップローダーを作成</h3>
+
+<p>次のコマンドを実行すると、<code>app/uploaders/image_uploader.rb</code>が作成されます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rails</span> <span class="n">g</span> <span class="n">uploader</span> <span class="n">image</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>アップローダーの記述を修正</h3>
+
+<p>先ほど生成された<code>image_uploader.rb</code>を以下のように書き換えます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># app/uploaders/image_uploader.rb</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">ImageUploader</span> <span class="o">&lt;</span> <span class="no">CarrierWave</span><span class="o">::</span><span class="no">Uploader</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">CarrierWave</span><span class="o">::</span><span class="no">RMagick</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">storage</span> <span class="ss">:file</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">process</span> <span class="n">convert</span><span class="p">:</span> <span class="s1">&#39;jpg&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 保存するディレクトリ名</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">store_dir</span>
+</span><span class='line'>    <span class="s2">&quot;uploads/</span><span class="si">#{</span><span class="n">model</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">underscore</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">mounted_as</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># thumb バージョン(width 400px x height 200px)</span>
+</span><span class='line'>  <span class="n">version</span> <span class="ss">:thumb</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">process</span> <span class="ss">:resize_to_fit</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 許可する画像の拡張子</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">extension_white_list</span>
+</span><span class='line'>    <span class="sx">%w(jpg jpeg gif png)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 変換したファイルのファイル名の規則</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">filename</span>
+</span><span class='line'>    <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m%d%H%M%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.jpg&quot;</span> <span class="k">if</span> <span class="n">original_filename</span><span class="o">.</span><span class="n">present?</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Modelのカラムにアップローダーを紐付け</h3>
+
+<p><code>app/models/product.rbのImageカラム</code>と、<code>app/uploaders/image_uploader.rb</code>を紐付け。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">model</span> <span class="no">Product</span>
+</span><span class='line'>  <span class="c1"># ↓ 以下を追加</span>
+</span><span class='line'>  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>controller Strong Parameterの設定追記</h3>
+
+<p>Strong Parameterでimageカラムを許可するように追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ProductController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">permit_product_params</span>
+</span><span class='line'>    <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:product</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:image</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>view/formへの追加</h3>
+
+<p>viewのformに以下を追加。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">form_for</span><span class="p">(</span><span class="vi">@product</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># ↓ 以下を追加</span>
+</span><span class='line'>  <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">file_field</span> <span class="ss">:image</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>view 表示側への追記</h3>
+
+<p>アップロードした画像をviewで表示させる場合は次のように書きます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">=</span> image_tag @painting.image_url<span class="o">(</span>:thumb<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>(2) simple_formでプレビュー表示させる場合</h2>
+
+<p>『<strong><a href="https://github.com/plataformatec/simple_form">simple_form</a></strong>』はformの記述がスッキリするgemです。
+この<code>simple_form</code>と<code>carrierwave</code>を連携させる手順です。</p>
+
+<p>まずは、<code>app/inputs/image_preview_input.rb</code>を追加して以下のコードを書きます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ImagePreviewInput</span> <span class="o">&lt;</span> <span class="no">SimpleForm</span><span class="o">::</span><span class="no">Inputs</span><span class="o">::</span><span class="no">FileInput</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">input</span>
+</span><span class='line'>    <span class="c1"># :preview_version is a custom attribute from :input_html hash, so you can pick custom sizes</span>
+</span><span class='line'>    <span class="n">version</span> <span class="o">=</span> <span class="n">input_html_options</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">:preview_version</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">out</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># the output string we&#39;re going to build</span>
+</span><span class='line'>    <span class="c1"># check if there&#39;s an uploaded file (eg: edit mode or form not saved)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">object</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute_name</span><span class="si">}</span><span class="s2">?&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1"># append preview image to output</span>
+</span><span class='line'>      <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">template</span><span class="o">.</span><span class="n">image_tag</span><span class="p">(</span><span class="n">object</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">)</span><span class="o">.</span><span class="n">tap</span> <span class="p">{</span><span class="o">|</span><span class="n">o</span><span class="o">|</span> <span class="k">break</span> <span class="n">o</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">version</span><span class="p">)</span> <span class="k">if</span> <span class="n">version</span><span class="p">}</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="c1"># allow multiple submissions without losing the tmp version</span>
+</span><span class='line'>    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="vi">@builder</span><span class="o">.</span><span class="n">hidden_field</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute_name</span><span class="si">}</span><span class="s2">_cache&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">html_safe</span>
+</span><span class='line'>    <span class="c1"># append file input. it will work accordingly with your simple_form wrappers</span>
+</span><span class='line'>    <span class="p">(</span><span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="vi">@builder</span><span class="o">.</span><span class="n">file_field</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">,</span> <span class="n">input_html_options</span><span class="p">))</span><span class="o">.</span><span class="n">html_safe</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でもってview/simple_form側は次のように書きます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= simple_form_for @product do |f| %&gt;</span>
+</span><span class='line'><span class="sx">  &lt;!-- we specify the new custom input, and we&#39;ll use the &#39;thumb&#39; version of the carrierwave upload --&gt;</span>
+</span><span class='line'><span class="sx">  &lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">input</span> <span class="ss">:image</span><span class="p">,</span> <span class="n">as</span><span class="p">:</span> <span class="ss">:image_preview</span><span class="p">,</span> <span class="n">input_html</span><span class="p">:</span> <span class="p">{</span> <span class="n">preview_version</span><span class="p">:</span> <span class="ss">:thumb</span> <span class="p">}</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>すると、アップロード済のデータを編集する際に、formでpreview画像が表示されるようになります。</p>
+
+<h2>(3) アップロード画像のサイズのvalidationを行う</h2>
+
+<p>アップロードする画像のサイズをチェックするバリデーション(validation)です。今回は幅400px, 高さ400pxより小さい場合にバリデーションでエラーが出るようにします。</p>
+
+<p>まずは、<code>app/models/product.rb</code>にバリデーションの記述を追記。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Product</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">validate</span> <span class="ss">:check_image_dimensions</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">check_image_dimensions</span>
+</span><span class='line'>    <span class="o">::</span><span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Image upload dimensions: </span><span class="si">#{</span><span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span><span class="si">}</span><span class="s2">x</span><span class="si">#{</span><span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="n">errors</span><span class="o">.</span><span class="n">add</span> <span class="ss">:image</span><span class="p">,</span> <span class="s1">&#39;400x400ピクセル以上のサイズの画像をアップロードしてください&#39;</span> <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">400</span> <span class="o">||</span> <span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">400</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次に<code>app/uploaders/image_uploader.rb</code>に以下を追加します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">CompanyImageUploader</span> <span class="o">&lt;</span> <span class="no">CarrierWave</span><span class="o">::</span><span class="no">Uploader</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">geometry</span>
+</span><span class='line'>    <span class="vi">@geometry</span> <span class="o">||=</span> <span class="n">get_geometry</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">get_geometry</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@file</span> <span class="ow">and</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span><span class="p">(</span><span class="vi">@file</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">img</span> <span class="o">=</span> <span class="o">::</span><span class="no">Magick</span><span class="o">::</span><span class="no">Image</span><span class="o">::</span><span class="n">read</span><span class="p">(</span><span class="vi">@file</span><span class="o">.</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="n">img</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">img</span><span class="o">.</span><span class="n">rows</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで、アップロードした画像が幅400px, 高さ400pxより小さい場合はエラーが出るようになります。</p>
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>Special Thanks</h2>
+
+<p><strong><a href="http://sinapps.hatenablog.jp/entry/2013/10/07/%E3%80%90Rails_4%E3%80%915%E5%88%86%E3%81%A7%E4%BD%9C%E3%82%8B%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC">【Rails 4】5分で作る画像アップローダー - Sinapps&#8217;s blog</a></strong></p>
+
+<p><strong><a href="http://www.workabroad.jp/tech/1118">Rails 超お手軽な画像アップローダー CarrierWave の使い方 | Workabroad.jp</a></strong></p>
+
+<p><strong><a href="https://github.com/plataformatec/simple_form/wiki/Adding-custom-input-components">Adding custom input components · plataformatec/simple_form Wiki</a></strong></p>
+
+<h2>変更来歴</h2>
+
+<p>(2014-07-05 21:55) 新規作成<br/>
+(2014-07-06 09:30) 記述修正<br/>
+(2016-01-30 21:30) 4.2.5.1対応<br/></p>
 ]]></content>
   </entry>
   
@@ -3784,102 +4122,6 @@ PosgreSQLにはリフレッシュ時にSELECTコマンドを発行した時に�
 <li><strong><a href="https://github.com/stympy/faker">stympy/faker - GitHub</a></strong></li>
 <li><strong><a href="http://qiita.com/yaotti/items/510779877e515a1155db">Ruby - Gemfileでのgem指定色々 - Qiita</a></strong></li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Zoho Mail 無料で独自ドメインのメールの送受信をスタートできる [POP/STMP対応]]]></title>
-    <link href="http://morizyun.github.io/blog/zoho-mail-original-domain-pop-smtp-free/"/>
-    <updated>2016-01-05T21:15:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/zoho-mail-original-domain-pop-smtp-free</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00T5ZGX0W/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00T5ZGX0W&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00T5ZGX0W&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00T5ZGX0W" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-自分で購入した独自ドメインのメールアドレスを無料使えるサービス『<strong><a href="https://www.zoho.com/">Zoho Mail</a></strong>』の紹介です。</p>
-
-<p>Zoho Mail側にもメールの送受信を行うWeb画面があります。また、POPやSTMPがあるのでGmailやクライアントアプリでもメールの送受信を行う事もできます。</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h2>目次</h2>
-
-<pre>
-1) 独自ドメインの取得
-2) Zoho Mailでユーザー登録
-3) Zoho Mailでメール受信設定
-4) 必要に応じてメールアドレスを追加
-5) 必要に応じてPOP/STMPを設定
-</pre>
-
-
-<h2>1) 独自ドメインの取得</h2>
-
-<p><strong><a href="http://muumuu-domain.com/">初心者でも簡単!ドメイン取得は 【ムームードメイン】</a></strong>などでドメインを取得。</p>
-
-<h2>2) Zoho Mailでユーザー登録</h2>
-
-<p><strong><a href="https://www.zoho.com/">Zoho Mail</a></strong>でユーザー登録。料金プラン(liteが無料)を設定します。</p>
-
-<h2>3) Zoho Mailでメール受信設定</h2>
-
-<p>ZohoでMailを受け取れるようになるまでの手順です。</p>
-
-<pre>
-A) 右メニューのコントロールパネル => ドメインを選択
-B) ドメイン追加を選択
-C) Zohoで指定されたTXTレコードをムームードメインに設定して、ドメインの認証
-D) メールアカウント(ユーザー)の作成
-D) Zohoで指定されたMXレコードをムームドメインに設定
-E) Zohoで指定されたSPFレコードをムームドメインに設定
-</pre>
-
-
-<p>もしここで詰まるようなら以下のサイトを参考にしてみてください。</p>
-
-<p><strong><a href="http://appstars.jp/archive/123">無料で独自ドメインのメールを使えるようにする - あぷすた</a></strong></p>
-
-<p><strong><a href="http://www.workabroad.jp/tech/559">独自ドメインをZohoで使う。Google Appsが有料なので（泣） | Workabroad.jp</a></strong></p>
-
-<h2>4) 必要に応じてメールアドレスを追加</h2>
-
-<p>さらにメールアドレスを追加する場合は、POP/STMPの機能もあるのでユーザーを追加していくのがオススメです。</p>
-
-<h2>5) 必要に応じてPOP/STMPを設定</h2>
-
-<p>ちょっとマニアックな話ですが、Zoho MailにはPOP/STMPも完備されています。
-設定方法はこちら。</p>
-
-<p><strong><a href="https://www.zoho.com/mail/help/pop-access.html">Zoho Mail - POP configuration</a></strong></p>
-
-<p>こちらをGmail側に設定すると独自ドメインをGmailで受け取って運用できます！</p>
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 ]]></content>
   </entry>
