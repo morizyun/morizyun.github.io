@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-29T00:04:32+09:00</updated>
+  <updated>2016-01-30T10:20:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,359 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails へのコントリビューションについて調べてみた]]></title>
+    <link href="http://morizyun.github.io/blog/contributing-ruby-on-rails/"/>
+    <updated>2016-01-30T10:20:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/contributing-ruby-on-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4883379930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4883379930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4883379930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4883379930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
+
+<p>Rails へのコントリビューションに関する以下のドキュメントを読んでみました。</p>
+
+<ul>
+<li>(英語) <strong><a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html">Contributing to Ruby on Rails — Ruby on Rails Guides</a></strong></li>
+<li>(日本語) <strong><a href="http://railsguides.jp/contributing_to_ruby_on_rails.html">Ruby on Rails に貢献する方法 | Rails ガイド</a></strong></li>
+</ul>
+
+
+<p>この中で特に参考になった部分を中心に書いていきます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>コントリビューションの基礎</h2>
+
+<ul>
+<li>Ruby On Railsのバグを見つけたら「<strong><a href="https://github.com/rails/rails/issues">Issues · rails/rails - GitHub</a></strong>」で既存のものがないか探して、無ければPOST</li>
+<li>最新版(edge)はバグがある可能性があるし、バグが有った場合に取り込まれやすいのでコントリビュートのチャンスが多い。コントリビュートのチャンスが多い</li>
+</ul>
+
+
+<h2>セキュリティの問題が見つかった場合</h2>
+
+<ul>
+<li>GitHub ISSUEにあげてはダメ(悪用される可能性があるから)</li>
+<li>「<strong><a href="http://rubyonrails.org/security/">Ruby on Rails: Security policy</a></strong>」あたりにセキュリティのISSUEの立て方が書かれています。</li>
+</ul>
+
+
+<h2>バグなどのISSUE</h2>
+
+<ul>
+<li>ISSUEには再現可能なサンプルコードをつけよう</li>
+<li>実行可能なテストケースをちゃんと作ろう。テストケースのテンプレートを活用しよう => <strong><a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#create-an-executable-test-case">1.2 Create an Executable Test Case - Ruby on Rails Guide Contributing to Ruby on Railss</a></strong></li>
+<li>テストケースは、gistなどに貼って使おう</li>
+<li>バグの調査に役立つ情報があれば、ISSUEに書き込もう</li>
+<li>failするテストはコントリビュートのチャンスだ</li>
+</ul>
+
+
+<h3>テストバッチ</h3>
+
+<ul>
+<li>forkしてテストパッチを作ろう
+
+<ul>
+<li>変更が確実に動作しているかを確認しよう</li>
+<li>テストによってより良くなっているか？変更点のテストがきちんと存在しているか？</li>
+<li>ドキュメンテーションが適切にアップデートされているか？</li>
+<li>変更点はコードとして適切で、高速に動作するか？</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Gistのテンプレート</h2>
+
+<p><code>ActiveRecord</code> や <code>ActionController</code> のgistテンプレートのです。バグをレポートするときに使います。</p>
+
+<ul>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/active_record_gem.rb">Active Record template for gems</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/action_controller_gem.rb">Action Controller template for gems</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/active_record_master.rb">Active Record template for master</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/action_controller_master.rb">Action Controller template for master</a></strong></li>
+</ul>
+
+
+<h2>機能追加のリクエストについて</h2>
+
+<ul>
+<li>必ず動作するパッチを作ってGitHubにISSUEを作ろう(動作するパッチがない場合はinvalidになる)</li>
+<li>機能追加は他の機能に影響を与える可能性があるのでコアチームによって判断される</li>
+<li>アイデアを相談したいときは「<strong><a href="https://groups.google.com/forum/?fromgroups#!forum/rubyonrails-core">rails-core mailing list</a></strong>」に投げてみよう</li>
+</ul>
+
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h3>健全性のチェック</h3>
+
+<p>もしRails開発者の知り合いがいるなら、予め修正したコードをみせることで、
+適切なコードか否かをちゃんとチェックしよう。</p>
+
+<h3>Feedbackを受けよう</h3>
+
+<p>Merge Request を出したら、幾つかのフィードバックや意見が来るので対応しよう。
+マイナーチェンジは悪いことじゃないのでポジティブに意見を受け入れよう。
+あまりにも Merge Request に反応がないようなら、MLにPostしてみよう。</p>
+
+<h2>コードを書くときの注意点</h2>
+
+<p>バグフィックスや機能追加でコードを書く際には以下の点に注意しよう。</p>
+
+<pre>
+- 正しいコードを書こう
+- Railsのイデオム/Helperを適切に書こう
+- テストが通過しない場合は、テストが通過するように修正しよう
+- 変更点に関するドキュメントもアップデートをお忘れなく
+</pre>
+
+
+<h2>Railsのcoding style</h2>
+
+<pre>
+- 2スペースを使う。タブは使わない
+- 不要なスペースをつけないようにしよう
+- private/protectedの後はindentをつけよう
+- 1.9以降のhashシンタックス { a: b } を使おう
+- `&&` や `||` を使おう
+- `class << self` を使おう
+- `MyClass.my_method(my_arg)` が望ましい
+- `a = b` としよう
+- `assert_not` を使おう
+- `{ do_stuff }` としよう
+</pre>
+
+
+<h2>パフォーマンスに影響する変更</h2>
+
+<ul>
+<li>gem 「<strong><a href="https://github.com/evanphx/benchmark-ips">benchmark-ips</a></strong> 等を利用してベンチマークを取ること。</li>
+</ul>
+
+
+<p>```ruby
+require 'benchmark/ips'</p>
+
+<p>Benchmark.ips do |x|
+  x.report('addition') { 1 + 2 }
+  x.report('addition with send') { 1.send(:+, 2) }
+end</p>
+
+<p>Calculating -------------------------------------</p>
+
+<pre><code>        addition   132.013k i/100ms
+</code></pre>
+
+<h2>  addition with send   125.413k i/100ms</h2>
+
+<pre><code>        addition      9.677M (± 1.7%) i/s -     48.449M
+</code></pre>
+
+<p>  addition with send      6.794M (± 1.1%) i/s -     33.987M
+```</p>
+
+<h2>テストの実行</h2>
+
+<p>テストの実行方法は次の通り。</p>
+
+<p>```</p>
+
+<h1>Rails 全体のテスト</h1>
+
+<p>$ cd rails
+$ bundle exec rake test</p>
+
+<h1>ActionMailerに関するテスト</h1>
+
+<p>$ cd actionmailer
+$ bundle exec rake test</p>
+
+<h1>ActiveRecordに関するテスト DBの種類ごとのテストも可能</h1>
+
+<p>$ cd activerecord
+$ bundle exec rake test:sqlite3
+$ bundle exec rake test:mysql2
+$ bundle exec rake test:postgresql
+```</p>
+
+<h2>ドキュメンテーション</h2>
+
+<p>Rails には次の2つのドキュメントがある;</p>
+
+<pre>
+Ruby on Rails Guides - help you learn about Ruby on Rails,
+APIドキュメント - serves as a reference.
+</pre>
+
+
+<p>また、それぞれにガイドラインがあるので読んでみよう。</p>
+
+<ul>
+<li><strong><a href="http://guides.rubyonrails.org/api_documentation_guidelines.html">API Documentation Guidelines — Ruby on Rails Guides</a></strong></li>
+<li><strong><a href="http://guides.rubyonrails.org/ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines — Ruby on Rails Guides</a></strong></li>
+</ul>
+
+
+<p>それから、ドキュメンテーションの変更だけの場合は CI を動かす必要はない。 <code>[ci skip]</code> をつけよう。</p>
+
+<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- square -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+
+<h2>CHANGELOGをちゃんと更新しよう</h2>
+
+<p>```
+*   Summary of a change that briefly describes what was changed. You can use multiple</p>
+
+<pre><code>lines and wrap them at around 80 characters. Code examples are ok, too, if needed:
+
+    class Foo
+      def bar
+        puts 'baz'
+      end
+    end
+
+You can continue after the code example and you can attach issue number. GH#1234
+
+*Your Name*
+</code></pre>
+
+<p>```</p>
+
+<h2>コミットメッセージ</h2>
+
+<p>コミットは1つにsquashしておこう。そして、コミットメッセージも簡単なサマリーをちゃんと書こう。</p>
+
+<p>```
+Short summary (ideally 50 characters or less)</p>
+
+<p>More detailed description, if necessary. It should be wrapped to
+72 characters. Try to be as descriptive as you can. Even if you
+think that the commit content is obvious, it may not be obvious
+to others. Add any description that is already present in the
+relevant issues; it should not be necessary to visit a webpage
+to check the history.</p>
+
+<p>The description section can have multiple paragraphs.</p>
+
+<p>Code examples can be embedded by indenting them with 4 spaces:</p>
+
+<pre><code>class ArticlesController
+  def index
+    render json: Article.limit(10)
+  end
+end
+</code></pre>
+
+<p>You can also add bullet points:</p>
+
+<ul>
+<li><p>make a bullet point by starting a line with either a dash (-)
+or an asterisk (*)</p></li>
+<li><p>wrap lines at 72 characters, and indent any additional lines
+with 2 spaces for readability
+```</p></li>
+</ul>
+
+
+<p>あと、ちゃんとリベースしておこう。</p>
+
+<p>```
+$ git checkout master
+$ git pull --rebase</p>
+
+<p>$ git checkout my_new_branch
+$ git rebase master
+```</p>
+
+<h2>Forkしよう</h2>
+
+<p>```</p>
+
+<h1>自分のリポジトリをForkして作ろう</h1>
+
+<p>$ git remote add mine git@github.com:<your user name>/rails.git</p>
+
+<h1>自分のリポジトリへのpush</h1>
+
+<p>$ git push mine my_new_branch</p>
+
+<h1>rails 本家のブランチをremoteに追加</h1>
+
+<p>$ git remote add rails git://github.com/rails/rails.git</p>
+
+<h1>rails 本家をfetch</h1>
+
+<p>$ git fetch rails</p>
+
+<h1>rails/masterでリベースしよう</h1>
+
+<p>$ git checkout master
+$ git rebase rails/master
+```</p>
+
+<h2>バックポーティング(BackPorting)</h2>
+
+<p>次のメジャーリリースまでにHEADの変更を取り込みたい場合は、patchを作って自分のブランチに適用しよう。</p>
+
+<p>```ruby</p>
+
+<h1>master と HEAD(現在のブランチ)とのdiffを取る</h1>
+
+<p>$ git log master..HEAD</p>
+
+<h1>patchを作ろう</h1>
+
+<p>$ git format-patch master --stdout > ~/my_changes.patch</p>
+
+<h1>自分のブランチにpatchを適用仕様</h1>
+
+<p>$ git checkout -b my_backport_branch 3-2-stable
+$ git apply ~/my_changes.patch
+```</p>
+
+<h2>開発環境の構築</h2>
+
+<ul>
+<li>Virtual Boxを使って簡単に構築したい場合 => <strong><a href="https://github.com/rails/rails-dev-box">rails/rails-dev-box: A virtual machine for Ruby on Rails core development - GitHub</a></strong></li>
+<li>ローカルに構築したい場合 => <strong><a href="http://guides.rubyonrails.org/development_dependencies_install.html">Development Dependencies Install — Ruby on Rails Guides</a></strong></li>
+</ul>
+
+
+<h2>テスト用のアプリを作る</h2>
+
+<p><code>ruby
+$ cd rails
+$ bundle exec rails new ~/my-test-app --dev
+</code></p>
+
+<h2>コントリビューターの一覧</h2>
+
+<p><strong><a href="http://contributors.rubyonrails.org/">Rails Contributors</a></strong></p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20130314/463563/?ST=oss&amp;P=1">20歳になったRubyを支える人々 - ［Ruby／Railsコミッタ 松田明氏］海外コミュニティとの橋渡しに</a></li>
+<li><a href="http://magazine.rubyist.net/?0037-Hotlinks">Rubyist Magazine - Rubyist Hotlinks 【第 29 回】 松田明さん</a></li>
+<li><a href="http://thinking-megane.blogspot.jp/2012/09/git-pull-rebase.html">Thinking megane: git pull 時の rebase オプションのススメ</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails セキュリティフィックス 4.2.5.1, 4.1.14.1, 5.0.0.beta1.1 のメモ]]></title>
@@ -753,105 +1106,6 @@ end
 ```</p>
 
 <p>これは面白いかも！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Brakeman Railsのセキュリティチェックを行うためのGem]]></title>
-    <link href="http://morizyun.github.io/blog/brakeman-rails-security-checker/"/>
-    <updated>2016-01-18T23:55:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/brakeman-rails-security-checker</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00SF6JN4K/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00SF6JN4K&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00SF6JN4K&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00SF6JN4K" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-『<strong><a href="https://github.com/presidentbeef/brakeman">presidentbeef/brakeman - GitHub</a></strong>』は、
-Railsのセキュリティの問題点等をコマンド1つでチェックしてくれるGemです。
-企業等のサイト開発などでも気軽に使えるので是非試してみてください。</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- square -->
-<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script></p>
-
-<h2>サンプル</h2>
-
-<p>こんな感じでコマンド一つでアプリのセキュリティをチェックしてくれます。</p>
-
-<p>```bash
-bundle exec brakeman</p>
-
-<p>+BRAKEMAN REPORT+</p>
-
-<p>Application path: /path/to/rails_app
-Rails version: 4.2.5
-Brakeman version: 3.1.4
-Started at 2016-01-18 23:46:28 +0900
-Duration: 0.805318 seconds
-Checks run: BasicAuth, ContentTag, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NumberToCurrency, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionManipulation, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoSCVE, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing</p>
-
-<p>+SUMMARY+</p>
-
-<p>+-------------------+-------+
-| Scanned/Reported  | Total |
-+-------------------+-------+
-| Controllers       | 6     |
-| Models            | 5     |
-| Templates         | 26    |
-| Errors            | 0     |
-| Security Warnings | 0 (0) |
-+-------------------+-------+
-```</p>
-
-<p>結果はファイルやjsonで出力できますし、JenkinsなどのCIなどと連携して出力させる事もできます。</p>
-
-<p>ちなみに、『<strong><a href="http://brakemanscanner.org/docs/jenkins/">Jenkinsのプラグイン</a></strong>』はこちらです。</p>
-
-<p><a href="http://brakemanscanner.org/docs/jenkins/" target="_blank">
-  <img src="http://brakemanscanner.org/images/brakeman_trend_graph.png" />
-</a></p>
-
-<h2>Gemインストール</h2>
-
-<p>Gemfileに以下を追加して、<code>bundle install</code>を実行。</p>
-
-<p>```ruby</p>
-
-<h1>Gemfile</h1>
-
-<p>group :development do
-  # セキュリティチェック
-  gem 'brakeman', require: false
-end
-```</p>
-
-<h2>application.js の変更</h2>
-
-<p>あとは以下のコマンドを実行するだけ。</p>
-
-<p><code>bash
-bundle exec brakeman
-</code></p>
-
-<p>これで安心して仕事を進められそうです！</p>
-
-<h2>Special Thanks</h2>
-
-<ul>
-<li><strong><a href="http://qiita.com/joker1007/items/be5dc3f3b1e93132a4f7">俺がGitHubでスターを付けたリポジトリ一覧 - Qiita</a></strong></li>
-</ul>
-
 ]]></content>
   </entry>
   

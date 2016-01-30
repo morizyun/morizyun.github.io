@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-29T00:04:32+09:00</updated>
+  <updated>2016-01-30T10:20:28+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -12,6 +12,439 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails へのコントリビューションについて調べてみた]]></title>
+    <link href="http://morizyun.github.io/blog/contributing-ruby-on-rails/"/>
+    <updated>2016-01-30T10:20:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/contributing-ruby-on-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/4883379930/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4883379930&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4883379930&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4883379930" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
+
+<p>Rails へのコントリビューションに関する以下のドキュメントを読んでみました。</p>
+
+<ul>
+<li>(英語) <strong><a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html">Contributing to Ruby on Rails — Ruby on Rails Guides</a></strong></li>
+<li>(日本語) <strong><a href="http://railsguides.jp/contributing_to_ruby_on_rails.html">Ruby on Rails に貢献する方法 | Rails ガイド</a></strong></li>
+</ul>
+
+
+<p>この中で特に参考になった部分を中心に書いていきます。</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>コントリビューションの基礎</h2>
+
+<ul>
+<li>Ruby On Railsのバグを見つけたら「<strong><a href="https://github.com/rails/rails/issues">Issues · rails/rails - GitHub</a></strong>」で既存のものがないか探して、無ければPOST</li>
+<li>最新版(edge)はバグがある可能性があるし、バグが有った場合に取り込まれやすいのでコントリビュートのチャンスが多い。コントリビュートのチャンスが多い</li>
+</ul>
+
+
+<h2>セキュリティの問題が見つかった場合</h2>
+
+<ul>
+<li>GitHub ISSUEにあげてはダメ(悪用される可能性があるから)</li>
+<li>「<strong><a href="http://rubyonrails.org/security/">Ruby on Rails: Security policy</a></strong>」あたりにセキュリティのISSUEの立て方が書かれています。</li>
+</ul>
+
+
+<h2>バグなどのISSUE</h2>
+
+<ul>
+<li>ISSUEには再現可能なサンプルコードをつけよう</li>
+<li>実行可能なテストケースをちゃんと作ろう。テストケースのテンプレートを活用しよう => <strong><a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#create-an-executable-test-case">1.2 Create an Executable Test Case - Ruby on Rails Guide Contributing to Ruby on Railss</a></strong></li>
+<li>テストケースは、gistなどに貼って使おう</li>
+<li>バグの調査に役立つ情報があれば、ISSUEに書き込もう</li>
+<li>failするテストはコントリビュートのチャンスだ</li>
+</ul>
+
+
+<h3>テストバッチ</h3>
+
+<ul>
+<li>forkしてテストパッチを作ろう
+
+<ul>
+<li>変更が確実に動作しているかを確認しよう</li>
+<li>テストによってより良くなっているか？変更点のテストがきちんと存在しているか？</li>
+<li>ドキュメンテーションが適切にアップデートされているか？</li>
+<li>変更点はコードとして適切で、高速に動作するか？</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Gistのテンプレート</h2>
+
+<p><code>ActiveRecord</code> や <code>ActionController</code> のgistテンプレートのです。バグをレポートするときに使います。</p>
+
+<ul>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/active_record_gem.rb">Active Record template for gems</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/action_controller_gem.rb">Action Controller template for gems</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/active_record_master.rb">Active Record template for master</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/action_controller_master.rb">Action Controller template for master</a></strong></li>
+</ul>
+
+
+<h2>機能追加のリクエストについて</h2>
+
+<ul>
+<li>必ず動作するパッチを作ってGitHubにISSUEを作ろう(動作するパッチがない場合はinvalidになる)</li>
+<li>機能追加は他の機能に影響を与える可能性があるのでコアチームによって判断される</li>
+<li>アイデアを相談したいときは「<strong><a href="https://groups.google.com/forum/?fromgroups#!forum/rubyonrails-core">rails-core mailing list</a></strong>」に投げてみよう</li>
+</ul>
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h3>健全性のチェック</h3>
+
+<p>もしRails開発者の知り合いがいるなら、予め修正したコードをみせることで、
+適切なコードか否かをちゃんとチェックしよう。</p>
+
+<h3>Feedbackを受けよう</h3>
+
+<p>Merge Request を出したら、幾つかのフィードバックや意見が来るので対応しよう。
+マイナーチェンジは悪いことじゃないのでポジティブに意見を受け入れよう。
+あまりにも Merge Request に反応がないようなら、MLにPostしてみよう。</p>
+
+<h2>コードを書くときの注意点</h2>
+
+<p>バグフィックスや機能追加でコードを書く際には以下の点に注意しよう。</p>
+
+<pre>
+- 正しいコードを書こう
+- Railsのイデオム/Helperを適切に書こう
+- テストが通過しない場合は、テストが通過するように修正しよう
+- 変更点に関するドキュメントもアップデートをお忘れなく
+</pre>
+
+
+<h2>Railsのcoding style</h2>
+
+<pre>
+- 2スペースを使う。タブは使わない
+- 不要なスペースをつけないようにしよう
+- private/protectedの後はindentをつけよう
+- 1.9以降のhashシンタックス { a: b } を使おう
+- `&&` や `||` を使おう
+- `class << self` を使おう
+- `MyClass.my_method(my_arg)` が望ましい
+- `a = b` としよう
+- `assert_not` を使おう
+- `{ do_stuff }` としよう
+</pre>
+
+
+<h2>パフォーマンスに影響する変更</h2>
+
+<ul>
+<li>gem 「<strong><a href="https://github.com/evanphx/benchmark-ips">benchmark-ips</a></strong> 等を利用してベンチマークを取ること。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;benchmark/ips&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Benchmark</span><span class="o">.</span><span class="n">ips</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;addition&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;addition with send&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="mi">1</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:+</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Calculating</span> <span class="o">-------------------------------------</span>
+</span><span class='line'>            <span class="n">addition</span>   <span class="mi">132</span><span class="o">.</span><span class="mo">013</span><span class="n">k</span> <span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="n">ms</span>
+</span><span class='line'>  <span class="n">addition</span> <span class="n">with</span> <span class="nb">send</span>   <span class="mi">125</span><span class="o">.</span><span class="mi">413</span><span class="n">k</span> <span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="n">ms</span>
+</span><span class='line'><span class="o">-------------------------------------------------</span>
+</span><span class='line'>            <span class="n">addition</span>      <span class="mi">9</span><span class="o">.</span><span class="mi">677</span><span class="n">M</span> <span class="p">(</span><span class="err">±</span> <span class="mi">1</span><span class="o">.</span><span class="mi">7</span><span class="sx">%) i/s -     48.449M</span>
+</span><span class='line'><span class="sx">  addition with send      6.794M (± 1.1%)</span> <span class="n">i</span><span class="o">/</span><span class="n">s</span> <span class="o">-</span>     <span class="mi">33</span><span class="o">.</span><span class="mi">987</span><span class="n">M</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>テストの実行</h2>
+
+<p>テストの実行方法は次の通り。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Rails 全体のテスト</span>
+</span><span class='line'><span class="err">$</span> <span class="n">cd</span> <span class="n">rails</span>
+</span><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="nb">test</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># ActionMailerに関するテスト</span>
+</span><span class='line'><span class="err">$</span> <span class="n">cd</span> <span class="n">actionmailer</span>
+</span><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="nb">test</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># ActiveRecordに関するテスト DBの種類ごとのテストも可能</span>
+</span><span class='line'><span class="err">$</span> <span class="n">cd</span> <span class="n">activerecord</span>
+</span><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="nb">test</span><span class="ss">:sqlite3</span>
+</span><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="nb">test</span><span class="ss">:mysql2</span>
+</span><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="nb">test</span><span class="ss">:postgresql</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>ドキュメンテーション</h2>
+
+<p>Rails には次の2つのドキュメントがある;</p>
+
+<pre>
+Ruby on Rails Guides - help you learn about Ruby on Rails,
+APIドキュメント - serves as a reference.
+</pre>
+
+
+<p>また、それぞれにガイドラインがあるので読んでみよう。</p>
+
+<ul>
+<li><strong><a href="http://guides.rubyonrails.org/api_documentation_guidelines.html">API Documentation Guidelines — Ruby on Rails Guides</a></strong></li>
+<li><strong><a href="http://guides.rubyonrails.org/ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines — Ruby on Rails Guides</a></strong></li>
+</ul>
+
+
+<p>それから、ドキュメンテーションの変更だけの場合は CI を動かす必要はない。 <code>[ci skip]</code> をつけよう。</p>
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>CHANGELOGをちゃんと更新しよう</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">*</span>   <span class="no">Summary</span> <span class="n">of</span> <span class="n">a</span> <span class="n">change</span> <span class="n">that</span> <span class="n">briefly</span> <span class="n">describes</span> <span class="n">what</span> <span class="n">was</span> <span class="n">changed</span><span class="o">.</span> <span class="no">You</span> <span class="n">can</span> <span class="n">use</span> <span class="n">multiple</span>
+</span><span class='line'>    <span class="n">lines</span> <span class="ow">and</span> <span class="n">wrap</span> <span class="n">them</span> <span class="n">at</span> <span class="n">around</span> <span class="mi">80</span> <span class="n">characters</span><span class="o">.</span> <span class="no">Code</span> <span class="n">examples</span> <span class="n">are</span> <span class="n">ok</span><span class="p">,</span> <span class="n">too</span><span class="p">,</span> <span class="k">if</span> <span class="n">needed</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">class</span> <span class="nc">Foo</span>
+</span><span class='line'>          <span class="k">def</span> <span class="nf">bar</span>
+</span><span class='line'>            <span class="nb">puts</span> <span class="s1">&#39;baz&#39;</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="no">You</span> <span class="n">can</span> <span class="n">continue</span> <span class="n">after</span> <span class="n">the</span> <span class="n">code</span> <span class="n">example</span> <span class="ow">and</span> <span class="n">you</span> <span class="n">can</span> <span class="n">attach</span> <span class="n">issue</span> <span class="n">number</span><span class="o">.</span> <span class="no">GH</span><span class="c1">#1234</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="o">*</span><span class="no">Your</span> <span class="no">Name</span><span class="o">*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>コミットメッセージ</h2>
+
+<p>コミットは1つにsquashしておこう。そして、コミットメッセージも簡単なサマリーをちゃんと書こう。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Short</span> <span class="n">summary</span> <span class="p">(</span><span class="n">ideally</span> <span class="mi">50</span> <span class="n">characters</span> <span class="ow">or</span> <span class="n">less</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">More</span> <span class="n">detailed</span> <span class="n">description</span><span class="p">,</span> <span class="k">if</span> <span class="n">necessary</span><span class="o">.</span> <span class="no">It</span> <span class="n">should</span> <span class="n">be</span> <span class="n">wrapped</span> <span class="n">to</span>
+</span><span class='line'><span class="mi">72</span> <span class="n">characters</span><span class="o">.</span> <span class="no">Try</span> <span class="n">to</span> <span class="n">be</span> <span class="n">as</span> <span class="n">descriptive</span> <span class="n">as</span> <span class="n">you</span> <span class="n">can</span><span class="o">.</span> <span class="no">Even</span> <span class="k">if</span> <span class="n">you</span>
+</span><span class='line'><span class="n">think</span> <span class="n">that</span> <span class="n">the</span> <span class="n">commit</span> <span class="n">content</span> <span class="n">is</span> <span class="n">obvious</span><span class="p">,</span> <span class="n">it</span> <span class="n">may</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">obvious</span>
+</span><span class='line'><span class="n">to</span> <span class="n">others</span><span class="o">.</span> <span class="no">Add</span> <span class="n">any</span> <span class="n">description</span> <span class="n">that</span> <span class="n">is</span> <span class="n">already</span> <span class="n">present</span> <span class="k">in</span> <span class="n">the</span>
+</span><span class='line'><span class="n">relevant</span> <span class="n">issues</span><span class="p">;</span> <span class="n">it</span> <span class="n">should</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">necessary</span> <span class="n">to</span> <span class="n">visit</span> <span class="n">a</span> <span class="n">webpage</span>
+</span><span class='line'><span class="n">to</span> <span class="n">check</span> <span class="n">the</span> <span class="n">history</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">The</span> <span class="n">description</span> <span class="n">section</span> <span class="n">can</span> <span class="n">have</span> <span class="n">multiple</span> <span class="n">paragraphs</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Code</span> <span class="n">examples</span> <span class="n">can</span> <span class="n">be</span> <span class="n">embedded</span> <span class="n">by</span> <span class="n">indenting</span> <span class="n">them</span> <span class="n">with</span> <span class="mi">4</span> <span class="n">spaces</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">class</span> <span class="nc">ArticlesController</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>        <span class="n">render</span> <span class="n">json</span><span class="p">:</span> <span class="no">Article</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">You</span> <span class="n">can</span> <span class="n">also</span> <span class="n">add</span> <span class="n">bullet</span> <span class="n">points</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span> <span class="n">make</span> <span class="n">a</span> <span class="n">bullet</span> <span class="n">point</span> <span class="n">by</span> <span class="n">starting</span> <span class="n">a</span> <span class="n">line</span> <span class="n">with</span> <span class="n">either</span> <span class="n">a</span> <span class="n">dash</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</span><span class='line'>  <span class="ow">or</span> <span class="n">an</span> <span class="n">asterisk</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span> <span class="n">wrap</span> <span class="n">lines</span> <span class="n">at</span> <span class="mi">72</span> <span class="n">characters</span><span class="p">,</span> <span class="ow">and</span> <span class="n">indent</span> <span class="n">any</span> <span class="n">additional</span> <span class="n">lines</span>
+</span><span class='line'>  <span class="n">with</span> <span class="mi">2</span> <span class="n">spaces</span> <span class="k">for</span> <span class="n">readability</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あと、ちゃんとリベースしておこう。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">checkout</span> <span class="n">my_new_branch</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">rebase</span> <span class="n">master</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Forkしよう</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 自分のリポジトリをForkして作ろう</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">mine</span> <span class="n">git</span><span class="vi">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="o">&lt;</span><span class="n">your</span> <span class="n">user</span> <span class="nb">name</span><span class="o">&gt;</span><span class="sr">/rails.git</span>
+</span><span class='line'><span class="sr"># 自分のリポジトリへのpush</span>
+</span><span class='line'><span class="sr">$ git push mine my_new_branch</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr"># rails 本家のブランチをremoteに追加</span>
+</span><span class='line'><span class="sr">$ git remote add rails git:/</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">rails</span><span class="o">/</span><span class="n">rails</span><span class="o">.</span><span class="n">git</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># rails 本家をfetch</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">fetch</span> <span class="n">rails</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># rails/masterでリベースしよう</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">rebase</span> <span class="n">rails</span><span class="o">/</span><span class="n">master</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>バックポーティング(BackPorting)</h2>
+
+<p>次のメジャーリリースまでにHEADの変更を取り込みたい場合は、patchを作って自分のブランチに適用しよう。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># master と HEAD(現在のブランチ)とのdiffを取る</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">log</span> <span class="n">master</span><span class="o">.</span><span class="n">.</span><span class="no">HEAD</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># patchを作ろう</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="nb">format</span><span class="o">-</span><span class="n">patch</span> <span class="n">master</span> <span class="o">--</span><span class="n">stdout</span> <span class="o">&gt;</span> <span class="o">~</span><span class="sr">/my_changes.patch</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr"># 自分のブランチにpatchを適用仕様</span>
+</span><span class='line'><span class="sr">$ git checkout -b my_backport_branch 3-2-stable</span>
+</span><span class='line'><span class="sr">$ git apply ~/m</span><span class="n">y_changes</span><span class="o">.</span><span class="n">patch</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>開発環境の構築</h2>
+
+<ul>
+<li>Virtual Boxを使って簡単に構築したい場合 => <strong><a href="https://github.com/rails/rails-dev-box">rails/rails-dev-box: A virtual machine for Ruby on Rails core development - GitHub</a></strong></li>
+<li>ローカルに構築したい場合 => <strong><a href="http://guides.rubyonrails.org/development_dependencies_install.html">Development Dependencies Install — Ruby on Rails Guides</a></strong></li>
+</ul>
+
+
+<h2>テスト用のアプリを作る</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">cd</span> <span class="n">rails</span>
+</span><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rails</span> <span class="kp">new</span> <span class="o">~</span><span class="sr">/my-test-app --dev</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>コントリビューターの一覧</h2>
+
+<p><strong><a href="http://contributors.rubyonrails.org/">Rails Contributors</a></strong></p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20130314/463563/?ST=oss&amp;P=1">20歳になったRubyを支える人々 - ［Ruby／Railsコミッタ 松田明氏］海外コミュニティとの橋渡しに</a></li>
+<li><a href="http://magazine.rubyist.net/?0037-Hotlinks">Rubyist Magazine - Rubyist Hotlinks 【第 29 回】 松田明さん</a></li>
+<li><a href="http://thinking-megane.blogspot.jp/2012/09/git-pull-rebase.html">Thinking megane: git pull 時の rebase オプションのススメ</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails セキュリティフィックス 4.2.5.1, 4.1.14.1, 5.0.0.beta1.1 のメモ]]></title>
@@ -3433,226 +3866,6 @@ E) Zohoで指定されたSPFレコードをムームドメインに設定
 <p><strong><a href="https://www.zoho.com/mail/help/pop-access.html">Zoho Mail - POP configuration</a></strong></p>
 
 <p>こちらをGmail側に設定すると独自ドメインをGmailで受け取って運用できます！</p>
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Elasticsearch Sever勉強メモ 基本的な概念や基本API、マッピングについて]]></title>
-    <link href="http://morizyun.github.io/blog/elasticsearch-server-basic-api/"/>
-    <updated>2016-01-04T23:15:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/elasticsearch-server-basic-api</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00J4KDYZU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00J4KDYZU&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00J4KDYZU&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00J4KDYZU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />『<strong><a href="http://www.amazon.co.jp/gp/product/B00J4KDYZU/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=B00J4KDYZU&amp;linkCode=as2&amp;tag=morizyun00-22">Elasticsearch Sever</a></strong>』を読んで勉強をしたことの俺得メモです。今回は基本的な概念や基本API、マッピングについてです。</p>
-
-<p>英語ですが、公式ドキュメント『<strong><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Elasticsearch Reference [2.1]</a></strong>』も充実しているのでななめ読みしています！</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h2>curlを使うときに便利なjq</h2>
-
-<p>コマンドラインでのJSONの整形に「<strong><a href="https://stedolan.github.io/jq/">jq</a></strong>」が便利でした。良かったらぜひ。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>brew install jq</span></code></pre></td></tr></table></div></figure>
-
-
-<p>こんな感じでcurlの結果をパイプで渡すと、結果を見やすく整形してくれます。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>curl -XPUT http://localhost:9200/post -d '{ "title" : "manual post title 1", "body" : "manual post body 1" }' | jq</span></code></pre></td></tr></table></div></figure>
-
-
-<p>詳しい使い方は公式のチュートリアル『<strong><a href="https://stedolan.github.io/jq/tutorial/">Tutorial - jq</a></strong>』あたりがおすすめです</p>
-
-<h2>Elasticsearch の基本概念</h2>
-
-<h3>Elasticsearchの論理的な構成要素</h3>
-
-<p>検索で使うデータの構成要素のイメージ。</p>
-
-<pre>
-- インデックス
-  - ドキュメントの集合体。リレーショナルDBのテーブルのようなもの。格納された値は、全文検索に最適化される。
-- ドキュメントタイプ
-  - 1つのインデックス内に複数のオブジェクトを格納できる。その区分のこと。
-- ドキュメント
-  - リレーショナルDBのレコードのようなもの。型(type)は自動で決まることも、強制することもできる
-</pre>
-
-
-<h3>Elasticsearchの物理的な構成要素</h3>
-
-<p>インデックスを物理的に構成する要素。</p>
-
-<pre>
-- クラスタ(cluster)
-  - 複数サーバで協調して動かした場合のサーバ群をクラスタと呼ぶ。
-- ノード(node)
-  Elasticsearchのプロセスをノードと呼ぶ。クラスタの構成要素。
-- シャード(shard)
-  - 大量のドキュメントを処理するために、小さな部分インデックスに分割して複数のサーバに格納する。これをシャードという。
-  - デフォルトでは5つのPrimary Shardと各Primary Shardごとに1つのReplica Shardに分類される
-  - Primary Shard
-    - インデックスの書き込みと参照処理で利用される
-  - Replica Shard
-    - クエリのスループットや高可用性を実現するためにシャードを完全にコピーしたレプリカを作ることができる
-    - クラスタ内では自動的にプライマリとなるシャードを選定することができる
-</pre>
-
-
-<p><code>Replica Shard</code>は動的に数を変更可能だが、<code>Primary Shard</code>は一度インデックスを作成すると変更できません。</p>
-
-<h2>Elasticsearchの基本的なAPI</h2>
-
-<p>Elasticsearchはいろんな操作を行うためのAPIがそろっています。いくつか触りを紹介します。</p>
-
-<pre>
-- インスタンス情報に関するAPI
-  - curl -XGET http://localhost:9200/
-
-- インデックス(データの論理的な構造)の操作に関するAPI
-  - インデックスの作成
-    - curl -XPOST http://localhost:9200/post
-  - インデックスの構造取得
-    - curl -XGET http://localhost:9200/post
-  - インデックスの削除
-    - curl -XDELETE http://localhost:9200/post
-
-- ドキュメント(インデックスの中のデータ)の操作に関するAPI
-  - ドキュメントの新規作成
-    - curl -XPOST http://localhost:9200/post/post -d '{ "id" : 1, "title" : "manual post title 1" }'
-  - ドキュメントの更新
-    - curl -XPUT http://localhost:9200/post/1 -d '{ "id" : 1, "title" : "manual post title 1" }'
-  - ドキュメントの取得
-    - curl -XGET http://localhost:9200/post/1
-  - ドキュメントの削除
-    - curl -XDELETE http://localhost:9200/post/1
-</pre>
-
-
-<h2>マッピングについて</h2>
-
-<p>スキーママッピングとは、インデックスの構造を定義を行うことです。</p>
-
-<p>公式ドキュメント「<strong><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">Mapping | Elasticsearch</a></strong>」がおすすめ。</p>
-
-<h3>マッピングファイルの作成</h3>
-
-<p>マッピング情報を格納する <code>blog.json</code> を作成します。</p>
-
-<p>構造として配下のようになっています。</p>
-
-<pre>
-- ドキュメントタイプ : articles (記事)
-- articles のフィールド情報
-  - id : 一意の識別子(整数型)
-  - title: タイトル(文字列)
-</pre>
-
-
-<p>では実際のファイルです。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">#</span> <span class="err">blog.json</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="nt">&quot;mappings&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nt">&quot;articles&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nt">&quot;id&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="nt">&quot;store&quot;</span> <span class="p">:</span> <span class="s2">&quot;yes&quot;</span> <span class="p">},</span>
-</span><span class='line'>                <span class="nt">&quot;title&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="nt">&quot;store&quot;</span> <span class="p">:</span> <span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="s2">&quot;analyzed&quot;</span> <span class="p">}</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ファイルを作ったら以下のコマンドでインデックス作成 &amp; マッピングの定義を実行。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">$</span> <span class="err">curl</span> <span class="err">-XPOST</span> <span class="err">&#39;http://localhost:</span><span class="mi">9200</span><span class="err">/blog&#39;</span> <span class="err">-d</span> <span class="err">@blog.json</span> <span class="err">|</span> <span class="err">jq</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>@blog.json</code> は curl の <code>blog.json</code> を指定するための設定。</p>
-
-<h3>マッピングのフィールドの型定義</h3>
-
-<p>触りだけだけどこんな感じの基本型(Core Type)がある。</p>
-
-<pre>
-- String : 文字列。アナライザを細かく指定できる。
-- Number : 数値。floatやdoubleなどの方がある。
-- Date : 日付。フォーマットはいろいろ指定できる。
-- Booelean : 真偽値を扱う。
-- Binary : BASE64形式のバイナリデータ。画像などを格納するために使う。
-</pre>
-
-
-<p>それぞれの型情報に対して、更に属性情報を定義できる。</p>
-
-<p>以下は共通的な型情報です。</p>
-
-<pre>
-- index
-  - "analyzed" => 検索可能なフィールド
-  - "no" => 検索できないフィールド
-  - "not_analized" => アナライザによって処理されないが、完全一致での検索はできる
-- store
-  - "yes" フィールドにインデックスの元の値を保存する
-  - "no" フィールドにインデックスの元の値を保存しない。_sourceを使うと値を取得できる。
-- boost
-  - フィールドがドキュメントでどのくらい重要かを表す
-- null_value
-  - 値がない場合に、デフォルトで登録される値
-- include_in_all
-  - フィールドが _allに含まれるかどうかを設定するフィールド
-</pre>
-
-
-
-
-<br style="clear:both;"/>
-
 
 <script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
