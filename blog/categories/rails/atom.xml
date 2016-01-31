@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-31T22:16:12+09:00</updated>
+  <updated>2016-01-31T22:19:44+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -271,6 +271,8 @@ end
 <p>このAPI Modeとは直接の関係はないですが、『<strong><a href="https://github.com/cerebris/jsonapi-resources">jsonapi-resources</a></strong>』というプロジェクトがあるようです。
 こちらもサンプルソースを見た限りはなかなか面白そう。上手く使いこなせれば、楽ができそうです！</p>
 
+<p>こちらは別途サンプルを作って試してみようと思います！</p>
+
 <p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- square -->
 <ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins>
@@ -380,7 +382,7 @@ store_listing.price_in_cents # => 1000
 
 <p>実用性も高いし、これは地味にかなりありがたい機能。</p>
 
-<p>ちなみに、こんな使い方もできるそうで。。。素晴らしい。</p>
+<p>ちなみに、こんな使い方もできるそうで。。。夢が広がりんぐ。</p>
 
 <p>```ruby
 class Money &lt; Struct.new(:amount, :currency)
@@ -428,7 +430,7 @@ end</p>
 </pre>
 
 
-<h2>その他変更点</h2>
+<h2>CHANGELOG</h2>
 
 <ul>
 <li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/actionpack/CHANGELOG.md">Action Pack CHANGELOG</a></li>
@@ -443,7 +445,7 @@ end</p>
 </ul>
 
 
-<h2>Turbolinks 5</h2>
+<h2>余談: Turbolinks 5</h2>
 
 <p>ネイティブのiOSとAndroidのラッパー実装として、『<strong><a href="https://github.com/basecamp/turbolinks/tree/v5">basecamp/turbolinks/v5 - GitHub</a></strong>』
 を新しく作っているらしいです。まだどんな実装なのかはわかりませんが、新しい試みで面白そう。</p>
