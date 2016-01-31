@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-31T22:11:52+09:00</updated>
+  <updated>2016-01-31T22:16:12+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -439,7 +439,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-
+<p>さらに、独自の型を定義することもできます。これはいいかも！</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -460,9 +460,7 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 独自の型を定義することもできます</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">MoneyType</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Type</span><span class="o">::</span><span class="nb">Integer</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MoneyType</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Type</span><span class="o">::</span><span class="nb">Integer</span>
 </span><span class='line'>  <span class="k">def</span> <span class="nf">type_cast</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
 </span><span class='line'>      <span class="n">price_in_dollars</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_f</span>
@@ -484,9 +482,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>実用性も高いし、これは地味にかなりありがたい機能！</p>
+<p>実用性も高いし、これは地味にかなりありがたい機能。</p>
 
-<p>ちなみに、こんな使い方もできるそうで。。。素晴らしい！</p>
+<p>ちなみに、こんな使い方もできるそうで。。。素晴らしい。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

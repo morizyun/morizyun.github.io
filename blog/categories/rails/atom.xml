@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-01-31T22:11:52+09:00</updated>
+  <updated>2016-01-31T22:16:12+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -349,11 +349,10 @@ model.attributes</p>
 
 <p>```</p>
 
-<p>```ruby</p>
+<p>さらに、独自の型を定義することもできます。これはいいかも！</p>
 
-<h1>独自の型を定義することもできます</h1>
-
-<p>class MoneyType &lt; ActiveRecord::Type::Integer
+<p>```ruby
+class MoneyType &lt; ActiveRecord::Type::Integer
   def type_cast(value)</p>
 
 <pre><code>if value.include?('$')
@@ -379,9 +378,9 @@ end</p>
 store_listing.price_in_cents # => 1000
 ```</p>
 
-<p>実用性も高いし、これは地味にかなりありがたい機能！</p>
+<p>実用性も高いし、これは地味にかなりありがたい機能。</p>
 
-<p>ちなみに、こんな使い方もできるそうで。。。素晴らしい！</p>
+<p>ちなみに、こんな使い方もできるそうで。。。素晴らしい。</p>
 
 <p>```ruby
 class Money &lt; Struct.new(:amount, :currency)
