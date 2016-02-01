@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>メタプログラミング Ruby 第2版 / 第2章 オブジェクトモデル[勉強メモ] - 酒と泪とRubyとRailsと</title>
+  <title>メタプログラミング Ruby 第2版 / 第2章 オブジェクトモデル [勉強メモ] - 酒と泪とRubyとRailsと</title>
   <meta name="author" content="morizyun">
 
   
@@ -47,7 +47,7 @@
   </script>
 
 
-  <meta property="og:title" content="メタプログラミング Ruby 第2版 / 第2章 オブジェクトモデル[勉強メモ] - 酒と泪とRubyとRailsと" />
+  <meta property="og:title" content="メタプログラミング Ruby 第2版 / 第2章 オブジェクトモデル [勉強メモ] - 酒と泪とRubyとRailsと" />
 <meta property="og:description" content="メタプログラミングRubyを読んでいます。完全自分用のメモ記事です。
 第2章で特に参考になった部分を中心に書いています。 (adsbygoogle = window.adsbygoogle || []).push({}); メタプログラミングとは コードを記述するためのコードを書くことである 2章 &hellip;" />
 <meta property="og:url" content="http://morizyun.github.io/blog/meta-programing-ruby-book-chapter2-review/" />
@@ -100,7 +100,7 @@
   
   <header>
     
-      <h1 class="entry-title">メタプログラミング Ruby 第2版 / 第2章 オブジェクトモデル[勉強メモ]</h1>
+      <h1 class="entry-title">メタプログラミング Ruby 第2版 / 第2章 オブジェクトモデル [勉強メモ]</h1>
     
     
     
@@ -119,7 +119,7 @@
 
 
 
-        <time datetime="2015-10-30T21:00:00+09:00" pubdate data-updated="true">Oct 30<span>th</span>, 2015</time>
+        <time datetime="2016-02-01T23:50:00+09:00" pubdate data-updated="true">Feb 1<span>st</span>, 2016</time>
 <span class="sharing social_box" style="margin: 10px 0 0 10px; display: inline-table;">
   <ul class="social" style="margin-left: 0;margin-top: 10px;">
     <li class="hatena">
@@ -198,8 +198,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Rubyは標準クラスでも気軽に拡張できる。これをモンキーパッチと呼ぶ。
-しかし例えば拡張したメソッドが標準クラスのメソッドだった場合、その影響範囲が大きくなってしまう。
+<p>Rubyは標準クラスでも気軽に拡張できる。
+既存のクラスを再オープンして、気軽に拡張できる。これをオープンクラスという。
+安易なパッチはバグを誘発するため、モンキーパッチともいう。</p>
+
+<p>しかし例えば拡張したメソッドが標準クラスのメソッドだった場合、その影響範囲が大きくなってしまう。
 モンキーパッチの代替案としては、<code>Refinements</code> などを使うことである。</p>
 
 <h3>Classの親クラスは Module</h3>
@@ -375,6 +378,74 @@
 </ul>
 
 
+<h2>Tips: トップレベル</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">self</span> <span class="c1">#=&gt; main トップレベルでのselfを表すオブジェクト</span>
+</span><span class='line'><span class="nb">self</span><span class="o">.</span><span class="n">class</span> <span class="c1">#=&gt; Object</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>refinementsの使いドコロの難しさ</h2>
+
+<p><code>refinements</code>は便利だけど、メソッドの一覧で取得できない場合があり、直感的ではないのでいずれこの仕様は変わる可能性がありそう。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyClass</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">my_method</span>
+</span><span class='line'>    <span class="s1">&#39;original method&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">fuga</span>
+</span><span class='line'>    <span class="s2">&quot;fuga&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">MyClassExtensions</span>
+</span><span class='line'>  <span class="n">refine</span> <span class="no">MyClass</span> <span class="k">do</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">my_method</span>
+</span><span class='line'>    <span class="s1">&#39;refinement method&#39;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">hoge</span>
+</span><span class='line'>      <span class="s1">&#39;hogehoge&#39;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">Foo</span>
+</span><span class='line'>  <span class="n">using</span> <span class="no">MyClassExtensions</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="p">(</span><span class="no">MyClass</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">methods</span> <span class="o">-</span> <span class="no">Object</span><span class="o">.</span><span class="n">instance_methods</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span> <span class="c1">#=&gt; :hoge がメソッドにない</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h2>サンプルソース</h2>
 
 <p>何かの役に立つこともあるかもなので、リポジトリも公開しておきます。</p>
@@ -395,6 +466,13 @@
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="http://blog.jnito.com/entry/20120315/1331754912">JavaやC#の常識が通用しないRubyのprivateメソッド - give IT a try</a></strong></li>
+</ul>
 
 </div>
 
@@ -430,7 +508,7 @@
   
 
 
-<time datetime="2015-10-30T21:00:00+09:00" pubdate data-updated="true">Oct 30<span>th</span>, 2015</time>
+<time datetime="2016-02-01T23:50:00+09:00" pubdate data-updated="true">Feb 1<span>st</span>, 2016</time>
       
 
 <span class="categories">
@@ -466,10 +544,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/rbenv-update-brew-new-ruby-version/" title="Previous Post: rbenv を update して最新のRuby バージョンをインストール[Homebrew]">&laquo; rbenv を update して最新のRuby バージョンをインストール[Homebrew]</a>
+        <a class="basic-alignment left" href="/blog/rails-5.0.0.beta1-new-function-official-blog/" title="Previous Post: Rails 5.0.0.beta1の新機能紹介の公式ブログ記事を読んでみた">&laquo; Rails 5.0.0.beta1の新機能紹介の公式ブログ記事を読んでみた</a>
       
       
-        <a class="basic-alignment right" href="/blog/meteor-package-promoise-async/" title="Next Post: Meteor.js promise でサーバ処理呼び出して結果を非同期で表示する">Meteor.js promise でサーバ処理呼び出して結果を非同期で表示する &raquo;</a>
+        <a class="basic-alignment right" href="/blog/protected-refinements-sendagaya.rb/" title="Next Post: protected methodについて">protected methodについて &raquo;</a>
       
     </p>
   </footer>
