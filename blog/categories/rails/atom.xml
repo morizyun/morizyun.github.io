@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-02-08T22:13:39+09:00</updated>
+  <updated>2016-02-08T22:54:29+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -73,7 +73,7 @@ $ rails new my_api --api
 <p>このコマンドによって生成されるRailsアプリには以下のような特徴があります。</p>
 
 <pre>
-- 通常のWebアプリよりも、Middlewareが通常より制限されることで応答性能が向上する
+- 通常のWebアプリよりも、Middlewareが少ないので応答性能が向上する
 - ApplicationController => ActionController::APIを継承する
 - GeneratorでのViewやAssetの生成が行われない(フロントエンド側が行うことを想定)
 </pre>
@@ -391,7 +391,7 @@ end
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script></p>
 
-<p>Messageをテーブルに保存したら、非同期のJobを起動。</p>
+<p>Messageをテーブルに保存したら、非同期でJobを起動。</p>
 
 <p>```ruby</p>
 
@@ -432,7 +432,7 @@ end
 end
 ```</p>
 
-<p>ちゃっと風にメッセージを保存</p>
+<p>チャット風にメッセージを表示。</p>
 
 <p>```html</p>
 

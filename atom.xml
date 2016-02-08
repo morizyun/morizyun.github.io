@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-02-08T22:13:39+09:00</updated>
+  <updated>2016-02-08T22:54:29+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -80,7 +80,7 @@ RailsをAPIアプリとして活用するメリットだと考えます。</p>
 <p>このコマンドによって生成されるRailsアプリには以下のような特徴があります。</p>
 
 <pre>
-- 通常のWebアプリよりも、Middlewareが通常より制限されることで応答性能が向上する
+- 通常のWebアプリよりも、Middlewareが少ないので応答性能が向上する
 - ApplicationController => ActionController::APIを継承する
 - GeneratorでのViewやAssetの生成が行われない(フロントエンド側が行うことを想定)
 </pre>
@@ -496,7 +496,7 @@ RailsをAPIアプリとして活用するメリットだと考えます。</p>
 </script>
 
 
-<p>Messageをテーブルに保存したら、非同期のJobを起動。</p>
+<p>Messageをテーブルに保存したら、非同期でJobを起動。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -548,7 +548,7 @@ RailsをAPIアプリとして活用するメリットだと考えます。</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>ちゃっと風にメッセージを保存</p>
+<p>チャット風にメッセージを表示。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
