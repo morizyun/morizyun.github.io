@@ -4,7 +4,7 @@
   <title><![CDATA[酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-02-08T22:07:00+09:00</updated>
+  <updated>2016-02-08T22:11:29+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -272,6 +272,580 @@ RailsをAPIアプリとして活用するメリットだと考えます。</p>
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 5.0.0.beta1の新機能紹介の公式ブログ記事を読んでみた]]></title>
+    <link href="http://morizyun.github.io/blog/rails-5.0.0.beta1-new-function-official-blog/"/>
+    <updated>2016-02-08T21:50:00+09:00</updated>
+    <id>http://morizyun.github.io/blog/rails-5.0.0.beta1-new-function-official-blog</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00P0UR1CA/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00P0UR1CA&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00P0UR1CA&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00P0UR1CA" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Rails公式ブログの Rails 5 beta1の新機能についてのブログ記事『<strong><a href="http://weblog.rubyonrails.org/2015/12/18/Rails-5-0-beta1/">Riding Rails: Rails 5.0.0.beta1: Action Cable, API mode, Rails command</a></strong>』を英語の勉強がてら読んでみました！</p>
+
+<!-- more -->
+
+
+<br style="clear:both;"/>
+
+
+<h2>Action Cable</h2>
+
+<pre>
+- Action Cableは、Websocketをハンドリングするためのフレームワーク
+- チャットや、Notificationを簡単に実装することができる
+</pre>
+
+
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h3>チャットアプリのサンプルソース</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># アプリの作成</span>
+</span><span class='line'><span class="nv">$ </span>rails _5.0.0.beta1.1_ new action_cable_sample --skip-spring --skip-bundle
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>action_cable_sample
+</span><span class='line'>
+</span><span class='line'><span class="c"># bundle install の実行</span>
+</span><span class='line'>bundle install --jobs<span class="o">=</span>4 --path<span class="o">=</span>vendor/bundle
+</span><span class='line'>
+</span><span class='line'><span class="c"># Message の scaffold を実行</span>
+</span><span class='line'><span class="nv">$ </span>rails g scaffold messages content:text
+</span><span class='line'>
+</span><span class='line'><span class="c"># マイグレーションを実行</span>
+</span><span class='line'><span class="nv">$ </span>rails db:migrate
+</span><span class='line'>
+</span><span class='line'><span class="c"># Chat チャネル with Speakアクション を作成</span>
+</span><span class='line'><span class="nv">$ </span>rails g channel chat speak
+</span><span class='line'>
+</span><span class='line'><span class="c"># 非同期でブロードキャストするための Jobを作成</span>
+</span><span class='line'><span class="nv">$ </span>rails g job message_broadcast
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ルーティングを修正。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/routes.rb</span>
+</span><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># ↓ 以下を追加</span>
+</span><span class='line'>  <span class="n">root</span> <span class="n">to</span><span class="p">:</span> <span class="s1">&#39;messages#index&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Serve websocket cable requests in-process</span>
+</span><span class='line'>  <span class="n">mount</span> <span class="no">ActionCable</span><span class="o">.</span><span class="n">server</span> <span class="o">=&gt;</span> <span class="s1">&#39;/cable&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JS側で、ActionCableを有効にします。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># app/assets/javascripts/cable.coffee</span>
+</span><span class='line'><span class="nx">@App</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'><span class="nv">App.cable = </span><span class="nx">ActionCable</span><span class="p">.</span><span class="nx">createConsumer</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>クライアントサイド(CoffeeScript)のSpeakアクションを修正。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># app/assets/javascripts/channels/chat.coffee</span>
+</span><span class='line'>  <span class="nv">received: </span><span class="nf">(data) -&gt;</span>
+</span><span class='line'>    <span class="c1"># メッセージを受け取ったら #messages に付け足す</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;#messages&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="nx">data</span><span class="p">[</span><span class="s">&#39;message&#39;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">speak: </span><span class="nf">(message) -&gt;</span>
+</span><span class='line'>    <span class="c1"># formでsubmitしたメッセージをサーバに送信</span>
+</span><span class='line'>    <span class="nx">@perform</span> <span class="s">&#39;speak&#39;</span><span class="p">,</span> <span class="nv">message: </span><span class="nx">message</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># リターンキーを押したら、メッセージが送信される</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="kc">on</span> <span class="s">&#39;keypress&#39;</span><span class="p">,</span> <span class="s">&#39;[data-behavior~=chat_speaker]&#39;</span><span class="p">,</span> <span class="nf">(event) -&gt;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">is</span> <span class="mi">13</span>
+</span><span class='line'>    <span class="nx">App</span><span class="p">.</span><span class="nx">chat</span><span class="p">.</span><span class="nx">speak</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span>
+</span><span class='line'>    <span class="nv">event.target.value = </span><span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>サーバーサイドの ActionCableのクラス <code>CatChannel</code> を修正。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># ActionCableのクラス</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">ChatChannel</span> <span class="o">&lt;</span> <span class="no">ApplicationCable</span><span class="o">::</span><span class="no">Channel</span>
+</span><span class='line'>  <span class="c1"># 配信する際の名前。 chat.coffee内の「ChatChannel」と対応(?)</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">subscribed</span>
+</span><span class='line'>    <span class="c1"># ↓ 以下をコメントアウトする</span>
+</span><span class='line'>    <span class="n">stream_from</span> <span class="s1">&#39;chat_channel&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># クライアントから送られた message を テーブルに保存</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">Message</span><span class="o">.</span><span class="n">create!</span> <span class="n">content</span><span class="p">:</span> <span class="n">data</span><span class="o">[</span><span class="s1">&#39;message&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<p>Messageをテーブルに保存したら、非同期のJobを起動。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Messageを管理するクラス</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Message</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+</span><span class='line'>  <span class="c1"># 作成後のコミットが完了したら ブロードキャストする</span>
+</span><span class='line'>  <span class="n">after_create_commit</span> <span class="p">{</span> <span class="no">MessageBroadcastJob</span><span class="o">.</span><span class="n">perform_later</span> <span class="nb">self</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>保存されたメッセージを、MessageBroadcastJobで非同期でブロードキャスト。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 非同期でクライアントにメッセージを送るためのJob</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MessageBroadcastJob</span> <span class="o">&lt;</span> <span class="no">ApplicationJob</span>
+</span><span class='line'>  <span class="n">queue_as</span> <span class="ss">:default</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 部分テンプレートをrenderする</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ActionCable</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">broadcast</span> <span class="s1">&#39;chat_channel&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">_render_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 部分テンプレートをrenderする</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">_render_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">ApplicationController</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">partial</span><span class="p">:</span> <span class="s1">&#39;messages/message&#39;</span><span class="p">,</span> <span class="n">locals</span><span class="p">:</span> <span class="p">{</span> <span class="n">message</span><span class="p">:</span> <span class="n">message</span> <span class="p">})</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ちゃっと風にメッセージを保存</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- app/views/messages/index.html.erb --&gt;</span>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>Chat<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;messages&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="err">&lt;</span>%= render @messages %&gt;
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;form&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;label&gt;</span>Send Message:<span class="nt">&lt;/label&gt;&lt;br&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">data-behavior=</span><span class="s">&quot;chat_speaker&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;/form&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あと部分テンプレート追加。キャッシュも普通に使う事ができます！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- app/views/messages/_message.html.erb --&gt;</span>
+</span><span class='line'><span class="err">&lt;</span>% cache message do %&gt;
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;message&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;p&gt;</span><span class="err">&lt;</span>%= message.content %&gt;<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="err">&lt;</span>% end %&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとはいつもどおり <code>rails s</code> で起動するとpumaが立ち上がります。</p>
+
+<p><img src="http://morizyun.github.io/images/action_cable_chat_sample.gif" /></p>
+
+<h3>感想</h3>
+
+<p>以下、使ってみて感じたことです。</p>
+
+<ul>
+<li>サーバ/クライアントサイド両方の処理を意識する必要がある</li>
+<li>Viewのキャッシュなど、Railsの今までの知識を有効活用できる</li>
+<li>一時的に接続が失敗したり、エラー時のリカバリ処理等、実際に作る場合はいろいろ考慮が必要そう</li>
+<li>Basecamp 3では本番で使われているけど、ネットの知見がたまるまで少し様子見が吉かも</li>
+</ul>
+
+
+<h3>関連リンク</h3>
+
+<ul>
+<li><strong><a href="http://qiita.com/jnchito/items/aec75fab42804287d71b">Rails 5 + ActionCableで作る！シンプルなチャットアプリ（DHH氏のデモ動画より） - Qiita</a></strong></li>
+<li><strong><a href="https://github.com/rails/actioncable-examples">rails/actioncable-examples: Action Cable Examples - GitHub</a></strong></li>
+</ul>
+
+
+<h2>API Mode</h2>
+
+<p>BackendとしてAPIを作るのに特化したrails プロジェクトを <code>rails new backend --api</code> 等で簡単に作成できる。</p>
+
+<p>このAPI Modeとは直接の関係はないですが、『<strong><a href="https://github.com/cerebris/jsonapi-resources">jsonapi-resources</a></strong>』というプロジェクトがあるようです。
+こちらもサンプルソースを見た限りはなかなか面白そう。上手く使いこなせれば、楽ができそうです！</p>
+
+<p>も少し詳しく調べてみました => <strong><a href="http://morizyun.github.io/blog/rails-api-5.0.0.beta.2/">Rails 5.0.0.beta2 APIモードについて調べてみた</a></strong></p>
+
+<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<!-- square -->
+
+
+<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>ActiveRecord Attriubtes</h2>
+
+<p>DBに保存している値の型と、ActiveRecordで取り出した時の型を分けることができる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 小数点付きの型でDBに保存</span>
+</span><span class='line'><span class="c1"># db/schema.rb</span>
+</span><span class='line'><span class="n">create_table</span> <span class="ss">:store_listings</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="kp">true</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">t</span><span class="o">.</span><span class="n">decimal</span> <span class="ss">:price_in_cents</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#### Before ####</span>
+</span><span class='line'><span class="c1"># app/models/store_listing.rb</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">StoreListing</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 小数点付きで値を返す</span>
+</span><span class='line'><span class="n">store_listing</span> <span class="o">=</span> <span class="no">StoreListing</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">price_in_cents</span><span class="p">:</span> <span class="s1">&#39;10.1&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">store_listing</span><span class="o">.</span><span class="n">price_in_cents</span> <span class="c1"># =&gt; BigDecimal.new(10.1) </span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#### After ####</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">StoreListing</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:price_in_cents</span><span class="p">,</span> <span class="ss">:integer</span> <span class="c1"># 整数に設定した場合</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 整数で値を返す</span>
+</span><span class='line'><span class="n">store_listing</span> <span class="o">=</span> <span class="no">StoreListing</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">price_in_cents</span><span class="p">:</span> <span class="s1">&#39;10.1&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">store_listing</span><span class="o">.</span><span class="n">price_in_cents</span> <span class="c1"># =&gt; 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>配列や、レンジの状態で値を受け取る事もできます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 配列やレンジを設定する事もできる</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">MyModel</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:my_string</span><span class="p">,</span> <span class="ss">:string</span>
+</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:my_int_array</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="n">array</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:my_float_range</span><span class="p">,</span> <span class="ss">:float</span><span class="p">,</span> <span class="n">range</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">model</span> <span class="o">=</span> <span class="no">MyModel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+</span><span class='line'><span class="n">my_string</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="n">my_int_array</span><span class="p">:</span> <span class="o">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'><span class="n">my_float_range</span><span class="p">:</span> <span class="s2">&quot;[1,3.5]&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="n">model</span><span class="o">.</span><span class="n">attributes</span>
+</span><span class='line'><span class="c1"># =&gt;</span>
+</span><span class='line'><span class="c1"># {</span>
+</span><span class='line'><span class="c1">#    my_string: &quot;string&quot;,</span>
+</span><span class='line'><span class="c1">#    my_int_array: [1, 2, 3],</span>
+</span><span class='line'><span class="c1">#    my_float_range: 1.0..3.5</span>
+</span><span class='line'><span class="c1"># }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>さらに、独自の型を定義することもできます。これはいいかも！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MoneyType</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Type</span><span class="o">::</span><span class="nb">Integer</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">type_cast</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">price_in_dollars</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_f</span>
+</span><span class='line'>      <span class="n">price_in_dollars</span> <span class="o">*</span> <span class="mi">100</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># クラスに設定</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">StoreListing</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:price_in_cents</span><span class="p">,</span> <span class="no">MoneyType</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 変換した結果を返す</span>
+</span><span class='line'><span class="n">store_listing</span> <span class="o">=</span> <span class="no">StoreListing</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">price_in_cents</span><span class="p">:</span> <span class="s1">&#39;$10.00&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">store_listing</span><span class="o">.</span><span class="n">price_in_cents</span> <span class="c1"># =&gt; 1000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実用性も高いし、これは地味にかなりありがたい機能。</p>
+
+<p>ちなみに、こんな使い方もできるそうで。。。夢が広がりんぐ。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Money</span> <span class="o">&lt;</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:amount</span><span class="p">,</span> <span class="ss">:currency</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">MoneyType</span> <span class="o">&lt;</span> <span class="no">Type</span><span class="o">::</span><span class="no">Value</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">currency_converter</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@currency_converter</span> <span class="o">=</span> <span class="n">currency_converter</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">type_cast_for_database</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">value_in_bitcoins</span> <span class="o">=</span> <span class="n">currency_converter</span><span class="o">.</span><span class="n">convert_to_bitcoins</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">value_in_bitcoins</span><span class="o">.</span><span class="n">amount</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Product</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">currency_converter</span> <span class="o">=</span> <span class="no">ConversionRatesFromTheInternet</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:price_in_bitcoins</span><span class="p">,</span> <span class="no">MoneyType</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">currency_converter</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Product</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">price_in_bitcoins</span><span class="p">:</span> <span class="no">Money</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="c1"># =&gt; SELECT * FROM products WHERE price_in_bitcoins = 0.02230</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Product</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">price_in_bitcoins</span><span class="p">:</span> <span class="no">Money</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;GBP&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="c1"># =&gt; SELECT * FROM products WHERE price_in_bitcoins = 0.03412</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>その他変更点</h2>
+
+<pre>
+- rake db:migrate => rails db:migrate に変更
+- テストの failures 情報が見やすくなる
+- 抽象クラスの ApplicationRecord をベースにするようになりました
+- ActiveRecord::Relation#in_batches を扱いやすくしてメモリの使いすぎを防ぐ
+</pre>
+
+
+<h2>CHANGELOG</h2>
+
+<ul>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/actionpack/CHANGELOG.md">Action Pack CHANGELOG</a></li>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/actionmailer/CHANGELOG.md">Action Mailer CHANGELOG</a></li>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/actionview/CHANGELOG.md">Action View CHANGELOG</a></li>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activerecord/CHANGELOG.md">ActiveRecod CHANGELOG</a></li>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activemodel/CHANGELOG.md">Active Model CHANGELOG</a></li>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activerecord/CHANGELOG.md">Active Record CHANGELOG</a></li>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activesupport/CHANGELOG.md">Active Support CHANGELOG</a></li>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activejob/CHANGELOG.md">Active Job CHANGELOG</a></li>
+<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/railties/CHANGELOG.md">Railties CHANGELOG</a></li>
+</ul>
+
+
+<h2>余談: Turbolinks 5</h2>
+
+<p>ネイティブのiOSとAndroidのラッパー実装として、『<strong><a href="https://github.com/basecamp/turbolinks/tree/v5">basecamp/turbolinks/v5 - GitHub</a></strong>』
+を新しく作っているらしいです。まだどんな実装なのかはわかりませんが、新しい試みで面白そう。</p>
+
+<h2>Special Thanks</h2>
+
+<ul>
+<li><strong><a href="http://qiita.com/jnchito/items/6a93320334c48b967dfb">Rails 5.0で追加される主な新機能（Ruby on Rails公式ブログより） - Qiita</a></strong></li>
+<li><strong><a href="http://www.slideshare.net/KenichiTachibana/a-huge-change-rails-5-is-approaching-fast">A HUGE CHANGE RAILS 5 IS APPROACHING FAST</a></strong></li>
+</ul>
+
+
+<h2>変更来歴</h2>
+
+<ul>
+<li>(2016-01-31 22:00) 新規作成</li>
+<li>(2016-02-08 21:50) APIモードの記述を修正</li>
+</ul>
 
 ]]></content>
   </entry>
@@ -795,572 +1369,6 @@ RailsをAPIアプリとして活用するメリットだと考えます。</p>
 
 <ul>
 <li><strong><a href="http://blog.jnito.com/entry/20120315/1331754912">JavaやC#の常識が通用しないRubyのprivateメソッド - give IT a try</a></strong></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 5.0.0.beta1の新機能紹介の公式ブログ記事を読んでみた]]></title>
-    <link href="http://morizyun.github.io/blog/rails-5.0.0.beta1-new-function-official-blog/"/>
-    <updated>2016-01-31T22:00:00+09:00</updated>
-    <id>http://morizyun.github.io/blog/rails-5.0.0.beta1-new-function-official-blog</id>
-    <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00P0UR1CA/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00P0UR1CA&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00P0UR1CA&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00P0UR1CA" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Rails公式ブログの Rails 5 beta1の新機能についてのブログ記事『<strong><a href="http://weblog.rubyonrails.org/2015/12/18/Rails-5-0-beta1/">Riding Rails: Rails 5.0.0.beta1: Action Cable, API mode, Rails command</a></strong>』を英語の勉強がてら読んでみました！</p>
-
-<!-- more -->
-
-
-<br style="clear:both;"/>
-
-
-<h2>Action Cable</h2>
-
-<pre>
-- Action Cableは、Websocketをハンドリングするためのフレームワーク
-- チャットや、Notificationを簡単に実装することができる
-</pre>
-
-
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h3>チャットアプリのサンプルソース</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># アプリの作成</span>
-</span><span class='line'><span class="nv">$ </span>rails _5.0.0.beta1.1_ new action_cable_sample --skip-spring --skip-bundle
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>action_cable_sample
-</span><span class='line'>
-</span><span class='line'><span class="c"># bundle install の実行</span>
-</span><span class='line'>bundle install --jobs<span class="o">=</span>4 --path<span class="o">=</span>vendor/bundle
-</span><span class='line'>
-</span><span class='line'><span class="c"># Message の scaffold を実行</span>
-</span><span class='line'><span class="nv">$ </span>rails g scaffold messages content:text
-</span><span class='line'>
-</span><span class='line'><span class="c"># マイグレーションを実行</span>
-</span><span class='line'><span class="nv">$ </span>rails db:migrate
-</span><span class='line'>
-</span><span class='line'><span class="c"># Chat チャネル with Speakアクション を作成</span>
-</span><span class='line'><span class="nv">$ </span>rails g channel chat speak
-</span><span class='line'>
-</span><span class='line'><span class="c"># 非同期でブロードキャストするための Jobを作成</span>
-</span><span class='line'><span class="nv">$ </span>rails g job message_broadcast
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ルーティングを修正。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># config/routes.rb</span>
-</span><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
-</span><span class='line'>  <span class="c1"># ↓ 以下を追加</span>
-</span><span class='line'>  <span class="n">root</span> <span class="n">to</span><span class="p">:</span> <span class="s1">&#39;messages#index&#39;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Serve websocket cable requests in-process</span>
-</span><span class='line'>  <span class="n">mount</span> <span class="no">ActionCable</span><span class="o">.</span><span class="n">server</span> <span class="o">=&gt;</span> <span class="s1">&#39;/cable&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>JS側で、ActionCableを有効にします。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># app/assets/javascripts/cable.coffee</span>
-</span><span class='line'><span class="nx">@App</span> <span class="o">||=</span> <span class="p">{}</span>
-</span><span class='line'><span class="nv">App.cable = </span><span class="nx">ActionCable</span><span class="p">.</span><span class="nx">createConsumer</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>クライアントサイド(CoffeeScript)のSpeakアクションを修正。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># app/assets/javascripts/channels/chat.coffee</span>
-</span><span class='line'>  <span class="nv">received: </span><span class="nf">(data) -&gt;</span>
-</span><span class='line'>    <span class="c1"># メッセージを受け取ったら #messages に付け足す</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;#messages&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="nx">data</span><span class="p">[</span><span class="s">&#39;message&#39;</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nv">speak: </span><span class="nf">(message) -&gt;</span>
-</span><span class='line'>    <span class="c1"># formでsubmitしたメッセージをサーバに送信</span>
-</span><span class='line'>    <span class="nx">@perform</span> <span class="s">&#39;speak&#39;</span><span class="p">,</span> <span class="nv">message: </span><span class="nx">message</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># リターンキーを押したら、メッセージが送信される</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="kc">on</span> <span class="s">&#39;keypress&#39;</span><span class="p">,</span> <span class="s">&#39;[data-behavior~=chat_speaker]&#39;</span><span class="p">,</span> <span class="nf">(event) -&gt;</span>
-</span><span class='line'>  <span class="k">if</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">is</span> <span class="mi">13</span>
-</span><span class='line'>    <span class="nx">App</span><span class="p">.</span><span class="nx">chat</span><span class="p">.</span><span class="nx">speak</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span>
-</span><span class='line'>    <span class="nv">event.target.value = </span><span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>サーバーサイドの ActionCableのクラス <code>CatChannel</code> を修正。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># ActionCableのクラス</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">ChatChannel</span> <span class="o">&lt;</span> <span class="no">ApplicationCable</span><span class="o">::</span><span class="no">Channel</span>
-</span><span class='line'>  <span class="c1"># 配信する際の名前。 chat.coffee内の「ChatChannel」と対応(?)</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">subscribed</span>
-</span><span class='line'>    <span class="c1"># ↓ 以下をコメントアウトする</span>
-</span><span class='line'>    <span class="n">stream_from</span> <span class="s1">&#39;chat_channel&#39;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># クライアントから送られた message を テーブルに保存</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">Message</span><span class="o">.</span><span class="n">create!</span> <span class="n">content</span><span class="p">:</span> <span class="n">data</span><span class="o">[</span><span class="s1">&#39;message&#39;</span><span class="o">]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<p>Messageをテーブルに保存したら、非同期のJobを起動。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Messageを管理するクラス</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Message</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-</span><span class='line'>  <span class="c1"># 作成後のコミットが完了したら ブロードキャストする</span>
-</span><span class='line'>  <span class="n">after_create_commit</span> <span class="p">{</span> <span class="no">MessageBroadcastJob</span><span class="o">.</span><span class="n">perform_later</span> <span class="nb">self</span> <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>保存されたメッセージを、MessageBroadcastJobで非同期でブロードキャスト。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 非同期でクライアントにメッセージを送るためのJob</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">MessageBroadcastJob</span> <span class="o">&lt;</span> <span class="no">ApplicationJob</span>
-</span><span class='line'>  <span class="n">queue_as</span> <span class="ss">:default</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># 部分テンプレートをrenderする</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">ActionCable</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">broadcast</span> <span class="s1">&#39;chat_channel&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">_render_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">private</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># 部分テンプレートをrenderする</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">_render_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">ApplicationController</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">partial</span><span class="p">:</span> <span class="s1">&#39;messages/message&#39;</span><span class="p">,</span> <span class="n">locals</span><span class="p">:</span> <span class="p">{</span> <span class="n">message</span><span class="p">:</span> <span class="n">message</span> <span class="p">})</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ちゃっと風にメッセージを保存</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- app/views/messages/index.html.erb --&gt;</span>
-</span><span class='line'><span class="nt">&lt;h1&gt;</span>Chat<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;messages&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="err">&lt;</span>%= render @messages %&gt;
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;form&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;label&gt;</span>Send Message:<span class="nt">&lt;/label&gt;&lt;br&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">data-behavior=</span><span class="s">&quot;chat_speaker&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;/form&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>あと部分テンプレート追加。キャッシュも普通に使う事ができます！</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- app/views/messages/_message.html.erb --&gt;</span>
-</span><span class='line'><span class="err">&lt;</span>% cache message do %&gt;
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;message&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;p&gt;</span><span class="err">&lt;</span>%= message.content %&gt;<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'><span class="err">&lt;</span>% end %&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>あとはいつもどおり <code>rails s</code> で起動するとpumaが立ち上がります。</p>
-
-<p><img src="http://morizyun.github.io/images/action_cable_chat_sample.gif" /></p>
-
-<h3>感想</h3>
-
-<p>以下、使ってみて感じたことです。</p>
-
-<ul>
-<li>サーバ/クライアントサイド両方の処理を意識する必要がある</li>
-<li>Viewのキャッシュなど、Railsの今までの知識を有効活用できる</li>
-<li>一時的に接続が失敗したり、エラー時のリカバリ処理等、実際に作る場合はいろいろ考慮が必要そう</li>
-<li>Basecamp 3では本番で使われているけど、ネットの知見がたまるまで少し様子見が吉かも</li>
-</ul>
-
-
-<h3>関連リンク</h3>
-
-<ul>
-<li><strong><a href="http://qiita.com/jnchito/items/aec75fab42804287d71b">Rails 5 + ActionCableで作る！シンプルなチャットアプリ（DHH氏のデモ動画より） - Qiita</a></strong></li>
-<li><strong><a href="https://github.com/rails/actioncable-examples">rails/actioncable-examples: Action Cable Examples - GitHub</a></strong></li>
-</ul>
-
-
-<h2>API Mode</h2>
-
-<p>BackendとしてAPIを作るのに特化したrails プロジェクトを <code>rails new backend --api</code> 等で簡単に作成できる。</p>
-
-<p>このAPI Modeとは直接の関係はないですが、『<strong><a href="https://github.com/cerebris/jsonapi-resources">jsonapi-resources</a></strong>』というプロジェクトがあるようです。
-こちらもサンプルソースを見た限りはなかなか面白そう。上手く使いこなせれば、楽ができそうです！</p>
-
-<p>こちらは別途サンプルを作って試してみようと思います！</p>
-
-<script async src="http://morizyun.github.io//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-<!-- square -->
-
-
-<p><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4186413323075068" data-ad-slot="5059873392"></ins></p>
-
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<h2>ActiveRecord Attriubtes</h2>
-
-<p>DBに保存している値の型と、ActiveRecordで取り出した時の型を分けることができる。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 小数点付きの型でDBに保存</span>
-</span><span class='line'><span class="c1"># db/schema.rb</span>
-</span><span class='line'><span class="n">create_table</span> <span class="ss">:store_listings</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="kp">true</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">t</span><span class="o">.</span><span class="n">decimal</span> <span class="ss">:price_in_cents</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#### Before ####</span>
-</span><span class='line'><span class="c1"># app/models/store_listing.rb</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">StoreListing</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 小数点付きで値を返す</span>
-</span><span class='line'><span class="n">store_listing</span> <span class="o">=</span> <span class="no">StoreListing</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">price_in_cents</span><span class="p">:</span> <span class="s1">&#39;10.1&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">store_listing</span><span class="o">.</span><span class="n">price_in_cents</span> <span class="c1"># =&gt; BigDecimal.new(10.1) </span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#### After ####</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">StoreListing</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:price_in_cents</span><span class="p">,</span> <span class="ss">:integer</span> <span class="c1"># 整数に設定した場合</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 整数で値を返す</span>
-</span><span class='line'><span class="n">store_listing</span> <span class="o">=</span> <span class="no">StoreListing</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">price_in_cents</span><span class="p">:</span> <span class="s1">&#39;10.1&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">store_listing</span><span class="o">.</span><span class="n">price_in_cents</span> <span class="c1"># =&gt; 10</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>配列や、レンジの状態で値を受け取る事もできます。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 配列やレンジを設定する事もできる</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">MyModel</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:my_string</span><span class="p">,</span> <span class="ss">:string</span>
-</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:my_int_array</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="n">array</span><span class="p">:</span> <span class="kp">true</span>
-</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:my_float_range</span><span class="p">,</span> <span class="ss">:float</span><span class="p">,</span> <span class="n">range</span><span class="p">:</span> <span class="kp">true</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">model</span> <span class="o">=</span> <span class="no">MyModel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
-</span><span class='line'><span class="n">my_string</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="n">my_int_array</span><span class="p">:</span> <span class="o">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="n">my_float_range</span><span class="p">:</span> <span class="s2">&quot;[1,3.5]&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="p">)</span>
-</span><span class='line'><span class="n">model</span><span class="o">.</span><span class="n">attributes</span>
-</span><span class='line'><span class="c1"># =&gt;</span>
-</span><span class='line'><span class="c1"># {</span>
-</span><span class='line'><span class="c1">#    my_string: &quot;string&quot;,</span>
-</span><span class='line'><span class="c1">#    my_int_array: [1, 2, 3],</span>
-</span><span class='line'><span class="c1">#    my_float_range: 1.0..3.5</span>
-</span><span class='line'><span class="c1"># }</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>さらに、独自の型を定義することもできます。これはいいかも！</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MoneyType</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Type</span><span class="o">::</span><span class="nb">Integer</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">type_cast</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">price_in_dollars</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_f</span>
-</span><span class='line'>      <span class="n">price_in_dollars</span> <span class="o">*</span> <span class="mi">100</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># クラスに設定</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">StoreListing</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:price_in_cents</span><span class="p">,</span> <span class="no">MoneyType</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 変換した結果を返す</span>
-</span><span class='line'><span class="n">store_listing</span> <span class="o">=</span> <span class="no">StoreListing</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">price_in_cents</span><span class="p">:</span> <span class="s1">&#39;$10.00&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">store_listing</span><span class="o">.</span><span class="n">price_in_cents</span> <span class="c1"># =&gt; 1000</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>実用性も高いし、これは地味にかなりありがたい機能。</p>
-
-<p>ちなみに、こんな使い方もできるそうで。。。夢が広がりんぐ。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Money</span> <span class="o">&lt;</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:amount</span><span class="p">,</span> <span class="ss">:currency</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">MoneyType</span> <span class="o">&lt;</span> <span class="no">Type</span><span class="o">::</span><span class="no">Value</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">currency_converter</span><span class="p">)</span>
-</span><span class='line'>    <span class="vi">@currency_converter</span> <span class="o">=</span> <span class="n">currency_converter</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">type_cast_for_database</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">value_in_bitcoins</span> <span class="o">=</span> <span class="n">currency_converter</span><span class="o">.</span><span class="n">convert_to_bitcoins</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">value_in_bitcoins</span><span class="o">.</span><span class="n">amount</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Product</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">currency_converter</span> <span class="o">=</span> <span class="no">ConversionRatesFromTheInternet</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>  <span class="n">attribute</span> <span class="ss">:price_in_bitcoins</span><span class="p">,</span> <span class="no">MoneyType</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">currency_converter</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Product</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">price_in_bitcoins</span><span class="p">:</span> <span class="no">Money</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;USD&quot;</span><span class="p">))</span>
-</span><span class='line'><span class="c1"># =&gt; SELECT * FROM products WHERE price_in_bitcoins = 0.02230</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Product</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">price_in_bitcoins</span><span class="p">:</span> <span class="no">Money</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;GBP&quot;</span><span class="p">))</span>
-</span><span class='line'><span class="c1"># =&gt; SELECT * FROM products WHERE price_in_bitcoins = 0.03412</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>その他変更点</h2>
-
-<pre>
-- rake db:migrate => rails db:migrate に変更
-- テストの failures 情報が見やすくなる
-- 抽象クラスの ApplicationRecord をベースにするようになりました
-- ActiveRecord::Relation#in_batches を扱いやすくしてメモリの使いすぎを防ぐ
-</pre>
-
-
-<h2>CHANGELOG</h2>
-
-<ul>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/actionpack/CHANGELOG.md">Action Pack CHANGELOG</a></li>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/actionmailer/CHANGELOG.md">Action Mailer CHANGELOG</a></li>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/actionview/CHANGELOG.md">Action View CHANGELOG</a></li>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activerecord/CHANGELOG.md">ActiveRecod CHANGELOG</a></li>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activemodel/CHANGELOG.md">Active Model CHANGELOG</a></li>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activerecord/CHANGELOG.md">Active Record CHANGELOG</a></li>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activesupport/CHANGELOG.md">Active Support CHANGELOG</a></li>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/activejob/CHANGELOG.md">Active Job CHANGELOG</a></li>
-<li><a href="https://github.com/rails/rails/blob/v5.0.0.beta1/railties/CHANGELOG.md">Railties CHANGELOG</a></li>
-</ul>
-
-
-<h2>余談: Turbolinks 5</h2>
-
-<p>ネイティブのiOSとAndroidのラッパー実装として、『<strong><a href="https://github.com/basecamp/turbolinks/tree/v5">basecamp/turbolinks/v5 - GitHub</a></strong>』
-を新しく作っているらしいです。まだどんな実装なのかはわかりませんが、新しい試みで面白そう。</p>
-
-<h2>Special Thanks</h2>
-
-<ul>
-<li><strong><a href="http://qiita.com/jnchito/items/6a93320334c48b967dfb">Rails 5.0で追加される主な新機能（Ruby on Rails公式ブログより） - Qiita</a></strong></li>
-<li><strong><a href="http://www.slideshare.net/KenichiTachibana/a-huge-change-rails-5-is-approaching-fast">A HUGE CHANGE RAILS 5 IS APPROACHING FAST</a></strong></li>
 </ul>
 
 ]]></content>

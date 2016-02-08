@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-02-08T22:07:00+09:00</updated>
+  <updated>2016-02-08T22:11:29+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -234,7 +234,7 @@ jQuery.ajax({
   <entry>
     <title type="html"><![CDATA[Rails 5.0.0.beta1の新機能紹介の公式ブログ記事を読んでみた]]></title>
     <link href="http://morizyun.github.io/blog/rails-5.0.0.beta1-new-function-official-blog/"/>
-    <updated>2016-01-31T22:00:00+09:00</updated>
+    <updated>2016-02-08T21:50:00+09:00</updated>
     <id>http://morizyun.github.io/blog/rails-5.0.0.beta1-new-function-official-blog</id>
     <content type="html"><![CDATA[<p><a href="http://www.amazon.co.jp/gp/product/B00P0UR1CA/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00P0UR1CA&linkCode=as2&tag=morizyun00-22"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B00P0UR1CA&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" ></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00P0UR1CA" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />Rails公式ブログの Rails 5 beta1の新機能についてのブログ記事『<strong><a href="http://weblog.rubyonrails.org/2015/12/18/Rails-5-0-beta1/">Riding Rails: Rails 5.0.0.beta1: Action Cable, API mode, Rails command</a></strong>』を英語の勉強がてら読んでみました！</p>
 
@@ -489,7 +489,7 @@ end
 <p>このAPI Modeとは直接の関係はないですが、『<strong><a href="https://github.com/cerebris/jsonapi-resources">jsonapi-resources</a></strong>』というプロジェクトがあるようです。
 こちらもサンプルソースを見た限りはなかなか面白そう。上手く使いこなせれば、楽ができそうです！</p>
 
-<p>こちらは別途サンプルを作って試してみようと思います！</p>
+<p>も少し詳しく調べてみました => <strong><a href="/blog/rails-api-5.0.0.beta.2/">Rails 5.0.0.beta2 APIモードについて調べてみた</a></strong></p>
 
 <p><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- square -->
@@ -673,6 +673,14 @@ end</p>
 <ul>
 <li><strong><a href="http://qiita.com/jnchito/items/6a93320334c48b967dfb">Rails 5.0で追加される主な新機能（Ruby on Rails公式ブログより） - Qiita</a></strong></li>
 <li><strong><a href="http://www.slideshare.net/KenichiTachibana/a-huge-change-rails-5-is-approaching-fast">A HUGE CHANGE RAILS 5 IS APPROACHING FAST</a></strong></li>
+</ul>
+
+
+<h2>変更来歴</h2>
+
+<ul>
+<li>(2016-01-31 22:00) 新規作成</li>
+<li>(2016-02-08 21:50) APIモードの記述を修正</li>
 </ul>
 
 ]]></content>
