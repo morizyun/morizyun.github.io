@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 酒と泪とRubyとRailsと]]></title>
   <link href="http://morizyun.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://morizyun.github.io/"/>
-  <updated>2016-02-08T23:01:27+09:00</updated>
+  <updated>2016-02-10T00:15:15+09:00</updated>
   <id>http://morizyun.github.io/</id>
   <author>
     <name><![CDATA[morizyun]]></name>
@@ -53,7 +53,7 @@ RailsをAPIアプリとして活用するメリットだと考えます。</p>
 - 環境情報やDBのクエリー、基本的なパフォーマンスなどのログを出力する
 - セキュリティがしっかりしている(IPスプーフィングや、Timing Attack等を防いでくれる)
 - URLパラメータだけでなく、JSONパラメータ等の解釈できる
-- 変更がない場合に304 Not Modifiedを返すConfidential GETを使う事ができる(`#stale?`, ETag, Last-Modified)
+- 変更がない場合に304 Not Modifiedを返すConditional GETを使う事ができる(`#stale?`, ETag, Last-Modified)
 - Railsの強力なキャッシュ機能(page, action, fragment caching)を有効活用することができる
 - RESTful JSON APIを構築するのであればResourceful Routingは最適
 - Basic認証、Digest認証、Token認証等の基本的な認証方法をサポートしている
@@ -79,7 +79,7 @@ $ rails new my_api --api
 </pre>
 
 
-<h2>既存のアプリをAPI modleにする場合</h2>
+<h2>既存のアプリをAPI Modeにする場合</h2>
 
 <p>configを以下のように修正。</p>
 
@@ -652,6 +652,8 @@ end</p>
 
 <p>```</p>
 
+<p><strong><a href="http://edgeapi.rubyonrails.org/classes/ActiveRecord/Attributes/ClassMethods.html#method-i-attribute">ActiveRecord::Attributes::ClassMethods</a></strong></p>
+
 <h2>その他変更点</h2>
 
 <pre>
@@ -677,10 +679,14 @@ end</p>
 </ul>
 
 
-<h2>余談: Turbolinks 5</h2>
+<h2>(補足) Turbolinks 5</h2>
 
 <p>ネイティブのiOSとAndroidのラッパー実装として、『<strong><a href="https://github.com/basecamp/turbolinks/tree/v5">basecamp/turbolinks/v5 - GitHub</a></strong>』
 を新しく作っているらしいです。まだどんな実装なのかはわかりませんが、新しい試みで面白そう。</p>
+
+<h2>(補足) Ruby 2.2.2以上を使用</h2>
+
+<p>Rails 5からは Ruby 2.2.2以上を利用します</p>
 
 <h2>Special Thanks</h2>
 

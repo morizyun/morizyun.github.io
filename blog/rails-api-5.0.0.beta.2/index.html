@@ -181,7 +181,7 @@ RailsをAPIアプリとして活用するメリットだと考えます。</p>
 - 環境情報やDBのクエリー、基本的なパフォーマンスなどのログを出力する
 - セキュリティがしっかりしている(IPスプーフィングや、Timing Attack等を防いでくれる)
 - URLパラメータだけでなく、JSONパラメータ等の解釈できる
-- 変更がない場合に304 Not Modifiedを返すConfidential GETを使う事ができる(`#stale?`, ETag, Last-Modified)
+- 変更がない場合に304 Not Modifiedを返すConditional GETを使う事ができる(`#stale?`, ETag, Last-Modified)
 - Railsの強力なキャッシュ機能(page, action, fragment caching)を有効活用することができる
 - RESTful JSON APIを構築するのであればResourceful Routingは最適
 - Basic認証、Digest認証、Token認証等の基本的な認証方法をサポートしている
@@ -208,7 +208,7 @@ RailsをAPIアプリとして活用するメリットだと考えます。</p>
 </pre>
 
 
-<h2>既存のアプリをAPI modleにする場合</h2>
+<h2>既存のアプリをAPI Modeにする場合</h2>
 
 <p>configを以下のように修正。</p>
 
