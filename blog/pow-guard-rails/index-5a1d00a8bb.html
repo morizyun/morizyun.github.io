@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>開発サーバをThinからPowに切り替えて開発効率アップ！　(Mac限定) | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/pow-guard-rails/index-5a1d00a8bb.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="「小さなチーム、大きな仕事」でお馴染みの 37 signailsが開発した「設定が不要なRails &amp;amp; RackサーバPow」を使いはじめました！このPowを使うメリットは、  * コマンド一つでPowサーバにRailsアプリへのリンクを作れる * LAN内にあるスマホ/タブレットから開発中のURLにアクセスできる   ちなみにこちらはMac限定です。">
+<meta name="keywords" content="Rails,Gem,Guard,Pow,Server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="開発サーバをThinからPowに切り替えて開発効率アップ！　(Mac限定)">
+<meta property="og:url" content="http://morizyun.github.io//blog/pow-guard-rails/index-5a1d00a8bb.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="「小さなチーム、大きな仕事」でお馴染みの 37 signailsが開発した「設定が不要なRails &amp;amp; RackサーバPow」を使いはじめました！このPowを使うメリットは、  * コマンド一つでPowサーバにRailsアプリへのリンクを作れる * LAN内にあるスマホ/タブレットから開発中のURLにアクセスできる   ちなみにこちらはMac限定です。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="開発サーバをThinからPowに切り替えて開発効率アップ！　(Mac限定)">
+<meta name="twitter:description" content="「小さなチーム、大きな仕事」でお馴染みの 37 signailsが開発した「設定が不要なRails &amp;amp; RackサーバPow」を使いはじめました！このPowを使うメリットは、  * コマンド一つでPowサーバにRailsアプリへのリンクを作れる * LAN内にあるスマホ/タブレットから開発中のURLにアクセスできる   ちなみにこちらはMac限定です。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="main-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="main-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">開発サーバをThinからPowに切り替えて開発効率アップ！　(Mac限定)</h1>
+    
+    <a href="/blog/pow-guard-rails/" class="article-date"><time datetime="2012-11-27T15:00:00.000Z">2012-11-28</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/pow-guard-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/pow-guard-rails/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/pow-guard-rails/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/pow-guard-rails/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p><a href="<%= config.url %><%- url_for(post.path) %>" title="by morizyun,"></a></p>
+<p>「小さなチーム、大きな仕事」でお馴染みの <a href="http://37signals.com/" target="_blank" rel="noopener">37 signails</a>が開発した「設定が不要なRails & RackサーバPow」を使いはじめました！<br>このPowを使うメリットは、</p>
+<pre>* コマンド一つでPowサーバにRailsアプリへのリンクを作れる
+* LAN内にあるスマホ/タブレットから開発中のURLにアクセスできる
+</pre>
+
+<p>ちなみにこちらはMac限定です。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="Powインストール" class="article-heading"> 😸 <a href="#Powインストール" class="headerlink" title="Powインストール"></a>Powインストール<a class="article-anchor" href="#Powインストール" aria-hidden="true"></a></h2><p>Powのインストールは次のコマンドのみ。もし、万一エラーが出るようなら<a href="https://github.com/37signals/pow" target="_blank" rel="noopener">37signals/pow GitHub</a>を確認してみてください。  </p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">curl get.pow.cx | sh</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Powderのインストール" class="article-heading"> 🤔 <a href="#Powderのインストール" class="headerlink" title="Powderのインストール"></a>Powderのインストール<a class="article-anchor" href="#Powderのインストール" aria-hidden="true"></a></h2><p>Powのコマンド入力支援してくれる<a href="https://github.com/Rodreegez/powder" target="_blank" rel="noopener">Powder</a>をインストール。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">gem install powder</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Powへのリンクの作成" class="article-heading"> 🏀 <a href="#Powへのリンクの作成" class="headerlink" title="Powへのリンクの作成"></a>Powへのリンクの作成<a class="article-anchor" href="#Powへのリンクの作成" aria-hidden="true"></a></h2><p>Rails/Rackアプリケーションのフォルダで以下を入力するとpowへのリンクを作成できます。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">powder link</span><br><span class="line">> Your application is now available at http://app_folder_name.dev/</span><br></pre></td></tr></tbody></table></figure>
+<p>ブラウザで<code>http://app_folder_name.dev/</code>にアクセスするか、<code>powder open</code>と入力するとアプリケーションが表示されます。そのほかのpowderのコマンドについては、下にまとめています。</p>
+<h2 id="LAN内のスマートフォン-タブレットからアプリケーションにアクセス" class="article-heading">🐯 <a href="#LAN内のスマートフォン-タブレットからアプリケーションにアクセス" class="headerlink" title="LAN内のスマートフォン/タブレットからアプリケーションにアクセス"></a>LAN内のスマートフォン/タブレットからアプリケーションにアクセス<a class="article-anchor" href="#LAN内のスマートフォン-タブレットからアプリケーションにアクセス" aria-hidden="true"></a></h2><p>pow + xip.ioによって、LAN内のスマートフォン/タブレットからアプリケーションに簡単にアクセスできます。<br>まず、Mac側のローカルIPを確認。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ifconfig</span><br><span class="line">...</span><br><span class="line">        inet 192.168.24.99</span><br><span class="line">...</span><br></pre></td></tr></tbody></table></figure>
+<p>次にスマホ/タブレットのブラウザから、<code>http://app_folder_name.192.168.24.99.xip.io/</code>にアクセスするとアプリを表示することができます。</p>
+<h2 id="Guard-Powのインストール" class="article-heading"> 🍮 <a href="#Guard-Powのインストール" class="headerlink" title="Guard::Powのインストール"></a>Guard::Powのインストール<a class="article-anchor" href="#Guard-Powのインストール" aria-hidden="true"></a></h2><p>Railsには、config/environment.rbなど再起動しないと反映されないファイルが幾つかあります。<br>これをGem Guardで監視して変更があった場合には、自動でPowが再起動されるようにします。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">gem install guard-pow</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Guardファイルの設定" class="article-heading"> 🚜 <a href="#Guardファイルの設定" class="headerlink" title="Guardファイルの設定"></a>Guardファイルの設定<a class="article-anchor" href="#Guardファイルの設定" aria-hidden="true"></a></h2><p>Guardはファイル変更を監視して、サーバの再起動やテストの実行などを行ってくれるGemです。詳細は「<a href="/blog/guard-spork-rspec-tdd">RSpec/Spork/Guard/Growl/Rails 3.2.9で作る - プリチーなTDD環境！</a>」をご覧ください。</p>
+<p>ここからはGuardとの連携方法について説明します。</p>
+<p>まず、Guardfileを生成/更新します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">guard init pow</span><br></pre></td></tr></tbody></table></figure>
+<p>このコマンドを実行すると以下のようにプロジェクト直下のGuardfileが更新されます。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">guard <span class="string">'pow'</span> <span class="keyword">do</span></span><br><span class="line">  watch(<span class="string">'.powrc'</span>)</span><br><span class="line">  watch(<span class="string">'.powenv'</span>)</span><br><span class="line">  watch(<span class="string">'.rvmrc'</span>)</span><br><span class="line">  watch(<span class="string">'Gemfile'</span>)</span><br><span class="line">  watch(<span class="string">'Gemfile.lock'</span>)</span><br><span class="line">  watch(<span class="string">'config/application.rb'</span>)</span><br><span class="line">  watch(<span class="string">'config/environment.rb'</span>)</span><br><span class="line">  watch(<span class="regexp">%r{^config/environments/.*\.rb$}</span>)</span><br><span class="line">  watch(<span class="regexp">%r{^config/initializers/.*\.rb$}</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>これでGuardがファイルを監視して、変更があった場合にはPowを自動で更新してくれます。</p>
+<h2 id="補足：-localhostでアクセスするリンク先の設定" class="article-heading"> 😎 <a href="#補足：-localhostでアクセスするリンク先の設定" class="headerlink" title="補足： localhostでアクセスするリンク先の設定"></a>補足： localhostでアクセスするリンク先の設定<a class="article-anchor" href="#補足：-localhostでアクセスするリンク先の設定" aria-hidden="true"></a></h2><p><code>localhost</code>でアクセスするリンク先は次のコマンドで設定できます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">ln -s /app/path/to/ ~/.pow/default</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="補足：-Pow-RVMの連携Rubyのバージョンを指定する" class="article-heading">😀 <a href="#補足：-Pow-RVMの連携Rubyのバージョンを指定する" class="headerlink" title="補足： Pow-RVMの連携Rubyのバージョンを指定する"></a>補足： Pow-RVMの連携Rubyのバージョンを指定する<a class="article-anchor" href="#補足：-Pow-RVMの連携Rubyのバージョンを指定する" aria-hidden="true"></a></h2><p>もし、Powでリンクを張ったプロジェクトのRVMのバージョンを指定したい場合は、まずプロジェクトの直下に<code>.rvmrc</code>を作成して以下を登録。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rvm 1.9.3</span><br></pre></td></tr></tbody></table></figure>
+<p>次に同じくプロジェクトの直下に<code>.powrc</code>を作成して以下を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">if [ -f "$rvm_path/scripts/rvm" ] && [ -f ".rvmrc" ]; then</span><br><span class="line">  source "$rvm_path/scripts/rvm"</span><br><span class="line">  source ".rvmrc"</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
+<p>RVM関連の設定詳細は<a href="http://pow.cx/manual.html#section_2.3.2" target="_blank" rel="noopener">公式ページの2.3.2 Specifying Ruby Versions with RVM</a>を参照。</p>
+<h2 id="補足：-Powを使っていてError-starting-application-Error-Response-was-not-received-が発生する場合" class="article-heading"> 🎃 <a href="#補足：-Powを使っていてError-starting-application-Error-Response-was-not-received-が発生する場合" class="headerlink" title="補足： Powを使っていてError starting application(Error: Response was not received)が発生する場合"></a>補足： Powを使っていてError starting application(Error: Response was not received)が発生する場合<a class="article-anchor" href="#補足：-Powを使っていてError-starting-application-Error-Response-was-not-received-が発生する場合" aria-hidden="true"></a></h2><p>Mac/Homebrew/Powの環境で、<code>Error starting application(Error: Response was not received)</code>がある一定の確率で出る場合は、Nokogiriのインストール方法に問題がある可能性があります。</p>
+<p>Nokogiriを削除して、<a href="http://nokogiri.org/tutorials/installing_nokogiri.html" target="_blank" rel="noopener">Nokogiri公式のインストール方法</a>で再イントールしてください。</p>
+<p>参考ソース(タイトルからはわかりにくいですがPowについてのトラブルっぽいです):<br><a href="http://stackoverflow.com/questions/7106707/rails-local-server-shutdown-problem" target="_blank" rel="noopener">nginx - Rails (local) server shutdown problem - Stack Overflow</a></p>
+<h2 id="補足：-Powderのコマンド一覧" class="article-heading">🍣 <a href="#補足：-Powderのコマンド一覧" class="headerlink" title="補足： Powderのコマンド一覧"></a>補足： Powderのコマンド一覧<a class="article-anchor" href="#補足：-Powderのコマンド一覧" aria-hidden="true"></a></h2><p>使いそうなコマンドをピックアップしました。詳細は<a href="https://github.com/Rodreegez/powder" target="_blank" rel="noopener">Rodreegez / powder | GitHub</a>にあります。</p>
+<pre>powder link
+
+=> current_dirのシンボリックリンクを作成
+</pre>
+
+<pre>powder link [bacon]
+
+=> ファイル名指定のシンボリックリンクを作成
+</pre>
+
+<pre>powder remove
+
+=> シンボリックリンクを削除
+</pre>
+
+<pre>powder open
+
+=> ブラウザでcurrent_dirのアプリケーションを表示
+</pre>
+
+<pre>powder list
+
+=> ~/.powのシンボリックリンク一覧を出す
+</pre>
+
+<pre>powder applog
+
+=> アプリケーションのログをtail -fで出力
+</pre>
+
+<pre>powder restart
+
+=> サーバPowの再起動
+</pre>
+
+<pre>powder cleanup
+
+=> アクセス出来ないアプリケーションへのリンクを削除
+</pre>
+
+<pre>powder update
+
+=> Powのアップデート
+</pre>
+
+<h2 id="補足：-Powのアンインストール" class="article-heading"> 🐰 <a href="#補足：-Powのアンインストール" class="headerlink" title="補足： Powのアンインストール"></a>補足： Powのアンインストール<a class="article-anchor" href="#補足：-Powのアンインストール" aria-hidden="true"></a></h2><p>もし何らかの事情でPowをアンインストールしたくなった場合は次のコマンドを実行。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">curl get.pow.cx/uninstall.sh | sh</span><br></pre></td></tr></tbody></table></figure>
+<p>アンインストールの詳細は<a href="http://pow.cx/manual.html#section_1.2" target="_blank" rel="noopener">公式ページの1.2 Uninstalling Pow</a>を参照。</p>
+<h2 id="関連記事" class="article-heading"> 🎂 <a href="#関連記事" class="headerlink" title="関連記事"></a>関連記事<a class="article-anchor" href="#関連記事" aria-hidden="true"></a></h2><p><strong> <a href="/blog/rails-mysql-bootstrap">Rails 3.2.9/Bootstrap/Haml プロジェクト新規作成 最短ガイドだよ！</a> </strong> にてGuardの設定/ブラウザのオートリロードの方法などを載せています。 </p>
+<h2 id="参考リンク" class="article-heading">🚕 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><p><a href="https://github.com/37signals/pow" target="_blank" rel="noopener">37signals / pow | GitHub</a></p>
+</li>
+<li><p><a href="https://github.com/Rodreegez/powder" target="_blank" rel="noopener">Rodreegez / powder | GitHub</a></p>
+</li>
+<li><p><a href="http://marutanm.hatenablog.com/entry/20110607/p1" target="_blank" rel="noopener">Pow使うならPowder入れておくだァーッ！</a></p>
+</li>
+<li><p><a href="http://higelog.brassworks.jp/?p=1847" target="_blank" rel="noopener">Guard::PowでPowを更に快適に使う</a></p>
+</li>
+<li><p><a href="http://naoty.hatenablog.com/entry/2012/08/08/101448" target="_blank" rel="noopener">Rails開発環境 2012夏</a></p>
+</li>
+</ul>
+<h2 id="変更来歴" class="article-heading">🐮 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>12/06 pow + xip.ioの説明を追加。コマンド一覧の位置を変更。別途説明を追加。<br><br>12/16 11:30 pow + xip.ioのアドレスがまちがっていたので修正<br><br>12/18 19:00補足： Powを使っていてError starting application(Error: Response was not received)が発生する場合を追加<br><br>12/18 20:40補足： Powのアンインストールを追加<br><br>12/18 20:45補足： Pow-RVMの連携Rubyのバージョンを指定するを追加<br><br>01/15 20:50補足： localhostでアクセスするリンク先の設定を追加<br></p>
+<h2 id="テスト環境" class="article-heading">🐡 <a href="#テスト環境" class="headerlink" title="テスト環境"></a>テスト環境<a class="article-anchor" href="#テスト環境" aria-hidden="true"></a></h2><p>テスト環境は以下のとおりです。</p>
+<pre>OS : Mac Lion(OS X 10.7)
+Ruby : 1.9.3
+Rails : 3.2.9
+haml : 3.1.7
+coffee-script : 3.2.1
+Rspec : 2.12.0
+</pre></body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="mobile-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

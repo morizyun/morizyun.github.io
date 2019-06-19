@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>素数を求める / エラトステネスの篩 | アルゴリズム [AOJ 0009][Ruby/Python/Java] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/cs/algorithm-prime-number-eratosthenes-sieve.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="素数の数を求めるAOJの「Prime Number  - Aizu Online Judge」のRuby / Python / Javaでのサンプル回答です。 『エラトステネスの篩 - Wikipedia』という有名な素数を求めるアルゴリズムを使っています。">
+<meta name="keywords" content="Ruby,Python,Algorithm,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="素数を求める &#x2F; エラトステネスの篩 | アルゴリズム [AOJ 0009][Ruby&#x2F;Python&#x2F;Java]">
+<meta property="og:url" content="http://morizyun.github.io/blog/prime-number-eratosthenes-sieve-algorithm-ruby-python-java/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="素数の数を求めるAOJの「Prime Number  - Aizu Online Judge」のRuby / Python / Javaでのサンプル回答です。 『エラトステネスの篩 - Wikipedia』という有名な素数を求めるアルゴリズムを使っています。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="素数を求める &#x2F; エラトステネスの篩 | アルゴリズム [AOJ 0009][Ruby&#x2F;Python&#x2F;Java]">
+<meta name="twitter:description" content="素数の数を求めるAOJの「Prime Number  - Aizu Online Judge」のRuby / Python / Javaでのサンプル回答です。 『エラトステネスの篩 - Wikipedia』という有名な素数を求めるアルゴリズムを使っています。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">素数を求める / エラトステネスの篩 | アルゴリズム [AOJ 0009][Ruby/Python/Java]</h1>
+    
+    <a href="/blog/prime-number-eratosthenes-sieve-algorithm-ruby-python-java/" class="article-date"><time datetime="2017-03-19T15:00:00.000Z">2017-03-20</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/prime-number-eratosthenes-sieve-algorithm-ruby-python-java/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/prime-number-eratosthenes-sieve-algorithm-ruby-python-java/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/prime-number-eratosthenes-sieve-algorithm-ruby-python-java/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/prime-number-eratosthenes-sieve-algorithm-ruby-python-java/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><a href="//www.amazon.co.jp/gp/product/4897979668/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4897979668&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4897979668&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;">
+    </a>
+
+<p>素数の数を求めるAOJの「<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009&lang=jp" target="_blank" rel="noopener">Prime Number  - Aizu Online Judge</a></strong>」のRuby / Python / Javaでのサンプル回答です。</p>
+<p>『<strong><a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9" target="_blank" rel="noopener">エラトステネスの篩 - Wikipedia</a></strong>』<br>という有名な素数を求めるアルゴリズムを使っています。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="エラトステネスの篩-ふるい" class="article-heading"> 🎃 <a href="#エラトステネスの篩-ふるい" class="headerlink" title="エラトステネスの篩(ふるい)"></a>エラトステネスの篩(ふるい)<a class="article-anchor" href="#エラトステネスの篩-ふるい" aria-hidden="true"></a></h2><h3 id="概要" class="article-heading"><a href="#概要" class="headerlink" title="概要"></a>概要<a class="article-anchor" href="#概要" aria-hidden="true"></a></h3><p><strong><a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9" target="_blank" rel="noopener">エラトステネスの篩 - Wikipedia</a></strong></p>
+<h3 id="AOJ問題" class="article-heading"><a href="#AOJ問題" class="headerlink" title="AOJ問題"></a>AOJ問題<a class="article-anchor" href="#AOJ問題" aria-hidden="true"></a></h3><p><strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009&lang=jp" target="_blank" rel="noopener">Prime Number  - Aizu Online Judge</a></strong><br><br>Aizu Online Judgeの6桁次の素数を求める問題。</p>
+<h3 id="Rubyコード" class="article-heading"><a href="#Rubyコード" class="headerlink" title="Rubyコード"></a>Rubyコード<a class="article-anchor" href="#Rubyコード" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">n = <span class="number">1000000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># エラトステネスの篩</span></span><br><span class="line"><span class="comment"># 指定された整数以下の全ての素数を見つける</span></span><br><span class="line">ns = (n**<span class="number">0</span>.<span class="number">5</span>).to_i + <span class="number">1</span></span><br><span class="line">is_prime = [<span class="literal">false</span>, <span class="literal">false</span>] + [<span class="literal">true</span>]*(n-<span class="number">1</span>)</span><br><span class="line"><span class="number">2</span>.upto(ns) <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  <span class="keyword">next</span> <span class="keyword">if</span> !is_prime[i]</span><br><span class="line">  (i*i).step(n, i) <span class="keyword">do</span> <span class="params">|j|</span></span><br><span class="line">    is_prime[j] = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">count = <span class="number">0</span></span><br><span class="line">list = (<span class="number">0</span>..n).map <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  count += <span class="number">1</span> <span class="keyword">if</span> is_prime[i]</span><br><span class="line">  count</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> gets</span><br><span class="line">  puts list[$_.to_i]</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Pythonコード" class="article-heading"><a href="#Pythonコード" class="headerlink" title="Pythonコード"></a>Pythonコード<a class="article-anchor" href="#Pythonコード" aria-hidden="true"></a></h3><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> bisect <span class="keyword">import</span> bisect</span><br><span class="line"></span><br><span class="line">n = <span class="number">1000000</span></span><br><span class="line">sn = int(n**<span class="number">0.5</span>)+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">num = [<span class="literal">False</span>, <span class="literal">False</span>] + [<span class="literal">True</span>]*(n<span class="number">-1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">2</span>, int(n**<span class="number">0.5</span>)+<span class="number">1</span>):</span><br><span class="line">  <span class="keyword">if</span> num[i]:</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange(i**<span class="number">2</span>, n, i):</span><br><span class="line">      num[j] = <span class="literal">False</span></span><br><span class="line">prime = [i <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">2</span>, n) <span class="keyword">if</span> num[i]]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">print</span> bisect(prime, input())</span><br><span class="line">  <span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Javaコード" class="article-heading"><a href="#Javaコード" class="headerlink" title="Javaコード"></a>Javaコード<a class="article-anchor" href="#Javaコード" aria-hidden="true"></a></h3><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">    BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] primeCountList = calcPrimeNumber();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) {</span><br><span class="line">      String tmp = br.readLine();</span><br><span class="line">      <span class="keyword">if</span> (tmp == <span class="keyword">null</span>) {</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">int</span> num = Integer.valueOf(tmp);</span><br><span class="line">      System.out.println(primeCountList[num]);</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] calcPrimeNumber() {</span><br><span class="line">    <span class="keyword">int</span> maxN = <span class="number">1_000_000</span>;</span><br><span class="line">    <span class="keyword">int</span> sqrtN = (<span class="keyword">int</span>) Math.sqrt(maxN);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span>[] isPrimeList = <span class="keyword">new</span> <span class="keyword">boolean</span>[maxN];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i < maxN; i++) {</span><br><span class="line">      isPrimeList[i] = <span class="keyword">true</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i < sqrtN + <span class="number">1</span>; i++) {</span><br><span class="line">      <span class="keyword">if</span> (!isPrimeList[i]) {</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = i*i; j <maxn; j +="i)" {< span><br><span class="line">        isPrimeList[j] = <span class="keyword">false</span>;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] primeCountList = <span class="keyword">new</span> <span class="keyword">int</span>[maxN];</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i < maxN; i++) {</span><br><span class="line">      <span class="keyword">if</span> (isPrimeList[i]) {</span><br><span class="line">        count++;</span><br><span class="line">      }</span><br><span class="line">      primeCountList[i] = count;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primeCountList;</span><br><span class="line">  }</span><br><span class="line">}</span><br></maxn;></span></pre></td></tr></tbody></table></figure>
+<h2 id="GitHubリポジトリ" class="article-heading"> 🎉 <a href="#GitHubリポジトリ" class="headerlink" title="GitHubリポジトリ"></a>GitHubリポジトリ<a class="article-anchor" href="#GitHubリポジトリ" aria-hidden="true"></a></h2><p>当面はAOJを解きながら、アルゴリズムの再勉強をしていくつもりです。<br>Ruby/Python/JavaでのAOJの回答は下のリポジトリに保存しておきます。もしツッコミとかあればぜひ＾＾</p>
+<p><strong><a href="https://github.com/morizyun/aoj-ruby-python" target="_blank" rel="noopener">morizyun/aoj-ruby-python - GitHub</a></strong></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

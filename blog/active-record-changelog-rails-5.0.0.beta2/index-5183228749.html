@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Active RecordのCHANGELOG(Rails 5.0.0.beta2)を読んでみた！　 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/active-record-changelog-rails-5.0.0.beta2/index-5183228749.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="2/22(月)に開催された Sendagaya.rb #138 に参加して、「ActiveRecod CHANGELOG」を読んだのでその斜め読みのメモです！">
+<meta name="keywords" content="rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Active RecordのCHANGELOG(Rails 5.0.0.beta2)を読んでみた！　">
+<meta property="og:url" content="http://morizyun.github.io//blog/active-record-changelog-rails-5.0.0.beta2/index-5183228749.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="2/22(月)に開催された Sendagaya.rb #138 に参加して、「ActiveRecod CHANGELOG」を読んだのでその斜め読みのメモです！">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Active RecordのCHANGELOG(Rails 5.0.0.beta2)を読んでみた！　">
+<meta name="twitter:description" content="2/22(月)に開催された Sendagaya.rb #138 に参加して、「ActiveRecod CHANGELOG」を読んだのでその斜め読みのメモです！">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="main-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="main-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Active RecordのCHANGELOG(Rails 5.0.0.beta2)を読んでみた！　</h1>
+    
+    <a href="/blog/active-record-changelog-rails-5.0.0.beta2/" class="article-date"><time datetime="2016-02-21T15:00:00.000Z">2016-02-22</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/active-record-changelog-rails-5.0.0.beta2/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/active-record-changelog-rails-5.0.0.beta2/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/active-record-changelog-rails-5.0.0.beta2/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/active-record-changelog-rails-5.0.0.beta2/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><a href="//www.amazon.co.jp/gp/product/B017UGA7NG/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B017UGA7NG&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B017UGA7NG&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;">
+    </a>
+
+<p>2/22(月)に開催された <strong><a href="https://sendagayarb.doorkeeper.jp/events/39396" target="_blank" rel="noopener">Sendagaya.rb #138</a></strong> に参加して、<br>「<strong><a href="https://github.com/rails/rails/blob/master/activerecord/CHANGELOG.md" target="_blank" rel="noopener">ActiveRecod CHANGELOG</a></strong>」<br>を読んだのでその斜め読みのメモです！</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="foreign-key-exists" class="article-heading"> 😸 <a href="#foreign-key-exists" class="headerlink" title="foreign_key_exists?"></a>foreign_key_exists?<a class="article-anchor" href="#foreign-key-exists" aria-hidden="true"></a></h2><p>migrationファイルで使えるメソッド。テーブルに外部キー制約が付いているかを確認する <code>foreign_key_exists?</code> が追加。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Check a foreign key exists</span></span><br><span class="line">foreign_key_exists?(<span class="symbol">:accounts</span>, <span class="symbol">:branches</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check a foreign key on a specified column exists</span></span><br><span class="line">foreign_key_exists?(<span class="symbol">:accounts</span>, <span class="symbol">column:</span> <span class="symbol">:owner_id</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check a foreign key with a custom name exists</span></span><br><span class="line">foreign_key_exists?(<span class="symbol">:accounts</span>, <span class="symbol">name:</span> <span class="string">"special_fk_name"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>アンチパターンにあるらしいから外部キー制約はちゃんと付け足ほうがいい。</p>
+<h2 id="Active-Record-Base-suppress" class="article-heading"> 😎 <a href="#Active-Record-Base-suppress" class="headerlink" title="Active Record::Base.suppress"></a>Active Record::Base.suppress<a class="article-anchor" href="#Active-Record-Base-suppress" aria-hidden="true"></a></h2><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comment</span> < ActiveRecord::Base</span></span><br><span class="line">  belongs_to <span class="symbol">:commentable</span>, <span class="symbol">polymorphic:</span> <span class="literal">true</span></span><br><span class="line">  after_create -> { Notification.create! <span class="symbol">comment:</span> <span class="keyword">self</span>,</span><br><span class="line">    <span class="symbol">recipients:</span> commentable.recipients }</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>こんな風に <code>Comment</code> を作成したら必ず <code>Notification</code> を作るようなパターンはあるけど、<br>特定のパターンの場合は、<code>Notification</code> を作成しないためには次のように記述する。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Copyable</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">copy_to</span><span class="params">(destination)</span></span></span><br><span class="line">    Notification.suppress <span class="keyword">do</span></span><br><span class="line">      <span class="comment"># この中では Comment を作成しても Notification は作らない。</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>とすると <code>Notification.suppress</code> のブロックの中では、<code>Notification</code> が作られなくなる。</p>
+<h2 id="Active-Record-Base-accessed-fields" class="article-heading">😀 <a href="#Active-Record-Base-accessed-fields" class="headerlink" title="Active Record::Base#accessed_fields"></a>Active Record::Base#accessed_fields<a class="article-anchor" href="#Active-Record-Base-accessed-fields" aria-hidden="true"></a></h2><p>こんな感じのリファクタリングができるようになる。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PostsController</span> < ActionController::Base</span></span><br><span class="line">  after_action <span class="symbol">:print_accessed_fields</span>, <span class="symbol">only:</span> <span class="symbol">:index</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></span><br><span class="line">    @posts = Post.all</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">  private</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">print_accessed_fields</span></span></span><br><span class="line">    p @posts.first.accessed_fields <span class="comment">#=> :id, :title, :author_id, :updated_at</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>とすると <code>:id, :title, :author_id, :updated_at</code> しか使わないので、<br>次のように書いて必要なカラムだけを取得するようにリファクタリングできる。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PostsController</span> < ActionController::Base</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></span><br><span class="line">    @posts = Post.select(<span class="symbol">:id</span>, <span class="symbol">:title</span>, <span class="symbol">:author_id</span>, <span class="symbol">:updated_at</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Active-Record-Base-ignored-columns" class="article-heading"> 🐹 <a href="#Active-Record-Base-ignored-columns" class="headerlink" title="Active Record::Base.ignored_columns"></a>Active Record::Base.ignored_columns<a class="article-anchor" href="#Active-Record-Base-ignored-columns" aria-hidden="true"></a></h2><p><code>ActiveRecord::Base.ignored_columns</code> でカラムを定義すると、Active Recordでは閲覧できないカラムを定義することができる。<br>おそらく、DBにあるけどもActiveRecodなどで参照してほしくないようなカラムを定義する。</p>
+<h2 id="Active-Record-Relation-update" class="article-heading">🐝 <a href="#Active-Record-Relation-update" class="headerlink" title="Active Record::Relation#update"></a>Active Record::Relation#update<a class="article-anchor" href="#Active-Record-Relation-update" aria-hidden="true"></a></h2><p><code>ActiveRecord::Relation#update</code>の動作が次のように変わったとのこと。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Before: idとattriubutesを渡す形式だった。1SQLで実行できるけどcallbackが呼ばれない</span></span><br><span class="line">Person.update(<span class="number">15</span>, <span class="symbol">:user_name</span> => <span class="string">'Samuel'</span>, <span class="symbol">:group</span> => <span class="string">'expert'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># After: こういった形で呼べる。1件1件更新するのでちょっと遅いけど、callbackが呼ばれる</span></span><br><span class="line">Comment.where(<span class="symbol">group:</span> <span class="string">'expert'</span>).update(<span class="symbol">body:</span> <span class="string">"Group of Rails Experts"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="drop-テーブルのオプション-if-exists" class="article-heading">🐠 <a href="#drop-テーブルのオプション-if-exists" class="headerlink" title="drop_テーブルのオプション :if_exists"></a>drop_テーブルのオプション :if_exists<a class="article-anchor" href="#drop-テーブルのオプション-if-exists" aria-hidden="true"></a></h2><p>migrationファイル内のオプションで <code>:if_exists</code> を設定できるようになった。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">drop_table(<span class="symbol">:posts</span>, <span class="symbol">if_exists:</span> <span class="literal">true</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Active-Record-Relation-or" class="article-heading">🐯 <a href="#Active-Record-Relation-or" class="headerlink" title="Active Record::Relation#or"></a>Active Record::Relation#or<a class="article-anchor" href="#Active-Record-Relation-or" aria-hidden="true"></a></h2><p>Post.where(‘id = 1’).or(Post.where(‘id = 2’)) を正確に解釈するようになりました</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">Post.where(<span class="string">'id = 1'</span>).<span class="keyword">or</span>(Post.where(<span class="string">'id = 2'</span>))</span><br><span class="line"><span class="comment">#=> SELECT * FROM posts WHERE (id = 1) OR (id = 2)</span></span><br></pre></td></tr></tbody></table></figure>
+<p><strong><a href="https://github.com/rails/rails/pull/16052" target="_blank" rel="noopener">Added #or to ActiveRecord::Relation by matthewd · Pull Request #16052 · rails/rails</a></strong></p>
+<h2 id="Active-Record-Relation-left-outer-joins-left-joins" class="article-heading">🍣 <a href="#Active-Record-Relation-left-outer-joins-left-joins" class="headerlink" title="Active Record::Relation#left_outer_joins(#left_joins)"></a>Active Record::Relation#left_outer_joins(#left_joins)<a class="article-anchor" href="#Active-Record-Relation-left-outer-joins-left-joins" aria-hidden="true"></a></h2><p>外部結合のための <code>#left_outer_joins(#left_joins)</code> が追加。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">User.left_outer_joins(<span class="symbol">:posts</span>)</span><br><span class="line"><span class="comment">#=> SELECT "users".* FROM "users" LEFT OUTER JOIN "posts" ON</span></span><br><span class="line"><span class="comment">#=> "posts"."user_id" = "users"."id"</span></span><br></pre></td></tr></tbody></table></figure>
+<p><strong><a href="https://github.com/rails/rails/pull/12071" target="_blank" rel="noopener">added ActiveRecord::Relation#outer_joins by Crunch09 · Pull Request #12071 · rails/rails</a></strong></p>
+<h2 id="findで与えたidsと同じ順序でActive-Recordを返す" class="article-heading">🐮 <a href="#findで与えたidsと同じ順序でActive-Recordを返す" class="headerlink" title="findで与えたidsと同じ順序でActive Recordを返す"></a>findで与えたidsと同じ順序でActive Recordを返す<a class="article-anchor" href="#findで与えたidsと同じ順序でActive-Recordを返す" aria-hidden="true"></a></h2><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">records = Topic.find([<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>])</span><br><span class="line">assert_equal <span class="string">'The Fourth Topic of the day'</span>, records[<span class="number">0</span>].title</span><br><span class="line">assert_equal <span class="string">'The Second Topic of the day'</span>, records[<span class="number">1</span>].title</span><br><span class="line">assert_equal <span class="string">'The Fifth Topic of the day'</span>, records[<span class="number">2</span>].title</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="after-commitのcallback名が変わった" class="article-heading">😼 <a href="#after-commitのcallback名が変わった" class="headerlink" title="after_commitのcallback名が変わった"></a>after_commitのcallback名が変わった<a class="article-anchor" href="#after-commitのcallback名が変わった" aria-hidden="true"></a></h2><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#### Before ####</span></span><br><span class="line">after_commit <span class="symbol">:add_to_index_later</span>, <span class="symbol">on:</span> <span class="symbol">:create</span></span><br><span class="line">after_commit <span class="symbol">:update_in_index_later</span>, <span class="symbol">on:</span> <span class="symbol">:update</span></span><br><span class="line">after_commit <span class="symbol">:remove_from_index_later</span>, <span class="symbol">on:</span> <span class="symbol">:destroy</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#### After ####</span></span><br><span class="line">after_create_commit  <span class="symbol">:add_to_index_later</span></span><br><span class="line">after_update_commit  <span class="symbol">:update_in_index_later</span></span><br><span class="line">after_destroy_commit <span class="symbol">:remove_from_index_later</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Active-Record-Relation-in-batches" class="article-heading"> 🎂 <a href="#Active-Record-Relation-in-batches" class="headerlink" title="Active Record::Relation#in_batches"></a>Active Record::Relation#in_batches<a class="article-anchor" href="#Active-Record-Relation-in-batches" aria-hidden="true"></a></h2><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"> People.in_batches(<span class="symbol">of:</span> <span class="number">100</span>) <span class="keyword">do</span> <span class="params">|people|</span></span><br><span class="line">  people.where(<span class="string">'id % 2 = 0'</span>).update_all(<span class="symbol">sleep:</span> <span class="literal">true</span>)</span><br><span class="line">  people.where(<span class="string">'id % 2 = 1'</span>).each(&<span class="symbol">:party_all_night!</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>ちなみにちょっとおもしろかったのはパフォーマンスです。 idを指定しつつ検索をしていく場合のほうが、OFFSETを使うよりも早いという結果になりました。</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  <span class="string">"posts"</span>.<span class="string">"id"</span> <span class="keyword">FROM</span> <span class="string">"posts"</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="string">"posts"</span>.<span class="string">"id"</span> <span class="keyword">ASC</span> <span class="keyword">LIMIT</span> <span class="number">2</span></span><br><span class="line"><span class="keyword">SELECT</span>  <span class="string">"posts"</span>.<span class="string">"id"</span> <span class="keyword">FROM</span> <span class="string">"posts"</span> <span class="keyword">WHERE</span> (<span class="string">"posts"</span>.<span class="string">"id"</span> > <span class="number">2</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="string">"posts"</span>.<span class="string">"id"</span> <span class="keyword">ASC</span> <span class="keyword">LIMIT</span> <span class="number">2</span></span><br><span class="line"><span class="keyword">SELECT</span>  <span class="string">"posts"</span>.<span class="string">"id"</span> <span class="keyword">FROM</span> <span class="string">"posts"</span> <span class="keyword">WHERE</span> (<span class="string">"posts"</span>.<span class="string">"id"</span> > <span class="number">4</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="string">"posts"</span>.<span class="string">"id"</span> <span class="keyword">ASC</span> <span class="keyword">LIMIT</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ↑ のパフォーマンス</span></span><br><span class="line"><span class="keyword">Benchmark</span> times (<span class="number">50</span>M <span class="keyword">rows</span>, <span class="keyword">no</span> <span class="keyword">index</span>, batch <span class="keyword">size</span> <span class="number">1000</span>):</span><br><span class="line">batch    <span class="built_in">time</span></span><br><span class="line"><span class="number">1</span>        <span class="number">194.7</span>s</span><br><span class="line"><span class="number">2</span>        <span class="number">0.016</span>s</span><br><span class="line"><span class="number">3</span>        <span class="number">0.006</span>s</span><br><span class="line"><span class="number">4</span>        <span class="number">0.008</span>s</span><br><span class="line"><span class="number">5</span>        <span class="number">0.007</span>s</span><br><span class="line">...</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(count_column) <span class="keyword">FROM</span> (<span class="keyword">SELECT</span>  <span class="number">1</span> <span class="keyword">AS</span> count_column <span class="keyword">FROM</span> <span class="string">"posts"</span> <span class="keyword">LIMIT</span> <span class="number">2</span> <span class="keyword">OFFSET</span> <span class="number">0</span>) subquery_for_count</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(count_column) <span class="keyword">FROM</span> (<span class="keyword">SELECT</span>  <span class="number">1</span> <span class="keyword">AS</span> count_column <span class="keyword">FROM</span> <span class="string">"posts"</span> <span class="keyword">LIMIT</span> <span class="number">2</span> <span class="keyword">OFFSET</span> <span class="number">2</span>) subquery_for_count</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(count_column) <span class="keyword">FROM</span> (<span class="keyword">SELECT</span>  <span class="number">1</span> <span class="keyword">AS</span> count_column <span class="keyword">FROM</span> <span class="string">"posts"</span> <span class="keyword">LIMIT</span> <span class="number">2</span> <span class="keyword">OFFSET</span> <span class="number">4</span>) subquery_for_count</span><br><span class="line"></span><br><span class="line"><span class="comment"># ↑ のパフォーマンス</span></span><br><span class="line"><span class="keyword">Benchmark</span> times (<span class="number">50</span>M <span class="keyword">rows</span>, <span class="keyword">no</span> <span class="keyword">index</span>, batch <span class="keyword">size</span> <span class="number">1000</span>):</span><br><span class="line">batch    <span class="built_in">time</span></span><br><span class="line"><span class="number">1</span>        <span class="number">192.5</span>s</span><br><span class="line"><span class="number">2</span>        <span class="number">242.0</span>s</span><br><span class="line"><span class="number">3</span>        <span class="number">257.5</span>s</span><br><span class="line"><span class="number">4</span>        <span class="number">256.8</span>s</span><br><span class="line"><span class="number">5</span>        <span class="number">258.7</span>s</span><br><span class="line">... (average times increase <span class="keyword">on</span> <span class="keyword">each</span> iteration, because <span class="keyword">of</span> higher <span class="keyword">offset</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="none-one-の実装の変更" class="article-heading"> 🎉 <a href="#none-one-の実装の変更" class="headerlink" title="none? / one? の実装の変更"></a>none? / one? の実装の変更<a class="article-anchor" href="#none-one-の実装の変更" aria-hidden="true"></a></h2><p><code>none?</code> や、 <code>one?</code> の実装が改善。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Before:</span></span><br><span class="line"></span><br><span class="line">users.none?</span><br><span class="line"><span class="comment"># SELECT "users".* FROM "users"</span></span><br><span class="line"></span><br><span class="line">users.one?</span><br><span class="line"><span class="comment"># SELECT "users".* FROM "users"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># After:</span></span><br><span class="line"></span><br><span class="line">users.none?</span><br><span class="line"><span class="comment"># SELECT 1 AS one FROM "users" LIMIT 1</span></span><br><span class="line"></span><br><span class="line">users.one?</span><br><span class="line"><span class="comment"># SELECT COUNT(*) FROM "users"</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="belongs-toでアソシエーションがなければバリデーションエラー" class="article-heading">👽 <a href="#belongs-toでアソシエーションがなければバリデーションエラー" class="headerlink" title="belongs_toでアソシエーションがなければバリデーションエラー"></a>belongs_toでアソシエーションがなければバリデーションエラー<a class="article-anchor" href="#belongs-toでアソシエーションがなければバリデーションエラー" aria-hidden="true"></a></h2><p><code>belongs_to</code> でアソシエーションがなければ、バリデーションエラーになるようになった。<br><code>optional: true</code>をつけるとエラーが出ないようになる。</p>
+<h2 id="Tips" class="article-heading"> 🎳 <a href="#Tips" class="headerlink" title="Tips"></a>Tips<a class="article-anchor" href="#Tips" aria-hidden="true"></a></h2><p>以下は今回のCHANGE LOGとは直接は関係ない部分</p>
+<h3 id="Tips-revertを使うとrollbackできる" class="article-heading"><a href="#Tips-revertを使うとrollbackできる" class="headerlink" title="(Tips) revertを使うとrollbackできる"></a>(Tips) revertを使うとrollbackできる<a class="article-anchor" href="#Tips-revertを使うとrollbackできる" aria-hidden="true"></a></h3><p>migrationファイルの中で以下のようなことができる <code>revert</code> というのがあるそう。何がうれしいかというとロールバックができるそう。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FixupExampleMigration</span> < ActiveRecord::Migration[5.0]</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">change</span></span></span><br><span class="line">    revert <span class="keyword">do</span></span><br><span class="line">      create_table(<span class="symbol">:apples</span>) <span class="keyword">do</span> <span class="params">|t|</span></span><br><span class="line">        t.string <span class="symbol">:variety</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p><strong><a href="http://edgeguides.rubyonrails.org/active_record_migrations.html" target="_blank" rel="noopener">Reverting Previous Migrations - Rails Guide</a></strong></p>
+<h3 id="Tips-RubyのEnumerable-any" class="article-heading"><a href="#Tips-RubyのEnumerable-any" class="headerlink" title="(Tips) RubyのEnumerable#any?"></a>(Tips) RubyのEnumerable#any?<a class="article-anchor" href="#Tips-RubyのEnumerable-any" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">%w{ant bear cat}</span>.any? {<span class="params">|word|</span> word.length >= <span class="number">3</span>}   <span class="comment">#=> true</span></span><br><span class="line"><span class="string">%w{ant bear cat}</span>.any? {<span class="params">|word|</span> word.length >= <span class="number">4</span>}   <span class="comment">#=> true</span></span><br><span class="line">[ <span class="literal">nil</span>, <span class="literal">true</span>, <span class="number">99</span> ].any?                            <span class="comment">#=> true</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Tips-Active-Record-Relation-any" class="article-heading"><a href="#Tips-Active-Record-Relation-any" class="headerlink" title="(Tips) Active Record::Relation#any?"></a>(Tips) Active Record::Relation#any?<a class="article-anchor" href="#Tips-Active-Record-Relation-any" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">person.pets <span class="comment"># => [#<pet name: "snoop", group: "dogs">]</pet></span></span><br><span class="line"></span><br><span class="line">person.pets.any? <span class="keyword">do</span> <span class="params">|pet|</span></span><br><span class="line">  pet.group == <span class="string">'cats'</span></span><br><span class="line"><span class="keyword">end</span> <span class="comment"># => false</span></span><br><span class="line"></span><br><span class="line">person.pets.any? <span class="keyword">do</span> <span class="params">|pet|</span></span><br><span class="line">  pet.group == <span class="string">'dogs'</span></span><br><span class="line"><span class="keyword">end</span> <span class="comment"># => true</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Tips-define-attribute-methods" class="article-heading"><a href="#Tips-define-attribute-methods" class="headerlink" title="(Tips) define_attribute_methods"></a>(Tips) define_attribute_methods<a class="article-anchor" href="#Tips-define-attribute-methods" aria-hidden="true"></a></h3><p><code>define_attribute_methods</code> を使うと次のようなことができる。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line">  <span class="keyword">include</span> ActiveModel::AttributeMethods</span><br><span class="line"></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:name</span>, <span class="symbol">:age</span>, <span class="symbol">:address</span></span><br><span class="line">  attribute_method_prefix <span class="string">'clear_'</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">clear_attribute</span><span class="params">(attr)</span></span></span><br><span class="line">    send(<span class="string">"<span class="subst">#{attr}</span>="</span>, <span class="literal">nil</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">person = Person.new</span><br><span class="line">person.name = <span class="string">'John Due'</span></span><br><span class="line">person.clear_name</span><br><span class="line">puts person.name <span class="comment">#=> nil</span></span><br></pre></td></tr></tbody></table></figure>
+<p>DRYを実現するのに便利そう</p>
+<p><strong><a href="http://qiita.com/pekepek/items/8eead2021024f70f08f8" target="_blank" rel="noopener">ActiveModel::AttributeMethods で重複をなくす - Qiita</a></strong></p>
+<h2 id="あとがき" class="article-heading">🏈 <a href="#あとがき" class="headerlink" title="あとがき"></a>あとがき<a class="article-anchor" href="#あとがき" aria-hidden="true"></a></h2><p>CHANGELOGを集中して読んだり、いろんな人の意見を聞く機会っていなかなかなかので、本当にいい勉強になりました！<br><strong><a href="https://sendagayarb.doorkeeper.jp/events/39396" target="_blank" rel="noopener">Sendagaya.rb #138</a></strong> 楽しかったです^^</p>
+<h2 id="参考リンク" class="article-heading">🚌 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><strong><a href="http://qiita.com/jnchito/items/6a93320334c48b967dfb" target="_blank" rel="noopener">Rails 5.0で追加される主な新機能（Ruby on Rails公式ブログより） - Qiita</a></strong></li>
+<li><strong><a href="http://www.slideshare.net/KenichiTachibana/a-huge-change-rails-5-is-approaching-fast" target="_blank" rel="noopener">A HUGE CHANGE RAILS 5 IS APPROACHING FAST</a></strong></li>
+<li><strong><a href="http://www.slideshare.net/KenichiTachibana/a-huge-change-rails-5-is-approaching-fast" target="_blank" rel="noopener">A HUGE CHANGE RAILS 5 IS APPROACHING FAST</a></strong></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="mobile-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

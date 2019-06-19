@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Rails x Herokuでアプリケーションを作成 [完全初心者向けチュートリアル] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="プログラミング経験の本当に少ない人向けに、無料で始められるWebサーバのHerokuにRuby on Railsのアプリケーションをアップロードするまでのチュートリアル記事です。Macでの環境構築から、Herokuへの登録、Railsアプリケーションの作成、HerokuへのPushまでをひととおりカバーできることを目標にしています。 Mac(Linux)な人向けです。Windowsの人、ゴメンナサ">
+<meta name="keywords" content="Heroku,Ruby,rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails x Herokuでアプリケーションを作成 [完全初心者向けチュートリアル]">
+<meta property="og:url" content="http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="プログラミング経験の本当に少ない人向けに、無料で始められるWebサーバのHerokuにRuby on Railsのアプリケーションをアップロードするまでのチュートリアル記事です。Macでの環境構築から、Herokuへの登録、Railsアプリケーションの作成、HerokuへのPushまでをひととおりカバーできることを目標にしています。 Mac(Linux)な人向けです。Windowsの人、ゴメンナサ">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rails x Herokuでアプリケーションを作成 [完全初心者向けチュートリアル]">
+<meta name="twitter:description" content="プログラミング経験の本当に少ない人向けに、無料で始められるWebサーバのHerokuにRuby on Railsのアプリケーションをアップロードするまでのチュートリアル記事です。Macでの環境構築から、Herokuへの登録、Railsアプリケーションの作成、HerokuへのPushまでをひととおりカバーできることを目標にしています。 Mac(Linux)な人向けです。Windowsの人、ゴメンナサ">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Rails x Herokuでアプリケーションを作成 [完全初心者向けチュートリアル]</h1>
+    
+    <a href="/blog/beginner-rails-heroku-tutorial/" class="article-date"><time datetime="2016-02-28T15:00:00.000Z">2016-02-29</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><a href="//www.amazon.co.jp/gp/product/4048915134/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4048915134&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4048915134&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;">
+    </a>
+
+<p>プログラミング経験の本当に少ない人向けに、無料で始められるWebサーバのHerokuにRuby on Railsのアプリケーションをアップロードするまでのチュートリアル記事です。Macでの環境構築から、Herokuへの登録、Railsアプリケーションの作成、HerokuへのPushまでをひととおりカバーできることを目標にしています。</p>
+<p>Mac(Linux)な人向けです。Windowsの人、ゴメンナサイ… </p>
+<p><strong>(2016/02/29 00:15) Herokuの概要・メリットのスライドを追加</strong><br></p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="目次" class="article-heading"> 🎃 <a href="#目次" class="headerlink" title="目次"></a>目次<a class="article-anchor" href="#目次" aria-hidden="true"></a></h2><p><strong>(01) <a href="#1">事前準備: 最初に見ておくと捗るドットインストール</a></strong><br><br><strong>(02) <a href="#2">ローカル環境構築</a></strong><br><br><strong>(03) <a href="#3">Railsアプリのひな形作成</a></strong><br><br><strong>(04) <a href="#4">WebアプリにおけるMVCとは？</a></strong><br><br><strong>(05) <a href="#5">Railsのフォルダ構成</a></strong><br><br><strong>(06) <a href="#6">Herokuの概要・メリット</a></strong><br><br><strong>(07) <a href="#7">RailsでWebアプリを作成</a></strong><br><br><strong>(08) <a href="#8">Herokuへのアップロード</a></strong><br><br><strong>(09) <a href="#9">次に見ておくと捗るドットインストール & おすすめサイト</a></strong><br><br><strong>(10) <a href="#10">簡単な開発の流れ</a></strong><br><br><strong>(11) <a href="#11">体験談</a></strong><br></p>
+<p><a name="1"></a></p>
+<h2 id="最初に見ておくと捗るドットインストール" class="article-heading"> 🐰 <a href="#最初に見ておくと捗るドットインストール" class="headerlink" title="最初に見ておくと捗るドットインストール"></a>最初に見ておくと捗るドットインストール<a class="article-anchor" href="#最初に見ておくと捗るドットインストール" aria-hidden="true"></a></h2><p><a href="http://dotinstall.com/lessons/basic_unix" target="_blank" rel="noopener"><img title="UNIXコマンド入門 (一般ユーザー編) (全16回) - プログラミングならドットインストール" src="http://capture.heartrails.com/400x300/cool?http://dotinstall.com/lessons/basic_unix" alt="http://dotinstall.com/lessons/basic_unix" width="400" height="300"></a></p>
+<p><a href="http://dotinstall.com/lessons/basic_vim" target="_blank" rel="noopener"><img title="Now Capturing..." src="http://capture.heartrails.com/400x300/cool?http://dotinstall.com/lessons/basic_vim" alt="http://dotinstall.com/lessons/basic_vim" width="400" height="300"></a></p>
+<p>実際にヒアリングして認識したのは、まずUNIXコマンドやVimに対してあんまり親しくないので、それが原因で環境構築のときに詰まってしまうようでした。ということで、安定のドットインストールさんの『<strong><a href="http://dotinstall.com/lessons/basic_unix" target="_blank" rel="noopener">UNIXコマンド入門</a></strong>』と『<strong><a href="http://dotinstall.com/lessons/basic_vim" target="_blank" rel="noopener">vim入門</a></strong>』を作業前に見ておくとあとあとの作業が捗ると思います！</p>
+<p>ちなみに最初のほうでよく出てくるターミナルで使うコマンドです。</p>
+<pre>ls -la : ファイル・フォルダの一覧を見るコマンド
+pwd : 現在のパス(自分がいる場所)を表すコマンド
+cd : ディレクトリを移動するコマンド(Change Directoryの略)
+mkdir : フォルダを作成するコマンド
+mv: ファイル・フォルダの場所を移動させるためのコマンド
+</pre>
+
+<p><a name="2"></a></p>
+<h2 id="2-ローカル環境構築" class="article-heading"> 😸 <a href="#2-ローカル環境構築" class="headerlink" title="(2) ローカル環境構築"></a>(2) ローカル環境構築<a class="article-anchor" href="#2-ローカル環境構築" aria-hidden="true"></a></h2><h3 id="2-A-Marvericks-Rails開発環境構築手順" class="article-heading"><a href="#2-A-Marvericks-Rails開発環境構築手順" class="headerlink" title="(2-A) Marvericks Rails開発環境構築手順"></a>(2-A) Marvericks Rails開発環境構築手順<a class="article-anchor" href="#2-A-Marvericks-Rails開発環境構築手順" aria-hidden="true"></a></h3><p><strong><a href="/blog/marvericks-rails-setup-ruby-rvm-msyql/">Marvericks Rails 最新環境 詳解 構築手順</a></strong><br><br>この記事を参考にRails環境を構築していただければ幸いです。MySQLの部分については詰まるようであればスキップしてください。</p>
+<h3 id="2-B-Heorkuのユーザー登録とHeroku-toolbeltのインストール" class="article-heading"><a href="#2-B-Heorkuのユーザー登録とHeroku-toolbeltのインストール" class="headerlink" title="(2-B) Heorkuのユーザー登録とHeroku toolbeltのインストール"></a>(2-B) Heorkuのユーザー登録とHeroku toolbeltのインストール<a class="article-anchor" href="#2-B-Heorkuのユーザー登録とHeroku-toolbeltのインストール" aria-hidden="true"></a></h3><p><a href="http://tande.jp/lab/2012/05/1728" target="_blank" rel="noopener"><img title="Heroku登録〜Macで環境整備〜お試しWebアプリを作るまで | tande lab." src="http://capture.heartrails.com/400x300/cool/1390734123618?http://tande.jp/lab/2012/05/1728" alt="http://tande.jp/lab/2012/05/1728" width="400" height="300"></a></p>
+<p>こちらの『<strong><a href="http://tande.jp/lab/2012/05/1728" target="_blank" rel="noopener">Heroku登録〜Macで環境整備〜</a></strong>』のSSHの公開・秘密鍵のセクションまでを実行してください。</p>
+<p><a name="3"></a></p>
+<h2 id="3-Railsアプリケーションのひな型作成" class="article-heading">🚌 <a href="#3-Railsアプリケーションのひな型作成" class="headerlink" title="(3)Railsアプリケーションのひな型作成"></a>(3)Railsアプリケーションのひな型作成<a class="article-anchor" href="#3-Railsアプリケーションのひな型作成" aria-hidden="true"></a></h2><p>次にターミナルの操作です。作業フォルダへ移動します。作業フォルダは初心者の人向けというのを考えてDropboxフォルダ内に<code>ruby_tutorial</code>フォルダを作成してそこに移動します。(Dropboxが入っていない場合はどこでもOKです)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">cd ~/Dropbox</span><br><span class="line">mkdir ruby_tutorial</span><br><span class="line">cd ruby_tutorial</span><br></pre></td></tr></tbody></table></figure>
+<p>次にRailsプロジェクトを作成します。もしこのコマンドでエラーが出る場合は、<code>gem install rails</code>と打ってコマンドが完了するまでしばらくお待ちください。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rails new heroku_app</span><br></pre></td></tr></tbody></table></figure>
+<p><a name="4"></a></p>
+<h2 id="4-WebアプリケーションにおけるMVCとは？" class="article-heading">🐞 <a href="#4-WebアプリケーションにおけるMVCとは？" class="headerlink" title="(4) WebアプリケーションにおけるMVCとは？"></a>(4) WebアプリケーションにおけるMVCとは？<a class="article-anchor" href="#4-WebアプリケーションにおけるMVCとは？" aria-hidden="true"></a></h2><p>Railsでは次のようなMVC(Model, View, Controller)のしくみ使ってWebアプリケーションを作っていきます。</p>
+<pre>Model(モデル): 主にデータベース(MySQLやPostgreSQL)とのやりとりを担当
+View(ビュー): 主にWebブラウザのhtmlの表示を担当
+Controller(コントローラ): View(ビュー)とModel(モデル)との間の橋渡しを担当
+</pre>
+
+<p><a name="5"></a></p>
+<h2 id="5-Railsのフォルダ構成" class="article-heading">🐮 <a href="#5-Railsのフォルダ構成" class="headerlink" title="(5) Railsのフォルダ構成"></a>(5) Railsのフォルダ構成<a class="article-anchor" href="#5-Railsのフォルダ構成" aria-hidden="true"></a></h2><p>Railsのフォルダ構成は次のとおりです。最初に扱いそうなファイルを厳選して書いています。より詳しい説明は、『<strong><a href="http://railsdoc.com/rails_base" target="_blank" rel="noopener">Railsの基礎知識</a></strong>』を御覧ください。</p>
+<pre>├── Gemfile #=> gemの依存関係を指定
+├── app #=> アプリを格納
+│   ├── assets #=> CSSや画像などを格納
+│   │   ├── images #=> 主に画像(jpgやpng)
+│   │   ├── javascripts #=> 主にJavaScriptを格納
+│   │   │   └── application.js
+│   │   └── stylesheets #=> 主にCSSを格納
+│   │       └── application.css
+│   ├── controllers #=> コントローラを格納
+│   │   ├── application_controller.rb
+│   │   └── concerns
+│   ├── helpers #=> ヘルパーを格納
+│   │   └── application_helper.rb
+│   ├── mailers #=> メール関連ロジックを格納
+│   ├── models #=> モデルを格納
+│   │   └── concerns
+│   └── views #=> ビューを格納
+│       └── layouts #=> ビューの親玉的なファイルを格納
+│           └── application.html.haml
+├── config #=> 設定に関するファイルを格納
+│   ├── database.yml #=> DBの接続情報を格納
+│   ├── deploy #=> Capistranoに関するデプロイ・ファイルを格納
+│   ├── locales #=> 翻訳などに関わるファイルを格納
+│   │   ├── en.yml
+│   │   ├── ja.yml
+│   │   └── simple_form.en.yml
+│   └── routes.rb #=> ルーティングに関わるファイルを格納
+├── db #=> データベースの設定ファイルを格納
+│   ├── migrate #=> テーブルの作成・削除に関わるファイルを格納
+│   │   └── 20140216021738_create_users.rb
+│   ├── schema.rb #=> 現在の最新のテーブルの状況がわかるファイル
+│   └── seeds.rb #=> DBの初期データ的なファイル
+├── public #=> 主に静的なファイルなどを格納。ルート('/')でアクセスした時に見れる
+    ├── 404.html
+    ├── 422.html
+    ├── 500.html
+    ├── favicon.ico
+    └── robots.txt
+</pre>
+
+<p><a name="6"></a></p>
+<h2 id="6-Herokuの概要・メリット" class="article-heading">😀 <a href="#6-Herokuの概要・メリット" class="headerlink" title="(6) Herokuの概要・メリット"></a>(6) Herokuの概要・メリット<a class="article-anchor" href="#6-Herokuの概要・メリット" aria-hidden="true"></a></h2><p>Herokuの概要やこんなことができますよという説明です。Herokuを使うメリットがとてもわかりやすく書かれています。</p>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/34BZMRlSBPtfTV" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<p><a name="7"></a></p>
+<h2 id="7-RailsでWebアプリケーションを作成" class="article-heading">🍣 <a href="#7-RailsでWebアプリケーションを作成" class="headerlink" title="(7) RailsでWebアプリケーションを作成"></a>(7) RailsでWebアプリケーションを作成<a class="article-anchor" href="#7-RailsでWebアプリケーションを作成" aria-hidden="true"></a></h2><p>次に作成したフォルダの中に移動します。移動したら、Sublime Textでプロジェクトを開きます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">cd heroku_app</span><br><span class="line">subl .</span><br></pre></td></tr></tbody></table></figure>
+<p>次にSublime Text上で<code>Gemfile</code>を探して次の内容を見つけてください。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">gem 'sqlite3'</span><br></pre></td></tr></tbody></table></figure>
+<p>上の内容を、下のように書き換えます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">group :development do</span><br><span class="line">  gem 'sqlite3'</span><br><span class="line">end</span><br><span class="line">group :production do</span><br><span class="line">  gem 'pg'</span><br><span class="line">  gem 'rails_12factor'</span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<p>これで開発環境ではDBがなくても動くようにして、本番環境でだけDBを使うようにしました(pg)。また<code>rails_12factor</code>はRails 4がHerokuでうまく動くようにするためのライブラリです。</p>
+<p>上記が完了したらターミナルで次のコマンドを実行します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">bundle install --without production</span><br></pre></td></tr></tbody></table></figure>
+<p>ちなみに、先ほどの<code>Gemfile</code>や上の<code>bundle install</code>はRubyのライブラリGemを管理するためのしくみ<strong><a href="http://bundler.io/" target="_blank" rel="noopener">Bundler</a></strong>のコマンドです。</p>
+<p>これが完了したら、Railsの土台作りのコマンド<code>scaffold</code>を実行します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rails g scaffold product name:string price:integer</span><br></pre></td></tr></tbody></table></figure>
+<p>すると次のようなファイルが作成されます。(環境によって少し違いはあります)</p>
+<pre>invoke  active_record #=> Model: DBとの連携に関するファイル
+create    db/migrate/20140224065448_create_products.rb #=> テーブル作成用ファイル
+create    app/models/product.rb #=> DBとの連携ロジックを書くファイル
+invoke  resource_route #=> ブラウザでのアクセス経路を書く記事
+route    resources :products
+invoke  scaffold_controller #=> modelとViewの橋渡し役
+create    app/controllers/products_controller.rb
+invoke    erb #=> View: ブラウザでの表示に関わるファイル
+create      app/views/products
+create      app/views/products/index.html.erb
+create      app/views/products/edit.html.erb
+create      app/views/products/show.html.erb
+create      app/views/products/new.html.erb
+create      app/views/products/_form.html.erb
+invoke    rspec
+invoke      rspec
+</pre>
+
+<p>上のコマンドが完了したら、Sublime Textに戻って<code>config/routes.rb</code>の『<strong>2行目</strong>』に次の内容を追加します。これはブラウザでWebサイトのルートにアクセスした時に表示されるページの設定です。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">root :to => 'products#index'</span><br></pre></td></tr></tbody></table></figure>
+<p>これが完了したら次にDBにテーブルを作成をします。と言っても次のコマンドを実行するだけです。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">bundle exec rake RAILS_ENV=development db:migrate</span><br></pre></td></tr></tbody></table></figure>
+<p>ここまで完了したら、実際にブラウザで確認できます。次のコマンドを実行するとサーバが起動します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rails server</span><br></pre></td></tr></tbody></table></figure>
+<p>起動が完了したら、ターミナルに<code>http://0.0.0.0:3000</code>と表示されます。サーバが起動しているのでそれをブラウザで見て、次のように表示されれば成功です。</p>
+<p><img src="/img/2016-02-29-beginner-rails-heroku-tutorial_1.png"></p>
+<p><a name="8"></a></p>
+<h2 id="8-Herokuへのアップロード" class="article-heading"> 🎉 <a href="#8-Herokuへのアップロード" class="headerlink" title="(8) Herokuへのアップロード"></a>(8) Herokuへのアップロード<a class="article-anchor" href="#8-Herokuへのアップロード" aria-hidden="true"></a></h2><p>いよいよHerokuにアップロード(デプロイ)します。が、その前にHeroku用のDBの設定をします。<br><br><code>vim config/database.yml</code>のファイルないにある<code>production</code>を次のように書き換え。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">production:</span><br><span class="line">  adapter: postgresql</span><br><span class="line">  encoding: unicode</span><br><span class="line">  database:</span><br><span class="line">  pool: 5</span><br><span class="line">  username: </span><br><span class="line">  password:</span><br></pre></td></tr></tbody></table></figure>
+<p>Gitのコマンドを実行する前に、gitignoreを簡単に生成できるツールgiboをインストールします。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">brew install gibo</span><br></pre></td></tr></tbody></table></figure>
+<p>インストールが完了したら、次にバージョン管理のしくみ<strong><a href="http://git-scm.com/" target="_blank" rel="noopener">Git</a></strong>のコマンドを実行していきます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">gibo OSX Ruby Rails SASS SublimeText >> .gitignore</span><br></pre></td></tr></tbody></table></figure>
+<p><code>.gitignore</code>から<code>config/initializers/secret_token.rb</code>と<code>config/secret.yml</code>の行を削除。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m "first commit"</span><br></pre></td></tr></tbody></table></figure>
+<p>次にこのRailsのアプリケーションをHerokuに登録します。まずはHeroku上にアプリケーションを作成します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku create</span><br></pre></td></tr></tbody></table></figure>
+<p>続いて、次のコマンドを実行するとHerokuにRailsアプリケーションがアップロードされます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git push heroku master</span><br></pre></td></tr></tbody></table></figure>
+<p>Rails 4.1の場合はsecret keyを生成してHerokuの環境変数にセット。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku config:add SECRET_TOKEN="$(bundle exec rake secret)"</span><br></pre></td></tr></tbody></table></figure>
+<p>これが完了したら、本番のDBにテーブルを作成します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku run bundle exec rake RAILS_ENV=production db:migrate</span><br></pre></td></tr></tbody></table></figure>
+<p>そしてこのコマンドを実行するとブラウザが起動します。先ほどのRailsアプリケーションと同じものが動いていれば成功です。ちなみにこれで世界中に公開された状態になります！</p>
+<p><a name="9"></a></p>
+<h2 id="9-次に見ておくと捗るお勧めサイト" class="article-heading">👽 <a href="#9-次に見ておくと捗るお勧めサイト" class="headerlink" title="(9) 次に見ておくと捗るお勧めサイト"></a>(9) 次に見ておくと捗るお勧めサイト<a class="article-anchor" href="#9-次に見ておくと捗るお勧めサイト" aria-hidden="true"></a></h2><p><strong><a href="/blog/ruby-rails-free-reference-tutorial-curation">Ruby & Railsの入門チュートリアル・まとめ</a></strong><br><br>本章の紹介記事が増えてきたので別記事でまとめ直しました！</p>
+<p><a name="10"></a></p>
+<h2 id="10-簡単な開発の流れ" class="article-heading">🐯 <a href="#10-簡単な開発の流れ" class="headerlink" title="(10) 簡単な開発の流れ"></a>(10) 簡単な開発の流れ<a class="article-anchor" href="#10-簡単な開発の流れ" aria-hidden="true"></a></h2><p>今後このチュートリアルの続編を書くつもりですが、とりあえずこんな流れでプログラミングにトライしてみてください。</p>
+<pre>(A) 初回のみrails s でサーバー起動
+(B) railsを色々変更 => (A)http://0.0.0.0:3000をブラウザで確認
+(C) DBの変更がある場合は、bundle exec rake db:migrate
+(D) 変更が終わったら、git add . -A && git push heroku master
+(E) DBの変更がある場合は、heroku run bundle exec rake db:migrate
+(F) heroku openでブラウザでWebサイトの表示確認
+</pre>
+
+<p>この(A) - (F)までのサイクルを回しながら、いろいろ試してみるとおもしろいと思います！</p>
+<p><a name="11"></a></p>
+<h2 id="11-体験談" class="article-heading"> 🍄 <a href="#11-体験談" class="headerlink" title="(11) 体験談"></a>(11) 体験談<a class="article-anchor" href="#11-体験談" aria-hidden="true"></a></h2><p><strong><a href="http://kheiakiyama.hateblo.jp/entry/2014/04/20/150637" target="_blank" rel="noopener">僕が1週間でWebサービスを公開するまで - ぐだぐだ言ってないでコードを書けよ、ハゲ。</a></strong></p>
+<h2 id="便利リンク" class="article-heading"> 😎 <a href="#便利リンク" class="headerlink" title="便利リンク"></a>便利リンク<a class="article-anchor" href="#便利リンク" aria-hidden="true"></a></h2><p><strong><a href="http://www.workabroad.jp/posts/2054" target="_blank" rel="noopener">Rubyのチートシート 変数 / クラス / モジュール</a></strong><br><br>Rubyの変数、クラス、モジュールの使い方について</p>
+<h3 id="お願い" class="article-heading"><a href="#お願い" class="headerlink" title="お願い"></a>お願い<a class="article-anchor" href="#お願い" aria-hidden="true"></a></h3><p>個人的に初心者向けにRuby/Railsを教える機会が増えています。この記事に関連する分野で効率的に勉強するのにお勧めな資料をご存じなら、Twitterで<strong><a href="https://twitter.com/zyunnosuke" target="_blank" rel="noopener">@zyunnosuke</a></strong>にメッセージorコメントいただけたら感激します！</p>
+<p>逆にこの記事を使ってトライしたら、なんかうまく動かない的な話も同じく大歓迎です。いつでもメッセージください！</p>
+<h2 id="変更来歴" class="article-heading"> 🐹 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>(2014/02/08 20:00) Rails 4.0チュートリアルを追加<br><br>(2014/02/12 22:20) 知り合いに押してフィードバックをいただきました！<br><br>(2014/02/18 00:10) Railsの基本的なフォルダ構成を追加<br><br>(2014/02/24 16:10) MVCの説明を追加<br><br>(2014/03/30 20:00) Ruby/Railsの参考情報や古くなった情報を修正<br><br>(2014/04/13 19:05) Rails 4.1対応<br><br>(2016/02/29 00:15) Herokuの概要・メリットのスライドを追加<br></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

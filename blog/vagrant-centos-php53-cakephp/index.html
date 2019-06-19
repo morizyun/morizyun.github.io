@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>VagrantでCentOS/Chef/MySQL/phpMyAdmin/PHP 5.3/CakePHP 2.4.5開発環境を整備 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/vagrant-centos-php53-cakephp/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Vagrantがおもしろくって、少しずついじっていますが、まだまだエラーが出た場合のリカバリや、外部のcookbookの導入など苦労しています。 今回は、『vargrant+chefでつくるPHP5.5+MySQL5.6+CakePHP3環境 - たけまるの日記』をベースに一部、プロダクトに合わせてバージョンを調節しながら作ってみました。 CakePHP 2.5でプログラム開発を始めてみたい人が、">
+<meta name="keywords" content="CentOS,PHP,Vagrant">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VagrantでCentOS&#x2F;Chef&#x2F;MySQL&#x2F;phpMyAdmin&#x2F;PHP 5.3&#x2F;CakePHP 2.4.5開発環境を整備">
+<meta property="og:url" content="http://morizyun.github.io/blog/vagrant-centos-php53-cakephp/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Vagrantがおもしろくって、少しずついじっていますが、まだまだエラーが出た場合のリカバリや、外部のcookbookの導入など苦労しています。 今回は、『vargrant+chefでつくるPHP5.5+MySQL5.6+CakePHP3環境 - たけまるの日記』をベースに一部、プロダクトに合わせてバージョンを調節しながら作ってみました。 CakePHP 2.5でプログラム開発を始めてみたい人が、">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VagrantでCentOS&#x2F;Chef&#x2F;MySQL&#x2F;phpMyAdmin&#x2F;PHP 5.3&#x2F;CakePHP 2.4.5開発環境を整備">
+<meta name="twitter:description" content="Vagrantがおもしろくって、少しずついじっていますが、まだまだエラーが出た場合のリカバリや、外部のcookbookの導入など苦労しています。 今回は、『vargrant+chefでつくるPHP5.5+MySQL5.6+CakePHP3環境 - たけまるの日記』をベースに一部、プロダクトに合わせてバージョンを調節しながら作ってみました。 CakePHP 2.5でプログラム開発を始めてみたい人が、">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">VagrantでCentOS/Chef/MySQL/phpMyAdmin/PHP 5.3/CakePHP 2.4.5開発環境を整備</h1>
+    
+    <a href="/blog/vagrant-centos-php53-cakephp/" class="article-date"><time datetime="2014-03-29T15:00:00.000Z">2014-03-30</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/vagrant-centos-php53-cakephp/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/vagrant-centos-php53-cakephp/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/vagrant-centos-php53-cakephp/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/vagrant-centos-php53-cakephp/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><a href="//www.amazon.co.jp/gp/product/4774159719/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774159719&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774159719&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;">
+    </a>
+
+<p>Vagrantがおもしろくって、少しずついじっていますが、まだまだエラーが出た場合のリカバリや、外部のcookbookの導入など苦労しています。</p>
+<p>今回は、『<strong><a href="http://d.hatena.ne.jp/takemaru123/20140104/1388857028" target="_blank" rel="noopener">vargrant+chefでつくるPHP5.5+MySQL5.6+CakePHP3環境 - たけまるの日記</a></strong>』をベースに一部、プロダクトに合わせてバージョンを調節しながら作ってみました。</p>
+<p>CakePHP 2.5でプログラム開発を始めてみたい人が、環境構築でつまずないようにしたいと思って作りました。ぜひご活用ください！</p>
+<p><strong>(3/23 12:55) phpMyAdminとVirtual hostの設定を追加</strong></p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="Vagrant" class="article-heading">🐮 <a href="#Vagrant" class="headerlink" title="Vagrant"></a>Vagrant<a class="article-anchor" href="#Vagrant" aria-hidden="true"></a></h2><p><strong><a href="http://www.vagrantup.com/" target="_blank" rel="noopener">Vagrant 公式サイト</a></strong><br><br>パッケージをDLしてインストール。</p>
+<p>vagrantをインストールしたら、boxでChefを使えるようにするためのプラグインをインストール。あと、コミュニティの作ったCookbookのインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">vagrant plugin install vagrant-omnibus</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="VirtualBox" class="article-heading"> 🎃 <a href="#VirtualBox" class="headerlink" title="VirtualBox"></a>VirtualBox<a class="article-anchor" href="#VirtualBox" aria-hidden="true"></a></h2><p><strong><a href="https://www.virtualbox.org/" target="_blank" rel="noopener">VirtualBox 公式サイト</a></strong><br><br>パッケージをDLしてインストール。</p>
+<h2 id="仮想マシンの作成" class="article-heading"> 🎳 <a href="#仮想マシンの作成" class="headerlink" title="仮想マシンの作成"></a>仮想マシンの作成<a class="article-anchor" href="#仮想マシンの作成" aria-hidden="true"></a></h2><p>自分の好きな場所(例は<code>~/Dropbox/vagrant</code>)に仮想マシン用のフォルダを作成。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">mkdir ~/Dropbox/vagrant</span><br><span class="line">git clone https://github.com/morizyun/vagrant-centos-cakephp cakephp</span><br><span class="line">cd cakephp</span><br><span class="line">bundle install</span><br><span class="line">bundle exec berks install --path site-cookbooks</span><br><span class="line">vagrant up</span><br></pre></td></tr></tbody></table></figure>
+<p>もし<code>bundle install</code>などでエラーが出る場合は、<code>Homebrew, Ruby</code>の問題の可能性があるので『<strong><a href="http://morizyun.github.io/blog/mountain-lion-rails-setup-ruby-rvm-msyql/">Mountain Lion Rails 最新環境 詳解 構築手順 [Homebrew][MySQL][rbenv][Ruby]</a></strong>』を参照して「Homebrew、rbenv」をインストールしてください。</p>
+<h2 id="hostsの書き換え" class="article-heading"> 🍄 <a href="#hostsの書き換え" class="headerlink" title="hostsの書き換え"></a>hostsの書き換え<a class="article-anchor" href="#hostsの書き換え" aria-hidden="true"></a></h2><p>Macの場合は、<code>sudo vim /etc/hosts</code>でhostsに次の内容を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">192.168.33.10 cakephp.dev</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ブラウザでのアクセス" class="article-heading">🚌 <a href="#ブラウザでのアクセス" class="headerlink" title="ブラウザでのアクセス"></a>ブラウザでのアクセス<a class="article-anchor" href="#ブラウザでのアクセス" aria-hidden="true"></a></h2><p><code>http://cakephp.dev/</code>にブラウザをアクセスすると<code>app/</code>フォルダの中のファイルにアクセスできます。</p>
+<p><img src="/img/2014-03-30-vagrant-centos-php53-cakephp_1.jpg" width="500" height="384" alt="スクリーンショット 2014-03-09 12.50.08"></p>
+<p>あとは、<code>~/Dropbox/vagrant/CakePHP/app</code>の中がCakePHPのアプリケーションをいじれば、適宜反映されます。</p>
+<h2 id="phpMyAdminへのアクセス" class="article-heading">🐡 <a href="#phpMyAdminへのアクセス" class="headerlink" title="phpMyAdminへのアクセス"></a>phpMyAdminへのアクセス<a class="article-anchor" href="#phpMyAdminへのアクセス" aria-hidden="true"></a></h2><p><code>http://cakephp.dev/phpMyAdmin</code>にブラウザをアクセスするとユーザー名とパスワードを聞かれます。ユーザー名は<code>root</code>、パスワードは<code>cakepass</code>と入力すると「<strong><a href="http://ja.wikipedia.org/wiki/PhpMyAdmin" target="_blank" rel="noopener">phpMyAdmin</a></strong>」にアクセスできます。</p>
+<p><img src="/img/2014-03-30-vagrant-centos-php53-cakephp_1.jpg" width="500" height="255" alt="スクリーンショット 2014-03-23 12.50.21"></p>
+<h2 id="Vagrantの基本コマンド" class="article-heading">🗽 <a href="#Vagrantの基本コマンド" class="headerlink" title="Vagrantの基本コマンド"></a>Vagrantの基本コマンド<a class="article-anchor" href="#Vagrantの基本コマンド" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">vagrant up : vagrantの起動(Vagrantfileがあるフォルダで実行)</span><br><span class="line">vagrant halt : vagrantを終了(Vagrantfileがあるフォルダで実行)</span><br><span class="line">vagrant ssh : vagrantにログイン</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="GitHubのリポジトリ" class="article-heading"> 🚜 <a href="#GitHubのリポジトリ" class="headerlink" title="GitHubのリポジトリ"></a>GitHubのリポジトリ<a class="article-anchor" href="#GitHubのリポジトリ" aria-hidden="true"></a></h2><p>このvagrantの詳細はGitHubのリポジトリ『<strong><a href="https://github.com/morizyun/vagrant-centos-cakephp" target="_blank" rel="noopener">morizyun/vagrant-centos-cakephp</a></strong>』にあります！</p>
+<h2 id="Webアプリケーション開発における基礎知識" class="article-heading">😀 <a href="#Webアプリケーション開発における基礎知識" class="headerlink" title="Webアプリケーション開発における基礎知識"></a>Webアプリケーション開発における基礎知識<a class="article-anchor" href="#Webアプリケーション開発における基礎知識" aria-hidden="true"></a></h2><p><strong><a href="http://qiita.com/okeyaki/items/37eb4b66bd8ef62c1fe8" target="_blank" rel="noopener">Webアプリケーションの構成に関する予備知識</a></strong><br></p>
+<pre>1) アプリケーションを構成する層
+2) アプリケーションを構成する概念・オブジェクト
+</pre>
+
+<p>ごっちゃになってしまいがちな知識を整理してくれています。すばらしい！</p>
+<h2 id="エラーに関するメモ" class="article-heading"> 🤔 <a href="#エラーに関するメモ" class="headerlink" title="エラーに関するメモ"></a>エラーに関するメモ<a class="article-anchor" href="#エラーに関するメモ" aria-hidden="true"></a></h2><p>Cache系のパーミッション、書き込みエラーが出る場合の対処。</p>
+<pre>1) sudo chmod -R 777 app/tmp
+2) app/tmpの中にcache用のフォルダが存在するか確認(ない場合も同じエラーが出る)
+</pre>
+
+<h2 id="お願い" class="article-heading">🚕 <a href="#お願い" class="headerlink" title="お願い"></a>お願い<a class="article-anchor" href="#お願い" aria-hidden="true"></a></h2><p>Windowsなどで試していて、ちゃんと動いてくれないパターンが散見されました。もし、動かない場合があったらぜひコメントください。</p>
+<h2 id="参考リンク" class="article-heading"> 😎 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><p><strong><a href="http://qiita.com/taiki45/items/b46a2f32248720ec2bae" target="_blank" rel="noopener">今っぽい Vagrant + Chef Solo チュートリアル</a></strong><br></p>
+<blockquote><br>agrant と Chef Solo ってとてもベンリそうに見えてたのですが、ネット上にあるのは断片的な情報が多かったり、そもそもいろんなやり方があって混乱してたので、サックリ始めるためのチュートリアルを書きました。これをきっかけにベンリな Vagrant ライフを堪能して頂ければ幸いです。<br></blockquote>
+
+<p><strong><a href="http://tdoc.info/blog/2012/05/08/chef_solo.html" target="_blank" rel="noopener">chef-soloで環境設定</a></strong><br></p>
+<blockquote><br>chefはサーバ構成管理ツールです。構成を設定ファイルとして書き残しておき、chefを実行すればそのとおりにサーバを構築してくれます。また、何度実行しても同じように構築してくれますし、サーバ構成をいじったとしても修正してくれます。というわけで、chefを使ってみたのでそのメモ。<br></blockquote>
+
+<p><strong><a href="http://qiita.com/joker1007/items/1b62e3a36b4f435c53a2" target="_blank" rel="noopener">Assets.github.com%2fimages%2fgravatars%2fgravatar 140<br>最近の(2013/8/28時点の)vagrantとberkshelfの書き方 </a></strong><br></p>
+<blockquote><br>vagrantとberkshelfで超捗る、みたいな記事は一杯あるんですが、その先のちょっと弄りたいってなった時に一瞬悩む。コミュニティcookbookのattributesとかカスタムしたい。自分で作ったcookbookのレシピも追加したい。<br></blockquote>
+
+<p><strong><a href="http://qiita.com/sotarok/items/0d525e568a6088f6f6bb" target="_blank" rel="noopener">Git submodule の基礎</a></strong><br></p>
+<blockquote><br>git submodule は、外部の git リポジトリを、自分の git リポジトリのサブディレクトリとして登録し、特定の commit を参照する仕組みです。<br></blockquote>
+
+<p><strong><a href="http://qiita.com/u1aryz/items/8d1923da79158439eeaa" target="_blank" rel="noopener">git submoduleを今風な感じで削除する</a></strong><br><br><code>Git submodule</code>を削除したいときに覚えておきたいコマンド。</p>
+<p><strong><a href="https://gist.github.com/jonah-carbonfive/3101407" target="_blank" rel="noopener">jonah-carbonfive / readme.markdown</a></strong><br><br>README.mdのテンプレート。かなり重宝しています！</p>
+<h2 id="変更来歴" class="article-heading"> 🐰 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>(3/09 19:25) 非推奨になっていたvagrant-berkshelfを削除<br><br>(3/16 20:45) Vagrantのコマンドとか追加<br><br>(3/23 12:55) phpMyAdminとVirtual hostの設定を追加<br></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Mac Marvericks Rails最新環境詳解構築手順 [Homebrew][MySQL][rbenv][Ruby] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/marvericks-rails-setup-ruby-rvm-msyql/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="MarvericksにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。(あとは統計解析の勉強中なのでRやRStudio関係もインストールされますw)開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！">
+<meta name="keywords" content="Rails,Ruby,Mac macOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac Marvericks Rails最新環境詳解構築手順 [Homebrew][MySQL][rbenv][Ruby]">
+<meta property="og:url" content="http://morizyun.github.io/blog/marvericks-rails-setup-ruby-rvm-msyql/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="MarvericksにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。(あとは統計解析の勉強中なのでRやRStudio関係もインストールされますw)開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac Marvericks Rails最新環境詳解構築手順 [Homebrew][MySQL][rbenv][Ruby]">
+<meta name="twitter:description" content="MarvericksにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。(あとは統計解析の勉強中なのでRやRStudio関係もインストールされますw)開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Mac Marvericks Rails最新環境詳解構築手順 [Homebrew][MySQL][rbenv][Ruby]</h1>
+    
+    <a href="/blog/marvericks-rails-setup-ruby-rvm-msyql/" class="article-date"><time datetime="2014-12-21T15:00:00.000Z">2014-12-22</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/marvericks-rails-setup-ruby-rvm-msyql/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/marvericks-rails-setup-ruby-rvm-msyql/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/marvericks-rails-setup-ruby-rvm-msyql/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/marvericks-rails-setup-ruby-rvm-msyql/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><a href="//www.amazon.co.jp/gp/product/4800710340/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4800710340&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4800710340&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;">
+    </a>
+
+<p>MarvericksにRailsのモダンな開発環境を構築するまでの一連の手順をまとめました。(あとは統計解析の勉強中なのでRやRStudio関係もインストールされますw)開発環境には好みがあると思いますが、Macを新しく買ったり、OSを再インストールした時などは良かったら使ってください！</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="オススメ記事" class="article-heading">🐯 <a href="#オススメ記事" class="headerlink" title="オススメ記事"></a>オススメ記事<a class="article-anchor" href="#オススメ記事" aria-hidden="true"></a></h2><p><strong><a href="http://www.1x1.jp/blog/2014/04/how-to-setup-application-on-osx.html" target="_blank" rel="noopener">Mac OSX をクリーンインストールしてからの環境構築メモ</a></strong><br><br>手順の書き方がよりわかりやすく、抜け漏れが少ないのがいい。</p>
+<p><strong><a href="http://qiita.com/syui/items/73a822970742b317aede" target="_blank" rel="noopener">MacBookAirで使っている便利ツール</a></strong><br><br>網羅的にまとめられている記事。すばらしい。</p>
+<h2 id="Xcodeのインストール" class="article-heading"> 😸 <a href="#Xcodeのインストール" class="headerlink" title="Xcodeのインストール"></a>Xcodeのインストール<a class="article-anchor" href="#Xcodeのインストール" aria-hidden="true"></a></h2><p><strong><a href="https://developer.apple.com/jp/technologies/tools/" target="_blank" rel="noopener">XCode</a></strong><br><br>Mac App StoreからXcodeをインストール。(Marvericksでは必須ではないかも)</p>
+<p>同じく必須ではないかもですが、コマンドラインからのライセンスの同意。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo xcodebuild -license</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Homebrewのインストール" class="article-heading"> 🎂 <a href="#Homebrewのインストール" class="headerlink" title="Homebrewのインストール"></a>Homebrewのインストール<a class="article-anchor" href="#Homebrewのインストール" aria-hidden="true"></a></h2><p><strong><a href="http://mxcl.github.com/homebrew/" target="_blank" rel="noopener">Homebrew</a></strong><br><br>ターミナルに次のコマンドを入力してインストール。途中で聞かれる、XcodeのCommand LINE Toolもインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Gitのインストール" class="article-heading">🐞 <a href="#Gitのインストール" class="headerlink" title="Gitのインストール"></a>Gitのインストール<a class="article-anchor" href="#Gitのインストール" aria-hidden="true"></a></h2><p>ソースコードのバージョン管理のしくみである『<strong><a href="http://git-scm.com/" target="_blank" rel="noopener">Git</a></strong>』の初期設定のコマンドを実行。このユーザー名と、メールアドレスはGit内で使われるだけなので自由に設定してください。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">brew install git</span><br><span class="line">git config --global user.name "ユーザー名"</span><br><span class="line">git config --global user.email email@example.com</span><br></pre></td></tr></tbody></table></figure>
+<p>Gitソースコードの管理から除外するファイル<code>.gitignore</code>を作成します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git config --global --add core.excludesfile "$HOME/.gitignore"</span><br></pre></td></tr></tbody></table></figure>
+<p>これで<code>~/.gitignore</code>に常にコミットしないファイルを登録できるようになりました。</p>
+<p>たとえばJetBrains系のアプリケーションを使っている場合は開発フォルダに<code>/.idea/*</code>といったファイルが自動生成されます。そのような場合は、まずvimで<code>~/.gitignore</code>を開きます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">vim ~/.gitignore</span><br></pre></td></tr></tbody></table></figure>
+<p>ファイルを開いたら、<code>/.idea/*</code>を追加します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">/.idea/*</span><br></pre></td></tr></tbody></table></figure>
+<p>GitHub用のパスワードをあらかじめ登録。<code>vi ~/.netrc</code>で以下を追記。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">machine github.com</span><br><span class="line">login USERNAME</span><br><span class="line">password PASSWORD</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Zshの設定" class="article-heading"> 🏀 <a href="#Zshの設定" class="headerlink" title="Zshの設定"></a>Zshの設定<a class="article-anchor" href="#Zshの設定" aria-hidden="true"></a></h2><p>GitHubで盛り上がっている<strong><a href="https://github.com/skwp/dotfiles" target="_blank" rel="noopener">skwp/dotfiles</a></strong>を手順にしたがってインストール。</p>
+<p>次のautojumpをインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">brew install autojump</span><br></pre></td></tr></tbody></table></figure>
+<p><code>vim ~/.zshrc</code>で次の内容を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># alias</span><br><span class="line">alias ls="ls -la"</span><br><span class="line"></span><br><span class="line"># autojump</span><br><span class="line">[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh</span><br></pre></td></tr></tbody></table></figure>
+<p>で設定を反映。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
+<p>この<code>dotfiles</code>は頻繁に変更されているようなので次のコマンドで定期的にアップデートすると捗ります！</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">cd ~/.yadr</span><br><span class="line">git pull --rebase</span><br><span class="line">rake update</span><br></pre></td></tr></tbody></table></figure>
+<p>もしcolorschemaを変更したい場合は次のファイルの<code>colorschema</code>の部分をいじってください。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">vim ~/.yadr/vim/settings/yadr-appearance.vim</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Homebrew-Caskでインストール" class="article-heading">🐝 <a href="#Homebrew-Caskでインストール" class="headerlink" title="Homebrew Caskでインストール"></a>Homebrew Caskでインストール<a class="article-anchor" href="#Homebrew-Caskでインストール" aria-hidden="true"></a></h2><p><strong><a href="http://caskroom.io/" target="_blank" rel="noopener">Homebrew Cask</a></strong><br><br>コマンドラインからアプリケーションをインストールできるツール。今回は僕の普段インストールしているBrewfileをGitHubにあげておきました。 => <strong><a href="https://github.com/morizyun/homebrew-cask-brewfile" target="_blank" rel="noopener">morizyun/homebrew-cask-brewfile</a></strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git clone https://github.com/morizyun/homebrew-cask-brewfile.git</span><br><span class="line">cd homebrew-cask-brewfile</span><br><span class="line">brew bundle</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="iTerm2の設定" class="article-heading"> 😎 <a href="#iTerm2の設定" class="headerlink" title="iTerm2の設定"></a>iTerm2の設定<a class="article-anchor" href="#iTerm2の設定" aria-hidden="true"></a></h2><p><strong><a href="http://qiita.com/muniere/items/e6c5c48a541401ee5af3" target="_blank" rel="noopener">Mac - iTerm2上で256色のvimを使う</a></strong><br><br>iTerm2でvimの256色表示をできるようにする。</p>
+<h2 id="Sublime-Text2のパッケージ追加" class="article-heading">😀 <a href="#Sublime-Text2のパッケージ追加" class="headerlink" title="Sublime Text2のパッケージ追加"></a>Sublime Text2のパッケージ追加<a class="article-anchor" href="#Sublime-Text2のパッケージ追加" aria-hidden="true"></a></h2><p><strong><a href="https://sublime.wbond.net/installation" target="_blank" rel="noopener">Package Control</a></strong><br><br><code>View > Show Console</code>からコピー&ペーストしたコードを実行。Sublime Text2に簡単にパッケージを追加できるようにするためのツール。</p>
+<p><strong><a href="https://github.com/ttscoff/MarkdownEditing" target="_blank" rel="noopener">MarkdownEditing</a></strong><br><br><code>CMD+SHIFT+P > install package > MarkdownEditing</code>マークダウン用のパッケージ。これがないと生きていけないw</p>
+<h2 id="Google日本語入力のインストール" class="article-heading">🐡 <a href="#Google日本語入力のインストール" class="headerlink" title="Google日本語入力のインストール"></a>Google日本語入力のインストール<a class="article-anchor" href="#Google日本語入力のインストール" aria-hidden="true"></a></h2><p><strong><a href="http://www.google.co.jp/ime/" target="_blank" rel="noopener">Google 日本語入力</a></strong><br><br>僕の環境では、Homebrew Caskからだとうまくデフォルトになってくれなかったです。<br>もし同様の場合はパッケージを手作業でインストールしなおしてみてください。</p>
+<h2 id="MySQLの設定" class="article-heading">🚌 <a href="#MySQLの設定" class="headerlink" title="MySQLの設定"></a>MySQLの設定<a class="article-anchor" href="#MySQLの設定" aria-hidden="true"></a></h2><p>ここからは日本のWebサイトでよく使われているオープンソースのデータベース『<strong><a href="http://www-jp.mysql.com/" target="_blank" rel="noopener">MySQL</a></strong>』の設定手順。(Homebrew Caskでインストール済)</p>
+<p>インストールが完了したら次のようなコメントがでます。<br><br>(バージョンによって多少変わる可能性あり。自分の環境での表示を優先)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">brew info mysql</span><br><span class="line"># 一部抜粋</span><br><span class="line"># To have launchd start mysql at login:</span><br><span class="line">#    ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents</span><br><span class="line"># Then to load mysql now:</span><br><span class="line">#    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span><br><span class="line"># Or, if you don't want/need launchctl, you can just run:</span><br><span class="line">#    mysql.server start</span><br></pre></td></tr></tbody></table></figure>
+<p>次にMySQLを起動時に自動でSTARTさせるための設定をします。<br><br>まず、次のコマンドを実行して自動起動用plistをコピー。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents</span><br></pre></td></tr></tbody></table></figure>
+<p>次にコピーしたplistは常に起動するように設定されているので、stopで終了できるように修正します。<br>まずは次のコマンドでファイルをvimで開きます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">vim ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span><br></pre></td></tr></tbody></table></figure>
+<p>ファイルを開いたら<code><true></true></code>となっている部分を<code><false></false></code>に変更します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"><key>KeepAlive</key></span><br><span class="line"><false></false></span><br><span class="line"><key>Program</key></span><br><span class="line"><string>/usr/local/bin/mysqld_safe</string></span><br></pre></td></tr></tbody></table></figure>
+<p>次に、自動起動の設定をします。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span><br></pre></td></tr></tbody></table></figure>
+<p>もしplistを修正して再読み込みさせたい場合は次のコマンドを実行してください。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span><br><span class="line">launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span><br></pre></td></tr></tbody></table></figure>
+<p>次にMySQLのroot(管理者)のパスワードとTestDBの削除等を対話形式で行います。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></tbody></table></figure>
+<p>以下は僕の設定です。</p>
+<pre>Set root password?(rootパスワード設定) => N
+Remove anonymous users?(匿名ユーザー削除) => Y
+Disallow root login remotely?(remote connectは許可しない) => Y
+Remove test database and access to it?(テストDB削除) => Y
+Reload privilege tables now?(権限リロード) => Y
+</pre>
+
+<p>ちなみに、HerokuのデフォルトDBである『<strong>PostgreSQL</strong>』を試してみたい場合は拙著『<strong><a href="http://morizyun.github.io/blog/postgresql-mac-centos-rails/">Mac MountainLionへのPostgreSQLの導入手順</a></strong>』を見ながらインストールしてみてください。(時間ができたらMabericksで動作確認してタイトル直しますw)</p>
+<h2 id="rbenvの設定" class="article-heading">🗻 <a href="#rbenvの設定" class="headerlink" title="rbenvの設定"></a>rbenvの設定<a class="article-anchor" href="#rbenvの設定" aria-hidden="true"></a></h2><p>まずは、「<strong><a href="https://github.com/sstephenson/rbenv-default-gems" target="_blank" rel="noopener">sstephenson/rbenv-default-gems</a></strong>」をインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems</span><br></pre></td></tr></tbody></table></figure>
+<p>あとは、デフォルトでインストールするgemを追記。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">bundler</span><br><span class="line">rails</span><br></pre></td></tr></tbody></table></figure>
+<p>次コマンドを実行して、vimで<code>~/.zshrc</code>を開きます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
+<p>ファイルを開いたら次の内容を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi</span><br><span class="line"></span><br><span class="line">function gem(){</span><br><span class="line">  $HOME/.rbenv/shims/gem $*</span><br><span class="line">  if [ "$1" = "install" ] || [ "$1" = "i" ] || [ "$1" = "uninstall" ] || [ "$1" = "uni" ]</span><br><span class="line">  then</span><br><span class="line">    rbenv rehash</span><br><span class="line">  fi</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">function bundle(){</span><br><span class="line">  $HOME/.rbenv/shims/bundle $*</span><br><span class="line">  if [ "$1" = "install" ] || [ "$1" = "update" ]</span><br><span class="line">  then</span><br><span class="line">    rbenv rehash</span><br><span class="line">  fi</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export PATH="$HOME/.rbenv/shims:$PATH"</span><br></pre></td></tr></tbody></table></figure>
+<p>編集が完了したらターミナルで次のコマンドを実行。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
+<p>次にインストール可能なRubyのバージョンをチェック。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rbenv install -l</span><br></pre></td></tr></tbody></table></figure>
+<p>最新のRuby(2.1.0など)をインストール。(xxx-dev, xxx-rc1などは開発版などのため除外)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rbenv install 2.1.0</span><br><span class="line">rbenv rehash</span><br><span class="line">rbenv global 2.1.0</span><br></pre></td></tr></tbody></table></figure>
+<p>上記のコマンドの完了後、<code>Ruby -v</code>を実行して<code>2.1.0</code>などの結果が帰ってくれば成功。</p>
+<p>さらに<code>bundle exec</code>を省略するために『<strong><a href="https://github.com/ianheggie/rbenv-binstubs" target="_blank" rel="noopener">rbenv-binstubs</a></strong>』をインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">mkdir ~/.rbenv/plugins</span><br><span class="line">cd ~/.rbenv/plugins</span><br><span class="line">git clone git://github.com/ianheggie/rbenv-binstubs.git</span><br></pre></td></tr></tbody></table></figure>
+<p>次に次のコードを実行。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">mkdir ~/.bundle</span><br><span class="line">vim ~/.bundle/config</span><br><span class="line"># ↓ を追加</span><br><span class="line">BUNDLE_BIN: bin</span><br></pre></td></tr></tbody></table></figure>
+<p>これで設定は完了です。一点注意点としては、今後は新しいプロジェクトを作成したら次のコマンドを実行する必要があります。ついつい忘れがちになるので注意が必要かも。<br><br>(<code>パス/to/project</code>はプロジェクトのフォルダを表しています)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">cd path/to/project</span><br><span class="line">bundle install --binstubs=bundle_bin</span><br><span class="line">rbenv rehash</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Railsのインストール" class="article-heading"> 🎃 <a href="#Railsのインストール" class="headerlink" title="Railsのインストール"></a>Railsのインストール<a class="article-anchor" href="#Railsのインストール" aria-hidden="true"></a></h2><p>ここまで本当にお疲れさまでした。ということで本題のRailsのインストールをします。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">gem install rails</span><br></pre></td></tr></tbody></table></figure>
+<p>コマンドの完了後に、<code>rails -v</code>を実行してエラーが出なければ成功です。</p>
+<p>この先、HerokuにPushするようなアプリケーションを作ってみたい場合は</p>
+<p>初心者な方向けには、『<strong><a href="/blog/beginner-rails-heroku-tutorial">Rails x Heroku 完全初心者向け チュートリアル</a></strong>』がお勧めです。</p>
+<p>Railsを触ったことがある人には、拙著『<strong><a href="/blog/heroku-rails4-postgresql-introduction/">Rails4でheroku Pushまでの最短手順</a></strong>』を試してみていただければ幸いです。</p>
+<h2 id="Tips集" class="article-heading"> 🎳 <a href="#Tips集" class="headerlink" title="Tips集"></a>Tips集<a class="article-anchor" href="#Tips集" aria-hidden="true"></a></h2><h3 id="Rictyのインストール" class="article-heading"><a href="#Rictyのインストール" class="headerlink" title="Rictyのインストール"></a>Rictyのインストール<a class="article-anchor" href="#Rictyのインストール" aria-hidden="true"></a></h3><p><strong><a href="/blog/ricty-font-homebrew-mac/">プログラムに最適なフォント『Ricty』を超簡単にインストール</a></strong><br><br>プログラミングに最適なFont Rictyをインストール。</p>
+<h3 id="Macの基本設定" class="article-heading"><a href="#Macの基本設定" class="headerlink" title="Macの基本設定"></a>Macの基本設定<a class="article-anchor" href="#Macの基本設定" aria-hidden="true"></a></h3><p>コンピュータ名を変更。</p>
+<pre>アプリケーション　>システム環境設定　>共有　>コンピュタ名　>(変更)
+</pre>
+
+<h3 id="Pythonのインストール" class="article-heading"><a href="#Pythonのインストール" class="headerlink" title="Pythonのインストール"></a>Pythonのインストール<a class="article-anchor" href="#Pythonのインストール" aria-hidden="true"></a></h3><p><strong><a href="/blog/python-pyenv-rehash-mac-development/">Python開発環境構築 徹底解説</a></strong><br><br>すごくシンプルなインストール手順ですが良かったらぜひ！</p>
+<h2 id="Mountain-Lion-gt-Marvericksへのアップグレード" class="article-heading">🚕 <a href="#Mountain-Lion-gt-Marvericksへのアップグレード" class="headerlink" title="Mountain Lion => Marvericksへのアップグレード"></a>Mountain Lion => Marvericksへのアップグレード<a class="article-anchor" href="#Mountain-Lion-gt-Marvericksへのアップグレード" aria-hidden="true"></a></h2><p>Homebrew周りでアップグレードした時のメモ。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">xcodebuild -license</span><br><span class="line">xcode-select --install</span><br><span class="line"></span><br><span class="line"># warningがなくなるまで対応</span><br><span class="line">brew doctor</span><br><span class="line"></span><br><span class="line"># brew側formulaのアップデート</span><br><span class="line">brew update</span><br><span class="line"></span><br><span class="line"># インストールアプリのアップデート</span><br><span class="line">brew upgrade</span><br><span class="line"></span><br><span class="line"># それでもダメなら再インストール</span><br><span class="line">brew uninstall <dependency-name> && brew install <dependency-name></dependency-name></dependency-name></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ImageMagick-Rmagickのインストール" class="article-heading">😼 <a href="#ImageMagick-Rmagickのインストール" class="headerlink" title="ImageMagick/Rmagickのインストール"></a>ImageMagick/Rmagickのインストール<a class="article-anchor" href="#ImageMagick-Rmagickのインストール" aria-hidden="true"></a></h2><p>ImageMagick/Rmagick周りでハマったのでメモ。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">brew uninstall pkgconfig && brew install pkgconfig</span><br><span class="line">brew uninstall libtool && brew install libtool</span><br><span class="line">brew uninstall libpng && brew install libpng</span><br><span class="line">brew uninstall libjpg && brew install libjpg</span><br><span class="line">brew uninstall imagemagick && brew install imagemagick --build-from-source</span><br><span class="line">PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.8.8-9/lib/pkgconfig/ bundle install</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading"> 🐰 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><p><strong><a href="http://mizchi.hatenablog.com/entry/2014/03/02/090517" target="_blank" rel="noopener">エンジニア Mac アプリ 環境 おすすめ - mizchi’s blog</a></strong></p>
+<p><strong><a href="http://jameshalsall.co.uk/posts/upgrading-homebrew-packages-on-osx-mavericks" target="_blank" rel="noopener">James Halsall</a></strong></p>
+<p><strong><a href="https://gist.github.com/imaz/4036786" target="_blank" rel="noopener">rbenv に変更した後 bundle install できない件</a></strong></p>
+<p><strong><a href="http://kazuph.hateblo.jp/entry/2012/09/20/002332" target="_blank" rel="noopener">githubにpushするときのパスワード入力を省略する - 僕の車輪の再発明</a></strong></p>
+<p><strong><a href="http://efcl.info/2013/1215/res3542/" target="_blank" rel="noopener">Mac OSXでR言語(+RStudio)をhomebrewでインストール</a></strong></p>
+<p><strong><a href="http://qiita.com/hal_sk/items/dec2b142926af0ef2464" target="_blank" rel="noopener">OSX - Mountain Lion にアップグレードしたら homebrew が動かなくなった場合の対処 - Qiita</a></strong></p>
+<h2 id="変更来歴" class="article-heading">🗽 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>(03/28 07:40) RStudioに関するスクリプトを追加<br><br>(09/27 14:55) rbenv-default-gemsの記述を追加<br><br>(12/22 21:10) Homebrewのインストールコマンドを修正<br></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

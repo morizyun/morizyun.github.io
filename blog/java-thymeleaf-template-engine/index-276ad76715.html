@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>JavaのテンプレートエンジンThymeleafチートシート | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//java/library-thymeleaf-fb4bf8758e.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="「Thymeleaf」はJavaの代表的なテンプレートエンジンライブラリです。次の特徴があります。  Webサーバから受け取ったデータを埋め込んで表示できる 定義されたロジックをDOM上でXMLタグ・属性で指定。HTMLを静的に表示できる パースされたフィアルをキャッシュしてI/Oを最適化し、高速に表示">
+<meta name="keywords" content="Java,Thymeleaf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaのテンプレートエンジンThymeleafチートシート">
+<meta property="og:url" content="http://morizyun.github.io//blog/java-thymeleaf-template-engine/index-276ad76715.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="「Thymeleaf」はJavaの代表的なテンプレートエンジンライブラリです。次の特徴があります。  Webサーバから受け取ったデータを埋め込んで表示できる 定義されたロジックをDOM上でXMLタグ・属性で指定。HTMLを静的に表示できる パースされたフィアルをキャッシュしてI/Oを最適化し、高速に表示">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaのテンプレートエンジンThymeleafチートシート">
+<meta name="twitter:description" content="「Thymeleaf」はJavaの代表的なテンプレートエンジンライブラリです。次の特徴があります。  Webサーバから受け取ったデータを埋め込んで表示できる 定義されたロジックをDOM上でXMLタグ・属性で指定。HTMLを静的に表示できる パースされたフィアルをキャッシュしてI/Oを最適化し、高速に表示">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="main-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="main-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">JavaのテンプレートエンジンThymeleafチートシート</h1>
+    
+    <a href="/blog/java-thymeleaf-template-engine/" class="article-date"><time datetime="2017-05-13T15:00:00.000Z">2017-05-14</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/java-thymeleaf-template-engine/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/java-thymeleaf-template-engine/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/java-thymeleaf-template-engine/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/java-thymeleaf-template-engine/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>「<a href="http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf_ja.html" target="_blank" rel="noopener">Thymeleaf</a>」はJavaの代表的なテンプレートエンジンライブラリです。次の特徴があります。</p>
+<ul>
+<li>Webサーバから受け取ったデータを埋め込んで表示できる</li>
+<li>定義されたロジックをDOM上でXMLタグ・属性で指定。HTMLを静的に表示できる</li>
+<li>パースされたフィアルをキャッシュしてI/Oを最適化し、高速に表示</li>
+</ul>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="Thymeleafのデータ指定方法" class="article-heading">🐮 <a href="#Thymeleafのデータ指定方法" class="headerlink" title="Thymeleafのデータ指定方法"></a>Thymeleafのデータ指定方法<a class="article-anchor" href="#Thymeleafのデータ指定方法" aria-hidden="true"></a></h2><h3 id="リンク-CSS-JS-画像パスの指定：" class="article-heading"><a href="#リンク-CSS-JS-画像パスの指定：" class="headerlink" title="リンク/CSS/JS/画像パスの指定：@{...}"></a>リンク/CSS/JS/画像パスの指定：<code>@{...}</code><a class="article-anchor" href="#リンク-CSS-JS-画像パスの指定：" aria-hidden="true"></a></h3><p>リンク/CSS/JS/画像などのパスの記述するために<code>@{...}</code>の書き方があります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"../../img/example.jpg"</span> <span class="attr">th:href</span>=<span class="string">"@{/img/example.jpg}"</span> ></span></span><br></pre></td></tr></tbody></table></figure>
+<p>自動でコンテキストパスを補完してくれて、HTMLのレスポンスはつぎのようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/path/to/img/example.jpg"</span> /></span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="現在のURLを指定：-39-39" class="article-heading"><a href="#現在のURLを指定：-39-39" class="headerlink" title="現在のURLを指定：@{''}"></a>現在のURLを指定：<code>@{''}</code><a class="article-anchor" href="#現在のURLを指定：-39-39" aria-hidden="true"></a></h3><p>前述のパス指定の応用で<code>@{''}</code>とすると現在のURLを指定できます。formを使ってひとつのパスでGetのときは表示、Postのときは登録とアクションを振り分けるときに便利です。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">form</span> <span class="attr">action</span>=<span class="string">"@{''}"</span> <span class="attr">method</span>=<span class="string">"post"</span>></span></span><br><span class="line"><span class="tag">form</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="多言語対応：" class="article-heading"><a href="#多言語対応：" class="headerlink" title="多言語対応：#{...}"></a>多言語対応：<code>#{...}</code><a class="article-anchor" href="#多言語対応：" aria-hidden="true"></a></h3><p>多言語対応を行う場合は<code>#{...}</code>を使います。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"#{title}"</span>></span>タイトル<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<p>ロケールファイルはデフォルトが<code>hello.properties</code>：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">title=English title</span><br></pre></td></tr></tbody></table></figure>
+<p>日本語は<code>hello_ja.properties</code>：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">title=日本語タイトル</span><br></pre></td></tr></tbody></table></figure>
+<p>HTMLレスポンスは日本語のロケールでは次のようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span>></span>日本語タイトル<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="変数展開：" class="article-heading"><a href="#変数展開：" class="headerlink" title="変数展開：${...}"></a>変数展開：<code>${...}</code><a class="article-anchor" href="#変数展開：" aria-hidden="true"></a></h3><p>Webサーバ(Controller)から渡された変数の展開は<code>${...}</code>を使います。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"${title}"</span>></span>タイトル<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<p>HTMLレスポンスはつぎのようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span>></span>渡された変数のタイトル<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="コレクションの変数展開：" class="article-heading"><a href="#コレクションの変数展開：" class="headerlink" title="コレクションの変数展開：*{...}"></a>コレクションの変数展開：<code>*{...}</code><a class="article-anchor" href="#コレクションの変数展開：" aria-hidden="true"></a></h3><p>コレクションを順番に処理するようなループ処理では次のように記述します。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">ul</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">li</span> <span class="attr">th:each</span>=<span class="string">"article: ${articleList}"</span> <span class="attr">th:object</span>=<span class="string">"${article}"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*{title}"</span>></span>タイトル<span class="tag">span</span>></span><br><span class="line">  <span class="tag">li</span>></span><br><span class="line"><span class="tag">ul</span>></span><br></pre></td></tr></tbody></table></figure>
+<p>HTMLレスポンスはつぎのようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">ul</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">li</span>></span><span class="tag"><<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*{title}"</span>></span>最初のタイトル<span class="tag">span</span>></span><span class="tag">li</span>><br><span class="line">  <span class="tag"><<span class="name">li</span>></span><span class="tag"><<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*{title}"</span>></span>2個目のタイトル<span class="tag">span</span>></span><span class="tag">li</span>><br><span class="line"><span class="tag">ul</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="リテラル置換：-テキスト" class="article-heading"><a href="#リテラル置換：-テキスト" class="headerlink" title="リテラル置換：|テキスト ${...}|"></a>リテラル置換：<code>|テキスト ${...}|</code><a class="article-anchor" href="#リテラル置換：-テキスト" aria-hidden="true"></a></h3><p><code>|テキスト ${...}|</code>で変数式を組み込んだリテラル置換ができます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"|置換後のテキスト: ${text}|"</span>></span>テキスト<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="コメント：-lt-gt" class="article-heading"><a href="#コメント：-lt-gt" class="headerlink" title="コメント：<!--/* */-->"></a>コメント：<code><!--/* */--></code><a class="article-anchor" href="#コメント：-lt-gt" aria-hidden="true"></a></h3><p>レスポンスに含めたくないコメントは<code><!--/* */--></code>と書きます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"><!--/*--></span></span><br><span class="line"><span class="tag"><<span class="name">p</span>></span>ここの内容はレスポンスに含まれません<span class="tag">p</span>></span><br><span class="line"><span class="comment"><!--*/--></span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ロジックを記述するthタグ" class="article-heading"> 🎳 <a href="#ロジックを記述するthタグ" class="headerlink" title="ロジックを記述するthタグ"></a>ロジックを記述する<code>th</code>タグ<a class="article-anchor" href="#ロジックを記述するthタグ" aria-hidden="true"></a></h2><h3 id="条件分岐：th-if、th-unless" class="article-heading"><a href="#条件分岐：th-if、th-unless" class="headerlink" title="条件分岐：th:if、th:unless"></a>条件分岐：<code>th:if</code>、<code>th:unless</code><a class="article-anchor" href="#条件分岐：th-if、th-unless" aria-hidden="true"></a></h3><figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:if</span>=<span class="string">"${#lists.isEmpty(items)}"</span>></span>アイテムがみつかりませんでした<span class="tag">p</span>></span><br><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:unless</span>=<span class="string">"${#lists.isEmpty(items)}"</span> /></span>アイテムが見つかりました！<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<p><code>th:if</code>、<code>th:unless</code>の評価は<code>boolean</code>以外でも次のように評価します。</p>
+<ul>
+<li><code>number</code>、<code>char</code>で<code>0</code>、<code>null</code>以外</li>
+<li><code>String</code>で、<code>false</code>、<code>off</code>、<code>no</code>、<code>null</code>以外</li>
+<li><code>boolean</code>、<code>number</code>、<code>char</code>、<code>String</code>以外で<code>null</code>以外</li>
+</ul>
+<h3 id="多項分岐：th-switch" class="article-heading"><a href="#多項分岐：th-switch" class="headerlink" title="多項分岐：th:switch"></a>多項分岐：<code>th:switch</code><a class="article-anchor" href="#多項分岐：th-switch" aria-hidden="true"></a></h3><p>複数の条件の分岐は<code>th:switch</code>が使えます。<code>"*"</code>でデフォルト値を設定できます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">div</span> <span class="attr">th:switch</span>=<span class="string">"${month}"</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"1 th:text=|${month}月|"</span>></span>Jan<span class="tag">p</span>></span><br><span class="line">  <span class="tag"><<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"2 th:text=|${month}月|"</span>></span>Feb<span class="tag">p</span>></span><br><span class="line">  <span class="tag"><<span class="name">p</span> <span class="attr">th:case</span>=<span class="string">"*"</span>></span>Other<span class="tag">p</span>></span><br><span class="line"><span class="tag">div</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="繰り返し：th-each" class="article-heading"><a href="#繰り返し：th-each" class="headerlink" title="繰り返し：th:each"></a>繰り返し：<code>th:each</code><a class="article-anchor" href="#繰り返し：th-each" aria-hidden="true"></a></h3><figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">ul</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">li</span> <span class="attr">th:each</span>=<span class="string">"article: ${articleList}"</span> <span class="attr">th:object</span>=<span class="string">"${article}"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*{title}"</span>></span>タイトル<span class="tag">span</span>></span><br><span class="line">  <span class="tag">li</span>></span><br><span class="line"><span class="tag">ul</span>></span><br></pre></td></tr></tbody></table></figure>
+<p><code>[[$(変数)]]</code>でインライン処理で下記なおすこともできます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">ul</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">li</span> <span class="attr">th:each</span>=<span class="string">"article: ${articleList}"</span> <span class="attr">th:object</span>=<span class="string">"${article}"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">span</span>></span>[[${article.title}]]<span class="tag">span</span>></span><br><span class="line">  <span class="tag">li</span>></span><br><span class="line"><span class="tag">ul</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="ローカル変数の定義：th-with" class="article-heading"><a href="#ローカル変数の定義：th-with" class="headerlink" title="ローカル変数の定義：th:with"></a>ローカル変数の定義：<code>th:with</code><a class="article-anchor" href="#ローカル変数の定義：th-with" aria-hidden="true"></a></h3><p><code>th:with=変数=値</code>でテンプレート内で変数を定義できます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">div</span> <span class="attr">th:with</span>=<span class="string">"title=hoge,author=john"</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"${title}"</span>></span>タイトル<span class="tag">p</span>></span><br><span class="line">  <span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"${author}"</span>></span>著者<span class="tag">p</span>></span><br><span class="line"><span class="tag">div</span>></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="HTMLに出力するthタグ" class="article-heading"> 🍄 <a href="#HTMLに出力するthタグ" class="headerlink" title="HTMLに出力するthタグ"></a>HTMLに出力する<code>th</code>タグ<a class="article-anchor" href="#HTMLに出力するthタグ" aria-hidden="true"></a></h2><h3 id="疑似ブロック：th-block" class="article-heading"><a href="#疑似ブロック：th-block" class="headerlink" title="疑似ブロック：th:block"></a>疑似ブロック：<code>th:block</code><a class="article-anchor" href="#疑似ブロック：th-block" aria-hidden="true"></a></h3><figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">th:block</span> <span class="attr">th:text</span>=<span class="string">"${author}"</span>></span><span class="tag">th:block</span>></span><br></pre></td></tr></tbody></table></figure>
+<p><code>author = John Due</code>の場合、HTMLレスポンスは次のようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line">John Due</span><br></pre></td></tr></tbody></table></figure>
+<p>値がない場合にタグを表示したくない場合は<code>th:block</code>を使うのがよさそうです。</p>
+<h3 id="サニタイズせずに出力：th-untext" class="article-heading"><a href="#サニタイズせずに出力：th-untext" class="headerlink" title="サニタイズせずに出力：th:untext"></a>サニタイズせずに出力：<code>th:untext</code><a class="article-anchor" href="#サニタイズせずに出力：th-untext" aria-hidden="true"></a></h3><p><code>th:untext</code>でサニタイズせずに内容を出力できます。Controller側で次のように記述します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line">model.addAttribute(title, <span class="string">"<h1>hoge</h1>"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>テンプレート側は次のように変数を受け取って出力。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">div</span> <span class="attr">th:utext</span>=<span class="string">"${title}"</span>></span>タイトル<span class="tag">div</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="インライン処理：th-inline" class="article-heading"><a href="#インライン処理：th-inline" class="headerlink" title="インライン処理：th:inline"></a>インライン処理：<code>th:inline</code><a class="article-anchor" href="#インライン処理：th-inline" aria-hidden="true"></a></h3><p>タグの中に変数を埋め込むには<code>th:inline</code>属性を使い、表示したい変数を<code>[[...]]</code>で囲みます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:inline</span>=<span class="string">"text"</span>></span>Heelo, [[${author]]!<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<p><code>author = John Due</code>の場合、HTMLレスポンスは次のようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span>></span>Hello, John Due<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="フォームに関すするthタグ" class="article-heading">👽 <a href="#フォームに関すするthタグ" class="headerlink" title="フォームに関すするthタグ"></a>フォームに関すする<code>th</code>タグ<a class="article-anchor" href="#フォームに関すするthタグ" aria-hidden="true"></a></h2><h3 id="フォームの入力値管理：th-field" class="article-heading"><a href="#フォームの入力値管理：th-field" class="headerlink" title="フォームの入力値管理：th:field"></a>フォームの入力値管理：<code>th:field</code><a class="article-anchor" href="#フォームの入力値管理：th-field" aria-hidden="true"></a></h3><p>フォームのinputタグのid/name属性の生成や戻る遷移時のvalueの設定は<code>th:field</code>を使います。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"#"</span> <span class="attr">th:action</span>=<span class="string">"@{'/article/create'}"</span> <span class="attr">th:object</span>=<span class="string">"${form}"</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">th:field</span>=<span class="string">"*{name}"</span> /></span></span><br><span class="line"><span class="tag">form</span>></span><br></pre></td></tr></tbody></table></figure>
+<p>生成されるHTMLは次のようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"/article/create"</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">""</span> /></span></span><br><span class="line"><span class="tag">form</span>></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="クラス定義に関するthタグ" class="article-heading">🐯 <a href="#クラス定義に関するthタグ" class="headerlink" title="クラス定義に関するthタグ"></a>クラス定義に関する<code>th</code>タグ<a class="article-anchor" href="#クラス定義に関するthタグ" aria-hidden="true"></a></h2><h3 id="動的なCSSクラスの定義：th-class" class="article-heading"><a href="#動的なCSSクラスの定義：th-class" class="headerlink" title="動的なCSSクラスの定義：th:class"></a>動的なCSSクラスの定義：<code>th:class</code><a class="article-anchor" href="#動的なCSSクラスの定義：th-class" aria-hidden="true"></a></h3><p><code>th:class</code>で動的にCSSクラスを設定できます。(HTMLの<code>class</code>を上書きします)</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">li</span> <span class="attr">th:class</span>=<span class="string">"${#strings.contains(content.language,'JP')} ? 'active' : ''"</span>></span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="動的にCSSクラスを追加：th-classappend" class="article-heading"><a href="#動的にCSSクラスを追加：th-classappend" class="headerlink" title="動的にCSSクラスを追加：th:classappend"></a>動的にCSSクラスを追加：<code>th:classappend</code><a class="article-anchor" href="#動的にCSSクラスを追加：th-classappend" aria-hidden="true"></a></h3><p><code>th:classappend</code>で動的にクラスを追加できます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"baseclass"</span> <span class="attr">th:classappend</span>=<span class="string">"${isAdmin} ? 'adminclass' : 'userclass'"</span>></span>Go to xxx<span class="tag">a</span>></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="サポート記法" class="article-heading">🐝 <a href="#サポート記法" class="headerlink" title="サポート記法"></a>サポート記法<a class="article-anchor" href="#サポート記法" aria-hidden="true"></a></h2><h3 id="三項演算子" class="article-heading"><a href="#三項演算子" class="headerlink" title="三項演算子"></a>三項演算子<a class="article-anchor" href="#三項演算子" aria-hidden="true"></a></h3><p>次のように三項演算子で値をセットできます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">tr</span> <span class="attr">th:class</span>=<span class="string">"${row.even}? 'even' : 'odd'"</span>></span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">tr</span>></span><br></pre></td></tr></tbody></table></figure>
+<p>条件を満たさなければ<code>null</code>をセットすることもできます。(三項演算子の最後要素を省略できます)</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">tr</span> <span class="attr">th:class</span>=<span class="string">"${row.even}? 'alt'"</span>></span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">tr</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="nullの場合のデフォルト値：" class="article-heading"><a href="#nullの場合のデフォルト値：" class="headerlink" title="nullの場合のデフォルト値：?:"></a>nullの場合のデフォルト値：<code>?:</code><a class="article-anchor" href="#nullの場合のデフォルト値：" aria-hidden="true"></a></h3><p><code>?:</code>を使うと、変数の値がnullの場合はデフォルト値を表示できます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"${title}?: 'unknown'"</span>></span>タイトル<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<p><code>title</code>が<code>null</code>の場合のHTMLレスポンスは次のようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span>></span>unknown<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="nullでない場合のみチェインを実行：" class="article-heading"><a href="#nullでない場合のみチェインを実行：" class="headerlink" title="nullでない場合のみチェインを実行：?"></a>nullでない場合のみチェインを実行：<code>?</code><a class="article-anchor" href="#nullでない場合のみチェインを実行：" aria-hidden="true"></a></h3><p>値が<code>null</code>出ない場合のみメソッドチェインを処理していくこともできます。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"${user?.address?.city}"</span>></span><span class="tag">td</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="パラメータへのアクセス：param" class="article-heading"><a href="#パラメータへのアクセス：param" class="headerlink" title="パラメータへのアクセス：param"></a>パラメータへのアクセス：<code>param</code><a class="article-anchor" href="#パラメータへのアクセス：param" aria-hidden="true"></a></h3><p>URLが<code>/article?id=123</code>のパラメータへのアクセスは<code>param.id[0]</code>を使います。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"${param.id[0]}"</span>></span>id<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="日付フォーマット：dates-format" class="article-heading"><a href="#日付フォーマット：dates-format" class="headerlink" title="日付フォーマット：dates.format"></a>日付フォーマット：<code>dates.format</code><a class="article-anchor" href="#日付フォーマット：dates-format" aria-hidden="true"></a></h3><figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${#dates.format(sprint.releaseDate, 'yyyy/MM/dd')}"</span>></span>Date<span class="tag">span</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="比較演算子" class="article-heading"><a href="#比較演算子" class="headerlink" title="比較演算子"></a>比較演算子<a class="article-anchor" href="#比較演算子" aria-hidden="true"></a></h3><p><code>></code>、<code><</code>、<code>>=</code>、<code><=< code>が利用可能。ただし<code><</code>、<code>></code>は利用すべきでないので<code>gt(>)</code>、<code>lt(<)< code>、<code>ge(>=)</code>、<code>le(<=)< code>、<code>not(!)</code>のエイリアスを使うべきです。</=)<></code></)<></code></=<></code></p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"6 gt 5"</span>></span>true<span class="tag">p</span>></span><br><span class="line"><span class="tag"><<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"6 le 5"</span>></span>false<span class="tag">p</span>></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ユーティリティオブジェクト" class="article-heading">🐞 <a href="#ユーティリティオブジェクト" class="headerlink" title="ユーティリティオブジェクト"></a>ユーティリティオブジェクト<a class="article-anchor" href="#ユーティリティオブジェクト" aria-hidden="true"></a></h2><h3 id="java-util-Dateオブジェクト用のユーティリティメソッド" class="article-heading"><a href="#java-util-Dateオブジェクト用のユーティリティメソッド" class="headerlink" title="java.util.Dateオブジェクト用のユーティリティメソッド"></a><code>java.util.Date</code>オブジェクト用のユーティリティメソッド<a class="article-anchor" href="#java-util-Dateオブジェクト用のユーティリティメソッド" aria-hidden="true"></a></h3><p><code>#dates</code>は<code>java.util.Date</code>オブジェクト用のユーティリティメソッドです。フォーマット、コンポーネントの抽出などがあります。</p>
+<table>
+<thead>
+<tr>
+<th>利用例</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#dates.format(date, 'yyyy/MM/dd HH:mm')</code></td>
+<td>指定されたパターンで日付をフォーマット(HHは24時間表記)</td>
+</tr>
+<tr>
+<td><code>#dates.day(date)</code></td>
+<td>日(1-31)のプロパティを取得</td>
+</tr>
+<tr>
+<td><code>#dates.month(date)</code></td>
+<td>月のプロパティを取得</td>
+</tr>
+<tr>
+<td><code>#dates.createNow()</code></td>
+<td>現在日時の日付オブジェクトを生成</td>
+</tr>
+<tr>
+<td><code>#dates.createToday()</code></td>
+<td>ぜんざい日の日付オブジェクトを生成(時間は00:00)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="数値オブジェクト用のユーティリティメソッド" class="article-heading"><a href="#数値オブジェクト用のユーティリティメソッド" class="headerlink" title="数値オブジェクト用のユーティリティメソッド"></a>数値オブジェクト用のユーティリティメソッド<a class="article-anchor" href="#数値オブジェクト用のユーティリティメソッド" aria-hidden="true"></a></h3><p><code>#numbers</code>は数値オブジェクト用のユーティリティメソッドです。</p>
+<table>
+<thead>
+<tr>
+<th>利用例</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#numbers.formatInteger(num, 1,'COMMA')</code></td>
+<td>整数の最小桁数と3桁ごとの区切り文字を設定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="リスト用のユーティリティメソッド" class="article-heading"><a href="#リスト用のユーティリティメソッド" class="headerlink" title="リスト用のユーティリティメソッド"></a>リスト用のユーティリティメソッド<a class="article-anchor" href="#リスト用のユーティリティメソッド" aria-hidden="true"></a></h3><p><code>#lists</code>はリスト用のユーティリティメソッドです。</p>
+<table>
+<thead>
+<tr>
+<th>利用例</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#lists.isEmpty(list)</code></td>
+<td>リストが空かどうかをチェック</td>
+</tr>
+<tr>
+<td><code>#lists.size(list)</code></td>
+<td>リストがからかどうかをチェック</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考リンク" class="article-heading"> 😸 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="https://goo.gl/hZGG3U" target="_blank" rel="noopener">必要最小限のサンプルでThymeleafを完全マスター</a></li>
+<li><a href="https://goo.gl/Ix5Ps8" target="_blank" rel="noopener">Thymeleafチートシート</a></li>
+<li><a href="https://goo.gl/N3pCE0" target="_blank" rel="noopener">html - Using Thymeleaf when the value is null</a></li>
+<li><a href="https://goo.gl/kDHvhW" target="_blank" rel="noopener">html - Thymeleaf: how to use conditionals to add/remove dynamically a CSS class</a></li>
+<li><a href="http://javazuki.com/articles/thymeleaf-input-form.html" target="_blank" rel="noopener">Thymeleaf(+ Spring MVC) におけるフォーム</a></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="mobile-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

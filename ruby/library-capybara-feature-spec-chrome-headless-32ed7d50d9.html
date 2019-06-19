@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Capybara + RSpec + Chrome headlessによるE2Eテスト[Rails] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//ruby/library-capybara-feature-spec-chrome-headless-32ed7d50d9.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="ja" href="http://morizyun.github.io//ruby/library-capybara-feature-spec-chrome-headless-32ed7d50d9.html">
+    
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Ruby on Railsのアプリケーションで「Capybara」 + RSpec環境でヘッドレスChromeを使ってE2E(エンドツーエンド)のブラウザテストをするための手順です。ついでにCapybaraのチートシートと、RSpec以外でCapybaraを使う手順を書いておきます。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Capybara + RSpec + Chrome headlessによるE2Eテスト[Rails]">
+<meta property="og:url" content="http://morizyun.github.io//ruby/library-capybara-feature-spec-chrome-headless-32ed7d50d9.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Ruby on Railsのアプリケーションで「Capybara」 + RSpec環境でヘッドレスChromeを使ってE2E(エンドツーエンド)のブラウザテストをするための手順です。ついでにCapybaraのチートシートと、RSpec以外でCapybaraを使う手順を書いておきます。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-16T22:58:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capybara + RSpec + Chrome headlessによるE2Eテスト[Rails]">
+<meta name="twitter:description" content="Ruby on Railsのアプリケーションで「Capybara」 + RSpec環境でヘッドレスChromeを使ってE2E(エンドツーエンド)のブラウザテストをするための手順です。ついでにCapybaraのチートシートと、RSpec以外でCapybaraを使う手順を書いておきます。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="main-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="main-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Capybara + RSpec + Chrome headlessによるE2Eテスト[Rails]</h1>
+              </header>
+              <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io//ruby/library-capybara-feature-spec-chrome-headless-32ed7d50d9.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io//ruby/library-capybara-feature-spec-chrome-headless-32ed7d50d9.html" data-via="zyunnosuke" data-counturl="http://morizyun.github.io//ruby/library-capybara-feature-spec-chrome-headless-32ed7d50d9.html">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io//ruby/library-capybara-feature-spec-chrome-headless-32ed7d50d9.html"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+              <div class="article-content" itemprop="articleBody">
+                <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>Ruby on Railsのアプリケーションで「<a href="https://github.com/teamcapybara/capybara" target="_blank" rel="noopener">Capybara</a>」 + RSpec環境でヘッドレスChromeを使ってE2E(エンドツーエンド)のブラウザテストをするための手順です。ついでにCapybaraのチートシートと、RSpec以外でCapybaraを使う手順を書いておきます。</p>
+<p><img src="/img/ruby-library-capybara-eye-catch.png"></p>
+<a id="more"></a>
+<h2 id="環境構築" class="article-heading">😀 <a href="#環境構築" class="headerlink" title="環境構築"></a>環境構築<a class="article-anchor" href="#環境構築" aria-hidden="true"></a></h2><p>macOSの場合はChrome WebDriverをインストールします。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install chromedriver</span><br></pre></td></tr></tbody></table></figure>
+<p>プロジェクト直下の<code>Gemfile</code>に以下を追加して、<code>bundle install</code>を実行。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">group <span class="symbol">:test</span> <span class="keyword">do</span></span><br><span class="line">   gem <span class="string">'rspec-rails'</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># E2E TEST</span></span><br><span class="line">   gem <span class="string">'capybara'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line">   gem <span class="string">'selenium-webdriver'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line"> <span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>spec/supports/capybara.rb</code>を追加して以下を記入。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'capybara/rspec'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'selenium-webdriver'</span></span><br><span class="line"></span><br><span class="line">Capybara.register_driver <span class="symbol">:chrome</span> <span class="keyword">do</span> <span class="params">|app|</span></span><br><span class="line">  Capybara::Selenium::Driver.new(app, <span class="symbol">browser:</span> <span class="symbol">:chrome</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Capybara.register_driver <span class="symbol">:headless_chrome</span> <span class="keyword">do</span> <span class="params">|app|</span></span><br><span class="line">  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(</span><br><span class="line">    <span class="symbol">chromeOptions:</span> { <span class="symbol">args:</span> <span class="string">%w[headless disable-gpu]</span> }</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  Capybara::Selenium::Driver.new(</span><br><span class="line">    app,</span><br><span class="line">    <span class="symbol">browser:</span> <span class="symbol">:chrome</span>,</span><br><span class="line">    <span class="symbol">desired_capabilities:</span> capabilities</span><br><span class="line">  )</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Capybara.javascript_driver = <span class="symbol">:headless_chrome</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>rails_helper.rb</code>に<code>spec/supports/capybara.rb</code>を読み込む設定を追加。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'supports/capybara'</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="テスト" class="article-heading"> 🍮 <a href="#テスト" class="headerlink" title="テスト"></a>テスト<a class="article-anchor" href="#テスト" aria-hidden="true"></a></h2><p>テストは次のように記述します。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'rails_helper'</span></span><br><span class="line"></span><br><span class="line">RSpec.describe <span class="string">'show sell information'</span>, <span class="symbol">type:</span> <span class="symbol">:feature</span>, <span class="symbol">js:</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">  before <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># prepare data</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  let!(<span class="symbol">:article</span>) { create(<span class="symbol">:article</span>) }</span><br><span class="line"></span><br><span class="line">  scenario <span class="string">'Go to product pageaaa from top page '</span> <span class="keyword">do</span></span><br><span class="line">    visit <span class="string">'/'</span></span><br><span class="line">    click_on article.title</span><br><span class="line">    expect(page.current_path).to eq <span class="string">"/articles/<span class="subst">#{article.id}</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>これだけでテストの際にヘッドレスのChromeが立ち上がってテストを実施できます。</p>
+<h2 id="Capybaraチートシート" class="article-heading"> 🚜 <a href="#Capybaraチートシート" class="headerlink" title="Capybaraチートシート"></a>Capybaraチートシート<a class="article-anchor" href="#Capybaraチートシート" aria-hidden="true"></a></h2><h3 id="Click系" class="article-heading"><a href="#Click系" class="headerlink" title="Click系"></a>Click系<a class="article-anchor" href="#Click系" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Click button by id, text, title or alt of img tag</span></span><br><span class="line">click_button(<span class="string">'button text'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Click link by id, text, title or alt of img tag</span></span><br><span class="line">click_link(<span class="string">'link text'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Click button or link</span></span><br><span class="line">click_on(<span class="string">'button or link text'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="フォームの記入" class="article-heading"><a href="#フォームの記入" class="headerlink" title="フォームの記入"></a>フォームの記入<a class="article-anchor" href="#フォームの記入" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Set text to text tag by id, name or label text</span></span><br><span class="line">fill_in(<span class="string">'some text'</span>, <span class="symbol">with:</span> <span class="string">'text_tag_selector'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select pulldown by id, name or label text</span></span><br><span class="line">select(<span class="string">'some option'</span>, <span class="symbol">with:</span> <span class="string">'select_tag_selctor'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select checkbox by id, name or label text</span></span><br><span class="line">check(<span class="string">'checkbox_selector'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Deselect checkbox by id, name or label text</span></span><br><span class="line">uncheck(<span class="string">'checkbox_selector'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Choose radio button by id, name or label text</span></span><br><span class="line">choose(<span class="string">'yes'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Attach file</span></span><br><span class="line">attach_file(<span class="string">'attach_file_selector'</span>, <span class="string">'/path/to/dog.jpg'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="要素の検索" class="article-heading"><a href="#要素の検索" class="headerlink" title="要素の検索"></a>要素の検索<a class="article-anchor" href="#要素の検索" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Find element by css</span></span><br><span class="line">find(<span class="symbol">:css</span>, <span class="string">'css selector'</span>, options)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find element by xpath</span></span><br><span class="line">find(<span class="symbol">:xpath</span>, <span class="string">'xpath value'</span>, option)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set some text to some input form</span></span><br><span class="line">find(<span class="symbol">:xpath</span>, <span class="string">'some xpath'</span>).set(<span class="string">'some text'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show text in the element</span></span><br><span class="line">find(<span class="string">'id_selector'</span>, <span class="symbol">visible:</span> <span class="literal">false</span>).text</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show value in the element</span></span><br><span class="line">find_field(<span class="string">'id_selector'</span>).value</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check checkbox</span></span><br><span class="line">find(<span class="string">'checkbox_selector'</span>).checked?</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check Selectbox</span></span><br><span class="line">find(<span class="string">'select_tag_selctor'</span>).selected?</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check Visibility</span></span><br><span class="line">find(<span class="string">'a'</span>, <span class="symbol">text:</span> <span class="string">'next'</span>).visible?</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="クエリ処理" class="article-heading"><a href="#クエリ処理" class="headerlink" title="クエリ処理"></a>クエリ処理<a class="article-anchor" href="#クエリ処理" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Check existance of the element by css</span></span><br><span class="line">expect(page).to have_css(<span class="string">'#something'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check existance of the element by xpath</span></span><br><span class="line">expect(page).to has_xpath(<span class="string">'#something'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check existance of the element by content</span></span><br><span class="line">expect(page).to has_content(<span class="string">'#something'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check no existance of the element by content</span></span><br><span class="line">expect(page).to has_no_content(<span class="string">'#something'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check no existance of title</span></span><br><span class="line">expect(page).to has_title(<span class="string">'#something'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="スコープの設定" class="article-heading"><a href="#スコープの設定" class="headerlink" title="スコープの設定"></a>スコープの設定<a class="article-anchor" href="#スコープの設定" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Scope with xpath</span></span><br><span class="line">within(<span class="string">"//li[@id='example']"</span>) <span class="keyword">do</span></span><br><span class="line">  fill_in <span class="string">'Full Name'</span>, <span class="symbol">with:</span> <span class="string">'John Due'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Scope with CSS</span></span><br><span class="line">within(<span class="symbol">:css</span>, <span class="string">"li#example"</span>) <span class="keyword">do</span></span><br><span class="line">  fill_in <span class="string">'Full Name'</span>, <span class="symbol">:with</span> => <span class="string">'John Due'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="その他" class="article-heading"><a href="#その他" class="headerlink" title="その他"></a>その他<a class="article-anchor" href="#その他" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Waiting & try to check the element for 30 seconds</span></span><br><span class="line">Capybara.using_wait_time(<span class="number">30</span>) <span class="keyword">do</span></span><br><span class="line">  expect(find(<span class="string">'#message'</span>)).to have_text(<span class="string">'Complete'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Click alert</span></span><br><span class="line">accept_alert <span class="keyword">do</span></span><br><span class="line">  click_on <span class="string">'Show Alert'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Dismiss confirm</span></span><br><span class="line">dismiss_confirm <span class="keyword">do</span></span><br><span class="line">  click_on <span class="string">'Delete'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Execute JavaScript</span></span><br><span class="line">execute_script <span class="string">'window.scrollTo(0, 900)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Capture screen</span></span><br><span class="line">save_screenshot(<span class="string">'xxx.png'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Debugging</span></span><br><span class="line">save_and_open_page</span><br></pre></td></tr></tbody></table></figure>
+<p>英語版のCapybaraチートシートは「<strong><a href="http://blog.morizyun.com/blog/capybara-selenium-webdriver-ruby/" target="_blank" rel="noopener">Ruby Capybara with selenium Cheat Sheat</a></strong>」です。</p>
+<h2 id="RSpec以外でのCapybaraの利用" class="article-heading">🐞 <a href="#RSpec以外でのCapybaraの利用" class="headerlink" title="RSpec以外でのCapybaraの利用"></a>RSpec以外でのCapybaraの利用<a class="article-anchor" href="#RSpec以外でのCapybaraの利用" aria-hidden="true"></a></h2><p>RSpec以外でのCapybaraの利用手順です。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'capybara'</span></span><br><span class="line"></span><br><span class="line">Capybara.register_driver <span class="symbol">:chrome</span> <span class="keyword">do</span> <span class="params">|app|</span></span><br><span class="line">  Capybara::Selenium::Driver.new(app, <span class="symbol">browser:</span> <span class="symbol">:chrome</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Capybara.register_driver <span class="symbol">:headless_chrome</span> <span class="keyword">do</span> <span class="params">|app|</span></span><br><span class="line">  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(</span><br><span class="line">      <span class="symbol">chromeOptions:</span> { <span class="symbol">args:</span> <span class="string">%w(headless disable-gpu)</span> }</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  Capybara::Selenium::Driver.new(</span><br><span class="line">      app,</span><br><span class="line">      <span class="symbol">browser:</span> <span class="symbol">:chrome</span>,</span><br><span class="line">      <span class="symbol">desired_capabilities:</span> capabilities</span><br><span class="line">  )</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Capybara.javascript_driver = <span class="symbol">:headless_chrome</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CapybaraSampleClass</span></span></span><br><span class="line">  <span class="keyword">include</span> Capybara::DSL</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sample_method</span></span></span><br><span class="line">    visit <span class="string">'http://example.selenium.com/'</span></span><br><span class="line">    fill_in(<span class="string">'name'</span>, <span class="symbol">with:</span> <span class="string">'sample user'</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">sample = CapybaraSampleClass.new</span><br><span class="line">sample.sample_method</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ ruby cabybara_sample.rb</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading"> 🎂 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://qiita.com/jnchito/items/607f956263c38a5fec24" target="_blank" rel="noopener">使えるRSpec入門・その4「どんなブラウザ操作も自由自在！逆引きCapybara大辞典」</a></li>
+<li><a href="https://relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec" target="_blank" rel="noopener">Feature spec - Feature specs - RSpec Rails</a></li>
+<li><a href="https://robots.thoughtbot.com/headless-feature-specs-with-chrome" target="_blank" rel="noopener">Headless Capybara Feature Specs with Chrome</a></li>
+<li><a href="http://tech.speee.jp/entry/2017/06/15/135636" target="_blank" rel="noopener">RSpec の feature spec でヘッドレス Chrome を使う</a></li>
+</ul>
+</body></html>
+                <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+                <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-16T22:58:09.000Z" itemprop="dateModified">最終更新日: 2017-08-17</time>
+                <a href="rspec-rails-controller.html" class="article-footer-prev" title="Controller Spec"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="rspec-rails-request.html" class="article-footer-next" title="Request Spec"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">コンテンツ</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#環境構築"><span class="toc-text">環境構築</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#テスト"><span class="toc-text">テスト</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Capybaraチートシート"><span class="toc-text">Capybaraチートシート</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Click系"><span class="toc-text">Click系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#フォームの記入"><span class="toc-text">フォームの記入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#要素の検索"><span class="toc-text">要素の検索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#クエリ処理"><span class="toc-text">クエリ処理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#スコープの設定"><span class="toc-text">スコープの設定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#その他"><span class="toc-text">その他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSpec以外でのCapybaraの利用"><span class="toc-text">RSpec以外でのCapybaraの利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考リンク"><span class="toc-text">参考リンク</span></a></li></ol>
+              <a href="#" id="article-toc-top">トップへ</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">Rails/Model</strong><a href="active-record-validation.html" class="sidebar-link">バリデーション</a><a href="active-record-callback.html" class="sidebar-link">コールバック</a><a href="active-record-attribute-was-change.html" class="sidebar-link">変更前後の値の確認</a><a href="active-record-attributes-save-update.html" class="sidebar-link">値の保存・更新</a><a href="active-record-belongs-to-has-one-has-many.html" class="sidebar-link">アソシエーション</a><a href="active-record-destroy-delete.html" class="sidebar-link">削除メソッド</a><a href="active-record-execute-sql.html" class="sidebar-link">SQLの実行</a><a href="active-record-date-column-config.html" class="sidebar-link">日付カラムの設定</a><a href="active-record-database-config.html" class="sidebar-link">便利なDB関連設定</a><a href="active-record-read-only-concern.html" class="sidebar-link">読込み専用(Read Only)</a><a href="active-record-concern.html" class="sidebar-link">Concern(共通処理)</a><a href="active-record-where-condition.html" class="sidebar-link">クエリTips</a><strong class="sidebar-title">Rails/Controller</strong><a href="rails-controller-basic.html" class="sidebar-link">renderレシピ集</a><a href="rails-controller-status-code.html" class="sidebar-link">HTTPステータスシンボル</a><a href="rails-controller-get-ip.html" class="sidebar-link">IPの取得について</a><a href="rails-controller-strong-parameters.html" class="sidebar-link">Strong Parameters</a><a href="rails-controller-tips.html" class="sidebar-link">ControllerのTips</a><strong class="sidebar-title">Rails/View</strong><a href="library-template-engine-haml.html" class="sidebar-link">HAMLチートシート</a><a href="rails-function-form-carrierwave-imagemagick.html" class="sidebar-link">画像アップロードフォーム</a><a href="rails-function-form-carrierwave-fog-s3.html" class="sidebar-link">S3への画像アップロード</a><a href="rails-function-form-object.html" class="sidebar-link">Form Object</a><a href="rails-function-form-helper.html" class="sidebar-link">フォームヘルパー</a><a href="rails-function-select2-search.html" class="sidebar-link">検索可能なselectタグ</a><a href="rails-function-enum-select-tag.html" class="sidebar-link">enum - selectタグ</a><a href="rails-function-search-box-view.html" class="sidebar-link">シンプルな検索ボックス</a><a href="rails-function-form-with-separate-window.html" class="sidebar-link">別ウィンドウ・フォーム</a><strong class="sidebar-title">Railsいろいろ</strong><a href="rails-function-i18n-internationalization.html" class="sidebar-link">i18nについて</a><a href="rails-function-cache-fetch-write-delete.html" class="sidebar-link">Rails.cache</a><a href="rails-function-action-mailer.html" class="sidebar-link">メール送信</a><a href="rails-function-rails-logger.html" class="sidebar-link">ロギング</a><a href="rails-capistrano3-deploy-rbenv-puma.html" class="sidebar-link">Capistrano3でデプロイ</a><a href="rails-function-session-management.html" class="sidebar-link">セッション管理</a><a href="rails-tips-yaml-load-env.html" class="sidebar-link">環境ごとのYAML設定読込</a><a href="rails-tips-human-date-time-display.html" class="sidebar-link">xx分前の時間表記</a><a href="rails-tips-miscellaneous.html" class="sidebar-link">Tipsいろいろ</a><strong class="sidebar-title">便利ライブラリ</strong><a href="library-vcr-webmock.html" class="sidebar-link">簡単Webmock：VCR</a><a href="library-bullet.html" class="sidebar-link">N+1対策：bullet</a><a href="library-dotenv.html" class="sidebar-link">環境変数の管理: dotenv</a><a href="library-i18n-tasks.html" class="sidebar-link">i18nサポート: i18n-tasks</a><a href="library-net-ldap.html" class="sidebar-link">LDAP：net-ldap</a><a href="library-secureheaders.html" class="sidebar-link">ヘッダ：secureheaders</a><a href="library-rack-mini-profiler.html" class="sidebar-link">rack-mini-profiler</a><a href="library-activerecord-precount.html" class="sidebar-link">activerecord-precount</a><a href="library-coverage-simple-cov.html" class="sidebar-link">カバレッジ計測</a><a href="library-breadcrumbs_on_rails.html" class="sidebar-link">パンくずリスト+Metadata</a><a href="library-transpec.html" class="sidebar-link">RSpecの記法自動修正</a><a href="library-store-api-google-play-ios-app-store.html" class="sidebar-link">アプリランキング取得</a><a href="library-unicorn-web-server-rails.html" class="sidebar-link">Unicorn導入手順</a><a href="library-unicorn-worker-killer.html" class="sidebar-link">unicorn-worker-killer</a><strong class="sidebar-title">RSpec</strong><a href="rspec-rails-controller.html" class="sidebar-link">Controller Spec</a><a href="library-capybara-feature-spec-chrome-headless.html" class="sidebar-link current">CapybaraとヘッドレスChrome</a><a href="rspec-rails-request.html" class="sidebar-link">Request Spec</a><a href="rspec-rails-controller-api-authentication.html" class="sidebar-link">API認証 Spec</a><a href="rspec-tips-function.html" class="sidebar-link">便利Tips</a><strong class="sidebar-title">デザインパターン</strong><a href="design-pattern-index.html" class="sidebar-link">概要</a><a href="design-pattern-abstract-factory.html" class="sidebar-link">アブストラクトファクトリ</a><a href="design-pattern-builder.html" class="sidebar-link">ビルダ</a><a href="design-pattern-factory-method.html" class="sidebar-link">ファクトリメソッド</a><a href="design-pattern-adapter.html" class="sidebar-link">アダプタ</a><a href="design-pattern-composite.html" class="sidebar-link">コンポジット</a><a href="design-pattern-decorator.html" class="sidebar-link">デコレータ</a><a href="design-pattern-proxy.html" class="sidebar-link">プロキシ</a><a href="design-pattern-command.html" class="sidebar-link">コマンド</a><a href="design-pattern-interpreter.html" class="sidebar-link">インタプリタ</a><a href="design-pattern-iterator.html" class="sidebar-link">イテレータ</a><a href="design-pattern-observer.html" class="sidebar-link">オブザーバ</a><a href="design-pattern-storategy.html" class="sidebar-link">ストラテジ</a><a href="design-pattern-template-method.html" class="sidebar-link">テンプレートメソッド</a><strong class="sidebar-title">Ruby基礎</strong><a href="basic-string.html" class="sidebar-link">文字列/String</a><a href="basic-array.html" class="sidebar-link">配列/Array</a><a href="basic-hash.html" class="sidebar-link">ハッシュ/Hash</a><a href="basic-struct.html" class="sidebar-link">構造体/Struct</a><a href="basic-spawn.html" class="sidebar-link">Spawn(コマンド実行)</a><a href="basic-rubygem-bundler.html" class="sidebar-link">Bundlerについて</a><strong class="sidebar-title">Tips</strong><a href="rails-versionup-update-rails5.1.html" class="sidebar-link">Rails 5.1へのアップデート</a><a href="rails-versionup-update-rails5.html" class="sidebar-link">Rails 5へのアップデート</a><a href="rbenv-update-mac-homebrew.html" class="sidebar-link">rbenvバージョンアップ</a><a href="rails-tips-puma-systemd.html" class="sidebar-link">pumaをsystemdで動かす</a><a href="basic-uri-encode-cgi-escape.html" class="sidebar-link">URI.encodeとCGI.escape</a><a href="basic-uri.html" class="sidebar-link">URLのパラメータを変更</a><a href="basic-benchmark.html" class="sidebar-link">処理時間を計測</a><a href="tips-image-type-check-png-jpeg-gif.html" class="sidebar-link">画像JPEG/PNG/GIF判定</a><strong class="sidebar-title">トラブルシュート</strong><a href="rails-troubleshoot-no-route-match-assets.html" class="sidebar-link">No route matches assets</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="mobile-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Rails/Model</strong><a href="active-record-validation.html" class="mobile-nav-link">バリデーション</a><a href="active-record-callback.html" class="mobile-nav-link">コールバック</a><a href="active-record-attribute-was-change.html" class="mobile-nav-link">変更前後の値の確認</a><a href="active-record-attributes-save-update.html" class="mobile-nav-link">値の保存・更新</a><a href="active-record-belongs-to-has-one-has-many.html" class="mobile-nav-link">アソシエーション</a><a href="active-record-destroy-delete.html" class="mobile-nav-link">削除メソッド</a><a href="active-record-execute-sql.html" class="mobile-nav-link">SQLの実行</a><a href="active-record-date-column-config.html" class="mobile-nav-link">日付カラムの設定</a><a href="active-record-database-config.html" class="mobile-nav-link">便利なDB関連設定</a><a href="active-record-read-only-concern.html" class="mobile-nav-link">読込み専用(Read Only)</a><a href="active-record-concern.html" class="mobile-nav-link">Concern(共通処理)</a><a href="active-record-where-condition.html" class="mobile-nav-link">クエリTips</a><strong class="mobile-nav-title">Rails/Controller</strong><a href="rails-controller-basic.html" class="mobile-nav-link">renderレシピ集</a><a href="rails-controller-status-code.html" class="mobile-nav-link">HTTPステータスシンボル</a><a href="rails-controller-get-ip.html" class="mobile-nav-link">IPの取得について</a><a href="rails-controller-strong-parameters.html" class="mobile-nav-link">Strong Parameters</a><a href="rails-controller-tips.html" class="mobile-nav-link">ControllerのTips</a><strong class="mobile-nav-title">Rails/View</strong><a href="library-template-engine-haml.html" class="mobile-nav-link">HAMLチートシート</a><a href="rails-function-form-carrierwave-imagemagick.html" class="mobile-nav-link">画像アップロードフォーム</a><a href="rails-function-form-carrierwave-fog-s3.html" class="mobile-nav-link">S3への画像アップロード</a><a href="rails-function-form-object.html" class="mobile-nav-link">Form Object</a><a href="rails-function-form-helper.html" class="mobile-nav-link">フォームヘルパー</a><a href="rails-function-select2-search.html" class="mobile-nav-link">検索可能なselectタグ</a><a href="rails-function-enum-select-tag.html" class="mobile-nav-link">enum - selectタグ</a><a href="rails-function-search-box-view.html" class="mobile-nav-link">シンプルな検索ボックス</a><a href="rails-function-form-with-separate-window.html" class="mobile-nav-link">別ウィンドウ・フォーム</a><strong class="mobile-nav-title">Railsいろいろ</strong><a href="rails-function-i18n-internationalization.html" class="mobile-nav-link">i18nについて</a><a href="rails-function-cache-fetch-write-delete.html" class="mobile-nav-link">Rails.cache</a><a href="rails-function-action-mailer.html" class="mobile-nav-link">メール送信</a><a href="rails-function-rails-logger.html" class="mobile-nav-link">ロギング</a><a href="rails-capistrano3-deploy-rbenv-puma.html" class="mobile-nav-link">Capistrano3でデプロイ</a><a href="rails-function-session-management.html" class="mobile-nav-link">セッション管理</a><a href="rails-tips-yaml-load-env.html" class="mobile-nav-link">環境ごとのYAML設定読込</a><a href="rails-tips-human-date-time-display.html" class="mobile-nav-link">xx分前の時間表記</a><a href="rails-tips-miscellaneous.html" class="mobile-nav-link">Tipsいろいろ</a><strong class="mobile-nav-title">便利ライブラリ</strong><a href="library-vcr-webmock.html" class="mobile-nav-link">簡単Webmock：VCR</a><a href="library-bullet.html" class="mobile-nav-link">N+1対策：bullet</a><a href="library-dotenv.html" class="mobile-nav-link">環境変数の管理: dotenv</a><a href="library-i18n-tasks.html" class="mobile-nav-link">i18nサポート: i18n-tasks</a><a href="library-net-ldap.html" class="mobile-nav-link">LDAP：net-ldap</a><a href="library-secureheaders.html" class="mobile-nav-link">ヘッダ：secureheaders</a><a href="library-rack-mini-profiler.html" class="mobile-nav-link">rack-mini-profiler</a><a href="library-activerecord-precount.html" class="mobile-nav-link">activerecord-precount</a><a href="library-coverage-simple-cov.html" class="mobile-nav-link">カバレッジ計測</a><a href="library-breadcrumbs_on_rails.html" class="mobile-nav-link">パンくずリスト+Metadata</a><a href="library-transpec.html" class="mobile-nav-link">RSpecの記法自動修正</a><a href="library-store-api-google-play-ios-app-store.html" class="mobile-nav-link">アプリランキング取得</a><a href="library-unicorn-web-server-rails.html" class="mobile-nav-link">Unicorn導入手順</a><a href="library-unicorn-worker-killer.html" class="mobile-nav-link">unicorn-worker-killer</a><strong class="mobile-nav-title">RSpec</strong><a href="rspec-rails-controller.html" class="mobile-nav-link">Controller Spec</a><a href="library-capybara-feature-spec-chrome-headless.html" class="mobile-nav-link current">CapybaraとヘッドレスChrome</a><a href="rspec-rails-request.html" class="mobile-nav-link">Request Spec</a><a href="rspec-rails-controller-api-authentication.html" class="mobile-nav-link">API認証 Spec</a><a href="rspec-tips-function.html" class="mobile-nav-link">便利Tips</a><strong class="mobile-nav-title">デザインパターン</strong><a href="design-pattern-index.html" class="mobile-nav-link">概要</a><a href="design-pattern-abstract-factory.html" class="mobile-nav-link">アブストラクトファクトリ</a><a href="design-pattern-builder.html" class="mobile-nav-link">ビルダ</a><a href="design-pattern-factory-method.html" class="mobile-nav-link">ファクトリメソッド</a><a href="design-pattern-adapter.html" class="mobile-nav-link">アダプタ</a><a href="design-pattern-composite.html" class="mobile-nav-link">コンポジット</a><a href="design-pattern-decorator.html" class="mobile-nav-link">デコレータ</a><a href="design-pattern-proxy.html" class="mobile-nav-link">プロキシ</a><a href="design-pattern-command.html" class="mobile-nav-link">コマンド</a><a href="design-pattern-interpreter.html" class="mobile-nav-link">インタプリタ</a><a href="design-pattern-iterator.html" class="mobile-nav-link">イテレータ</a><a href="design-pattern-observer.html" class="mobile-nav-link">オブザーバ</a><a href="design-pattern-storategy.html" class="mobile-nav-link">ストラテジ</a><a href="design-pattern-template-method.html" class="mobile-nav-link">テンプレートメソッド</a><strong class="mobile-nav-title">Ruby基礎</strong><a href="basic-string.html" class="mobile-nav-link">文字列/String</a><a href="basic-array.html" class="mobile-nav-link">配列/Array</a><a href="basic-hash.html" class="mobile-nav-link">ハッシュ/Hash</a><a href="basic-struct.html" class="mobile-nav-link">構造体/Struct</a><a href="basic-spawn.html" class="mobile-nav-link">Spawn(コマンド実行)</a><a href="basic-rubygem-bundler.html" class="mobile-nav-link">Bundlerについて</a><strong class="mobile-nav-title">Tips</strong><a href="rails-versionup-update-rails5.1.html" class="mobile-nav-link">Rails 5.1へのアップデート</a><a href="rails-versionup-update-rails5.html" class="mobile-nav-link">Rails 5へのアップデート</a><a href="rbenv-update-mac-homebrew.html" class="mobile-nav-link">rbenvバージョンアップ</a><a href="rails-tips-puma-systemd.html" class="mobile-nav-link">pumaをsystemdで動かす</a><a href="basic-uri-encode-cgi-escape.html" class="mobile-nav-link">URI.encodeとCGI.escape</a><a href="basic-uri.html" class="mobile-nav-link">URLのパラメータを変更</a><a href="basic-benchmark.html" class="mobile-nav-link">処理時間を計測</a><a href="tips-image-type-check-png-jpeg-gif.html" class="mobile-nav-link">画像JPEG/PNG/GIF判定</a><strong class="mobile-nav-title">トラブルシュート</strong><a href="rails-troubleshoot-no-route-match-assets.html" class="mobile-nav-link">No route matches assets</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Rails 5へのアップデート | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//ruby/rails-versionup-update-rails5-71d070607e.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="ja" href="http://morizyun.github.io//ruby/rails-versionup-update-rails5-71d070607e.html">
+    
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Rails 4系からRails 5へのアップデートに関してのTipsです。 Rails アップグレードガイド | Rails ガイド アップデートタスクRails 5にGemをアップデートした後にrails app:updateコマンドを実行するとconfig/environemets/やbin/配下のファイルかどが新しいバージョンのファイルを作成、既存ファイルの更新を行います。 rails ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails 5へのアップデート">
+<meta property="og:url" content="http://morizyun.github.io//ruby/rails-versionup-update-rails5-71d070607e.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Rails 4系からRails 5へのアップデートに関してのTipsです。 Rails アップグレードガイド | Rails ガイド アップデートタスクRails 5にGemをアップデートした後にrails app:updateコマンドを実行するとconfig/environemets/やbin/配下のファイルかどが新しいバージョンのファイルを作成、既存ファイルの更新を行います。 rails ap">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-12T08:47:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rails 5へのアップデート">
+<meta name="twitter:description" content="Rails 4系からRails 5へのアップデートに関してのTipsです。 Rails アップグレードガイド | Rails ガイド アップデートタスクRails 5にGemをアップデートした後にrails app:updateコマンドを実行するとconfig/environemets/やbin/配下のファイルかどが新しいバージョンのファイルを作成、既存ファイルの更新を行います。 rails ap">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="main-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="main-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Rails 5へのアップデート</h1>
+              </header>
+              <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io//ruby/rails-versionup-update-rails5-71d070607e.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io//ruby/rails-versionup-update-rails5-71d070607e.html" data-via="zyunnosuke" data-counturl="http://morizyun.github.io//ruby/rails-versionup-update-rails5-71d070607e.html">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io//ruby/rails-versionup-update-rails5-71d070607e.html"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+              <div class="article-content" itemprop="articleBody">
+                <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>Rails 4系からRails 5へのアップデートに関してのTipsです。</p>
+<p><a href="https://railsguides.jp/upgrading_ruby_on_rails.html" target="_blank" rel="noopener">Rails アップグレードガイド | Rails ガイド</a></p>
+<h2 id="アップデートタスク" class="article-heading">🐯 <a href="#アップデートタスク" class="headerlink" title="アップデートタスク"></a>アップデートタスク<a class="article-anchor" href="#アップデートタスク" aria-hidden="true"></a></h2><p>Rails 5にGemをアップデートした後に<code>rails app:update</code>コマンドを実行すると<code>config/environemets/</code>や<code>bin/</code>配下のファイルかどが新しいバージョンのファイルを作成、既存ファイルの更新を行います。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">rails app:update</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Rubyの部分の変更" class="article-heading"> 🎂 <a href="#Rubyの部分の変更" class="headerlink" title="Rubyの部分の変更"></a>Rubyの部分の変更<a class="article-anchor" href="#Rubyの部分の変更" aria-hidden="true"></a></h2><h3 id="Active-RecordはApplicationRecordを継承" class="article-heading"><a href="#Active-RecordはApplicationRecordを継承" class="headerlink" title="Active RecordはApplicationRecordを継承"></a>Active RecordはApplicationRecordを継承<a class="article-anchor" href="#Active-RecordはApplicationRecordを継承" aria-hidden="true"></a></h3><p>Model(Active Record)は<code>ApplicationRecord</code>を継承する形になります。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationRecord</span> < ActiveRecord::Base</span></span><br><span class="line">  <span class="keyword">self</span>.abstract_class = <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>self.abstract_class=true</code> : 抽象クラスを表す。対応するテーブルがない場合の設定</li>
+</ul>
+<h3 id="Active-JobはApplicationJobを継承" class="article-heading"><a href="#Active-JobはApplicationJobを継承" class="headerlink" title="Active JobはApplicationJobを継承"></a>Active JobはApplicationJobを継承<a class="article-anchor" href="#Active-JobはApplicationJobを継承" aria-hidden="true"></a></h3><p>Active Jobでは<code>ApplicationJob</code>を継承するように変更されました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationJob</span> < ActiveJob::Base</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Action-MailerはApplicationMailerを継承" class="article-heading"><a href="#Action-MailerはApplicationMailerを継承" class="headerlink" title="Action MailerはApplicationMailerを継承"></a>Action MailerはApplicationMailerを継承<a class="article-anchor" href="#Action-MailerはApplicationMailerを継承" aria-hidden="true"></a></h3><p>Action MailerはApplicationMailerを継承するようになりました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationMailer</span> < ActionMailer::Base</span></span><br><span class="line">  default <span class="symbol">from:</span> <span class="string">'from@example.com'</span></span><br><span class="line">  layout <span class="string">'mailer'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Controllerのparamsがオブジェクトに変わった" class="article-heading"><a href="#Controllerのparamsがオブジェクトに変わった" class="headerlink" title="Controllerのparamsがオブジェクトに変わった"></a>Controllerのparamsがオブジェクトに変わった<a class="article-anchor" href="#Controllerのparamsがオブジェクトに変わった" aria-hidden="true"></a></h3><p>Controllerの<code>params</code>がハッシュからオブジェクトを返すように変わりました。<br><code>params</code>をハッシュ前提にしているメソッドがあった場合は明示的にハッシュに変換する必要があります。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">params.permit([<span class="symbol">:proceed_to</span>, <span class="symbol">:return_to</span>]).to_h</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="belongs-toは関連付けがない場合はバリデーションエラー" class="article-heading"><a href="#belongs-toは関連付けがない場合はバリデーションエラー" class="headerlink" title="belongs_toは関連付けがない場合はバリデーションエラー"></a>belongs_toは関連付けがない場合はバリデーションエラー<a class="article-anchor" href="#belongs-toは関連付けがない場合はバリデーションエラー" aria-hidden="true"></a></h3><p>Active Recordの<code>belongs_to</code>は関連付け(association)が存在しない場合はバリデーションエラーを返すようになりました。<br>この機能は関連付けごとに<code>optional: true</code>を指定してオフにできます。</p>
+<h3 id="before-saveなどのCallbackのロールバック" class="article-heading"><a href="#before-saveなどのCallbackのロールバック" class="headerlink" title="before_saveなどのCallbackのロールバック"></a>before_saveなどのCallbackのロールバック<a class="article-anchor" href="#before-saveなどのCallbackのロールバック" aria-hidden="true"></a></h3><p>Rails 4.2までは<code>before_save</code>などのActive Recordのコールバックで<code>false</code>を返すとロールバックされましたが、Rails 5.0からは<code>throw(:abort)</code>で明示的にロールバックをする必要があります。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span></span></span><br><span class="line">  before_save <span class="function"><span class="keyword">def</span> <span class="title">check_publishable?</span></span></span><br><span class="line">    throw(<span class="symbol">:abort</span>) <span class="keyword">unless</span> publishable?</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="テストに関する変更" class="article-heading"> 🐰 <a href="#テストに関する変更" class="headerlink" title="テストに関する変更"></a>テストに関する変更<a class="article-anchor" href="#テストに関する変更" aria-hidden="true"></a></h2><h3 id="Railsコントローラのテスト" class="article-heading"><a href="#Railsコントローラのテスト" class="headerlink" title="Railsコントローラのテスト"></a>Railsコントローラのテスト<a class="article-anchor" href="#Railsコントローラのテスト" aria-hidden="true"></a></h3><p><code>assigns</code>メソッド、<code>assert_template</code>メソッドはGem <a href="https://github.com/rails/rails-controller-testing" target="_blank" rel="noopener">rails-controller-testing</a><br>に切り出されました。これらのメソッドを使う場合はこちらのgemを追加してください。</p>
+<h2 id="設定に関する変更" class="article-heading">🚕 <a href="#設定に関する変更" class="headerlink" title="設定に関する変更"></a>設定に関する変更<a class="article-anchor" href="#設定に関する変更" aria-hidden="true"></a></h2><h3 id="本番環境ではautoload-自動読み込み-が無効" class="article-heading"><a href="#本番環境ではautoload-自動読み込み-が無効" class="headerlink" title="本番環境ではautoload(自動読み込み)が無効"></a>本番環境ではautoload(自動読み込み)が無効<a class="article-anchor" href="#本番環境ではautoload-自動読み込み-が無効" aria-hidden="true"></a></h3><p>app配下は自動読み込みされますがそれ以外の<code>lib</code>などに定義したクラスは自動で読み込まれません。<br>次の対策があります。</p>
+<ul>
+<li>明示的に<code>require</code>を行う</li>
+<li>ディレクトリを<code>app/</code>に移動する(<code>lib/</code> => <code>app/lib</code>)</li>
+<li><code>Rails.application.config.enable_dependency_loading=true</code>にする(autoloadを有効にする)</li>
+</ul>
+<h3 id="OriginチェックによるCSRF対策" class="article-heading"><a href="#OriginチェックによるCSRF対策" class="headerlink" title="OriginチェックによるCSRF対策"></a>OriginチェックによるCSRF対策<a class="article-anchor" href="#OriginチェックによるCSRF対策" aria-hidden="true"></a></h3><p>CSRF防御の一貫として、「<a href="http://morizyun.github.io/infrastructure/network-http-index.html#HTTPヘッダ"><code>HTTP Origin</code>ヘッダ</a>」によるサイトの出自のチェックができるようになりました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">config.action_controller.forgery_protection_origin_check = <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="サブドメインでのHSTSを有効にするオプション" class="article-heading"><a href="#サブドメインでのHSTSを有効にするオプション" class="headerlink" title="サブドメインでのHSTSを有効にするオプション"></a>サブドメインでのHSTSを有効にするオプション<a class="article-anchor" href="#サブドメインでのHSTSを有効にするオプション" aria-hidden="true"></a></h3><p>サブドメインでHSTS(HTTP Strict Transport Security)を有効にするオプションが追加されました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">config.ssl_options = { <span class="symbol">hsts:</span> { <span class="symbol">subdomains:</span> <span class="literal">true</span> } }</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="JavaScriptに関する変更" class="article-heading">🗻 <a href="#JavaScriptに関する変更" class="headerlink" title="JavaScriptに関する変更"></a>JavaScriptに関する変更<a class="article-anchor" href="#JavaScriptに関する変更" aria-hidden="true"></a></h2><h3 id="Progress-barの表示" class="article-heading"><a href="#Progress-barの表示" class="headerlink" title="Progress barの表示"></a>Progress barの表示<a class="article-anchor" href="#Progress-barの表示" aria-hidden="true"></a></h3><p>ページをロードする際の読み込み時のProgress barの表示がデフォルトでONになりました。詳細は『<a href="https://goo.gl/IT2UIR" target="_blank" rel="noopener">turbolinks/turbolinks at v5.0.0</a>』を参照ください。色を変更する場合は次のCSSを適用します。</p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="selector-class">.turbolinks-progress-bar</span> {</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: green;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>非表示にしたい場合は次のCSSを適用します。</p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="selector-class">.turbolinks-progress-bar</span> {</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="JavaScriptで生成されるフォームへのCSRFトークンを生成" class="article-heading"><a href="#JavaScriptで生成されるフォームへのCSRFトークンを生成" class="headerlink" title="JavaScriptで生成されるフォームへのCSRFトークンを生成"></a>JavaScriptで生成されるフォームへのCSRFトークンを生成<a class="article-anchor" href="#JavaScriptで生成されるフォームへのCSRFトークンを生成" aria-hidden="true"></a></h3><p>JavaScriptで生成されるフォームによるコードインジェクション攻撃に対応するためにフォーム単位でCSRFトークンを生成するようになりました。次の設定で有効になります。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">config.action_controller.per_form_csrf_tokens = <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="静的なファイルをRailsで返す" class="article-heading"><a href="#静的なファイルをRailsで返す" class="headerlink" title="静的なファイルをRailsで返す"></a>静的なファイルをRailsで返す<a class="article-anchor" href="#静的なファイルをRailsで返す" aria-hidden="true"></a></h3><p><code>/public</code>配下の静的なファイルをRailsから返す場合は<code>config.public_file_server.enabled = true</code>を設定します。(nginx/Apacheから返却するほうが効率がよいので<code>false</code>にすべきです)</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">Rails.application.configure <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># config.serve_static_files から変更</span></span><br><span class="line">  config.public_file_server.enabled = <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="new-framework-defaults-rbについて" class="article-heading"><a href="#new-framework-defaults-rbについて" class="headerlink" title="new_framework_defaults.rbについて"></a><code>new_framework_defaults.rb</code>について<a class="article-anchor" href="#new-framework-defaults-rbについて" aria-hidden="true"></a></h3><p><code>rails update</code>コマンドを実行すると<code>config/initializers/new_framework_defaults.rb</code>が生成されます。古いバージョンのRailsの挙動を保つための設定ですが、Railsの進化についていくためにも必要な設定以外はデフォルトの設定で問題なく動くようにアプリケーションの実装を修正していくとよいと思います。</p>
+<h2 id="補足：Forkwell-JobsのRails-5へのアップデート事例" class="article-heading"> 🎃 <a href="#補足：Forkwell-JobsのRails-5へのアップデート事例" class="headerlink" title="補足：Forkwell JobsのRails 5へのアップデート事例"></a>補足：Forkwell JobsのRails 5へのアップデート事例<a class="article-anchor" href="#補足：Forkwell-JobsのRails-5へのアップデート事例" aria-hidden="true"></a></h2><p>Forkwell Jobsさんのアップデート事例です。発生したエラーなどと対策が丁寧にかかれており、とてもわかり易いです。</p>
+<p><a href="http://tech.grooves.com/entry/2016/07/01/184458" target="_blank" rel="noopener">最速で Forkwell を Rails 5 にアップグレードしてみました - Grooves開発ブログ</a></p>
+<h2 id="補足：DeNAでのRails-5へのアップデート事例" class="article-heading"> 🤔 <a href="#補足：DeNAでのRails-5へのアップデート事例" class="headerlink" title="補足：DeNAでのRails 5へのアップデート事例"></a>補足：DeNAでのRails 5へのアップデート事例<a class="article-anchor" href="#補足：DeNAでのRails-5へのアップデート事例" aria-hidden="true"></a></h2><p>DeNAのゲームプラットフォームをRuby 2.4、Rails 5にアップデートした事例です。<br>規模の大きなアプリケーションのアップデートの事例で、参考にするとスムーズにアップデートできそうです。</p>
+<p><a href="https://goo.gl/kTdfI5" target="_blank" rel="noopener">「Sakasho」のRubyを2.4に、Railsを5にアップグレードしました</a></p>
+<h2 id="参考リンク" class="article-heading">🐝 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://codaholic.org/?p=2214" target="_blank" rel="noopener">self.abstract_class = true の意味と挙動 « Codaholic</a></li>
+<li><a href="https://goo.gl/eZBh7m" target="_blank" rel="noopener">Rails 5 does not halt callback chain when false is returned</a></li>
+<li><a href="https://techracho.bpsinc.jp/hachi8833/2017_02_21/35843" target="_blank" rel="noopener">Rails 5の新フレームワークデフォルト設定ファイルでアップグレード作業を軽減する</a></li>
+<li><a href="https://github.com/MiniProfiler/rack-mini-profiler/issues/196" target="_blank" rel="noopener">Rails 5 <code>serve_static_assets</code> deprecation warning</a></li>
+</ul>
+</body></html>
+                <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+                <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-12T08:47:17.000Z" itemprop="dateModified">最終更新日: 2017-08-12</time>
+                <a href="rails-versionup-update-rails5.1.html" class="article-footer-prev" title="Rails 5.1へのアップデート"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="rbenv-update-mac-homebrew.html" class="article-footer-next" title="rbenvバージョンアップ"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">コンテンツ</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#アップデートタスク"><span class="toc-text">アップデートタスク</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rubyの部分の変更"><span class="toc-text">Rubyの部分の変更</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Active-RecordはApplicationRecordを継承"><span class="toc-text">Active RecordはApplicationRecordを継承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Active-JobはApplicationJobを継承"><span class="toc-text">Active JobはApplicationJobを継承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action-MailerはApplicationMailerを継承"><span class="toc-text">Action MailerはApplicationMailerを継承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Controllerのparamsがオブジェクトに変わった"><span class="toc-text">Controllerのparamsがオブジェクトに変わった</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#belongs-toは関連付けがない場合はバリデーションエラー"><span class="toc-text">belongs_toは関連付けがない場合はバリデーションエラー</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#before-saveなどのCallbackのロールバック"><span class="toc-text">before_saveなどのCallbackのロールバック</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#テストに関する変更"><span class="toc-text">テストに関する変更</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Railsコントローラのテスト"><span class="toc-text">Railsコントローラのテスト</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#設定に関する変更"><span class="toc-text">設定に関する変更</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#本番環境ではautoload-自動読み込み-が無効"><span class="toc-text">本番環境ではautoload(自動読み込み)が無効</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OriginチェックによるCSRF対策"><span class="toc-text">OriginチェックによるCSRF対策</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#サブドメインでのHSTSを有効にするオプション"><span class="toc-text">サブドメインでのHSTSを有効にするオプション</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScriptに関する変更"><span class="toc-text">JavaScriptに関する変更</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Progress-barの表示"><span class="toc-text">Progress barの表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScriptで生成されるフォームへのCSRFトークンを生成"><span class="toc-text">JavaScriptで生成されるフォームへのCSRFトークンを生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静的なファイルをRailsで返す"><span class="toc-text">静的なファイルをRailsで返す</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new-framework-defaults-rbについて"><span class="toc-text">new_framework_defaults.rbについて</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#補足：Forkwell-JobsのRails-5へのアップデート事例"><span class="toc-text">補足：Forkwell JobsのRails 5へのアップデート事例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#補足：DeNAでのRails-5へのアップデート事例"><span class="toc-text">補足：DeNAでのRails 5へのアップデート事例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考リンク"><span class="toc-text">参考リンク</span></a></li></ol>
+              <a href="#" id="article-toc-top">トップへ</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">Rails/Model</strong><a href="active-record-validation.html" class="sidebar-link">バリデーション</a><a href="active-record-callback.html" class="sidebar-link">コールバック</a><a href="active-record-attribute-was-change.html" class="sidebar-link">変更前後の値の確認</a><a href="active-record-attributes-save-update.html" class="sidebar-link">値の保存・更新</a><a href="active-record-belongs-to-has-one-has-many.html" class="sidebar-link">アソシエーション</a><a href="active-record-destroy-delete.html" class="sidebar-link">削除メソッド</a><a href="active-record-execute-sql.html" class="sidebar-link">SQLの実行</a><a href="active-record-date-column-config.html" class="sidebar-link">日付カラムの設定</a><a href="active-record-database-config.html" class="sidebar-link">便利なDB関連設定</a><a href="active-record-read-only-concern.html" class="sidebar-link">読込み専用(Read Only)</a><a href="active-record-concern.html" class="sidebar-link">Concern(共通処理)</a><a href="active-record-where-condition.html" class="sidebar-link">クエリTips</a><strong class="sidebar-title">Rails/Controller</strong><a href="rails-controller-basic.html" class="sidebar-link">renderレシピ集</a><a href="rails-controller-status-code.html" class="sidebar-link">HTTPステータスシンボル</a><a href="rails-controller-get-ip.html" class="sidebar-link">IPの取得について</a><a href="rails-controller-strong-parameters.html" class="sidebar-link">Strong Parameters</a><a href="rails-controller-tips.html" class="sidebar-link">ControllerのTips</a><strong class="sidebar-title">Rails/View</strong><a href="library-template-engine-haml.html" class="sidebar-link">HAMLチートシート</a><a href="rails-function-form-carrierwave-imagemagick.html" class="sidebar-link">画像アップロードフォーム</a><a href="rails-function-form-carrierwave-fog-s3.html" class="sidebar-link">S3への画像アップロード</a><a href="rails-function-form-object.html" class="sidebar-link">Form Object</a><a href="rails-function-form-helper.html" class="sidebar-link">フォームヘルパー</a><a href="rails-function-select2-search.html" class="sidebar-link">検索可能なselectタグ</a><a href="rails-function-enum-select-tag.html" class="sidebar-link">enum - selectタグ</a><a href="rails-function-search-box-view.html" class="sidebar-link">シンプルな検索ボックス</a><a href="rails-function-form-with-separate-window.html" class="sidebar-link">別ウィンドウ・フォーム</a><strong class="sidebar-title">Railsいろいろ</strong><a href="rails-function-i18n-internationalization.html" class="sidebar-link">i18nについて</a><a href="rails-function-cache-fetch-write-delete.html" class="sidebar-link">Rails.cache</a><a href="rails-function-action-mailer.html" class="sidebar-link">メール送信</a><a href="rails-function-rails-logger.html" class="sidebar-link">ロギング</a><a href="rails-capistrano3-deploy-rbenv-puma.html" class="sidebar-link">Capistrano3でデプロイ</a><a href="rails-function-session-management.html" class="sidebar-link">セッション管理</a><a href="rails-tips-yaml-load-env.html" class="sidebar-link">環境ごとのYAML設定読込</a><a href="rails-tips-human-date-time-display.html" class="sidebar-link">xx分前の時間表記</a><a href="rails-tips-miscellaneous.html" class="sidebar-link">Tipsいろいろ</a><strong class="sidebar-title">便利ライブラリ</strong><a href="library-vcr-webmock.html" class="sidebar-link">簡単Webmock：VCR</a><a href="library-bullet.html" class="sidebar-link">N+1対策：bullet</a><a href="library-dotenv.html" class="sidebar-link">環境変数の管理: dotenv</a><a href="library-i18n-tasks.html" class="sidebar-link">i18nサポート: i18n-tasks</a><a href="library-net-ldap.html" class="sidebar-link">LDAP：net-ldap</a><a href="library-secureheaders.html" class="sidebar-link">ヘッダ：secureheaders</a><a href="library-rack-mini-profiler.html" class="sidebar-link">rack-mini-profiler</a><a href="library-activerecord-precount.html" class="sidebar-link">activerecord-precount</a><a href="library-coverage-simple-cov.html" class="sidebar-link">カバレッジ計測</a><a href="library-breadcrumbs_on_rails.html" class="sidebar-link">パンくずリスト+Metadata</a><a href="library-transpec.html" class="sidebar-link">RSpecの記法自動修正</a><a href="library-store-api-google-play-ios-app-store.html" class="sidebar-link">アプリランキング取得</a><a href="library-unicorn-web-server-rails.html" class="sidebar-link">Unicorn導入手順</a><a href="library-unicorn-worker-killer.html" class="sidebar-link">unicorn-worker-killer</a><strong class="sidebar-title">RSpec</strong><a href="rspec-rails-controller.html" class="sidebar-link">Controller Spec</a><a href="library-capybara-feature-spec-chrome-headless.html" class="sidebar-link">CapybaraとヘッドレスChrome</a><a href="rspec-rails-request.html" class="sidebar-link">Request Spec</a><a href="rspec-rails-controller-api-authentication.html" class="sidebar-link">API認証 Spec</a><a href="rspec-tips-function.html" class="sidebar-link">便利Tips</a><strong class="sidebar-title">デザインパターン</strong><a href="design-pattern-index.html" class="sidebar-link">概要</a><a href="design-pattern-abstract-factory.html" class="sidebar-link">アブストラクトファクトリ</a><a href="design-pattern-builder.html" class="sidebar-link">ビルダ</a><a href="design-pattern-factory-method.html" class="sidebar-link">ファクトリメソッド</a><a href="design-pattern-adapter.html" class="sidebar-link">アダプタ</a><a href="design-pattern-composite.html" class="sidebar-link">コンポジット</a><a href="design-pattern-decorator.html" class="sidebar-link">デコレータ</a><a href="design-pattern-proxy.html" class="sidebar-link">プロキシ</a><a href="design-pattern-command.html" class="sidebar-link">コマンド</a><a href="design-pattern-interpreter.html" class="sidebar-link">インタプリタ</a><a href="design-pattern-iterator.html" class="sidebar-link">イテレータ</a><a href="design-pattern-observer.html" class="sidebar-link">オブザーバ</a><a href="design-pattern-storategy.html" class="sidebar-link">ストラテジ</a><a href="design-pattern-template-method.html" class="sidebar-link">テンプレートメソッド</a><strong class="sidebar-title">Ruby基礎</strong><a href="basic-string.html" class="sidebar-link">文字列/String</a><a href="basic-array.html" class="sidebar-link">配列/Array</a><a href="basic-hash.html" class="sidebar-link">ハッシュ/Hash</a><a href="basic-struct.html" class="sidebar-link">構造体/Struct</a><a href="basic-spawn.html" class="sidebar-link">Spawn(コマンド実行)</a><a href="basic-rubygem-bundler.html" class="sidebar-link">Bundlerについて</a><strong class="sidebar-title">Tips</strong><a href="rails-versionup-update-rails5.1.html" class="sidebar-link">Rails 5.1へのアップデート</a><a href="rails-versionup-update-rails5.html" class="sidebar-link current">Rails 5へのアップデート</a><a href="rbenv-update-mac-homebrew.html" class="sidebar-link">rbenvバージョンアップ</a><a href="rails-tips-puma-systemd.html" class="sidebar-link">pumaをsystemdで動かす</a><a href="basic-uri-encode-cgi-escape.html" class="sidebar-link">URI.encodeとCGI.escape</a><a href="basic-uri.html" class="sidebar-link">URLのパラメータを変更</a><a href="basic-benchmark.html" class="sidebar-link">処理時間を計測</a><a href="tips-image-type-check-png-jpeg-gif.html" class="sidebar-link">画像JPEG/PNG/GIF判定</a><strong class="sidebar-title">トラブルシュート</strong><a href="rails-troubleshoot-no-route-match-assets.html" class="sidebar-link">No route matches assets</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="mobile-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Rails/Model</strong><a href="active-record-validation.html" class="mobile-nav-link">バリデーション</a><a href="active-record-callback.html" class="mobile-nav-link">コールバック</a><a href="active-record-attribute-was-change.html" class="mobile-nav-link">変更前後の値の確認</a><a href="active-record-attributes-save-update.html" class="mobile-nav-link">値の保存・更新</a><a href="active-record-belongs-to-has-one-has-many.html" class="mobile-nav-link">アソシエーション</a><a href="active-record-destroy-delete.html" class="mobile-nav-link">削除メソッド</a><a href="active-record-execute-sql.html" class="mobile-nav-link">SQLの実行</a><a href="active-record-date-column-config.html" class="mobile-nav-link">日付カラムの設定</a><a href="active-record-database-config.html" class="mobile-nav-link">便利なDB関連設定</a><a href="active-record-read-only-concern.html" class="mobile-nav-link">読込み専用(Read Only)</a><a href="active-record-concern.html" class="mobile-nav-link">Concern(共通処理)</a><a href="active-record-where-condition.html" class="mobile-nav-link">クエリTips</a><strong class="mobile-nav-title">Rails/Controller</strong><a href="rails-controller-basic.html" class="mobile-nav-link">renderレシピ集</a><a href="rails-controller-status-code.html" class="mobile-nav-link">HTTPステータスシンボル</a><a href="rails-controller-get-ip.html" class="mobile-nav-link">IPの取得について</a><a href="rails-controller-strong-parameters.html" class="mobile-nav-link">Strong Parameters</a><a href="rails-controller-tips.html" class="mobile-nav-link">ControllerのTips</a><strong class="mobile-nav-title">Rails/View</strong><a href="library-template-engine-haml.html" class="mobile-nav-link">HAMLチートシート</a><a href="rails-function-form-carrierwave-imagemagick.html" class="mobile-nav-link">画像アップロードフォーム</a><a href="rails-function-form-carrierwave-fog-s3.html" class="mobile-nav-link">S3への画像アップロード</a><a href="rails-function-form-object.html" class="mobile-nav-link">Form Object</a><a href="rails-function-form-helper.html" class="mobile-nav-link">フォームヘルパー</a><a href="rails-function-select2-search.html" class="mobile-nav-link">検索可能なselectタグ</a><a href="rails-function-enum-select-tag.html" class="mobile-nav-link">enum - selectタグ</a><a href="rails-function-search-box-view.html" class="mobile-nav-link">シンプルな検索ボックス</a><a href="rails-function-form-with-separate-window.html" class="mobile-nav-link">別ウィンドウ・フォーム</a><strong class="mobile-nav-title">Railsいろいろ</strong><a href="rails-function-i18n-internationalization.html" class="mobile-nav-link">i18nについて</a><a href="rails-function-cache-fetch-write-delete.html" class="mobile-nav-link">Rails.cache</a><a href="rails-function-action-mailer.html" class="mobile-nav-link">メール送信</a><a href="rails-function-rails-logger.html" class="mobile-nav-link">ロギング</a><a href="rails-capistrano3-deploy-rbenv-puma.html" class="mobile-nav-link">Capistrano3でデプロイ</a><a href="rails-function-session-management.html" class="mobile-nav-link">セッション管理</a><a href="rails-tips-yaml-load-env.html" class="mobile-nav-link">環境ごとのYAML設定読込</a><a href="rails-tips-human-date-time-display.html" class="mobile-nav-link">xx分前の時間表記</a><a href="rails-tips-miscellaneous.html" class="mobile-nav-link">Tipsいろいろ</a><strong class="mobile-nav-title">便利ライブラリ</strong><a href="library-vcr-webmock.html" class="mobile-nav-link">簡単Webmock：VCR</a><a href="library-bullet.html" class="mobile-nav-link">N+1対策：bullet</a><a href="library-dotenv.html" class="mobile-nav-link">環境変数の管理: dotenv</a><a href="library-i18n-tasks.html" class="mobile-nav-link">i18nサポート: i18n-tasks</a><a href="library-net-ldap.html" class="mobile-nav-link">LDAP：net-ldap</a><a href="library-secureheaders.html" class="mobile-nav-link">ヘッダ：secureheaders</a><a href="library-rack-mini-profiler.html" class="mobile-nav-link">rack-mini-profiler</a><a href="library-activerecord-precount.html" class="mobile-nav-link">activerecord-precount</a><a href="library-coverage-simple-cov.html" class="mobile-nav-link">カバレッジ計測</a><a href="library-breadcrumbs_on_rails.html" class="mobile-nav-link">パンくずリスト+Metadata</a><a href="library-transpec.html" class="mobile-nav-link">RSpecの記法自動修正</a><a href="library-store-api-google-play-ios-app-store.html" class="mobile-nav-link">アプリランキング取得</a><a href="library-unicorn-web-server-rails.html" class="mobile-nav-link">Unicorn導入手順</a><a href="library-unicorn-worker-killer.html" class="mobile-nav-link">unicorn-worker-killer</a><strong class="mobile-nav-title">RSpec</strong><a href="rspec-rails-controller.html" class="mobile-nav-link">Controller Spec</a><a href="library-capybara-feature-spec-chrome-headless.html" class="mobile-nav-link">CapybaraとヘッドレスChrome</a><a href="rspec-rails-request.html" class="mobile-nav-link">Request Spec</a><a href="rspec-rails-controller-api-authentication.html" class="mobile-nav-link">API認証 Spec</a><a href="rspec-tips-function.html" class="mobile-nav-link">便利Tips</a><strong class="mobile-nav-title">デザインパターン</strong><a href="design-pattern-index.html" class="mobile-nav-link">概要</a><a href="design-pattern-abstract-factory.html" class="mobile-nav-link">アブストラクトファクトリ</a><a href="design-pattern-builder.html" class="mobile-nav-link">ビルダ</a><a href="design-pattern-factory-method.html" class="mobile-nav-link">ファクトリメソッド</a><a href="design-pattern-adapter.html" class="mobile-nav-link">アダプタ</a><a href="design-pattern-composite.html" class="mobile-nav-link">コンポジット</a><a href="design-pattern-decorator.html" class="mobile-nav-link">デコレータ</a><a href="design-pattern-proxy.html" class="mobile-nav-link">プロキシ</a><a href="design-pattern-command.html" class="mobile-nav-link">コマンド</a><a href="design-pattern-interpreter.html" class="mobile-nav-link">インタプリタ</a><a href="design-pattern-iterator.html" class="mobile-nav-link">イテレータ</a><a href="design-pattern-observer.html" class="mobile-nav-link">オブザーバ</a><a href="design-pattern-storategy.html" class="mobile-nav-link">ストラテジ</a><a href="design-pattern-template-method.html" class="mobile-nav-link">テンプレートメソッド</a><strong class="mobile-nav-title">Ruby基礎</strong><a href="basic-string.html" class="mobile-nav-link">文字列/String</a><a href="basic-array.html" class="mobile-nav-link">配列/Array</a><a href="basic-hash.html" class="mobile-nav-link">ハッシュ/Hash</a><a href="basic-struct.html" class="mobile-nav-link">構造体/Struct</a><a href="basic-spawn.html" class="mobile-nav-link">Spawn(コマンド実行)</a><a href="basic-rubygem-bundler.html" class="mobile-nav-link">Bundlerについて</a><strong class="mobile-nav-title">Tips</strong><a href="rails-versionup-update-rails5.1.html" class="mobile-nav-link">Rails 5.1へのアップデート</a><a href="rails-versionup-update-rails5.html" class="mobile-nav-link current">Rails 5へのアップデート</a><a href="rbenv-update-mac-homebrew.html" class="mobile-nav-link">rbenvバージョンアップ</a><a href="rails-tips-puma-systemd.html" class="mobile-nav-link">pumaをsystemdで動かす</a><a href="basic-uri-encode-cgi-escape.html" class="mobile-nav-link">URI.encodeとCGI.escape</a><a href="basic-uri.html" class="mobile-nav-link">URLのパラメータを変更</a><a href="basic-benchmark.html" class="mobile-nav-link">処理時間を計測</a><a href="tips-image-type-check-png-jpeg-gif.html" class="mobile-nav-link">画像JPEG/PNG/GIF判定</a><strong class="mobile-nav-title">トラブルシュート</strong><a href="rails-troubleshoot-no-route-match-assets.html" class="mobile-nav-link">No route matches assets</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

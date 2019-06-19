@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>HerokuにRails 3.2.9/Bootstrapでデプロイ最短・簡単ガイドだよ！　 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/heroku-rails-postgresql/index-e11115458e.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Heroku + Rails 3.2.9 + Bootstrap + Haml + PostgreSQLでデプロイするまでの最短ガイドを作りました！">
+<meta name="keywords" content="Heroku,Rails,Haml,Bootstrap,PostgreSQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HerokuにRails 3.2.9&#x2F;Bootstrapでデプロイ最短・簡単ガイドだよ！　">
+<meta property="og:url" content="http://morizyun.github.io//blog/heroku-rails-postgresql/index-e11115458e.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Heroku + Rails 3.2.9 + Bootstrap + Haml + PostgreSQLでデプロイするまでの最短ガイドを作りました！">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HerokuにRails 3.2.9&#x2F;Bootstrapでデプロイ最短・簡単ガイドだよ！　">
+<meta name="twitter:description" content="Heroku + Rails 3.2.9 + Bootstrap + Haml + PostgreSQLでデプロイするまでの最短ガイドを作りました！">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="main-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="main-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">HerokuにRails 3.2.9/Bootstrapでデプロイ最短・簡単ガイドだよ！　</h1>
+    
+    <a href="/blog/heroku-rails-postgresql/" class="article-date"><time datetime="2012-11-24T15:00:00.000Z">2012-11-25</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/heroku-rails-postgresql/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/heroku-rails-postgresql/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/heroku-rails-postgresql/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/heroku-rails-postgresql/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>Heroku + Rails 3.2.9 + Bootstrap + Haml + PostgreSQLでデプロイするまでの最短ガイドを作りました！</p>
+<p><a href="/blog/heroku-rails-postgresql" title="fpu_tmp_1353848330.5039_237fab by morizyun,"></a></p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="Herokuユーザー登録" class="article-heading"> 🎳 <a href="#Herokuユーザー登録" class="headerlink" title="Herokuユーザー登録"></a>Herokuユーザー登録<a class="article-anchor" href="#Herokuユーザー登録" aria-hidden="true"></a></h2><p><a href="http://heroku.com" target="_blank" rel="noopener">Heroku</a>でユーザー登録をします。<br>アカウント作成時に使ったメールアドレスとパスワードは後で使うのでメモっておいてください。</p>
+<p><a href="http://heroku.com/" title="fpu_tmp_1353828845.2153_57ac05 by morizyun," target="_blank" rel="noopener"></a></p>
+<p><a href="https://toolbelt.heroku.com/" target="_blank" rel="noopener">Heroku Toolbelt</a>をインストールします。Heroku Toolbeltの機能は；</p>
+<ul>
+<li>Heroku client - Heroku appsを管理するためのCLI</li>
+<li>Foreman - ローカルでHerokuアップを動かすためのオプション</li>
+<li>Git - HerokuへのPush/ソースのバージョン管理</li>
+</ul>
+<p><a href="https://toolbelt.heroku.com/" title="fpu_tmp_1353829261.6919_09c68e by morizyun," target="_blank" rel="noopener"></a></p>
+<h2 id="ローカル環境設定" class="article-heading">👽 <a href="#ローカル環境設定" class="headerlink" title="ローカル環境設定"></a>ローカル環境設定<a class="article-anchor" href="#ローカル環境設定" aria-hidden="true"></a></h2><p>任意でrailsのアップデートを実行します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">rvmsudo gem update rails</span><br></pre></td></tr></tbody></table></figure>
+<p>gem herokuをインストールします。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">gem install <span class="string">'heroku'</span></span><br></pre></td></tr></tbody></table></figure>
+<p>アカウント作成時に使ったメールアドレスとパスワードを事前に設定します。<br>これによってデプロイのたびに、パスワードを聞かれるのを防ぎます。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">Heroku <span class="symbol">keys:</span>add</span><br><span class="line">Enter your Heroku credentials.</span><br><span class="line"><span class="symbol">Email:</span> email@example.com</span><br><span class="line"><span class="symbol">Password:</span> your-password</span><br><span class="line">Uploading ssh public key /Users/joe/.ssh/id_rsa.pub</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Rails-プロジェクト作成-〜-index-html表示まで" class="article-heading">🏈 <a href="#Rails-プロジェクト作成-〜-index-html表示まで" class="headerlink" title="Rails プロジェクト作成 〜 index.html表示まで"></a>Rails プロジェクト作成 〜 index.html表示まで<a class="article-anchor" href="#Rails-プロジェクト作成-〜-index-html表示まで" aria-hidden="true"></a></h2><p>Railsの新規プロジェクトを作成します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">rails new <span class="built_in">test</span>-app --skip-test-unit -d postgresql</span><br></pre></td></tr></tbody></table></figure>
+<p>Gitリポジトリ作成を作成します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">Git init</span><br><span class="line">Git add -A</span><br><span class="line">Git commit -m <span class="string">"create new project"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>herokuコマンドを使って、heroku上にアプリケーションを作成します。<br>(test-appだとすでに使われてて動かないので、使われてなさそうな名前がいいっすよ〜)</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">heroku create <span class="built_in">test</span>-app --stack cedar</span><br><span class="line">> Creating <span class="built_in">test</span>-app... <span class="keyword">done</span>, stack is cedar</span><br><span class="line">> http://<span class="built_in">test</span>-app.herokuapp.com/ | git@heroku.com:<span class="built_in">test</span>-app.git</span><br><span class="line">> Git remote heroku added <span class="comment"># <= こうなっていれば成功< span></=></span><br></span></pre></td></tr></tbody></table></figure>
+<p><a href="http://test-app.herokuapp.com/" target="_blank" rel="noopener">http://test-app.herokuapp.com/</a> をブラウザで表示されることを確認。</p>
+<h2 id="Rails-Gem登録-〜-scaffold表示まで" class="article-heading"> 🐹 <a href="#Rails-Gem登録-〜-scaffold表示まで" class="headerlink" title="Rails Gem登録 〜 scaffold表示まで"></a>Rails Gem登録 〜 scaffold表示まで<a class="article-anchor" href="#Rails-Gem登録-〜-scaffold表示まで" aria-hidden="true"></a></h2><p>gemfileを編集して、プロジェクトに任意のGemを追加。<br>(gemは適宜カスタマイズしてください)</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://rubygems.org'</span></span><br><span class="line">Ruby <span class="string">"1.9.3"</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'rails'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Bootstrap</span></span><br><span class="line">gem <span class="string">'LESS-rails'</span></span><br><span class="line">gem <span class="string">'LESS-rails-bootstrap'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Form Builders</span></span><br><span class="line">gem <span class="string">'simple_form'</span></span><br><span class="line">gem <span class="string">'country_select'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Haml</span></span><br><span class="line">gem <span class="string">'haml-rails'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># jQuery/json</span></span><br><span class="line">gem <span class="string">'jquery-rails'</span></span><br><span class="line">gem <span class="string">'jquery-Cookie-rails'</span> <span class="comment"># jquery-Cookie</span></span><br><span class="line">gem <span class="string">'json'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Presenter</span></span><br><span class="line">gem <span class="string">'draper'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Thin</span></span><br><span class="line">gem <span class="string">'thin'</span></span><br><span class="line"></span><br><span class="line">group :assets <span class="keyword">do</span></span><br><span class="line">  gem <span class="string">'coffee-rails'</span></span><br><span class="line">  gem <span class="string">'therubyracer'</span></span><br><span class="line">  gem <span class="string">'uglifier'</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :development <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 環境変数をロードして複数のプロセスを実行する作業を自動化</span></span><br><span class="line">  gem <span class="string">'foreman'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># viewやcssの変更を監視してブラウザを自動的にリロードする</span></span><br><span class="line">  gem <span class="string">'guard-livereload'</span></span><br><span class="line">  gem <span class="string">'em-Websocket'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># デバッガ</span></span><br><span class="line">  gem <span class="string">'pry-rails'</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :development, :<span class="built_in">test</span> <span class="keyword">do</span></span><br><span class="line">  gem <span class="string">'mysql2'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># RSpec</span></span><br><span class="line">  gem <span class="string">'RSpec-rails'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># FactoryGirl</span></span><br><span class="line">  gem <span class="string">'factory_girl_rails'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 設定をロードしたサーバによってテストを高速化</span></span><br><span class="line">  gem <span class="string">'spork'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># ファイルの変更を検知する。macOS用</span></span><br><span class="line">  gem <span class="string">'rb-fsevent'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># テスト結果をGrowlで通知する</span></span><br><span class="line">  gem <span class="string">'growl'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># ファイルの変更を監視してテストを自動化</span></span><br><span class="line">  gem <span class="string">'guard-RSpec'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 設定ファイルの変更を監視してテストサーバを再起動</span></span><br><span class="line">  gem <span class="string">'guard-spork'</span></span><br><span class="line"></span><br><span class="line">  gem <span class="string">'rails3-generators'</span>, :Git => <span class="string">'https://github.com/neocoin/rails3-generators.git'</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :postgres <span class="keyword">do</span></span><br><span class="line">  gem <span class="string">'pg'</span></span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<p>Gemをインストール。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">bundle install</span><br></pre></td></tr></tbody></table></figure>
+<p>config/application.rbの設定です。<br>(class Application < Rails::Application内に追記してください)</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># LESS</span></span><br><span class="line">config.app_generators.stylesheet_engine <span class="symbol">:LESS</span></span><br><span class="line">config.LESS.paths << <span class="string">"<span class="subst">#{Rails.root}</span>/lib/LESS/protractor/stylesheets"</span></span><br><span class="line">config.LESS.compress = <span class="literal">true</span></span><br><span class="line">config.assets.compress = <span class="literal">true</span></span><br><span class="line">config.assets.initialize_on_precompile=<span class="literal">false</span> <span class="comment"># Herokuでasset:precomileエラー対策</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set timezone</span></span><br><span class="line">config.time_zone = <span class="string">'Tokyo'</span></span><br><span class="line">config.active_record.default_timezone = <span class="symbol">:local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日本語化</span></span><br><span class="line">config.i18n.default_locale = <span class="symbol">:ja</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># generatorの設定</span></span><br><span class="line">config.generators <span class="keyword">do</span> <span class="params">|g|</span></span><br><span class="line">  g.orm <span class="symbol">:active_record</span></span><br><span class="line">  g.template_engine <span class="symbol">:haml</span></span><br><span class="line">  g.test_framework  <span class="symbol">:RSpec</span>, <span class="symbol">:fixture</span> => <span class="literal">true</span></span><br><span class="line">  g.fixture_replacement <span class="symbol">:factory_girl</span>, <span class="symbol">:dir</span> => <span class="string">"spec/factories"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># load original validator(オリジナルのバリデータがある場合のみ)</span></span><br><span class="line">config.autoload_paths += ％W(<span class="comment">#{config.root}/lib/validators)</span></span><br></pre></td></tr></tbody></table></figure>
+<p>Herokuのタイムゾーン設定。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">heroku config:add TZ=Asia/Tokyo</span><br></pre></td></tr></tbody></table></figure>
+<p>application.cssを削除して、LESSファイルを生成</p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line">rm -rf app/assets/stylesheets/application.css</span><br><span class="line"><span class="selector-tag">rails</span> <span class="selector-tag">generate</span> <span class="selector-tag">LESS</span><span class="selector-pseudo">:assets</span> <span class="selector-tag">application</span></span><br></pre></td></tr></tbody></table></figure>
+<p>bootstrapのcssを読み込むように設定を追加する。<br>app/assets/stylesheets/application.css.lessに以下んコードを追加。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">/<span class="regexp">/ = require_tree .</span></span><br><span class="line"><span class="regexp">@import "twitter/bootstrap</span><span class="string">";</span></span><br></pre></td></tr></tbody></table></figure>
+<p>bootstrapのJavaScriptを読み込むようにするために、app/assets/javascripts/application.jsに次のコードを追加。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">/<span class="regexp">/= require Twitter/bootstrap</span></span><br><span class="line">/<span class="regexp">/= require jQuery.Cookie</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">$(document).ready(function(){</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">});</span></span><br></pre></td></tr></tbody></table></figure>
+<p>application.html.erbファイルをhamlにファイル名を変更。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">mv app/views/layouts/application.html.erb app/views/layouts/application.html.haml</span><br></pre></td></tr></tbody></table></figure>
+<p>application.html.hamlの中身もhaml形式にする。</p>
+<figure class="highlight haml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">!!! 5</span></span><br><span class="line"><span class="tag">%<span class="selector-tag">html</span></span></span><br><span class="line"><span class="tag">  %<span class="selector-tag">head</span></span></span><br><span class="line"><span class="tag">    %<span class="selector-tag">title</span></span> TEST_APP</span><br><span class="line">    =<span class="ruby"> stylesheet_link_tag <span class="string">"application"</span>, <span class="symbol">:media</span> => <span class="string">"all"</span></span></span><br><span class="line"><span class="ruby">    = javascript_include_tag <span class="string">"application"</span></span></span><br><span class="line"><span class="ruby">    = csrf_meta_tags</span></span><br><span class="line"><span class="ruby">  %body</span></span><br><span class="line"><span class="ruby">    = <span class="keyword">yield</span></span></span><br></pre></td></tr></tbody></table></figure>
+<p>Railsの日本語化ファイルを設定する。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml</span><br><span class="line">mv ja.yml config/locales/ja.yml</span><br></pre></td></tr></tbody></table></figure>
+<p>simple formの初期設定(bootstrap対応)</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">rails generate simple_form:install --bootstrap</span><br></pre></td></tr></tbody></table></figure>
+<p>railsへのrspecのインストールと雛形を作成</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">rails generate rspec:install</span><br></pre></td></tr></tbody></table></figure>
+<p>RSpecの設定ファイル”spec/spec_helper.rb”を修正(コメントアウトする)</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#config.fixture_path = "#{::Rails.root}/spec/fixtures"</span></span><br><span class="line"><span class="comment">#config.use_transactional_fixtures = true</span></span><br></pre></td></tr></tbody></table></figure>
+<p>scaffoldを追加の前にpublic/index.htmlをリネーム(無効化する)。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">mv public/index.html public/_____index.html</span><br></pre></td></tr></tbody></table></figure>
+<p>scaffoldの作成してビューを追加。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">rails g scaffold product name <span class="symbol">price:</span>integer</span><br></pre></td></tr></tbody></table></figure>
+<p>config/routes.rbにて、ルートアクセス設定を追加。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">root <span class="symbol">:to</span> => <span class="string">"products#index"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>Herokuでthinが動くようにする。<br>プロジェクト直下にProcfileを新規作成。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">Web: bundle <span class="built_in">exec</span> rails server thin -p <span class="variable">$PORT</span> -e <span class="variable">$RACK_ENV</span></span><br></pre></td></tr></tbody></table></figure>
+<p>設定画反映されたかチェック。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">foreman check</span><br><span class="line">>valid procfile detected (web) ← 成功</span><br></pre></td></tr></tbody></table></figure>
+<p>$RACK_ENVをセットするファイルを作成<br></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"RACK_ENV=development"</span> >>.env</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>gitに.envが記録されないようにする。<br>プロジェクト直下の.gitignoreに以下を追加。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">.env</span><br></pre></td></tr></tbody></table></figure>
+<p>Herokuへのアプリケーションのデプロイ => DBのマイグレーション。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">Git add . -A</span><br><span class="line">Git commit -m <span class="string">"add scafford"</span></span><br><span class="line">Git push herokuマスタ</span><br><span class="line">Heroku run Rake <span class="symbol">db:</span>migrate</span><br></pre></td></tr></tbody></table></figure>
+<p>ブラウザでscaffordしたビューが見れることを確認。<br>デプロイまでの最短ガイドは以上っす。</p>
+<p>Thank very much you for your kind attention.</p>
+<h2 id="関連記事" class="article-heading">🐞 <a href="#関連記事" class="headerlink" title="関連記事"></a>関連記事<a class="article-anchor" href="#関連記事" aria-hidden="true"></a></h2><p><strong><a href="/blog/pow-guard-rails">開発サーバをThinからPowに切り替えて開発効率アップ！ (Mac限定)</a></strong> にてPowに関する記事を載せました。Guardが更に活用できると思います。よかったらぜひ見てください。</p>
+<h2 id="補足-ローカルでのテスト環境の構築" class="article-heading">🗽 <a href="#補足-ローカルでのテスト環境の構築" class="headerlink" title="補足 : ローカルでのテスト環境の構築"></a>補足 : ローカルでのテスト環境の構築<a class="article-anchor" href="#補足-ローカルでのテスト環境の構築" aria-hidden="true"></a></h2><p>config/database.ymlを以下の通り編集する。今回は</p>
+<ul>
+<li>“development”, “test” => mysql</li>
+<li>“production” => postgreSQL</li>
+</ul>
+<p>とした場合の設定です。環境に合わせて調整を。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="symbol">development:</span></span><br><span class="line">  <span class="symbol">adapter:</span> mysql2</span><br><span class="line">  <span class="symbol">encoding:</span> utf8</span><br><span class="line">  <span class="symbol">reconnect:</span> <span class="literal">false</span></span><br><span class="line">  <span class="symbol">database:</span> test-app_development</span><br><span class="line">  <span class="symbol">pool:</span> <span class="number">5</span></span><br><span class="line">  <span class="symbol">username:</span> root</span><br><span class="line">  <span class="symbol">password:</span></span><br><span class="line">  <span class="symbol">socket:</span> /var/lib/mysql/mysql.sock</span><br><span class="line"></span><br><span class="line"><span class="symbol">test:</span></span><br><span class="line">  <span class="symbol">adapter:</span> mysql2</span><br><span class="line">  <span class="symbol">encoding:</span> utf8</span><br><span class="line">  <span class="symbol">reconnect:</span> <span class="literal">false</span></span><br><span class="line">  <span class="symbol">database:</span> test-app_test</span><br><span class="line">  <span class="symbol">pool:</span> <span class="number">5</span></span><br><span class="line">  <span class="symbol">username:</span> root</span><br><span class="line">  <span class="symbol">password:</span></span><br><span class="line">  <span class="symbol">socket:</span> /var/lib/mysql/mysql.sock</span><br><span class="line"></span><br><span class="line"><span class="symbol">production:</span></span><br><span class="line">  <span class="symbol">adapter:</span> postgresql</span><br><span class="line">  <span class="symbol">encoding:</span> unicode</span><br><span class="line">  <span class="symbol">database:</span> test-app_production</span><br><span class="line">  <span class="symbol">pool:</span> <span class="number">5</span></span><br><span class="line">  <span class="symbol">username:</span> </span><br><span class="line">  <span class="symbol">password:</span></span><br></pre></td></tr></tbody></table></figure>
+<p>DBの作成を実行。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">Rake db:create RAILES_ENV=<span class="string">'development'</span></span><br><span class="line">Rake db:create RAILES_ENV=<span class="string">'test'</span></span><br></pre></td></tr></tbody></table></figure>
+<p>サーバプロセスを起動する。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">foreman start</span><br></pre></td></tr></tbody></table></figure>
+<p><a href="http://0.0.0.0:5000/_____index.htmlを表示してDBに接続されていることを確認する。" target="_blank" rel="noopener">http://0.0.0.0:5000/_____index.htmlを表示してDBに接続されていることを確認する。</a></p>
+<h2 id="補足-コマンド系" class="article-heading">🗻 <a href="#補足-コマンド系" class="headerlink" title="補足 : コマンド系"></a>補足 : コマンド系<a class="article-anchor" href="#補足-コマンド系" aria-hidden="true"></a></h2><p>Herokuコマンド一覧</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Herokuへのログイン</span></span><br><span class="line">Heroku login</span><br><span class="line">Email: email@example.com</span><br><span class="line">Password: your-password</span><br><span class="line"></span><br><span class="line"><span class="comment"># アプリケーションの作成</span></span><br><span class="line">Heroku create</span><br><span class="line"></span><br><span class="line"><span class="comment"># マイグレーション</span></span><br><span class="line">Heroku run Rake db:migrate</span><br><span class="line"></span><br><span class="line"><span class="comment"># アプリケーションのデプロイ</span></span><br><span class="line">Git add . -A</span><br><span class="line">Git commit -m <span class="string">"add function"</span></span><br><span class="line">Git push herokuマスタ</span><br><span class="line"></span><br><span class="line"><span class="comment"># 環境変数のセット</span></span><br><span class="line">Heroku config:add USERNAME=admin PASSWORD=xxx</span><br><span class="line"></span><br><span class="line"><span class="comment"># ログ確認</span></span><br><span class="line">Heroku logs -t</span><br><span class="line"></span><br><span class="line"><span class="comment"># Herokuプロセス情報の表示</span></span><br><span class="line">Heroku ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># Heroku環境変数の表示 </span></span><br><span class="line">Heroku config</span><br></pre></td></tr></tbody></table></figure>
+<p>既存モデルのRspec雛形を作成するコマンド。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">rails generate rspec:model products</span><br></pre></td></tr></tbody></table></figure>
+<p>テスト環境は以下のとおりです。</p>
+<pre>OS : Mac Lion(OS X 10.7)
+Rails : 3.2.9
+haml : 3.1.7
+coffee-script : 3.2.1
+</pre>
+
+<h2 id="参考リンク" class="article-heading">🚌 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><p><a href="http://nobyu.hatenadiary.jp/entry/20100207/1265531331" target="_blank" rel="noopener">HerokuとRailsで手早くWebサイトを作る</a></p>
+</li>
+<li><p><a href="http://change-the-world.heroku.com/5" target="_blank" rel="noopener">Railsアプリ作成 + Herokuデプロイ</a></p>
+</li>
+<li><p><a href="http://ovreneli.blogspot.jp/2012/06/railspostgresqlheroku.html" target="_blank" rel="noopener">RailsアプリをPostgreSQLで開発してHerokuにデプロイするまでの簡単まとめ</a></p>
+</li>
+<li><p><a href="http://edywrite.blogspot.jp/2012/08/herokuwebthin.html" target="_blank" rel="noopener">Herokuのwebサーバをthinに変更する</a></p>
+</li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="mobile-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

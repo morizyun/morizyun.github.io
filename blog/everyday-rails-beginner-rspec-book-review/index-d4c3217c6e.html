@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Everyday Rails RSpecによるRailsテスト入門でRSpec3に再入門！[書評] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/everyday-rails-beginner-rspec-book-review/index-d4c3217c6e.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="『Everyday Rails - RSpecによるRailsテスト入門』が、RSpec3に対応したとの噂を聞いて1年ぶりに読み直しました。この書籍は著者や訳者さんが、しっかりとアップデートを続けてくれているので、最新の入門チュートリアルとしてRSpecの実践的な使い方が習得できるすばらしい本です。 今回は『Everyday Rails - RSpecによるRailsテスト入門』を読んでいく中で、">
+<meta name="keywords" content="Ruby,RSpec,rails,bdd,tdd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Everyday Rails RSpecによるRailsテスト入門でRSpec3に再入門！[書評]">
+<meta property="og:url" content="http://morizyun.github.io//blog/everyday-rails-beginner-rspec-book-review/index-d4c3217c6e.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="『Everyday Rails - RSpecによるRailsテスト入門』が、RSpec3に対応したとの噂を聞いて1年ぶりに読み直しました。この書籍は著者や訳者さんが、しっかりとアップデートを続けてくれているので、最新の入門チュートリアルとしてRSpecの実践的な使い方が習得できるすばらしい本です。 今回は『Everyday Rails - RSpecによるRailsテスト入門』を読んでいく中で、">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Everyday Rails RSpecによるRailsテスト入門でRSpec3に再入門！[書評]">
+<meta name="twitter:description" content="『Everyday Rails - RSpecによるRailsテスト入門』が、RSpec3に対応したとの噂を聞いて1年ぶりに読み直しました。この書籍は著者や訳者さんが、しっかりとアップデートを続けてくれているので、最新の入門チュートリアルとしてRSpecの実践的な使い方が習得できるすばらしい本です。 今回は『Everyday Rails - RSpecによるRailsテスト入門』を読んでいく中で、">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="main-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="main-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Everyday Rails RSpecによるRailsテスト入門でRSpec3に再入門！[書評]</h1>
+    
+    <a href="/blog/everyday-rails-beginner-rspec-book-review/" class="article-date"><time datetime="2015-01-11T15:00:00.000Z">2015-01-12</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/everyday-rails-beginner-rspec-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/everyday-rails-beginner-rspec-book-review/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/everyday-rails-beginner-rspec-book-review/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/everyday-rails-beginner-rspec-book-review/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p><a href="https://leanpub.com/everydayrailsrspec-jp" title="large by morizyun," target="_blank" rel="noopener"><img src="/img/2015-01-12-everyday-rails-beginner-rspec-book-review_1.png" width="150" style="float: left; margin: 0 20px 20px 0;" alt="large"></a>『<strong><a href="https://leanpub.com/everydayrailsrspec-jp" target="_blank" rel="noopener">Everyday Rails - RSpecによるRailsテスト入門</a></strong>』<br>が、RSpec3に対応したとの噂を聞いて1年ぶりに読み直しました。この書籍は著者や訳者さんが、しっかりとアップデートを続けてくれているので、最新の入門チュートリアル<br>としてRSpecの実践的な使い方が習得できるすばらしい本です。</p>
+<p>今回は『<strong><a href="https://leanpub.com/everydayrailsrspec-jp" target="_blank" rel="noopener">Everyday Rails - RSpecによるRailsテスト入門</a></strong>』<br>を読んでいく中で、特に印象に残った部分を中心にピックアップしていきます。ブログ駆動勉強ですw</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="Everyday-Railsのサンプルソース" class="article-heading"> 🚜 <a href="#Everyday-Railsのサンプルソース" class="headerlink" title="Everyday Railsのサンプルソース"></a>Everyday Railsのサンプルソース<a class="article-anchor" href="#Everyday-Railsのサンプルソース" aria-hidden="true"></a></h2><p><strong><a href="https://github.com/everydayrails/rspec_rails_4" target="_blank" rel="noopener">everydayrails/rspec_rails_4 - GitHub</a></strong></p>
+<p>この書籍ではできるだけRSpecやテストに集中できるようにサンプルソースが用意されています。しかもRails 4対応と至れり尽くせりです。すばらしい！<br>ターミナルで次のコマンドを実行すると、ローカルにソースコードをダウンロードできます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git clone https://github.com/everydayrails/rspec_rails_4.git</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="自分でコードを書く" class="article-heading"> 🏀 <a href="#自分でコードを書く" class="headerlink" title="自分でコードを書く"></a>自分でコードを書く<a class="article-anchor" href="#自分でコードを書く" aria-hidden="true"></a></h2><p>勉強をするときにコピー&ペーストをするのではなく、自分でコードをタイピングしていくべき。<br>これは最近学習によって得られる知識がかなり変わることを実感しているのですごく共感できます！</p>
+<h2 id="テスト設計について" class="article-heading"> 😎 <a href="#テスト設計について" class="headerlink" title="テスト設計について"></a>テスト設計について<a class="article-anchor" href="#テスト設計について" aria-hidden="true"></a></h2><p>TDDで動くコードを書く前にRSpecのexample(itで始まる行)まで書いてテスト設計する。<br>いつもテストが先か、コードが先かで悩んでいました。この理由のひとつは動かない状態のテストの設計をどこに<br>書くかでしたが、この本を読んでいく中でこういうふうに先に設計すればTDDの流れの中で開発できるんだと感激ました＾＾</p>
+<h2 id="絶対に覚えておきたいRSpecを書くときの基本" class="article-heading"> 🍄 <a href="#絶対に覚えておきたいRSpecを書くときの基本" class="headerlink" title="絶対に覚えておきたいRSpecを書くときの基本"></a>絶対に覚えておきたいRSpecを書くときの基本<a class="article-anchor" href="#絶対に覚えておきたいRSpecを書くときの基本" aria-hidden="true"></a></h2><pre>* Specアウトラインをベースに考える
+* example(itで始まる行)は原因究明しやすいように結果を1つに絞る
+* 期待する結果は能動形、具体的に記述すること
+* 「起きてほしいこと、起きてほしくないこと」の両方のテストを書くこと
+* 境界値テストをすること
+* スペックの可読性を高めることに努めること
+</pre>
+
+<h2 id="コントローラスペックについて" class="article-heading">🐠 <a href="#コントローラスペックについて" class="headerlink" title="コントローラスペックについて"></a>コントローラスペックについて<a class="article-anchor" href="#コントローラスペックについて" aria-hidden="true"></a></h2><p>feature specに比べてコントローラスペックのほうが、少ないコストでテストできる。<br>コントローラのテストは、自動生成されていないコードで、テストにコストをかけて効果が高そうなものを選定するといい。<br>その結果たしっかりテストされたコントローラがあれば、アプリケーション全体のテスト網羅率を向上させることができる。</p>
+<h2 id="FactoryGirlのテクニック" class="article-heading">🗻 <a href="#FactoryGirlのテクニック" class="headerlink" title="FactoryGirlのテクニック"></a>FactoryGirlのテクニック<a class="article-anchor" href="#FactoryGirlのテクニック" aria-hidden="true"></a></h2><p>次のようにファクトリを書くことで、<code>home_phone</code>と<code>work_phone</code>を使わけることができます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">FactoryGirl.define do</span><br><span class="line">  factory :phone do</span><br><span class="line">    association :contact</span><br><span class="line">    phone '123-555-1234'</span><br><span class="line"></span><br><span class="line">    factory :home_phone do</span><br><span class="line">      phone_type: 'home'</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    factory :work_phone do</span><br><span class="line">      phone_type: 'work'</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<p>また、『<strong><a href="https://github.com/stympy/faker" target="_blank" rel="noopener">stympy/faker</a></strong>』を使うと、<br>住所やURL、メールアドレスなどのリアルなダミーデータを生成してくれます。</p>
+<p>ただ日本語のふりがななどに対応しようと思うと『<strong><a href="https://github.com/willnet/gimei" target="_blank" rel="noopener">willnet/gimei</a></strong>』<br>がオススメです。日本語のリアルな住所を組み合わせたダミーデータも簡単に作成することができます。</p>
+<p>FactoryGirlはテストを遅くすることがあるそうですので、必要なときに適切に使うことが重要とのことです。</p>
+<h2 id="shared-examples" class="article-heading"> 🎉 <a href="#shared-examples" class="headerlink" title="shared_examples"></a>shared_examples<a class="article-anchor" href="#shared-examples" aria-hidden="true"></a></h2><p><code>shared_exmamples</code>とは、いくつかのテストをグループ化して、メソッドのように何度も呼び出せる機能です。<br>下は公式サンプルのテストですが、これを見ると一目で分かると思います！</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">require "set"</span><br><span class="line"></span><br><span class="line">RSpec.shared_examples "a collection" do</span><br><span class="line">  let(:collection) { described_class.new([7, 2, 4]) }</span><br><span class="line"></span><br><span class="line">  context "initialized with 3 items" do</span><br><span class="line">    it "says it has three items" do</span><br><span class="line">      expect(collection.size).to eq(3)</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  context "with an an item that is in the collection" do</span><br><span class="line">    it "returns true" do</span><br><span class="line">      expect(collection.include?(7)).to be_truthy</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">RSpec.describe Array do</span><br><span class="line">  # ↓shared_examplesを関数のように呼び出している</span><br><span class="line">  it_behaves_like "a collection"</span><br><span class="line">end</span><br><span class="line">#=> Array</span><br><span class="line">#=>   behaves like a collection</span><br><span class="line">#=>     initialized with 3 items</span><br><span class="line">#=>       says it has three items</span><br><span class="line">#=>     with an an item that is in the collection</span><br><span class="line">#=>       returns true</span><br><span class="line"></span><br><span class="line">RSpec.describe Set do</span><br><span class="line">  # ↓shared_examplesを関数のように呼び出している</span><br><span class="line">  it_behaves_like "a collection"</span><br><span class="line">end</span><br><span class="line">#=> Set</span><br><span class="line">#=>   behaves like a collection</span><br><span class="line">#=>     initialized with 3 items</span><br><span class="line">#=>       says it has three items</span><br><span class="line">#=>     with an an item that is in the collection</span><br><span class="line">#=>       returns true</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="FactoryGirlでローカルのファイルを指定する方法" class="article-heading">🐯 <a href="#FactoryGirlでローカルのファイルを指定する方法" class="headerlink" title="FactoryGirlでローカルのファイルを指定する方法"></a>FactoryGirlでローカルのファイルを指定する方法<a class="article-anchor" href="#FactoryGirlでローカルのファイルを指定する方法" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># ローカルのファイルを指定する方法</span><br><span class="line">FactoryGirl.define do</span><br><span class="line">  factory :user do</span><br><span class="line">    avatar { File.new("#{Rails.root}/spec/factories/avatar.png") }</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="RSpecの便利マッチャー" class="article-heading">🍣 <a href="#RSpecの便利マッチャー" class="headerlink" title="RSpecの便利マッチャー"></a>RSpecの便利マッチャー<a class="article-anchor" href="#RSpecの便利マッチャー" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 正規表現でのチェック</span><br><span class="line">expect("a string").not_to match /a regex/</span><br><span class="line"></span><br><span class="line"># 配列のチェック</span><br><span class="line">expect([1, 2, 3]).to match_array [2, 1, 3]</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="テストで特定の時間を指定する方法" class="article-heading"> 🎃 <a href="#テストで特定の時間を指定する方法" class="headerlink" title="テストで特定の時間を指定する方法"></a>テストで特定の時間を指定する方法<a class="article-anchor" href="#テストで特定の時間を指定する方法" aria-hidden="true"></a></h2><p><strong><a href="https://github.com/travisjeffery/timecop" target="_blank" rel="noopener">travisjeffery/timecop - GitHub</a></strong></p>
+<p>特定の曜日や日にちに依存する処理がある場合に、そのテストをできる。また、時間をやめることができるのでタイムスタンプが正しく動いているかのテストなどができる。</p>
+<h2 id="メールのテスト" class="article-heading">👽 <a href="#メールのテスト" class="headerlink" title="メールのテスト"></a>メールのテスト<a class="article-anchor" href="#メールのテスト" aria-hidden="true"></a></h2><p><strong><a href="https://github.com/bmabey/email-spec/" target="_blank" rel="noopener">bmabey/email-spec -GitHub</a></strong></p>
+<p>EmailについてテストをするためのGem。知らなかったけどこれはすごい使えそう。今度試してみます！</p>
+<h2 id="RSpec-3初心者向けの資料まとめ" class="article-heading">🐡 <a href="#RSpec-3初心者向けの資料まとめ" class="headerlink" title="RSpec 3初心者向けの資料まとめ"></a>RSpec 3初心者向けの資料まとめ<a class="article-anchor" href="#RSpec-3初心者向けの資料まとめ" aria-hidden="true"></a></h2><p><strong><a href="/blog/rspec3-beginner-bdd-tdd-test-first">RSpec 3初心者向けの資料まとめ[Ruby]</a></strong></p>
+<p>ちなみにそのほかのTDDやRSpecの入門記事も書いています。こちらも良ければぜひ読んでみてください＾＾</p>
+<h2 id="変更来歴" class="article-heading">🏈 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>(2015-01-12 22:30) 既存記事から分離して新規作成<br></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-bd396e9cb1.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-727f7abfed.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-d78b421396.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-796e3f46ec.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-ac2a8f2b73.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-eaea96d627.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-2ba17a5b22.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-e543cbe08c.html" class="mobile-nav-link">DB</a><a href="//web/http-index-4d0daca29d.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

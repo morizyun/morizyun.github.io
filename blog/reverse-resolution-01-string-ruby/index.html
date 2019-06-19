@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/reverse-resolution-01-string-ruby/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="title: “文字列操作[Ruby逆引き][コーディング規約]”category: Rubytags: [Ruby] published: falseRubyのStringクラスについての逆引きです。Rubyのコーディング規約に極力準拠するようにします。 文字列の構築複数行の文字列を作成する %&amp;gt;/#00) 文字列操作文字列を結合する %&amp;gt;/#00)文字列を指定した回数繰り返す %&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="酒と涙とRubyとRailsと">
+<meta property="og:url" content="http://morizyun.github.io/blog/reverse-resolution-01-string-ruby/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="title: “文字列操作[Ruby逆引き][コーディング規約]”category: Rubytags: [Ruby] published: falseRubyのStringクラスについての逆引きです。Rubyのコーディング規約に極力準拠するようにします。 文字列の構築複数行の文字列を作成する %&amp;gt;/#00) 文字列操作文字列を結合する %&amp;gt;/#00)文字列を指定した回数繰り返す %&amp;">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="酒と涙とRubyとRailsと">
+<meta name="twitter:description" content="title: “文字列操作[Ruby逆引き][コーディング規約]”category: Rubytags: [Ruby] published: falseRubyのStringクラスについての逆引きです。Rubyのコーディング規約に極力準拠するようにします。 文字列の構築複数行の文字列を作成する %&amp;gt;/#00) 文字列操作文字列を結合する %&amp;gt;/#00)文字列を指定した回数繰り返す %&amp;">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name"></h1>
+    
+    <a href="/blog/reverse-resolution-01-string-ruby/" class="article-date"><time datetime="2012-12-19T15:00:00.000Z">2012-12-20</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/reverse-resolution-01-string-ruby/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/reverse-resolution-01-string-ruby/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/reverse-resolution-01-string-ruby/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/reverse-resolution-01-string-ruby/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>title: “文字列操作[Ruby逆引き][コーディング規約]”<br>category: Ruby<br>tags: [Ruby]</p>
+<h2 id="published-false" class="article-heading"> 🍄 <a href="#published-false" class="headerlink" title="published: false"></a>published: false<a class="article-anchor" href="#published-false" aria-hidden="true"></a></h2><p><a href="<%= config.url %><%- url_for(post.path) %>" title="by morizyun,"><img src="/img/2012-12-20-reverse-resolution-01-string-ruby_1.jpg" width="150" alt="Where?" style="float: left; margin: 0 20px 20px 0;"></a>RubyのStringクラスについての逆引きです。Rubyのコーディング規約に極力準拠するようにします。</p>
+<h4 id="文字列の構築" class="article-heading"><a href="#文字列の構築" class="headerlink" title="文字列の構築"></a>文字列の構築<a class="article-anchor" href="#文字列の構築" aria-hidden="true"></a></h4><p><a href="%= config.url %><%- url_for(post.path">複数行の文字列を作成する</a> %>/#00)<br></p>
+<h4 id="文字列操作" class="article-heading"><a href="#文字列操作" class="headerlink" title="文字列操作"></a>文字列操作<a class="article-anchor" href="#文字列操作" aria-hidden="true"></a></h4><p><a href="%= config.url %><%- url_for(post.path">文字列を結合する</a> %>/#00)<br><br><a href="%= config.url %><%- url_for(post.path">文字列を指定した回数繰り返す</a> %>/#00)<br><br><a href="%= config.url %><%- url_for(post.path">文字列を区切り文字で分割する</a> %>/#00)<br><br><a href="%= config.url %><%- url_for(post.path">文字列の一部を切り出す</a> %>/#00)<br><br><a href="%= config.url %><%- url_for(post.path">２つの文字列が一致しているか？一致していないか？</a> %>/#00)<br><br><a href="%= config.url %><%- url_for(post.path">文字列を1行ずつ処理する</a> %>/#00)<br></p>
+<h4 id="コーディング規約" class="article-heading"><a href="#コーディング規約" class="headerlink" title="コーディング規約"></a>コーディング規約<a class="article-anchor" href="#コーディング規約" aria-hidden="true"></a></h4><p><a href="%= config.url %><%- url_for(post.path">“(ダブル)と’(シングル)コーテーションについて</a> %>/#00)<br></p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<p><a name="00"></a></p>
+<h2 id="複数行の文字列を作成する" class="article-heading"> 🎃 <a href="#複数行の文字列を作成する" class="headerlink" title="複数行の文字列を作成する"></a>複数行の文字列を作成する<a class="article-anchor" href="#複数行の文字列を作成する" aria-hidden="true"></a></h2><p>複数行にまたがる文字列を作成する場合は、ヒアドキュメント<code><<-eos< code>を利用する。<br></-eos<></code></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str1 = <<-eos< span><br><span class="line">    Ruby</span><br><span class="line">    on</span><br><span class="line">    Rails</span><br><span class="line">EOS</span><br><span class="line">puts str1 #=> "    Ruby\n    on\n    Rails\n"</span><br></-eos<></span></pre></td></tr></tbody></table></figure>
+<p><a name="00"></a></p>
+<h2 id="文字列を結合する" class="article-heading"> 🐹 <a href="#文字列を結合する" class="headerlink" title="文字列を結合する"></a>文字列を結合する<a class="article-anchor" href="#文字列を結合する" aria-hidden="true"></a></h2><p>短い文字列を結合する場合は式展開<code>"#{...}"</code>を利用する。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str1 = "Ruby"</span><br><span class="line">str2 = "Gem"</span><br><span class="line"></span><br><span class="line">puts "#{str1} #{str2}" #=> "Ruby Gem"</span><br></pre></td></tr></tbody></table></figure>
+<p>長い文字列を結合する場合は<code>String#<<</code>メソッドを利用する。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">html = ""</span><br><span class="line">html << "<h1>Page title</h1>"</span><br><span class="line"></span><br><span class="line">paragraphs.each do |paragraph|</span><br><span class="line">  html << "<p>#{paragraph}</p>"</span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<p><a name="00"></a></p>
+<h2 id="文字列を指定した回数繰り返す" class="article-heading">🚌 <a href="#文字列を指定した回数繰り返す" class="headerlink" title="文字列を指定した回数繰り返す"></a>文字列を指定した回数繰り返す<a class="article-anchor" href="#文字列を指定した回数繰り返す" aria-hidden="true"></a></h2><p>文字列を指定した回数繰り返す(反復する)場合は<code>String#*</code>メソッドを使う。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str = "Ruby "</span><br><span class="line"></span><br><span class="line">puts str * 3 #=> "Ruby Ruby Ruby "</span><br></pre></td></tr></tbody></table></figure>
+<p><a name="00"></a></p>
+<h2 id="文字列を区切り文字で分割する" class="article-heading">🐯 <a href="#文字列を区切り文字で分割する" class="headerlink" title="文字列を区切り文字で分割する"></a>文字列を区切り文字で分割する<a class="article-anchor" href="#文字列を区切り文字で分割する" aria-hidden="true"></a></h2><p>文字列を区切り文字で分割する場合は、<code>split</code>メソッドを用いる。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">"Ruby/on/Rails".split("/") #=> ["Ruby", "on", "Rails"]</span><br></pre></td></tr></tbody></table></figure>
+<p><a name="00"></a></p>
+<h2 id="シェルコマンドを実行して結果を文字列で受け取る" class="article-heading">🗽 <a href="#シェルコマンドを実行して結果を文字列で受け取る" class="headerlink" title="シェルコマンドを実行して結果を文字列で受け取る"></a>シェルコマンドを実行して結果を文字列で受け取る<a class="article-anchor" href="#シェルコマンドを実行して結果を文字列で受け取る" aria-hidden="true"></a></h2><p><code></code>(バッククオート)`で囲った文字列は、シェルコマンドとして認識される。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str = `date`</span><br><span class="line"></span><br><span class="line">puts str #=> "2012年 12月21日 金曜日 00時01分30秒 JST\n"</span><br></pre></td></tr></tbody></table></figure>
+<p>複数行のシェルコマンドを実行する場合は<code>EOS</code>を<code></code>(バッククオート)`で囲う。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str = <<`eos`< span><br><span class="line">date</span><br><span class="line">echo "******************"</span><br><span class="line">date</span><br><span class="line">echo "=================="</span><br><span class="line">EOS</span><br><span class="line"></span><br><span class="line">puts str</span><br><span class="line"># 以下が結果</span><br><span class="line"># "2012年 12月21日 金曜日 21時52分25秒 JST\n</span><br><span class="line"># ******************\n</span><br><span class="line"># 2012年 12月21日 金曜日 21時52分25秒 JST\n</span><br><span class="line"># ==================\n"</span><br></`eos`<></span></pre></td></tr></tbody></table></figure>
+<p><a name="00"></a></p>
+<h2 id="文字列の一部を切り出す" class="article-heading">🏈 <a href="#文字列の一部を切り出す" class="headerlink" title="文字列の一部を切り出す"></a>文字列の一部を切り出す<a class="article-anchor" href="#文字列の一部を切り出す" aria-hidden="true"></a></h2><p>文字列から一部を切り出す場合は、<code>slice</code>メソッドを使います。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str = "Ruby on Rails"</span><br><span class="line"></span><br><span class="line">puts str.slice(5,2) #=> "on"</span><br></pre></td></tr></tbody></table></figure>
+<p><a name="00"></a></p>
+<h2 id="2つの文字列が一致しているか？-一致していないか？" class="article-heading">🐝 <a href="#2つの文字列が一致しているか？-一致していないか？" class="headerlink" title="2つの文字列が一致しているか？ 一致していないか？"></a>2つの文字列が一致しているか？ 一致していないか？<a class="article-anchor" href="#2つの文字列が一致しているか？-一致していないか？" aria-hidden="true"></a></h2><p>文字列が一致しているか？ をチェックするのは、<code>==</code><br><br>文字列が一致していないか？ をチェックするのは、<code>!=</code></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str1 = "abc"</span><br><span class="line">str2 = "abc"</span><br><span class="line">str3 = "abd"</span><br><span class="line"></span><br><span class="line">str1 == str2 # 同値なのでtrue</span><br><span class="line">str1 == str3 # 同値ではないのでfalse</span><br><span class="line"></span><br><span class="line">str1 != str2 # 同値なのでfalse</span><br><span class="line">str1 != str3 # 同値ではないのでtrue</span><br></pre></td></tr></tbody></table></figure>
+<p><a name="00"></a></p>
+<h2 id="文字列を1行ずつ処理する" class="article-heading"> 🤔 <a href="#文字列を1行ずつ処理する" class="headerlink" title="文字列を1行ずつ処理する"></a>文字列を1行ずつ処理する<a class="article-anchor" href="#文字列を1行ずつ処理する" aria-hidden="true"></a></h2><p>文字列を1行ずつ処理するには<code>each_line</code>メソッドを使用します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str = <<eos< span><br><span class="line">Ruby</span><br><span class="line">on</span><br><span class="line">Rails</span><br><span class="line">EOS</span><br><span class="line"></span><br><span class="line">line_num = 1</span><br><span class="line">str.each_line do |line|</span><br><span class="line">  puts "#{line_num}: #{line}"</span><br><span class="line">  line_num = line_num + 1</span><br><span class="line">end</span><br><span class="line"># 結果は以下の通りです。</span><br><span class="line"># 1: Ruby</span><br><span class="line"># 2: on</span><br><span class="line"># 3: Rails</span><br></eos<></span></pre></td></tr></tbody></table></figure>
+<p><a name="00"></a></p>
+<h2 id="文字列の先頭-末尾の空白文字を削除する" class="article-heading"> 🎂 <a href="#文字列の先頭-末尾の空白文字を削除する" class="headerlink" title="文字列の先頭/末尾の空白文字を削除する"></a>文字列の先頭/末尾の空白文字を削除する<a class="article-anchor" href="#文字列の先頭-末尾の空白文字を削除する" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">str = "  Ruby on Rails  "</span><br><span class="line"></span><br><span class="line">str.strip #=> "Ruby on Rails"</span><br><span class="line">puts str #=> "  Ruby on Rails  "</span><br><span class="line"></span><br><span class="line">str.strip! #=> "Ruby on Rails"</span><br><span class="line">puts str #=> "Ruby on Rails"</span><br></pre></td></tr></tbody></table></figure>
+<!-- 
+文字列の先頭と末尾の空白文字を削除する
+
+文字列の先頭と末尾の空白文字(\r \n \t \f \v 半角スペース)を削除するにはString#stripメソッドを使います。String#stripには破壊的メソッドString#strip!も用意されています。
+
+s = "   Hello, Ruby!   "
+
+s.strip #=> "Hello, Ruby!"
+s.strip! #=> "Hello, Ruby!"
+
+文字列を1行ずつ処理する
+
+文字列を１行ずつ処理するにはString#each_lineメソッドを使用します。
+
+linenum = 1
+
+s = <<EOS
+This is test.
+
+Ruby, the Object Oriented Script Language.
+EOS
+
+s.each_line {|line|
+  print "#{linenum}: #{line}"
+  linenum = linenum + 1
+}
+上記の例はヒアドキュメントで設定された3行の文字列の各行に、行番号を付与して出力します。結果は以下のようになります。
+
+1: This is test.
+2:
+3: Ruby, the Object Oriented Script Language.
+
+大文字・小文字に揃える
+
+文字列を大文字または小文字に揃えるにはString#upcaseメソッド、String#downcaseメソッドを使います。 下の例ではs1にはsを全て大文字にした'I LOVE RUBY'が、s2には全て小文字にした'i love ruby'が設定されます。
+
+s = "I love Ruby"
+
+s1 = s.upcase #=> "I LOVE RUBY"
+s2 = s.downcase #=> "i love ruby"
+String#upcase、String#downcaseにはそれぞれ破壊的メソッドString#upcase!、String#downcase!が用意されています。
+
+大文字と小文字の入れ替え
+
+大文字と小文字を入れ替えるにはString#swapcaseメソッドを使います。破壊的メソッドString#swapcase!も用意されています。
+
+s = "i lOVE rUBY"
+p s.swapcase #=> "I Love Ruby"
+s.swapcase! #=> "I Love Ruby" s.swapcaseではsは変更されない
+コマンドの実行結果を文字列に設定する
+
+コマンドの実行結果を文字列にするには、バッククオート(`)でコマンドを括り以下のように指定します。
+
+s = `date` #=> "Sun May 13 23:47:47 JST 2001"
+
+文字列を整数に変換する (to_i)
+
+文字列を数値に変換するにはString#to_iメソッドを使います。
+
+i  = 1
+s = "999"
+
+i = i + s.to_i #=> 1000
+文字列を浮動小数点に変換する (to_f)
+
+文字列を浮動小数点に変換するにはString#to_fメソッドを使います。
+
+p "10".to_f #=> 10.0
+8進文字列を整数に変換する (oct)
+
+8進文字列を整数に変換するにはString#octメソッドを使います。
+
+p "010".oct #=> 8
+16進文字列を整数に変換する (hex)
+
+16進文字列を整数に変換するにはString#hexメソッドを使います。
+
+p "0xff".hex #=> 255
+p "10".hex #=> 16
+ASCII文字をコード値に（コード値をASCII文字に）変換する
+
+文字列を[]で1文字だけ参照するとそのASCII文字のコード値が返却されます。
+
+s = "R"
+p s[0] #=> 82
+Integer#chrメソッド、組込み関数のsprintf、format、String#%メソッドを使うとコード値からASCII文字に変換することができます。
+
+p 82.chr #=> "R"
+p sprintf("%c", 82) #=> "R"
+p format("%c", 82) #=> "R"
+p "%c" % 82 #=> "R"
+文字列を中央寄せ・左詰・右詰する
+
+文字列をセンタリングするにはString#center、左詰するにはString#ljust、右詰するにはString#rjustメソッドを使用します。引数で指定された長さの文字列を生成し、そのなかで指定された整形を行った文字列が返却されます。
+
+s = "Ruby"
+
+p s.center(10) #=> "   Ruby   "
+p s.ljust(10)  #=> "Ruby      "
+p s.rjust(10)  #=> "      Ruby"
+"次"の文字列を取得する
+
+String#succメソッドは文字列の「次」の文字列を返却します。
+
+p "9".succ #>= "10"
+p "a".succ #>= "b"
+p "AAA".succ #>= "AAB"
+p "A99".succ #>= "B00"
+p "A099".succ #>= "A100"
+プログラム中でシーケンシャルな識別子を払い出す場合などに便利でしょう。破壊的メソッドString#succ!も用意されています。String#next、String#next!が同様の動きをするメソッドとして用意されています。
+
+文字列を暗号化する
+
+文字列を暗号化するにはString#cryptメソッドを使います。
+
+secretword = "hogehoge"
+
+SALT_CHARSET = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+salt = "" << SALT_CHARSET[rand 64] << SALT_CHARSET[rand 64]
+passwd = secretword.crypt(salt)
+上記の例ではSALT_CHARSETからランダムに選んだ2文字を乱数の種にして、"hogehoge"という文字列を暗号化し、passwdに設定しています。仮にpasswdの値が"KBxoECYM2ydlM"だったとすると、以下のスクリプトは引数に指定された文字列が暗号化前の文字列と同じ"hogehoge"であれば"right"、それ以外では"wrong"を出力します。
+
+passwd = "KBxoECYM2ydlM"
+
+userinput = ARGV.shift
+
+if userinput.crypt(passwd) == passwd
+  puts "right"
+else
+  puts "wrong"
+end
+文字列中で指定したパターンにマッチする部分を置換する
+
+文字列中で指定したパターンにマッチする部分を置換するにはString#sub、String#gsubメソッドを使用します。String#subメソッドは文字列中で最初にマッチした部分だけを置換しますが、String#gsubメソッドはマッチする全ての部分を置換します。パターンには正規表現も指定できます。
+
+s = "Apple Banana Apple Orange"
+
+p s.sub("Apple", "Pine") #=> "Pine Banana Apple Orange"
+p s.gsub("Apple", "Pine") #=> "Pine Banana Pine Orange"
+String#sub、String#gsubメソッドにはそれぞれ破壊的メソッドString#sub!、String#gsub!が用意されています。
+
+文字列中に含まれている任意文字列の位置を求める
+
+文字列中に含まれている任意文字列の最初の位置を求めるにはString#indexメソッド、最後の位置を求めるにはString#rindexを使います。第2引数が与えられた場合、String#indexメソッドの場合はそこから後方に、String#rindexメソッドの場合は前方に検索を行います。見つからなければ nil を返します。
+
+s = "Apple Banana Apple Orange"
+
+p s.index("Apple") #=> 0
+p s.index("Banana") #=> 6
+p s.index("Apple", 6) #=> 13
+
+p s.rindex("Apple") #=> 13
+p s.rindex("Apple", 6) #>= 0
+文字列の末端の改行を削除する
+
+文字列の末端の改行を削除するにはString#chompメソッドを使用します。String#chompメソッドは文字列の末端がグローバル変数$/と一致した場合、それを削除した文字列を返却します。$/のデフォルト値は"\n"ですので、通常このメソッドにより末端の改行を削除することができます。String#chompメソッドには破壊的メソッドのString#chomp!も用意されています。
+
+s = "Hello, Ruby!\n"
+
+p s.chomp #=> "Hello, Ruby!"
+s.chomp! #=> "Hello, Ruby!"
+カンマ区切りの文字列を扱う
+
+カンマ区切りなど特定のセパレータで区切られた文字列を扱う場合、String#splitメソッドを使うと便利です。String#splitメソッドは引数として与えた正規表現に合致する部分をセパレータと認識し、各フィールドを配列にして返すメソッドです。
+
+"001,TAKEUCHI Hitoshi,Yokohama".split(/\s*,\s*/) #=> ["001", "TAKEUCHI Hitoshi", "Yokohama"]
+任意のパターンにマッチするものを全て抜き出す
+
+String#scanメソッドは文字列中で任意のパターンにマッチするものを全て抜き出した配列を返却します。
+
+p "hoge:045-111-2222 boke:045-222-2222".scan(/(\S+):([\d\-]+)/)
+
+#=> [["hoge", "045-111-2222"], ["boke", "045-222-2222"]]
+漢字コードを変換する
+
+漢字コードを変換するには添付モジュールのkconvを使用します。kconvにはJISに変換するKconv::tojis、EUCに変換するKconv::toeuc、シフトJISに変換するKconv::tosjisメソッドがあります。
+
+require "kconv"
+
+s = "漢字です"
+
+p Kconv.tojis(s)
+p Kconv.toeuc(s)
+p Kconv.tosjis(s)
+kconvをrequireするとStringクラスにこれらのメソッドが追加されます。
+
+require "kconv"
+
+s = "漢字です"
+
+p s.tojis
+p s.toeuc
+p s.tosjis
+kconvをrequireすれば、Stringクラスにtojis、toeuc、tosjisメソッドが追加されます。
+
+マルチバイト文字の数を数える
+
+utf-8 の場合
+
+"日本語".split(//u).length
+
+=> 3
+euc-jp の場合
+
+"日本語".split(//e).length
+shift-jis の場合
+
+"日本語".split(//s).length
+マルチバイト文字列の最後の1文字を削除する
+
+utf-8 の場合
+
+puts "日本語".split(//u)[0..-2].join
+
+日本
+=> nil
+printf整形
+
+m = "%s %.1f" % [Time.now.strftime("%H:%m"), 3.19]
+=> "18:12 3.2"
+ -->
+<p><a name="99"></a></p>
+<h2 id="99-コーディング規約：-“-ダブル-と’-シングル-コーテーションについて" class="article-heading">😼 <a href="#99-コーディング規約：-“-ダブル-と’-シングル-コーテーションについて" class="headerlink" title="(99) コーディング規約： “(ダブル)と’(シングル)コーテーションについて"></a>(99) コーディング規約： “(ダブル)と’(シングル)コーテーションについて<a class="article-anchor" href="#99-コーディング規約：-“-ダブル-と’-シングル-コーテーションについて" aria-hidden="true"></a></h2><p>GitHubのRubyスタイルガイドでは文字列の”(ダブル)と’(シングル)コーテーションについて次のように書かれています。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># bad</span><br><span class="line">email_with_name = user.name + ' <' + user.email '>'</'></span><br><span class="line"></span><br><span class="line"># good</span><br><span class="line">email_with_name = "#{user.name} <#{user.email}>"</#{user.email}></span><br></pre></td></tr></tbody></table></figure>
+<p>式展開や文字のエスケープを考慮して、”(ダブルコーテーション)がより望ましい。</p>
+<h2 id="お願い事項" class="article-heading"> 🎉 <a href="#お願い事項" class="headerlink" title="お願い事項"></a>お願い事項<a class="article-anchor" href="#お願い事項" aria-hidden="true"></a></h2><p>コメントやミスのご指摘は大歓迎です！　もし気付いたらぜひコメントください。</p>
+<h2 id="参考にしたコーディング規約" class="article-heading"> 🏀 <a href="#参考にしたコーディング規約" class="headerlink" title="参考にしたコーディング規約"></a>参考にしたコーディング規約<a class="article-anchor" href="#参考にしたコーディング規約" aria-hidden="true"></a></h2><p><a href="https://github.com/styleguide/ruby" target="_blank" rel="noopener">Ruby · Styleguide</a></p>
+<p><a href="https://github.com/bbatsov/ruby-style-guide" target="_blank" rel="noopener">bbatsov/ruby-style-guide · GitHub</a></p>
+<p><a href="http://bojovs.github.com/2012/04/24/ruby-coding-style/" target="_blank" rel="noopener">コーディング規約をまとめてみた (Ruby編)</a></p>
+<p><a href="http://shugo.net/ruby-codeconv/codeconv.html" target="_blank" rel="noopener">Rubyコーディング規約</a></p>
+<h2 id="Special-Thank" class="article-heading"> 😎 <a href="#Special-Thank" class="headerlink" title="Special Thank"></a>Special Thank<a class="article-anchor" href="#Special-Thank" aria-hidden="true"></a></h2><p><a href="http://www.namaraii.com/rubytips/?%CA%B8%BB%FA%CE%F3" target="_blank" rel="noopener">逆引きRuby - 文字列</a></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

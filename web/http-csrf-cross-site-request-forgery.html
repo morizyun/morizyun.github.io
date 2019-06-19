@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>CSRFとXSSについて | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/web/http-csrf-cross-site-request-forgery.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="ja" href="http://morizyun.github.io/web/http-csrf-cross-site-request-forgery.html">
+    
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="クロスサイト・リクエスト・フォージェリー(CSRF)とクロスサイト・スクリプティング(XSS)を混同してしまっていたので、お互いの説明を整理しました。">
+<meta name="keywords" content="Web Server,HTTP,Security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSRFとXSSについて">
+<meta property="og:url" content="http://morizyun.github.io/web/http-csrf-cross-site-request-forgery.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="クロスサイト・リクエスト・フォージェリー(CSRF)とクロスサイト・スクリプティング(XSS)を混同してしまっていたので、お互いの説明を整理しました。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSRFとXSSについて">
+<meta name="twitter:description" content="クロスサイト・リクエスト・フォージェリー(CSRF)とクロスサイト・スクリプティング(XSS)を混同してしまっていたので、お互いの説明を整理しました。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">CSRFとXSSについて</h1>
+              </header>
+              <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/web/http-csrf-cross-site-request-forgery.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/web/http-csrf-cross-site-request-forgery.html" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/web/http-csrf-cross-site-request-forgery.html">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/web/http-csrf-cross-site-request-forgery.html"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+              <div class="article-content" itemprop="articleBody">
+                <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>クロスサイト・リクエスト・フォージェリー(CSRF)とクロスサイト・スクリプティング(XSS)を混同してしまっていたので、お互いの説明を整理しました。</p>
+<a id="more"></a>
+<h2 id="いいたいこと" class="article-heading">🐝 <a href="#いいたいこと" class="headerlink" title="いいたいこと"></a>いいたいこと<a class="article-anchor" href="#いいたいこと" aria-hidden="true"></a></h2><ul>
+<li>CSRFは攻撃スクリプトがサーバ上で動く、XSSはブラウザ上で動く</li>
+<li>結果として「なりすまし」ができる点が似ている</li>
+</ul>
+<h2 id="クロスサイト・リクエスト・フォージェリー-CSRF" class="article-heading"> 🐹 <a href="#クロスサイト・リクエスト・フォージェリー-CSRF" class="headerlink" title="クロスサイト・リクエスト・フォージェリー(CSRF)"></a>クロスサイト・リクエスト・フォージェリー(CSRF)<a class="article-anchor" href="#クロスサイト・リクエスト・フォージェリー-CSRF" aria-hidden="true"></a></h2><p>CSRF(Cross Site Request Forgeries)とは、本来拒否すべきほかのサイトからのリクエストを受けて、セキュリティを無視した攻撃を行う手法です。</p>
+<p><img src="/img/web-http-security-csrf-outline.png"></p>
+<h3 id="攻撃の流れ" class="article-heading"><a href="#攻撃の流れ" class="headerlink" title="攻撃の流れ"></a>攻撃の流れ<a class="article-anchor" href="#攻撃の流れ" aria-hidden="true"></a></h3><p>CSRFの攻撃の主な流れは次のとおりです。</p>
+<ol>
+<li>攻撃者が攻撃用のWebページを作成してWWW上に公開する</li>
+<li>第三者が攻撃用のWebページにアクセスする</li>
+<li>第三者がHTTPリクエストによって、攻撃者の意図した操作が行われる</li>
+</ol>
+<h3 id="サンプルコード" class="article-heading"><a href="#サンプルコード" class="headerlink" title="サンプルコード"></a>サンプルコード<a class="article-anchor" href="#サンプルコード" aria-hidden="true"></a></h3><p>次のイメージタグは実際にお金の引き出しを要求します。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://bank.example.com/withrraw?account=john&acount=200000"</span> /></span></span><br></pre></td></tr></tbody></table></figure>
+<p>事前に銀行のアカウントでログインしており、Cookieが有効な場合はHTMLを読み込むとすぐに送金されれてしまいます。</p>
+<h3 id="対策" class="article-heading"><a href="#対策" class="headerlink" title="対策"></a>対策<a class="article-anchor" href="#対策" aria-hidden="true"></a></h3><p>Webサイト(開発者)側のCSRFへの対策は次のような方法があります。</p>
+<ul>
+<li>暗号論的擬似乱数をCookie値とformのhidden値に発行する</li>
+<li>一方の値は、偽造を防ぐために暗号学的ハッシュ関数に通す</li>
+<li>HTTP POST時にその両方の値が一致するかを検証する</li>
+<li>入力項目のフィルタリングを行う</li>
+<li>Cookieの有効期限を短くする</li>
+</ul>
+<h2 id="クロスサイト・スクリプティング-XSS" class="article-heading">🚌 <a href="#クロスサイト・スクリプティング-XSS" class="headerlink" title="クロスサイト・スクリプティング(XSS)"></a>クロスサイト・スクリプティング(XSS)<a class="article-anchor" href="#クロスサイト・スクリプティング-XSS" aria-hidden="true"></a></h2><p>クロスサイト・スクリプティング(XSS)とはWebページに任意のスクリプトが紛れ込み、Webサイトを閲覧した第三者のブラウザで紛れ込んだスクリプトが実行されます。</p>
+<p><img src="/img/cross-site-scripting-outline.png"></p>
+<h2 id="攻撃の流れ-1" class="article-heading">🏈 <a href="#攻撃の流れ-1" class="headerlink" title="攻撃の流れ"></a>攻撃の流れ<a class="article-anchor" href="#攻撃の流れ-1" aria-hidden="true"></a></h2><ol>
+<li>攻撃者が攻撃用のWebページを作成してWWW上に公開する</li>
+<li>第三者が攻撃用のWebページにアクセスする</li>
+<li>JavaScriptが実行されて、Cookieの盗難などを行う(ページの改ざんもある)</li>
+<li>盗まれたCookie値などを利用して、攻撃者が意図した操作を行う</li>
+</ol>
+<h2 id="対策-1" class="article-heading"> 🎳 <a href="#対策-1" class="headerlink" title="対策"></a>対策<a class="article-anchor" href="#対策-1" aria-hidden="true"></a></h2><p>XSSの対策としては、ユーザーの入力値のチェックや出力時のサニタイズ(無害化)を行うなどがあります。</p>
+<h2 id="参考リンク" class="article-heading">🚕 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/0211/09/news002.html" target="_blank" rel="noopener">クロスサイトスクリプティング対策の基本（前編）：クロスサイトスクリプティング脆弱性とは？</a></li>
+</ul>
+</body></html>
+                <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+                <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-11T00:55:46.000Z" itemprop="dateModified">最終更新日: 2017-08-11</time>
+                <a href="http-session-security-risk.html" class="article-footer-prev" title="セッション"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="http-web-security.html" class="article-footer-next" title="その他"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">コンテンツ</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#いいたいこと"><span class="toc-text">いいたいこと</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#クロスサイト・リクエスト・フォージェリー-CSRF"><span class="toc-text">クロスサイト・リクエスト・フォージェリー(CSRF)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#攻撃の流れ"><span class="toc-text">攻撃の流れ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#サンプルコード"><span class="toc-text">サンプルコード</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#対策"><span class="toc-text">対策</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#クロスサイト・スクリプティング-XSS"><span class="toc-text">クロスサイト・スクリプティング(XSS)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#攻撃の流れ-1"><span class="toc-text">攻撃の流れ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#対策-1"><span class="toc-text">対策</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考リンク"><span class="toc-text">参考リンク</span></a></li></ol>
+              <a href="#" id="article-toc-top">トップへ</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">HTTP基礎</strong><a href="http-index.html" class="sidebar-link">HTTP</a><a href="http-cookie.html" class="sidebar-link">Cookie基礎</a><a href="http-mine-type.html" class="sidebar-link">MIMEタイプ</a><a href="http-strict-transport-security.html" class="sidebar-link">Strict Transport Security</a><a href="http-content-security-policy.html" class="sidebar-link">Content Security Policy</a><strong class="sidebar-title">Webセキュリティ</strong><a href="http-session-security-risk.html" class="sidebar-link">セッション</a><a href="http-csrf-cross-site-request-forgery.html" class="sidebar-link current">CSRFとXSS</a><a href="http-web-security.html" class="sidebar-link">その他</a><strong class="sidebar-title">SEO</strong><a href="seo-basic-knowledge.html" class="sidebar-link">SEO基礎知識</a><strong class="sidebar-title">Bootsrap</strong><a href="bootstrap-twitter-free-theme-list.html" class="sidebar-link">無料テーマ集</a><a href="bootstrap-cheat-sheet.html" class="sidebar-link">チートシート</a><strong class="sidebar-title">HTML</strong><a href="html-basic.html" class="sidebar-link">HTMLの基礎知識</a><strong class="sidebar-title">CSS</strong><a href="css-bem-basic-rule.html" class="sidebar-link">BEMの基本</a><a href="css-selector.html" class="sidebar-link">CSSセレクタ</a><a href="css-hide-few-sec.html" class="sidebar-link">数秒間だけ表示</a><a href="css-tips.html" class="sidebar-link">CSSのTips</a><strong class="sidebar-title">OSS</strong><a href="kibana-query.html" class="sidebar-link">Kibanaクエリ</a><a href="selenium-cheat-sheet.html" class="sidebar-link">Seleniumチートシート</a><strong class="sidebar-title">用語の紹介</strong><a href="words-api.html" class="sidebar-link">APIとは</a><a href="words-authorization-authentication.html" class="sidebar-link">認証と認可</a><strong class="sidebar-title">Atom</strong><a href="atom-textlint-plugin-installation.html" class="sidebar-link">textlintプラグイン</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">HTTP基礎</strong><a href="http-index.html" class="mobile-nav-link">HTTP</a><a href="http-cookie.html" class="mobile-nav-link">Cookie基礎</a><a href="http-mine-type.html" class="mobile-nav-link">MIMEタイプ</a><a href="http-strict-transport-security.html" class="mobile-nav-link">Strict Transport Security</a><a href="http-content-security-policy.html" class="mobile-nav-link">Content Security Policy</a><strong class="mobile-nav-title">Webセキュリティ</strong><a href="http-session-security-risk.html" class="mobile-nav-link">セッション</a><a href="http-csrf-cross-site-request-forgery.html" class="mobile-nav-link current">CSRFとXSS</a><a href="http-web-security.html" class="mobile-nav-link">その他</a><strong class="mobile-nav-title">SEO</strong><a href="seo-basic-knowledge.html" class="mobile-nav-link">SEO基礎知識</a><strong class="mobile-nav-title">Bootsrap</strong><a href="bootstrap-twitter-free-theme-list.html" class="mobile-nav-link">無料テーマ集</a><a href="bootstrap-cheat-sheet.html" class="mobile-nav-link">チートシート</a><strong class="mobile-nav-title">HTML</strong><a href="html-basic.html" class="mobile-nav-link">HTMLの基礎知識</a><strong class="mobile-nav-title">CSS</strong><a href="css-bem-basic-rule.html" class="mobile-nav-link">BEMの基本</a><a href="css-selector.html" class="mobile-nav-link">CSSセレクタ</a><a href="css-hide-few-sec.html" class="mobile-nav-link">数秒間だけ表示</a><a href="css-tips.html" class="mobile-nav-link">CSSのTips</a><strong class="mobile-nav-title">OSS</strong><a href="kibana-query.html" class="mobile-nav-link">Kibanaクエリ</a><a href="selenium-cheat-sheet.html" class="mobile-nav-link">Seleniumチートシート</a><strong class="mobile-nav-title">用語の紹介</strong><a href="words-api.html" class="mobile-nav-link">APIとは</a><a href="words-authorization-authentication.html" class="mobile-nav-link">認証と認可</a><strong class="mobile-nav-title">Atom</strong><a href="atom-textlint-plugin-installation.html" class="mobile-nav-link">textlintプラグイン</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

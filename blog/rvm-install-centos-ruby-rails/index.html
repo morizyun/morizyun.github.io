@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>さくらVPS/CentOS 6.4へのRVMのインストール手順 [Ruby 2.0.0][Railsサーバへの道] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/rvm-install-centos-ruby-rails/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケているRailsサーバに仕上げるまでのシリーズです。第7回はRVM(Ruby Version Management)をインストールする手順です。RVMはRubyのバージョンを管理してくれるしくみでひとつのサーバで複数のバージョンのRubyを使う可能性がある場合に使うとオススメなツールです。">
+<meta name="keywords" content="Ruby,Server,CentOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="さくらVPS&#x2F;CentOS 6.4へのRVMのインストール手順 [Ruby 2.0.0][Railsサーバへの道]">
+<meta property="og:url" content="http://morizyun.github.io/blog/rvm-install-centos-ruby-rails/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケているRailsサーバに仕上げるまでのシリーズです。第7回はRVM(Ruby Version Management)をインストールする手順です。RVMはRubyのバージョンを管理してくれるしくみでひとつのサーバで複数のバージョンのRubyを使う可能性がある場合に使うとオススメなツールです。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="さくらVPS&#x2F;CentOS 6.4へのRVMのインストール手順 [Ruby 2.0.0][Railsサーバへの道]">
+<meta name="twitter:description" content="さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケているRailsサーバに仕上げるまでのシリーズです。第7回はRVM(Ruby Version Management)をインストールする手順です。RVMはRubyのバージョンを管理してくれるしくみでひとつのサーバで複数のバージョンのRubyを使う可能性がある場合に使うとオススメなツールです。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">さくらVPS/CentOS 6.4へのRVMのインストール手順 [Ruby 2.0.0][Railsサーバへの道]</h1>
+    
+    <a href="/blog/rvm-install-centos-ruby-rails/" class="article-date"><time datetime="2012-12-12T15:00:00.000Z">2012-12-13</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rvm-install-centos-ruby-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/rvm-install-centos-ruby-rails/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/rvm-install-centos-ruby-rails/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/rvm-install-centos-ruby-rails/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><a href="//www.amazon.co.jp/gp/product/482223472X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=482223472X&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=482223472X&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;">
+    </a>
+
+<p>さくらVPS 2GB SSDのCentOS 6.4をセットアップしてイケているRailsサーバに仕上げるまでのシリーズです。第7回はRVM(Ruby Version Management)をインストールする手順です。RVMはRubyのバージョンを管理してくれるしくみでひとつのサーバで複数のバージョンのRubyを使う可能性がある場合に使うとオススメなツールです。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="パッケージのインストール" class="article-heading"> 😎 <a href="#パッケージのインストール" class="headerlink" title="パッケージのインストール"></a>パッケージのインストール<a class="article-anchor" href="#パッケージのインストール" aria-hidden="true"></a></h2><p>もしまだならEPELリポジトリを追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo rpm -ivh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</span><br></pre></td></tr></tbody></table></figure>
+<p>必要なパッケージをインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo yum -y install curl curl-devel gcc gcc-c++ git openssl-devel httpd-devel readline-devel tk-devel make zlib-devel libffi-devel</span><br><span class="line">sudo yum --enablerepo=epel -y install libyaml-devel</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="RVMのインストール手順" class="article-heading"> 🎳 <a href="#RVMのインストール手順" class="headerlink" title="RVMのインストール手順"></a>RVMのインストール手順<a class="article-anchor" href="#RVMのインストール手順" aria-hidden="true"></a></h2><p>rvmをインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo bash -s stable < <(curl -s https: raw.github.com wayneeseguin rvm master binscripts rvm-installer )< span><br></(curl></span></pre></td></tr></tbody></table></figure>
+<ul>
+<li>sudoをつけるとマルチユーザーにインストール(/usr/local/rvm)</li>
+<li>sudoを外すと使っているユーザーにインストール(~/.rvm/)</li>
+</ul>
+<p>rvmグループを作成してrootを追加する。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo usermod -a -G rvm root</span><br><span class="line">sudo gpasswd -a USER_NAME rvm </span><br><span class="line">sudo gpasswd -a apache rvm</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>USER_NAME</code>にはrvmを使うユーザー(ログインユーザー)を追加。</li>
+</ul>
+<p>ここでOSの再起動をしてください。そして、rvmの読込とrvmを最新バージョンに更新。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">source /etc/profile.d/rvm.sh</span><br><span class="line">rvm get head</span><br></pre></td></tr></tbody></table></figure>
+<p><code>rvm requirements</code></p>
+<p>を実行して、rvmで必要なパッケージをインストール。</p>
+<p>OSを再起動。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></tbody></table></figure>
+<p>Ruby 2.0.0のインストール。<br></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rvm install 2.0.0</span><br></pre></td></tr></tbody></table></figure>
+<p>Ruby 2.0.0をデフォルトに設定。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rvm use 2.0.0 --default</span><br></pre></td></tr></tbody></table></figure>
+<p>RVMの設定確認。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rvm list</span><br><span class="line">=* ruby-2.0.0-p247 [ x86_64 ] # <= となっていれば成功< span><br></=></span></pre></td></tr></tbody></table></figure>
+<p>今後<code>.rvmrc</code>が設置されたフォルダでは設定を自動で許可するようにする。<br><code>vim /etc/rvmrc</code>に次の内容を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rvm_trust_rvmrcs_flag=1</span><br></pre></td></tr></tbody></table></figure>
+<p>Bundlerをインストールして動作確認。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">gem install bundler --no-ri --no-rdoc</span><br><span class="line">> Successfully installed bundler-1.2.3</span><br><span class="line">> 1 gem installed <= で成功< span><br></=></span></pre></td></tr></tbody></table></figure>
+<h2 id="エラー対策1-mkdir-ディレクトリ-usr-local-rvm’-を作成できません" class="article-heading">🚌 <a href="#エラー対策1-mkdir-ディレクトリ-usr-local-rvm’-を作成できません" class="headerlink" title="エラー対策1: mkdir: ディレクトリ `/usr/local/rvm’ を作成できません"></a>エラー対策1: mkdir: ディレクトリ `/usr/local/rvm’ を作成できません<a class="article-anchor" href="#エラー対策1-mkdir-ディレクトリ-usr-local-rvm’-を作成できません" aria-hidden="true"></a></h2><p>もし<code>mkdir: ディレクトリ</code>/usr/local/rvm’ を作成できません： 許可がありません<code>か</code>Permission denied in /usr/local/rvm`というエラーが発生する場合は、次のコマンドを実行。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo rm -rf /usr/local/rvm</span><br><span class="line">sudo rm -rf /etc/rvmrc.</span><br></pre></td></tr></tbody></table></figure>
+<p>でOSを再起動したほうがよさそう。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="エラー対策2-No-space-left-on-device" class="article-heading"> 🤔 <a href="#エラー対策2-No-space-left-on-device" class="headerlink" title="エラー対策2: No space left on device"></a>エラー対策2: No space left on device<a class="article-anchor" href="#エラー対策2-No-space-left-on-device" aria-hidden="true"></a></h2><p>もし、<code>No space left on device</code>というエラーはディスクに書き込める容量がないことを表しています。</p>
+<p>ディレクトリ単位での使用量上位20位までを探す場合のコマンドは次のとおり。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">du -k / | sort -n | tail -20</span><br></pre></td></tr></tbody></table></figure>
+<p>100MB以上のファイルを探す場合のコマンドは次のとおりです。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">find / -size 100000K -ls</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="メモ：-RVMを再インストール" class="article-heading">🐝 <a href="#メモ：-RVMを再インストール" class="headerlink" title="メモ： RVMを再インストール"></a>メモ： RVMを再インストール<a class="article-anchor" href="#メモ：-RVMを再インストール" aria-hidden="true"></a></h2><p>何かの理由でRVMを再インストールする場合の削除コマンドは次のとおり。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rvm implode</span><br><span class="line">sudo rm -rf /etc/rvmrc</span><br></pre></td></tr></tbody></table></figure>
+<p>OSを再起動したほうがよさそう。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="メモ：-ユーザーの所属しているグループを調べる" class="article-heading">🐮 <a href="#メモ：-ユーザーの所属しているグループを調べる" class="headerlink" title="メモ： ユーザーの所属しているグループを調べる"></a>メモ： ユーザーの所属しているグループを調べる<a class="article-anchor" href="#メモ：-ユーザーの所属しているグループを調べる" aria-hidden="true"></a></h2><p>idコマンドでユーザーの所属しているグループが調べられる</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">id root</span><br><span class="line">> uid=0(root) gid=0(root) 所属グループ=0(root),501(rvm)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading">🗻 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><p><a href="http://tmaeda.s45.xrea.com/hiki/?(ruby" target="_blank" rel="noopener">tmaeda hiki - Passenger と RVM で複数 gemset でのアプリケーション運用</a>PassengerWithRvm)</p>
+<p><a href="http://www.pistolfly.jp/weblog/2012/01/centosrvm.html" target="_blank" rel="noopener">CentOSにRVMをマルチユーザ用にインストール</a></p>
+<p><a href="http://www.rabblemedia.net/blog/installing-rvm-ruby-rails-and-passenger-centos-6.html/" target="_blank" rel="noopener">Installing RVM, Ruby on Rails, and Passenger on Centos 6</a></p>
+<p><a href="http://fnya.cocolog-nifty.com/blog/2012/04/centos-62-rvmru.html" target="_blank" rel="noopener">CentOS 6.2 に RVM、Ruby、Ruby on Rails をインストール</a></p>
+<p><a href="http://ayabulu.seesaa.net/category/8520121-1.html" target="_blank" rel="noopener">開発環境: 仮想CentOSでRuby開発めも</a></p>
+<p><a href="http://unix.wixion.cc/paragraph_352.htm" target="_blank" rel="noopener">グループにメンバーを追加する gpasswd -a user group - ok</a></p>
+<p><a href="http://www.atmarkit.co.jp/flinux/rensai/linuxtips/095uidgid.html" target="_blank" rel="noopener">ユーザーのユーザーIDやグループIDを調べるには</a></p>
+<p><a href="http://codezine.jp/unixdic/w/usermod/" target="_blank" rel="noopener">usermod ユーザのアカウントを変更する - UNIXコマンド辞典：CodeZine（コードジン）</a></p>
+<p><a href="http://q.hatena.ne.jp/1194317312" target="_blank" rel="noopener">LINUXで、ディスクの空き領域がなくなってきているのですが、サイズの大きいファイルやフォルダを探したいと考えています。</a></p>
+<h2 id="変更来歴" class="article-heading"> 😸 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>12/14 20:25タイトルを変更、全体の構成をシリーズものに合わせて編集<br><br>12/14 22:10エラー対策、本文を修正(何度がテストして一番いい方法を採用)<br><br>12/15 14:30計5回くらいインストールと削除を繰返してやっと設定の流れを理解/修正<br><br>09/24 06:45 Ruby 2.0.0対応 & CentOS 6.4対応、記述ミス修正<br></p>
+<h2 id="検証環境" class="article-heading">🐞 <a href="#検証環境" class="headerlink" title="検証環境"></a>検証環境<a class="article-anchor" href="#検証環境" aria-hidden="true"></a></h2><p>今回の記事の検証環境は以下のとおりです。</p>
+<pre>Local/Server:
+  Ruby: 2.0.0
+  Rails: 4.0.0
+
+Local:
+  OS: Mac Mountain Mountain Lion(macOS 10.8.4)
+
+Server(さくらVPS 2G SSD):
+    CentOS release 6.4 (Final)
+</pre></body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

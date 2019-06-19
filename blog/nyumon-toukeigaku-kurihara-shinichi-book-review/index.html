@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>【書評： 入門統計学検定から多量変数解析・実験計画法まで】基礎固めに最適！　 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/nyumon-toukeigaku-kurihara-shinichi-book-review/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="『統計学がわかる』を読んで基礎の中の基礎が少しずつわかってきたので、ステップアップを目指して『入門統計学 検定から多量変数解析・実験計画法まで』を読み始めました。この本は、推測統計についてわかりやすく、実践的に解説しているテキストです。数式の説明もかなり丁寧に書かれており、統計学の理解を深めるための工夫が随所に凝らされています。 今回はこの本の中で、特に勉強になった部分を中心にメモを書いておきます">
+<meta name="keywords" content="Statistics,Analyze">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【書評： 入門統計学検定から多量変数解析・実験計画法まで】基礎固めに最適！　">
+<meta property="og:url" content="http://morizyun.github.io/blog/nyumon-toukeigaku-kurihara-shinichi-book-review/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="『統計学がわかる』を読んで基礎の中の基礎が少しずつわかってきたので、ステップアップを目指して『入門統計学 検定から多量変数解析・実験計画法まで』を読み始めました。この本は、推測統計についてわかりやすく、実践的に解説しているテキストです。数式の説明もかなり丁寧に書かれており、統計学の理解を深めるための工夫が随所に凝らされています。 今回はこの本の中で、特に勉強になった部分を中心にメモを書いておきます">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【書評： 入門統計学検定から多量変数解析・実験計画法まで】基礎固めに最適！　">
+<meta name="twitter:description" content="『統計学がわかる』を読んで基礎の中の基礎が少しずつわかってきたので、ステップアップを目指して『入門統計学 検定から多量変数解析・実験計画法まで』を読み始めました。この本は、推測統計についてわかりやすく、実践的に解説しているテキストです。数式の説明もかなり丁寧に書かれており、統計学の理解を深めるための工夫が随所に凝らされています。 今回はこの本の中で、特に勉強になった部分を中心にメモを書いておきます">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">【書評： 入門統計学検定から多量変数解析・実験計画法まで】基礎固めに最適！　</h1>
+    
+    <a href="/blog/nyumon-toukeigaku-kurihara-shinichi-book-review/" class="article-date"><time datetime="2014-03-30T15:00:00.000Z">2014-03-31</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/nyumon-toukeigaku-kurihara-shinichi-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/nyumon-toukeigaku-kurihara-shinichi-book-review/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/nyumon-toukeigaku-kurihara-shinichi-book-review/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/nyumon-toukeigaku-kurihara-shinichi-book-review/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><a href="//www.amazon.co.jp/gp/product/4274068552/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274068552&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4274068552&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;">
+    </a>
+
+<p>『<strong><a href="/blog/statistics-understand-first-book-review/">統計学がわかる</a></strong>』を読んで基礎の中の基礎が少しずつわかってきたので、ステップアップを目指して『<strong><a href="http://www.amazon.co.jp/gp/product/4274068552/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4274068552&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">入門統計学 検定から多量変数解析・実験計画法まで</a></strong>』を読み始めました。この本は、推測統計についてわかりやすく、実践的に解説しているテキストです。数式の説明もかなり丁寧に書かれており、統計学の理解を深めるための工夫が随所に凝らされています。</p>
+<p>今回はこの本の中で、特に勉強になった部分を中心にメモを書いておきます。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="1章：-データ整理-記述的統計学" class="article-heading"> 🤔 <a href="#1章：-データ整理-記述的統計学" class="headerlink" title="1章： データ整理(記述的統計学)"></a>1章： データ整理(記述的統計学)<a class="article-anchor" href="#1章：-データ整理-記述的統計学" aria-hidden="true"></a></h2><p>記述的統計学とは、実験や調査で集めたデータの特性を明らかにするために平均やばらつき、分布などをもとめて整理する学問。</p>
+<h3 id="キーワード" class="article-heading"><a href="#キーワード" class="headerlink" title="キーワード"></a>キーワード<a class="article-anchor" href="#キーワード" aria-hidden="true"></a></h3><pre># 量的データ
+* 比率データ(比率尺度) : +-*/ : 質量、長さ、年齢、時間、金額
+* 間隔データ(間隔尺度) : +-   : 温度(摂氏)、知能指数
+
+# 質的データ
+* 順位データ(順序尺度) : >= : 満足度、選好度、硬度
+* カテゴリデータ(名義尺度) : 度数カウント : 電話番号、性別、血液型
+
+# 連続変量
+=> 重さや長さなどもともと区別されていないデータ
+
+# 離散変量
+=> 疾病件数や農家戸数などはじめから区別されているデータ
+
+# 変動係数
+=> 標準偏差/平均。英語ではCoefficeient of Variation。ばらつきの相対比較に使える
+
+# 相関係数
+=> キュウリは長いほど重い。つまり、「重さ」と「長さ」には正の相関関係がある。相関係数は -1 < r < 1。-1に近付くほど負の相関関係があり、0は相関関係なし、1に近付くほど正の相関関係がある。
+</pre>
+
+<h3 id="例題・章末問題をやってみた" class="article-heading"><a href="#例題・章末問題をやってみた" class="headerlink" title="例題・章末問題をやってみた"></a>例題・章末問題をやってみた<a class="article-anchor" href="#例題・章末問題をやってみた" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">## 例題1-2</span><br><span class="line">parent_height <- c(185.0,169.1,166.2,160.1,166.6,172.1,180.5,169.1,170.9,160.0,168.2,175.5)< span><br><span class="line">child_height  <- c(183.0,167.4,171.0,164.2,173.9,177.0,179.3,172.0,170.6,166.3,170.0,173.0)< span><br><span class="line"></span><br><span class="line">sums = 0.0</span><br><span class="line">for (i in 1:12) {</span><br><span class="line">  sums = sums + (parent_height[i] - mean(parent_height))*(child_height[i] - mean(child_height))</span><br><span class="line">}</span><br><span class="line">sums/(sqrt(sum((parent_height - mean(parent_height))^2))*sqrt(sum((child_height - mean(child_height))^2)))</span><br><span class="line">#=> 0.8958307</span><br><span class="line"></span><br><span class="line">## 章末</span><br><span class="line"># 問1: データの測定尺度</span><br><span class="line">a) 植物の成長速度 => 間隔データ</span><br><span class="line">b) 植物の病気の有無 => 名義尺度</span><br><span class="line">c) 絶対温度(熱力学温度) => 比率尺度</span><br><span class="line">d) 農家のやりがい、アンケートでの5段階評価 => 順序尺度</span><br><span class="line">e) カレンダーの日付 => 間隔尺度</span><br><span class="line"></span><br><span class="line"># 問2</span><br><span class="line"># a) 度数分布表、ヒストグラム</span><br><span class="line">sales <- c(400,15,480,993,600,150,115,50,0,130,3000,500,200,55,2200,1,900,1000,450,400)< span><br><span class="line">area  <- c(60,30,365,190,136,15,37,100,170,70,783,560,50,35,595,200,300,356,155,250) < span><br><span class="line">table(area)</span><br><span class="line"># area</span><br><span class="line"># 15  30  35  37  50  60  70 100 136 155 170 190 200 250 300 356 365 560 595 783 </span><br><span class="line"># 1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1 </span><br><span class="line">hist(area)</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-nyumon-toukeigaku-kurihara-shinichi-book-review_1.jpg" width="500" height="359" alt="Rplot"></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># b) 平均、分散、標準偏差、変動係数</span><br><span class="line">mean(sales) #=> 581.95</span><br><span class="line">var(sales)  #=> 596000.5</span><br><span class="line">sd(sales)   #=> 772.0107</span><br><span class="line">sd(sales)/mean(sales) #=> 1.326593</span><br><span class="line"></span><br><span class="line">mean(area) #=> 222.85</span><br><span class="line">var(area)  #=> 45903.82</span><br><span class="line">sd(area)   #=> 214.2518</span><br><span class="line">sd(area)/mean(area) #=> 0.9614169</span><br><span class="line"></span><br><span class="line"># c) 相関係数</span><br><span class="line">cor(sales, area, method="pearson") #=> 0.840888</span><br><span class="line"></span><br><span class="line"># こんな方法もある</span><br><span class="line"># cor(sales, area, method="spearman")</span><br><span class="line"># cor(sales, area, method="kendall")</span><br><span class="line"></span><br><span class="line"># 問3</span><br><span class="line">data1 <- c(2, 4, 5, 7)< span><br><span class="line">data2 <- c(2, 4, 5, 70)< span><br><span class="line"></span><br><span class="line"># 算術平均</span><br><span class="line">mean(data1) #=> 4.5</span><br><span class="line">mean(data2) #=> 20.25</span><br><span class="line"></span><br><span class="line"># 幾何平均</span><br><span class="line">source("http://aoki2.si.gunma-u.ac.jp/R/src/univariate.R", encoding="euc-jp")</span><br><span class="line">geomean(data1) #=> 4.090623</span><br><span class="line">geomean(data2) #=> 7.274272</span><br><span class="line"></span><br><span class="line"># 比較</span><br><span class="line">mean(data1) > geomean(data1)</span><br><span class="line">mean(data2) > geomean(data2)</span><br><span class="line">#=> 突出して大きな値があっても幾何平均は大きな影響を受けない</span><br></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h3 id="Speical-Thanks" class="article-heading"><a href="#Speical-Thanks" class="headerlink" title="Speical Thanks"></a>Speical Thanks<a class="article-anchor" href="#Speical-Thanks" aria-hidden="true"></a></h3><p><strong><a href="http://aoki2.si.gunma-u.ac.jp/R/univariate.html" target="_blank" rel="noopener">R – Excel にある一変量統計関数</a></strong></p>
+<h2 id="2章：-確率分布" class="article-heading"> 🍄 <a href="#2章：-確率分布" class="headerlink" title="2章： 確率分布"></a>2章： 確率分布<a class="article-anchor" href="#2章：-確率分布" aria-hidden="true"></a></h2><p>確率分布とは、確率変数のそれぞれの値、その発生確率との対応を示したもの。代表的なものとしては、一様分布や正規分布、カイ二乗分布などがある。</p>
+<h3 id="キーワード-1" class="article-heading"><a href="#キーワード-1" class="headerlink" title="キーワード"></a>キーワード<a class="article-anchor" href="#キーワード-1" aria-hidden="true"></a></h3><pre># 確率分布
+## 離散型
+* 一様分布: 発生確率が一定の事象の分布(サイコロの目など)
+* 二項分布: n回のベルヌーイ試行の成功回数xの分布
+(同時に複数個のサイコロを投げる、複数個の製品に含まれる不良品数など)
+* ポアソン分布: 稀にしか起こらない事象の発生回数の分布
+(1日に受け取る電子メールの件数)
+
+## 連続型
+* 正規分布： 試行回数nが大きいときの二項分布の近似分布(身長、体重などの自然現象)
+* 標準正規分布： 標準化(平均0, 分散1)した分布。z分布と同義。
+* 対数正規分布： 変数xの対数が正規分布となる
+* t分布： 母分散の代わりに不偏分散を使った分布
+* カイ二乗分布： 自由度(標本数)に応じて決まる分布
+* F分布： 2つの母集団から持ってきたカイ二乗、もしくは不偏分散の比による分布
+</pre>
+
+<pre>ベルヌーイ試行: AかBのどちらかしか起こらないような事象(コインの表裏など)
+不偏分散: 標本から算出する母分散の推定量
+</pre>
+
+<h3 id="例題・章末問題をやってみた-1" class="article-heading"><a href="#例題・章末問題をやってみた-1" class="headerlink" title="例題・章末問題をやってみた"></a>例題・章末問題をやってみた<a class="article-anchor" href="#例題・章末問題をやってみた-1" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 例題: 標準化</span><br><span class="line">saibai_a <- c(3063, 2275, 2089, 2855, 2836, 3219, 2817, 2136, 2540, 2263, 2140, 1757, 2499, 2093, 2073)< span><br><span class="line">saibai_b <- c(3157, 2707, 3270, 3181, 3633, 3404, 2219, 2730, 3408, 3203, 2938, 3286, 2920, 3332, 3478)< span><br><span class="line"></span><br><span class="line"># 標準化</span><br><span class="line">sai_a_sca <- scale(saibai_a)[,]< span><br><span class="line"></span><br><span class="line">#平均(小数点下3桁で四捨五入)</span><br><span class="line">round(mean(sai_a_sca), digits=3) </span><br><span class="line">#=> 0</span><br><span class="line"></span><br><span class="line"># 分散</span><br><span class="line">var(sai_a_sca) </span><br><span class="line">#=>  1</span><br><span class="line"></span><br><span class="line"># 標準偏差</span><br><span class="line">sd(sai_a_sca) </span><br><span class="line">#=> 1</span><br><span class="line"></span><br><span class="line"># 標準化</span><br><span class="line">sai_b_sca <- scale(saibai_b)[,]< span><br><span class="line"></span><br><span class="line"># 平均(小数点下3桁で四捨五入)</span><br><span class="line">round(mean(sai_b_sca), digits=3) </span><br><span class="line">#=> 0</span><br><span class="line"></span><br><span class="line"># 分散</span><br><span class="line">var(sai_b_sca)</span><br><span class="line">#=> 1</span><br><span class="line"></span><br><span class="line"># 標準偏差</span><br><span class="line">sd(sai_b_sca) </span><br><span class="line">#=> 1</span><br><span class="line"></span><br><span class="line"># 大切なこと => 標準化すると平均0、分散1の標準正規分布になる</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 例題: ポアソン分布</span><br><span class="line">## 3日間でマグニチュード7以上の地震が発生する確率</span><br><span class="line">## 日本でマグニチュード7の地震は過去五年で7回発生している</span><br><span class="line">## 式 => 日数 * ((7.0/5.0) / 365) </span><br><span class="line">r <- 3 * ((7.0 5.0) 365) #> 0.00115</-></span><br><span class="line">(exp(1)^r*r)/1 #=> 0.01164002 = 1.164%の確率で地震が発生する</span><br><span class="line"></span><br><span class="line"># 章末問題</span><br><span class="line"># 1) 標準化</span><br><span class="line">sales <- c(400,15,480,993,600,150,115,50,0,130,3000,500,200,55,2200,1,900,1000,450,400)< span><br><span class="line">sale_sca <- scale(sales)[,] #> 標準化</-></span><br><span class="line">round(mean(sale_sca), digits=4) #=> 平均: 0</span><br><span class="line">var(sale_sca) #=> 分散: 1</span><br><span class="line"></span><br><span class="line">area  <- c(60,30,365,190,136,15,37,100,170,70,783,560,50,35,595,200,300,356,155,250) < span><br><span class="line">area_sca <- scale(area)[,] #> 標準化</-></span><br><span class="line">round(mean(area_sca), digits=4) #=> 平均: 0</span><br><span class="line">var(area_sca) #=> 分散: 1</span><br><span class="line"></span><br><span class="line"># 2) 歪度・尖度</span><br><span class="line"># 歪度</span><br><span class="line">mean((sales-mean(sales))^3)/(sd(sales)^3) #=> 1.883264</span><br><span class="line"># 尖度</span><br><span class="line">mean((sales-mean(sales))^4)/(sd(sales)^4) #=> 5.876389</span><br><span class="line"></span><br><span class="line"># 歪度</span><br><span class="line">mean((area-mean(area))^3)/(sd(area)^3) #=> 1.149286</span><br><span class="line"># 尖度</span><br><span class="line">mean((area-mean(area))^4)/(sd(area)^4) #=> 3.309088</span><br><span class="line"></span><br><span class="line"># 3) 標準化・偏差値</span><br><span class="line">(80 - 60)/10 #=>2</span><br><span class="line"></span><br><span class="line">10*(80-60)/10 + 50 #=> 70</span><br><span class="line"></span><br><span class="line"># 4) パーセンテージ</span><br><span class="line">(1/sqrt(2*3.14))*exp(1)^(-2)</span><br><span class="line"></span><br><span class="line"># 5) ポワソン分布</span><br><span class="line">食中毒 <- 20204 (127370000*365) #> 4.345876e-07</-></span><br><span class="line">食中毒 * 484600 #=> 0.2106012</span><br><span class="line">x <- 0 #> 0回発生</-></span><br><span class="line"></span><br><span class="line">(exp(1)^(-0.21)*0.21^x)/1 #=> 0.8105842</span><br><span class="line">#=> 松江市で食中毒一件も発生しない確率は約81%</span><br></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h2 id="Rの使い方メモ" class="article-heading"> 🎉 <a href="#Rの使い方メモ" class="headerlink" title="Rの使い方メモ"></a>Rの使い方メモ<a class="article-anchor" href="#Rの使い方メモ" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">exp(1) #=> 自然対数の底 2.718...</span><br><span class="line">round(num, digits=n) #=> 四捨五入</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="第3章不偏推定量と標本分布-推測統計学" class="article-heading"> 🐹 <a href="#第3章不偏推定量と標本分布-推測統計学" class="headerlink" title="第3章不偏推定量と標本分布(推測統計学)"></a>第3章不偏推定量と標本分布(推測統計学)<a class="article-anchor" href="#第3章不偏推定量と標本分布-推測統計学" aria-hidden="true"></a></h2><p>推測統計学とは、実験や調査で測定したデータを使ってその背景にある母集団の特徴を推定する学問。平均やバラツキに関する区間推定や差の検定などがある。</p>
+<h3 id="キーワード-2" class="article-heading"><a href="#キーワード-2" class="headerlink" title="キーワード"></a>キーワード<a class="article-anchor" href="#キーワード-2" aria-hidden="true"></a></h3><pre>母集団 => 英語ではpopulationとuniverseがある
+population => 標本の背景にあって対象となる要素の集合体(一般的な母集団)
+universe => 要素を含む対象自体の集合、関連する情報が付随している
+
+標本のばらつき(標本分散、標本標準偏差) =< 母集団のばらつき(母分散、母標準偏差)
+不偏推定量　　<= 母集団の統計量を推定した値 不偏分散　　　<="母集団の分散の推定量" 不偏標準偏差　<="母集団の標準偏差の推定量" 標本誤差分散　<="複数標本間の誤差の分散" < pre>
+
+<h3 id="例題・章末問題" class="article-heading"><a href="#例題・章末問題" class="headerlink" title="例題・章末問題"></a>例題・章末問題<a class="article-anchor" href="#例題・章末問題" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 例題: 不偏分散誤差</span><br><span class="line">## 栽培法A</span><br><span class="line">### 標本標準偏差を使う場合</span><br><span class="line">標本標準偏差 <- 413.5< span><br><span class="line">標本数 <- 15< span><br><span class="line">標本標準偏差/sqrt(標本数 -1) #=> 110.5</span><br><span class="line">### 不偏標準偏差を使う場合</span><br><span class="line">不偏標準偏差 <- 428.1< span><br><span class="line">不偏標準偏差/sqrt(標本数) #=> 110.5</span><br><span class="line"></span><br><span class="line">## 栽培法B</span><br><span class="line">### 標本標準偏差を使う場合</span><br><span class="line">標本標準偏差 <- 353.0< span><br><span class="line">標本数 <- 15< span><br><span class="line">標本標準偏差/sqrt(標本数 -1) #=> 94.3</span><br><span class="line">### 不偏標準偏差を使う場合</span><br><span class="line">不偏標準偏差 <- 365.4< span><br><span class="line">不偏標準偏差/sqrt(標本数) #=> 94.3</span><br><span class="line"></span><br><span class="line"># 章末問題</span><br><span class="line"># 問1)</span><br><span class="line"># 母集団 : 新入生1万人(試験結果)</span><br><span class="line"># 標本 : 無作為に抽出した500人</span><br><span class="line"># ユニバース : 新入生1万人(対象の人間そのもの)</span><br><span class="line"># 標本数 : 1(標本サイズは500)</span><br><span class="line"></span><br><span class="line"># 問2)</span><br><span class="line"># 標本分散 =< 母分散となる</span><br><span class="line"></span><br><span class="line"># 問3) 標準偏差と標準誤差の違い</span><br><span class="line"># 標準偏差 : 個々のデータからなる集団のバラ付き具合を示す統計量</span><br><span class="line"># 標準誤差 : 標本平均のバラつき具合を示す。不偏統計量の精度を示す指標。</span><br><span class="line"></span><br><span class="line"># 問4) 統計量の自由度</span><br><span class="line"># 標本から相関計測を推定する場合、統計量の自由度は「標本サイズ - 2」となる</span><br><span class="line"># (相関係数の場合は変数が2つになるので)</span><br></-></span></-></span></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h2 id="4章-信頼区間の推定" class="article-heading">🗽 <a href="#4章-信頼区間の推定" class="headerlink" title="4章 : 信頼区間の推定"></a>4章 : 信頼区間の推定<a class="article-anchor" href="#4章-信頼区間の推定" aria-hidden="true"></a></h2><p>真の平均や分散が、どのような範囲にあるかを推定し、それを確率的に示すこと。</p>
+<h3 id="例題・章末問題-1" class="article-heading"><a href="#例題・章末問題-1" class="headerlink" title="例題・章末問題"></a>例題・章末問題<a class="article-anchor" href="#例題・章末問題-1" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 例題: 正規分布による95%信頼区間</span><br><span class="line">標本数 <- 16< span><br><span class="line">平均   <- 10.0< span><br><span class="line">母分散 <- 36.0< span><br><span class="line"></span><br><span class="line">平均 - 1.96*sqrt(母分散/標本数) #=> 7.06</span><br><span class="line">平均 + 1.96*sqrt(母分散/標本数) #=> 12.94</span><br><span class="line"></span><br><span class="line"># 例題: 正規分布による90%信頼区間</span><br><span class="line">月平均の減少値 <-165.0< span><br><span class="line">標本サイズ     <- 66< span><br><span class="line">標本標準偏差   <- 680.6< span><br><span class="line"></span><br><span class="line">月平均の減少値 - 1.65*標本標準偏差/sqrt(標本サイズ) #=> 26.76949</span><br><span class="line">月平均の減少値 + 1.65*標本標準偏差/sqrt(標本サイズ) #=> 303.2305</span><br><span class="line"></span><br><span class="line"># 例題: t分布による95%信頼区間</span><br><span class="line">標本数 <- 5< span><br><span class="line">平均乳量 <- 22.1< span><br><span class="line">標本芳醇偏差 <- 6.5< span><br><span class="line"></span><br><span class="line">22.1 - 2.776*6.5/sqrt(標本数 -1) #=> 17.44106</span><br><span class="line">22.1 + 2.776*6.5/sqrt(標本数 -1) #=> 26.75894</span><br><span class="line"></span><br><span class="line"># 例題: 母比率の信頼区間の推定</span><br><span class="line">0.7 - 1.96*sqrt(0.7*(1.0-0.7)/50) #=> 0.5729775</span><br><span class="line">0.7 + 1.96*sqrt(0.7*(1.0-0.7)/50) #=> 0.8270225</span><br><span class="line">#=> 下限の信頼限界が50%を超えているので、当確を出しても良い</span><br><span class="line"></span><br><span class="line"># 例題: 標本サイズの決め方</span><br><span class="line"></span><br><span class="line">1.96 * sqrt(0.5*0.5/n) = 0.1</span><br><span class="line"># 上の式を満たすnは次の式から求められる</span><br><span class="line">n <- ((1.96 * sqrt(0.5*0.5)) 0.1)^2 #> 96.04</-></span><br><span class="line"></span><br><span class="line">## 章末</span><br><span class="line"># 問1) 標準偏差を使った95%信頼区間</span><br><span class="line">標本サイズ <- 100< span><br><span class="line">標本平均   <- 2.0< span><br><span class="line">標本分散   <- 1.0< span><br><span class="line"></span><br><span class="line">標本平均 - 1.96 * sqrt(標本分散/標本サイズ) #=> 1.804</span><br><span class="line">標本平均 + 1.96 * sqrt(標本分散/標本サイズ) #=> 2.196</span><br><span class="line"></span><br><span class="line"># 問2) t分布を使った95%信頼区間</span><br><span class="line">sales <- c(400,15,480,993,600,150,115,50,0,130,3000,500,200,55,2200,1,900,1000,450,400)< span><br><span class="line">標本サイズ <- length(sales)< span><br><span class="line">標本平均   <- mean(sales)< span><br><span class="line">標本分散   <- var(sales)< span><br><span class="line"></span><br><span class="line">標本平均 - 2.093 * sqrt(標本分散/(標本サイズ-1)) #=> 211.2559</span><br><span class="line">標本平均 + 2.093 * sqrt(標本分散/(標本サイズ-1)) #=> 952.6441</span><br><span class="line"></span><br><span class="line"># 問3) AgrestiとCoullの式を使った母比率の信頼区間</span><br><span class="line">標本サイズ <- 20< span><br><span class="line">比率 <- 16 20< span><br><span class="line"></span><br><span class="line">p <- (16+2) (標本サイズ+4)< span><br><span class="line">p - 1.96*sqrt(p*(1-p)/(標本サイズ+4)) #=> 0.5767588</span><br><span class="line">p + 1.96*sqrt(p*(1-p)/(標本サイズ+4)) #=> 0.9232412</span><br><span class="line"></span><br><span class="line"># 問4) 標本サイズの決め方</span><br><span class="line">1.96*sqrt((0.5*0.5)/n) = 0.01</span><br><span class="line">n <- ((1.96 0.01)*sqrt(0.5*0.5))^2 #> 9604</-></span><br><span class="line">n*5 #=> 48020</span><br></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-></span></-165.0<></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h2 id="5章：-カイ二乗分布とF分布" class="article-heading">😀 <a href="#5章：-カイ二乗分布とF分布" class="headerlink" title="5章： カイ二乗分布とF分布"></a>5章： カイ二乗分布とF分布<a class="article-anchor" href="#5章：-カイ二乗分布とF分布" aria-hidden="true"></a></h2><p>カイ二乗分布は標準変化量zを2情和したカイ二乗値が従う確率分布で、母分散の信頼区間の推定やクロス集計表の検定に用いる。F分布は独立した2つのカイ二乗値の比であるF値が従う確率分布で、等分散性の検定や分散分析などに用いる。</p>
+<h3 id="例題・章末問題をやってみた-2" class="article-heading"><a href="#例題・章末問題をやってみた-2" class="headerlink" title="例題・章末問題をやってみた"></a>例題・章末問題をやってみた<a class="article-anchor" href="#例題・章末問題をやってみた-2" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 例題 : 信頼区間95%の母分散</span><br><span class="line">tento <- c(5, 8, 10, 11, 15)< span><br><span class="line">size <- length(tento)< span><br><span class="line">var <- var(tento)< span><br><span class="line"></span><br><span class="line">((size - 1)*var)/11.143 #=> 4.917886</span><br><span class="line">((size - 1)*var)/0.484  #=> 113.2231</span><br><span class="line"></span><br><span class="line"># 章末問題</span><br><span class="line"># 問1) カイ二乗値とは？</span><br><span class="line">#=> 標準変化量zを2乗和(すべての標準変化量を2乗して足し合わせた値)した値</span><br><span class="line"></span><br><span class="line"># 問2) 母平均が未知の場合のカイ二乗値</span><br><span class="line">#=> 未知の場合には、不偏統計量と同様に自由度は減少する</span><br><span class="line">#=> 具体的には、自由度 <- n(標本サイズ) - 1< span><br><span class="line"></span><br><span class="line"># 問3) 母標準偏差に対する90%信頼区間</span><br><span class="line">size <- 10< span><br><span class="line">不偏標準偏差 <- 0.05< span><br><span class="line">不偏分散 <- 25< span><br><span class="line"></span><br><span class="line">sqrt(((size-1)*不偏分散)/16.919) #=> 3.646733</span><br><span class="line">sqrt(((size-1)*不偏分散)/3.325)  #=> 8.226127</span><br><span class="line"></span><br><span class="line"># 問4) t値とF値の関係 </span><br><span class="line">#=> 自由度がvのt値の2乗と、分母の自由度がvで分子の自由度が1のF値は等しい</span><br><span class="line">#=> 2つの平均値の差はt検定(両側検定)でも、F検定を基礎とした2群の分散分析でも同じ結論となる</span><br></-></span></-></span></-></span></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h2 id="6章-検定の基礎" class="article-heading">🚌 <a href="#6章-検定の基礎" class="headerlink" title="6章 : 検定の基礎"></a>6章 : 検定の基礎<a class="article-anchor" href="#6章-検定の基礎" aria-hidden="true"></a></h2><p>仮説検定とは、実験結果の「起きやすさ」から「めったに起きないことが起きた」とかんがえられる場合は、その仮説を間違いであると判断する手法。</p>
+<h3 id="検定の手順" class="article-heading"><a href="#検定の手順" class="headerlink" title="検定の手順"></a>検定の手順<a class="article-anchor" href="#検定の手順" aria-hidden="true"></a></h3><pre>1) 仮説の設定
+2) 検定統計量の計算
+3) 確率の計算
+4) 仮説の判断
+</pre>
+
+<h3 id="キーワード-3" class="article-heading"><a href="#キーワード-3" class="headerlink" title="キーワード"></a>キーワード<a class="article-anchor" href="#キーワード-3" aria-hidden="true"></a></h3><pre>第一種の誤り(Type I error) : 帰無仮説が正しいにもかかわらず棄却してしまうこと
+第二種の誤り(Type II error) : 帰無仮説が間違っているにもかかわらず許容すること
+危険率 : 第一種の誤りを犯す確率
+検定力 : 帰無仮説が間違っている時に正しく棄却できる確率(第二種の誤りを防ぐ)
+</pre>
+
+<h3 id="例題をやってみた" class="article-heading"><a href="#例題をやってみた" class="headerlink" title="例題をやってみた"></a>例題をやってみた<a class="article-anchor" href="#例題をやってみた" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 例題 : テントウが新種か否かの検定</span><br><span class="line">ave <- 11< span><br><span class="line">既存種の平均 <- 5< span><br><span class="line">誤差 <- 2< span><br><span class="line"></span><br><span class="line">#=> 帰無仮説 : 新種ではない</span><br><span class="line">#=> 対立仮説 : 新種である</span><br><span class="line">既存種の平均 - 1.96*誤差 #=> 1.08mm</span><br><span class="line">既存種の平均 + 1.96*誤差 #=> 8.92mm</span><br><span class="line">#=> よって11mmは8.92mmより大きいので帰無仮説が棄却</span><br><span class="line">#=> 新種であると考えたほうが妥当</span><br></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<!--=--></=></pre></body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

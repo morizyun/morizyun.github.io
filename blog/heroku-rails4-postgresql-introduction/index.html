@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Rails 4でHeroku Pushまでの詳細手順 [haml/bootstrap 3.0/postgresql or MySQL] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/heroku-rails4-postgresql-introduction/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="短時間でプロトタイプを制作する場合には、インフラ構築のコストが低いHerokuはベストな選択肢のひとつです。ということで、Ruby 2.1とRails 4.0のプロジェクトをHerokuにPushするまでの手順を書いておきます。DBはPostgreSQL or MySQL、テンプレートエンジンはHaml、CSSフレームワークはBootstrap 3.0を使います。 この記事の一連のコマンドを半自動">
+<meta name="keywords" content="Heroku,Rails,Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails 4でHeroku Pushまでの詳細手順 [haml&#x2F;bootstrap 3.0&#x2F;postgresql or MySQL]">
+<meta property="og:url" content="http://morizyun.github.io/blog/heroku-rails4-postgresql-introduction/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="短時間でプロトタイプを制作する場合には、インフラ構築のコストが低いHerokuはベストな選択肢のひとつです。ということで、Ruby 2.1とRails 4.0のプロジェクトをHerokuにPushするまでの手順を書いておきます。DBはPostgreSQL or MySQL、テンプレートエンジンはHaml、CSSフレームワークはBootstrap 3.0を使います。 この記事の一連のコマンドを半自動">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rails 4でHeroku Pushまでの詳細手順 [haml&#x2F;bootstrap 3.0&#x2F;postgresql or MySQL]">
+<meta name="twitter:description" content="短時間でプロトタイプを制作する場合には、インフラ構築のコストが低いHerokuはベストな選択肢のひとつです。ということで、Ruby 2.1とRails 4.0のプロジェクトをHerokuにPushするまでの手順を書いておきます。DBはPostgreSQL or MySQL、テンプレートエンジンはHaml、CSSフレームワークはBootstrap 3.0を使います。 この記事の一連のコマンドを半自動">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Rails 4でHeroku Pushまでの詳細手順 [haml/bootstrap 3.0/postgresql or MySQL]</h1>
+    
+    <a href="/blog/heroku-rails4-postgresql-introduction/" class="article-date"><time datetime="2014-03-20T15:00:00.000Z">2014-03-21</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/heroku-rails4-postgresql-introduction/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/heroku-rails4-postgresql-introduction/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/heroku-rails4-postgresql-introduction/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/heroku-rails4-postgresql-introduction/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><a href="//www.amazon.co.jp/gp/product/4797371838/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797371838&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797371838&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;">
+    </a>
+
+<p>短時間でプロトタイプを制作する場合には、インフラ構築のコストが低いHerokuはベストな選択肢のひとつです。ということで、Ruby 2.1とRails 4.0のプロジェクトをHerokuにPushするまでの手順を書いておきます。DBはPostgreSQL or <strong>MySQL</strong>、テンプレートエンジンはHaml、CSSフレームワークはBootstrap 3.0を使います。</p>
+<p>この記事の一連のコマンドを半自動化できる『<strong>Application Template</strong>』を作りました。詳しくは『<strong><a href="/blog/rails4-application-templates-heroku/">Rails4 x herokuアプリを5分でスタートできるapplication template作ってみた！</a></strong>』をご参照ください！</p>
+<p><strong>(03/21 09:40) かなりの分量ですので、タイトルを「簡単手順 => 詳細手順」に変更</strong><br></p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="手順詳細" class="article-heading">🗻 <a href="#手順詳細" class="headerlink" title="手順詳細"></a>手順詳細<a class="article-anchor" href="#手順詳細" aria-hidden="true"></a></h2><h3 id="Ruby-2-1をインストール" class="article-heading"><a href="#Ruby-2-1をインストール" class="headerlink" title="Ruby 2.1をインストール"></a>Ruby 2.1をインストール<a class="article-anchor" href="#Ruby-2-1をインストール" aria-hidden="true"></a></h3><p>Ruby 2.0 => 2.1は今のところ問題もなく使えています。ということで<code>RVM or Rbenv</code>で2.1をインストールしてプロジェクトを開始するのをお勧めします。ちなみにHerokuは<strong><a href="https://devcenter.heroku.com/articles/ruby-support#ruby-versions" target="_blank" rel="noopener">12/25(Ruby 2.1リリース日)から2.1対応</a></strong>しています。  </p>
+<h3 id="Heroku-Toolbeltをインストール" class="article-heading"><a href="#Heroku-Toolbeltをインストール" class="headerlink" title="Heroku Toolbeltをインストール"></a>Heroku Toolbeltをインストール<a class="article-anchor" href="#Heroku-Toolbeltをインストール" aria-hidden="true"></a></h3><p>Herokuを使う上で欠かせない、コマンドラインツールの<strong><a href="https://toolbelt.heroku.com/osx" target="_blank" rel="noopener">Heroku Toolbelt</a></strong>をサイトからダウンロードしてインストールしてください。</p>
+<h3 id="PostgreSQL-pgの導入" class="article-heading"><a href="#PostgreSQL-pgの導入" class="headerlink" title="PostgreSQL/pgの導入"></a>PostgreSQL/pgの導入<a class="article-anchor" href="#PostgreSQL-pgの導入" aria-hidden="true"></a></h3><p>Mac or CentOS限定ですが、<strong><a href="/blog/postgresql-mac-centos-rails/">Mac MountainLion/CentOS 6.4へのPostgreSQL 9.2の導入手順</a></strong>をよかったらご参考いただきつつ、PostgreSQLおよびgem pgをインストールしてください。MySQLの場合はここは読み飛ばしてください。</p>
+<h3 id="Railsプロジェクト作成" class="article-heading"><a href="#Railsプロジェクト作成" class="headerlink" title="Railsプロジェクト作成"></a>Railsプロジェクト作成<a class="article-anchor" href="#Railsプロジェクト作成" aria-hidden="true"></a></h3><p>Railsの新規プロジェクトを作成。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># Heroku標準のPosgreSQLを使う場合</span><br><span class="line">rails new test-app --database=postgresql --skip-test-unit --skip-bundle</span><br><span class="line"></span><br><span class="line"># MySQLを使う場合</span><br><span class="line">rails new test-app --database=mysql --skip-test-unit --skip-bundle</span><br></pre></td></tr></tbody></table></figure>
+<p>Rails用の<code>.gitignore</code>を作成します。<code>.gitignore</code>を生成するgitignore-boilerplatesを使う場合はこちら。(Macでのインストール方法は、<code>brew install gibo</code>を実行)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># gibo --listでパラメータ確認可能</span><br><span class="line">gibo OSX Ruby Rails JetBrains SASS SublimeText > .gitignore</span><br></pre></td></tr></tbody></table></figure>
+<p>gitignore-boilerplatesを使わないで、GitHubから<code>.gitignore</code>のテンプレートをダウンロードする場合はこちら。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">wget https://raw.github.com/github/gitignore/master/Rails.gitignore;mv Rails.gitignore .gitignore</span><br></pre></td></tr></tbody></table></figure>
+<p><code>.gitignore</code>から次のコードを削除。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">config/initializers/secret_token.rb</span><br></pre></td></tr></tbody></table></figure>
+<p>Gitリポジトリ作成を作成します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add -A</span><br><span class="line">git commit -m "new project"</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Gemfileの設定" class="article-heading"><a href="#Gemfileの設定" class="headerlink" title="Gemfileの設定"></a>Gemfileの設定<a class="article-anchor" href="#Gemfileの設定" aria-hidden="true"></a></h3><p><code>Gemfile</code>を編集して、<code>bundle install</code>でGemをインストール。<br><br>(gemは適宜カスタマイズしてください)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">ruby '2.1.0'</span><br><span class="line"></span><br><span class="line"># Bower Manager => https://rails-assets.org/</span><br><span class="line">source 'https://rails-assets.org'</span><br><span class="line"></span><br><span class="line"># turbolinks support</span><br><span class="line">gem 'jquery-turbolinks'</span><br><span class="line"></span><br><span class="line"># Source Map</span><br><span class="line">gem 'coffee-rails-source-maps'</span><br><span class="line">gem 'sass-rails-source-maps'</span><br><span class="line"></span><br><span class="line"># See https://github.com/sstephenson/execjs#readme for more supported runtimes</span><br><span class="line">gem 'therubyracer', platforms: :ruby</span><br><span class="line"></span><br><span class="line"># CSS Support</span><br><span class="line">gem 'less-rails'</span><br><span class="line"></span><br><span class="line"># App Server</span><br><span class="line">gem 'puma'</span><br><span class="line"></span><br><span class="line"># Presenter Layer</span><br><span class="line">gem 'draper'</span><br><span class="line"></span><br><span class="line"># Haml</span><br><span class="line">gem 'haml-rails'</span><br><span class="line"></span><br><span class="line"># Assets log cleaner</span><br><span class="line">gem 'quiet_assets'</span><br><span class="line"></span><br><span class="line"># Form Builders</span><br><span class="line">gem 'simple_form'</span><br><span class="line"></span><br><span class="line"># # Process Management</span><br><span class="line">gem 'foreman'</span><br><span class="line"></span><br><span class="line"># HTML5 Validator</span><br><span class="line">gem 'html5_validators'</span><br><span class="line"></span><br><span class="line"># PG/MySQL Log Formatter</span><br><span class="line">gem 'rails-flog'</span><br><span class="line"></span><br><span class="line"># Migration Helper</span><br><span class="line">gem 'migrant'</span><br><span class="line"></span><br><span class="line"># Pagenation</span><br><span class="line">gem 'kaminari'</span><br><span class="line"></span><br><span class="line"># NewRelic</span><br><span class="line">gem 'newrelic_rpm'</span><br><span class="line"></span><br><span class="line"># Airbrake</span><br><span class="line">gem 'airbrake'</span><br><span class="line"></span><br><span class="line"># HTML Parser</span><br><span class="line">gem 'nokogiri'</span><br><span class="line"></span><br><span class="line"># App configuration</span><br><span class="line">gem 'figaro'</span><br><span class="line"></span><br><span class="line"># Rack Profiler</span><br><span class="line">gem 'rack-mini-profiler'</span><br><span class="line"></span><br><span class="line"># Hash extensions</span><br><span class="line">gem 'hashie'</span><br><span class="line"></span><br><span class="line">group :development do</span><br><span class="line">  # Converter erb => haml</span><br><span class="line">  gem 'erb2haml'</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :development, :test do</span><br><span class="line">  # Rails application preloader</span><br><span class="line">  gem 'spring'</span><br><span class="line"></span><br><span class="line">  # Railsコンソールの多機能版</span><br><span class="line">  gem 'pry-rails'</span><br><span class="line"></span><br><span class="line">  # pryの入力に色付け</span><br><span class="line">  gem 'pry-coolline'</span><br><span class="line"></span><br><span class="line">  # デバッカー</span><br><span class="line">  gem 'pry-byebug'</span><br><span class="line"></span><br><span class="line">  # Pryでの便利コマンド</span><br><span class="line">  gem 'pry-doc'</span><br><span class="line"></span><br><span class="line">  # PryでのSQLの結果を綺麗に表示</span><br><span class="line">  gem 'hirb'</span><br><span class="line">  gem 'hirb-unicode'</span><br><span class="line"></span><br><span class="line">  # pryの色付けをしてくれる</span><br><span class="line">  gem 'awesome_print'</span><br><span class="line"></span><br><span class="line">  # Rspec</span><br><span class="line">  gem 'rspec-rails'</span><br><span class="line">  gem 'rake_shared_context'</span><br><span class="line"></span><br><span class="line">  # fixtureの代わり</span><br><span class="line">  gem "factory_girl_rails"</span><br><span class="line"></span><br><span class="line">  # テスト環境のテーブルをきれいにする</span><br><span class="line">  gem 'database_rewinder'</span><br><span class="line"></span><br><span class="line">  # Guard</span><br><span class="line">  gem 'guard-rspec'</span><br><span class="line">  gem 'guard-spring'</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :production, :staging do</span><br><span class="line">  # ログ保存先変更、静的アセット Heroku 向けに調整</span><br><span class="line">  gem 'rails_12factor'</span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Railsの基本的な設定" class="article-heading"><a href="#Railsの基本的な設定" class="headerlink" title="Railsの基本的な設定"></a>Railsの基本的な設定<a class="article-anchor" href="#Railsの基本的な設定" aria-hidden="true"></a></h3><p><code>config/application.rb</code>の中にある<code>YourAppName::Application.configure</code>内に以下を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># Set timezone</span><br><span class="line">config.time_zone = 'Tokyo'</span><br><span class="line">config.active_record.default_timezone = :local</span><br><span class="line"></span><br><span class="line"># 日本語化</span><br><span class="line">I18n.enforce_available_locales = true</span><br><span class="line">config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]</span><br><span class="line">config.i18n.default_locale = :ja</span><br><span class="line"></span><br><span class="line"># generatorの設定</span><br><span class="line">config.generators do |g|</span><br><span class="line">  g.orm :active_record</span><br><span class="line">  g.template_engine :haml</span><br><span class="line">  g.test_framework  :rspec, :fixture => true</span><br><span class="line">  g.fixture_replacement :factory_girl, :dir => "spec/factories"</span><br><span class="line">  g.view_specs false</span><br><span class="line">  g.controller_specs false</span><br><span class="line">  g.routing_specs false</span><br><span class="line">  g.helper_specs false</span><br><span class="line">  g.request_specs false</span><br><span class="line">  g.assets false</span><br><span class="line">  g.helper false</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"># libファイルの自動読み込み</span><br><span class="line">config.autoload_paths += %W(#{config.root}/lib)</span><br><span class="line">config.autoload_paths += Dir["#{config.root}/lib/**/"]</span><br></pre></td></tr></tbody></table></figure>
+<p>続いてsecret_tokenの設定。<code>/config/initializers/secret_token.rb</code>のsecret_key_baseを設定。<code>sometoken</code>のところにはもともとのトークンをセット。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">TestApp::Application.config.secret_key_base = ENV['SECRET_KEY_BASE'] || 'sometoken'</span><br></pre></td></tr></tbody></table></figure>
+<p>Railsの日本語化ファイルを設定する。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml -P config/locales/</span><br></pre></td></tr></tbody></table></figure>
+<p><code>application.js</code>に以下を追加してturbolinksで<code>$(document).ready()</code>のイベントが発行するように修正。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">//= require jquery</span><br><span class="line">//= require jquery.turbolinks</span><br><span class="line">//= require turbolinks</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Hamlへの変換" class="article-heading"><a href="#Hamlへの変換" class="headerlink" title="Hamlへの変換"></a>Hamlへの変換<a class="article-anchor" href="#Hamlへの変換" aria-hidden="true"></a></h3><p>Viewの<code>ERB</code>を<code>haml</code>に変換。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># erb => hamlに変換。erbは削除</span><br><span class="line">rake haml:replace_erbs</span><br><span class="line"></span><br><span class="line"># erb => hamlに変換。erbは残す</span><br><span class="line">rake haml:convert_erbs</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Bootstrap-Bootswach-Font-Awaresomeを使う手順" class="article-heading"><a href="#Bootstrap-Bootswach-Font-Awaresomeを使う手順" class="headerlink" title="Bootstrap/Bootswach/Font-Awaresomeを使う手順"></a>Bootstrap/Bootswach/Font-Awaresomeを使う手順<a class="article-anchor" href="#Bootstrap-Bootswach-Font-Awaresomeを使う手順" aria-hidden="true"></a></h3><p><strong><a href="http://www.bootstrapcdn.com/" target="_blank" rel="noopener">Bootstrap CDN</a></strong>から使いたい『Bootstrap/Bootswach/Font-Awaresome』の種類を選択。<br><code>app/view/layouts/application.html.haml</code>に次のように記述。<br>(バージョンや書き方がよく変わるのでBootstrap CDN側を参照のこと)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">%script{:src=>'//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js'}</span><br><span class="line">%link{:href=>'//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css', :rel=>'stylesheet'}</span><br><span class="line">%link{:href=>'//netdna.bootstrapcdn.com/bootswatch/3.0.3/simplex/bootstrap.min.css', :rel=>'stylesheet'}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="simple-formの設定" class="article-heading"><a href="#simple-formの設定" class="headerlink" title="simple_formの設定"></a>simple_formの設定<a class="article-anchor" href="#simple-formの設定" aria-hidden="true"></a></h3><p>simple formの初期設定(bootstrap対応)。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rails g simple_form:install --bootstrap</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="figaroの設定" class="article-heading"><a href="#figaroの設定" class="headerlink" title="figaroの設定"></a>figaroの設定<a class="article-anchor" href="#figaroの設定" aria-hidden="true"></a></h3><p>Herokuの定数管理にお勧めのGem「<strong><a href="https://github.com/laserlemon/figaro" target="_blank" rel="noopener">laserlemon/figaro</a></strong>」です。Figaroの設定ファイルの生成。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rails g figaro:install</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="kaminariの設定" class="article-heading"><a href="#kaminariの設定" class="headerlink" title="kaminariの設定"></a>kaminariの設定<a class="article-anchor" href="#kaminariの設定" aria-hidden="true"></a></h3><p>Railsのページネーションgem「kaminari」の設定ファイルを生成。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rails g kaminari:config</span><br><span class="line">rails g kaminari:views  bootstrap</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Databaseの設定" class="article-heading"><a href="#Databaseの設定" class="headerlink" title="Databaseの設定"></a>Databaseの設定<a class="article-anchor" href="#Databaseの設定" aria-hidden="true"></a></h3><p>次にDB関連の設定。まずは、database.ymlの修正。developmentとtestの設定に以下を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">host: localhost</span><br></pre></td></tr></tbody></table></figure>
+<p>PostgreSQLのユーザーを作成。途中でパスワードを聞かれますが、開発/テスト環境の場合は入力せずに<code>ENTER</code>だけでOKと思います。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">createuser test-app -s</span><br></pre></td></tr></tbody></table></figure>
+<p>続いてdevelopmentのDBの作成。(testも一緒に作成されます)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">bundle exec rake RAILS_ENV=development db:create</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Pumaの設定" class="article-heading"><a href="#Pumaの設定" class="headerlink" title="Pumaの設定"></a>Pumaの設定<a class="article-anchor" href="#Pumaの設定" aria-hidden="true"></a></h3><p>さらにアプリケーションサーバの<code>puma</code>を設定。以前はunicornをつかっていましたが、Herokuでasset compile時に極まれによくわからないエラーが発生してしまうので、解決できずに乗り換えました。<strong><a href="http://blog.codeship.io/2013/10/16/unleash-the-puma-on-heroku.html" target="_blank" rel="noopener">herokuの時にはpumaも性能よさそうですよ</a></strong>。</p>
+<p>ということで<code>config/initializers/after_initialize.rb</code>を作成して、次の内容を記述。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">Rails.application.config.after_initialize do</span><br><span class="line">  ActiveRecord::Base.connection_pool.disconnect!</span><br><span class="line"></span><br><span class="line">  ActiveSupport.on_load(:active_record) do</span><br><span class="line">    if Rails.application.config.database_configuration</span><br><span class="line">      config = Rails.application.config.database_configuration[Rails.env]</span><br><span class="line">      config['reaping_frequency'] = ENV['DB_REAP_FREQ'] || 10 # seconds</span><br><span class="line">      config['pool']              = ENV['DB_POOL']      || 5</span><br><span class="line">      ActiveRecord::Base.establish_connection(config)</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
+<p><code>Procfile</code>に次のコードを追加(or新規作成)。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">web: bundle exec puma -t ${PUMA_MIN_THREADS:-8}:${PUMA_MAX_THREADS:-12} -w ${PUMA_WORKERS:-2} -p $PORT -e ${RACK_ENV:-development}</span><br></pre></td></tr></tbody></table></figure>
+<p>pumaの起動。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">foreman start</span><br></pre></td></tr></tbody></table></figure>
+<p><code>http://0.0.0.0:5000</code>をブラウザで開いてエラーが出ていないことを確認。</p>
+<p><img src="/img/2014-03-21-heroku-rails4-postgresql-introduction_1.jpg" width="500" height="390" alt="Rails 4 初期画面"></p>
+<h3 id="RSpec-Spring-Guardの設定" class="article-heading"><a href="#RSpec-Spring-Guardの設定" class="headerlink" title="RSpec/Spring/Guardの設定"></a>RSpec/Spring/Guardの設定<a class="article-anchor" href="#RSpec-Spring-Guardの設定" aria-hidden="true"></a></h3><p>RSpecのひな型の作成。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rails g rspec:install</span><br></pre></td></tr></tbody></table></figure>
+<p><code>.RSpec</code>にはRSpecコマンドの引数を記述できます。次のとおり編集。<br>(詳細はRSpec –helpを参照)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">echo '--color --drb -f d' > .rspec</span><br></pre></td></tr></tbody></table></figure>
+<p><code>spec/spec_helper.rb</code>に以下を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 追加</span><br><span class="line">require 'factory_girl_rails'</span><br><span class="line"></span><br><span class="line"># 削除</span><br><span class="line">require 'rspec/autorun'</span><br><span class="line"></span><br><span class="line"># RSpec.configure do |config|の中に追加</span><br><span class="line">config.before :suite do</span><br><span class="line">  DatabaseRewinder.clean_all</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">config.after :each do</span><br><span class="line">  DatabaseRewinder.clean</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">config.before :all do</span><br><span class="line">  FactoryGirl.reload</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">config.include FactoryGirl::Syntax::Methods</span><br></pre></td></tr></tbody></table></figure>
+<p>続いてSpringのbinファイルを追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">wget https://raw.github.com/jonleighton/spring/master/bin/spring -P bin/</span><br><span class="line">sudo chmod a+x bin/spring</span><br></pre></td></tr></tbody></table></figure>
+<p>さらにGuardの設定ファイルを追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">bundle exec guard init</span><br></pre></td></tr></tbody></table></figure>
+<p>生成された<code>Guardfile</code>の内容を変更。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">guard :rspec do</span><br><span class="line"># ↓ 以下に変更</span><br><span class="line">guard :rspec, cmd: 'spring rspec -f doc' do</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="scaffold表示まで" class="article-heading"><a href="#scaffold表示まで" class="headerlink" title="scaffold表示まで"></a>scaffold表示まで<a class="article-anchor" href="#scaffold表示まで" aria-hidden="true"></a></h3><p>scaffoldの作成してビューを追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">rails g scaffold product name price:integer</span><br></pre></td></tr></tbody></table></figure>
+<p><code>config/routes.rb</code>にて、ルートアクセス設定を追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">root :to => 'products#index'</span><br></pre></td></tr></tbody></table></figure>
+<p>DBのマイグレーション。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">bundle exec Rake RAILS_ENV=development <span class="symbol">db:</span>migrate</span><br></pre></td></tr></tbody></table></figure>
+<p><code>http://0.0.0.0:5000</code>でscaffordしたビューが見れることをブラウザで確認。</p>
+<h3 id="Herokuのアプリを作成" class="article-heading"><a href="#Herokuのアプリを作成" class="headerlink" title="Herokuのアプリを作成"></a>Herokuのアプリを作成<a class="article-anchor" href="#Herokuのアプリを作成" aria-hidden="true"></a></h3><p>Herokuにアプリを登録。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku create test-app</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="secret-tokenを生成" class="article-heading"><a href="#secret-tokenを生成" class="headerlink" title="secret_tokenを生成"></a>secret_tokenを生成<a class="article-anchor" href="#secret-tokenを生成" aria-hidden="true"></a></h3><p>次のコマンドを実行して、Herokuにsecret_tokenを生成してセット。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku config:set SECRET_KEY_BASE=`rake secret`</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="タイムゾーンの設定" class="article-heading"><a href="#タイムゾーンの設定" class="headerlink" title="タイムゾーンの設定"></a>タイムゾーンの設定<a class="article-anchor" href="#タイムゾーンの設定" aria-hidden="true"></a></h3><p>HerokuのタイムゾーンをTokyoに設定。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku config:add TZ=Asia/Tokyo</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="NewRelicの導入" class="article-heading"><a href="#NewRelicの導入" class="headerlink" title="NewRelicの導入"></a>NewRelicの導入<a class="article-anchor" href="#NewRelicの導入" aria-hidden="true"></a></h3><p>Herokuのアイドリング防止とエラー検出などを兼ねてNewRelicを導入。<br><br>まずは無料プランでセットアップ。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku addons:add newrelic</span><br></pre></td></tr></tbody></table></figure>
+<p>次のコマンドでブラウザが起動してNewRelicの管理画面が開きます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku addons:open newrelic</span><br></pre></td></tr></tbody></table></figure>
+<p>『<strong>Get Started</strong>』ボタン => 2の『<strong>Generate Licence Key</strong>』ボタン => 4の『<strong>Download the newrelic.yml file</strong>』ボタンを実行。ymlファイルを<code>/config/</code>に置きます。</p>
+<p><code>/config/newrelic.yml</code>の中でapplication名を変更。<br><br>(<code>test-app</code>は自分のアプリケーション名に変更してください)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">app_name: test-app</span><br></pre></td></tr></tbody></table></figure>
+<p>あとはdeployして5分後くらいに、<code>Heroku addons:open newrelic</code>を実行すればNew Relic上でHerokuのパフォーマンスをチェックできます。</p>
+<p>でモニタリング画面が表示されるようになったら、『<strong>Applications</strong>』=>『<strong>test-app</strong>』=>『<strong>Settings</strong>』=>『<strong>Availability Monitoring</strong>』=>『<strong>URL to ping</strong>』のフォームに<code>http://test-app.herokuapp.com/</code>などHerokuで発行されたURLを記入して『<strong>Save to Change</strong>』ボタンを実行。</p>
+<p>これで定期的にデフォルトでは1分おきにURLの死活監視をしてくれるようになるっぽいです！</p>
+<h3 id="Logentriesの導入" class="article-heading"><a href="#Logentriesの導入" class="headerlink" title="Logentriesの導入"></a>Logentriesの導入<a class="article-anchor" href="#Logentriesの導入" aria-hidden="true"></a></h3><p>『<strong><a href="https://addons.heroku.com/logentries#tryit" target="_blank" rel="noopener">Logentries</a></strong>』はログの保存や検索をサポートしてくれるサービスです。ログの中で特定のキーワードがあった場合にはエラーをメールしてくれます。Herokuの場合は致命的なエラーのキーワードがあらかじめ登録されているので、簡単にスタートできます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku addons:add logentries</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="MySQLを使う場合" class="article-heading"><a href="#MySQLを使う場合" class="headerlink" title="MySQLを使う場合"></a>MySQLを使う場合<a class="article-anchor" href="#MySQLを使う場合" aria-hidden="true"></a></h3><p>ここからはMySQLを使う場合限定です。まずはHerokuアドオンのClearDBをアドオンを追加。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku addons:add cleardb:ignite</span><br></pre></td></tr></tbody></table></figure>
+<p>次のコマンドを実行すると、<code>CLEARDB_DATABASE_URL</code>の設定情報が見えます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku config | grep CLEARDB_DATABASE_URL</span><br><span class="line">#=> CLEARDB_DATABASE_URL:        mysql://xxxx</span><br></pre></td></tr></tbody></table></figure>
+<p>この<code>MySQL://xxxx</code>以下をHerokuのDATABASE_URLにセット。<br><br>アダプタは<code>mysql2</code>にするように注意が必要。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku config:set  DATABASE_URL='mysql2 xxx' --app mimimiru-wh</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="HerokuへのPush" class="article-heading"><a href="#HerokuへのPush" class="headerlink" title="HerokuへのPush"></a>HerokuへのPush<a class="article-anchor" href="#HerokuへのPush" aria-hidden="true"></a></h3><p>HerokuへのPushを行う前に、Gitに最新のコードをコミット。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git add . -A</span><br><span class="line">git commit -m "add scaffold"</span><br></pre></td></tr></tbody></table></figure>
+<p>いよいよ、HerokuへのPush。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">git push heroku master</span><br></pre></td></tr></tbody></table></figure>
+<p>あとはmigrationの実行。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku run rake db:migrate</span><br></pre></td></tr></tbody></table></figure>
+<p>次のコマンドを実行するとブラウザが起動するので確認。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">heroku open</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="補足bundle-execの省略" class="article-heading">🐝 <a href="#補足bundle-execの省略" class="headerlink" title="補足bundle execの省略"></a>補足bundle execの省略<a class="article-anchor" href="#補足bundle-execの省略" aria-hidden="true"></a></h2><p>rbenv環境で、「<strong><a href="https://github.com/ianheggie/rbenv-binstubs" target="_blank" rel="noopener">rbenv-binstubs</a></strong>」を使うと、<code>bundle exec</code>を省略できます。<code>bundle install(bundle)</code>の際に次のコマンドを入力してください。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">bundle install --binstubs=.bundle/bin</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Heroku両記事まとめ" class="article-heading"> 🍮 <a href="#Heroku両記事まとめ" class="headerlink" title="Heroku両記事まとめ"></a>Heroku両記事まとめ<a class="article-anchor" href="#Heroku両記事まとめ" aria-hidden="true"></a></h2><p><strong><a href="http://qiita.com/soramugi/items/1873eda8bd3aa0e0e6ef" target="_blank" rel="noopener">herokuのDBにローカルのrailsアプリケーションからアクセス</a></strong></p>
+<p><strong><a href="http://qiita.com/bojovs/items/0db36919f3aaae27a88d" target="_blank" rel="noopener">AnosideをさくらのVPSからHerokuに移した話</a></strong><br><br>SidekiqやMandrill、MySQLのデータをPostgreSQLのデータにコンバートする方法などが書かれています。</p>
+<h2 id="個人で使えそうなテック系サービス" class="article-heading"> 🐰 <a href="#個人で使えそうなテック系サービス" class="headerlink" title="個人で使えそうなテック系サービス"></a>個人で使えそうなテック系サービス<a class="article-anchor" href="#個人で使えそうなテック系サービス" aria-hidden="true"></a></h2><p><strong><a href="http://www.kimonolabs.com/" target="_blank" rel="noopener">kimono</a></strong><br><br>Webサイトの特定箇所をWeb APIライクにJSON形式で取得できるサービス。</p>
+<p><strong><a href="http://mailchimp.com/features/rss-to-email/" target="_blank" rel="noopener">RSS-to-Email | MailChimp</a></strong><br><br>RSSからメールを自動生成してくれるサービス・メルマガが充実している海外ならでは！</p>
+<h2 id="おもしろそうなGem" class="article-heading">🐮 <a href="#おもしろそうなGem" class="headerlink" title="おもしろそうなGem"></a>おもしろそうなGem<a class="article-anchor" href="#おもしろそうなGem" aria-hidden="true"></a></h2><p><strong><a href="http://labs.timedia.co.jp/2014/02/railsgem.html" target="_blank" rel="noopener">Railsなプロジェクトで利用している便利なGem一覧 - TIM Labs</a></strong><br><br>モダンなRubyGemが数多くあります。Active Recordを簡単に書くことができる「<strong><a href="https://github.com/activerecord-hackery/squeel" target="_blank" rel="noopener">Squeel</a></strong>」や「<strong><a href="https://github.com/lailsonbm/awesome_nested_fields" target="_blank" rel="noopener">awesome_nested_fields</a></strong>」とか、これから試してみたい！</p>
+<h2 id="参考リンク" class="article-heading"> 🍄 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><p><strong><a href="https://twitter.com/yoneapp" target="_blank" rel="noopener">@yoneapp</a></strong>さんに<code>config.serve_static_assets = true</code>を使わない方がいいよとドバイスをいただきました。助かりました。ありがとうございます！　＾＾</p>
+<p><strong><a href="http://qiita.com/croquette0212/items/ca294be263fae28883b3" target="_blank" rel="noopener">Ruby on Rails 4への移行でハマったポイント - Qiita [キータ]</a></strong></p>
+<p><strong><a href="http://hiroki.jp/2013/02/08/6529/" target="_blank" rel="noopener">Rails使いよspork, zeusからspringへ！ | Act as Professional - hiroki.jp</a></strong></p>
+<p><strong><a href="http://stackoverflow.com/questions/18556955/heroku-config-secret-key-base-error" target="_blank" rel="noopener">ruby on rails - Heroku Config Secret Key Base Error - Stack Overflow</a></strong></p>
+<p><strong><a href="http://d.hatena.ne.jp/chikkun530/20130309/p1" target="_blank" rel="noopener">Rails4をHerokuに(クラウドに一歩一歩近づく) - 五十の手習い日記</a></strong></p>
+<p><strong><a href="http://qiita.com/unosk/items/c2e2bbc31d97e92803dc" target="_blank" rel="noopener">Rails4時代の高速テスト環境 Rspec+Guard+FactoryGirl+Spring[NEW!] - Qiita [キータ]</a></strong></p>
+<p><strong><a href="http://d.hatena.ne.jp/shunsuk/20110322/1300794096" target="_blank" rel="noopener">Herokuで強制的にdb:migrateをやり直す。 - このブログは証明できない。</a></strong></p>
+<p><strong><a href="http://stackoverflow.com/questions/1823397/heroku-using-git-branch-is-confusing" target="_blank" rel="noopener">Herokuにmaster以外のブランチをデプロイする方法 stackoverflow</a></strong></p>
+<p><strong><a href="http://qiita.com/shu_0115/items/6f5f0c210e9999da66be" target="_blank" rel="noopener">Ruby 2.0.0-p247 + Rails 4.0.0 + minimum-omniauth-scaffold - Qiita [キータ]</a></strong></p>
+<p><strong><a href="https://coderwall.com/p/u0x3nw" target="_blank" rel="noopener">Pete : Avoid Heroku idling with New Relic pings</a></strong></p>
+<p><strong><a href="https://devcenter.heroku.com/articles/getting-started-with-rails4" target="_blank" rel="noopener">Getting Started with Rails 4.x on Heroku | Heroku Dev Center</a></strong></p>
+<p><strong><a href="http://straitwalk.hatenablog.com/entry/2013/08/11/004648" target="_blank" rel="noopener">Heroku+Rails4+Devise+MySQL+Redis - 成らぬは人の為さぬなりけり</a></strong></p>
+<p><strong><a href="http://stackoverflow.com/questions/17550747/rails-4-enabled-rails-to-serve-static-assets-is-it-correct-on-heroku" target="_blank" rel="noopener">rails 4 enabled rails to serve static assets: is it correct? (on heroku) - Stack Overflow</a></strong></p>
+<p><strong><a href="http://sideshowcoder.com/post/57431599309/rails-quick-tip-set-a-secret-token-for-heroku-deploy" target="_blank" rel="noopener">Code from the sideline — Rails Quick Tip: Set a secret token for Heroku deploy</a></strong></p>
+<h2 id="変更来歴" class="article-heading">🐡 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>(13/09/29 20:25) <strong>rails_config/simple_formを追加</strong><br><br>(13/09/30 05:20) <strong>記述ミスの修正、おまけの追加</strong><br><br>(13/12/01 12:50) postgresql用のユーザー作成の手順を追記、gem『<strong><a href="https://devcenter.heroku.com/articles/ruby-support" target="_blank" rel="noopener">rails_12factor</a></strong>』を追加<br><br>(13/12/03 21:45) Herokuにマスタ以外のブランチをデプロイする方法を追加<br><br>(13/12/05 08:55) Herokuタイムゾーン設定を追加、ERB=>hamlへの変換を追加<br><br>(13/12/06 20:45) Herokuへの環境変数の設定と確認<br><br>(13/12/23 12:05) <code>config.serve_static_assets = false</code>を削除<br><br>(13/12/23 15:20) <code>rails-assets</code>を追加<br><br>(13/12/28 10:10) newrelicの記述を追加<br><br>(14/01/01 16:05) <code>guard/spring/kaminari/figaro/puma</code>の設定を追加、unicorn、.Ruby-versionを削除<br><br>(14/01/03 23:55) Application Templateへのリンクを追加<br><br>(14/02/02 20:55) Heroku両記事まとめを追加<br><br>(14/03/21 09:40) かなりの分量ですので、タイトルを「簡単手順 => 詳細手順」に変更</p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

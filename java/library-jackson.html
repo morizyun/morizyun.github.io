@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Java Jacksonの基本的な使い方 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/java/library-jakson.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="ja" href="http://morizyun.github.io/java/library-jackson.html">
+    
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Javaの「Jackson」はデファクト・スタンダードなJSONをパースするライブラリです。JavaのオブジェクトをJSONに変換したり、JSONの文字列を受け取ってJavaのオブジェクトに変換できます。">
+<meta name="keywords" content="Java,Jackson">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Jacksonの基本的な使い方">
+<meta property="og:url" content="http://morizyun.github.io/java/library-jackson.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Javaの「Jackson」はデファクト・スタンダードなJSONをパースするライブラリです。JavaのオブジェクトをJSONに変換したり、JSONの文字列を受け取ってJavaのオブジェクトに変換できます。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Jacksonの基本的な使い方">
+<meta name="twitter:description" content="Javaの「Jackson」はデファクト・スタンダードなJSONをパースするライブラリです。JavaのオブジェクトをJSONに変換したり、JSONの文字列を受け取ってJavaのオブジェクトに変換できます。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Java Jacksonの基本的な使い方</h1>
+              </header>
+              <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/java/library-jackson.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/java/library-jackson.html" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/java/library-jackson.html">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/java/library-jackson.html"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+              <div class="article-content" itemprop="articleBody">
+                <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>Javaの「<a href="https://github.com/FasterXML/jackson" target="_blank" rel="noopener">Jackson</a>」はデファクト・スタンダードなJSONをパースするライブラリです。JavaのオブジェクトをJSONに変換したり、JSONの文字列を受け取ってJavaのオブジェクトに変換できます。</p>
+<a id="more"></a>
+<h2 id="インストール" class="article-heading"> 🐹 <a href="#インストール" class="headerlink" title="インストール"></a>インストール<a class="article-anchor" href="#インストール" aria-hidden="true"></a></h2><p>Gradleを使っている場合は<code>build.gradle</code>にdependenciesを追加します。<code>gradle clean compileJava --debug</code>を実行してコンパイルがとおれば成功です。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">apply plugin: 'java'</span><br><span class="line"></span><br><span class="line">sourceCompatibility = '1.8'</span><br><span class="line">targetCompatibility = '1.8'</span><br><span class="line"></span><br><span class="line">repositories {</span><br><span class="line">    mavenCentral()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 以下を追加</span><br><span class="line">dependencies {</span><br><span class="line">    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.8.1'</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>pom.xmlを使っている場合はこちらを追加します。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">dependency</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">groupId</span>></span>com.fasterxml.jackson.core<span class="tag">groupId</span>></span><br><span class="line">  <span class="tag"><<span class="name">artifactId</span>></span>jackson-databind<span class="tag">artifactId</span>></span><br><span class="line">  <span class="tag"><<span class="name">version</span>></span>2.8.8<span class="tag">version</span>></span><br><span class="line"><span class="tag">dependency</span>></span><br><span class="line"><span class="tag"><<span class="name">dependency</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">groupId</span>></span>com.fasterxml.jackson.core<span class="tag">groupId</span>></span><br><span class="line">  <span class="tag"><<span class="name">artifactId</span>></span>jackson-annotations<span class="tag">artifactId</span>></span><br><span class="line">  <span class="tag"><<span class="name">version</span>></span>2.8.8<span class="tag">version</span>></span><br><span class="line"><span class="tag">dependency</span>></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Javaオブジェクト-gt-JSON" class="article-heading">👽 <a href="#Javaオブジェクト-gt-JSON" class="headerlink" title="Javaオブジェクト => JSON"></a>Javaオブジェクト => JSON<a class="article-anchor" href="#Javaオブジェクト-gt-JSON" aria-hidden="true"></a></h2><p>JavaのオブジェクトからJSON形式でデータを出力します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// thread safeなのでstatic fieldに持って使いまわすことが推奨されています</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    Sample() {</span><br><span class="line">        <span class="comment">// インデントを見やすく整形</span></span><br><span class="line">        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// getXXXもJSONの出力対象になります</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getIdName</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> String.valueOf(id) + name;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> JsonProcessingException </span>{</span><br><span class="line">        Sample hoge = <span class="keyword">new</span> Sample();</span><br><span class="line">        hoge.id = <span class="number">1</span>;</span><br><span class="line">        hoge.name = <span class="string">"hoge"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでSampleオブジェクト => json に変換します</span></span><br><span class="line">        String json = objectMapper.writeValueAsString(hoge);</span><br><span class="line"></span><br><span class="line">        System.out.println(json);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>出力は次のようになります。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">  "id" : 1,</span><br><span class="line">  "name" : "hoge",</span><br><span class="line">  "idName" : "1hoge"</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>ちなみにJacksonの<code>ObjectMapper</code>はスレッドセーフですので、<code>static field</code>にしてインスタンスを使いまわすことが推奨されています。</p>
+<p></p><blockquote class="twitter-tweet" data-conversation="none" data-lang="ja"><p lang="ja" dir="ltr">ObjectMapper は thread-safe なので（javadoc に書いてあります） static field に持つことも多いです。記事中でインスタンスを使い回すよう推奨する方がよいと思います。</p>— seratch(ja) (@seratch_ja) <a href="https://twitter.com/seratch_ja/status/872248415127691264" target="_blank" rel="noopener">2017年6月7日</a></blockquote><p></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p><a href="https://goo.gl/II2HK0" target="_blank" rel="noopener">java - Should I declare Jackson’s ObjectMapper as a static field?</a></p>
+<h2 id="基本的な使い方" class="article-heading"> 🤔 <a href="#基本的な使い方" class="headerlink" title="基本的な使い方"></a>基本的な使い方<a class="article-anchor" href="#基本的な使い方" aria-hidden="true"></a></h2><h3 id="JSON文字列-gt-Javaオブジェクト" class="article-heading"><a href="#JSON文字列-gt-Javaオブジェクト" class="headerlink" title="JSON文字列 => Javaオブジェクト"></a>JSON文字列 => Javaオブジェクト<a class="article-anchor" href="#JSON文字列-gt-Javaオブジェクト" aria-hidden="true"></a></h3><p>JSON形式のデータ(文字列)からJavaのオブジェクトを生成します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{ <span class="keyword">return</span> <span class="string">"id = "</span> + id + <span class="string">", name = "</span> + name; }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        String jsonStr = <span class="string">"{\"id\":1,\"name\":\"hoge\"}"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでjson => Sampleへの変換を行う</span></span><br><span class="line">        Sample result = objectMapper.readValue(jsonStr, Sample.class);</span><br><span class="line"></span><br><span class="line">        System.out.println(result);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>出力は次のようになります。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">id = 1, name = hoge</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="List-Mapを含むJSON-gt-Javaオブジェクト" class="article-heading"><a href="#List-Mapを含むJSON-gt-Javaオブジェクト" class="headerlink" title="List/Mapを含むJSON => Javaオブジェクト"></a>List/Mapを含むJSON => Javaオブジェクト<a class="article-anchor" href="#List-Mapを含むJSON-gt-Javaオブジェクト" aria-hidden="true"></a></h3><p>ListやMapなどの型引数をもつクラスをJavaオブジェクトに変換する場合は<code>TypeReference</code>を利用します。<code>TypeReference</code>によって型安全にでぃシリアライズできます。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"id = "</span> + id + <span class="string">", name = "</span> + name;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        String jsonStr = <span class="string">"[{\"id\":1, \"name\":\"hoge\"}, {\"id\":2, \"name\":\"fuga\"}]"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでjson => Sampleへの変換を行う</span></span><br><span class="line">        List<sample> result = objectMapper.readValue(jsonStr, <span class="keyword">new</span> TypeReference<list<sample>>() {</list<sample></sample></span><br><span class="line">        });</span><br><span class="line"></span><br><span class="line">        System.out.println(result);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>出力は次のとおりです。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">[id = 1, name = hoge, id = 2, name = fuga]</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="アノテーション" class="article-heading">🗻 <a href="#アノテーション" class="headerlink" title="アノテーション"></a>アノテーション<a class="article-anchor" href="#アノテーション" aria-hidden="true"></a></h2><p>アノテーションを使うことで簡単に出力するJSONを加工できます。</p>
+<h3 id="JSONのプロパティ名を変更：-JsonProperty" class="article-heading"><a href="#JSONのプロパティ名を変更：-JsonProperty" class="headerlink" title="JSONのプロパティ名を変更：@JsonProperty"></a>JSONのプロパティ名を変更：<code>@JsonProperty</code><a class="article-anchor" href="#JSONのプロパティ名を変更：-JsonProperty" aria-hidden="true"></a></h3><p><code>@JsonProperty</code>は出力するプロパティの名前を変更するアノテーションです。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonIgnore</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        Sample hoge = <span class="keyword">new</span> Sample();</span><br><span class="line">        hoge.id = <span class="number">1</span>;</span><br><span class="line">        hoge.name = <span class="string">"hoge"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでSampleオブジェクト => json に変換します</span></span><br><span class="line">        String json = objectMapper.writeValueAsString(hoge);</span><br><span class="line"></span><br><span class="line">        System.out.println(json);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>出力したJSONではフィールド名が<code>fieldName</code>に変更されました。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">{"id":1,"fieldName":"hoge"}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="特定のフィールドを対象外にする：-JsonIgnore" class="article-heading"><a href="#特定のフィールドを対象外にする：-JsonIgnore" class="headerlink" title="特定のフィールドを対象外にする：@JsonIgnore"></a>特定のフィールドを対象外にする：<code>@JsonIgnore</code><a class="article-anchor" href="#特定のフィールドを対象外にする：-JsonIgnore" aria-hidden="true"></a></h3><p><code>@JsonIgnore</code>は特定のフィールドをJSONの変換対象外にするアノテーションです。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonIgnore</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        Sample hoge = <span class="keyword">new</span> Sample();</span><br><span class="line">        hoge.id = <span class="number">1</span>;</span><br><span class="line">        hoge.name = <span class="string">"hoge"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでSampleオブジェクト => json に変換します</span></span><br><span class="line">        String json = objectMapper.writeValueAsString(hoge);</span><br><span class="line"></span><br><span class="line">        System.out.println(json);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>出力したJSONでは<code>name</code>フィールドが出力されませんでした。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">{"id":1}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="対象外のフィールドをまとめて設定：-JsonIgnoreProperties" class="article-heading"><a href="#対象外のフィールドをまとめて設定：-JsonIgnoreProperties" class="headerlink" title="対象外のフィールドをまとめて設定：@JsonIgnoreProperties"></a>対象外のフィールドをまとめて設定：<code>@JsonIgnoreProperties</code><a class="article-anchor" href="#対象外のフィールドをまとめて設定：-JsonIgnoreProperties" aria-hidden="true"></a></h3><p><code>@JsonIgnoreProperties</code>をクラスに設定することで、複数のフィールドをまとめてJSON出力の対象外にできます。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">@JsonIgnoreProperties</span>({ <span class="string">"id"</span>, <span class="string">"description"</span> })</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> String description;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        Sample hoge = <span class="keyword">new</span> Sample();</span><br><span class="line">        hoge.id = <span class="number">1</span>;</span><br><span class="line">        hoge.name = <span class="string">"hoge"</span>;</span><br><span class="line">        hoge.description = <span class="string">"hoge description"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでSampleオブジェクト => json に変換します</span></span><br><span class="line">        String json = objectMapper.writeValueAsString(hoge);</span><br><span class="line"></span><br><span class="line">        System.out.println(json);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>出力したJSONでは<code>id</code>、<code>description</code>フィールドが出力されませんでした。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">{"name":"hoge"}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="JSONの未定義フィールドを無視する" class="article-heading"><a href="#JSONの未定義フィールドを無視する" class="headerlink" title="JSONの未定義フィールドを無視する"></a>JSONの未定義フィールドを無視する<a class="article-anchor" href="#JSONの未定義フィールドを無視する" aria-hidden="true"></a></h3><p>デフォルトの挙動では、パースするJSONに未定義のフィールドがある場合、エラーとなります。それを回避するには<code>@JsonIgnoreProperties</code>アノテーションに<code>ignoreUnkown = true</code>を設定します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// ignoreUnknownがない場合はfugaが未定義のためエラーとなる</span></span><br><span class="line"><span class="meta">@JsonIgnoreProperties</span>(ignoreUnknown = <span class="keyword">true</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{ <span class="keyword">return</span> <span class="string">"id = "</span> + id + <span class="string">", name = "</span> + name; }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        String jsonStr = <span class="string">"{\"id\":1,\"name\":\"hoge\", \"fuga\":\"fugafuga\"}"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでjson => Sampleへの変換を行う</span></span><br><span class="line">        Sample result = objectMapper.readValue(jsonStr, Sample.class);</span><br><span class="line"></span><br><span class="line">        System.out.println(result);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="コンストラクタの指定：-JsonCreator" class="article-heading"><a href="#コンストラクタの指定：-JsonCreator" class="headerlink" title="コンストラクタの指定：@JsonCreator"></a>コンストラクタの指定：<code>@JsonCreator</code><a class="article-anchor" href="#コンストラクタの指定：-JsonCreator" aria-hidden="true"></a></h3><p><code>@JsonCreator</code>でJSON文字列からJavaオブジェクトへの変換を行うコンストラクタを指定できます。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{ <span class="keyword">return</span> <span class="string">"id = "</span> + id + <span class="string">", name = "</span> + name; }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Json => Sampleオブジェクトに変換するコンストラクタを指定</span></span><br><span class="line">    <span class="meta">@JsonCreator</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Sample</span><span class="params">(@JsonProperty(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id, @<span class="title">JsonProperty</span><span class="params">(<span class="string">"name"</span>)</span> String name) </span>{</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name + String.valueOf(id);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        String jsonStr = <span class="string">"{\"id\":1,\"name\":\"hoge\"}"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでjson => Sampleへの変換を行う</span></span><br><span class="line">        Sample result = objectMapper.readValue(jsonStr, Sample.class);</span><br><span class="line"></span><br><span class="line">        System.out.println(result);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>出力は次のようになり、指定したコンストラクタが使われていることがわかります。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">id = 1, name = hoge1</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="コンストラクタの指定：-JsonValue" class="article-heading"><a href="#コンストラクタの指定：-JsonValue" class="headerlink" title="コンストラクタの指定：@JsonValue"></a>コンストラクタの指定：<code>@JsonValue</code><a class="article-anchor" href="#コンストラクタの指定：-JsonValue" aria-hidden="true"></a></h3><p><code>@JsonValue</code>でJavaオブジェクトからJSONに変換するメソッドを指定できます。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> String description;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonValue</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map<string, string> <span class="title">toJson</span><span class="params">()</span> </string,></span>{</span><br><span class="line">        Map map = <span class="keyword">new</span> LinkedHashMap<string, string>();</string,></span><br><span class="line">        map.put(<span class="string">"id"</span>, String.valueOf(id));</span><br><span class="line">        map.put(<span class="string">"description"</span>, description);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        Sample hoge = <span class="keyword">new</span> Sample();</span><br><span class="line">        hoge.id = <span class="number">1</span>;</span><br><span class="line">        hoge.name = <span class="string">"hoge"</span>;</span><br><span class="line">        hoge.description = <span class="string">"hoge description"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ObjectMapperでSampleオブジェクト => json に変換します</span></span><br><span class="line">        String json = objectMapper.writeValueAsString(hoge);</span><br><span class="line"></span><br><span class="line">        System.out.println(json);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>出力は次のようになります。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">{"id":"1","description":"hoge description"}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading">🏈 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="https://goo.gl/LpLRBa" target="_blank" rel="noopener">Jackson使い方メモ</a></li>
+<li><a href="https://goo.gl/xt4IK9" target="_blank" rel="noopener">Gradle使い方メモ</a></li>
+</ul>
+</body></html>
+                <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+                <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798055204/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798055204&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798055204&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798055204" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07DNCCG5Q/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07DNCCG5Q&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07DNCCG5Q&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07DNCCG5Q" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4297100916/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4297100916&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4297100916&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4297100916" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H28VQJ3/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H28VQJ3&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H28VQJ3&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H28VQJ3" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07BKVP9QY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07BKVP9QY&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07BKVP9QY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07BKVP9QY" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07H5GCJ8J/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07H5GCJ8J&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07H5GCJ8J&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07H5GCJ8J" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GRRVC3M/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GRRVC3M&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GRRVC3M&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GRRVC3M" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4839962227/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4839962227&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4839962227&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4839962227" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4774198765/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4774198765&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4774198765&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4774198765" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07GWHP9YM/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07GWHP9YM&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07GWHP9YM&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07GWHP9YM" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-11T00:55:46.000Z" itemprop="dateModified">最終更新日: 2017-08-11</time>
+                <a href="library-lombok.html" class="article-footer-prev" title="Lombok(ボイラープレート)"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="library-mybatis.html" class="article-footer-next" title="MyBatis(OR Mapper)"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">コンテンツ</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#インストール"><span class="toc-text">インストール</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Javaオブジェクト-gt-JSON"><span class="toc-text">Javaオブジェクト =&gt; JSON</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的な使い方"><span class="toc-text">基本的な使い方</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON文字列-gt-Javaオブジェクト"><span class="toc-text">JSON文字列 =&gt; Javaオブジェクト</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List-Mapを含むJSON-gt-Javaオブジェクト"><span class="toc-text">List/Mapを含むJSON =&gt; Javaオブジェクト</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#アノテーション"><span class="toc-text">アノテーション</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSONのプロパティ名を変更：-JsonProperty"><span class="toc-text">JSONのプロパティ名を変更：@JsonProperty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特定のフィールドを対象外にする：-JsonIgnore"><span class="toc-text">特定のフィールドを対象外にする：@JsonIgnore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#対象外のフィールドをまとめて設定：-JsonIgnoreProperties"><span class="toc-text">対象外のフィールドをまとめて設定：@JsonIgnoreProperties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSONの未定義フィールドを無視する"><span class="toc-text">JSONの未定義フィールドを無視する</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#コンストラクタの指定：-JsonCreator"><span class="toc-text">コンストラクタの指定：@JsonCreator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#コンストラクタの指定：-JsonValue"><span class="toc-text">コンストラクタの指定：@JsonValue</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考リンク"><span class="toc-text">参考リンク</span></a></li></ol>
+              <a href="#" id="article-toc-top">トップへ</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">概要</strong><a href="index.html" class="sidebar-link">はじめに</a><a href="basic-rule-word.html" class="sidebar-link">基本概念</a><a href="tips-material-for-beginner.html" class="sidebar-link">初心者向け入門資料</a><strong class="sidebar-title">型</strong><a href="type-integer-long-short.html" class="sidebar-link">整数(int, log)</a><a href="type-char.html" class="sidebar-link">文字(char)</a><a href="type-string.html" class="sidebar-link">文字列(String)</a><a href="type-collection-array-list.html" class="sidebar-link">コレクションと配列</a><a href="type-map.html" class="sidebar-link">マップ(Map)</a><a href="type-set.html" class="sidebar-link">セット(Set)</a><a href="type-date.html" class="sidebar-link">日付(Date)</a><a href="type-enum.html" class="sidebar-link">列挙(Enum)</a><a href="type-byte.html" class="sidebar-link">バイト(byte)</a><a href="type-boolean.html" class="sidebar-link">正偽型(boolean)</a><a href="type-primitive-reference.html" class="sidebar-link">プリミティブ型と参照型</a><a href="type-optional.html" class="sidebar-link">Optional型</a><strong class="sidebar-title">文法</strong><a href="basic-modifier.html" class="sidebar-link">修飾子</a><a href="basic-class.html" class="sidebar-link">クラス</a><a href="basic-method.html" class="sidebar-link">メソッド</a><a href="basic-exception-handling.html" class="sidebar-link">例外処理</a><a href="basic-initialization-block.html" class="sidebar-link">初期化ブロック</a><a href="basic-variable.html" class="sidebar-link">変数</a><a href="basic-interface.html" class="sidebar-link">インタフェースについて</a><a href="basic-refrection.html" class="sidebar-link">リフレクション</a><a href="basic-switch.html" class="sidebar-link">switch文</a><a href="basic-comparable-interface.html" class="sidebar-link">Comparable I/F</a><a href="basic-annotation.html" class="sidebar-link">アノテーション</a><a href="basic-itarator.html" class="sidebar-link">イテレータ(iterator)</a><a href="basic-lamdba-stream-api.html" class="sidebar-link">Stream API/Lambda</a><strong class="sidebar-title">Spring Framework</strong><a href="spring-framework-basic-index.html" class="sidebar-link">概要</a><a href="spring-framework-basic-hello-world.html" class="sidebar-link">Hello World</a><a href="spring-framework-basic-di-dependency-injection.html" class="sidebar-link">DI(依存性の注入)</a><a href="spring-framework-basic-spring-aop.html" class="sidebar-link">アスペクト指向プログラミング</a><a href="spring-framework-basic-data-binding.html" class="sidebar-link">データバインディングと型変換</a><a href="spring-framework-controller-annotation.html" class="sidebar-link">Controllerアノテーション</a><a href="spring-framework-basic-form.html" class="sidebar-link">フォーム利用</a><a href="spring-framework-property-value.html" class="sidebar-link">プロパティ(設定値)管理</a><a href="spring-framework-validation.html" class="sidebar-link">バリデーション</a><strong class="sidebar-title">ライブラリ</strong><a href="library-thymeleaf.html" class="sidebar-link">Thymeleaf(テンプレート)</a><a href="library-lombok.html" class="sidebar-link">Lombok(ボイラープレート)</a><a href="library-jackson.html" class="sidebar-link current">Jackson(JSONライブラリ)</a><a href="library-mybatis.html" class="sidebar-link">MyBatis(OR Mapper)</a><a href="library-junit.html" class="sidebar-link">JUnit(ユニットテスト)</a><a href="library-hibernate.html" class="sidebar-link">Hibernate</a><strong class="sidebar-title">デザインパターン</strong><a href="design-pattern-factory-pattern.html" class="sidebar-link">ファクトリパターン</a><a href="design-pattern-singleton-pattern.html" class="sidebar-link">シングルトンパターン</a><a href="design-pattern-template-method-pattern.html" class="sidebar-link">テンプレートメソッドパターン</a><strong class="sidebar-title">Tips</strong><a href="tips-best-practice.html" class="sidebar-link">JavaのBest Practice</a><a href="tips-style-guide.html" class="sidebar-link">Javaのコーディング規約</a><a href="tips-intellij-spring-dev-tool-tips.html" class="sidebar-link">IntelliJ IDEAノウハウ</a><a href="tips-jsp-java-server-page.html" class="sidebar-link">JSPについて</a><a href="tips-etc.html" class="sidebar-link">Java Tips</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019 <a href="https://blog.morizyun.com/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/reading/" class="footer-link" target="_blank"><i class="fa fa-book"></i></a>
+      <a href="https://amzn.asia/ijLAx0m" class="footer-link" target="_blank"><i class="fa fa-amazon"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">概要</strong><a href="index.html" class="mobile-nav-link">はじめに</a><a href="basic-rule-word.html" class="mobile-nav-link">基本概念</a><a href="tips-material-for-beginner.html" class="mobile-nav-link">初心者向け入門資料</a><strong class="mobile-nav-title">型</strong><a href="type-integer-long-short.html" class="mobile-nav-link">整数(int, log)</a><a href="type-char.html" class="mobile-nav-link">文字(char)</a><a href="type-string.html" class="mobile-nav-link">文字列(String)</a><a href="type-collection-array-list.html" class="mobile-nav-link">コレクションと配列</a><a href="type-map.html" class="mobile-nav-link">マップ(Map)</a><a href="type-set.html" class="mobile-nav-link">セット(Set)</a><a href="type-date.html" class="mobile-nav-link">日付(Date)</a><a href="type-enum.html" class="mobile-nav-link">列挙(Enum)</a><a href="type-byte.html" class="mobile-nav-link">バイト(byte)</a><a href="type-boolean.html" class="mobile-nav-link">正偽型(boolean)</a><a href="type-primitive-reference.html" class="mobile-nav-link">プリミティブ型と参照型</a><a href="type-optional.html" class="mobile-nav-link">Optional型</a><strong class="mobile-nav-title">文法</strong><a href="basic-modifier.html" class="mobile-nav-link">修飾子</a><a href="basic-class.html" class="mobile-nav-link">クラス</a><a href="basic-method.html" class="mobile-nav-link">メソッド</a><a href="basic-exception-handling.html" class="mobile-nav-link">例外処理</a><a href="basic-initialization-block.html" class="mobile-nav-link">初期化ブロック</a><a href="basic-variable.html" class="mobile-nav-link">変数</a><a href="basic-interface.html" class="mobile-nav-link">インタフェースについて</a><a href="basic-refrection.html" class="mobile-nav-link">リフレクション</a><a href="basic-switch.html" class="mobile-nav-link">switch文</a><a href="basic-comparable-interface.html" class="mobile-nav-link">Comparable I/F</a><a href="basic-annotation.html" class="mobile-nav-link">アノテーション</a><a href="basic-itarator.html" class="mobile-nav-link">イテレータ(iterator)</a><a href="basic-lamdba-stream-api.html" class="mobile-nav-link">Stream API/Lambda</a><strong class="mobile-nav-title">Spring Framework</strong><a href="spring-framework-basic-index.html" class="mobile-nav-link">概要</a><a href="spring-framework-basic-hello-world.html" class="mobile-nav-link">Hello World</a><a href="spring-framework-basic-di-dependency-injection.html" class="mobile-nav-link">DI(依存性の注入)</a><a href="spring-framework-basic-spring-aop.html" class="mobile-nav-link">アスペクト指向プログラミング</a><a href="spring-framework-basic-data-binding.html" class="mobile-nav-link">データバインディングと型変換</a><a href="spring-framework-controller-annotation.html" class="mobile-nav-link">Controllerアノテーション</a><a href="spring-framework-basic-form.html" class="mobile-nav-link">フォーム利用</a><a href="spring-framework-property-value.html" class="mobile-nav-link">プロパティ(設定値)管理</a><a href="spring-framework-validation.html" class="mobile-nav-link">バリデーション</a><strong class="mobile-nav-title">ライブラリ</strong><a href="library-thymeleaf.html" class="mobile-nav-link">Thymeleaf(テンプレート)</a><a href="library-lombok.html" class="mobile-nav-link">Lombok(ボイラープレート)</a><a href="library-jackson.html" class="mobile-nav-link current">Jackson(JSONライブラリ)</a><a href="library-mybatis.html" class="mobile-nav-link">MyBatis(OR Mapper)</a><a href="library-junit.html" class="mobile-nav-link">JUnit(ユニットテスト)</a><a href="library-hibernate.html" class="mobile-nav-link">Hibernate</a><strong class="mobile-nav-title">デザインパターン</strong><a href="design-pattern-factory-pattern.html" class="mobile-nav-link">ファクトリパターン</a><a href="design-pattern-singleton-pattern.html" class="mobile-nav-link">シングルトンパターン</a><a href="design-pattern-template-method-pattern.html" class="mobile-nav-link">テンプレートメソッドパターン</a><strong class="mobile-nav-title">Tips</strong><a href="tips-best-practice.html" class="mobile-nav-link">JavaのBest Practice</a><a href="tips-style-guide.html" class="mobile-nav-link">Javaのコーディング規約</a><a href="tips-intellij-spring-dev-tool-tips.html" class="mobile-nav-link">IntelliJ IDEAノウハウ</a><a href="tips-jsp-java-server-page.html" class="mobile-nav-link">JSPについて</a><a href="tips-etc.html" class="mobile-nav-link">Java Tips</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>
