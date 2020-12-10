@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Kibanaで使えるクエリについて | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/web/kibana-query.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="ja" href="http://morizyun.github.io/web/kibana-query.html">
+    
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Kibanaで使うフィルタリングのクエリの書き方についての紹介です。 AND条件messageがFATAL、かつtagがsyslog.syslog.info: message: FATAL AND tag: syslog.syslog.info OR条件messageがFATAL、またはtagがsyslog.syslog.info: message: FATAL OR tag: syslog.sy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kibanaで使えるクエリについて">
+<meta property="og:url" content="http://morizyun.github.io/web/kibana-query.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Kibanaで使うフィルタリングのクエリの書き方についての紹介です。 AND条件messageがFATAL、かつtagがsyslog.syslog.info: message: FATAL AND tag: syslog.syslog.info OR条件messageがFATAL、またはtagがsyslog.syslog.info: message: FATAL OR tag: syslog.sy">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kibanaで使えるクエリについて">
+<meta name="twitter:description" content="Kibanaで使うフィルタリングのクエリの書き方についての紹介です。 AND条件messageがFATAL、かつtagがsyslog.syslog.info: message: FATAL AND tag: syslog.syslog.info OR条件messageがFATAL、またはtagがsyslog.syslog.info: message: FATAL OR tag: syslog.sy">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Kibanaで使えるクエリについて</h1>
+              </header>
+              <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/web/kibana-query.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/web/kibana-query.html" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/web/kibana-query.html">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/web/kibana-query.html"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+              <div class="article-content" itemprop="articleBody">
+                <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>Kibanaで使うフィルタリングのクエリの書き方についての紹介です。</p>
+<h2 id="AND条件" class="article-heading"> 🏀 <a href="#AND条件" class="headerlink" title="AND条件"></a>AND条件<a class="article-anchor" href="#AND条件" aria-hidden="true"></a></h2><p>messageが<code>FATAL</code>、かつtagが<code>syslog.syslog.info</code>:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">message: FATAL AND tag: syslog.syslog.info</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="OR条件" class="article-heading">🐝 <a href="#OR条件" class="headerlink" title="OR条件"></a>OR条件<a class="article-anchor" href="#OR条件" aria-hidden="true"></a></h2><p>messageが<code>FATAL</code>、またはtagが<code>syslog.syslog.info</code>:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">message: FATAL OR tag: syslog.syslog.info</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="正規表現" class="article-heading"> 🎉 <a href="#正規表現" class="headerlink" title="正規表現"></a>正規表現<a class="article-anchor" href="#正規表現" aria-hidden="true"></a></h2><p>正規表現でmessageが<code>FATAL</code>か<code>WARNING</code>:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">message: /FATAL|WARNING/</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="値のどれか-SQLのIN" class="article-heading"> 🎳 <a href="#値のどれか-SQLのIN" class="headerlink" title="値のどれか(SQLのIN)"></a>値のどれか(SQLのIN)<a class="article-anchor" href="#値のどれか-SQLのIN" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">age: (10, 20)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="否定-SQLの" class="article-heading">🐯 <a href="#否定-SQLの" class="headerlink" title="否定(SQLの!=)"></a>否定(SQLの<code>!=</code>)<a class="article-anchor" href="#否定-SQLの" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">NOT(age: 20)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="AからBの間-SQLのBETWEEN" class="article-heading"> 🎃 <a href="#AからBの間-SQLのBETWEEN" class="headerlink" title="AからBの間(SQLのBETWEEN)"></a>AからBの間(SQLのBETWEEN)<a class="article-anchor" href="#AからBの間-SQLのBETWEEN" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">year: (20 TO 30)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Aより前" class="article-heading"> 😎 <a href="#Aより前" class="headerlink" title="Aより前"></a>Aより前<a class="article-anchor" href="#Aより前" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">timestamp[* TO 2017-04-18]</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading">🐡 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://www.cloudn-service.com/guide/manuals/html/logging/rsts/ManageKibana/ExecuteQuery.html" target="_blank" rel="noopener">4.3. ログ検索画面でクエリーを実行する — Cloudn Logging 操作マニュアル 1.0 ドキュメント</a></li>
+</ul>
+</body></html>
+                <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+                <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-11T00:55:46.000Z" itemprop="dateModified">最終更新日: 2017-08-11</time>
+                <a href="css-tips.html" class="article-footer-prev" title="CSSのTips"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="selenium-cheat-sheet.html" class="article-footer-next" title="Seleniumチートシート"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">コンテンツ</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AND条件"><span class="toc-text">AND条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OR条件"><span class="toc-text">OR条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正規表現"><span class="toc-text">正規表現</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#値のどれか-SQLのIN"><span class="toc-text">値のどれか(SQLのIN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#否定-SQLの"><span class="toc-text">否定(SQLの!=)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AからBの間-SQLのBETWEEN"><span class="toc-text">AからBの間(SQLのBETWEEN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Aより前"><span class="toc-text">Aより前</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考リンク"><span class="toc-text">参考リンク</span></a></li></ol>
+              <a href="#" id="article-toc-top">トップへ</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">HTTP基礎</strong><a href="http-index.html" class="sidebar-link">HTTP</a><a href="http-cookie.html" class="sidebar-link">Cookie基礎</a><a href="http-mine-type.html" class="sidebar-link">MIMEタイプ</a><a href="http-strict-transport-security.html" class="sidebar-link">Strict Transport Security</a><a href="http-content-security-policy.html" class="sidebar-link">Content Security Policy</a><strong class="sidebar-title">Webセキュリティ</strong><a href="http-session-security-risk.html" class="sidebar-link">セッション</a><a href="http-csrf-cross-site-request-forgery.html" class="sidebar-link">CSRFとXSS</a><a href="http-web-security.html" class="sidebar-link">その他</a><strong class="sidebar-title">SEO</strong><a href="seo-basic-knowledge.html" class="sidebar-link">SEO基礎知識</a><strong class="sidebar-title">Bootsrap</strong><a href="bootstrap-twitter-free-theme-list.html" class="sidebar-link">無料テーマ集</a><a href="bootstrap-cheat-sheet.html" class="sidebar-link">チートシート</a><strong class="sidebar-title">HTML</strong><a href="html-basic.html" class="sidebar-link">HTMLの基礎知識</a><strong class="sidebar-title">CSS</strong><a href="css-bem-basic-rule.html" class="sidebar-link">BEMの基本</a><a href="css-selector.html" class="sidebar-link">CSSセレクタ</a><a href="css-hide-few-sec.html" class="sidebar-link">数秒間だけ表示</a><a href="css-tips.html" class="sidebar-link">CSSのTips</a><strong class="sidebar-title">OSS</strong><a href="kibana-query.html" class="sidebar-link current">Kibanaクエリ</a><a href="selenium-cheat-sheet.html" class="sidebar-link">Seleniumチートシート</a><strong class="sidebar-title">用語の紹介</strong><a href="words-api.html" class="sidebar-link">APIとは</a><a href="words-authorization-authentication.html" class="sidebar-link">認証と認可</a><strong class="sidebar-title">Atom</strong><a href="atom-textlint-plugin-installation.html" class="sidebar-link">textlintプラグイン</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">HTTP基礎</strong><a href="http-index.html" class="mobile-nav-link">HTTP</a><a href="http-cookie.html" class="mobile-nav-link">Cookie基礎</a><a href="http-mine-type.html" class="mobile-nav-link">MIMEタイプ</a><a href="http-strict-transport-security.html" class="mobile-nav-link">Strict Transport Security</a><a href="http-content-security-policy.html" class="mobile-nav-link">Content Security Policy</a><strong class="mobile-nav-title">Webセキュリティ</strong><a href="http-session-security-risk.html" class="mobile-nav-link">セッション</a><a href="http-csrf-cross-site-request-forgery.html" class="mobile-nav-link">CSRFとXSS</a><a href="http-web-security.html" class="mobile-nav-link">その他</a><strong class="mobile-nav-title">SEO</strong><a href="seo-basic-knowledge.html" class="mobile-nav-link">SEO基礎知識</a><strong class="mobile-nav-title">Bootsrap</strong><a href="bootstrap-twitter-free-theme-list.html" class="mobile-nav-link">無料テーマ集</a><a href="bootstrap-cheat-sheet.html" class="mobile-nav-link">チートシート</a><strong class="mobile-nav-title">HTML</strong><a href="html-basic.html" class="mobile-nav-link">HTMLの基礎知識</a><strong class="mobile-nav-title">CSS</strong><a href="css-bem-basic-rule.html" class="mobile-nav-link">BEMの基本</a><a href="css-selector.html" class="mobile-nav-link">CSSセレクタ</a><a href="css-hide-few-sec.html" class="mobile-nav-link">数秒間だけ表示</a><a href="css-tips.html" class="mobile-nav-link">CSSのTips</a><strong class="mobile-nav-title">OSS</strong><a href="kibana-query.html" class="mobile-nav-link current">Kibanaクエリ</a><a href="selenium-cheat-sheet.html" class="mobile-nav-link">Seleniumチートシート</a><strong class="mobile-nav-title">用語の紹介</strong><a href="words-api.html" class="mobile-nav-link">APIとは</a><a href="words-authorization-authentication.html" class="mobile-nav-link">認証と認可</a><strong class="mobile-nav-title">Atom</strong><a href="atom-textlint-plugin-installation.html" class="mobile-nav-link">textlintプラグイン</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

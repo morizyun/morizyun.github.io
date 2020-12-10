@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>現在日時の文字列の生成 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/javascript/snippet-current-datetime-string.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="ja" href="http://morizyun.github.io/javascript/snippet-current-datetime-string.html">
+    
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="JavaScriptで年月日時分秒を取得するコードです。タイムスタンプの作成や日時の動的な表示などで活用できます。 /** * 現在日時の文字列 YYYYMMDDHHMMSS を返す * @returns &amp;#123;string&amp;#125; 日時の文字列 20170101000000 */var currentDateTimeString = function () &amp;#123;	// 現在の日">
+<meta property="og:type" content="article">
+<meta property="og:title" content="現在日時の文字列の生成">
+<meta property="og:url" content="http://morizyun.github.io/javascript/snippet-current-datetime-string.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="JavaScriptで年月日時分秒を取得するコードです。タイムスタンプの作成や日時の動的な表示などで活用できます。 /** * 現在日時の文字列 YYYYMMDDHHMMSS を返す * @returns &amp;#123;string&amp;#125; 日時の文字列 20170101000000 */var currentDateTimeString = function () &amp;#123;	// 現在の日">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T01:39:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="現在日時の文字列の生成">
+<meta name="twitter:description" content="JavaScriptで年月日時分秒を取得するコードです。タイムスタンプの作成や日時の動的な表示などで活用できます。 /** * 現在日時の文字列 YYYYMMDDHHMMSS を返す * @returns &amp;#123;string&amp;#125; 日時の文字列 20170101000000 */var currentDateTimeString = function () &amp;#123;	// 現在の日">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">現在日時の文字列の生成</h1>
+              </header>
+              <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/javascript/snippet-current-datetime-string.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/javascript/snippet-current-datetime-string.html" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/javascript/snippet-current-datetime-string.html">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/javascript/snippet-current-datetime-string.html"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+              <div class="article-content" itemprop="articleBody">
+                <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>JavaScriptで年月日時分秒を取得するコードです。<br>タイムスタンプの作成や日時の動的な表示などで活用できます。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 現在日時の文字列 YYYYMMDDHHMMSS を返す</span></span><br><span class="line"><span class="comment"> * @returns {string} 日時の文字列 20170101000000</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> currentDateTimeString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">	<span class="comment">// 現在の日時</span></span><br><span class="line">	<span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2桁のゼロ埋め</span></span><br><span class="line">	<span class="keyword">var</span> fillZero = <span class="function"><span class="keyword">function</span> (<span class="params"> number </span>) </span>{</span><br><span class="line">		<span class="keyword">return</span> (<span class="number">0</span> + number).slice(<span class="number">-2</span>);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 年月日時分秒を取得</span></span><br><span class="line">	<span class="keyword">var</span> year = d.getFullYear();	<span class="comment">// 年</span></span><br><span class="line">	<span class="keyword">var</span> month = fillZero(d.getMonth() + <span class="number">1</span>); <span class="comment">// 月</span></span><br><span class="line">	<span class="keyword">var</span> date = fillZero(d.getDate()); <span class="comment">// 日</span></span><br><span class="line">	<span class="keyword">var</span> hour = fillZero(d.getHours()); <span class="comment">// 時</span></span><br><span class="line">	<span class="keyword">var</span> minute = fillZero(d.getMinutes()); <span class="comment">// 分</span></span><br><span class="line">	<span class="keyword">var</span> second = fillZero(d.getSeconds()); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 年月日時分秒の文字列の作成(YYYYMMDDHHMMSS)</span></span><br><span class="line">	<span class="keyword">var</span> str = year + month + date + hour + minute + second;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Date-オブジェクトのメソッド" class="article-heading">😀 <a href="#Date-オブジェクトのメソッド" class="headerlink" title="Date()オブジェクトのメソッド"></a>Date()オブジェクトのメソッド<a class="article-anchor" href="#Date-オブジェクトのメソッド" aria-hidden="true"></a></h2><p><code>Date()</code>オブジェクトのメソッドの代表的なメソッドです。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getFullYear()</td>
+<td>年度の取得(例2017)</td>
+</tr>
+<tr>
+<td>getMonth()</td>
+<td>0-11までの月。表示のためには<code>+1</code>する必要がある</td>
+</tr>
+<tr>
+<td>getDate()</td>
+<td>1-31までの日付</td>
+</tr>
+<tr>
+<td>getHours()</td>
+<td>0-23までの時間</td>
+</tr>
+<tr>
+<td>getMinutes()</td>
+<td>0-59までの分</td>
+</tr>
+<tr>
+<td>getSeconds()</td>
+<td>0-59までの秒</td>
+</tr>
+<tr>
+<td>getDay()</td>
+<td>0(日曜)〜6(土曜)までの曜日</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ゼロ埋め処理" class="article-heading"> 🎂 <a href="#ゼロ埋め処理" class="headerlink" title="ゼロ埋め処理"></a>ゼロ埋め処理<a class="article-anchor" href="#ゼロ埋め処理" aria-hidden="true"></a></h2><p>JavaScriptで数字 <code>7</code> から <code>07</code> のようなゼロ(0)埋めした文字列を作る例です。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> number1 = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">var</span> str1 = (<span class="number">0</span> + number1).slice(<span class="number">-2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str1); <span class="comment">//=> 05</span></span><br></pre></td></tr></tbody></table></figure>
+<p>意味としては、 <code>0 + number1</code> で <code>07</code> を作り、 <code>slice(-2)</code> で右から2文字を切り出してくれます。</p>
+<h2 id="参考リンク" class="article-heading"> 😎 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="https://syncer.jp/javascript-reverse-reference/get-date" target="_blank" rel="noopener">JavaScriptで日時(曜日)を取得、表示する方法</a></li>
+<li><a href="http://stabucky.com/wp/archives/4655" target="_blank" rel="noopener">JavaScriptでゼロ埋めする方法 | You Look Too Cool</a></li>
+</ul>
+</body></html>
+                <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+                <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-11T01:39:23.000Z" itemprop="dateModified">最終更新日: 2017-08-11</time>
+                <a href="typescript-google-apps-script.html" class="article-footer-prev" title="Google Apps Script"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="snippet-number-comma.html" class="article-footer-next" title="数値をカンマ区切りにする"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">コンテンツ</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Date-オブジェクトのメソッド"><span class="toc-text">Date()オブジェクトのメソッド</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ゼロ埋め処理"><span class="toc-text">ゼロ埋め処理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考リンク"><span class="toc-text">参考リンク</span></a></li></ol>
+              <a href="#" id="article-toc-top">トップへ</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">基礎文法</strong><a href="basic-string.html" class="sidebar-link">Stringについて</a><a href="basic-array.html" class="sidebar-link">Array(配列)について</a><a href="basic-number-integer-float-math.html" class="sidebar-link">Number・Mathについて</a><a href="basic-object.html" class="sidebar-link">Objectについて</a><a href="basic-function.html" class="sidebar-link">Function(関数)</a><a href="basic-error-handling.html" class="sidebar-link">エラー処理</a><a href="basic-arrow-function.html" class="sidebar-link">アロー関数</a><a href="basic-sync-ansync.html" class="sidebar-link">同期処理/非同期処理</a><a href="basic-promise.html" class="sidebar-link">Promiseについて</a><a href="basic-regexp.html" class="sidebar-link">正規表現について</a><a href="basic-grammer.html" class="sidebar-link">その他の文法</a><strong class="sidebar-title">ライブラリ</strong><a href="library-moment-js.html" class="sidebar-link">日時を扱うmoment.js</a><a href="node-js-npm-library-eslint.html" class="sidebar-link">ESLint</a><a href="node-js-npm-library-jsdoc.html" class="sidebar-link">JSDoc</a><a href="node-js-npm-library-npm-check-updates.html" class="sidebar-link">npm-check-updates</a><a href="node-js-npm-library-sass-lint.html" class="sidebar-link">sass-lint</a><a href="library-jquery-flexselect.html" class="sidebar-link">検索セレクト(flexselect)</a><a href="node-js-npm-library-dotenv.html" class="sidebar-link">環境変数管理 dotenv</a><a href="node-js-npm-library-node-fetch.html" class="sidebar-link">fetchメソッド</a><a href="node-js-npm-library-airbrake.html" class="sidebar-link">Errbit/Airbrake連携</a><a href="node-js-npm-library-node-jest-test.html" class="sidebar-link">テストツール Jest</a><a href="node-js-npm-library-node-babel-cli.html" class="sidebar-link">Babel関連</a><a href="library-string-js.html" class="sidebar-link">文字列便利メソッドstring.js</a><strong class="sidebar-title">Node.js</strong><a href="node-js-standard-module-control-file.html" class="sidebar-link">ファイル操作</a><a href="node-js-standard-module-path.html" class="sidebar-link">ファイルパス</a><a href="node-js-npm-basic-package-json.html" class="sidebar-link">package.json</a><a href="node-js-npm-command-npm-link.html" class="sidebar-link">npm link</a><strong class="sidebar-title">React.js</strong><a href="react-js-tips-lifecycle-outline.html" class="sidebar-link">ライフサイクル図</a><a href="react-js-proptypes-validator.html" class="sidebar-link">PropTypesについて</a><a href="react-js-bootstrap-javascript-css-framework.html" class="sidebar-link">React-Bootstrap</a><a href="react-js-bootstrap-modal.html" class="sidebar-link">Bootstrapモーダルの操作</a><a href="react-js-redux-introduction.html" class="sidebar-link">Redux入門</a><a href="react-js-redux-action-creator-sync-async.html" class="sidebar-link">Redux/ActionCreator</a><a href="react-js-redux-reddit-tutorial.html" class="sidebar-link">Redux + Redditサンプル</a><a href="node-js-npm-library-immutable-js.html" class="sidebar-link">Immutable.jsチートシート</a><a href="node-js-npm-library-immutable-todo-sample.html" class="sidebar-link">Immutable.js TODOアプリ</a><a href="node-js-npm-library-react-handsortable.html" class="sidebar-link">React Handsortable</a><a href="react-js-tips-no-state-component.html" class="sidebar-link">捗るTips</a><strong class="sidebar-title">TypeScript</strong><a href="typescript-google-apps-script.html" class="sidebar-link">Google Apps Script</a><strong class="sidebar-title">スニペット</strong><a href="snippet-current-datetime-string.html" class="sidebar-link current">現在日時の文字列の生成</a><a href="snippet-number-comma.html" class="sidebar-link">数値をカンマ区切りにする</a><a href="snippet-property.html" class="sidebar-link">プロパティの一覧を出力</a><a href="snippet-sleep.html" class="sidebar-link">sleep処理</a><a href="snippet-current-datetime-input-button.html" class="sidebar-link">現在時刻を入力するボタン</a><a href="snippet-jquery-form-tips.html" class="sidebar-link">Formのサポート</a><a href="snippet-benchmark.html" class="sidebar-link">ベンチマークを取る</a><a href="snippet-consumption-tax.html" class="sidebar-link">消費税の計算</a><strong class="sidebar-title">jQuery</strong><a href="jquery-html-control.html" class="sidebar-link">DOMの操作</a><a href="jquery-miscellaneous.html" class="sidebar-link">jQueryのいろいろな処理</a><a href="jquery-ajax.html" class="sidebar-link">Ajax処理</a><strong class="sidebar-title">WEB API I/F</strong><a href="window-open.html" class="sidebar-link">window.open</a><a href="window-close.html" class="sidebar-link">window.close</a><a href="location-href.html" class="sidebar-link">location.href</a><a href="web-api-event-prevent-default.html" class="sidebar-link">event.preventDefault</a><strong class="sidebar-title">Web API</strong><a href="function-console.html" class="sidebar-link">Console</a><a href="function-fetch-api.html" class="sidebar-link">Fetch APIについて</a><strong class="sidebar-title">Tips</strong><a href="design-pattern-singleton.html" class="sidebar-link">ES6基本文法</a><a href="tips-null-undefined-check.html" class="sidebar-link">null等の判定</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">基礎文法</strong><a href="basic-string.html" class="mobile-nav-link">Stringについて</a><a href="basic-array.html" class="mobile-nav-link">Array(配列)について</a><a href="basic-number-integer-float-math.html" class="mobile-nav-link">Number・Mathについて</a><a href="basic-object.html" class="mobile-nav-link">Objectについて</a><a href="basic-function.html" class="mobile-nav-link">Function(関数)</a><a href="basic-error-handling.html" class="mobile-nav-link">エラー処理</a><a href="basic-arrow-function.html" class="mobile-nav-link">アロー関数</a><a href="basic-sync-ansync.html" class="mobile-nav-link">同期処理/非同期処理</a><a href="basic-promise.html" class="mobile-nav-link">Promiseについて</a><a href="basic-regexp.html" class="mobile-nav-link">正規表現について</a><a href="basic-grammer.html" class="mobile-nav-link">その他の文法</a><strong class="mobile-nav-title">ライブラリ</strong><a href="library-moment-js.html" class="mobile-nav-link">日時を扱うmoment.js</a><a href="node-js-npm-library-eslint.html" class="mobile-nav-link">ESLint</a><a href="node-js-npm-library-jsdoc.html" class="mobile-nav-link">JSDoc</a><a href="node-js-npm-library-npm-check-updates.html" class="mobile-nav-link">npm-check-updates</a><a href="node-js-npm-library-sass-lint.html" class="mobile-nav-link">sass-lint</a><a href="library-jquery-flexselect.html" class="mobile-nav-link">検索セレクト(flexselect)</a><a href="node-js-npm-library-dotenv.html" class="mobile-nav-link">環境変数管理 dotenv</a><a href="node-js-npm-library-node-fetch.html" class="mobile-nav-link">fetchメソッド</a><a href="node-js-npm-library-airbrake.html" class="mobile-nav-link">Errbit/Airbrake連携</a><a href="node-js-npm-library-node-jest-test.html" class="mobile-nav-link">テストツール Jest</a><a href="node-js-npm-library-node-babel-cli.html" class="mobile-nav-link">Babel関連</a><a href="library-string-js.html" class="mobile-nav-link">文字列便利メソッドstring.js</a><strong class="mobile-nav-title">Node.js</strong><a href="node-js-standard-module-control-file.html" class="mobile-nav-link">ファイル操作</a><a href="node-js-standard-module-path.html" class="mobile-nav-link">ファイルパス</a><a href="node-js-npm-basic-package-json.html" class="mobile-nav-link">package.json</a><a href="node-js-npm-command-npm-link.html" class="mobile-nav-link">npm link</a><strong class="mobile-nav-title">React.js</strong><a href="react-js-tips-lifecycle-outline.html" class="mobile-nav-link">ライフサイクル図</a><a href="react-js-proptypes-validator.html" class="mobile-nav-link">PropTypesについて</a><a href="react-js-bootstrap-javascript-css-framework.html" class="mobile-nav-link">React-Bootstrap</a><a href="react-js-bootstrap-modal.html" class="mobile-nav-link">Bootstrapモーダルの操作</a><a href="react-js-redux-introduction.html" class="mobile-nav-link">Redux入門</a><a href="react-js-redux-action-creator-sync-async.html" class="mobile-nav-link">Redux/ActionCreator</a><a href="react-js-redux-reddit-tutorial.html" class="mobile-nav-link">Redux + Redditサンプル</a><a href="node-js-npm-library-immutable-js.html" class="mobile-nav-link">Immutable.jsチートシート</a><a href="node-js-npm-library-immutable-todo-sample.html" class="mobile-nav-link">Immutable.js TODOアプリ</a><a href="node-js-npm-library-react-handsortable.html" class="mobile-nav-link">React Handsortable</a><a href="react-js-tips-no-state-component.html" class="mobile-nav-link">捗るTips</a><strong class="mobile-nav-title">TypeScript</strong><a href="typescript-google-apps-script.html" class="mobile-nav-link">Google Apps Script</a><strong class="mobile-nav-title">スニペット</strong><a href="snippet-current-datetime-string.html" class="mobile-nav-link current">現在日時の文字列の生成</a><a href="snippet-number-comma.html" class="mobile-nav-link">数値をカンマ区切りにする</a><a href="snippet-property.html" class="mobile-nav-link">プロパティの一覧を出力</a><a href="snippet-sleep.html" class="mobile-nav-link">sleep処理</a><a href="snippet-current-datetime-input-button.html" class="mobile-nav-link">現在時刻を入力するボタン</a><a href="snippet-jquery-form-tips.html" class="mobile-nav-link">Formのサポート</a><a href="snippet-benchmark.html" class="mobile-nav-link">ベンチマークを取る</a><a href="snippet-consumption-tax.html" class="mobile-nav-link">消費税の計算</a><strong class="mobile-nav-title">jQuery</strong><a href="jquery-html-control.html" class="mobile-nav-link">DOMの操作</a><a href="jquery-miscellaneous.html" class="mobile-nav-link">jQueryのいろいろな処理</a><a href="jquery-ajax.html" class="mobile-nav-link">Ajax処理</a><strong class="mobile-nav-title">WEB API I/F</strong><a href="window-open.html" class="mobile-nav-link">window.open</a><a href="window-close.html" class="mobile-nav-link">window.close</a><a href="location-href.html" class="mobile-nav-link">location.href</a><a href="web-api-event-prevent-default.html" class="mobile-nav-link">event.preventDefault</a><strong class="mobile-nav-title">Web API</strong><a href="function-console.html" class="mobile-nav-link">Console</a><a href="function-fetch-api.html" class="mobile-nav-link">Fetch APIについて</a><strong class="mobile-nav-title">Tips</strong><a href="design-pattern-singleton.html" class="mobile-nav-link">ES6基本文法</a><a href="tips-null-undefined-check.html" class="mobile-nav-link">null等の判定</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

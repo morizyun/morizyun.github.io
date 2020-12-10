@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>【Rails初学者向け】NokogiriをつかってほかのWebサイトから情報を取得しよう | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/nokogiri-scraping-ruby-rails-begineer/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="ここでは、Rails初学者向けにWebサイトから情報を収集してくるチュートリアルを紹介します。Nokogiriを使ったサンプルアプリケーションを作ります！">
+<meta name="keywords" content="Ruby,rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Rails初学者向け】NokogiriをつかってほかのWebサイトから情報を取得しよう">
+<meta property="og:url" content="http://morizyun.github.io/blog/nokogiri-scraping-ruby-rails-begineer/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="ここでは、Rails初学者向けにWebサイトから情報を収集してくるチュートリアルを紹介します。Nokogiriを使ったサンプルアプリケーションを作ります！">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Rails初学者向け】NokogiriをつかってほかのWebサイトから情報を取得しよう">
+<meta name="twitter:description" content="ここでは、Rails初学者向けにWebサイトから情報を収集してくるチュートリアルを紹介します。Nokogiriを使ったサンプルアプリケーションを作ります！">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">【Rails初学者向け】NokogiriをつかってほかのWebサイトから情報を取得しよう</h1>
+    
+    <a href="/blog/nokogiri-scraping-ruby-rails-begineer/" class="article-date"><time datetime="2015-12-31T15:00:00.000Z">2016-01-01</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/nokogiri-scraping-ruby-rails-begineer/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/nokogiri-scraping-ruby-rails-begineer/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/nokogiri-scraping-ruby-rails-begineer/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/nokogiri-scraping-ruby-rails-begineer/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4797376279/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797376279&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4797376279&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>ここでは、Rails初学者向けにWebサイトから情報を収集してくるチュートリアルを紹介します。<br>Nokogiriを使ったサンプルアプリケーションを作ります！</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="Nokogiriの基本的な説明" class="article-heading">🗻 <a href="#Nokogiriの基本的な説明" class="headerlink" title="Nokogiriの基本的な説明"></a>Nokogiriの基本的な説明<a class="article-anchor" href="#Nokogiriの基本的な説明" aria-hidden="true"></a></h2><p><strong><a href="http://morizyun.github.io/blog/ruby-nokogiri-scraping-tutorial/">Nokogiri を使った Rubyスクレイピング</a></strong></p>
+<h2 id="プロジェクトを作成" class="article-heading"> 🎃 <a href="#プロジェクトを作成" class="headerlink" title="プロジェクトを作成"></a>プロジェクトを作成<a class="article-anchor" href="#プロジェクトを作成" aria-hidden="true"></a></h2><h3 id="ローカル開発の場合" class="article-heading"><a href="#ローカル開発の場合" class="headerlink" title="ローカル開発の場合"></a>ローカル開発の場合<a class="article-anchor" href="#ローカル開発の場合" aria-hidden="true"></a></h3><p>ターミナルで次のコマンドを実行してください。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 新しいRailsアプリを作成</span><br><span class="line">rails new web_scraping_sample --skip-bundle</span><br><span class="line"></span><br><span class="line"># web_scraping_sample のフォルダに移動</span><br><span class="line">cd web_scraping_sample</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Cloud-9の場合" class="article-heading"><a href="#Cloud-9の場合" class="headerlink" title="Cloud 9の場合"></a>Cloud 9の場合<a class="article-anchor" href="#Cloud-9の場合" aria-hidden="true"></a></h3><ul>
+<li>『<strong><a href="https://c9.io/" target="_blank" rel="noopener">Cloud9</a></strong>』にログインして新しいworkspaceを作成</li>
+<li>公開していい場合はpublic 、公開したくない場合はprivateのRailsアプリケーションを作成してください</li>
+</ul>
+<h2 id="Gemfileに以下を追加" class="article-heading">🐮 <a href="#Gemfileに以下を追加" class="headerlink" title="Gemfileに以下を追加"></a>Gemfileに以下を追加<a class="article-anchor" href="#Gemfileに以下を追加" aria-hidden="true"></a></h2><p>プロジェクト直下のGemfileを開いて以下を追加してください。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Web Scraping</span></span><br><span class="line">gem <span class="string">'nokogiri'</span></span><br></pre></td></tr></tbody></table></figure>
+<p>追加したらターミナルで次のコマンドを実行します。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">bundle install --jobs=4 --path=vendor/bundle</span><br></pre></td></tr></tbody></table></figure>
+<p>Ruby Gemライブラリをインターネットから持ってきて、自動でローカルに保存します。</p>
+<h2 id="Rakeタスクの作成" class="article-heading"> 🚜 <a href="#Rakeタスクの作成" class="headerlink" title="Rakeタスクの作成"></a>Rakeタスクの作成<a class="article-anchor" href="#Rakeタスクの作成" aria-hidden="true"></a></h2><p>Rakeタスクを作成します。ターミナルで次のコマンドを実行してください。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># railsコマンドで rake タスク を作成(generate)します</span><br><span class="line">rails g task scrape</span><br></pre></td></tr></tbody></table></figure>
+<p>すると、<code>lib/tasks/scrape.rake</code> が作成されます。</p>
+<p>ちなみに、<code>Rake</code> とはRubyで記述されたプログラムをコマンドプロンプト(ターミナル)から呼び出し、実行できるしくみのことです。</p>
+<p>Rakeタスクをもう少し知りたい場合は、「<strong><a href="http://qiita.com/mosson/items/9a9b0703ac4c76ebfd4e" target="_blank" rel="noopener">Rakeタスクをつくる</a></strong>」がオススメです！</p>
+<h2 id="取得スクリプトを書く" class="article-heading">😼 <a href="#取得スクリプトを書く" class="headerlink" title="取得スクリプトを書く"></a>取得スクリプトを書く<a class="article-anchor" href="#取得スクリプトを書く" aria-hidden="true"></a></h2><p>今回はNaverまとめのTechページからタイトルの一覧を取得する手順です。</p>
+<p><code>lib/tasks/scrape.rake</code>を開いて次の内容を追記してください。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># URLにアクセスするためのライブラリの読み込み</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'open-uri'</span></span><br><span class="line"></span><br><span class="line">namespace <span class="symbol">:scrape</span> <span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">  desc <span class="string">'NaverまとめのTechページからタイトルを取得'</span></span><br><span class="line">  task <span class="symbol">:naver_title</span> => <span class="symbol">:environment</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># スクレイピング先のURL</span></span><br><span class="line">    url = <span class="string">'http://matome.naver.jp/tech'</span></span><br><span class="line"></span><br><span class="line">    charset = <span class="literal">nil</span></span><br><span class="line">    html = open(url) <span class="keyword">do</span> <span class="params">|f|</span></span><br><span class="line">      charset = f.charset <span class="comment"># 文字種別を取得</span></span><br><span class="line">      f.read <span class="comment"># htmlを読み込んで変数htmlに渡す</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># htmlをパース(解析)してオブジェクトを作成</span></span><br><span class="line">    doc = Nokogiri::HTML.parse(html, <span class="literal">nil</span>, charset)</span><br><span class="line"></span><br><span class="line">    doc.xpath(<span class="string">'//li[@class="mdTopMTMList01Item"]'</span>).each <span class="keyword">do</span> <span class="params">|node|</span></span><br><span class="line">      <span class="comment"># タイトルの取得</span></span><br><span class="line">      puts node.css(<span class="string">'h3'</span>).inner_text</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>これを実行すると以下のようになります。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">bundle exec rake scrape:naver_title</span><br><span class="line"></span><br><span class="line"># => 写真撮って探しものができるアプリ3選</span><br><span class="line"># => 洋楽好き必見！！音楽の世界が広がるアプリ７選</span><br><span class="line"># => スマホやPCの「ブルーライト」の量が破壊的！健康対策は大丈夫？</span><br><span class="line"># => 趣味はかどるわー！ディープなSNSがこんなにあった(ﾟдﾟ)</span><br><span class="line"># => ちょっとしたシーンで役立つ１０のショートカットキー</span><br><span class="line"># => ネイルでスマホを操れる？『爪センサー』が画期的</span><br><span class="line"># => 壁を有効活用したい・・！お洒落な「壁掛けアイテム」たち</span><br><span class="line"># => Googleも開始。「パスワードなし」でログインの時代キタ？</span><br><span class="line"># => イヤホンの音がクリアに…！身近ガジェットの簡単お手入れ法</span><br><span class="line"># => 日本にもこれ欲しい！海外で発売されている斬新な便利グッズ</span><br><span class="line"># => 次々と数億円を集めるスタートアップが魅力的だった</span><br><span class="line"># => ３Dじゃない方のプリンターも面白いのがたくさんあった</span><br><span class="line"># => なにこれスゴい！自転車を盗んだヤツを見つける最新グッズ</span><br><span class="line"># => トラックボールで作業効率UP！もうマウスなんて使わない！</span><br><span class="line"># => 可視化でわかりやすく！医療の見える化が思った以上に見えている！</span><br><span class="line"># => 眠れない夜にさよなら「本当に熟睡出来る」評判の快眠アプリ5選</span><br><span class="line"># => エネループの代わりになる「おしゃれな」充電池たち</span><br><span class="line"># => なにこれすごい…アメリカ軍の開発が未来を先取りしてる</span><br><span class="line"># => 手に着けるだけのリストバンド型ガジェットで健康を記録する</span><br><span class="line"># => AppleWatchピンチ？進化したスマートウォッチのいま</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Nokogiriで参考になりそうなサイト" class="article-heading">🐡 <a href="#Nokogiriで参考になりそうなサイト" class="headerlink" title="Nokogiriで参考になりそうなサイト"></a>Nokogiriで参考になりそうなサイト<a class="article-anchor" href="#Nokogiriで参考になりそうなサイト" aria-hidden="true"></a></h2><p>実際にNokogiriのコードを書くときに役に立ちそうなチートシート的なサイトを紹介しておきます。</p>
+<ul>
+<li><strong><a href="http://d.hatena.ne.jp/otn/20090509/p1" target="_blank" rel="noopener">スクレイピングのためのNokogiri利用メモ</a></strong></li>
+</ul>
+<h2 id="参考リンク" class="article-heading">🐞 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><p><strong><a href="http://www.u-ziq.com/blog/2007/12/ruby_on_rails.html" target="_blank" rel="noopener">初心者向けのRuby on Railsの用語説明</a></strong></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

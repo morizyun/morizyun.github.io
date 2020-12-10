@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Rails/Rubyドキュメントをキレイに生成するYARD、早見表付き！　 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/yard-rails-ruby-gem-document-html/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="RubyやRailsのドキュメントを生成するGem YARDをご存じですか？ ドキュメント生成GemではrDocが不動の一番すが、その後ろで猛追しているYARDというGemがあります。今回はこのGemの紹介です。 (02/16 23:30) Ruby 2.1で動作確認しつつリニュアール">
+<meta name="keywords" content="Rails,Gem,Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails&#x2F;Rubyドキュメントをキレイに生成するYARD、早見表付き！　">
+<meta property="og:url" content="http://morizyun.github.io/blog/yard-rails-ruby-gem-document-html/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="RubyやRailsのドキュメントを生成するGem YARDをご存じですか？ ドキュメント生成GemではrDocが不動の一番すが、その後ろで猛追しているYARDというGemがあります。今回はこのGemの紹介です。 (02/16 23:30) Ruby 2.1で動作確認しつつリニュアール">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rails&#x2F;Rubyドキュメントをキレイに生成するYARD、早見表付き！　">
+<meta name="twitter:description" content="RubyやRailsのドキュメントを生成するGem YARDをご存じですか？ ドキュメント生成GemではrDocが不動の一番すが、その後ろで猛追しているYARDというGemがあります。今回はこのGemの紹介です。 (02/16 23:30) Ruby 2.1で動作確認しつつリニュアール">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Rails/Rubyドキュメントをキレイに生成するYARD、早見表付き！　</h1>
+    
+    <a href="/blog/yard-rails-ruby-gem-document-html/" class="article-date"><time datetime="2014-02-15T15:00:00.000Z">2014-02-16</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/yard-rails-ruby-gem-document-html/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/yard-rails-ruby-gem-document-html/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/yard-rails-ruby-gem-document-html/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/yard-rails-ruby-gem-document-html/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4873114454/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873114454&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873114454&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>RubyやRailsのドキュメントを生成するGem YARDをご存じですか？ ドキュメント生成GemではrDocが不動の一番すが、その後ろで猛追しているYARDというGemがあります。今回はこのGemの紹介です。</p>
+<p><strong>(02/16 23:30) Ruby 2.1で動作確認しつつリニュアール</strong><br></p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="Gemのイントロ" class="article-heading"> 🏀 <a href="#Gemのイントロ" class="headerlink" title="Gemのイントロ"></a>Gemのイントロ<a class="article-anchor" href="#Gemのイントロ" aria-hidden="true"></a></h2><p>YARDはRubyのドキュメント生成rDocの次世代を期待されているGemです。<br>Ruby/Railsのコード内にYARDの書式でコメントを書くと、メソッドや引数、戻り値などの解説をうまく表示してくれます。</p>
+<p>まずGemをインストールします。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">gem install yard</span><br></pre></td></tr></tbody></table></figure>
+<p>次にプログラムソースにYARD形式のコメントを書いていきます。今回はファイル名<code>hoge.rb</code>のコードを作成していきます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">require 'date'</span><br><span class="line"></span><br><span class="line"># 日本語形式の日付に変換</span><br><span class="line"># @param [Date] date 日付</span><br><span class="line"># @return [String] 日付を YYYY年MM月DD日 の形式にしたもの</span><br><span class="line"># @return [nil] 引数が Date 型以外の場合は nil</span><br><span class="line">def convert_jp_date(date)</span><br><span class="line">  (date.class == Date) ? date.strftime('%Y年%m月%d日') : nil</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">today = Date::today</span><br><span class="line">puts convert_jp_date(today)</span><br></pre></td></tr></tbody></table></figure>
+<p>コーディングが完了したら、ドキュメントに変換。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">yardoc hoge.rb</span><br></pre></td></tr></tbody></table></figure>
+<p>結果がこちら。</p>
+<p><img src="/img/2014-02-16-yard-rails-ruby-gem-document-html_1.jpg" width="423" height="500" alt="fpu_tmp_1354409713.093_342dc9"></p>
+<p>コードのコメントに規約を持たせれば、メンテナーンス性/可読性を高められますよね！</p>
+<h2 id="YARDドキュメント用のサーバ" class="article-heading">🐞 <a href="#YARDドキュメント用のサーバ" class="headerlink" title="YARDドキュメント用のサーバ"></a>YARDドキュメント用のサーバ<a class="article-anchor" href="#YARDドキュメント用のサーバ" aria-hidden="true"></a></h2><p>YARDドキュメント用のサーバを<code>http://localhost:8808</code>で立ち上げる場合は次のコマンとをターミナルで実行する</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">yard server</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="YARDよく使うタグ一覧" class="article-heading"> 🐰 <a href="#YARDよく使うタグ一覧" class="headerlink" title="YARDよく使うタグ一覧"></a>YARDよく使うタグ一覧<a class="article-anchor" href="#YARDよく使うタグ一覧" aria-hidden="true"></a></h2><pre>(データ/型/名前/説明の書き方)
+# @タグ [型] <名前> <説明>
+
+(例)
+# @param  [Array]  arr表示したい配列
+# @return [String] 空白を除去した文字列
+<!--説明--><!--名前--></説明></名前></pre>
+
+<pre>@params   メソッドに渡す引数の説明
+@raise    メソッドで発生しえる例外クラスの説明
+@return   メソッドの返り値の説明
+</pre>
+
+<pre>@option メソッドに渡すオプションハッシュ引数の説明
+
+# @param       [ハッシュ] opts the options to create a message with.
+# @option opts [String] :subject The subject
+# @option opts [String] :from ('nobody') From address
+# @option opts [String] :to Recipient email
+# @option opts [String] :body ('') The email's body
+def send_email(opts = {}) end
+</pre>
+
+<pre>@overload 複数の引数のパターンがある場合にif文っぽく使う
+
+# @overload set(key, value)
+#   Sets a value on key
+#   @param [Symbol] key describe key param
+#   @param [Object] value describe value param
+# @overload set(value)
+#   Sets a value on the default key +:foo+
+#   @param [Object] value describe value param
+def set(*args) end
+</pre>
+
+<pre>@example 直下の説明がサンプルコードであることを示す
+
+# @example Reverse a String
+#   "mystring".reverse #=> "gnirtsym"
+def reverse; end
+</pre>
+
+<pre>@see URLや他のオブジェクトを書くとリンクになる
+
+# Synchronizes system time using NTP.
+# @see http://ntp.org/documentation.html NTP Documentation
+# @see NTPHelperMethods
+class NTPUpdater; end
+</pre>
+
+<pre>@note オブジェクトを使うときに注意して欲しい点を説明
+
+# @note This method should only be used in outer space.
+def eject; end
+</pre>
+
+<pre>(中括弧)
+{xxx} => リンクとみなす
+
+(例)
+# 詳細は、{http://rubydoc.info/docs/yard/0.7.2/file/docs/Tags.md Yardのタグ説明} を参照
+</pre>
+
+<h2 id="YARDその他タグ一覧" class="article-heading">🗻 <a href="#YARDその他タグ一覧" class="headerlink" title="YARDその他タグ一覧"></a>YARDその他タグ一覧<a class="article-anchor" href="#YARDその他タグ一覧" aria-hidden="true"></a></h2><pre>@abstract 抽象クラス/モジュール/メソッドの説明
+@api オブジェクトに属するAPIの説明。yardoc --queryで実行した場合のみ出力
+@author 作者情報
+@deprecated 非推奨のクラスやメソッドであることを表す
+@private YARD出力時にオプションで出力しないようにできる。 yardoc --no-private 
+@since メソッド・クラスが利用できるようになったバージョンを説明
+@todo TODO
+@version オブジェクトのバージョンを示す
+</pre>
+
+<pre>@yield ブロックの説明。注意点としては、[]の中が引数となっていること。
+
+# For a block {|a,b,c| ... }
+# @yield [a, b, c] Gives 3 random numbers to the block
+def provide3values(&block) yield(42, 42, 42) end
+
+@yieldparam yieldのパラメータの説明
+
+# @yieldparam [String] name the name that is yielded
+def with_name(name) yield(name) end
+
+@yieldreturn yieldの戻り値の説明
+
+# @yieldreturn [Fixnum] the number to add 5 to.
+def add5_block(&block) 5 + yield end
+</pre>
+
+<h2 id="公式リファレンス" class="article-heading">😼 <a href="#公式リファレンス" class="headerlink" title="公式リファレンス"></a>公式リファレンス<a class="article-anchor" href="#公式リファレンス" aria-hidden="true"></a></h2><p>実際は上以外にもタグがありますが、力尽きました！　ですので、詳細は公式リファレンスをw</p>
+<p><a href="http://rubydoc.info/docs/yard/0.8.3/file/docs/Tags.md" target="_blank" rel="noopener">Tags Overview</a></p>
+<h2 id="参考リンク" class="article-heading"> 🎂 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><p><a href="http://d.hatena.ne.jp/kitamomonga/20110825/ruby_yardoc_tag" target="_blank" rel="noopener">Ruby の YARD（Yardoc） の @ タグ</a></p>
+<p><a href="http://namakesugi.blog42.fc2.com/blog-entry-83.html" target="_blank" rel="noopener">[ruby]rdocは捨て去られてYARDになった[gem]</a></p>
+<h2 id="変更来歴" class="article-heading">🏈 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>(12/12/02) 新規作成<br><br>(14/02/16 23:30) Ruby 2.1で動作確認しつつリニュアール<br></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

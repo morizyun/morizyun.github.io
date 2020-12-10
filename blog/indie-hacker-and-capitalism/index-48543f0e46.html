@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>個人開発のすゝめ 第１回: 個人開発と資本主義 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/indie-hacker-and-capitalism/index-48543f0e46.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="ここ３年以上ずっと個人開発にほとんどの自分の時間を割いていたので、真剣にブログを書くのは仕事含めほぼ2年ぶりですww 僕の考えですが、個人開発の課題の一つが専業として食べていくまでの「登り方のベストプラクティス」が体系化・言語化されていない点だと思っています。なので、これからいくつかの記事を通して、３年半取り組んできた「個人開発に対する考え」について少しでもその言語化にトライしてみたいと思っていま">
+<meta name="keywords" content="個人開発">
+<meta property="og:type" content="article">
+<meta property="og:title" content="個人開発のすゝめ 第１回: 個人開発と資本主義">
+<meta property="og:url" content="http://morizyun.github.io//blog/indie-hacker-and-capitalism/index-48543f0e46.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="ここ３年以上ずっと個人開発にほとんどの自分の時間を割いていたので、真剣にブログを書くのは仕事含めほぼ2年ぶりですww 僕の考えですが、個人開発の課題の一つが専業として食べていくまでの「登り方のベストプラクティス」が体系化・言語化されていない点だと思っています。なので、これからいくつかの記事を通して、３年半取り組んできた「個人開発に対する考え」について少しでもその言語化にトライしてみたいと思っていま">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2019-12-01T02:38:51.301Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="個人開発のすゝめ 第１回: 個人開発と資本主義">
+<meta name="twitter:description" content="ここ３年以上ずっと個人開発にほとんどの自分の時間を割いていたので、真剣にブログを書くのは仕事含めほぼ2年ぶりですww 僕の考えですが、個人開発の課題の一つが専業として食べていくまでの「登り方のベストプラクティス」が体系化・言語化されていない点だと思っています。なので、これからいくつかの記事を通して、３年半取り組んできた「個人開発に対する考え」について少しでもその言語化にトライしてみたいと思っていま">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">個人開発のすゝめ 第１回: 個人開発と資本主義</h1>
+    
+    <a href="/blog/indie-hacker-and-capitalism/" class="article-date"><time datetime="2019-11-30T15:00:00.000Z">2019-12-01</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/indie-hacker-and-capitalism/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/indie-hacker-and-capitalism/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/indie-hacker-and-capitalism/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/indie-hacker-and-capitalism/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>ここ３年以上ずっと個人開発にほとんどの自分の時間を割いていたので、真剣にブログを書くのは仕事含めほぼ2年ぶりですww</p>
+<p>僕の考えですが、個人開発の課題の一つが専業として食べていくまでの「登り方のベストプラクティス」が体系化・言語化されていない点だと思っています。<br>なので、これからいくつかの記事を通して、３年半取り組んできた「個人開発に対する考え」について少しでもその言語化にトライしてみたいと思っています。</p>
+<p>個人開発は「<strong>現代の自営業</strong>」だと、 <a href="https://yarukinai.fm/episode/14" target="_blank" rel="noopener">yarukinai.fm</a> でスガイさんが言ってたけど本当に良い言葉だなぁと思っています。<br>(八百屋さんのような自営業のように、もっとカジュアルにエンジニアで「個人開発」を専業にする人が増えていくと良いなという意図です)</p>
+<p>今回は個人開発が現代の自営業としてなぜ「おすすめ」かというのを資本主義や日本の市場という視点で書いてみたいと思います。</p>
+<h2 id="お前誰よ？" class="article-heading">👽 <a href="#お前誰よ？" class="headerlink" title="お前誰よ？"></a>お前誰よ？<a class="article-anchor" href="#お前誰よ？" aria-hidden="true"></a></h2><p>フルタイムでスタートアップで働きながら、平日の朝晩と週末はひたすら(3年ちょっと)個人サービスを作ってるWebエンジニアです。<br>サービス名は諸般の事情であかせませんが、月50万PVで収益で個人開発だけでも食べていけるくらいの収益が出せてたりします。</p>
+<p><img src="/img/2019-12-01-indie-hacker-and-capitalism-ga.png" alt></p>
+<p>もしサービス内容とか詳しく聞いてみたい人いたら、12/11(水)に目黒の勉強会で LT しますので遊びに来てください。</p>
+<p><a href="https://alchemy-rb.connpass.com/event/156757/" target="_blank"><br><img src="https://connpass-tokyo.s3.amazonaws.com/thumbs/56/7a/567a6db49c66a9f8d90cfd40e71fe4a2.png"></a></p>
+<p><img src="https://alchemy-rb.connpass.com/event/156757/" alt></p>
+<h2 id="株主へのリターンのために働くということ" class="article-heading"> 😎 <a href="#株主へのリターンのために働くということ" class="headerlink" title="株主へのリターンのために働くということ"></a>株主へのリターンのために働くということ<a class="article-anchor" href="#株主へのリターンのために働くということ" aria-hidden="true"></a></h2><p><img src="/img/2019-12-01-indie-hacker-and-capitalism-eiichi-sibuawa.png" alt></p>
+<p>株式会社は根本的には「株主」のものであり、経営者からみてエンジニアは最終的にはコストでしかないと実体験として感じました。<br>企業は利益を追求し始めた時に、そのコストを適正化しようとします。そうすると「エンジニアの給与は市場から見てバランスの良い額」に収束してしまうのかなと思っています。</p>
+<p>別の視点として、高い技術力が競争力になるサービスと技術力以外が競争力になっている分野・企業があります。<br>技術力以外が競争力になっている分野は、どうしても「エンジニア」に高いコストをかけることは難しいと感じています。</p>
+<p>GAFA のような企業は技術力が競争力の源泉になり、世界中の有能なエンジニアにアピールして世界中の才能を集めています。また一部の輝いているスタートアップは「将来の市場からの利益の皮算用」を示すことで、例外的にエンジニアに対して高い給与を払えていると感じています。</p>
+<p>業界全体で見ると「エンジニア」の待遇は少しずつよくはなっていますが、技術のコモディティ化とともに、ずっとキープできるわけではないと思います。<br>景気の状況やコモディティ化とともに、少しずつ収束に向かっていくことは避けられないと思っています。<br>(もちろんその人にしか出せない希少な価値や、その人がいないと潰れる状況を経営陣に認められれば、例外的な給与をもらえる人もいると思います)</p>
+<h2 id="自分へのリターンを増やすということ" class="article-heading">🗻 <a href="#自分へのリターンを増やすということ" class="headerlink" title="自分へのリターンを増やすということ"></a>自分へのリターンを増やすということ<a class="article-anchor" href="#自分へのリターンを増やすということ" aria-hidden="true"></a></h2><p><img src="/img/2019-12-01-indie-hacker-and-capitalism-syokuji_steak_man.png" alt></p>
+<p>自分のコミットしている事業へのオーナーシップが大きければ大きいほど、事業からのリターンを得やすくなると思っています。<br>別の考え方として、少ない資本しかない人が、期待するお金を手にするためには「ギャンブル」、つまりリスクを取っていくことが有効な手段になります。</p>
+<p>その意味で、オーナーシップを持てる個人開発には全員が必ず成功するわけではないが、自分へのリターンを得やすい形だと思っています。<br>言い換えると、未来の継続的な収益に対してベットするのが、収益化を狙った個人サービスの開発だと思っています。<br>一生の中で限られた「時間」を自分の事業に対してベットして、結果に責任を持つ事は企業で働き続けるとしても視座を上げられるよい経験だと思っています。</p>
+<p>また副業からの収入を得ることで、副次的に本業でもリスクを取りやすくなると感じています。<br>例えば、PMFしていないスタートアップはリスクが大きいが、大きく成長する可能性があり、SOが多く頂ける傾向があったりします。(あくまで傾向ですが、頑張って交渉していきたい！)<br>副業での収入的なサポートがあれば、心理的にそういったギャンブルにトライしやすくなると感じています。</p>
+<h2 id="市場が小さくなるということ" class="article-heading">🐯 <a href="#市場が小さくなるということ" class="headerlink" title="市場が小さくなるということ"></a>市場が小さくなるということ<a class="article-anchor" href="#市場が小さくなるということ" aria-hidden="true"></a></h2><p><img src="/img/2019-12-01-indie-hacker-and-capitalism-cat-kuroashineko.png" alt></p>
+<p>少し悲しい話として、日本は若い年齢層の人口が減っており、これから市場全体が縮小傾向に向かうことは避けられません。<br>市場が縮小すると、ほとんどの企業がマイナス成長になってしまうのではと思っています。</p>
+<p>株主に「成長」をコミットしているということは「企業の利益を増やす」「市場を独占して未来の利益を確約する」ということです。<br>市場が縮小していく中で、それを実現するには「競合との競争」をするか、「合併して価格競争を避け、資本効率をよくするか」の二択になると思ってます。</p>
+<p>昨今ニュースを賑わしているような合併や買収はこれから、大なり小なり加速していくのではと思っています。</p>
+<h2 id="競争ではなく、市場を見つけていくこと" class="article-heading"> 🤔 <a href="#競争ではなく、市場を見つけていくこと" class="headerlink" title="競争ではなく、市場を見つけていくこと"></a>競争ではなく、市場を見つけていくこと<a class="article-anchor" href="#競争ではなく、市場を見つけていくこと" aria-hidden="true"></a></h2><p><img src="/img/2019-12-01-indie-hacker-and-capitalism-job_tanken_koukogaku2.png" alt></p>
+<p>話を個人開発に戻すと、企業の規模が大きくなっていく中で「規模の大きな企業」の形態が手を出しづらい領域はたくさんあると思ってます。</p>
+<p>例えば売り上げ数十万から数千万円前半の市場であれば、企業が参入するメリットが小さいので、放置されがち。<br>個人で自分のリソースを使う部分ではこのくらいの市場なら参入しやすく、競合が少ない状態にあるのでトライできることはある。</p>
+<p>イノベーションは少しリスクをとるところから始まるという話があります。個人開発はリスクを取りやすいので、そこが差別化であり、競争力の源泉になると思っています。(リスクは犯罪という意味では全くないです。法律の中で少しだけ人に役立つものを作れるかだと思っています)</p>
+<h2 id="ソフトウエアの強みを活かす" class="article-heading">🚕 <a href="#ソフトウエアの強みを活かす" class="headerlink" title="ソフトウエアの強みを活かす"></a>ソフトウエアの強みを活かす<a class="article-anchor" href="#ソフトウエアの強みを活かす" aria-hidden="true"></a></h2><p><img src="/img/2019-12-01-indie-hacker-and-capitalism-character_earth_chikyu_internet.png" alt></p>
+<p>ネットを前提としたソフトウェアの強みは「グローバル」のお客さんを相手に価値を届けられることだと思っています。<br>強みはお客さんが「１人」でも「１万人」でもかけた開発コストに対して価値を届けることはほとんど同じということはすごい特徴だと思っています。</p>
+<p>同じサービスを作るなら、グローバルを相手にできる「ソフトウェア」は個人開発にとってもすごく良いマーケット。<br>ターゲットを絞って、シンプルな「価値」を顧客に提供することが大切だと思います。１億人より６０億人。</p>
+<h2 id="まとめ" class="article-heading">🐞 <a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ<a class="article-anchor" href="#まとめ" aria-hidden="true"></a></h2><p><img src="/img/2019-12-01-indie-hacker-and-capitalism-nigaoe_mouri_motonari_oreru.png" alt></p>
+<p>Web 企業が沢山ある以上、資金をかければそれ以上のリターンが上がりやす市場だし、個人開発が狙いやすいマーケットは沢山眠っていると思います。あとは個人開発者にとっての「登り方のベストプラクティス」がうまく共有されていくと良いなぁと思ってます。</p>
+<p>それは僕だけでは難しいですが、これから少しずつでも自分の試行錯誤の経験談、自分なりの考えを言語化して投稿していきたいと思います。</p>
+<p>主語が大きかったり、対象を正しく定義していなかったりするので、不快に感じたら教えてください。直します。</p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

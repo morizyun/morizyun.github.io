@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>「明日から使えるシンプル統計学」で明日から統計学を使おう！　 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/first-and-simple-statistics-book-review/index-a73734225f.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="ある人から教えてもらった言葉で、「普段からニュースにでてくる数字の統計的な意味をとらえるように訓練しておく」とビジネスの中で活かせるようになっていくというのを教えてもらったことがあります。 というのが少しでもできるようになりたいという気持ちから『明日から使えるシンプル統計学』を読み始めました。 今回はこの書籍から、特に参考になった点をピックアップしていきます。">
+<meta name="keywords" content="statistics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「明日から使えるシンプル統計学」で明日から統計学を使おう！　">
+<meta property="og:url" content="http://morizyun.github.io//blog/first-and-simple-statistics-book-review/index-a73734225f.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="ある人から教えてもらった言葉で、「普段からニュースにでてくる数字の統計的な意味をとらえるように訓練しておく」とビジネスの中で活かせるようになっていくというのを教えてもらったことがあります。 というのが少しでもできるようになりたいという気持ちから『明日から使えるシンプル統計学』を読み始めました。 今回はこの書籍から、特に参考になった点をピックアップしていきます。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「明日から使えるシンプル統計学」で明日から統計学を使おう！　">
+<meta name="twitter:description" content="ある人から教えてもらった言葉で、「普段からニュースにでてくる数字の統計的な意味をとらえるように訓練しておく」とビジネスの中で活かせるようになっていくというのを教えてもらったことがあります。 というのが少しでもできるようになりたいという気持ちから『明日から使えるシンプル統計学』を読み始めました。 今回はこの書籍から、特に参考になった点をピックアップしていきます。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">「明日から使えるシンプル統計学」で明日から統計学を使おう！　</h1>
+    
+    <a href="/blog/first-and-simple-statistics-book-review/" class="article-date"><time datetime="2014-03-16T15:00:00.000Z">2014-03-17</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/first-and-simple-statistics-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/first-and-simple-statistics-book-review/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/first-and-simple-statistics-book-review/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/first-and-simple-statistics-book-review/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4774150541/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774150541&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774150541&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>ある人から教えてもらった言葉で、「<strong>普段からニュースにでてくる数字の統計的な意味をとらえるように訓練しておく</strong>」とビジネスの中で活かせるようになっていくというのを教えてもらったことがあります。</p>
+<p>というのが少しでもできるようになりたいという気持ちから『<strong><a href="http://www.amazon.co.jp/gp/product/4774150541/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774150541&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">明日から使えるシンプル統計学</a></strong>』を読み始めました。</p>
+<p>今回はこの書籍から、特に参考になった点をピックアップしていきます。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="統計が役立つ3つの場面" class="article-heading">🗻 <a href="#統計が役立つ3つの場面" class="headerlink" title="統計が役立つ3つの場面"></a>統計が役立つ3つの場面<a class="article-anchor" href="#統計が役立つ3つの場面" aria-hidden="true"></a></h2><pre>1) 問題解決 => 統計情報から課題を抽出する
+2) 企画立案 => 提案の根拠を統計情報から示す
+3) 説得 => 統計情報(数字)をパワーにしてジャッジを促す
+</pre>
+
+<h2 id="統計を実務で活かす" class="article-heading">🚕 <a href="#統計を実務で活かす" class="headerlink" title="統計を実務で活かす"></a>統計を実務で活かす<a class="article-anchor" href="#統計を実務で活かす" aria-hidden="true"></a></h2><pre>難易度が低い => 平均・標準偏差・グラフ化により、データを読み込んで把握する
+難易度が高い => 相関や回帰分析、検定を通してデータを統計的に分析する
+</pre>
+
+<p>大切なことは実務に活かせること、相手に納得してもらうこと。</p>
+<h2 id="平均・中央値・最大値・最小値" class="article-heading"> 🎉 <a href="#平均・中央値・最大値・最小値" class="headerlink" title="平均・中央値・最大値・最小値"></a>平均・中央値・最大値・最小値<a class="article-anchor" href="#平均・中央値・最大値・最小値" aria-hidden="true"></a></h2><p>わかりやすくて理解しやすい値だが、事実のミスリーディングを誘発するパターンがあるので注意すること。それを防ぐために、正規分布や散布図やヒストグラムを効果的に活用すること。</p>
+<h2 id="比較の切り口" class="article-heading"> 🏀 <a href="#比較の切り口" class="headerlink" title="比較の切り口"></a>比較の切り口<a class="article-anchor" href="#比較の切り口" aria-hidden="true"></a></h2><pre>1) 時間 => 時間の経過により変化する。継続性を持つ
+2) 競合 => ビジネス状況競合は、視点によって変化する
+3) 計画 => 計画と比較・検証することで将来に活かせることが重要
+4) 属性 => 地域別、商品のカテゴリーなど。適切な粒度が重要
+</pre>
+
+<h2 id="比較すべき属性を見つける4つのステップ" class="article-heading"> 🎳 <a href="#比較すべき属性を見つける4つのステップ" class="headerlink" title="比較すべき属性を見つける4つのステップ"></a>比較すべき属性を見つける4つのステップ<a class="article-anchor" href="#比較すべき属性を見つける4つのステップ" aria-hidden="true"></a></h2><p>「一番の目的は何か？」を念頭に置きながら、探りたい課題やキーとなる仮説を検証する。</p>
+<pre>1) 見ているデータの属性や、ブレークダウンの状況を把握する
+2) そのデータに存在しうる属性を考える(商品、地域、人、顧客、時間、競合など)
+3) 入手できるデータがある属性を確認する
+4) 目的から考えて最も有効な属性をセレクトする
+</pre>
+
+<h2 id="グラフの種類とセレクト時のポイント" class="article-heading"> 🐰 <a href="#グラフの種類とセレクト時のポイント" class="headerlink" title="グラフの種類とセレクト時のポイント"></a>グラフの種類とセレクト時のポイント<a class="article-anchor" href="#グラフの種類とセレクト時のポイント" aria-hidden="true"></a></h2><pre>折れ線グラフ => 継続性。変化率を示す
+棒グラフ => 横並び。相対的な比較がやりやすい
+円グラフ => 内訳や構成比率。
+</pre>
+
+<h2 id="グラフ化のリスク" class="article-heading">🐯 <a href="#グラフ化のリスク" class="headerlink" title="グラフ化のリスク"></a>グラフ化のリスク<a class="article-anchor" href="#グラフ化のリスク" aria-hidden="true"></a></h2><p>グラフはシンプルな理解を助ける一方で、ある要素を隠す場合がある。ハイライトすべき要素と、犠牲になる要素が何かを考える。</p>
+<h2 id="相関分析" class="article-heading"> 🚜 <a href="#相関分析" class="headerlink" title="相関分析"></a>相関分析<a class="article-anchor" href="#相関分析" aria-hidden="true"></a></h2><p>複数のデータを組み合わせることで、得られる情報を広げ、新たな光明を見出すための分析。</p>
+<h2 id="どんな課題に対して相関分析を使うのか？" class="article-heading"> 🍮 <a href="#どんな課題に対して相関分析を使うのか？" class="headerlink" title="どんな課題に対して相関分析を使うのか？"></a>どんな課題に対して相関分析を使うのか？<a class="article-anchor" href="#どんな課題に対して相関分析を使うのか？" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># フロー型</span><br><span class="line">複数のプロセスが組み合わっているようなパターンにおいて、「インプット」と「アウトプット」都の間の相関が弱い場合にはそこにボトルネックがあると考えられる。</span><br><span class="line"></span><br><span class="line"># 結果・要因型</span><br><span class="line">ある結果に対して1つ以上の要因の候補がある場合。各要因と結果との間の相関性を確認して、原因を調べ出す。ただし、「相関がある => 相関が強い」ということではないので注意が必要。</span><br><span class="line"></span><br><span class="line"># データ羅列型</span><br><span class="line">データの羅列から深堀りをすることで新たな関係性や課題を積極的に探すことで、有益なヒントを得ようとするアプローチ。</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="あえて弱い相関に着目する" class="article-heading">🗽 <a href="#あえて弱い相関に着目する" class="headerlink" title="あえて弱い相関に着目する"></a>あえて弱い相関に着目する<a class="article-anchor" href="#あえて弱い相関に着目する" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 相関が大きい点に着目</span><br><span class="line">=> 複数のデータから強い関係性を特定する。理論的に強い相関があることを検証する</span><br><span class="line"></span><br><span class="line"># 相関が弱い点に注目</span><br><span class="line">=> 理論的にデータのつながりがあるはずが、実際に成立していないことを見つけて、問題を特定しようとする場合</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="擬似相関に注意" class="article-heading">😀 <a href="#擬似相関に注意" class="headerlink" title="擬似相関に注意"></a>擬似相関に注意<a class="article-anchor" href="#擬似相関に注意" aria-hidden="true"></a></h2><p>「ブランド力 => 売上」という結論には実は外部要因の「広告宣伝」によって成立している可能性がある。擬似相関をなくための理想的な条件は「<strong>各要因が独立しており、結果に対する因果関係が明確であること</strong>」</p>
+<h2 id="単回帰分析" class="article-heading"> 🤔 <a href="#単回帰分析" class="headerlink" title="単回帰分析"></a>単回帰分析<a class="article-anchor" href="#単回帰分析" aria-hidden="true"></a></h2><p>AとBとのデータの関係を数値で表現するための分析。アール二乗値(決定係数)は単回帰分析の精度を表す指標。</p>
+<h2 id="単回帰分析によってえられるメリット" class="article-heading">🐠 <a href="#単回帰分析によってえられるメリット" class="headerlink" title="単回帰分析によってえられるメリット"></a>単回帰分析によってえられるメリット<a class="article-anchor" href="#単回帰分析によってえられるメリット" aria-hidden="true"></a></h2><pre>1) 費用対効果などを出すことができる
+2) 逆算して予測することができる
+3) 要因によらない結果を求めることができる
+</pre>
+
+<h2 id="分析の結果が「本当に使えるものか」を見極める" class="article-heading"> 🎃 <a href="#分析の結果が「本当に使えるものか」を見極める" class="headerlink" title="分析の結果が「本当に使えるものか」を見極める"></a>分析の結果が「本当に使えるものか」を見極める<a class="article-anchor" href="#分析の結果が「本当に使えるものか」を見極める" aria-hidden="true"></a></h2><pre>1) 分析にはどのような前提が含まれているか？
+2) 分析結果を実務で使う上で、どのような制約や条件があるか？
+3) 分析の結論が今の条件を変更するだけのメリットがあるか？
+4) 条件が不明な場合には複数の結論を用意できるか？
+</pre>
+
+<h2 id="仮説検証型分析" class="article-heading">🏈 <a href="#仮説検証型分析" class="headerlink" title="仮説検証型分析"></a>仮説検証型分析<a class="article-anchor" href="#仮説検証型分析" aria-hidden="true"></a></h2><p>仮説を作り、その検証に必要なデータを集めて、最適な手法で分析する。分析の主目的は、「将来の行動を決めるための根拠」を得ること。効果的な仮説づくりと、分析結果にもとづく精度の高い戦略づくりが重要。</p>
+<h2 id="手元に十分なデータがない場合" class="article-heading"> 🎂 <a href="#手元に十分なデータがない場合" class="headerlink" title="手元に十分なデータがない場合"></a>手元に十分なデータがない場合<a class="article-anchor" href="#手元に十分なデータがない場合" aria-hidden="true"></a></h2><pre>1) 「値」を「比率」になおしてみる
+2) 要素を分解して取り出してみる
+3) データの範囲を変えてみる
+4) 他に入手できるデータを探してみる
+5) 定性情報を定量情報に変える  
+</pre>
+
+<h2 id="感想" class="article-heading">😼 <a href="#感想" class="headerlink" title="感想"></a>感想<a class="article-anchor" href="#感想" aria-hidden="true"></a></h2><p>たしかに本当に大切なのは「将来の行動を決めるための納得できる根拠」と「分析結果にもとづく精度の高い戦略づくり」だというのをすごく実感します。そしてそれをサポートするのが統計学だと思います。これからバランスよく、知識を身に着けていきたいです！</p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Rails 5.1へのアップデート | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/rails-versionup-update-rails5.1/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Ruby on Rails 5.0系から5.1系へのアップデートに関するTipsです。 主な変更点yarnのサポートnpmによるJavaScriptのライブラリをyarnで管理できます。これにより、npmで管理されたライブラリを気軽に利用できます。 bin/yarn installでnpmのライブラリをインストールできます。 webpackのサポート(任意)--webpackオプションを付けると、">
+<meta name="keywords" content="Rails,Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails 5.1へのアップデート">
+<meta property="og:url" content="http://morizyun.github.io/blog/rails-versionup-update-rails5.1/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Ruby on Rails 5.0系から5.1系へのアップデートに関するTipsです。 主な変更点yarnのサポートnpmによるJavaScriptのライブラリをyarnで管理できます。これにより、npmで管理されたライブラリを気軽に利用できます。 bin/yarn installでnpmのライブラリをインストールできます。 webpackのサポート(任意)--webpackオプションを付けると、">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-12T08:38:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rails 5.1へのアップデート">
+<meta name="twitter:description" content="Ruby on Rails 5.0系から5.1系へのアップデートに関するTipsです。 主な変更点yarnのサポートnpmによるJavaScriptのライブラリをyarnで管理できます。これにより、npmで管理されたライブラリを気軽に利用できます。 bin/yarn installでnpmのライブラリをインストールできます。 webpackのサポート(任意)--webpackオプションを付けると、">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Rails 5.1へのアップデート</h1>
+    
+    <a href="/blog/rails-versionup-update-rails5.1/" class="article-date"><time datetime="2017-08-01T15:00:00.000Z">2017-08-02</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rails-versionup-update-rails5.1/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/rails-versionup-update-rails5.1/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/rails-versionup-update-rails5.1/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/rails-versionup-update-rails5.1/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>Ruby on Rails 5.0系から5.1系へのアップデートに関するTipsです。</p>
+<h2 id="主な変更点" class="article-heading">🐞 <a href="#主な変更点" class="headerlink" title="主な変更点"></a>主な変更点<a class="article-anchor" href="#主な変更点" aria-hidden="true"></a></h2><h3 id="yarnのサポート" class="article-heading"><a href="#yarnのサポート" class="headerlink" title="yarnのサポート"></a>yarnのサポート<a class="article-anchor" href="#yarnのサポート" aria-hidden="true"></a></h3><p>npmによるJavaScriptのライブラリを<a href="https://yarnpkg.com/lang/en/" target="_blank" rel="noopener">yarn</a>で管理できます。これにより、npmで管理されたライブラリを気軽に利用できます。</p>
+<p><code>bin/yarn install</code>でnpmのライブラリをインストールできます。</p>
+<h3 id="webpackのサポート-任意" class="article-heading"><a href="#webpackのサポート-任意" class="headerlink" title="webpackのサポート(任意)"></a>webpackのサポート(任意)<a class="article-anchor" href="#webpackのサポート-任意" aria-hidden="true"></a></h3><p><code>--webpack</code>オプションを付けると、webpackを使ってJSをコンパイルできます。<br>新規プロジェクトの場合は次のように<code>--webpack</code>をつけると有効になります。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">rails new プロジェクト名 --webpack</span><br></pre></td></tr></tbody></table></figure>
+<p>既存プロジェクトに導入する場合は<code>Gemfile</code>に次のコードを追加してください。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">em <span class="string">'webpacker'</span></span><br></pre></td></tr></tbody></table></figure>
+<p>そして次のコマンドを実行します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">bin/rails webpacker:install</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jQueryに依存しなくなった" class="article-heading"><a href="#jQueryに依存しなくなった" class="headerlink" title="jQueryに依存しなくなった"></a>jQueryに依存しなくなった<a class="article-anchor" href="#jQueryに依存しなくなった" aria-hidden="true"></a></h3><p>RailsのJavaScript実装の<code>jquery-ujs</code>がjQueryではなく、pure JavaScriptになり「<a href="https://rubygems.org/gems/rails-ujs" target="_blank" rel="noopener">rails-ujs</a>」となるそうです。</p>
+<h3 id="インテグレーションが容易に" class="article-heading"><a href="#インテグレーションが容易に" class="headerlink" title="インテグレーションが容易に"></a>インテグレーションが容易に<a class="article-anchor" href="#インテグレーションが容易に" aria-hidden="true"></a></h3><p><code>SystemTestCase</code>を使うことで、インテグレーションテストを実装しやすくなりました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'application_system_test_case'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Users::CreateTest</span> < ApplicationSystemTestCase</span></span><br><span class="line">  test <span class="string">'adding a new user'</span> <span class="keyword">do</span></span><br><span class="line">    visit users_path</span><br><span class="line">    click_on <span class="string">'New User'</span></span><br><span class="line"></span><br><span class="line">    fill_in <span class="string">'Name'</span>, <span class="symbol">with:</span> <span class="string">'Arya'</span></span><br><span class="line">      click_on <span class="string">'Create User'</span></span><br><span class="line">      assert_text <span class="string">'Arya'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>標準で作成される<code>ApplicationSystemTestCase</code>でCapybaraのドライバやブラウザ、画面解像度を設定できます。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> test_helper</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationSystemTestCase</span> < ActionDispatch::SystemTestCase</span></span><br><span class="line">  driven_by <span class="symbol">:selenium</span>, <span class="symbol">using:</span> <span class="symbol">:chrome</span>, <span class="symbol">screen_size:</span> [<span class="number">1400</span>, <span class="number">1400</span>]</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="config-secrets-ymlを暗号化" class="article-heading"><a href="#config-secrets-ymlを暗号化" class="headerlink" title="config/secrets.ymlを暗号化"></a>config/secrets.ymlを暗号化<a class="article-anchor" href="#config-secrets-ymlを暗号化" aria-hidden="true"></a></h3><p>config/secrets.ymlを次のコマンドで暗号化します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">bin/rails secrets:setup</span><br></pre></td></tr></tbody></table></figure>
+<p>実行すると<code>config/secrets.yml.key</code>(鍵)と<code>config/secrets.yml.enc</code>(暗号化されたファイル)が生成されます。<br><code>config/secrets.yml.key</code>は本番環境の環境変数<code>RAILS_MASTER_KEY</code>に設定します。</p>
+<h3 id="Action-Mailerにパラメータを渡せる" class="article-heading"><a href="#Action-Mailerにパラメータを渡せる" class="headerlink" title="Action Mailerにパラメータを渡せる"></a>Action Mailerにパラメータを渡せる<a class="article-anchor" href="#Action-Mailerにパラメータを渡せる" aria-hidden="true"></a></h3><p>Action Mailerにパラメータを渡せるので、DRYに書きやすくなりました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InvitationsMailer</span> < ApplicationMailer</span></span><br><span class="line">  before_action { @inviter, @invitee = params[<span class="symbol">:inviter</span>], params[<span class="symbol">:invitee</span>] }</span><br><span class="line">  before_action { @account = params[<span class="symbol">:inviter</span>].account }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">account_invitation</span></span></span><br><span class="line">    mail <span class="symbol">subject:</span> <span class="comment">#{<span class="doctag">@inviter</span>.name} invited you to their Basecamp (#{<span class="doctag">@account</span>.name})</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">InvitationsMailer.with(<span class="symbol">inviter:</span> person_a, <span class="symbol">invitee:</span> person_b).account_invitation.deliver_later</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="directed-routes" class="article-heading"><a href="#directed-routes" class="headerlink" title="directed routes"></a>directed routes<a class="article-anchor" href="#directed-routes" aria-hidden="true"></a></h3><p><code>routes.rb</code>に次のようなHelperを書くことができるようになりました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">direct <span class="symbol">:commentable</span> <span class="keyword">do</span> <span class="params">|model|</span></span><br><span class="line">  [ model, <span class="symbol">anchor:</span> model.dom_id ] <span class="comment"># modelの内容で分岐することもできます</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">direct <span class="symbol">:main</span> <span class="keyword">do</span></span><br><span class="line">  { <span class="symbol">controller:</span> <span class="string">'pages'</span>, <span class="symbol">action:</span> <span class="string">'index'</span>, <span class="symbol">subdomain:</span> <span class="string">'www'</span> }</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="resolved-routes" class="article-heading"><a href="#resolved-routes" class="headerlink" title="resolved routes"></a>resolved routes<a class="article-anchor" href="#resolved-routes" aria-hidden="true"></a></h3><p><code>routes.rb</code>に次のようなルーティングを記述できるようになりました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">resource <span class="symbol">:basket</span></span><br><span class="line">direct(<span class="class"><span class="keyword">class</span>: <span class="title">Basket</span>) { [:<span class="title">basket</span>] }</span></span><br></pre></td></tr></tbody></table></figure>
+<p>すると次のように<code>form</code>側を記述できます。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><%= form_for @basket <span class="keyword">do</%=></span> <span class="params">|form|</span> %><br><span class="line">  ...</span><br><span class="line"><% <span class="keyword">end</%></span> %><br></pre></td></tr></tbody></table></figure>
+<h3 id="form-withメソッド" class="article-heading"><a href="#form-withメソッド" class="headerlink" title="form_withメソッド"></a>form_withメソッド<a class="article-anchor" href="#form-withメソッド" aria-hidden="true"></a></h3><h4 id="URLを直接指定する" class="article-heading"><a href="#URLを直接指定する" class="headerlink" title="URLを直接指定する"></a>URLを直接指定する<a class="article-anchor" href="#URLを直接指定する" aria-hidden="true"></a></h4><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><%= form_with <span class="symbol">url:</%=></span> posts_path <span class="keyword">do</span> <span class="params">|form|</span> %><br><span class="line">  ...</span><br><span class="line"><% <span class="keyword">end</%></span> %><br></pre></td></tr></tbody></table></figure>
+<p>生成されるHTMLは次のようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">form</span> <span class="attr">action</span>=<span class="string">/posts</span> <span class="attr">method</span>=<span class="string">post</span> <span class="attr">data-remote</span>=<span class="string">true</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">input</span> <span class="attr">type</span>=<span class="string">text</span> <span class="attr">name</span>=<span class="string">post[title]</span>></span></span><br><span class="line"><span class="tag">form</span>></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="モデルオブジェクトを渡す" class="article-heading"><a href="#モデルオブジェクトを渡す" class="headerlink" title="モデルオブジェクトを渡す"></a>モデルオブジェクトを渡す<a class="article-anchor" href="#モデルオブジェクトを渡す" aria-hidden="true"></a></h4><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><%= form_with <span class="symbol">model:</%=></span> Post.first <span class="keyword">do</span> <span class="params">|form|</span> %><br><span class="line">  ...</span><br><span class="line"><% <span class="keyword">end</%></span> %><br></pre></td></tr></tbody></table></figure>
+<p>生成されるHTMLは次のようになります。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">form</span> <span class="attr">action</span>=<span class="string">/posts/1</span> <span class="attr">method</span>=<span class="string">post</span> <span class="attr">data-remote</span>=<span class="string">true</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">input</span> <span class="attr">type</span>=<span class="string">hidden</span> <span class="attr">name</span>=<span class="string">_method</span> <span class="attr">value</span>=<span class="string">patch</span>></span></span><br><span class="line">  <input type="text" name="post[title]" value="<the" title of the post>></span><br><span class="line"><span class="tag">form</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Time型もタイムゾーンを考慮" class="article-heading"><a href="#Time型もタイムゾーンを考慮" class="headerlink" title="Time型もタイムゾーンを考慮"></a>Time型もタイムゾーンを考慮<a class="article-anchor" href="#Time型もタイムゾーンを考慮" aria-hidden="true"></a></h3><p>Datetime型だけでなく、Time型もタイムゾーンを考慮した実装に変わりました。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># DatetimeとTime型の両方でTimezoneをつける</span></span><br><span class="line">config.active_record.time_zone_aware_types = %i[datetime time]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Rails 5以前のようにDatetime型のみTimezoneをつける</span></span><br><span class="line">config.active_record.time_zone_aware_types = %i[datetime]</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="アップデートの手順" class="article-heading"> 🐹 <a href="#アップデートの手順" class="headerlink" title="アップデートの手順"></a>アップデートの手順<a class="article-anchor" href="#アップデートの手順" aria-hidden="true"></a></h2><ul>
+<li>Gemfileの<code>rails</code>バージョンを5.1にアップデート</li>
+<li><code>HashWithIndifferentAccess</code>は速度の問題があるため、<code>ActiveSupport::HashWithIndifferentAccess</code>に移行</li>
+<li><code>config/secrets.yml</code>を使っている場合は、キーをシンボルで読み込むようにする</li>
+</ul>
+<h2 id="参考リンク" class="article-heading"> 🐰 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://guides.rubyonrails.org/5_1_release_notes.html" target="_blank" rel="noopener">Ruby on Rails 5.1 Release Notes</a></li>
+<li><a href="https://goo.gl/OkfvpN" target="_blank" rel="noopener">A Guide for Upgrading Ruby on Rails</a></li>
+<li><a href="http://qiita.com/jnchito/items/b0b47ecfc33de4f9b72f" target="_blank" rel="noopener">Rails 5.1の変更点まとめ</a></li>
+<li><a href="http://nomnel.hatenablog.com/entry/2016/07/18/232121" target="_blank" rel="noopener">Rails 5.1 から time 型の列もタイムゾーン考慮するようになるとのこと</a></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

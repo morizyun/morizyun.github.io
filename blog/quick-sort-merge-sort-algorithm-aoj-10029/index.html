@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>クイックソート | アルゴリズム [AOJ 10029][Ruby/Java] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/cs/algorithm-quick-sort-merge-sort.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="今回は、『AOJ 10029 - ソートアルゴリズム(クイックソート)』についての記事です。RubyとJavaのサンプルソースを載せています。 勉強のために「クイックソート」と、マージソートを書いてみました。一般的にはマージソートよりもクイックソートの方が高速です。しかし、AOJで実際にプログラムを書いて実感しましたが『クイックソートのアルゴリズムはソート対象によって計算量が変わる』特徴があります">
+<meta name="keywords" content="Ruby,Algorithm,AOJ,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="クイックソート | アルゴリズム [AOJ 10029][Ruby&#x2F;Java]">
+<meta property="og:url" content="http://morizyun.github.io/blog/quick-sort-merge-sort-algorithm-aoj-10029/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="今回は、『AOJ 10029 - ソートアルゴリズム(クイックソート)』についての記事です。RubyとJavaのサンプルソースを載せています。 勉強のために「クイックソート」と、マージソートを書いてみました。一般的にはマージソートよりもクイックソートの方が高速です。しかし、AOJで実際にプログラムを書いて実感しましたが『クイックソートのアルゴリズムはソート対象によって計算量が変わる』特徴があります">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="クイックソート | アルゴリズム [AOJ 10029][Ruby&#x2F;Java]">
+<meta name="twitter:description" content="今回は、『AOJ 10029 - ソートアルゴリズム(クイックソート)』についての記事です。RubyとJavaのサンプルソースを載せています。 勉強のために「クイックソート」と、マージソートを書いてみました。一般的にはマージソートよりもクイックソートの方が高速です。しかし、AOJで実際にプログラムを書いて実感しましたが『クイックソートのアルゴリズムはソート対象によって計算量が変わる』特徴があります">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">クイックソート | アルゴリズム [AOJ 10029][Ruby/Java]</h1>
+    
+    <a href="/blog/quick-sort-merge-sort-algorithm-aoj-10029/" class="article-date"><time datetime="2017-03-19T15:00:00.000Z">2017-03-20</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/quick-sort-merge-sort-algorithm-aoj-10029/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/quick-sort-merge-sort-algorithm-aoj-10029/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/quick-sort-merge-sort-algorithm-aoj-10029/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/quick-sort-merge-sort-algorithm-aoj-10029/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/B01N14WBX3/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B01N14WBX3&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B01N14WBX3&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>今回は、『<strong><a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=10029" target="_blank" rel="noopener">AOJ 10029 - ソートアルゴリズム(クイックソート)</a></strong>』についての記事です。RubyとJavaのサンプルソースを載せています。</p>
+<p>勉強のために「<a href="/ruby/algorithm-merge-sort.html">クイックソート</a>」と、マージソートを書いてみました。一般的にはマージソートよりもクイックソートの方が高速です。しかし、AOJで実際にプログラムを書いて実感しましたが『<strong>クイックソートのアルゴリズムはソート対象によって計算量が変わる</strong>』特徴があります。計算量が安定しているという意味では、マージソートの方が優れていることを知りました。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="概要" class="article-heading">🗽 <a href="#概要" class="headerlink" title="概要"></a>概要<a class="article-anchor" href="#概要" aria-hidden="true"></a></h2><p><img src="/img/2017-03-20-quick-sort-merge-sort-algorithm-aoj-10029_1.png" alt="algorithm-quick-sort"></p>
+<ul>
+<li><ol>
+<li>未整列のデータ群から任意の1つを取り出す</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>これを基準に未整列のデータ群を大小2つに分ける</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>分割したデータ群について1－2を繰り返す</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>データ群が分割できなくなったところで結果を連結する</li>
+</ol>
+</li>
+</ul>
+<h2 id="特徴" class="article-heading">🐝 <a href="#特徴" class="headerlink" title="特徴"></a>特徴<a class="article-anchor" href="#特徴" aria-hidden="true"></a></h2><ul>
+<li>t(n) をn要素配列にクイックソートを行う時間と定義すると、 t(n) = 2*t(n/2) + o(n) となる。<ul>
+<li>o(n) が部分配列分割に必要な線形作業</li>
+</ul>
+</li>
+<li>最悪時は、1要素を整列するために全要素を調べることになり、それがn - 1回繰り返されるのでo(nの2乗)となる</li>
+</ul>
+<h3 id="Rubyコード" class="article-heading"><a href="#Rubyコード" class="headerlink" title="Rubyコード"></a>Rubyコード<a class="article-anchor" href="#Rubyコード" aria-hidden="true"></a></h3><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Array</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span> <span class="keyword">if</span> length <= <span class="number">1</=></span><br><span class="line">    base = pop</span><br><span class="line">    smaller, bigger = partition { <span class="params">|e|</span> e < base }</span><br><span class="line">    push base</span><br><span class="line">    smaller.quick_sort + [base] + bigger.quick_sort</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">_n = gets.to_i</span><br><span class="line">puts gets.chomp.split(<span class="string">' '</span>).map(&<span class="symbol">:to_i</span>).quick_sort.join(<span class="string">' '</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Javaコード" class="article-heading"><a href="#Javaコード" class="headerlink" title="Javaコード"></a>Javaコード<a class="article-anchor" href="#Javaコード" aria-hidden="true"></a></h3><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.lang.System;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] a)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        BufferedReader r = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">        <span class="keyword">int</span> n = Integer.parseInt(r.readLine());</span><br><span class="line">        String tmp = r.readLine();</span><br><span class="line">        String[] str = tmp.split(<span class="string">" "</span>);</span><br><span class="line"></span><br><span class="line">        ArrayList<integer> arr = <span class="keyword">new</span> ArrayList<>();</integer></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < n; i++) {</span><br><span class="line">            arr.add(Integer.parseInt(str[i]));</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        ArrayList<integer> result = quickSort(arr);</integer></span><br><span class="line">        printArrayList(result);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArrayList</span><span class="params">(ArrayList<integer> result)</integer></span> </span>{</span><br><span class="line">        StringBuilder st = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < result.size(); i++) {</span><br><span class="line">            st.append(result.get(i));</span><br><span class="line">            <span class="keyword">if</span> (i != result.size() - <span class="number">1</span>) {</span><br><span class="line">                st.append(<span class="string">" "</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        System.out.println(st);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> ArrayList<integer> <span class="title">quickSort</span><span class="params">(ArrayList<integer> inputArray)</integer></span> </integer></span>{</span><br><span class="line">        <span class="keyword">if</span> (inputArray.size() <= <span class="number">1</=></span>) {<br><span class="line">            <span class="keyword">return</span> inputArray;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> half = inputArray.size()/<span class="number">2</span>;</span><br><span class="line">        ArrayList<integer> left = <span class="keyword">new</span> ArrayList<>();</integer></span><br><span class="line">        ArrayList<integer> right = <span class="keyword">new</span> ArrayList<>();</integer></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < inputArray.size(); i++) {</span><br><span class="line">            <span class="keyword">if</span> (i == half) {</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (inputArray.get(half) > inputArray.get(i)) {</span><br><span class="line">                left.add(inputArray.get(i));</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                right.add(inputArray.get(i));</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        ArrayList<integer> r = quickSort(left);</integer></span><br><span class="line">        r.add(inputArray.get(half));</span><br><span class="line">        r.addAll(quickSort(right));</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="アルゴリズムの改善" class="article-heading">🐠 <a href="#アルゴリズムの改善" class="headerlink" title="アルゴリズムの改善"></a>アルゴリズムの改善<a class="article-anchor" href="#アルゴリズムの改善" aria-hidden="true"></a></h2><ul>
+<li>スタックが深さが問題になる可能性があるので、深さを最小にするために小さな部分配列を最初に処理するとよい</li>
+<li>「3個の中央値」にもとづて軸を選択する</li>
+<li>大きな配列にクイックソートを使い、小さな配列に挿入ソートを組み合わせることで20-25％の改善がみられる(セジウィック、 1978)<ul>
+<li>Sun4では実験結果にもとづて4になっていた</li>
+</ul>
+</li>
+</ul>
+<h2 id="GitHubリポジトリ" class="article-heading"> 🚜 <a href="#GitHubリポジトリ" class="headerlink" title="GitHubリポジトリ"></a>GitHubリポジトリ<a class="article-anchor" href="#GitHubリポジトリ" aria-hidden="true"></a></h2><p>Ruby/PythonでのAOJの回答は下のリポジトリに保存しておきます。</p>
+<p><strong><a href="https://github.com/morizyun/aoj-ruby-python" target="_blank" rel="noopener">morizyun/aoj-ruby-python - GitHub</a></strong></p>
+<h2 id="参考リンク" class="article-heading"> 🍮 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://melborne.github.io/2010/10/12/Ruby/" target="_blank" rel="noopener">Rubyでソート・アルゴリズムを表現しよう!</a></li>
+<li><a href="http://qiita.com/7kaji/items/5518479579bc36359bc8" target="_blank" rel="noopener">Rubyでクイックソート - Qiita</a></li>
+</ul>
+<h2 id="参考-クイックソートと挿入ソート" class="article-heading"> 🐰 <a href="#参考-クイックソートと挿入ソート" class="headerlink" title="(参考) クイックソートと挿入ソート"></a>(参考) クイックソートと挿入ソート<a class="article-anchor" href="#参考-クイックソートと挿入ソート" aria-hidden="true"></a></h2><ul>
+<li>一定以上のサイズの配列なら、クイックソートは挿入ソートよりも早い</li>
+<li>小さい配列なら、挿入ソートがクイックソートよりも早い</li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Dockerで日本語対応のHeadless Chrome + puppeteerを立ち上げ | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/docker-compose-chrome-puppeteer-headless/index-23cf35fa41.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="docker-composeで日本語対応のHeadless Chromeを「puppeteer」で操作する手順です。">
+<meta name="keywords" content="JavaScript,NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dockerで日本語対応のHeadless Chrome + puppeteerを立ち上げ">
+<meta property="og:url" content="http://morizyun.github.io//blog/docker-compose-chrome-puppeteer-headless/index-23cf35fa41.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="docker-composeで日本語対応のHeadless Chromeを「puppeteer」で操作する手順です。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-10-28T10:51:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dockerで日本語対応のHeadless Chrome + puppeteerを立ち上げ">
+<meta name="twitter:description" content="docker-composeで日本語対応のHeadless Chromeを「puppeteer」で操作する手順です。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Dockerで日本語対応のHeadless Chrome + puppeteerを立ち上げ</h1>
+    
+    <a href="/blog/docker-compose-chrome-puppeteer-headless/" class="article-date"><time datetime="2017-09-10T15:00:00.000Z">2017-09-11</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/docker-compose-chrome-puppeteer-headless/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/docker-compose-chrome-puppeteer-headless/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/docker-compose-chrome-puppeteer-headless/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/docker-compose-chrome-puppeteer-headless/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/479805092X/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=479805092X&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=479805092X&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>docker-composeで日本語対応のHeadless Chromeを「<strong><a href="https://github.com/GoogleChrome/puppeteer" target="_blank" rel="noopener">puppeteer</a></strong>」で操作する手順です。</p>
+<p><img src="/img/puppeteer-chrome-headless-node-library.png"></p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="Dockerfile" class="article-heading">🐠 <a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile<a class="article-anchor" href="#Dockerfile" aria-hidden="true"></a></h2><p>日本語対応のChromeの入った<code>Dockerfile</code>は次のように記述します。</p>
+<figure class="highlight dockerfile"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:latest</span><br><span class="line"></span><br><span class="line"><span class="keyword">MAINTAINER</span> morizyun <@zyunnosuke></@zyunnosuke></span><br><span class="line"></span><br><span class="line"><span class="comment"># For Japan</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i -E <span class="string">"s@http://(archive|security)\.ubuntu\.com/ubuntu/@http://ftp.jaist.ac.jp/pub/Linux/ubuntu/@g"</span> /etc/apt/sources.list</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Basic</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">    && apt-get install -y sudo curl wget zip unzip git nodejs npm fontconfig \</span></span><br><span class="line"><span class="bash">    && apt-get purge -y nodejs npm \</span></span><br><span class="line"><span class="bash">    && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \</span></span><br><span class="line"><span class="bash">    && apt-get install -y nodejs \</span></span><br><span class="line"><span class="bash">    && npm install -g yarn</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Chrome</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \</span></span><br><span class="line"><span class="bash">    && sh -c <span class="string">'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'</span> \</span></span><br><span class="line"><span class="bash">    && apt-get update \</span></span><br><span class="line"><span class="bash">    && apt-get install -y google-chrome-stable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove cache & workfile</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> rm -rf /var/lib/apt/lists/* /var/cache/apt/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Japanese font</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir /noto</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip /noto</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /noto</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> unzip NotoSansCJKjp-hinted.zip && \</span></span><br><span class="line"><span class="bash">    mkdir -p /usr/share/fonts/noto && \</span></span><br><span class="line"><span class="bash">    cp *.otf /usr/share/fonts/noto && \</span></span><br><span class="line"><span class="bash">    chmod 644 -R /usr/share/fonts/noto/ && \</span></span><br><span class="line"><span class="bash">    /usr/bin/<span class="built_in">fc</span>-cache -fv</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> rm -rf /noto</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Work dir</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /app</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . /app/</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="docker-compose-yml" class="article-heading"> 🐹 <a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml<a class="article-anchor" href="#docker-compose-yml" aria-hidden="true"></a></h2><p><code>docker-compose.yml</code>は次のように記述します。</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  app:</span></span><br><span class="line"><span class="attr">    build:</span> <span class="string">.</span></span><br><span class="line"><span class="attr">    working_dir:</span> <span class="string">"/app"</span></span><br><span class="line"><span class="attr">    tty:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    stdin_open:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.:/app</span></span><br><span class="line"><span class="attr">    shm_size:</span> <span class="number">512</span> <span class="comment"># 一時ファイル領域(MB)</span></span><br></pre></td></tr></tbody></table></figure>
+<p>あとは<code>docker-compose build</code>でイメージを作成します。</p>
+<h2 id="puppeteer" class="article-heading">🐯 <a href="#puppeteer" class="headerlink" title="puppeteer"></a>puppeteer<a class="article-anchor" href="#puppeteer" aria-hidden="true"></a></h2><p><code>puppeteer</code>をインストールします。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">yarn init</span><br><span class="line">yarn add puppeteer</span><br></pre></td></tr></tbody></table></figure>
+<p><code>package.json</code>に以下を追加します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: {</span><br><span class="line">  <span class="string">"puppeteer"</span>: <span class="string">"node puppeteer.js"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>ブラウザを操作する<code>puppeteer.js</code>はこちら。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</span><br><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span>() => {</span><br><span class="line">  <span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.launch({<span class="attr">args</span>: [<span class="string">'--no-sandbox'</span>]});</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</span><br><span class="line">  <span class="keyword">await</span> page.setRequestInterceptionEnabled(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> page.goto(<span class="string">'https://google.com'</span>, {<span class="attr">waitUntil</span>: <span class="string">'networkidle'</span>});</span><br><span class="line">  <span class="comment">// Type our query into the search bar</span></span><br><span class="line">  <span class="keyword">await</span> page.type(<span class="string">'puppeteer'</span>);</span><br><span class="line">  <span class="keyword">await</span> page.click(<span class="string">'input[type="submit"]'</span>);</span><br><span class="line">  <span class="comment">// Wait for the results to show up</span></span><br><span class="line">  <span class="keyword">await</span> page.waitForNavigation();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> page.screenshot({<span class="attr">path</span>: <span class="string">`puppeteer_<span class="subst">${(<span class="keyword">new</span> <span class="built_in">Date</span>()).getTime()}</span>.png`</span>});</span><br><span class="line"></span><br><span class="line">  browser.close();</span><br><span class="line">})();</span><br></pre></td></tr></tbody></table></figure>
+<p>作成した結果を試してみます。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># bashを起動</span></span><br><span class="line">docker-compose run --rm --entrypoint /bin/bash app</span><br><span class="line"></span><br><span class="line">yarn run puppeteer</span><br></pre></td></tr></tbody></table></figure>
+<p>これでブラウザの操作結果のスクリーンショットを取得できます。</p>
+<p><img src="/img/2018-08-26-puppeteer-google-search-sample.png"></p>
+<h2 id="Dockerfile-1" class="article-heading">🚕 <a href="#Dockerfile-1" class="headerlink" title="Dockerfile"></a>Dockerfile<a class="article-anchor" href="#Dockerfile-1" aria-hidden="true"></a></h2><p>GitHubとDocker Hubにファイルを公開しました。</p>
+<ul>
+<li><a href="https://github.com/morizyun/headless-chrome-puppeteer-japanese" target="_blank" rel="noopener">https://github.com/morizyun/headless-chrome-puppeteer-japanese</a></li>
+<li><a href="https://hub.docker.com/r/morizyun/headless-chrome-puppeteer-japanese/" target="_blank" rel="noopener">https://hub.docker.com/r/morizyun/headless-chrome-puppeteer-japanese/</a></li>
+</ul>
+<h2 id="補足：puppeteerの使い方" class="article-heading">🏈 <a href="#補足：puppeteerの使い方" class="headerlink" title="補足：puppeteerの使い方"></a>補足：puppeteerの使い方<a class="article-anchor" href="#補足：puppeteerの使い方" aria-hidden="true"></a></h2><h3 id="セレクトタグの選択" class="article-heading"><a href="#セレクトタグの選択" class="headerlink" title="セレクトタグの選択"></a>セレクトタグの選択<a class="article-anchor" href="#セレクトタグの選択" aria-hidden="true"></a></h3><p>フォームの<code>select</code>タグを選択する方法です。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">()</span> =></span> {</span><br><span class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'select option:nth-child(2)'</span>).selected = <span class="literal">true</span>;</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="タイムアウトを長くする" class="article-heading"><a href="#タイムアウトを長くする" class="headerlink" title="タイムアウトを長くする"></a>タイムアウトを長くする<a class="article-anchor" href="#タイムアウトを長くする" aria-hidden="true"></a></h3><p>タイムアウトを長くしたい場合は、<code>page.goto</code>のオプションで<code>timeout</code>を指定すると良さそうです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">await</span> page.goto(<span class="string">'https://example.com/'</span>, { <span class="attr">timeout</span>: <span class="number">3000000</span> });</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="スクリーンサイズの変更" class="article-heading"><a href="#スクリーンサイズの変更" class="headerlink" title="スクリーンサイズの変更"></a>スクリーンサイズの変更<a class="article-anchor" href="#スクリーンサイズの変更" aria-hidden="true"></a></h3><p>スクリーンのサイズは次の設定で指定できます。できるだけメモリ消費を抑えるために小さめで設定した方が良さそうです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">page.setViewport({ <span class="attr">width</span>: <span class="number">320</span>, <span class="attr">height</span>: <span class="number">640</span> });</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Deviceのエミュレート" class="article-heading"><a href="#Deviceのエミュレート" class="headerlink" title="Deviceのエミュレート"></a>Deviceのエミュレート<a class="article-anchor" href="#Deviceのエミュレート" aria-hidden="true"></a></h3><p>スマートフォンやタブレットのブラウザをエミュレートすることも比較的容易です。次のように記述します。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</span><br><span class="line"><span class="keyword">const</span> devices = <span class="built_in">require</span>(<span class="string">'puppeteer/DeviceDescriptors'</span>);</span><br><span class="line"><span class="keyword">const</span> iPhone = devices[<span class="string">'iPhone 6'</span>];</span><br><span class="line"></span><br><span class="line">puppeteer.launch().then(<span class="keyword">async</span> browser => {</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</span><br><span class="line">  <span class="keyword">await</span> page.emulate(iPhone);</span><br><span class="line">  <span class="keyword">await</span> page.goto(<span class="string">'https://www.google.com'</span>);</span><br><span class="line">  <span class="comment">// other actions...</span></span><br><span class="line">  <span class="keyword">await</span> browser.close();</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Page-crash対策" class="article-heading"><a href="#Page-crash対策" class="headerlink" title="Page crash対策"></a>Page crash対策<a class="article-anchor" href="#Page-crash対策" aria-hidden="true"></a></h3><p>Dockerがデフォルトで準備する一時ファイル領域は64MBで、一般的な装飾のサイトではこの容量を超えてしまい、<code>Page crash</code>することがありました。<code>docker run</code>コマンドの場合はオプション<code>--shm-size=256m</code>、<code>docker-compose</code>ファイルの場合は<code>shm_size: 256</code>を指定すると良さそうです。</p>
+<h3 id="Chromeエラーのダンプ" class="article-heading"><a href="#Chromeエラーのダンプ" class="headerlink" title="Chromeエラーのダンプ"></a>Chromeエラーのダンプ<a class="article-anchor" href="#Chromeエラーのダンプ" aria-hidden="true"></a></h3><p>Chromeのアウトプットを標準出力煮出す場合はこちら。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> browser = <span class="keyword">await</span> Puppeteer.launch({ <span class="attr">dumpio</span>: <span class="literal">true</span> });</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading"> 🏀 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://yamitzky.hatenablog.com/entry/2017/08/22/004448" target="_blank" rel="noopener">Puppeteer を CLI で動かす Docker イメージ作った</a></li>
+<li><a href="http://qiita.com/dd511805/items/dfe03c5486bf1421875a" target="_blank" rel="noopener">Dockerを使ってHeadless Chromeを動かしてみる</a></li>
+<li><a href="http://qiita.com/Quramy/items/26058e83e898ec2ec078" target="_blank" rel="noopener">–headless時代の本命？ Chrome を Node.jsから操作するライブラリ puppeteer について</a></li>
+<li><a href="http://bufferings.hatenablog.com/entry/2017/05/03/181713" target="_blank" rel="noopener">Headless ChromeをDockerに入れてGebで遊んでみた</a></li>
+<li><a href="http://qiita.com/daponta/items/1b03c1a18d3c2054aefc" target="_blank" rel="noopener">puppeteerとAVAでE2Eテストしてみる</a></li>
+<li><a href="https://askubuntu.com/questions/594656/how-to-install-the-latest-versions-of-nodejs-and-npm-for-ubuntu-14-04-lts" target="_blank" rel="noopener">How to Install the Latest Versions of NodeJS and NPM for Ubuntu 14.04 LTS</a></li>
+<li><a href="https://github.com/bufferings/sandbox-gebheadlesschrome" target="_blank" rel="noopener">bufferings/sandbox-gebheadlesschrome</a></li>
+<li><a href="https://github.com/alekzonder/docker-puppeteer" target="_blank" rel="noopener">alekzonder/docker-puppeteer</a></li>
+<li><a href="https://hub.docker.com/r/pastelsky/node-chrome-headless/~/dockerfile/" target="_blank" rel="noopener">pastelsky/node-chrome-headless</a></li>
+<li><a href="https://github.com/GoogleChrome/puppeteer/issues/290" target="_blank" rel="noopener">Chrome Headless doesn’t launch on Debian · GoogleChrome/puppeteer</a></li>
+<li><a href="https://github.com/GoogleChrome/puppeteer/issues/782" target="_blank" rel="noopener">Constantly getting Navigation Timeout Error · Issue #782</a></li>
+<li><a href="http://qiita.com/windyakin/items/00b085902547570eebc6" target="_blank" rel="noopener">Docker上のpuppeteerがPage crashしてしまうときはshmサイズを疑う</a></li>
+<li><a href="https://github.com/GoogleChrome/puppeteer/issues/359" target="_blank" rel="noopener">Chrome seems to have a hard limit when taking screenshots of tall pages · Issue #359</a></li>
+<li><a href="http://qiita.com/windyakin/items/00b085902547570eebc6" target="_blank" rel="noopener">Docker上のpuppeteerがPage crashしてしまうときはshmサイズを疑う</a></li>
+<li><a href="https://stackoverflow.com/questions/45864516/how-to-select-an-option-from-dropdown-select" target="_blank" rel="noopener">puppeteer - How to select an option from dropdown select</a></li>
+</ul>
+<h2 id="その他ツール" class="article-heading">🍣 <a href="#その他ツール" class="headerlink" title="その他ツール"></a>その他ツール<a class="article-anchor" href="#その他ツール" aria-hidden="true"></a></h2><ul>
+<li><a href="https://github.com/adieuadieu/serverless-chrome/tree/develop/packages/lambda/chrome" target="_blank" rel="noopener">adieuadieu/serverless-chrome</a></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

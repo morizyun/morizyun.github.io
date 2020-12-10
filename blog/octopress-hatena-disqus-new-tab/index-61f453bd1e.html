@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>5分できる簡単Octopressセッティング | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/octopress-hatena-disqus-new-tab/index-61f453bd1e.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Octpressは基本機能がツボを抑えているので、有効に活用すればほとんどカスタマイズの必要がありません。そこで、その基本機能を5分で動くようにしようというのが今回のネタです。">
+<meta name="keywords" content="Octopress">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5分できる簡単Octopressセッティング">
+<meta property="og:url" content="http://morizyun.github.io//blog/octopress-hatena-disqus-new-tab/index-61f453bd1e.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Octpressは基本機能がツボを抑えているので、有効に活用すればほとんどカスタマイズの必要がありません。そこで、その基本機能を5分で動くようにしようというのが今回のネタです。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5分できる簡単Octopressセッティング">
+<meta name="twitter:description" content="Octpressは基本機能がツボを抑えているので、有効に活用すればほとんどカスタマイズの必要がありません。そこで、その基本機能を5分で動くようにしようというのが今回のネタです。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">5分できる簡単Octopressセッティング</h1>
+    
+    <a href="/blog/octopress-hatena-disqus-new-tab/" class="article-date"><time datetime="2012-11-14T15:00:00.000Z">2012-11-15</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/octopress-hatena-disqus-new-tab/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/octopress-hatena-disqus-new-tab/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/octopress-hatena-disqus-new-tab/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/octopress-hatena-disqus-new-tab/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p><a href="/blog/octopress-hatena-disqus-new-tab"></a></p>
+<p>Octpressは基本機能がツボを抑えているので、有効に活用すればほとんどカスタマイズの必要がありません。そこで、その基本機能を5分で動くようにしようというのが今回のネタです。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="目次" class="article-heading">🚕 <a href="#目次" class="headerlink" title="目次"></a>目次<a class="article-anchor" href="#目次" aria-hidden="true"></a></h2><pre>(1) Google analyticsの設定
+(2) ブログのコメントサービスDisqusの設定
+(3) 記事の下にはてなブックマークボタンを設置
+(4) linkを新規タブ(ウインドウ)で開くようにする
+(5) サイドバーにTwitterのプロフィールを表示
+(6) トップページに「続きを読む」を表示(一部だけ表示する)
+</pre>
+
+<p>(7) <a href="/blog/octopress-table-tag-css">Octopressでテーブルをmarkdownで編集できるようにする</a>も別記事で書きました！</p>
+<h2 id="1-Google-analyticsの設定" class="article-heading"> 🍄 <a href="#1-Google-analyticsの設定" class="headerlink" title="(1) Google analyticsの設定"></a>(1) Google analyticsの設定<a class="article-anchor" href="#1-Google-analyticsの設定" aria-hidden="true"></a></h2><p>まずは、<a href="http://www.google.co.jp/intl/ja/analytics/" target="_blank" rel="noopener">Google analytics</a>の設定です。<br>Google analyticsはブログのアクセス状況を解析するWebツールです。</p>
+<p><a href="http://www.google.co.jp/intl/ja/analytics/" title="google_analytics_2012-11-24 by morizyun," target="_blank" rel="noopener"></a></p>
+<p>Google analyticsでサイトを登録すると「UA-xxxxxx-x」といったトラッキングIDをもらえます。それをOctpressの_config.ymlに設定します。</p>
+<p>するとあとは、source/_includes/google_analystics.htmlによってgoogle analysticsのトラッキングID付きのHTMLが生成されるようです。</p>
+<h2 id="2-ブログのコメントサービスDisqusの設定" class="article-heading">😼 <a href="#2-ブログのコメントサービスDisqusの設定" class="headerlink" title="(2) ブログのコメントサービスDisqusの設定"></a>(2) ブログのコメントサービスDisqusの設定<a class="article-anchor" href="#2-ブログのコメントサービスDisqusの設定" aria-hidden="true"></a></h2><p><a href="http://disqus.com/" target="_blank" rel="noopener">Disqus</a>はブログパーツでコメント欄を提供してくれるサービスです。この機能を使うとOctpressでもコメントを記入できます。</p>
+<p><a href="http://disqus.com/" title="discus_screen_shot_2012-11-24 by morizyun," target="_blank" rel="noopener"></a></p>
+<p>Disqusでユーザー登録をする際に、ユーザーID(ここではxxxxxx)を設定できます。それを_config.ymlに設定します。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Disqus Comments</span></span><br><span class="line"><span class="symbol">disqus_short_name:</span> xxxxxx</span><br><span class="line"><span class="symbol">disqus_show_comment_count:</span> <span class="literal">false</span></span><br></pre></td></tr></tbody></table></figure>
+<p>すると、google analysticsと同じようにsource/_include/disqus.htmlによってdisqus用のコードを生成してくれます。</p>
+<h2 id="3-記事の下にはてなブックマークボタンを設置" class="article-heading">😀 <a href="#3-記事の下にはてなブックマークボタンを設置" class="headerlink" title="(3) 記事の下にはてなブックマークボタンを設置"></a>(3) 記事の下にはてなブックマークボタンを設置<a class="article-anchor" href="#3-記事の下にはてなブックマークボタンを設置" aria-hidden="true"></a></h2><p>Octpressの記事の最後にはてなブックマークのボタンを設置する方法です。<br>source/_includes/post/sharing.htmlを以下の様に修正します。<br><br>はてなのみ必要な方は、hatebu-start から hatebu-endまでをコピペして下さい。<br><br>(バックスラッシュは取り除いて下さい。)</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">div</span> <span class="attr">class</span>=<span class="string">"social_box"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"social"</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">li</span> <span class="attr">class</span>=<span class="string">"hatena"</span>></span></span><br><span class="line">          <span class="comment"><!-- hatebu-start --></span></span><br><span class="line">          \{\% if index \%\}</span><br><span class="line">          <span class="tag"><<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://b.hatena.ne.jp/entry/\{\{ site.url \}\}\{\{ post.url \}\}"</span> <span class="attr">class</span>=<span class="string">"hatena-bookmark-button"</span> <span class="attr">data-hatena-bookmark-layout</span>=<span class="string">"standard"</span> <span class="attr">title</span>=<span class="string">"このエントリーをはてなブックマークに追加"</span>></span><span class="tag"><<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://b.st-hatena.com/images/entry-button/button-only.gif"</span> <span class="attr">alt</span>=<span class="string">"このエントリーをはてなブックマークに追加"</span> <span class="attr">width</span>=<span class="string">"20"</span> <span class="attr">height</span>=<span class="string">"20"</span> <span class="attr">style</span>=<span class="string">"border: none;"</span> /></span><span class="tag">a</span>></span><span class="tag"><<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://b.st-hatena.com/js/bookmark_button.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> <span class="attr">async</span>=<span class="string">"async"</span>></span><span class="undefined"></span><span class="tag">script</span>><br><span class="line">          \{\% else \%\}</span><br><span class="line">          <span class="tag"><<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://b.hatena.ne.jp/entry/\{\{ site.url \}\}\{\{ page.url \}\}"</span> <span class="attr">class</span>=<span class="string">"hatena-bookmark-button"</span> <span class="attr">data-hatena-bookmark-layout</span>=<span class="string">"standard"</span> <span class="attr">title</span>=<span class="string">"このエントリーをはてなブックマークに追加"</span>></span><span class="tag"><<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://b.st-hatena.com/images/entry-button/button-only.gif"</span> <span class="attr">alt</span>=<span class="string">"このエントリーをはてなブックマークに追加"</span> <span class="attr">width</span>=<span class="string">"20"</span> <span class="attr">height</span>=<span class="string">"20"</span> <span class="attr">style</span>=<span class="string">"border: none;"</span> /></span><span class="tag">a</span>></span><span class="tag"><<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://b.st-hatena.com/js/bookmark_button.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> <span class="attr">async</span>=<span class="string">"async"</span>></span><span class="undefined"></span><span class="tag">script</span>><br><span class="line">          \{\% endif \%\}</span><br><span class="line">          <span class="comment"><!-- hatebu-end --></span></span><br><span class="line">        <span class="tag">li</span>></span><br><span class="line">        <span class="tag"><<span class="name">li</span> <span class="attr">class</span>=<span class="string">"twitter"</span>></span></span><br><span class="line">            \{\% if site.twitter_tweet_button \%\}</span><br><span class="line">                \{\% if index \%\}</span><br><span class="line">                <span class="tag"><<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://twitter.com/share"</span> <span class="attr">class</span>=<span class="string">"twitter-share-button"</span> <span class="attr">data-url</span>=<span class="string">"\{\{ site.url \}\}\{\{ post.url \}\}"</span> <span class="attr">data-via</span>=<span class="string">"\{\{ site.twitter_user \}\}"</span> <span class="attr">data-counturl</span>=<span class="string">"\{\{ site.url \}\}\{\{ post.url \}\}"</span> ></span>Tweet<span class="tag">a</span>></span><br><span class="line">                \{\% else \%\}</span><br><span class="line">                <span class="tag"><<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://twitter.com/share"</span> <span class="attr">class</span>=<span class="string">"twitter-share-button"</span> <span class="attr">data-url</span>=<span class="string">"\{\{ site.url \}\}\{\{ page.url \}\}"</span> <span class="attr">data-via</span>=<span class="string">"\{\{ site.twitter_user \}\}"</span> <span class="attr">data-counturl</span>=<span class="string">"\{\{ site.url \}\}\{\{ page.url \}\}"</span> ></span>Tweet<span class="tag">a</span>></span><br><span class="line">                \{\% endif \%\}</span><br><span class="line">            \{\% endif \%\}</span><br><span class="line">        <span class="tag">li</span>></span><br><span class="line">        <span class="tag"><<span class="name">li</span> <span class="attr">class</span>=<span class="string">"facebook"</span>></span></span><br><span class="line">            \{\% if index \%\}</span><br><span class="line">            <span class="tag"><<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fb-like"</span> <span class="attr">data-send</span>=<span class="string">"false"</span> <span class="attr">data-layout</span>=<span class="string">"button_count"</span> <span class="attr">data-show-faces</span>=<span class="string">"false"</span> <span class="attr">data-font</span>=<span class="string">"verdana"</span> <span class="attr">data-href</span>=<span class="string">"\{\{ site.url \}\}\{\{ post.url \}\}"</span>></span><span class="tag">div</span>></span><br><span class="line">            \{\% else \%\}</span><br><span class="line">            <span class="tag"><<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fb-like"</span> <span class="attr">data-send</span>=<span class="string">"false"</span> <span class="attr">data-layout</span>=<span class="string">"button_count"</span> <span class="attr">data-show-faces</span>=<span class="string">"false"</span> <span class="attr">data-font</span>=<span class="string">"verdana"</span> <span class="attr">data-href</span>=<span class="string">"\{\{ site.url \}\}\{\{ page.url \}\}"</span>></span><span class="tag">div</span>></span><br><span class="line">            \{\% endif \%\}</span><br><span class="line">        <span class="tag">li</span>></span><br><span class="line">    <span class="tag">ul</span>></span><br><span class="line"><span class="tag">div</span>></span><br></pre></td></tr></tbody></table></figure>
+<p>このコードを追加すると下の画像のようにはていなブックマークのボタンが追加されます。</p>
+<h2 id="4-linkを新規タブ-ウィンドウ-で開くようにする" class="article-heading">🍣 <a href="#4-linkを新規タブ-ウィンドウ-で開くようにする" class="headerlink" title="(4) linkを新規タブ(ウィンドウ)で開くようにする"></a>(4) linkを新規タブ(ウィンドウ)で開くようにする<a class="article-anchor" href="#4-linkを新規タブ-ウィンドウ-で開くようにする" aria-hidden="true"></a></h2><p>OctpressのMarkdownでリンクを作成した場合、外部のサイトへのリンクの場合のみ、target=”blank”が自動でセットされるようにします。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><script language="<span" class="string">"javaScript"</span>></span><br><span class="line">$(document).ready( function () {</span><br><span class="line">   $(<span class="string">"a[href^='http']:not([href*='"</span> + location.hostname + <span class="string">"'])"</span>).attr(<span class="string">'target'</span>, <span class="string">'_blank'</span>);</span><br><span class="line">})</span><br><span class="line"><<span class="regexp">/script></span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="5-サイドバーにTwitterのプロフィールを表示" class="article-heading"> 🐹 <a href="#5-サイドバーにTwitterのプロフィールを表示" class="headerlink" title="(5) サイドバーにTwitterのプロフィールを表示"></a>(5) サイドバーにTwitterのプロフィールを表示<a class="article-anchor" href="#5-サイドバーにTwitterのプロフィールを表示" aria-hidden="true"></a></h2><p>Octpressのサイドバーに<a href="https://github.com/dharFr/octo-about-me-from-twitter#octo-about-me-from-twitter" target="_blank" rel="noopener">Twitterプロフィールを表示するプラグイン octo-about-me-from-twitter</a>を導入します。</p>
+<p>GitHubからプラグインをCloneするため、コンソールで次のコマンドを実行。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">cd source/_includes/custom/asides</span><br><span class="line">Git clone <span class="symbol">Git:</span>/<span class="regexp">/github.com/dhar</span>Fr/octo-about-me-from-Twitter.Git .</span><br></pre></td></tr></tbody></table></figure>
+<pre>_includes/custom
+ |_ custom
+    |_ asides
+       |_ aboutmetwitter.html
+</pre>
+
+<p>となっていることを確認。”.git”や”README.md”は不要なので削除</p>
+<p>_config.ymlファイルを編集して、サイドバーにTwitterプロフィールが<br>表示されるように”default_asides”に”custom/asides/aboutmetwitter.html”を追加。<br>ちなみに、”default_asides”の並び順でサイドバーが表示されます。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="symbol">default_asides:</span> [xxxx, ..... , aboutmetwitter.html]</span><br></pre></td></tr></tbody></table></figure>
+<p>設定画成功すると下のように表示されます。</p>
+<h2 id="6-トップページに「続きを読む」を表示-一部だけ表示する" class="article-heading">🏈 <a href="#6-トップページに「続きを読む」を表示-一部だけ表示する" class="headerlink" title="(6) トップページに「続きを読む」を表示(一部だけ表示する)"></a>(6) トップページに「続きを読む」を表示(一部だけ表示する)<a class="article-anchor" href="#6-トップページに「続きを読む」を表示-一部だけ表示する" aria-hidden="true"></a></h2><p>トップページに記事のすべての内容を表示すると、記事の一覧を俯瞰しづらくなりますよね。<br>ということで「続きをよむ」ボタンを追加する方法です。</p>
+<p>具体的には記事のファイルに以下を追加します。</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"># 上の内容までがトップページに表示 #</span><br><span class="line"><span class="comment"><!-- more --></span></span><br><span class="line"># 下の内容が個別の記事のページに表示 #</span><br></pre></td></tr></tbody></table></figure>
+<p>また、「続きを読む」はデフォルトでは、「Read on->」とかになっていると思います。<br>それを変更する場合は、”_config.yml”の”excerpt_link”を変更します。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="symbol">excerpt_link:</span> <span class="string">"続きを読む"</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="7-テーブルをmarkdownで編集できるようにする" class="article-heading">🐞 <a href="#7-テーブルをmarkdownで編集できるようにする" class="headerlink" title="(7) テーブルをmarkdownで編集できるようにする"></a>(7) テーブルをmarkdownで編集できるようにする<a class="article-anchor" href="#7-テーブルをmarkdownで編集できるようにする" aria-hidden="true"></a></h2><p><a href="/blog/octopress-table-tag-css">Octopressでテーブルをmarkdownで編集できるようにする</a>を書きました。markdownでテーブルを編集できるようになれば、記事の幅がもっと広がりますよ！</p>
+<h2 id="変更来歴" class="article-heading">🐝 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><ul>
+<li><p>11/25 (5)サイドバーにTwitterのプロフィールを表示と(6)トップページに「続きを読む」を表示(一部だけ表示する)を追加</p>
+</li>
+<li><p>11/30 (3) 記事の下にはてなブックマークボタンを設置のコードがトップページでも表示されるようにコードを修正 </p>
+</li>
+<li><p>12/02 (7) テーブルをmarkdownで編集できるようにするを追加</p>
+</li>
+</ul>
+<h2 id="Special-Thanks" class="article-heading"> 🎳 <a href="#Special-Thanks" class="headerlink" title="Special Thanks"></a>Special Thanks<a class="article-anchor" href="#Special-Thanks" aria-hidden="true"></a></h2><ul>
+<li><p><a href="http://qiita.com/items/70576232d9d317183683" target="_blank" rel="noopener">OctopressでDisqusを表示させよう！ Qiita</a></p>
+</li>
+<li><p><a href="http://qiita.com/items/329cb613350e25b1714b" target="_blank" rel="noopener">Octopressの記事にはてなブックマークのボタンを設置してみよう！ Qiita</a></p>
+</li>
+<li><p><a href="http://qiita.com/items/c28450381e3e3f0015f4" target="_blank" rel="noopener">リンク先を別ウィンドウで開く Qiita</a></p>
+</li>
+<li><p><a href="http://qiita.com/items/8dc13d076ad46ec05334" target="_blank" rel="noopener">Octopressでトップページに一部の記事内容のみ載せてみよう！ Qiita</a></p>
+</li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</span></pre></td></tr></tbody></table></figure></body></html></div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

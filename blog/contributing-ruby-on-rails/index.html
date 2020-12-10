@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Railsへのコントリビューションについて調べてみた | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/contributing-ruby-on-rails/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Railsへのコントリビューションに関する次のドキュメントを読んでみました。  (英語) Contributing to Ruby on Rails — Ruby on Rails Guides (日本語) Ruby on Rails に貢献する方法 | Rails ガイド  この中で特に参考になった部分を中心に書いていきます。">
+<meta name="keywords" content="rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Railsへのコントリビューションについて調べてみた">
+<meta property="og:url" content="http://morizyun.github.io/blog/contributing-ruby-on-rails/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Railsへのコントリビューションに関する次のドキュメントを読んでみました。  (英語) Contributing to Ruby on Rails — Ruby on Rails Guides (日本語) Ruby on Rails に貢献する方法 | Rails ガイド  この中で特に参考になった部分を中心に書いていきます。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Railsへのコントリビューションについて調べてみた">
+<meta name="twitter:description" content="Railsへのコントリビューションに関する次のドキュメントを読んでみました。  (英語) Contributing to Ruby on Rails — Ruby on Rails Guides (日本語) Ruby on Rails に貢献する方法 | Rails ガイド  この中で特に参考になった部分を中心に書いていきます。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Railsへのコントリビューションについて調べてみた</h1>
+    
+    <a href="/blog/contributing-ruby-on-rails/" class="article-date"><time datetime="2016-01-29T15:00:00.000Z">2016-01-30</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/contributing-ruby-on-rails/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/contributing-ruby-on-rails/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/contributing-ruby-on-rails/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/contributing-ruby-on-rails/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873117437&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>Railsへのコントリビューションに関する次のドキュメントを読んでみました。</p>
+<ul>
+<li>(英語) <strong><a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html" target="_blank" rel="noopener">Contributing to Ruby on Rails — Ruby on Rails Guides</a></strong></li>
+<li>(日本語) <strong><a href="http://railsguides.jp/contributing_to_ruby_on_rails.html" target="_blank" rel="noopener">Ruby on Rails に貢献する方法 | Rails ガイド</a></strong></li>
+</ul>
+<p>この中で特に参考になった部分を中心に書いていきます。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="コントリビューションの基礎" class="article-heading">😼 <a href="#コントリビューションの基礎" class="headerlink" title="コントリビューションの基礎"></a>コントリビューションの基礎<a class="article-anchor" href="#コントリビューションの基礎" aria-hidden="true"></a></h2><ul>
+<li>Ruby on Railsのバグを見付け足ら「<strong><a href="https://github.com/rails/rails/issues" target="_blank" rel="noopener">Issues · rails/rails - GitHub</a></strong>」で既存のものがないか探して、な、ればPOST</li>
+<li>最新版(edge)はバグがある可能性があるし、バグが有った場合に取り込まれやすいのでコントリビュートのチャンスが多い。コントリビュートのチャンスが多い</li>
+</ul>
+<h2 id="セキュリティの問題が見つかった場合" class="article-heading"> 🎂 <a href="#セキュリティの問題が見つかった場合" class="headerlink" title="セキュリティの問題が見つかった場合"></a>セキュリティの問題が見つかった場合<a class="article-anchor" href="#セキュリティの問題が見つかった場合" aria-hidden="true"></a></h2><ul>
+<li>GitHub ISSUEにあげてはダメ(悪用される可能性があるから)</li>
+<li>「<strong><a href="http://rubyonrails.org/security/" target="_blank" rel="noopener">Ruby on Rails: Security policy</a></strong>」あたりにセキュリティのISSUEの立て方が書かれています。</li>
+</ul>
+<h2 id="バグなどのISSUE" class="article-heading">😀 <a href="#バグなどのISSUE" class="headerlink" title="バグなどのISSUE"></a>バグなどのISSUE<a class="article-anchor" href="#バグなどのISSUE" aria-hidden="true"></a></h2><ul>
+<li>ISSUEには再現可能なサンプルコードをつけよう</li>
+<li>実行可能なテストケースをちゃんと作ろう。テストケースのテンプレートを活用しよう => <strong><a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#create-an-executable-test-case" target="_blank" rel="noopener">1.2 Create an Executable Test Case - Ruby on Rails Guide Contributing to Ruby on Railss</a></strong></li>
+<li>テストケースは、gistなどに貼って使おう</li>
+<li>バグの調査に役立つ情報があれば、ISSUEに書き込もう</li>
+<li>failするテストはコントリビュートのチャンスだ</li>
+</ul>
+<h3 id="テストバッチ" class="article-heading"><a href="#テストバッチ" class="headerlink" title="テストバッチ"></a>テストバッチ<a class="article-anchor" href="#テストバッチ" aria-hidden="true"></a></h3><ul>
+<li>forkしてテストパッチを作ろう<ul>
+<li>変更が確実に動作しているかを確認しよう</li>
+<li>テストによってより良くなっているか？ 変更点のテストがきちんと存在しているか？</li>
+<li>ドキュメントが適切にアップデートされているか？</li>
+<li>変更点はコードとして適切で、高速に動作するか？ </li>
+</ul>
+</li>
+</ul>
+<h2 id="Gistのテンプレート" class="article-heading"> 🐰 <a href="#Gistのテンプレート" class="headerlink" title="Gistのテンプレート"></a>Gistのテンプレート<a class="article-anchor" href="#Gistのテンプレート" aria-hidden="true"></a></h2><p><code>ActiveRecord</code> や <code>ActionController</code> のgistテンプレートのです。バグをレポートするときに使います。</p>
+<ul>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/active_record_gem.rb" target="_blank" rel="noopener">Active Record template for gems</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/action_controller_gem.rb" target="_blank" rel="noopener">Action Controller template for gems</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/active_record_master.rb" target="_blank" rel="noopener">Active Record template for master</a></strong></li>
+<li><strong><a href="https://github.com/rails/rails/blob/master/guides/bug_report_templates/action_controller_master.rb" target="_blank" rel="noopener">Action Controller template for master</a></strong></li>
+</ul>
+<h2 id="機能追加のリクエストについて" class="article-heading">🐡 <a href="#機能追加のリクエストについて" class="headerlink" title="機能追加のリクエストについて"></a>機能追加のリクエストについて<a class="article-anchor" href="#機能追加のリクエストについて" aria-hidden="true"></a></h2><ul>
+<li>必ず動作するパッチを作ってGitHubにISSUEを作ろう(動作するパッチがない場合はinvalidになる)</li>
+<li>機能追加はほかの機能に影響を与える可能性があるのでコアチームによって判断される</li>
+<li>アイデアを相談したいときは「<strong><a href="https://groups.google.com/forum/?fromgroups#!forum/rubyonrails-core" target="_blank" rel="noopener">rails-core mailing list</a></strong>」に投げてみよう</li>
+</ul>
+<h3 id="健全性のチェック" class="article-heading"><a href="#健全性のチェック" class="headerlink" title="健全性のチェック"></a>健全性のチェック<a class="article-anchor" href="#健全性のチェック" aria-hidden="true"></a></h3><p>もしRails開発者の知り合いがいるなら、あらかじめ修正したコードをみせることで、<br>適切なコードか否かをちゃんとチェックしよう。</p>
+<h3 id="Feedbackを受けよう" class="article-heading"><a href="#Feedbackを受けよう" class="headerlink" title="Feedbackを受けよう"></a>Feedbackを受けよう<a class="article-anchor" href="#Feedbackを受けよう" aria-hidden="true"></a></h3><p>Merge Requestを出したら、いくつかのフィードバックや意見が来るので対応しよう。<br>マイナーチェンジは悪いことじゃないのでポジティブに意見を受け入れよう。<br>あまりにもMerge Requestに反応がないようなら、メーリングリストにPostしてみよう。</p>
+<h2 id="コードを書くときの注意点" class="article-heading"> 🍄 <a href="#コードを書くときの注意点" class="headerlink" title="コードを書くときの注意点"></a>コードを書くときの注意点<a class="article-anchor" href="#コードを書くときの注意点" aria-hidden="true"></a></h2><p>バグフィックスや機能追加でコードを書く際には次の点に注意しよう。</p>
+<pre>- 正しいコードを書こう
+- Railsのイデオム/Helperを適切に書こう
+- テストが通過しない場合は、テストが通過するように修正しよう
+- 変更点に関するドキュメントもアップデートをお忘れなく
+</pre>
+
+<h2 id="Railsのcoding-style" class="article-heading">🍣 <a href="#Railsのcoding-style" class="headerlink" title="Railsのcoding style"></a>Railsのcoding style<a class="article-anchor" href="#Railsのcoding-style" aria-hidden="true"></a></h2><pre>- 2スペースを使う。タブは使わない
+- 不要なスペースをつけないようにしよう
+- private/protectedの後はindentをつけよう
+- 1.9以降のhashシンタックス { a: b } を使おう
+- `&&` や `||` を使おう
+- `class << self` を使おう
+- `MyClass.my_method(my_arg)` が望ましい
+- `a = b` としよう
+- `assert_not` を使おう
+- `{ do_stuff }` としよう
+</pre>
+
+<h2 id="パフォーマンスに影響する変更" class="article-heading">🚕 <a href="#パフォーマンスに影響する変更" class="headerlink" title="パフォーマンスに影響する変更"></a>パフォーマンスに影響する変更<a class="article-anchor" href="#パフォーマンスに影響する変更" aria-hidden="true"></a></h2><ul>
+<li>gem「<strong><a href="https://github.com/evanphx/benchmark-ips" target="_blank" rel="noopener">benchmark-ips</a></strong> 等を利用してベンチマークを取ること。</li>
+</ul>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'benchmark/ips'</span></span><br><span class="line"> </span><br><span class="line">Benchmark.ips <span class="keyword">do</span> <span class="params">|x|</span></span><br><span class="line">  x.report(<span class="string">'addition'</span>) { <span class="number">1</span> + <span class="number">2</span> }</span><br><span class="line">  x.report(<span class="string">'addition with send'</span>) { <span class="number">1</span>.send(<span class="symbol">:+</span>, <span class="number">2</span>) }</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Calculating -------------------------------------</span><br><span class="line">            addition   <span class="number">132.013</span>k i/<span class="number">100</span>ms</span><br><span class="line">  addition with send   <span class="number">125.413</span>k i/<span class="number">100</span>ms</span><br><span class="line">-------------------------------------------------</span><br><span class="line">            addition      <span class="number">9.677</span>M (± <span class="number">1.7</span>%) i/s -     <span class="number">48.449</span>M</span><br><span class="line">  addition with send      <span class="number">6.794</span>M (± <span class="number">1.1</span>%) i/s -     <span class="number">33.987</span>M</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="テストの実行" class="article-heading">🏈 <a href="#テストの実行" class="headerlink" title="テストの実行"></a>テストの実行<a class="article-anchor" href="#テストの実行" aria-hidden="true"></a></h2><p>テストの実行方法は次のとおり。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># Rails 全体のテスト</span><br><span class="line">$ cd rails</span><br><span class="line">$ bundle exec rake test</span><br><span class="line"></span><br><span class="line"># ActionMailerに関するテスト</span><br><span class="line">$ cd actionmailer</span><br><span class="line">$ bundle exec rake test</span><br><span class="line"></span><br><span class="line"># ActiveRecordに関するテスト DBの種類ごとのテストも可能</span><br><span class="line">$ cd activerecord</span><br><span class="line">$ bundle exec rake test:sqlite3</span><br><span class="line">$ bundle exec rake test:mysql2</span><br><span class="line">$ bundle exec rake test:postgresql</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ドキュメント" class="article-heading">🐞 <a href="#ドキュメント" class="headerlink" title="ドキュメント"></a>ドキュメント<a class="article-anchor" href="#ドキュメント" aria-hidden="true"></a></h2><p>Railsには次の2つのドキュメントがある;</p>
+<pre>Ruby on Rails Guides - help you learn about Ruby on Rails,
+APIドキュメント - serves as a reference.
+</pre>
+
+<p>また、それぞれにガイドラインがあるので読んでみよう。</p>
+<ul>
+<li><strong><a href="http://guides.rubyonrails.org/api_documentation_guidelines.html" target="_blank" rel="noopener">API Documentation Guidelines — Ruby on Rails Guides</a></strong></li>
+<li><strong><a href="http://guides.rubyonrails.org/ruby_on_rails_guides_guidelines.html" target="_blank" rel="noopener">Ruby on Rails Guides Guidelines — Ruby on Rails Guides</a></strong></li>
+</ul>
+<p>それから、ドキュメントの変更だけの場合はCIを動かす必要はない。 <code>[ci skip]</code> をつけよう。</p>
+<h2 id="CHANGELOGをちゃんと更新しよう" class="article-heading">🚌 <a href="#CHANGELOGをちゃんと更新しよう" class="headerlink" title="CHANGELOGをちゃんと更新しよう"></a>CHANGELOGをちゃんと更新しよう<a class="article-anchor" href="#CHANGELOGをちゃんと更新しよう" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">*   Summary of a change that briefly describes what was changed. You can use multiple</span><br><span class="line">    lines and wrap them at around 80 characters. Code examples are ok, too, if needed:</span><br><span class="line"> </span><br><span class="line">        class Foo</span><br><span class="line">          def bar</span><br><span class="line">            puts 'baz'</span><br><span class="line">          end</span><br><span class="line">        end</span><br><span class="line"> </span><br><span class="line">    You can continue after the code example and you can attach issue number. GH#1234</span><br><span class="line"> </span><br><span class="line">    *Your Name*</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="コミットメッセージ" class="article-heading">🗽 <a href="#コミットメッセージ" class="headerlink" title="コミットメッセージ"></a>コミットメッセージ<a class="article-anchor" href="#コミットメッセージ" aria-hidden="true"></a></h2><p>コミットは1つにsquashしておこう。そして、コミットメッセージも簡単なサマリーをちゃんと書こう。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">Short summary (ideally 50 characters or less)</span><br><span class="line"> </span><br><span class="line">More detailed description, if necessary. It should be wrapped to</span><br><span class="line">72 characters. Try to be as descriptive as you can. Even if you</span><br><span class="line">think that the commit content is obvious, it may not be obvious</span><br><span class="line">to others. Add any description that is already present in the</span><br><span class="line">relevant issues; it should not be necessary to visit a webpage</span><br><span class="line">to check the history.</span><br><span class="line"> </span><br><span class="line">The description section can have multiple paragraphs.</span><br><span class="line"> </span><br><span class="line">Code examples can be embedded by indenting them with 4 spaces:</span><br><span class="line"> </span><br><span class="line">    class ArticlesController</span><br><span class="line">      def index</span><br><span class="line">        render json: Article.limit(10)</span><br><span class="line">      end</span><br><span class="line">    end</span><br><span class="line"> </span><br><span class="line">You can also add bullet points:</span><br><span class="line"> </span><br><span class="line">- make a bullet point by starting a line with either a dash (-)</span><br><span class="line">  or an asterisk (*)</span><br><span class="line"> </span><br><span class="line">- wrap lines at 72 characters, and indent any additional lines</span><br><span class="line">  with 2 spaces for readability</span><br></pre></td></tr></tbody></table></figure>
+<p>あと、ちゃんとリベースしておこう。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git pull --rebase</span><br><span class="line"></span><br><span class="line">$ git checkout my_new_branch</span><br><span class="line">$ git rebase master</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Forkしよう" class="article-heading"> 🐹 <a href="#Forkしよう" class="headerlink" title="Forkしよう"></a>Forkしよう<a class="article-anchor" href="#Forkしよう" aria-hidden="true"></a></h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 自分のリポジトリをForkして作ろう</span><br><span class="line">$ git remote add mine git@github.com:<your user name>/rails.git</your></span><br><span class="line"># 自分のリポジトリへのpush</span><br><span class="line">$ git push mine my_new_branch</span><br><span class="line"></span><br><span class="line"># rails 本家のブランチをremoteに追加</span><br><span class="line">$ git remote add rails git://github.com/rails/rails.git</span><br><span class="line"></span><br><span class="line"># rails 本家をfetch</span><br><span class="line">$ git fetch rails</span><br><span class="line"></span><br><span class="line"># rails/masterでリベースしよう</span><br><span class="line">$ git checkout master</span><br><span class="line">$ git rebase rails/master</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="バックポーティング-BackPorting" class="article-heading"> 🤔 <a href="#バックポーティング-BackPorting" class="headerlink" title="バックポーティング(BackPorting)"></a>バックポーティング(BackPorting)<a class="article-anchor" href="#バックポーティング-BackPorting" aria-hidden="true"></a></h2><p>次のメジャーリリースまでにHEADの変更を取り込みたい場合は、patchを作って自分のブランチに適用しよう。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># master と HEAD(現在のブランチ)とのdiffを取る</span></span><br><span class="line">$ git log master..HEAD</span><br><span class="line"></span><br><span class="line"><span class="comment"># patchを作ろう</span></span><br><span class="line">$ git format-patch master --stdout > ~<span class="regexp">/my_changes.patch</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"># 自分のブランチにpatchを適用仕様</span></span><br><span class="line"><span class="regexp">$ git checkout -b my_backport_branch 3-2-stable</span></span><br><span class="line"><span class="regexp">$ git apply ~/my</span>_changes.patch</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="開発環境の構築" class="article-heading">🐠 <a href="#開発環境の構築" class="headerlink" title="開発環境の構築"></a>開発環境の構築<a class="article-anchor" href="#開発環境の構築" aria-hidden="true"></a></h2><ul>
+<li>VirtualBoxを使って簡単に構築したい場合 => <strong><a href="https://github.com/rails/rails-dev-box" target="_blank" rel="noopener">rails/rails-dev-box: A virtual machine for Ruby on Rails core development - GitHub</a></strong></li>
+<li>ローカルに構築したい場合 => <strong><a href="http://guides.rubyonrails.org/development_dependencies_install.html" target="_blank" rel="noopener">Development Dependencies Install — Ruby on Rails Guides</a></strong></li>
+</ul>
+<h2 id="テスト用のアプリケーションを作る" class="article-heading">🗻 <a href="#テスト用のアプリケーションを作る" class="headerlink" title="テスト用のアプリケーションを作る"></a>テスト用のアプリケーションを作る<a class="article-anchor" href="#テスト用のアプリケーションを作る" aria-hidden="true"></a></h2><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">$ cd rails</span><br><span class="line">$ bundle exec rails new ~<span class="regexp">/my-test-app --dev</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="コントリビューターの一覧" class="article-heading">🐯 <a href="#コントリビューターの一覧" class="headerlink" title="コントリビューターの一覧"></a>コントリビューターの一覧<a class="article-anchor" href="#コントリビューターの一覧" aria-hidden="true"></a></h2><p><strong><a href="http://contributors.rubyonrails.org/" target="_blank" rel="noopener">Rails Contributors</a></strong></p>
+<h2 id="あとがき" class="article-heading"> 🚜 <a href="#あとがき" class="headerlink" title="あとがき"></a>あとがき<a class="article-anchor" href="#あとがき" aria-hidden="true"></a></h2><p>英語のドキュメントを読みながら書いたので間違っている部分も多々あると思います。もしお気付きの点等あれば <strong><a href="https://twitter.com/zyunnosuke" target="_blank" rel="noopener">@zyunnosuke</a></strong> まで</p>
+<h2 id="参考リンク" class="article-heading"> 🎃 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20130314/463563/?ST=oss&P=1" target="_blank" rel="noopener">20歳になったRubyを支える人々 - ［Ruby／Railsコミッタ 松田明氏］海外コミュニティとの橋渡しに</a></li>
+<li><a href="http://magazine.rubyist.net/?0037-Hotlinks" target="_blank" rel="noopener">Rubyist Magazine - Rubyist Hotlinks 【第 29 回】 松田明さん</a></li>
+<li><a href="http://thinking-megane.blogspot.jp/2012/09/git-pull-rebase.html" target="_blank" rel="noopener">Thinking megane: git pull 時の rebase オプションのススメ</a></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

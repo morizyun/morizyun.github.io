@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>JavaScriptのArray(配列)について | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/javascript-basic-array-methods/index-5ab139e9be.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="JavaScriptの配列(Array)の基本的なメソッドを知らずに詰まることがあったので、よく使うものを整理してみました！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScriptのArray(配列)について">
+<meta property="og:url" content="http://morizyun.github.io//blog/javascript-basic-array-methods/index-5ab139e9be.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="JavaScriptの配列(Array)の基本的なメソッドを知らずに詰まることがあったので、よく使うものを整理してみました！">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-10-17T13:30:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScriptのArray(配列)について">
+<meta name="twitter:description" content="JavaScriptの配列(Array)の基本的なメソッドを知らずに詰まることがあったので、よく使うものを整理してみました！">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">JavaScriptのArray(配列)について</h1>
+    
+    <a href="/blog/javascript-basic-array-methods/" class="article-date"><time datetime="2017-09-04T15:00:00.000Z">2017-09-05</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/javascript-basic-array-methods/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/javascript-basic-array-methods/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/javascript-basic-array-methods/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/javascript-basic-array-methods/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4862463878/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4862463878&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4862463878&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>JavaScriptの配列(<code>Array</code>)の基本的なメソッドを知らずに詰まることがあったので、よく使うものを整理してみました！</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="要素の追加：push" class="article-heading"> 😸 <a href="#要素の追加：push" class="headerlink" title="要素の追加：push"></a>要素の追加：<code>push</code><a class="article-anchor" href="#要素の追加：push" aria-hidden="true"></a></h2><p><code>push()</code>で配列に要素を追加できます。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sports = [<span class="string">'soccer'</span>, <span class="string">'baseball'</span>];</span><br><span class="line"><span class="keyword">var</span> totalCount = sports.push(<span class="string">'football'</span>, <span class="string">'swimming'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sports); <span class="comment">// => ['soccer', 'baseball', 'football', 'swimming']</span></span><br><span class="line"><span class="built_in">console</span>.log(totalCount); <span class="comment">// => 4</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="要素数分ループ：forEach" class="article-heading"> 🐹 <a href="#要素数分ループ：forEach" class="headerlink" title="要素数分ループ：forEach"></a>要素数分ループ：<code>forEach</code><a class="article-anchor" href="#要素数分ループ：forEach" aria-hidden="true"></a></h2><p><code>forEach()</code>は配列の要素を順番に処理していきます。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> result = [];</span><br><span class="line"><span class="keyword">var</span> array = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>];</span><br><span class="line">array.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">val, index</span>)</span>{</span><br><span class="line">  <span class="keyword">if</span>(val === <span class="string">'c'</span>) { result.push(index); }</span><br><span class="line">});</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//=> [2]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="要素数分ループ：map" class="article-heading"> 🎃 <a href="#要素数分ループ：map" class="headerlink" title="要素数分ループ：map"></a>要素数分ループ：<code>map</code><a class="article-anchor" href="#要素数分ループ：map" aria-hidden="true"></a></h2><p><code>map()</code>を使うと各要素に対して、特定の処理を実施できます。返り値は処理を実行した結果の配列です。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>];</span><br><span class="line"><span class="keyword">var</span> result = array.map(<span class="function"><span class="keyword">function</span>(<span class="params">val, index</span>)</span>{</span><br><span class="line">  <span class="keyword">if</span> (val === <span class="string">'c'</span>) {</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  }</span><br><span class="line">});</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//=> [-1, -1, 2, -1]</span></span><br></pre></td></tr></tbody></table></figure>
+<p>配列の中の特定の要素だけ、別の要素に置き換えるのは次のように記述します。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> result = arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">element, index, array</span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> element === <span class="number">2</span> ? <span class="string">'hoge'</span> : element;</span><br><span class="line">});</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//=> [1, hoge, 3]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="フィルタリング：filter" class="article-heading">🐠 <a href="#フィルタリング：filter" class="headerlink" title="フィルタリング：filter"></a>フィルタリング：<code>filter</code><a class="article-anchor" href="#フィルタリング：filter" aria-hidden="true"></a></h2><p><code>filter</code>は配列で特定の条件を満たす要素を選別する(フィルタリング)を行うメソッドです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> result = array.filter(<span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>{</span><br><span class="line">  <span class="keyword">return</span> element >= <span class="number">2</span>;</span><br><span class="line">});</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//=> [2, 3]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="条件を満たす要素を検索：find" class="article-heading">🚕 <a href="#条件を満たす要素を検索：find" class="headerlink" title="条件を満たす要素を検索：find"></a>条件を満たす要素を検索：<code>find</code><a class="article-anchor" href="#条件を満たす要素を検索：find" aria-hidden="true"></a></h2><p><code>find</code>は配列内の要素から条件を満たす最初の要素を取り出すメソッドです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">[<span class="number">12</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">130</span>, <span class="number">44</span>].find(<span class="function"><span class="params">el</span> =></span> el >= <span class="number">15</span>); <span class="comment">//=> 130</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="条件を満たすインデックスを検索：findIndex" class="article-heading">🍣 <a href="#条件を満たすインデックスを検索：findIndex" class="headerlink" title="条件を満たすインデックスを検索：findIndex"></a>条件を満たすインデックスを検索：<code>findIndex</code><a class="article-anchor" href="#条件を満たすインデックスを検索：findIndex" aria-hidden="true"></a></h2><p><code>findIndex</code>は配列から条件を満たす要素のインデックスを取得するメソッドです。対象の要素がみつからない場合は<code>-1</code>を返します。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">[<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">12</span>].findIndex(<span class="function"><span class="params">e</span> =></span> e === <span class="number">1</span>); <span class="comment">//=> -1</span></span><br><span class="line">[<span class="number">4</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">12</span>].findIndex(<span class="function"><span class="params">e</span> =></span> e === <span class="number">7</span>); <span class="comment">//=> 2</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="隣り合う要素に対する処理：reduce" class="article-heading"> 🤔 <a href="#隣り合う要素に対する処理：reduce" class="headerlink" title="隣り合う要素に対する処理：reduce"></a>隣り合う要素に対する処理：<code>reduce</code><a class="article-anchor" href="#隣り合う要素に対する処理：reduce" aria-hidden="true"></a></h2><p><code>reduce</code>は配列の隣り合う要素に対して(左から右へ)同時に関数を適用して単一の値を返すメソッドです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">var</span> result = array.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">previousVal, currentVal</span>)</span>{</span><br><span class="line">  <span class="keyword">return</span> previousVal + currentVal;</span><br><span class="line">});</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//=> 10</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列の最初に要素を追加：unshift" class="article-heading">👽 <a href="#配列の最初に要素を追加：unshift" class="headerlink" title="配列の最初に要素を追加：unshift"></a>配列の最初に要素を追加：<code>unshift</code><a class="article-anchor" href="#配列の最初に要素を追加：unshift" aria-hidden="true"></a></h2><p><code>unshift()</code>メソッドは、配所の最初に要素を追加するメソッドです。<br>返り値は、新しい配列の長さです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">arr.unshift(<span class="number">0</span>); <span class="comment">// = 3</span></span><br><span class="line"><span class="comment">// arr is [0, 1, 2]</span></span><br><span class="line"></span><br><span class="line">arr.unshift(<span class="number">-2</span>, <span class="number">-1</span>); <span class="comment">// = 5</span></span><br><span class="line"><span class="comment">//arr is [-2, -1, 0, 1, 2]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列を結合して文字列にする：join" class="article-heading"> 🏀 <a href="#配列を結合して文字列にする：join" class="headerlink" title="配列を結合して文字列にする：join"></a>配列を結合して文字列にする：<code>join</code><a class="article-anchor" href="#配列を結合して文字列にする：join" aria-hidden="true"></a></h2><p><code>join()</code>メソッドは配列の要素を結合して文字列を返すメソッドです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Mango"</span>];</span><br><span class="line"><span class="keyword">var</span> energy = fruits.join(<span class="string">", "</span>); <span class="comment">//=> Banana, Orange, Apple, Mango</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列のどれかが条件を満たすか：some" class="article-heading"> 😎 <a href="#配列のどれかが条件を満たすか：some" class="headerlink" title="配列のどれかが条件を満たすか：some"></a>配列のどれかが条件を満たすか：<code>some</code><a class="article-anchor" href="#配列のどれかが条件を満たすか：some" aria-hidden="true"></a></h2><p><code>some()</code>メソッドは配列のどれかが条件を満たせば<code>true</code>を返すメソッドです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBiggerThan10</span>(<span class="params">element, index, array</span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> element > <span class="number">10</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">[<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">4</span>].some(isBiggerThan10);  <span class="comment">// false</span></span><br><span class="line">[<span class="number">12</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">4</span>].some(isBiggerThan10); <span class="comment">// true</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列の結合：concat" class="article-heading">😼 <a href="#配列の結合：concat" class="headerlink" title="配列の結合：concat"></a>配列の結合：<code>concat</code><a class="article-anchor" href="#配列の結合：concat" aria-hidden="true"></a></h2><p><code>concat()</code>メソッドは2つ以上の配列を結合させて新しい配列を生成します。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>];</span><br><span class="line"><span class="keyword">var</span> arr3 = arr1.concat(arr2); <span class="comment">//=> [ "a", "b", "c", "d", "e", "f" ]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列の一部切り出し：slice" class="article-heading"> 🐰 <a href="#配列の一部切り出し：slice" class="headerlink" title="配列の一部切り出し：slice"></a>配列の一部切り出し：<code>slice</code><a class="article-anchor" href="#配列の一部切り出し：slice" aria-hidden="true"></a></h2><p><code>slice()</code>メソッドは配列から一部を切り出すことができます。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'zero'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>];</span><br><span class="line"><span class="keyword">var</span> sliced = a.slice(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sliced); <span class="comment">//=> ['one', 'two']</span></span><br></pre></td></tr></tbody></table></figure>
+<p>1つ目の引数がスタート位置で、2つ目の引数が終了位置です。終了位置の要素は含まないのを注意してください。</p>
+<h2 id="配列の要素をユニークにする" class="article-heading">🐡 <a href="#配列の要素をユニークにする" class="headerlink" title="配列の要素をユニークにする"></a>配列の要素をユニークにする<a class="article-anchor" href="#配列の要素をユニークにする" aria-hidden="true"></a></h2><p>配列の要素の重複を排除してユニークにするには次のように記述します。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>]</span><br><span class="line"><span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(array)); <span class="comment">//=> 1, 2, 3</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列から特定の要素を除去する" class="article-heading"> 🍄 <a href="#配列から特定の要素を除去する" class="headerlink" title="配列から特定の要素を除去する"></a>配列から特定の要素を除去する<a class="article-anchor" href="#配列から特定の要素を除去する" aria-hidden="true"></a></h2><p>Arrayの要素の中で特定の要素を除去(削除)するには次のように記述します。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> inArray = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配列から two を取り除く</span></span><br><span class="line">inArray.filter(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{ <span class="keyword">return</span> e !== <span class="string">'two'</span> }); <span class="comment">//=> ["one", "three"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ECMA6形式でアロー関数を使う場合</span></span><br><span class="line">inArray.filter(<span class="function"><span class="params">e</span> =></span> e !== <span class="string">'two'</span>); <span class="comment">//=> ["one", "three"]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列が空かどうかの判定" class="article-heading">🐯 <a href="#配列が空かどうかの判定" class="headerlink" title="配列が空かどうかの判定"></a>配列が空かどうかの判定<a class="article-anchor" href="#配列が空かどうかの判定" aria-hidden="true"></a></h2><p>配列からかどうかを判定するのは次のコードです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [];</span><br><span class="line"><span class="built_in">console</span>.log(array.length === <span class="number">0</span>); <span class="comment">//=> true</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列をフラットにする" class="article-heading"> 🚜 <a href="#配列をフラットにする" class="headerlink" title="配列をフラットにする"></a>配列をフラットにする<a class="article-anchor" href="#配列をフラットにする" aria-hidden="true"></a></h2><p>Arrayのメソッドではないですが、2次元配列 => 1次元配列のように配列をフラットにするコードです。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [</span><br><span class="line">  [<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">];</span><br><span class="line"><span class="built_in">Array</span>.prototype.concat.apply([], array);</span><br><span class="line"><span class="comment">// => [0, 1, 2, 3, 4, 5]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="nullやundefinedを削除する" class="article-heading"> 🎳 <a href="#nullやundefinedを削除する" class="headerlink" title="nullやundefinedを削除する"></a><code>null</code>や<code>undefined</code>を削除する<a class="article-anchor" href="#nullやundefinedを削除する" aria-hidden="true"></a></h2><p>配列から<code>null</code>や<code>undefined</code>を<code>filter</code>メソッドを使って削除する手順です。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,,<span class="number">3</span>,,<span class="number">3</span>,<span class="literal">null</span>,,<span class="number">0</span>,,<span class="literal">undefined</span>,<span class="number">4</span>,,<span class="number">4</span>,,<span class="number">5</span>,,<span class="number">6</span>,<span class="string">''</span>,<span class="literal">false</span>,,];</span><br><span class="line"></span><br><span class="line">arr = arr.filter(<span class="built_in">Boolean</span>); <span class="comment">//=> [1, 2, 3, 3, 4, 4, 5, 6]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="1からNまでの配列を生成" class="article-heading">🐮 <a href="#1からNまでの配列を生成" class="headerlink" title="1からNまでの配列を生成"></a>1からNまでの配列を生成<a class="article-anchor" href="#1からNまでの配列を生成" aria-hidden="true"></a></h2><p><code>1</code>から<code>N</code>までの配列を生成するのは次の方法です。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from({<span class="attr">length</span>: <span class="number">5</span>}, (v, k) => k+<span class="number">1</span>); <span class="comment">//=> [1,2,3,4,5]</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="最後の要素の取得" class="article-heading">🚌 <a href="#最後の要素の取得" class="headerlink" title="最後の要素の取得"></a>最後の要素の取得<a class="article-anchor" href="#最後の要素の取得" aria-hidden="true"></a></h2><p>配列の最後の要素を取得する方法です。1つ目はシンプルなgetterメソッドを作る方法です。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Array</span>.prototype.last){</span><br><span class="line">    <span class="built_in">Array</span>.prototype.last = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>[<span class="keyword">this</span>.length - <span class="number">1</span>];</span><br><span class="line">    };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].last() <span class="comment">//=> 3</span></span><br></pre></td></tr></tbody></table></figure>
+<p>Getterメソッドなどを作らずに<code>slice()</code>メソッドで対応する場合はこちら。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].slice(<span class="number">-1</span>)[<span class="number">0</span>] <span class="comment">//=> 3</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列を途中で抜ける：break" class="article-heading"> 🍮 <a href="#配列を途中で抜ける：break" class="headerlink" title="配列を途中で抜ける：break"></a>配列を途中で抜ける：<code>break</code><a class="article-anchor" href="#配列を途中で抜ける：break" aria-hidden="true"></a></h2><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i < arr.length; i++) {</span><br><span class="line">    <span class="keyword">var</span> value = arr[i];</span><br><span class="line">    <span class="keyword">if</span> (value > <span class="number">5</span>) { <span class="keyword">break</span>; }</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配列に要素が含まれているかを判定" class="article-heading">🗻 <a href="#配列に要素が含まれているかを判定" class="headerlink" title="配列に要素が含まれているかを判定"></a>配列に要素が含まれているかを判定<a class="article-anchor" href="#配列に要素が含まれているかを判定" aria-hidden="true"></a></h2><p>Array内に特定の要素が含まれているかどうかを判定するには<code>include()</code>メソッドを使います。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">a.includes(<span class="number">2</span>); <span class="comment">// true</span></span><br><span class="line">a.includes(<span class="number">4</span>); <span class="comment">// false</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading">😀 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="https://goo.gl/FKktuI" target="_blank" rel="noopener">これだけ覚えるべきJSの基礎</a></li>
+<li><a href="https://goo.gl/j8skm1" target="_blank" rel="noopener">JavaScriptでflatten</a></li>
+<li><a href="https://stackoverflow.com/a/17903018" target="_blank" rel="noopener">How to get an array of unique values from an array containing duplicates in JavaScript?</a></li>
+<li><a href="https://stackoverflow.com/a/3955096" target="_blank" rel="noopener">Remove item from array by value</a></li>
+<li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" rel="noopener">Array.prototype.find() - JavaScript</a></li>
+<li><a href="https://stackoverflow.com/questions/9050345/selecting-last-element-in-javascript-array" target="_blank" rel="noopener">Selecting last element in JavaScript array</a></li>
+<li><a href="https://stackoverflow.com/questions/281264/remove-empty-elements-from-an-array-in-javascript" target="_blank" rel="noopener">Remove empty elements from an array in Javascript</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex" target="_blank" rel="noopener">Array.prototype.findIndex() - JavaScript</a></li>
+<li><a href="https://stackoverflow.com/questions/31925323/how-to-filter-out-nan-null-0-false-in-an-array-js" target="_blank" rel="noopener">javascript - How to filter() out NaN, null, 0, false in an array (JS)</a></li>
+<li><a href="https://stackoverflow.com/questions/3746725/create-a-javascript-array-containing-1-n" target="_blank" rel="noopener">Create a JavaScript array containing 1…N</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank" rel="noopener">Array.prototype.push() - JavaScript</a></li>
+<li><a href="http://qiita.com/phi/items/f998763d2d52bdd57a7c" target="_blank" rel="noopener">ループ途中で抜ける処理は for(in break) ではなく some を使おう♪</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">Array.prototype.slice() - JavaScript</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">Array.prototype.includes()</a></li>
+<li><a href="https://qiita.com/kazu56/items/557740f398e82fc881df" target="_blank" rel="noopener">https://qiita.com/kazu56/items/557740f398e82fc881df</a></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

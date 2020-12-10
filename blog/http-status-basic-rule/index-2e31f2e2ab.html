@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>HTTPステータスコード一覧 [Web基礎勉強] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/http-status-basic-rule/index-2e31f2e2ab.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="HTTPステータスの意味ちゃんと理解できていなかったなとの反省で、俺得でHTTPステータスの簡単な一覧を作りました！">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTPステータスコード一覧 [Web基礎勉強]">
+<meta property="og:url" content="http://morizyun.github.io//blog/http-status-basic-rule/index-2e31f2e2ab.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="HTTPステータスの意味ちゃんと理解できていなかったなとの反省で、俺得でHTTPステータスの簡単な一覧を作りました！">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTPステータスコード一覧 [Web基礎勉強]">
+<meta name="twitter:description" content="HTTPステータスの意味ちゃんと理解できていなかったなとの反省で、俺得でHTTPステータスの簡単な一覧を作りました！">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">HTTPステータスコード一覧 [Web基礎勉強]</h1>
+    
+    <a href="/blog/http-status-basic-rule/" class="article-date"><time datetime="2016-02-17T15:00:00.000Z">2016-02-18</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/http-status-basic-rule/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/http-status-basic-rule/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/http-status-basic-rule/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/http-status-basic-rule/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4774150363/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774150363&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774150363&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>HTTPステータスの意味ちゃんと理解できていなかったなとの反省で、俺得でHTTPステータスの簡単な一覧を作りました！</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="チートシート" class="article-heading">🐡 <a href="#チートシート" class="headerlink" title="チートシート"></a>チートシート<a class="article-anchor" href="#チートシート" aria-hidden="true"></a></h2><p><strong><a href="http://postd.cc/choosing-an-http-status-code/" target="_blank" rel="noopener">HTTPステータスコードを適切に選ぶためのフローチャート : 難しく考えるのをやめよう</a></strong></p>
+<p>こちらは、ステータスコードをどのようなふうに考えればいいか、重要なコードはどれかといったことがまとめられた記事。<br>非常にわかり易い内容ですので、よければぜひ！</p>
+<h2 id="1xx-Informational情報" class="article-heading">🍣 <a href="#1xx-Informational情報" class="headerlink" title="1xx Informational情報"></a>1xx Informational情報<a class="article-anchor" href="#1xx-Informational情報" aria-hidden="true"></a></h2><p>リクエストをサーバが受け取って、処理が継続することを表す。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">コード</th>
+<th style="text-align:left">メッセージ</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">100</td>
+<td style="text-align:left">Continue</td>
+<td style="text-align:left">サーバがリクエストの最初の部分を受け取りまだ拒否していないことを表す</td>
+</tr>
+<tr>
+<td style="text-align:left">101</td>
+<td style="text-align:left">Switching Protocols</td>
+<td style="text-align:left">サーバはリクエストを理解して、プロトコルの変更を要求</td>
+</tr>
+<tr>
+<td style="text-align:left">102</td>
+<td style="text-align:left">Processing</td>
+<td style="text-align:left">処理中を表す。WebDAVの拡張ステータスコード</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2xx-Success成功" class="article-heading"> 🏀 <a href="#2xx-Success成功" class="headerlink" title="2xx Success成功"></a>2xx Success成功<a class="article-anchor" href="#2xx-Success成功" aria-hidden="true"></a></h2><p>リクエストをサーバが理解して、受理されたことを表す。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">コード</th>
+<th style="text-align:left">メッセージ</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">OK</td>
+<td style="text-align:left">リクエストが理解されて、要求に応じたレスポンスを返す</td>
+</tr>
+<tr>
+<td style="text-align:left">201</td>
+<td style="text-align:left">Created</td>
+<td style="text-align:left">リクエストは完了して、新しく作られたリソースのURIを返す</td>
+</tr>
+<tr>
+<td style="text-align:left">202</td>
+<td style="text-align:left">Accepted</td>
+<td style="text-align:left">リクエストは受理されたが、処理が完了していない場合に返す。PUTの処理中とか</td>
+</tr>
+<tr>
+<td style="text-align:left">203</td>
+<td style="text-align:left">Non-Authoritative Information</td>
+<td style="text-align:left">オリジナルではなく、ローカルやキャッシュの結果を返すときのレスポンス</td>
+</tr>
+<tr>
+<td style="text-align:left">204</td>
+<td style="text-align:left">No Content</td>
+<td style="text-align:left">リクエストは受理したが、返すレスポンスがない場合のコード</td>
+</tr>
+<tr>
+<td style="text-align:left">205</td>
+<td style="text-align:left">Reset Content</td>
+<td style="text-align:left">リクエストを受理して、ユーザー側の画面をリセットする場合に返す。POST送信後にブラウザを初期状態に戻すなど</td>
+</tr>
+<tr>
+<td style="text-align:left">206</td>
+<td style="text-align:left">Partial Content</td>
+<td style="text-align:left">部分的Getリクエストを受理した時に返される。ダウンロードのレジュームなどて使われる</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3xx-Redirectionリダイレクト" class="article-heading">🏈 <a href="#3xx-Redirectionリダイレクト" class="headerlink" title="3xx Redirectionリダイレクト"></a>3xx Redirectionリダイレクト<a class="article-anchor" href="#3xx-Redirectionリダイレクト" aria-hidden="true"></a></h2><p>リクエストを完了させるために追加的な処理が必要なことを表す。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">コード</th>
+<th style="text-align:left">メッセージ</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">300</td>
+<td style="text-align:left">Multiple Choices</td>
+<td style="text-align:left">リクエストに対して複数のリソースが存在する場合に返す</td>
+</tr>
+<tr>
+<td style="text-align:left">301</td>
+<td style="text-align:left">Moved Permanently</td>
+<td style="text-align:left">リクエストしたリソースが、恒久的に移動した場合に返す。Locationヘッダに移動先のURLがある</td>
+</tr>
+<tr>
+<td style="text-align:left">302</td>
+<td style="text-align:left">Found</td>
+<td style="text-align:left">リクエストしたリソースが、一時的に移動した場合に返す。Locationヘッダに移動先のURLがある。もともとはMoved Temporarily（一時的に移動した）</td>
+</tr>
+<tr>
+<td style="text-align:left">303</td>
+<td style="text-align:left">See Other</td>
+<td style="text-align:left">リクエストしたリソースがほかのURLにあるときに返す。Locationヘッダに移動先のURLがある。ほかのリソースをもってレスポンスとするような場合に使う</td>
+</tr>
+<tr>
+<td style="text-align:left">304</td>
+<td style="text-align:left">Not Modified</td>
+<td style="text-align:left">リクエストしたリソースが更新されていないことを示す。たとえば、If-Modified-Since:ヘッダを使用したリクエストを行い、そのヘッダに示された時間以降に更新がなかった場合に返される。</td>
+</tr>
+<tr>
+<td style="text-align:left">305</td>
+<td style="text-align:left">Useプロキシ</td>
+<td style="text-align:left">レスポンスのLocationヘッダにあるプロキシを使う必要があることを示す</td>
+</tr>
+<tr>
+<td style="text-align:left">307</td>
+<td style="text-align:left">Temporarily Redirect</td>
+<td style="text-align:left">リクエストしたリソースが一時的に移動した場合に返す。Locationヘッダに移動先のURLがある</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4xx-Redirectionリダイレクト" class="article-heading">🐮 <a href="#4xx-Redirectionリダイレクト" class="headerlink" title="4xx Redirectionリダイレクト"></a>4xx Redirectionリダイレクト<a class="article-anchor" href="#4xx-Redirectionリダイレクト" aria-hidden="true"></a></h2><p>クライアントからのリクエストに誤りがあったことを表す。<br>実際にはもっとたくさん4xx系はあるけどメジャーどころを抜粋。多様なエラーを表す。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">コード</th>
+<th style="text-align:left">メッセージ</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">400</td>
+<td style="text-align:left">Bad Request</td>
+<td style="text-align:left">クライアントのリクエストがおかしい場合に返される</td>
+</tr>
+<tr>
+<td style="text-align:left">401</td>
+<td style="text-align:left">Unauthorized</td>
+<td style="text-align:left">認証が必要な場合に返される。Basic認証やDigest認証などを行うときに返される</td>
+</tr>
+<tr>
+<td style="text-align:left">403</td>
+<td style="text-align:left">Forbidden</td>
+<td style="text-align:left">リソースへのアクセスが拒否された。リクエストしたが処理ができない場合に返される</td>
+</tr>
+<tr>
+<td style="text-align:left">404</td>
+<td style="text-align:left">Not Found</td>
+<td style="text-align:left">リソースがながった場合に返される</td>
+</tr>
+<tr>
+<td style="text-align:left">405</td>
+<td style="text-align:left">Method Not Allowed</td>
+<td style="text-align:left">許可されていないメソッドを実行した場合に返される</td>
+</tr>
+<tr>
+<td style="text-align:left">406</td>
+<td style="text-align:left">Not Accepテーブル</td>
+<td style="text-align:left">Accept関連ヘッダの中に受理できない内容が含まれる場合に返される</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5xx-Server-Errorサーバエラー" class="article-heading">🚌 <a href="#5xx-Server-Errorサーバエラー" class="headerlink" title="5xx Server Errorサーバエラー"></a>5xx Server Errorサーバエラー<a class="article-anchor" href="#5xx-Server-Errorサーバエラー" aria-hidden="true"></a></h2><p>サーバサイドがリクエストの処理に失敗したことを表す。一部を抜粋。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">コード</th>
+<th style="text-align:left">メッセージ</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">500</td>
+<td style="text-align:left">Internal Server Error</td>
+<td style="text-align:left">サーバ内にエラーが発生した場合に返される</td>
+</tr>
+<tr>
+<td style="text-align:left">503</td>
+<td style="text-align:left">Service Unavailable</td>
+<td style="text-align:left">サービスが一時的に過負荷やメンテナーンスで利用できない場合に返される</td>
+</tr>
+<tr>
+<td style="text-align:left">504</td>
+<td style="text-align:left">Gateway Timeout</td>
+<td style="text-align:left">URIから推測されるサーバから適切なレスポンスがなくタイムアウトした</td>
+</tr>
+</tbody>
+</table>
+<h2 id="あとがき" class="article-heading">🗻 <a href="#あとがき" class="headerlink" title="あとがき"></a>あとがき<a class="article-anchor" href="#あとがき" aria-hidden="true"></a></h2><p>ステータスコードをしっかり意識して、Webサービスを作っていきたい！</p>
+<h2 id="参考リンク" class="article-heading"> 🐰 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><p><a href="https://ja.wikipedia.org/wiki/HTTP%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89" target="_blank" rel="noopener">HTTPステータスコード  Wikipedia</a></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Capistrano 3系でRails 5.1のデプロイ[rbenv][ruby2.4] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/capistrano3-rails-deploy-multi-rbenv/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="デプロイツールのデファクトスタンダードとなった『Capistrano3』。stagingやproductionといった複数環境へのデプロイを標準で対応していたり、bundleやmigration、pumaとの連携なども抜群です。かなり乗り遅れてしまいましたが、最近ようやくRails 5.1をcapistrano3系でデプロイしました。ずっとHerokuやElastic Beanstalkにばっかり">
+<meta name="keywords" content="Rails,Gem,Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Capistrano 3系でRails 5.1のデプロイ[rbenv][ruby2.4]">
+<meta property="og:url" content="http://morizyun.github.io/blog/capistrano3-rails-deploy-multi-rbenv/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="デプロイツールのデファクトスタンダードとなった『Capistrano3』。stagingやproductionといった複数環境へのデプロイを標準で対応していたり、bundleやmigration、pumaとの連携なども抜群です。かなり乗り遅れてしまいましたが、最近ようやくRails 5.1をcapistrano3系でデプロイしました。ずっとHerokuやElastic Beanstalkにばっかり">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-10-16T12:04:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capistrano 3系でRails 5.1のデプロイ[rbenv][ruby2.4]">
+<meta name="twitter:description" content="デプロイツールのデファクトスタンダードとなった『Capistrano3』。stagingやproductionといった複数環境へのデプロイを標準で対応していたり、bundleやmigration、pumaとの連携なども抜群です。かなり乗り遅れてしまいましたが、最近ようやくRails 5.1をcapistrano3系でデプロイしました。ずっとHerokuやElastic Beanstalkにばっかり">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Capistrano 3系でRails 5.1のデプロイ[rbenv][ruby2.4]</h1>
+    
+    <a href="/blog/capistrano3-rails-deploy-multi-rbenv/" class="article-date"><time datetime="2017-10-16T15:00:00.000Z">2017-10-17</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/capistrano3-rails-deploy-multi-rbenv/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/capistrano3-rails-deploy-multi-rbenv/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/capistrano3-rails-deploy-multi-rbenv/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/capistrano3-rails-deploy-multi-rbenv/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/B071YC72X1/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B071YC72X1&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B071YC72X1&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>デプロイツールのデファクトスタンダードとなった『<strong><a href="http://capistranorb.com/" target="_blank" rel="noopener">Capistrano3</a></strong>』。stagingやproductionといった複数環境へのデプロイを標準で対応していたり、bundleやmigration、pumaとの連携なども抜群です。<br>かなり乗り遅れてしまいましたが、最近ようやくRails 5.1をcapistrano3系でデプロイしました。ずっとHerokuやElastic Beanstalkにばっかり頼っていたのでちょこちょことハマって苦労しました。今後忘れないための忘備録メモっす！</p>
+<p>rbenv, rvmの両方に対応しました。オリジナルのcapコマンドの作り方も書きました！</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="前提条件" class="article-heading"> 🚜 <a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件<a class="article-anchor" href="#前提条件" aria-hidden="true"></a></h2><p>今回の環境では次のような環境を想定しています。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">* DB: PostgreSQL</span><br><span class="line">* Webサーバ: puma</span><br><span class="line">* Rubyのバージョン管理: rbenv</span><br><span class="line">* Cron DSL: whenever</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="PostgreSQL-DBの準備" class="article-heading"> 🐹 <a href="#PostgreSQL-DBの準備" class="headerlink" title="PostgreSQL DBの準備"></a>PostgreSQL DBの準備<a class="article-anchor" href="#PostgreSQL-DBの準備" aria-hidden="true"></a></h2><p>デプロイ先のDBの接続用ユーザーとデータベースを作成するために、次のコマンドをstaging環境とproduction環境で実行します。</p>
+<h3 id="PostgreSQLの場合" class="article-heading"><a href="#PostgreSQLの場合" class="headerlink" title="PostgreSQLの場合"></a>PostgreSQLの場合<a class="article-anchor" href="#PostgreSQLの場合" aria-hidden="true"></a></h3><p>こちらは、PostgreSQLを使う場合の手順です。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># postgreユーザーになる</span></span><br><span class="line">sudo su -</span><br><span class="line">su - postgres</span><br><span class="line"></span><br><span class="line"><span class="comment"># パスワード付きのユーザーを作成する</span></span><br><span class="line">createuser -s [ユーザー名] -P</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Gemfileの追加" class="article-heading">😀 <a href="#Gemfileの追加" class="headerlink" title="Gemfileの追加"></a>Gemfileの追加<a class="article-anchor" href="#Gemfileの追加" aria-hidden="true"></a></h2><p><code>Gemfile</code>に次のGemを追加して、<code>bundle install</code>を実行。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">group <span class="symbol">:deployment</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># cron management</span></span><br><span class="line">  gem <span class="string">'whenever'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Deploy</span></span><br><span class="line">  gem <span class="string">'capistrano'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line">  gem <span class="string">'capistrano-bundler'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line">  gem <span class="string">'capistrano-rails'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line">  gem <span class="string">'capistrano-rbenv'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line">  gem <span class="string">'capistrano3-puma'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Capistranoの設定ファイルを生成" class="article-heading"> 🐰 <a href="#Capistranoの設定ファイルを生成" class="headerlink" title="Capistranoの設定ファイルを生成"></a>Capistranoの設定ファイルを生成<a class="article-anchor" href="#Capistranoの設定ファイルを生成" aria-hidden="true"></a></h2><p>次のコマンドでCapistranoの設定ファイル<code>deploy.rb</code>らを生成。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> <span class="built_in">cap</span> install</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Capfileの設定" class="article-heading">🚌 <a href="#Capfileの設定" class="headerlink" title="Capfileの設定"></a>Capfileの設定<a class="article-anchor" href="#Capfileの設定" aria-hidden="true"></a></h2><p><code>Capfile</code>を次のように変更します。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Load DSL and set up stages</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capistrano/setup'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Include default deployment tasks</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capistrano/deploy'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the SCM plugin appropriate to your project:</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capistrano/scm/git'</span></span><br><span class="line">install_plugin Capistrano::SCM::Git</span><br><span class="line"></span><br><span class="line"><span class="comment"># Include tasks from other gems included in your Gemfile</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capistrano/rbenv'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capistrano/bundler'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capistrano/rails/assets'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capistrano/rails/migrations'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capistrano/puma'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'whenever/capistrano'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load custom tasks from `lib/capistrano/tasks` if you have any defined</span></span><br><span class="line">Dir.glob(<span class="string">'lib/capistrano/tasks/*.rake'</span>).each { <span class="params">|r|</span> import r }</span><br><span class="line">install_plugin Capistrano::Puma</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Capistrano共通のデプロイ設定" class="article-heading">🗽 <a href="#Capistrano共通のデプロイ設定" class="headerlink" title="Capistrano共通のデプロイ設定"></a>Capistrano共通のデプロイ設定<a class="article-anchor" href="#Capistrano共通のデプロイ設定" aria-hidden="true"></a></h2><p>まず、共通のデプロイ情報を<code>deploy.rb</code>に記入していきます。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">lock <span class="string">'3.9.1'</span></span><br><span class="line"></span><br><span class="line">set <span class="symbol">:repo_url</span>,        <span class="string">'git@xxx.git'</span></span><br><span class="line">set <span class="symbol">:application</span>,     <span class="string">'APP_NAME'</span></span><br><span class="line">set <span class="symbol">:user</span>,            <span class="string">'APP_USER'</span></span><br><span class="line">set <span class="symbol">:puma_threads</span>,    [<span class="number">4</span>, <span class="number">16</span>]</span><br><span class="line">set <span class="symbol">:puma_workers</span>,    <span class="number">0</span></span><br><span class="line">set <span class="symbol">:pty</span>,             <span class="literal">true</span></span><br><span class="line">set <span class="symbol">:use_sudo</span>,        <span class="literal">false</span></span><br><span class="line">set <span class="symbol">:stage</span>,           <span class="symbol">:production</span></span><br><span class="line">set <span class="symbol">:deploy_via</span>,      <span class="symbol">:remote_cache</span></span><br><span class="line">set <span class="symbol">:deploy_to</span>,       <span class="string">'SERVER_PATH'</span></span><br><span class="line">set <span class="symbol">:puma_bind</span>,       <span class="string">"unix://<span class="subst">#{shared_path}</span>/tmp/sockets/puma.sock"</span></span><br><span class="line">set <span class="symbol">:puma_state</span>,      <span class="string">"<span class="subst">#{shared_path}</span>/tmp/pids/puma.state"</span></span><br><span class="line">set <span class="symbol">:puma_pid</span>,        <span class="string">"<span class="subst">#{shared_path}</span>/tmp/pids/puma.pid"</span></span><br><span class="line">set <span class="symbol">:puma_access_log</span>, <span class="string">"<span class="subst">#{release_path}</span>/log/puma.access.log"</span></span><br><span class="line">set <span class="symbol">:puma_error_log</span>,  <span class="string">"<span class="subst">#{release_path}</span>/log/puma.error.log"</span></span><br><span class="line">set <span class="symbol">:puma_preload_app</span>, <span class="literal">true</span></span><br><span class="line">set <span class="symbol">:puma_worker_timeout</span>, <span class="literal">nil</span></span><br><span class="line">set <span class="symbol">:puma_init_active_record</span>, <span class="literal">true</span></span><br><span class="line">set <span class="symbol">:rbenv_type</span>, <span class="symbol">:system</span></span><br><span class="line">set <span class="symbol">:rbenv_path</span>, <span class="string">'/usr/local/rbenv'</span></span><br><span class="line">set <span class="symbol">:rbenv_ruby</span>, File.read(<span class="string">'.ruby-version'</span>).strip</span><br><span class="line">set <span class="symbol">:rbenv_prefix</span>, <span class="string">"RBENV_ROOT=<span class="subst">#{fetch(<span class="symbol">:rbenv_path</span>)}</span> RBENV_VERSION=<span class="subst">#{fetch(<span class="symbol">:rbenv_ruby</span>)}</span> <span class="subst">#{fetch(<span class="symbol">:rbenv_path</span>)}</span>/bin/rbenv exec"</span></span><br><span class="line">set <span class="symbol">:rbenv_map_bins</span>, <span class="string">%w[rake gem bundle ruby rails]</span></span><br><span class="line">set <span class="symbol">:linked_dirs</span>, fetch(<span class="symbol">:linked_dirs</span>, []).push(</span><br><span class="line">  <span class="string">'log'</span>,</span><br><span class="line">  <span class="string">'tmp/pids'</span>,</span><br><span class="line">  <span class="string">'tmp/cache'</span>,</span><br><span class="line">  <span class="string">'tmp/sockets'</span>,</span><br><span class="line">  <span class="string">'vendor/bundle'</span>,</span><br><span class="line">  <span class="string">'public/system'</span>,</span><br><span class="line">  <span class="string">'public/uploads'</span></span><br><span class="line">)</span><br><span class="line">set <span class="symbol">:linked_files</span>, fetch(<span class="symbol">:linked_files</span>, []).push(</span><br><span class="line">  <span class="string">'config/database.yml'</span>,</span><br><span class="line">  <span class="string">'config/secrets.yml'</span>,</span><br><span class="line">  <span class="string">'.env'</span></span><br><span class="line">)</span><br><span class="line">set <span class="symbol">:whenever_identifier</span>, -> { <span class="string">"<span class="subst">#{fetch(<span class="symbol">:application</span>)}</span>_<span class="subst">#{fetch(<span class="symbol">:stage</span>)}</span>"</span> }</span><br><span class="line"></span><br><span class="line">namespace <span class="symbol">:puma</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">'Create Directories for Puma Pids and Socket'</span></span><br><span class="line">  task <span class="symbol">:make_dirs</span> <span class="keyword">do</span></span><br><span class="line">    on roles(<span class="symbol">:app</span>) <span class="keyword">do</span></span><br><span class="line">      execute <span class="string">"mkdir <span class="subst">#{shared_path}</span>/tmp/sockets -p"</span></span><br><span class="line">      execute <span class="string">"mkdir <span class="subst">#{shared_path}</span>/tmp/pids -p"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  before <span class="symbol">:start</span>, <span class="symbol">:make_dirs</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">namespace <span class="symbol">:deploy</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">'Make sure local git is in sync with remote.'</span></span><br><span class="line">  task <span class="symbol">:check_revision</span> <span class="keyword">do</span></span><br><span class="line">    on roles(<span class="symbol">:app</span>) <span class="keyword">do</span></span><br><span class="line">      <span class="keyword">unless</span> <span class="string">`git rev-parse HEAD`</span> == <span class="string">`git rev-parse origin/master`</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  desc <span class="string">'Initial Deploy'</span></span><br><span class="line">  task <span class="symbol">:initial</span> <span class="keyword">do</span></span><br><span class="line">    on roles(<span class="symbol">:app</span>) <span class="keyword">do</span></span><br><span class="line">      before <span class="string">'deploy:restart'</span>, <span class="string">'puma:start'</span></span><br><span class="line">      invoke <span class="string">'deploy'</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  desc <span class="string">'Restart application'</span></span><br><span class="line">  task <span class="symbol">:restart</span> <span class="keyword">do</span></span><br><span class="line">    on roles(<span class="symbol">:app</span>), <span class="symbol">in:</span> <span class="symbol">:sequence</span>, <span class="symbol">wait:</span> <span class="number">5</span> <span class="keyword">do</span></span><br><span class="line">      invoke <span class="string">'puma:restart'</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  desc <span class="string">'reload the database with seed data'</span></span><br><span class="line">  task <span class="symbol">:seed</span> <span class="keyword">do</span></span><br><span class="line">    on roles(<span class="symbol">:db</span>) <span class="keyword">do</span></span><br><span class="line">      with <span class="symbol">rails_env:</span> fetch(<span class="symbol">:rails_env</span>) <span class="keyword">do</span></span><br><span class="line">        within release_path <span class="keyword">do</span></span><br><span class="line">          execute <span class="symbol">:bundle</span>, <span class="symbol">:exec</span>, <span class="symbol">:rake</span>, <span class="string">'db:seed'</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  after  <span class="symbol">:migrate</span>,      <span class="symbol">:seed</span></span><br><span class="line">  before <span class="symbol">:starting</span>,     <span class="symbol">:check_revision</span></span><br><span class="line">  after  <span class="symbol">:finishing</span>,    <span class="symbol">:compile_assets</span></span><br><span class="line">  after  <span class="symbol">:finishing</span>,    <span class="symbol">:cleanup</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="環境別のデプロイ設定" class="article-heading"> 🎂 <a href="#環境別のデプロイ設定" class="headerlink" title="環境別のデプロイ設定"></a>環境別のデプロイ設定<a class="article-anchor" href="#環境別のデプロイ設定" aria-hidden="true"></a></h2><p>次に環境ごとに異なる設定を<code>config/deploy/staging.rb(production.rb)</code>に記述していきます。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">set <span class="symbol">:branch</span>, <span class="string">'master'</span></span><br><span class="line"></span><br><span class="line">server <span class="string">'IP_ADDRESS'</span>, <span class="symbol">user:</span> <span class="string">'USER_NAME'</span>, <span class="symbol">roles:</span> <span class="string">%w[web app db]</span></span><br><span class="line"></span><br><span class="line">set <span class="symbol">:ssh_options</span>, {</span><br><span class="line">    <span class="symbol">keys:</span> [File.expand_path(<span class="string">'/PATH/TO/SSH_KEY/'</span>)],</span><br><span class="line">    <span class="symbol">forward_agent:</span> <span class="literal">true</span>,</span><br><span class="line">    fetch(<span class="symbol">:user</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="wheneverの設定" class="article-heading">🗻 <a href="#wheneverの設定" class="headerlink" title="wheneverの設定"></a>wheneverの設定<a class="article-anchor" href="#wheneverの設定" aria-hidden="true"></a></h2><p>サーバ側のcronの設定をコードで簡単に管理できるwheneverは、『<strong><a href="http://morizyun.github.io/blog/whenever-gem-rails-ruby-capistrano/">Wheneverは導入が超簡単なcrontab管理ライブラリGemです！[Rails4.1]</a></strong>』を参考に設定！</p>
+<h2 id="初回インストール" class="article-heading"> 🍮 <a href="#初回インストール" class="headerlink" title="初回インストール"></a>初回インストール<a class="article-anchor" href="#初回インストール" aria-hidden="true"></a></h2><p>本番環境へのデプロイは次のように実施します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> <span class="built_in">cap</span> production deploy:initial</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="デプロイ手順" class="article-heading"> 🎳 <a href="#デプロイ手順" class="headerlink" title="デプロイ手順"></a>デプロイ手順<a class="article-anchor" href="#デプロイ手順" aria-hidden="true"></a></h2><p>デプロイに必要なディレクトリを生成して、デプロイを実行。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># productionへのデプロイ</span></span><br><span class="line">bundle <span class="built_in">exec</span> <span class="built_in">cap</span> production deploy</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="補足：capコマンドの一覧を表示したい場合" class="article-heading">🐠 <a href="#補足：capコマンドの一覧を表示したい場合" class="headerlink" title="補足：capコマンドの一覧を表示したい場合"></a>補足：capコマンドの一覧を表示したい場合<a class="article-anchor" href="#補足：capコマンドの一覧を表示したい場合" aria-hidden="true"></a></h2><p>capコマンドの一覧を表示したい場合は次のコマンドを実行します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> <span class="built_in">cap</span> -T</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="補足：deploy時にブランチを選択したい場合" class="article-heading">🐯 <a href="#補足：deploy時にブランチを選択したい場合" class="headerlink" title="補足：deploy時にブランチを選択したい場合"></a>補足：deploy時にブランチを選択したい場合<a class="article-anchor" href="#補足：deploy時にブランチを選択したい場合" aria-hidden="true"></a></h2><p><code>set :branck, 'マスタ'</code>の部分を次のように書き直し。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> :branch, `feature/xxx`</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="補足：サーバへのファイルのアップロードをしたい場合" class="article-heading">🐮 <a href="#補足：サーバへのファイルのアップロードをしたい場合" class="headerlink" title="補足：サーバへのファイルのアップロードをしたい場合"></a>補足：サーバへのファイルのアップロードをしたい場合<a class="article-anchor" href="#補足：サーバへのファイルのアップロードをしたい場合" aria-hidden="true"></a></h2><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">namespace <span class="symbol">:devops</span> <span class="keyword">do</span></span><br><span class="line">   desc <span class="string">'Copy files'</span></span><br><span class="line">   task <span class="symbol">:copy</span> <span class="keyword">do</span></span><br><span class="line">      on roles(<span class="symbol">:all</span>) <span class="keyword">do</span> <span class="params">|host|</span></span><br><span class="line">         <span class="string">%w[file.one file.two]</span>.each <span class="keyword">do</span> <span class="params">|f|</span></span><br><span class="line">            upload! <span class="string">"/path/fo/file/<span class="subst">#{f}</span>"</span>, <span class="string">"/remote/path/<span class="subst">#{f}</span>"</span></span><br><span class="line">         <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="nginxとの連携" class="article-heading">🐡 <a href="#nginxとの連携" class="headerlink" title="nginxとの連携"></a>nginxとの連携<a class="article-anchor" href="#nginxとの連携" aria-hidden="true"></a></h2><ul>
+<li><a href="https://qiita.com/kappy0322/items/3d4293b964255b774769" target="_blank" rel="noopener">Rails5+Puma+Nginxな環境をCapistrano3でEC2にデプロイする(後編)</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04" target="_blank" rel="noopener">How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04</a></li>
+</ul>
+<h2 id="CentOSのセキュリティ改善" class="article-heading">🐞 <a href="#CentOSのセキュリティ改善" class="headerlink" title="CentOSのセキュリティ改善"></a>CentOSのセキュリティ改善<a class="article-anchor" href="#CentOSのセキュリティ改善" aria-hidden="true"></a></h2><ul>
+<li><a href="https://qiita.com/NakashimaKeisuke_zerodaynet/items/091862834317229559f1" target="_blank" rel="noopener">CentOS 7 で最初にやってそうなことのまとめ</a></li>
+</ul>
+<h2 id="参考リンク" class="article-heading">😼 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://threetreeslight.com/post/68344998681/capistrano-3-x-rails" target="_blank" rel="noopener">capistrano 3.x系を使ってrailsをデプロイ | iii ThreeTreesLight</a></li>
+<li><a href="http://yss44.hatenablog.com/entry/2013/12/01/150215" target="_blank" rel="noopener">Capistrano3で快適デプロイ生活!! - Less is Best</a></li>
+<li><a href="https://github.com/seuros/capistrano-puma" target="_blank" rel="noopener">seuros/capistrano-puma</a></li>
+<li><a href="https://coderwall.com/p/wgs6gw/copy-local-files-to-remote-server-using-capistrano-3" target="_blank" rel="noopener">Copy local files to remote server using capistrano 3 (Example)</a></li>
+<li><a href="https://github.com/javan/whenever" target="_blank" rel="noopener">javan/whenever: Cron jobs in Ruby</a></li>
+<li><a href="https://github.com/capistrano/rbenv" target="_blank" rel="noopener">capistrano/rbenv: Idiomatic rbenv support for Capistrano 3.x</a></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

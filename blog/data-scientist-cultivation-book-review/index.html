@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>【書評： データサイエンティスト養成読本】で学ぶデータサイエンティストの生態系 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/data-scientist-cultivation-book-review/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="統計解析の勉強をしていく中で、どうやったら実際の業務の中に活かしていけるかを模索していて、この本にいきあたりました。人々が生み出すデータがますます増加していく中で、そのデータをビジネスにどう活用していくかをエンジニアの視点で考えられるすばらしい本だと思います。 今回はこの本の中で特に参考になった点を中心にピックアップしていきます。">
+<meta name="keywords" content="R,statistics,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【書評： データサイエンティスト養成読本】で学ぶデータサイエンティストの生態系">
+<meta property="og:url" content="http://morizyun.github.io/blog/data-scientist-cultivation-book-review/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="統計解析の勉強をしていく中で、どうやったら実際の業務の中に活かしていけるかを模索していて、この本にいきあたりました。人々が生み出すデータがますます増加していく中で、そのデータをビジネスにどう活用していくかをエンジニアの視点で考えられるすばらしい本だと思います。 今回はこの本の中で特に参考になった点を中心にピックアップしていきます。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【書評： データサイエンティスト養成読本】で学ぶデータサイエンティストの生態系">
+<meta name="twitter:description" content="統計解析の勉強をしていく中で、どうやったら実際の業務の中に活かしていけるかを模索していて、この本にいきあたりました。人々が生み出すデータがますます増加していく中で、そのデータをビジネスにどう活用していくかをエンジニアの視点で考えられるすばらしい本だと思います。 今回はこの本の中で特に参考になった点を中心にピックアップしていきます。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">【書評： データサイエンティスト養成読本】で学ぶデータサイエンティストの生態系</h1>
+    
+    <a href="/blog/data-scientist-cultivation-book-review/" class="article-date"><time datetime="2014-03-30T15:00:00.000Z">2014-03-31</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/data-scientist-cultivation-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/data-scientist-cultivation-book-review/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/data-scientist-cultivation-book-review/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/data-scientist-cultivation-book-review/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4774158968/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4774158968&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4774158968&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>統計解析の勉強をしていく中で、どうやったら実際の業務の中に活かしていけるかを模索していて、この本にいきあたりました。人々が生み出すデータがますます増加していく中で、そのデータをビジネスにどう活用していくかをエンジニアの視点で考えられるすばらしい本だと思います。</p>
+<p>今回はこの本の中で特に参考になった点を中心にピックアップしていきます。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="本書のサンプルデータ" class="article-heading">🐝 <a href="#本書のサンプルデータ" class="headerlink" title="本書のサンプルデータ"></a>本書のサンプルデータ<a class="article-anchor" href="#本書のサンプルデータ" aria-hidden="true"></a></h2><p><strong><a href="http://gihyo.jp/book/2013/978-4-7741-5896-9/support" target="_blank" rel="noopener">サポートページ：データサイエンティスト養成読本 ［ビッグデータ時代のビジネスを支えるデータ分析力が身につく！］</a></strong><br><br>インターネットの力、マジですごい！　サンプルデータはほんとうに有にくい！</p>
+<h2 id="データサイエンティストの仕事術" class="article-heading">🐞 <a href="#データサイエンティストの仕事術" class="headerlink" title="データサイエンティストの仕事術"></a>データサイエンティストの仕事術<a class="article-anchor" href="#データサイエンティストの仕事術" aria-hidden="true"></a></h2><h3 id="Cross-Industry-Standard-Process-for-Data-Mining-CRISP-DM" class="article-heading"><a href="#Cross-Industry-Standard-Process-for-Data-Mining-CRISP-DM" class="headerlink" title="Cross Industry Standard Process for Data Mining(CRISP-DM)"></a>Cross Industry Standard Process for Data Mining(CRISP-DM)<a class="article-anchor" href="#Cross-Industry-Standard-Process-for-Data-Mining-CRISP-DM" aria-hidden="true"></a></h3><p>データマイニングプロジェクトにおける標準的な6つの手順。</p>
+<pre>1) Business Understanging
+ビジネスの全体像の理解(ヒアリング)と課題設定
+
+2) Data Understanding
+データ収集と理解に努めて、仮説構築の下地を作る
+
+3) Data Preparation
+数理モデルの作成のために、データマート(データウェアハウス)を構築。
+欠損値や外れ値を除去していく。
+
+4) Modeling
+仮説に戻ついて、数理モデルを構築する
+
+5) Evaluation
+数理モデルの評価。ビジネスリスクの評価
+
+6) Deployment
+数理モデルにもとづく、ビジネス施策の実施
+</pre>
+
+<h3 id="必要なスキルセット" class="article-heading"><a href="#必要なスキルセット" class="headerlink" title="必要なスキルセット"></a>必要なスキルセット<a class="article-anchor" href="#必要なスキルセット" aria-hidden="true"></a></h3><pre># ハードスキル
+1) Data Understanding 〜 Data Preparation
+RDBMS(SQL)、Hadoop(HDFS)、MapReduce、Hiveなど
+
+2) Modeling 〜 Devaluation
+統計解析、機械学習の知識、R, Pythonなど
+
+# ソフトスキル
+1) Business Understanding 〜 Data Understanding
+ビジネスにおける業界、業務の知識。質問力、理解力が必要
+
+2) Deployment
+分析結果の伝達力、説得力、プロジェクトの推進力が必要
+</pre>
+
+<p>根本としては好奇心。「<strong>問題を核心まで掘り下げて、そこで見付け足疑問を明確で検証可能な一連の仮説に落とし込みたいという欲求</strong>」が必要。</p>
+<h3 id="データサイエンスよりも大切なこと" class="article-heading"><a href="#データサイエンスよりも大切なこと" class="headerlink" title="データサイエンスよりも大切なこと"></a>データサイエンスよりも大切なこと<a class="article-anchor" href="#データサイエンスよりも大切なこと" aria-hidden="true"></a></h3><pre>1) 統計的な正しさよりもビジネスの成功
+2) 組織の構造や実務の改善効果を重視する
+3) 意味のある分析のためには泥臭いクリーニングが必須
+4) データは適切な保持が大切
+</pre>
+
+<h3 id="パラメトリックとノンパラメトリック" class="article-heading"><a href="#パラメトリックとノンパラメトリック" class="headerlink" title="パラメトリックとノンパラメトリック"></a>パラメトリックとノンパラメトリック<a class="article-anchor" href="#パラメトリックとノンパラメトリック" aria-hidden="true"></a></h3><p><strong><a href="https://twitter.com/TJO_datasci" target="_blank" rel="noopener">@TJO_datasci</a></strong>さんからご指摘いただきました。パラメトリックとノンパラメトリックの違いの端的なまとめは次のとおりです。</p>
+<p></p><blockquote></blockquote><p></p>
+<ul>
+<li>パラメトリック検定：正規分布に限らず厳密な分布の形の仮定を必要とする<br></li>
+<li>ノンパラメトリック検定：分布の形の仮定が不要である<br><br>引用元: <a href="http://tjo.hatenablog.com/entry/2013/11/19/093218" target="_blank" rel="noopener">「パラメトリック検定」と「ノンパラメトリック検定」の違いについて出典を明示して書いておく</a></li>
+</ul>
+<p>僕自身いくつか文献を見ましたが、まだまだ理解できていません。引き続き勉強して理解できたら、また自分の言葉で書き直したいと思います！</p>
+<h2 id="データ分析実践入門" class="article-heading">😼 <a href="#データ分析実践入門" class="headerlink" title="データ分析実践入門"></a>データ分析実践入門<a class="article-anchor" href="#データ分析実践入門" aria-hidden="true"></a></h2><h3 id="下準備：-RStudio" class="article-heading"><a href="#下準備：-RStudio" class="headerlink" title="下準備： RStudio"></a>下準備： RStudio<a class="article-anchor" href="#下準備：-RStudio" aria-hidden="true"></a></h3><p>本章では主にRを使います。RStudioについては次の章で説明します。</p>
+<h3 id="ロジスティック回帰" class="article-heading"><a href="#ロジスティック回帰" class="headerlink" title="ロジスティック回帰"></a>ロジスティック回帰<a class="article-anchor" href="#ロジスティック回帰" aria-hidden="true"></a></h3><p>Rにデフォルトで入っている、タイタニック号の乗客の生存情報(Titanic)にロジスティック回帰モデルを使う。乗客の各属性から、生存の要因を探す。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">## データ整形</span><br><span class="line">z <- data.frame(titanic)< span><br><span class="line">titanic.data <- data.frame(< span><br><span class="line">    Class=rep(z$Class, z$Freq),</span><br><span class="line">    Sex=rep(z$Sex, z$Freq),</span><br><span class="line">    Age=rep(z$Age, z$Freq),</span><br><span class="line">    Survived=rep(z$Survived, z$Freq)</span><br><span class="line">  )</span><br><span class="line">head(titanic.data)</span><br><span class="line"># Class  Sex   Age Survived</span><br><span class="line"># 1   3rd Male Child       No</span><br><span class="line"># 2   3rd Male Child       No</span><br><span class="line"># 3   3rd Male Child       No</span><br><span class="line"># 4   3rd Male Child       No</span><br><span class="line"># 5   3rd Male Child       No</span><br><span class="line"># 6   3rd Male Child       No</span><br><span class="line"></span><br><span class="line">## モデル構築</span><br><span class="line">titanic.logit <- glm(survived~., data="titanic.data," family="binomial)</span"><br><span class="line">summary(titanic.logit)</span><br><span class="line"># Call:</span><br><span class="line">#   glm(formula = Survived ~ ., family = binomial, data = titanic.data)</span><br><span class="line"># </span><br><span class="line"># Deviance Residuals: </span><br><span class="line">#   Min       1Q   Median       3Q      Max  </span><br><span class="line"># -2.0812  -0.7149  -0.6656   0.6858   2.1278  </span><br><span class="line"># </span><br><span class="line"># Coefficients:</span><br><span class="line">#   Estimate Std. Error z value Pr(>|z|)    </span><br><span class="line"># (Intercept)   0.6853     0.2730   2.510   0.0121 *  </span><br><span class="line">#   Class2nd     -1.0181     0.1960  -5.194 2.05e-07 ***</span><br><span class="line">#   Class3rd     -1.7778     0.1716 -10.362  < 2e-16 ***</span><br><span class="line">#   ClassCrew    -0.8577     0.1573  -5.451 5.00e-08 ***</span><br><span class="line">#   SexFemale     2.4201     0.1404  17.236  < 2e-16 ***</span><br><span class="line">#   AgeAdult     -1.0615     0.2440  -4.350 1.36e-05 ***</span><br><span class="line">#   ---</span><br><span class="line">#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br><span class="line"># </span><br><span class="line"># (Dispersion parameter for binomial family taken to be 1)</span><br><span class="line"># </span><br><span class="line"># Null deviance: 2769.5  on 2200  degrees of freedom</span><br><span class="line"># Residual deviance: 2210.1  on 2195  degrees of freedom</span><br><span class="line"># AIC: 2222.1</span><br><span class="line"># </span><br><span class="line"># Number of Fisher Scoring iterations: 4</span><br></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h3 id="オッズ比の計算" class="article-heading"><a href="#オッズ比の計算" class="headerlink" title="オッズ比の計算"></a>オッズ比の計算<a class="article-anchor" href="#オッズ比の計算" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">install.packages('epicalc')</span><br><span class="line">library('epicalc')</span><br><span class="line">logistic.display(titanic.logit, simplified=T)</span><br><span class="line"># OR lower95ci  upper95ci     Pr(>|Z|)</span><br><span class="line"># Class2nd   0.3612825 0.2460447  0.5304933 2.053331e-07</span><br><span class="line"># Class3rd   0.1690159 0.1207510  0.2365727 3.691891e-25</span><br><span class="line"># ClassCrew  0.4241466 0.3115940  0.5773549 5.004592e-08</span><br><span class="line"># SexFemale 11.2465380 8.5408719 14.8093331 1.431830e-66</span><br><span class="line"># AgeAdult   0.3459219 0.2144193  0.5580746 1.360490e-05</span><br><span class="line">#=> 例えば、女性のほうが11.2465380倍生存確率が高いということがわかる</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="決定木モデル" class="article-heading"><a href="#決定木モデル" class="headerlink" title="決定木モデル"></a>決定木モデル<a class="article-anchor" href="#決定木モデル" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">library(rpart)</span><br><span class="line">install.packages('partykit')</span><br><span class="line">library(partykit)</span><br><span class="line"></span><br><span class="line">titanic.rp <- rpart(survived~., data="titanic.data)</span"><br><span class="line">plot(as.party(titanic.rp), tp_args=T)</span><br></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_1.jpg" width="480" height="500" alt="スクリーンショット 2014-03-25 22.45.03"></p>
+<h3 id="主成分分析" class="article-heading"><a href="#主成分分析" class="headerlink" title="主成分分析"></a>主成分分析<a class="article-anchor" href="#主成分分析" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">state.pca <- prcomp(state.x77[,1:6], scale="T)</span"><br><span class="line">biplot(state.pca)</span><br></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_2.jpg" width="487" height="500" alt="スクリーンショット 2014-03-25 22.48.23"></p>
+<h3 id="非階層クラスタリング：-k-means" class="article-heading"><a href="#非階層クラスタリング：-k-means" class="headerlink" title="非階層クラスタリング： k-means"></a>非階層クラスタリング： k-means<a class="article-anchor" href="#非階層クラスタリング：-k-means" aria-hidden="true"></a></h3><p>k-meansの手順。</p>
+<pre>1) k個のクラスタの中心の初期値を決める
+2) 各データをk個クラスタ中心との距離を求め、最も近いクラスタに分類
+3) 形成されたクラスタの中心を求める
+4) クラスタの中心が変化しない時点まで(2), (3)を繰り返す
+</pre>
+
+<p>サンプルソースはこちら。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># k-meansの実行(クラスタ数を3つに設定)</span><br><span class="line">state.km <- kmeans(scale(state.x77[,1:6]),3)< span><br><span class="line"></span><br><span class="line"># 主成分分析の結果にクラスタ情報を付与</span><br><span class="line">state.pca.df <- data.frame(state.pca$x)< span><br><span class="line">state.pca.df$name <- rownames(state.pca.df)< span><br><span class="line">state.pca.df$cluster <- as.factor(state.km$cluster)< span><br><span class="line"></span><br><span class="line"># 描画</span><br><span class="line">ggplot(state.pca.df, aes(x=PC1, y=PC2, label=name, col=cluster)) + geom_text() + theme_bw(16)</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_1.jpg" width="456" height="500" alt="スクリーンショット 2014-03-25 23.01.10"></p>
+<h3 id="レーダーチャート" class="article-heading"><a href="#レーダーチャート" class="headerlink" title="レーダーチャート"></a>レーダーチャート<a class="article-anchor" href="#レーダーチャート" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">install.packages('fmsb')</span><br><span class="line">library('fmsb')</span><br><span class="line">df <- as.data.frame(scale(state.km$centers))< span><br><span class="line">dfmax <- apply(df, 2, max) + 1< span><br><span class="line">dfmin <- apply(df, 2, min) - 1< span><br><span class="line">df <- rbind(dfmax, dfmin, df)< span><br><span class="line"></span><br><span class="line"># 描画</span><br><span class="line">radarchart(df, seg=5, plty=1, pcol=rainbow(3))</span><br><span class="line">legend("topright", legend=1:3, col=rainbow(3), lty=1)</span><br><span class="line"># クラスタ1 => 平均寿命、高卒率、収入が多い</span><br><span class="line"># クラスタ2 => 殺人件数と非識字率が高い</span><br><span class="line"># クラスタ3 => 人口が多い</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_2.jpg" width="500" height="475" alt="スクリーンショット 2014-03-26 7.44.11"></p>
+<h2 id="RStudioのすすめ" class="article-heading">🐮 <a href="#RStudioのすすめ" class="headerlink" title="RStudioのすすめ"></a>RStudioのすすめ<a class="article-anchor" href="#RStudioのすすめ" aria-hidden="true"></a></h2><p>以下オススメリンク。</p>
+<p><strong><a href="http://www.rstudio.com/ide/download/desktop" target="_blank" rel="noopener">デスクトップアプリ R用のIDE: RStudio</a></strong><br><br>RのIDEツール。主な機能、使い方は次のとおり。</p>
+<pre>1) RStudioのコード補完や、関数へのジャンプ、組み込み関数のソース閲覧機能
+2) Apacheとの連携によるレポート表示、Emailでのレポート配信
+3) Gitによるソースコード管理のサポート機能
+</pre>
+
+<p><strong><a href="http://yihui.name/knitr/" target="_blank" rel="noopener">knitr</a></strong><br><br>RStudio上でReproducible Researchを実現するためのパッケージ。Markdown, Rファイル => HTMLへの変換を行うことができる。また、後述のRPubsへのアップロード機能も備える。</p>
+<p><strong><a href="https://rpubs.com/" target="_blank" rel="noopener">RPubs</a></strong><br><br>RStudio.comが提供するサービス。再現可能な研究(Reproducible Research)を実現するために、Rの実行手順などをWebでシェアできるサービス。</p>
+<p><strong><a href="http://www.rstudio.com/ide/download/server" target="_blank" rel="noopener">RStudio Server</a></strong><br><br>RStudioのWebアプリケーション版。</p>
+<h2 id="Pythonによる機械学習" class="article-heading">🏈 <a href="#Pythonによる機械学習" class="headerlink" title="Pythonによる機械学習"></a>Pythonによる機械学習<a class="article-anchor" href="#Pythonによる機械学習" aria-hidden="true"></a></h2><p>Pythonで使えるデータ分析に有効なライブラリ群についての紹介。</p>
+<h3 id="データ分析と機械学習" class="article-heading"><a href="#データ分析と機械学習" class="headerlink" title="データ分析と機械学習"></a>データ分析と機械学習<a class="article-anchor" href="#データ分析と機械学習" aria-hidden="true"></a></h3><p>データ分析において、機械学習は単なる手段のひとつ。</p>
+<pre>* ある説明変数に対して目的変数がどのくらい影響を与えているかを知ることができる
+* 複数の変数から重要な変数を絞り込む事ができる
+</pre>
+
+<h3 id="Python環境の準備" class="article-heading"><a href="#Python環境の準備" class="headerlink" title="Python環境の準備"></a>Python環境の準備<a class="article-anchor" href="#Python環境の準備" aria-hidden="true"></a></h3><p>もしMachのPython環境を作る場合は、拙著<strong>[Python開発環境構築徹底解説<a href="python-pyenv-rehash-mac-development">pyenv, mac</a></strong>がオススメです。</p>
+<h3 id="Pythonのライブラリ" class="article-heading"><a href="#Pythonのライブラリ" class="headerlink" title="Pythonのライブラリ"></a>Pythonのライブラリ<a class="article-anchor" href="#Pythonのライブラリ" aria-hidden="true"></a></h3><p>利用するライブラリのインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 効率的な数値計算のためのライブラリ</span><br><span class="line">pip install numpy</span><br><span class="line"></span><br><span class="line"># 最適化、補間、積分、統計、画像処理、クラスタリング解析、信号処理、空間的解析などができる</span><br><span class="line">pip install scipy </span><br><span class="line"></span><br><span class="line"># matplotlibのインストール用の設定</span><br><span class="line">ln -s /usr/local/opt/freetype/include/freetype2 /usr/local/include/freetype</span><br><span class="line"></span><br><span class="line"># グラフ描画ライブラリ</span><br><span class="line">pip install matplotlib</span><br><span class="line"></span><br><span class="line"># ファイルを作成してパラメータを記述</span><br><span class="line">vim ~/.matplotlib/matplotlibrc</span><br><span class="line"># ↓ 以下を追加</span><br><span class="line">backend : TkAgg</span><br><span class="line"></span><br><span class="line"># 機械学習ライブラリ: 単回帰分析〜SVMなどまで対応</span><br><span class="line"># 教師あり学習、教師なし学習、モデル選択のためのクロスバリデーション</span><br><span class="line">pip install scikit-learn</span><br><span class="line"></span><br><span class="line"># データ構造・データ解析のライブラリ：Rのdata.frameなどがある</span><br><span class="line">pip install pandas</span><br><span class="line"></span><br><span class="line"># PythonからR言語を呼び出すためのライブラリ</span><br><span class="line">pip install rpy2</span><br><span class="line"></span><br><span class="line"># pythonを対話的に実行するためのライブラリ</span><br><span class="line">pip install ipython</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="あやめのデータを知る" class="article-heading"><a href="#あやめのデータを知る" class="headerlink" title="あやめのデータを知る"></a>あやめのデータを知る<a class="article-anchor" href="#あやめのデータを知る" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">wget https://dataminingproject.googlecode.com/svn-history/r44/DataMiningApp/datasets/Iris/iris.csv </span><br><span class="line"></span><br><span class="line"># IRIS.csvのあるフォルダでipythonを起動</span><br><span class="line">ipython</span><br><span class="line"></span><br><span class="line"># iris.csvを読み込み</span><br><span class="line">import pandas as pd</span><br><span class="line">iris = pd.read_csv("iris.csv")</span><br><span class="line">iris.info()</span><br><span class="line"></span><br><span class="line"># データ加工</span><br><span class="line">setosa = iris[iris["Species"] == "setosa"]</span><br><span class="line">versicolor = iris[iris["Species"] == "versicolor"]</span><br><span class="line">virginica = iris[iris["Species"] == "virginica"]</span><br><span class="line"></span><br><span class="line"># 基本的な統計量 ###########################</span><br><span class="line"># 合計</span><br><span class="line">virginica.sum()</span><br><span class="line"># Sepal Length                                                329.4</span><br><span class="line"># Sepal Width                                                 148.7</span><br><span class="line"># Petal Length                                                277.6</span><br><span class="line"># Petal Width                                                 101.3</span><br><span class="line"></span><br><span class="line"># 平均</span><br><span class="line">virginica.mean()</span><br><span class="line"># Sepal Length    6.588</span><br><span class="line"># Sepal Width     2.974</span><br><span class="line"># Petal Length    5.552</span><br><span class="line"># Petal Width     2.026</span><br><span class="line"></span><br><span class="line"># 中央値</span><br><span class="line">virginica.median()</span><br><span class="line"># Sepal Length    6.50</span><br><span class="line"># Sepal Width     3.00</span><br><span class="line"># Petal Length    5.55</span><br><span class="line"># Petal Width     2.00</span><br><span class="line"></span><br><span class="line"># 最小値</span><br><span class="line">verginica.min()</span><br><span class="line"># Sepal Length          4.9</span><br><span class="line"># Sepal Width           2.2</span><br><span class="line"># Petal Length          4.5</span><br><span class="line"># Petal Width           1.4</span><br><span class="line"></span><br><span class="line"># 最大値</span><br><span class="line">virginica.max()</span><br><span class="line"># Sepal Length          7.9</span><br><span class="line"># Sepal Width           3.8</span><br><span class="line"># Petal Length          6.9</span><br><span class="line"># Petal Width           2.5</span><br><span class="line"></span><br><span class="line"># 相関係数</span><br><span class="line">virginica.corr()</span><br><span class="line">#               Sepal Length  Sepal Width  Petal Length  Petal Width</span><br><span class="line"># Sepal Length      1.000000     0.457228      0.864225     0.281108</span><br><span class="line"># Sepal Width       0.457228     1.000000      0.401045     0.537728</span><br><span class="line"># Petal Length      0.864225     0.401045      1.000000     0.322108</span><br><span class="line"># Petal Width       0.281108     0.537728      0.322108     1.000000</span><br><span class="line"></span><br><span class="line"># 分散</span><br><span class="line">virginica.var()</span><br><span class="line"># Sepal Length    0.404343</span><br><span class="line"># Sepal Width     0.104004</span><br><span class="line"># Petal Length    0.304588</span><br><span class="line"># Petal Width     0.075433</span><br><span class="line"></span><br><span class="line"># 標準偏差</span><br><span class="line">virginica.std()</span><br><span class="line"># Sepal Length    0.635880</span><br><span class="line"># Sepal Width     0.322497</span><br><span class="line"># Petal Length    0.551895</span><br><span class="line"># Petal Width     0.274650</span><br><span class="line"></span><br><span class="line"># 共分散</span><br><span class="line">virginica.cov()</span><br><span class="line">#               Sepal Length  Sepal Width  Petal Length  Petal Width</span><br><span class="line"># Sepal Length      0.404343     0.093763      0.303290     0.049094</span><br><span class="line"># Sepal Width       0.093763     0.104004      0.071380     0.047629</span><br><span class="line"># Petal Length      0.303290     0.071380      0.304588     0.048824</span><br><span class="line"># Petal Width       0.049094     0.047629      0.048824     0.075433</span><br><span class="line"></span><br><span class="line"># ピポッテーブルの作成</span><br><span class="line">import numpy as np</span><br><span class="line">pd.pivot_table(iris, rows=["Species"], aggfunc=np.mean)</span><br><span class="line">#             Petal Length  Petal Width  Sepal Length  Sepal Width</span><br><span class="line"># Species</span><br><span class="line"># setosa             1.464        0.244         5.006        3.418</span><br><span class="line"># versicolor         4.260        1.326         5.936        2.770</span><br><span class="line"># virginica          5.552        2.026         6.588        2.974</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="irisでヒストグラムの実行" class="article-heading"><a href="#irisでヒストグラムの実行" class="headerlink" title="irisでヒストグラムの実行"></a>irisでヒストグラムの実行<a class="article-anchor" href="#irisでヒストグラムの実行" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">plt.hist(iris["Sepal Length"])</span><br><span class="line">plt.xlabel("Sepal Length")</span><br><span class="line">plt.ylabl("Freq")</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_3.jpg" width="500" height="379" alt="スクリーンショット 2014-03-29 9.37.35"></p>
+<h3 id="箱ひげ図" class="article-heading"><a href="#箱ひげ図" class="headerlink" title="箱ひげ図"></a>箱ひげ図<a class="article-anchor" href="#箱ひげ図" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">data = [setosa["Petal Length"], versiclor["Petal Length"], virginica["Petal Length"]]</span><br><span class="line">plt.boxplot(data)</span><br><span class="line">plt.xlabel("Species")</span><br><span class="line">plt.ylabel("Petal Length")</span><br><span class="line">ax = plt.gca()</span><br><span class="line">plt.setp(ax, xticklabels=["setosa", "versicolor", "virginica"])</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_4.jpg" width="500" height="391" alt="スクリーンショット 2014-03-29 9.55.08"></p>
+<h3 id="散布図" class="article-heading"><a href="#散布図" class="headerlink" title="散布図"></a>散布図<a class="article-anchor" href="#散布図" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">plt.scatter(versicolor["Sepal Width"], versicolor["Petal Width"])</span><br><span class="line">plt.xlabel("Sepal Width")</span><br><span class="line">plt.ylabel("Petal Width")</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_5.jpg" width="500" height="392" alt="スクリーンショット 2014-03-29 10.01.24"></p>
+<h3 id="相関係数" class="article-heading"><a href="#相関係数" class="headerlink" title="相関係数"></a>相関係数<a class="article-anchor" href="#相関係数" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># versicolorのSepal WidthとPetal Widthの相関係数</span><br><span class="line">import numpy as np</span><br><span class="line">corr = np.corrcoef(versicolor["Sepal Width"], versicolor["Petal Width"])</span><br><span class="line">print(corr[0,1]) </span><br><span class="line">#=> 0.663998720024</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="単回帰分析" class="article-heading"><a href="#単回帰分析" class="headerlink" title="単回帰分析"></a>単回帰分析<a class="article-anchor" href="#単回帰分析" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">from sklearn import linear_model</span><br><span class="line">LinerRegr = linear_model.LinearRegression()</span><br><span class="line">X = setosa[["Sepal Length"]]</span><br><span class="line">Y = setosa[["Sepal Width"]]</span><br><span class="line">LinerRegr.fit(X, Y)</span><br><span class="line">plt.scatter(X, Y, color="black")</span><br><span class="line">px = np.arange(X.min(), X.max(), .01)[:,np.newaxis]</span><br><span class="line">py = LinerRegr.predict(px)</span><br><span class="line">plt.plot(px, py, color="blue", linewidth=3)</span><br><span class="line">plt.xlabel("Sepal Length")</span><br><span class="line">plt.ylabel("Sepal Width")</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_6.jpg" width="500" height="385" alt="スクリーンショット 2014-03-29 11.43.26"></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 回帰変数</span><br><span class="line">print(LinerRegr.coef_)</span><br><span class="line">#=> [[ 0.80723367]]</span><br><span class="line"></span><br><span class="line"># 切片</span><br><span class="line">print(LinerRegr.inercept_)</span><br><span class="line">#=> [-0.62301173]</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Rの機能を使って重回帰分析-gt-rpy2" class="article-heading"><a href="#Rの機能を使って重回帰分析-gt-rpy2" class="headerlink" title="Rの機能を使って重回帰分析 => rpy2"></a>Rの機能を使って重回帰分析 => rpy2<a class="article-anchor" href="#Rの機能を使って重回帰分析-gt-rpy2" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import rpy2.robjects as robjects</span><br><span class="line">robjects.globalenv["SepalLength"] = robjects.FloatVector(setosa["Sepal Length"])</span><br><span class="line">robjects.globalenv["SepalWidth"] = robjects.FloatVector(setosa["Sepal Width"])</span><br><span class="line">robjects.globalenv["PetalLength"] = robjects.FloatVector(setosa["Petal Length"])</span><br><span class="line">robjects.globalenv["PetalWidth"] = robjects.FloatVector(setosa["Petal Width"])</span><br><span class="line">r = robjects.r</span><br><span class="line"></span><br><span class="line"># Rの重回帰分析</span><br><span class="line">rlm = r.lm("SepalWidth~SepalLength+PetalLength+PetalWidth")</span><br><span class="line">print((r.summary(rlm)))</span><br><span class="line"># Residuals:</span><br><span class="line">#      Min       1Q   Median       3Q      Max</span><br><span class="line"># -0.75025 -0.17983 -0.00411  0.15933  0.57704</span><br><span class="line">#</span><br><span class="line"># Coefficients:</span><br><span class="line">#             Estimate Std. Error t value Pr(>|t|)</span><br><span class="line"># (Intercept) -0.48721    0.56900  -0.856    0.396</span><br><span class="line"># SepalLength  0.79304    0.11162   7.105 6.35e-09 ***</span><br><span class="line"># PetalLength -0.09678    0.22875  -0.423    0.674</span><br><span class="line"># PetalWidth   0.31530    0.37186   0.848    0.401</span><br><span class="line"># ---</span><br><span class="line"># Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br><span class="line">#</span><br><span class="line"># Residual standard error: 0.2594 on 46 degrees of freedom</span><br><span class="line"># Multiple R-squared:  0.5649,  Adjusted R-squared:  0.5366</span><br><span class="line"># F-statistic: 19.91 on 3 and 46 DF,  p-value: 2.042e-08</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="ダミー変数の利用" class="article-heading"><a href="#ダミー変数の利用" class="headerlink" title="ダミー変数の利用"></a>ダミー変数の利用<a class="article-anchor" href="#ダミー変数の利用" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 数値データ以外も分析に活用する</span><br><span class="line"># Spiciesをダミー変数(品種の0/1のカラム)に変換</span><br><span class="line">import pandas as pd</span><br><span class="line">dummies = pd.get_dummies(iris["Species"])</span><br><span class="line">iris = pd.concat([iris, dummies], axis=1)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="回帰係数と切片を求める" class="article-heading"><a href="#回帰係数と切片を求める" class="headerlink" title="回帰係数と切片を求める"></a>回帰係数と切片を求める<a class="article-anchor" href="#回帰係数と切片を求める" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">LinearRegr = linear_model.LinearRegression()</span><br><span class="line">X = iris[["setosa", "versicolor"]]</span><br><span class="line">Y = iris[["Sepal Length"]]</span><br><span class="line">LinearRegr.fit(X, Y)</span><br><span class="line"></span><br><span class="line"># 回帰係数</span><br><span class="line">print(LinearRegr.coef_) #=> [[-1.582 -0.652]]</span><br><span class="line"></span><br><span class="line"># 切片</span><br><span class="line">print(LinearRegr.intercept_) #=> [ 6.588]</span><br></pre></td></tr></tbody></table></figure>
+<p>###　データマイニングの流れ</p>
+<pre>1) ゴールを決める
+2) 変数の種類・表している事象を知る
+3) 1変量の解析を行う。平均値を算出し、ヒストグラム・箱ひげ図を描写
+4) 2変量の解析を行う。散布図などのグラフから理解を深める
+5) 説明変数を減らして、解釈しやすいモデルに当てはめる
+6) 推定された結果を(2)-(4)に振り返ってモデル検証を行う
+</pre>
+
+<h3 id="ロジスティック回帰モデル" class="article-heading"><a href="#ロジスティック回帰モデル" class="headerlink" title="ロジスティック回帰モデル"></a>ロジスティック回帰モデル<a class="article-anchor" href="#ロジスティック回帰モデル" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import sklearn</span><br><span class="line">use_data = np.logical_or(iris["Species"] == "setosa", iris["Species"] == "virginica")</span><br><span class="line">setosa_virginica = iris[use_data]</span><br><span class="line">X = setosa_virginica[["Sepal Length", "Sepal Width"]]</span><br><span class="line">Y = setosa_virginica[["setosa"]]</span><br><span class="line">LogRegr = sklearn.linear_model.LogisticRegression(C=1.0)</span><br><span class="line">LogRegr.fit(X,Y)</span><br><span class="line"></span><br><span class="line"># 偏回帰係数</span><br><span class="line">print(LogRegr.coef_)</span><br><span class="line">#=> [[-2.15056433  3.53948104]]</span><br><span class="line"></span><br><span class="line"># 切片</span><br><span class="line">print(LogRegr.intercept_)</span><br><span class="line">#=> [ 0.94024115]</span><br></pre></td></tr></tbody></table></figure>
+<p>なんか間違っている気がするので、あとで直す予定です。まずはちょっと触れるところから。</p>
+<h3 id="モデル結果をグラフにして確認" class="article-heading"><a href="#モデル結果をグラフにして確認" class="headerlink" title="モデル結果をグラフにして確認"></a>モデル結果をグラフにして確認<a class="article-anchor" href="#モデル結果をグラフにして確認" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">xMin = X["Sepal Length"].min()</span><br><span class="line">xMax = X["Sepal Length"].max()</span><br><span class="line">yMin = X["Sepal Width"].min()</span><br><span class="line">yMax = X["Sepal Width"].max()</span><br><span class="line">xx,yy = np.meshgrid(np.arange(xMin, xMax, 0.01), np.arange(yMin, yMax, 0.01))</span><br><span class="line">Z = LogRegr.predict(np.c_[xx.ravel(), yy.ravel()])</span><br><span class="line">Z = Z.reshape(xx.shape)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.xlim(xx.min(), xx.max())</span><br><span class="line">plt.ylim(yy.min(), yy.max())</span><br><span class="line">plt.xlabel("Sepal Length")</span><br><span class="line">plt.ylabel("Sepal Width")</span><br><span class="line">plt.pcolormesh(xx, yy, Z, cmap=plt.cm.Paired)</span><br><span class="line">plt.scatter(X["Sepal Length"], X["Sepal Width"], c=np.array(Y), cmap=plt.cm.Paired)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_7.jpg" width="500" height="389" alt="スクリーンショット 2014-03-29 17.36.16"></p>
+<h2 id="決定木" class="article-heading">🗻 <a href="#決定木" class="headerlink" title="決定木"></a>決定木<a class="article-anchor" href="#決定木" aria-hidden="true"></a></h2><p>まずはHomebrewでGraphvizとPythonで使うためのライブラリpydotをインストール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew install gts</span><br><span class="line">brew install graphviz</span><br><span class="line"></span><br><span class="line">pip uninstall pyparsing</span><br><span class="line">pip install -Iv https://pypi.python.org/packages/source/p/pyparsing/pyparsing-1.5.7.tar.gz#md5=9be0fcdcc595199c646ab317c1d9a709</span><br><span class="line">pip install pydot</span><br></pre></td></tr></tbody></table></figure>
+<p>続いてIPythonのコンソール。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">from sklearn import tree</span><br><span class="line">X = iris[["Sepal Length", "Sepal Width", "Petal Length", "Petal Width"]]</span><br><span class="line">Y = iris[["Species"]]</span><br><span class="line">treeClf = tree.DecisionTreeClassifier(max_depth=2)</span><br><span class="line">treeClf.fit(X, Y)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="決定木-1" class="article-heading"><a href="#決定木-1" class="headerlink" title="決定木"></a>決定木<a class="article-anchor" href="#決定木-1" aria-hidden="true"></a></h3><p>同じくグラフがなんか違うので、あとで見直す予定。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">## 決定木の構築</span><br><span class="line">from sklearn import tree</span><br><span class="line">X = iris[["Sepal Length", "Sepal Width", "Petal Length", "Petal Width"]]</span><br><span class="line">Y = iris[["Species"]]</span><br><span class="line">treeClf = tree.DecisionTreeClassifier(max_depth=2)</span><br><span class="line">treeClf.fit(X, Y)</span><br><span class="line"></span><br><span class="line">## 決定木の可視化</span><br><span class="line">import StringIO</span><br><span class="line">import pydot</span><br><span class="line">dot_data = StringIO.StringIO()</span><br><span class="line">tree.export_graphviz(treeClf, out_file=dot_data, feature_names=["Sepal Length", "Sepal Width", "Petal Length", "Petal Width"])</span><br><span class="line">graph = pydot.graph_from_dot_data(dot_data.getvalue())</span><br><span class="line">graph.write_pdf("iris_decision_tree.pdf")</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_8.jpg" width="500" height="313" alt="スクリーンショット 2014-03-29 18.43.37"></p>
+<h3 id="k-means法" class="article-heading"><a href="#k-means法" class="headerlink" title="k-means法"></a>k-means法<a class="article-anchor" href="#k-means法" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># k-meansの実行</span><br><span class="line">from sklearn import cluster</span><br><span class="line">X = iris[["Sepal Length", "Sepal Width"]]</span><br><span class="line">kmeansCls = cluster.KMeans(n_clusters=3)</span><br><span class="line">kmeansCls.fit(X)</span><br><span class="line">print(kmeansCls.predict(X))</span><br><span class="line"># [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">#  0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line">#  1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 2 2 2 1 2 2 2 2</span><br><span class="line">#  2 2 1 1 2 2 2 2 1 2 1 2 1 2 2 1 1 2 2 2 2 2 1 2 2 2 2 1 2 2 2 1 2 2 2 1 2</span><br><span class="line">#  2 1]</span><br><span class="line"></span><br><span class="line"># k-means法の可視化</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">def category2int(x):</span><br><span class="line">    category = {"setosa": 0, "versicolor": 1, "virginica": 2}</span><br><span class="line">    return category[x]</span><br><span class="line"></span><br><span class="line">f = lambda x: category2int(x)</span><br><span class="line">Y = iris["Species"].map(f)</span><br><span class="line">xMin = X["Sepal Length"].min()</span><br><span class="line">xMax = X["Sepal Length"].max()</span><br><span class="line">yMin = X["Sepal Width"].min()</span><br><span class="line">yMax = X["Sepal Width"].max()</span><br><span class="line">xx,yy = np.meshgrid(np.arange(xMin, xMax, 0.01), np.arange(yMin, yMax, 0.01))</span><br><span class="line">Z = kmeansCls.predict(np.c_[xx.ravel(), yy.ravel()])</span><br><span class="line">Z = Z.reshape(xx.shape)</span><br><span class="line">plt.figure()</span><br><span class="line">plt.xlim(xx.min(), xx.max())</span><br><span class="line">plt.ylim(yy.min(), yy.max())</span><br><span class="line">plt.xlabel("Sepal Length")</span><br><span class="line">plt.ylabel("Sepal Width")</span><br><span class="line">plt.pcolormesh(xx, yy, Z, cmap=plt.cm.Reds)</span><br><span class="line">plt.scatter(X["Sepal Length"], X["Sepal Width"], c=np.array(Y), cmap=plt.cm.Blues)</span><br><span class="line">plt.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_9.jpg" width="500" height="384" alt="スクリーンショット 2014-03-29 18.40.37"></p>
+<h2 id="データマイニング10のアルゴリズム" class="article-heading">👽 <a href="#データマイニング10のアルゴリズム" class="headerlink" title="データマイニング10のアルゴリズム"></a>データマイニング10のアルゴリズム<a class="article-anchor" href="#データマイニング10のアルゴリズム" aria-hidden="true"></a></h2><h3 id="C4-5" class="article-heading"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5<a class="article-anchor" href="#C4-5" aria-hidden="true"></a></h3><pre>* 決定木を構築する計算アルゴリズム
+* 結果のイメージが直感的て理解しやすい
+* 分類の精度は高くない
+</pre>
+
+<h3 id="k-meansアルゴリズム" class="article-heading"><a href="#k-meansアルゴリズム" class="headerlink" title="k-meansアルゴリズム"></a>k-meansアルゴリズム<a class="article-anchor" href="#k-meansアルゴリズム" aria-hidden="true"></a></h3><p>クラスタリングでは次のステップを反復して計算。</p>
+<pre>1) データにクラスタを割り振る(中心と一番近いクラスタを割り振る)
+2) クラスタ事の平均値の計算
+</pre>
+
+<h3 id="サポートベクタマシン" class="article-heading"><a href="#サポートベクタマシン" class="headerlink" title="サポートベクタマシン"></a>サポートベクタマシン<a class="article-anchor" href="#サポートベクタマシン" aria-hidden="true"></a></h3><pre>* 少なめのサンプルで説明変数が多い場合に適した手法
+* SVMは特徴量が膨大でも高速に計算できる
+* サンプル数が増えると計算時間が急に増加する
+</pre>
+
+<h3 id="アプリケーションオリアルゴリズム" class="article-heading"><a href="#アプリケーションオリアルゴリズム" class="headerlink" title="アプリケーションオリアルゴリズム"></a>アプリケーションオリアルゴリズム<a class="article-anchor" href="#アプリケーションオリアルゴリズム" aria-hidden="true"></a></h3><pre>* 大量のトランザクションの中から価値あるつながりを見つけるために使われる手法
+* 強力な結果が得られる上、実装が比較的容易
+</pre>
+
+<h3 id="EMアルゴリズム" class="article-heading"><a href="#EMアルゴリズム" class="headerlink" title="EMアルゴリズム"></a>EMアルゴリズム<a class="article-anchor" href="#EMアルゴリズム" aria-hidden="true"></a></h3><p>Expectation-maximization algorithm(期待値最大化法)。数式展開では計算出来ないような複雑なモデルのパラメータ推定に用いる。以下はその手順。</p>
+<pre>1) パラメータの初期値を決める
+2) Exceptationステップ: 未観測データの期待値を求める
+3) Maximizationステップ: 未観測データの期待値を求める
+</pre>
+
+<h3 id="アダブースト" class="article-heading"><a href="#アダブースト" class="headerlink" title="アダブースト"></a>アダブースト<a class="article-anchor" href="#アダブースト" aria-hidden="true"></a></h3><pre>* いくつかの学習木を組み合わせることで、強力な予測性能を得る
+* 実装が容易で解釈がしやすい
+* ディープラーニングが出るまでは最も有力な予測モデルと言われてきた
+</pre>
+
+<h3 id="ナイーブベイズ" class="article-heading"><a href="#ナイーブベイズ" class="headerlink" title="ナイーブベイズ"></a>ナイーブベイズ<a class="article-anchor" href="#ナイーブベイズ" aria-hidden="true"></a></h3><pre>* クラスを予測するための手法で構築が容易
+* テキスト分類やパターン認識で広く利用されている
+</pre>
+
+<h2 id="Rによるマーケティング分析" class="article-heading"> 🎳 <a href="#Rによるマーケティング分析" class="headerlink" title="Rによるマーケティング分析"></a>Rによるマーケティング分析<a class="article-anchor" href="#Rによるマーケティング分析" aria-hidden="true"></a></h2><p><strong><a href="http://www.slideshare.net/yokkuns/r-22276096" target="_blank" rel="noopener">R言語で学ぶマーケティング分析 競争ポジショニング戦略</a></strong><br><br>この記事の作者さんの発表。エッセンスがうまくまとまっています。</p>
+<h4 id="主成分分析の実行" class="article-heading"><a href="#主成分分析の実行" class="headerlink" title="主成分分析の実行"></a>主成分分析の実行<a class="article-anchor" href="#主成分分析の実行" aria-hidden="true"></a></h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">setwd("~/Dropbox/study-R/")</span><br><span class="line"># データの読み込み</span><br><span class="line">sp.user.data <- read.csv("data sp_user_research_data.csv")< span><br><span class="line"></span><br><span class="line"># 主成分分析 => ユーザー間の類似関係の把握</span><br><span class="line">sp.user.pca <- prcomp(sp.user.data[,-1], scale="T)</span"><br><span class="line"></span><br><span class="line"># バイプロットの表示</span><br><span class="line">biplot(sp.user.pca)</span><br></-></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_10.jpg" width="500" height="461" alt="スクリーンショット 2014-03-30 13.33.16"></p>
+<h3 id="k-meansによるクラスタリングの実行" class="article-heading"><a href="#k-meansによるクラスタリングの実行" class="headerlink" title="k-meansによるクラスタリングの実行"></a>k-meansによるクラスタリングの実行<a class="article-anchor" href="#k-meansによるクラスタリングの実行" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">sp.user.km <- kmeans(sp.user.data[,-1], 4)< span><br><span class="line"></span><br><span class="line"># 主成分分析の結果にクラスタ情報を付与</span><br><span class="line">sp.user.pca.df <- data.frame(sp.user.pca$x)< span><br><span class="line">sp.user.pca.df$id <- sp.user.data$id< span><br><span class="line">sp.user.pca.df$cluster <- as.factor(sp.user.km$cluster)< span><br><span class="line"></span><br><span class="line"># 描画</span><br><span class="line">install.packages("ggplot2")</span><br><span class="line">library("ggplot2")</span><br><span class="line">ggplot(sp.user.pca.df, aes(x = PC1, y = PC2, label = id, col = cluster)) + geom_text() + theme_bw(16)</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_11.jpg" width="500" height="361" alt="スクリーンショット 2014-03-30 13.40.50"></p>
+<h3 id="レーダーチャートの作成" class="article-heading"><a href="#レーダーチャートの作成" class="headerlink" title="レーダーチャートの作成"></a>レーダーチャートの作成<a class="article-anchor" href="#レーダーチャートの作成" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">install.packages("fmsb")</span><br><span class="line">library("fmsb")</span><br><span class="line"></span><br><span class="line"># レーダーチャート用にデータを整形</span><br><span class="line">df <- data.frame(scale(sp.user.km$centers))< span><br><span class="line">dfmax <- apply(df, 2, max) + 1< span><br><span class="line">dfmin <- apply(df, 2, min) - 1< span><br><span class="line">df <- rbind(dfmax, dfmin, df)< span><br><span class="line"></span><br><span class="line"># レーダーチャートの描画</span><br><span class="line">radarchart(df, seg = 5, plty = 1, pcol = rainbow(4))</span><br><span class="line">legend("topright", legend = 1:4, col = rainbow(4), lty = 1)</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_12.jpg" width="500" height="361" alt="スクリーンショット 2014-03-30 13.54.09"></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">## MDS(Mult-dimentional scaling: 多次元尺度構成法) - 知覚マップ</span><br><span class="line">install.packages("MASS")</span><br><span class="line">library("MASS")</span><br><span class="line"></span><br><span class="line"># 先行データの読み込み</span><br><span class="line">setwd("~/Dropbox/study-R/data")</span><br><span class="line">target.data <- read.csv("target_preference_data.csv", header="T)</span"><br><span class="line"></span><br><span class="line"># 非計算MDSの実行</span><br><span class="line">service.dist <- dist(t(target.data[, -1]))< span><br><span class="line">service.map <- isomds(service.dist)< span><br><span class="line"></span><br><span class="line"># 描画用データの整形</span><br><span class="line">service.map.df <- data.frame(scale(service.map$points))< span><br><span class="line">service.map.df$service_name <- names(target.data[, -1])< span><br><span class="line"></span><br><span class="line"># 描画</span><br><span class="line">ggplot(service.map.df, aes(x = X1, y = X2, label = service_name)) + geom_text() + theme_bw(16)</span><br></-></span></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_13.jpg" width="500" height="309" alt="スクリーンショット 2014-03-30 14.07.50"></p>
+<h3 id="選好ベクトルの推定" class="article-heading"><a href="#選好ベクトルの推定" class="headerlink" title="選好ベクトルの推定"></a>選好ベクトルの推定<a class="article-anchor" href="#選好ベクトルの推定" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 選好ベクトルの推定</span><br><span class="line">user.preference.data <-< span><br><span class="line">  do.call(rbind,</span><br><span class="line">          lapply(1:nrow(target.data),</span><br><span class="line">                 function(i){</span><br><span class="line">                   preference.data <- data.frame(< span><br><span class="line">                     p=as.numeric(target.data[i, -1]),</span><br><span class="line">                     X1=service.map.df$X1,</span><br><span class="line">                     X2=service.map.df$X2)</span><br><span class="line">                   fit <- lm(p~., data="preference.data)</span"><br><span class="line">                   b <- 2 sqrt(fit$coef["x1"]^2+fit$coef["x2"]^2)< span><br><span class="line">                   data.frame(X1=b*fit$coef["X1"],</span><br><span class="line">                              X2=b*fit$coef["X2"],</span><br><span class="line">                              service_name=i)</span><br><span class="line">                 }))</span><br><span class="line">  </span><br><span class="line"># 選好ベクトルの描画</span><br><span class="line">ggplot(service.map.df, aes(x=X1, y=X2, label=service_name)) +</span><br><span class="line">  geom_text() +</span><br><span class="line">  theme_bw(16) +</span><br><span class="line">  xlim(-2,2) +</span><br><span class="line">  ylim(-2,2) +</span><br><span class="line">  geom_point(data=user.preference.data, aes(x=X1, y=X2))</span><br></-></span></-></span></-></span></-<></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_14.jpg" width="500" height="309" alt="スクリーンショット 2014-03-30 14.27.52"></p>
+<h3 id="仮想データの読み込みと散布図の描画" class="article-heading"><a href="#仮想データの読み込みと散布図の描画" class="headerlink" title="仮想データの読み込みと散布図の描画"></a>仮想データの読み込みと散布図の描画<a class="article-anchor" href="#仮想データの読み込みと散布図の描画" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 利用する仮想データの読み込み</span><br><span class="line">library(ggplot2)</span><br><span class="line">library(scales)</span><br><span class="line"></span><br><span class="line"># GRPと売上データの読み込み</span><br><span class="line">grp.data <- 2013 read.csv("http: image.gihyo.co.jp assets files book 978-4-7741-5896-9 download grp.csv", header="T)</span"><br><span class="line"></span><br><span class="line"># 散布図の描画</span><br><span class="line">ggplot(grp.data, aes(x=grp, y=amount)) +</span><br><span class="line">  geom_point() +</span><br><span class="line">  scale_y_continuous(label=comma, limits=c(0,360000)) +</span><br><span class="line">  ylab("Sales") +</span><br><span class="line">  xlab("GRP") +</span><br><span class="line">  theme_bw(16)</span><br></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_15.jpg" width="500" height="312" alt="スクリーンショット 2014-03-30 20.50.20"></p>
+<h3 id="線形型モデルの構築" class="article-heading"><a href="#線形型モデルの構築" class="headerlink" title="線形型モデルの構築"></a>線形型モデルの構築<a class="article-anchor" href="#線形型モデルの構築" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 可視化はgeom_smooth関数ですぐにできる</span><br><span class="line">ggplot(grp.data, aes(x=grp, y=amount)) +</span><br><span class="line">  geom_point() +</span><br><span class="line">  scale_y_continuous(label=comma, limits=c(0, 360000)) +</span><br><span class="line">  ylab("Sales") +</span><br><span class="line">  xlab("GRP") +</span><br><span class="line">  geom_smooth(method = "lm") +</span><br><span class="line">  theme_bw(16)</span><br><span class="line"></span><br><span class="line"># モデル構築</span><br><span class="line">fit <- lm(amount~grp, data="grp.data)</span"><br><span class="line"></span><br><span class="line"># モデル概要の表示</span><br><span class="line">summary(fit)</span><br><span class="line"># Call:</span><br><span class="line">#   lm(formula = amount ~ grp, data = grp.data)</span><br><span class="line"># </span><br><span class="line"># Residuals:</span><br><span class="line">#   Min     1Q Median     3Q    Max </span><br><span class="line"># -31521  -8275    321   8701  36962 </span><br><span class="line"># </span><br><span class="line"># Coefficients:</span><br><span class="line">#   Estimate Std. Error t value Pr(>|t|)    </span><br><span class="line"># (Intercept) 229812.53    2561.73   89.71   <2e-16 ***< span><br><span class="line">#   grp            455.54      15.93   28.60   <2e-16 ***< span><br><span class="line">#   ---</span><br><span class="line">#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br><span class="line"># </span><br><span class="line"># Residual standard error: 13070 on 198 degrees of freedom</span><br><span class="line"># Multiple R-squared:  0.8051,  Adjusted R-squared:  0.8042 </span><br><span class="line"># F-statistic: 818.1 on 1 and 198 DF,  p-value: < 2.2e-16</span><br></2e-16></span></2e-16></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_16.jpg" width="500" height="292" alt="スクリーンショット 2014-03-30 20.58.40"></p>
+<h3 id="xx減型モデルの構築" class="article-heading"><a href="#xx減型モデルの構築" class="headerlink" title="xx減型モデルの構築"></a>xx減型モデルの構築<a class="article-anchor" href="#xx減型モデルの構築" aria-hidden="true"></a></h3><p>読めなかった。日本語苦手っすw</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">fit <- lm(log(amount)~log(grp), data="grp.data)</span"><br><span class="line"></span><br><span class="line"># モデル概要</span><br><span class="line">summary(fit)</span><br><span class="line"># Call:</span><br><span class="line">#   lm(formula = log(amount) ~ log(grp), data = grp.data)</span><br><span class="line"># </span><br><span class="line"># Residuals:</span><br><span class="line">#   Min        1Q    Median        3Q       Max </span><br><span class="line"># -0.121782 -0.023589 -0.003298  0.025672  0.116504 </span><br><span class="line"># </span><br><span class="line"># Coefficients:</span><br><span class="line">#   Estimate Std. Error t value Pr(>|t|)    </span><br><span class="line"># (Intercept) 11.546963   0.032379  356.62   <2e-16 ***< span><br><span class="line">#   log(grp)     0.213933   0.006551   32.66   <2e-16 ***< span><br><span class="line">#   ---</span><br><span class="line">#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br><span class="line"># </span><br><span class="line"># Residual standard error: 0.04064 on 198 degrees of freedom</span><br><span class="line"># Multiple R-squared:  0.8434,  Adjusted R-squared:  0.8426 </span><br><span class="line"># F-statistic:  1067 on 1 and 198 DF,  p-value: < 2.2e-16</span><br><span class="line"></span><br><span class="line"># 予測結果を描画</span><br><span class="line">fit.data <- data.frame(grp="grp.data$grp," amount="exp(fit$fitted.values))</span"><br><span class="line">ggplot(grp.data, aes(x=grp, y=amount)) +</span><br><span class="line">  geom_point() +</span><br><span class="line">  geom_line(data=fit.data, aes(x=grp, y=amount)) +</span><br><span class="line">  scale_y_continuous(label=comma, limits=c(0,360000)) +</span><br><span class="line">  ylab("Sales") +</span><br><span class="line">  xlab("GRP") +</span><br><span class="line">  theme_bw(16)</span><br></-></span></2e-16></span></2e-16></span></-></span></pre></td></tr></tbody></table></figure>
+<p><img src="/img/2014-03-31-data-scientist-cultivation-book-review_17.jpg" width="500" height="356" alt="スクリーンショット 2014-03-30 21.19.14"></p>
+<h3 id="AとBが同じ場合のA-Bテストのシミュレーション" class="article-heading"><a href="#AとBが同じ場合のA-Bテストのシミュレーション" class="headerlink" title="AとBが同じ場合のA/Bテストのシミュレーション"></a>AとBが同じ場合のA/Bテストのシミュレーション<a class="article-anchor" href="#AとBが同じ場合のA-Bテストのシミュレーション" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">library("plyr")</span><br><span class="line"></span><br><span class="line"># A/Bの心のコンバージョン率を設定</span><br><span class="line">A1.CVR <- 0.09< span><br><span class="line">B1.CVR <- 0.09< span><br><span class="line"></span><br><span class="line"># サンプル数</span><br><span class="line">n <- 10000< span><br><span class="line">set.seed(2)</span><br><span class="line"></span><br><span class="line"># シミュレーション</span><br><span class="line">AB1 <- data.frame(pattern="c(rep("A"," n), rep("b", n)), cv="c(rbinom(n," 1, a1.cvr), rbinom(n, b1.cvr)))< span><br><span class="line"></span><br><span class="line"># コンバージョン率の算出</span><br><span class="line">ddply(AB1, .(Pattern), summarize, CVR=mean(CV))</span><br><span class="line"># Pattern    CVR</span><br><span class="line"># 1       A 0.0942</span><br><span class="line"># 2       B 0.0912</span><br><span class="line"></span><br><span class="line"># カイ二乗検定</span><br><span class="line">chisq.test(table(AB1))</span><br><span class="line"># Pearson's Chi-squared test with Yates' continuity correction</span><br><span class="line"># </span><br><span class="line"># data:  table(AB1)</span><br><span class="line"># X-squared = 0.5, df = 1, p-value = 0.4795</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h3 id="Bのほうが高い場合のA-Bテストのシミュレーション" class="article-heading"><a href="#Bのほうが高い場合のA-Bテストのシミュレーション" class="headerlink" title="Bのほうが高い場合のA/Bテストのシミュレーション"></a>Bのほうが高い場合のA/Bテストのシミュレーション<a class="article-anchor" href="#Bのほうが高い場合のA-Bテストのシミュレーション" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">A2.CVR <- 0.095< span><br><span class="line">B2.CVR <- 0.097< span><br><span class="line">n <- 10000< span><br><span class="line">set.seed(2)</span><br><span class="line"></span><br><span class="line"># シミュレーション</span><br><span class="line">AB2 <- data.frame(pattern="c(rep("A"," n), rep("b", n)), cv="c(rbinom(n," 1, a2.cvr), rbinom(n, b2.cvr)))< span><br><span class="line"></span><br><span class="line"># コンバージョン率の算出</span><br><span class="line">ddply(AB2, .(Pattern), summarize, CVR = mean(CV))</span><br><span class="line"># Pattern   CVR</span><br><span class="line"># 1       A 0.100</span><br><span class="line"># 2       B 0.097</span><br><span class="line"></span><br><span class="line"># カイ二乗検定</span><br><span class="line">chisq.test(table(AB2))</span><br><span class="line"># Pearson's Chi-squared test with Yates' continuity correction</span><br><span class="line"># </span><br><span class="line"># data:  table(AB2)</span><br><span class="line"># X-squared = 0.4735, df = 1, p-value = 0.4914</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h3 id="50万件でのシミュレーション" class="article-heading"><a href="#50万件でのシミュレーション" class="headerlink" title="50万件でのシミュレーション"></a>50万件でのシミュレーション<a class="article-anchor" href="#50万件でのシミュレーション" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">A3.CVR <- 0.095< span><br><span class="line">B3.CVR <- 0.097< span><br><span class="line">n <- 500000< span><br><span class="line">set.seed(2)</span><br><span class="line"></span><br><span class="line"># シミュレーション</span><br><span class="line">AB3 <- data.frame(pattern="c(rep("A"," n), rep("b", n)), < span><br><span class="line">                  CV=c(rbinom(n, 1, A3.CVR), rbinom(n, 1, B3.CVR)))</span><br><span class="line"></span><br><span class="line"># コンバージョン率の算出</span><br><span class="line">ddply(AB3, .(Pattern), summarize, CVR=mean(CV))</span><br><span class="line"># Pattern      CVR</span><br><span class="line"># 1       A 0.095192</span><br><span class="line"># 2       B 0.097040</span><br><span class="line"></span><br><span class="line"># カイ二乗検定の実行</span><br><span class="line">chisq.test(table(AB3))</span><br><span class="line"># Pearson's Chi-squared test with Yates' continuity correction</span><br><span class="line"># </span><br><span class="line"># data:  table(AB3)</span><br><span class="line"># X-squared = 9.8061, df = 1, p-value = 0.001739</span><br></-></span></-></span></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h3 id="直交表の作成" class="article-heading"><a href="#直交表の作成" class="headerlink" title="直交表の作成"></a>直交表の作成<a class="article-anchor" href="#直交表の作成" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">install.packages("conjoint")</span><br><span class="line">library(conjoint)</span><br><span class="line"></span><br><span class="line"># 構成要素</span><br><span class="line">experiment <- expand.grid(< span><br><span class="line">  imgA = c("ImageA1", "ImageA2"),</span><br><span class="line">  imgB = c("ImageB1", "ImageB2"),</span><br><span class="line">  txtA = c("TextA1", "TextA2"),</span><br><span class="line">  txtB = c("TextB1", "TextB2"))</span><br><span class="line"></span><br><span class="line"># 交流表の作成</span><br><span class="line">design.ort <- cafactorialdesign(data="experiment," type="orthogonal" )< span><br><span class="line">design.ort</span><br><span class="line"># imgA    imgB   txtA   txtB</span><br><span class="line"># 2  ImageA2 ImageB1 TextA1 TextB1</span><br><span class="line"># 3  ImageA1 ImageB2 TextA1 TextB1</span><br><span class="line"># 5  ImageA1 ImageB1 TextA2 TextB1</span><br><span class="line"># 8  ImageA2 ImageB2 TextA2 TextB1</span><br><span class="line"># 9  ImageA1 ImageB1 TextA1 TextB2</span><br><span class="line"># 12 ImageA2 ImageB2 TextA1 TextB2</span><br><span class="line"># 14 ImageA2 ImageB1 TextA2 TextB2</span><br><span class="line"># 15 ImageA1 ImageB2 TextA2 TextB2</span><br></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h3 id="ロジスティック回帰モデルの構築" class="article-heading"><a href="#ロジスティック回帰モデルの構築" class="headerlink" title="ロジスティック回帰モデルの構築"></a>ロジスティック回帰モデルの構築<a class="article-anchor" href="#ロジスティック回帰モデルの構築" aria-hidden="true"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"># 仮想のテスト結果データの読み込み(csがないので以下実行していません)</span><br><span class="line">web.test.data <- read.csv("web_test_sample.csv")< span><br><span class="line"></span><br><span class="line"># 上位6件だけ表示</span><br><span class="line">head(web.test.data)</span><br><span class="line"></span><br><span class="line"># ロジスティック回帰モデルの構築</span><br><span class="line">fit <- step(glm(cv~., data="web.test.data[,-1]," family="binomial))</span"><br><span class="line"></span><br><span class="line"># モデル概要</span><br><span class="line">summary(fit)</span><br></-></span></-></span></pre></td></tr></tbody></table></figure>
+<h2 id="Fluentd入門" class="article-heading"> 🍮 <a href="#Fluentd入門" class="headerlink" title="Fluentd入門"></a>Fluentd入門<a class="article-anchor" href="#Fluentd入門" aria-hidden="true"></a></h2><p>ログ回収をストリーミングで行ってくれるツール。ツールについての詳しい説明は、創業者の古橋さんのインタビュー記事『<strong><a href="http://www.atmarkit.co.jp/ait/articles/1310/07/news010.html" target="_blank" rel="noopener">グリー技術者が聞いた、fluentdの新機能とTreasure Data古橋氏の野心</a></strong>』がわかりやすくてオススメです。</p>
+<h3 id="ログ解析の従来の課題" class="article-heading"><a href="#ログ解析の従来の課題" class="headerlink" title="ログ解析の従来の課題"></a>ログ解析の従来の課題<a class="article-anchor" href="#ログ解析の従来の課題" aria-hidden="true"></a></h3><pre>1) ログデータの転送に長い時間が必要、帯域の局所的な消費
+2) データが解析可能になるまでのタイムラグ
+3) ネットワーク障害などによる不安定さ
+</pre>
+
+<h3 id="Fluentdの利点" class="article-heading"><a href="#Fluentdの利点" class="headerlink" title="Fluentdの利点"></a>Fluentdの利点<a class="article-anchor" href="#Fluentdの利点" aria-hidden="true"></a></h3><pre>1) JSON形式で構造化されている
+2) 豊富なプラグイン(プラガブル)
+3) 導入が容易
+4) 耐障害性、バッファ、レジューム機能、可用性
+</pre>
+
+<h3 id="アーキテクチャ" class="article-heading"><a href="#アーキテクチャ" class="headerlink" title="アーキテクチャ"></a>アーキテクチャ<a class="article-anchor" href="#アーキテクチャ" aria-hidden="true"></a></h3><pre>1) input: さまざまなソースからデータを読み取りFluentd用の形式に変換
+2) Engine: 入ってきたデータをどのBuffe/Outpuプラグインに渡すかをルーティング
+3) Bufferプラグイン: Outputプラグインの前にデータを一時保持する仕組み
+4) Outputプラグイン: Bufferプラグインから渡されたデータを書き出す
+</pre>
+
+<h3 id="ログ構造" class="article-heading"><a href="#ログ構造" class="headerlink" title="ログ構造"></a>ログ構造<a class="article-anchor" href="#ログ構造" aria-hidden="true"></a></h3><pre>tag: ログの種類。ルーティングで利用
+time: ログが記録されたUNIX時刻
+record: JSON形式のログ内容
+</pre>
+
+<h3 id="活用方法" class="article-heading"><a href="#活用方法" class="headerlink" title="活用方法"></a>活用方法<a class="article-anchor" href="#活用方法" aria-hidden="true"></a></h3><pre>1) ログ収集: ログを集めてS3やHadoopに渡す
+2) 統計 + 可視性: ログの統計情報を取得し、グラフ表示系のツールと連携する
+3) 検知/通知: しきい値ベースや、データマイニングの異常値検出の通知など
+</pre>
+
+<h3 id="システム構成" class="article-heading"><a href="#システム構成" class="headerlink" title="システム構成"></a>システム構成<a class="article-anchor" href="#システム構成" aria-hidden="true"></a></h3><pre>forwarder: ログ発生場所に立ち上げてログ回収 => aggregatorに送信
+aggregator: 複数workerのためのロードバランシング、複数台構成による冗長化
+worker: ログのパースや書き換えなど負荷の高い処理を行う
+serializer: workerの処理結果のログを集約して別システムに書き出す
+watcher: ログからメトリックスを収集、検知や通知を行う
+</pre>
+
+<h3 id="事例紹介" class="article-heading"><a href="#事例紹介" class="headerlink" title="事例紹介"></a>事例紹介<a class="article-anchor" href="#事例紹介" aria-hidden="true"></a></h3><pre>1) ログの回収: DSPの広告効果のレポーティングのための収集の仕組み
+2) nginx ログの可視化: Real Time Bidding(RTB)のツール
+</pre>
+
+<h2 id="あとがき" class="article-heading"> 🚜 <a href="#あとがき" class="headerlink" title="あとがき"></a>あとがき<a class="article-anchor" href="#あとがき" aria-hidden="true"></a></h2><p>中身濃すぎる！　超おもしろかったです＾＾</p>
+<h2 id="Speical-Thanks" class="article-heading"> 🏀 <a href="#Speical-Thanks" class="headerlink" title="Speical Thanks"></a>Speical Thanks<a class="article-anchor" href="#Speical-Thanks" aria-hidden="true"></a></h2><p><strong><a href="http://stackoverflow.com/questions/20572366/sudo-pip-install-matplotlib-fails-to-find-freetype-headers-os-x-mavericks" target="_blank" rel="noopener">python - <code>Sudo pip install matplotlib</code> fails to find freetype headers. [OS X Mavericks / 10.9] - Stack Overflow</a></strong></p>
+<p><strong><a href="http://stackoverflow.com/questions/15951748/pydot-and-graphviz-error-couldnt-import-dot-parser-loading-of-dot-files-will" target="_blank" rel="noopener">python - pydot and graphviz error: Couldn’t import dot_parser, loading of dot files will not be possible - Stack Overflow</a></strong></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

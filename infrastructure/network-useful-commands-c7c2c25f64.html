@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>便利コマンド | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//infrastructure/network-useful-commands-c7c2c25f64.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="ja" href="http://morizyun.github.io//infrastructure/network-useful-commands-c7c2c25f64.html">
+    
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="トラブルの調査では、基本的にはログや応答のメッセージを確認し、手元で再現試験を行うことで原因の切り分けを行います。以下はネットワークのトラブルシュートで活用できるコマンドの一覧です。 pingICMPエコー要求およびエコー応答メッセージを利用して、IPレベルでの接続性の検査を行うコマンド。 ping 192.168.1.1 tracerouteIPパケットの生存期間を表すTTLフィールドを1ずつ大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="便利コマンド">
+<meta property="og:url" content="http://morizyun.github.io//infrastructure/network-useful-commands-c7c2c25f64.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="トラブルの調査では、基本的にはログや応答のメッセージを確認し、手元で再現試験を行うことで原因の切り分けを行います。以下はネットワークのトラブルシュートで活用できるコマンドの一覧です。 pingICMPエコー要求およびエコー応答メッセージを利用して、IPレベルでの接続性の検査を行うコマンド。 ping 192.168.1.1 tracerouteIPパケットの生存期間を表すTTLフィールドを1ずつ大">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T01:02:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="便利コマンド">
+<meta name="twitter:description" content="トラブルの調査では、基本的にはログや応答のメッセージを確認し、手元で再現試験を行うことで原因の切り分けを行います。以下はネットワークのトラブルシュートで活用できるコマンドの一覧です。 pingICMPエコー要求およびエコー応答メッセージを利用して、IPレベルでの接続性の検査を行うコマンド。 ping 192.168.1.1 tracerouteIPパケットの生存期間を表すTTLフィールドを1ずつ大">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">便利コマンド</h1>
+              </header>
+              <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io//infrastructure/network-useful-commands-c7c2c25f64.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io//infrastructure/network-useful-commands-c7c2c25f64.html" data-via="zyunnosuke" data-counturl="http://morizyun.github.io//infrastructure/network-useful-commands-c7c2c25f64.html">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io//infrastructure/network-useful-commands-c7c2c25f64.html"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+              <div class="article-content" itemprop="articleBody">
+                <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>トラブルの調査では、基本的にはログや応答のメッセージを確認し、手元で再現試験を行うことで原因の切り分けを行います。以下はネットワークのトラブルシュートで活用できるコマンドの一覧です。</p>
+<h2 id="ping" class="article-heading"> 🎃 <a href="#ping" class="headerlink" title="ping"></a>ping<a class="article-anchor" href="#ping" aria-hidden="true"></a></h2><p>ICMPエコー要求およびエコー応答メッセージを利用して、IPレベルでの接続性の検査を行うコマンド。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ping 192.168.1.1</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="traceroute" class="article-heading">🐞 <a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute<a class="article-anchor" href="#traceroute" aria-hidden="true"></a></h2><p>IPパケットの生存期間を表すTTLフィールドを1ずつ大きくした値のIPパケットを指定したホストに送信し、経路上のルータを集めるコマンド。IPによるパケット転送の経路上で、どこまでパケットが到達したのかを確認するために利用。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">traceroute www.yahoo.co.jp</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ifconfig" class="article-heading"> 🎂 <a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig<a class="article-anchor" href="#ifconfig" aria-hidden="true"></a></h2><p>ホストに搭載されているネットワークインタフェースとそこに割り振られたIPアドレスの情報を取得できる。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ifconfig -a</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="arp-ndp-ip-netstat" class="article-heading"> 🤔 <a href="#arp-ndp-ip-netstat" class="headerlink" title="arp (ndp, ip, netstat)"></a>arp (ndp, ip, netstat)<a class="article-anchor" href="#arp-ndp-ip-netstat" aria-hidden="true"></a></h2><p>OSが管理しているARPテーブル(IPアドレスとMACアドレスの対応表)の情報を表示するコマンド。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">arp -an</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="netstat" class="article-heading"> 🍄 <a href="#netstat" class="headerlink" title="netstat"></a>netstat<a class="article-anchor" href="#netstat" aria-hidden="true"></a></h2><p>サーバ上において特定のポートを使用するサービスが接続を待ち受けているかどうかを表示するコマンド。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">netstat -an</span><br></pre></td></tr></tbody></table></figure>
+<p>LISTENというステータが接続の待受けを表す。期待するポートがLISTENになっていない場合はサービスの起動が成功しいない可能性がある。</p>
+<h2 id="lsof" class="article-heading">🚌 <a href="#lsof" class="headerlink" title="lsof"></a>lsof<a class="article-anchor" href="#lsof" aria-hidden="true"></a></h2><p>稼働中のプロセスがどのファイルをオープンしているかを表示。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">lsof -i</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="dig" class="article-heading">🗻 <a href="#dig" class="headerlink" title="dig"></a>dig<a class="article-anchor" href="#dig" aria-hidden="true"></a></h2><p>DNSサーバに対して名前解決のリクエストを送るコマンド。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">dig A www.soum.co.jp</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="tcpdump" class="article-heading">🚕 <a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump<a class="article-anchor" href="#tcpdump" aria-hidden="true"></a></h2><p>パケットキャプチャを行うコマンド。ネットワーク通信に問題がある場合の原因調査に使う。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">tcpdump -i eth0</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="telnet" class="article-heading">🐠 <a href="#telnet" class="headerlink" title="telnet"></a>telnet<a class="article-anchor" href="#telnet" aria-hidden="true"></a></h2><p>TCP通信の内容を直接操作する。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">telnet [hostname] http</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ランダムな文字列の生成" class="article-heading">🐮 <a href="#ランダムな文字列の生成" class="headerlink" title="ランダムな文字列の生成"></a>ランダムな文字列の生成<a class="article-anchor" href="#ランダムな文字列の生成" aria-hidden="true"></a></h2><p>10文字のランダムな文字列を生成するコマンドです。<code>fold -w</code> のオプションを変更すれば任意の文字数で表示できます。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">cat /dev/urandom | base64 | fold -w 10 | head -n 1</span><br></pre></td></tr></tbody></table></figure>
+<p>複数のコマンドをパイプでつないでいるのでそれぞれのコマンドの紹介です。</p>
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/dev/urandom</code></td>
+<td>擬似デバイスの一種で、乱数生成器として機能</td>
+</tr>
+<tr>
+<td><code>base64</code></td>
+<td>標準入力のデータをBASE64でエンコード</td>
+</tr>
+<tr>
+<td><code>fold -w 10</code></td>
+<td>指定文字数で行を折り返すときに使うコマンド</td>
+</tr>
+<tr>
+<td><code>head -n 1</code></td>
+<td>上位n行を返すコマンド</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Excelでファイルの文字化けを防ぐ" class="article-heading"> 🎉 <a href="#Excelでファイルの文字化けを防ぐ" class="headerlink" title="Excelでファイルの文字化けを防ぐ"></a>Excelでファイルの文字化けを防ぐ<a class="article-anchor" href="#Excelでファイルの文字化けを防ぐ" aria-hidden="true"></a></h2><p>Mac(Linux)でダウンロードしたCSVをExcelで開けるように「Shift_JIS」に変換するためのコマンドです。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">nkf -s --overwrite hoge.csv</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading"> 🍮 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://www.amazon.co.jp/gp/product/B00J4KDYV4/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00J4KDYV4&linkCode=as2&tag=morizyun00-22" target="_blank">初めてUNIXで仕事をする人が読む本</a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00J4KDYV4" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;"></li>
+<li><a href="http://qiita.com/tt2004d/items/0212611b6eb321ee860c" target="_blank" rel="noopener">コマンドラインでランダムな10文字を得る方法</a></li>
+</ul>
+</body></html>
+                <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+                <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-11T01:02:16.000Z" itemprop="dateModified">最終更新日: 2017-08-11</time>
+                <a href="git-fork-upstream-master-merge.html" class="article-footer-prev" title="GitHub Fork元との同期"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="network-curl.html" class="article-footer-next" title="curl"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">コンテンツ</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ping"><span class="toc-text">ping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#traceroute"><span class="toc-text">traceroute</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ifconfig"><span class="toc-text">ifconfig</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arp-ndp-ip-netstat"><span class="toc-text">arp (ndp, ip, netstat)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netstat"><span class="toc-text">netstat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lsof"><span class="toc-text">lsof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dig"><span class="toc-text">dig</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tcpdump"><span class="toc-text">tcpdump</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#telnet"><span class="toc-text">telnet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ランダムな文字列の生成"><span class="toc-text">ランダムな文字列の生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Excelでファイルの文字化けを防ぐ"><span class="toc-text">Excelでファイルの文字化けを防ぐ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考リンク"><span class="toc-text">参考リンク</span></a></li></ol>
+              <a href="#" id="article-toc-top">トップへ</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">Linux基礎</strong><a href="basic-index.html" class="sidebar-link">概要</a><a href="basic-startup-shutdown.html" class="sidebar-link">起動とシャットダウン</a><a href="basic-directory-file.html" class="sidebar-link">ディレクトリ・ファイル</a><a href="basic-user-file-permission.html" class="sidebar-link">権限管理について</a><strong class="sidebar-title">ネットワーク基礎</strong><a href="network-basic-index.html" class="sidebar-link">概要</a><a href="network-basic-osi-reference-model.html" class="sidebar-link">OSI参照モデル</a><a href="network-basic-internet-protocol.html" class="sidebar-link">Internet Protocol</a><a href="network-basic-tcp-udp.html" class="sidebar-link">TCPとUDP</a><a href="network-basic-linux-security.html" class="sidebar-link">Linuxセキュリティ</a><a href="network-basic-resolver.html" class="sidebar-link">resolverについて</a><a href="network-basic-load-balancer.html" class="sidebar-link">ロードバランサ</a><a href="basic-network-ssh.html" class="sidebar-link">公開鍵認証(SSH、SSL)</a><strong class="sidebar-title">Linuxツール</strong><a href="tool-redis-mac-centos-rails.html" class="sidebar-link">Redis導入手順</a><a href="tool-memcached.html" class="sidebar-link">memcached導入手順</a><a href="tool-openid.html" class="sidebar-link">OpenIDの概要</a><a href="tool-optimize-jpeg-png.html" class="sidebar-link">JPEG,PNGサイズ削減</a><strong class="sidebar-title">AWS S3</strong><a href="aws-s3-bucket-policy.html" class="sidebar-link">バケットポリシー</a><a href="aws-s3-with-iam-policy.html" class="sidebar-link">S3用のIAM作成</a><strong class="sidebar-title">Git</strong><a href="git-command-checkout.html" class="sidebar-link">git checkout/ブランチ</a><a href="git-command-commit.html" class="sidebar-link">git commit/変更登録</a><a href="git-command-reset.html" class="sidebar-link">git reset/変更修正</a><a href="git-command-log.html" class="sidebar-link">git log/ログ表示</a><a href="git-command-submodule.html" class="sidebar-link">git submodule</a><a href="git-function-credential.html" class="sidebar-link">git-credential</a><a href="git-fork-upstream-master-merge.html" class="sidebar-link">GitHub Fork元との同期</a><strong class="sidebar-title">ネットワークコマンド</strong><a href="network-useful-commands.html" class="sidebar-link current">便利コマンド</a><a href="network-curl.html" class="sidebar-link">curl</a><a href="network-telnet.html" class="sidebar-link">telnet</a><strong class="sidebar-title">Linuxコマンド</strong><a href="command-at.html" class="sidebar-link">at</a><a href="command-col.html" class="sidebar-link">col</a><a href="command-cron.html" class="sidebar-link">cron</a><a href="command-date.html" class="sidebar-link">date</a><a href="command-diff.html" class="sidebar-link">diff</a><a href="command-env.html" class="sidebar-link">env</a><a href="command-export.html" class="sidebar-link">export</a><a href="command-find.html" class="sidebar-link">find</a><a href="command-grep.html" class="sidebar-link">grep</a><a href="command-readlink.html" class="sidebar-link">readlink</a><a href="command-script.html" class="sidebar-link">script</a><a href="command-sed.html" class="sidebar-link">sed</a><a href="command-sleep.html" class="sidebar-link">sleep</a><a href="command-strace.html" class="sidebar-link">strace</a><a href="command-timeout.html" class="sidebar-link">timeout</a><a href="command-tr.html" class="sidebar-link">tr</a><a href="command-tty.html" class="sidebar-link">tty</a><strong class="sidebar-title">ファイル圧縮コマンド</strong><a href="file-compress-gzip.html" class="sidebar-link">gzip</a><a href="file-compress-tar.html" class="sidebar-link">tar</a><a href="file-compress-bzip2.html" class="sidebar-link">bzip2</a><strong class="sidebar-title">Ansible</strong><a href="ansible-index.html" class="sidebar-link">Ansible入門</a><strong class="sidebar-title">Nginx</strong><a href="nginx-location.html" class="sidebar-link">location設定</a><a href="nginx-http-https-redirect.html" class="sidebar-link">HTTPSへリダイレクト</a><strong class="sidebar-title">Apache</strong><a href="apache-htaccess-access-control.html" class="sidebar-link">.htaccessのTips</a><strong class="sidebar-title">Tips</strong><a href="tips-systemd.html" class="sidebar-link">systemd入門</a><a href="tips-encoding.html" class="sidebar-link">文字コード</a><a href="tips-search-big-file.html" class="sidebar-link">大容量ファイル検索</a><a href="tips-shell-special-variables.html" class="sidebar-link">シェルの特殊変数</a><a href="tips-busybox.html" class="sidebar-link">BusyBoxyとは</a><a href="basic-pararell-process-multi-process-thread-event-driven.html" class="sidebar-link">マルチプロセスについて</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Linux基礎</strong><a href="basic-index.html" class="mobile-nav-link">概要</a><a href="basic-startup-shutdown.html" class="mobile-nav-link">起動とシャットダウン</a><a href="basic-directory-file.html" class="mobile-nav-link">ディレクトリ・ファイル</a><a href="basic-user-file-permission.html" class="mobile-nav-link">権限管理について</a><strong class="mobile-nav-title">ネットワーク基礎</strong><a href="network-basic-index.html" class="mobile-nav-link">概要</a><a href="network-basic-osi-reference-model.html" class="mobile-nav-link">OSI参照モデル</a><a href="network-basic-internet-protocol.html" class="mobile-nav-link">Internet Protocol</a><a href="network-basic-tcp-udp.html" class="mobile-nav-link">TCPとUDP</a><a href="network-basic-linux-security.html" class="mobile-nav-link">Linuxセキュリティ</a><a href="network-basic-resolver.html" class="mobile-nav-link">resolverについて</a><a href="network-basic-load-balancer.html" class="mobile-nav-link">ロードバランサ</a><a href="basic-network-ssh.html" class="mobile-nav-link">公開鍵認証(SSH、SSL)</a><strong class="mobile-nav-title">Linuxツール</strong><a href="tool-redis-mac-centos-rails.html" class="mobile-nav-link">Redis導入手順</a><a href="tool-memcached.html" class="mobile-nav-link">memcached導入手順</a><a href="tool-openid.html" class="mobile-nav-link">OpenIDの概要</a><a href="tool-optimize-jpeg-png.html" class="mobile-nav-link">JPEG,PNGサイズ削減</a><strong class="mobile-nav-title">AWS S3</strong><a href="aws-s3-bucket-policy.html" class="mobile-nav-link">バケットポリシー</a><a href="aws-s3-with-iam-policy.html" class="mobile-nav-link">S3用のIAM作成</a><strong class="mobile-nav-title">Git</strong><a href="git-command-checkout.html" class="mobile-nav-link">git checkout/ブランチ</a><a href="git-command-commit.html" class="mobile-nav-link">git commit/変更登録</a><a href="git-command-reset.html" class="mobile-nav-link">git reset/変更修正</a><a href="git-command-log.html" class="mobile-nav-link">git log/ログ表示</a><a href="git-command-submodule.html" class="mobile-nav-link">git submodule</a><a href="git-function-credential.html" class="mobile-nav-link">git-credential</a><a href="git-fork-upstream-master-merge.html" class="mobile-nav-link">GitHub Fork元との同期</a><strong class="mobile-nav-title">ネットワークコマンド</strong><a href="network-useful-commands.html" class="mobile-nav-link current">便利コマンド</a><a href="network-curl.html" class="mobile-nav-link">curl</a><a href="network-telnet.html" class="mobile-nav-link">telnet</a><strong class="mobile-nav-title">Linuxコマンド</strong><a href="command-at.html" class="mobile-nav-link">at</a><a href="command-col.html" class="mobile-nav-link">col</a><a href="command-cron.html" class="mobile-nav-link">cron</a><a href="command-date.html" class="mobile-nav-link">date</a><a href="command-diff.html" class="mobile-nav-link">diff</a><a href="command-env.html" class="mobile-nav-link">env</a><a href="command-export.html" class="mobile-nav-link">export</a><a href="command-find.html" class="mobile-nav-link">find</a><a href="command-grep.html" class="mobile-nav-link">grep</a><a href="command-readlink.html" class="mobile-nav-link">readlink</a><a href="command-script.html" class="mobile-nav-link">script</a><a href="command-sed.html" class="mobile-nav-link">sed</a><a href="command-sleep.html" class="mobile-nav-link">sleep</a><a href="command-strace.html" class="mobile-nav-link">strace</a><a href="command-timeout.html" class="mobile-nav-link">timeout</a><a href="command-tr.html" class="mobile-nav-link">tr</a><a href="command-tty.html" class="mobile-nav-link">tty</a><strong class="mobile-nav-title">ファイル圧縮コマンド</strong><a href="file-compress-gzip.html" class="mobile-nav-link">gzip</a><a href="file-compress-tar.html" class="mobile-nav-link">tar</a><a href="file-compress-bzip2.html" class="mobile-nav-link">bzip2</a><strong class="mobile-nav-title">Ansible</strong><a href="ansible-index.html" class="mobile-nav-link">Ansible入門</a><strong class="mobile-nav-title">Nginx</strong><a href="nginx-location.html" class="mobile-nav-link">location設定</a><a href="nginx-http-https-redirect.html" class="mobile-nav-link">HTTPSへリダイレクト</a><strong class="mobile-nav-title">Apache</strong><a href="apache-htaccess-access-control.html" class="mobile-nav-link">.htaccessのTips</a><strong class="mobile-nav-title">Tips</strong><a href="tips-systemd.html" class="mobile-nav-link">systemd入門</a><a href="tips-encoding.html" class="mobile-nav-link">文字コード</a><a href="tips-search-big-file.html" class="mobile-nav-link">大容量ファイル検索</a><a href="tips-shell-special-variables.html" class="mobile-nav-link">シェルの特殊変数</a><a href="tips-busybox.html" class="mobile-nav-link">BusyBoxyとは</a><a href="basic-pararell-process-multi-process-thread-event-driven.html" class="mobile-nav-link">マルチプロセスについて</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

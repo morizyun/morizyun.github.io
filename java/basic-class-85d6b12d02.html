@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Javaのクラスについて | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//java/basic-class-85d6b12d02.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="ja" href="http://morizyun.github.io//java/basic-class-85d6b12d02.html">
+    
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="Javaのクラスには次の役割があります。  オブジェクトのひな型 責務の分離 詳細を隠蔽する抽象化  オブジェクトのライフサイクル管理オブジェクトのライフサイクルを適切に管理する次の技法があります。  変数のスコープにちゅうして、不要に長い寿命のオブジェクトを減らします 寿命の短いオブジェクトと、寿命の長いオブジェクトを適切に分離します ファクトリパターンやDI(Dependency Inject">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javaのクラスについて">
+<meta property="og:url" content="http://morizyun.github.io//java/basic-class-85d6b12d02.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="Javaのクラスには次の役割があります。  オブジェクトのひな型 責務の分離 詳細を隠蔽する抽象化  オブジェクトのライフサイクル管理オブジェクトのライフサイクルを適切に管理する次の技法があります。  変数のスコープにちゅうして、不要に長い寿命のオブジェクトを減らします 寿命の短いオブジェクトと、寿命の長いオブジェクトを適切に分離します ファクトリパターンやDI(Dependency Inject">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javaのクラスについて">
+<meta name="twitter:description" content="Javaのクラスには次の役割があります。  オブジェクトのひな型 責務の分離 詳細を隠蔽する抽象化  オブジェクトのライフサイクル管理オブジェクトのライフサイクルを適切に管理する次の技法があります。  変数のスコープにちゅうして、不要に長い寿命のオブジェクトを減らします 寿命の短いオブジェクトと、寿命の長いオブジェクトを適切に分離します ファクトリパターンやDI(Dependency Inject">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Javaのクラスについて</h1>
+              </header>
+              <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io//java/basic-class-85d6b12d02.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io//java/basic-class-85d6b12d02.html" data-via="zyunnosuke" data-counturl="http://morizyun.github.io//java/basic-class-85d6b12d02.html">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io//java/basic-class-85d6b12d02.html"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+              <div class="article-content" itemprop="articleBody">
+                <html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>Javaのクラスには次の役割があります。</p>
+<ul>
+<li>オブジェクトのひな型</li>
+<li>責務の分離</li>
+<li>詳細を隠蔽する抽象化</li>
+</ul>
+<h2 id="オブジェクトのライフサイクル管理" class="article-heading">😼 <a href="#オブジェクトのライフサイクル管理" class="headerlink" title="オブジェクトのライフサイクル管理"></a>オブジェクトのライフサイクル管理<a class="article-anchor" href="#オブジェクトのライフサイクル管理" aria-hidden="true"></a></h2><p>オブジェクトのライフサイクルを適切に管理する次の技法があります。</p>
+<ul>
+<li>変数のスコープにちゅうして、不要に長い寿命のオブジェクトを減らします</li>
+<li>寿命の短いオブジェクトと、寿命の長いオブジェクトを適切に分離します</li>
+<li>ファクトリパターンやDI(Dependency Injection)など、オブジェクト生成向けの技法を活用します</li>
+<li>オブジェクトのライフサイクル管理をフレームワークなどの層に隠蔽する</li>
+</ul>
+<h2 id="クラスの設計指針" class="article-heading"> 🎂 <a href="#クラスの設計指針" class="headerlink" title="クラスの設計指針"></a>クラスの設計指針<a class="article-anchor" href="#クラスの設計指針" aria-hidden="true"></a></h2><ul>
+<li>共通したコードをまとめる</li>
+<li>変わりやすい部分と変わりにくい部分を分ける<ul>
+<li>(テンプレートメソッドパターン、ストラテジパターン、パラメータ化)</li>
+</ul>
+</li>
+<li>クラス間の依存を減らす。依存関係を単純化する</li>
+<li>外部から呼び出しやすいコードにする</li>
+</ul>
+<h2 id="コンストラクタ" class="article-heading">👽 <a href="#コンストラクタ" class="headerlink" title="コンストラクタ"></a>コンストラクタ<a class="article-anchor" href="#コンストラクタ" aria-hidden="true"></a></h2><p>コンストラクタはオブジェクトの生成時によばれる処理です。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>{</span><br><span class="line">  <span class="keyword">private</span> String title;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> price;</span><br><span class="line">  Book(String title) { <span class="comment">//フィールドとパラメータは同名にするのが定石</span></span><br><span class="line">    <span class="keyword">this</span>(title, <span class="number">1000</span>); <span class="comment">//下のコンストラクタを呼ぶ</span></span><br><span class="line">  }</span><br><span class="line">  Book(String title, <span class="keyword">int</span> price) {</span><br><span class="line">    <span class="keyword">this</span>.title = title;</span><br><span class="line">    <span class="keyword">this</span>.price = price;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>コンストラクタの意義はオブジェクトの生成時に適切な初期化を強制できる点です。<br><code>super</code>を使って親クラスのコンストラクタを呼び出すことも可能です。</p>
+<p>コンストラクタを書かなかったクラスには暗黙にデフォルトコンストラクタが生成されます。<br>1つでもコンストラクタを書き足すと自動的にデフォルトコンストラクタは消滅します。</p>
+<h3 id="コンストラクタのルール" class="article-heading"><a href="#コンストラクタのルール" class="headerlink" title="コンストラクタのルール"></a>コンストラクタのルール<a class="article-anchor" href="#コンストラクタのルール" aria-hidden="true"></a></h3><p>コンストラクタのルールは次のとおりです。</p>
+<ul>
+<li>メソッド名をクラス名と同じにすること</li>
+<li>戻り値型は記述できない</li>
+<li>newと一緒にしか使えない(インスタンス生成時以外は呼び出せない)</li>
+<li><code>this</code>を使ってオーバーロードされたコンストラクタを呼び出す場合はその前に別の処理はできない</li>
+</ul>
+<h2 id="複数クラスの共通処理" class="article-heading">🏈 <a href="#複数クラスの共通処理" class="headerlink" title="複数クラスの共通処理"></a>複数クラスの共通処理<a class="article-anchor" href="#複数クラスの共通処理" aria-hidden="true"></a></h2><p>複数クラスの共通処理をくくりだすには次の方法があります。</p>
+<ul>
+<li>共通部をクラスとして、そのオブジェクト参照をフィールドにもち処理を委譲します</li>
+<li>共通部を基底クラスとして、クラスを継承して階層管理します</li>
+</ul>
+<a href="http://www.amazon.co.jp/gp/product/B00V2WMQNE/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00V2WMQNE&linkCode=as2&tag=morizyun00-22" target="_blank"><img border="0" src="/img/class-delegate-inheritance.png"></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00V2WMQNE" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+<p>出典：改訂2版　パーフェクトJava</p>
+<ul>
+<li>単純に共通処理をくくりだすだけなら、委譲を使ってください</li>
+<li>上位型は下位型の汎用型となるような型定義の共通部なら、拡張継承にしてください</li>
+</ul>
+<h2 id="拡張継承によるクラスの構成要素の変更" class="article-heading"> 🎉 <a href="#拡張継承によるクラスの構成要素の変更" class="headerlink" title="拡張継承によるクラスの構成要素の変更"></a>拡張継承によるクラスの構成要素の変更<a class="article-anchor" href="#拡張継承によるクラスの構成要素の変更" aria-hidden="true"></a></h2><p>クラスの構成要素が、継承した先でクラスの構成要素を変更できるかを紹介します。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>追加</th>
+<th>削除</th>
+<th>変更</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フィールド</td>
+<td>可能</td>
+<td>不可</td>
+<td>隠蔽</td>
+</tr>
+<tr>
+<td>クラスフィールド</td>
+<td>可能</td>
+<td>不可</td>
+<td>隠蔽</td>
+</tr>
+<tr>
+<td>メソッド</td>
+<td>可能</td>
+<td>不可</td>
+<td>オーバーライド</td>
+</tr>
+<tr>
+<td>クラスメソッド</td>
+<td>可能</td>
+<td>不可</td>
+<td>不可</td>
+</tr>
+<tr>
+<td>内部クラス</td>
+<td>可能</td>
+<td>不可</td>
+<td>隠蔽</td>
+</tr>
+<tr>
+<td>staticなネストしたクラス</td>
+<td>可能</td>
+<td>不可</td>
+<td>隠蔽</td>
+</tr>
+<tr>
+<td>staticなネストしたインターフェース</td>
+<td>可能</td>
+<td>不可</td>
+<td>隠蔽</td>
+</tr>
+<tr>
+<td>コンストラクタ</td>
+<td>可能</td>
+<td>不可</td>
+<td>不可</td>
+</tr>
+<tr>
+<td>初期化ブロック</td>
+<td>可能</td>
+<td>不可</td>
+<td>不可</td>
+</tr>
+<tr>
+<td>static初期化ブロック</td>
+<td>可能</td>
+<td>不可</td>
+<td>不可</td>
+</tr>
+</tbody>
+</table>
+<h2 id="フィールド変数の隠蔽" class="article-heading">🍣 <a href="#フィールド変数の隠蔽" class="headerlink" title="フィールド変数の隠蔽"></a>フィールド変数の隠蔽<a class="article-anchor" href="#フィールド変数の隠蔽" aria-hidden="true"></a></h2><p>継承した先のクラスで継承元と同名のフィールドを宣言すると、継承元のフィールドを隠蔽します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>{</span><br><span class="line">    <span class="keyword">final</span> String s = <span class="string">"123"</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>{</span><br><span class="line">    <span class="keyword">final</span> String s = <span class="string">"456"</span>; <span class="comment">// Parentのフィールドを隠蔽</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span> </span>{</span><br><span class="line">        Parent parent = <span class="keyword">new</span> Parent();</span><br><span class="line">        System.out.println(parent.s); <span class="comment">//=> 123</span></span><br><span class="line"></span><br><span class="line">        Child child = <span class="keyword">new</span> Child();</span><br><span class="line">        System.out.println(child.s); <span class="comment">//=> 456</span></span><br><span class="line"></span><br><span class="line">        Parent parent2 = <span class="keyword">new</span> Child(); <span class="comment">// 呼ばれる変数の型でフィールドが決定</span></span><br><span class="line">        System.out.println(parent2.s); <span class="comment">//=> 123</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>一般的に変数の隠蔽はコードの可読性を落とすため、避けるべきです。</p>
+<h2 id="オーバーライド" class="article-heading"> 🎃 <a href="#オーバーライド" class="headerlink" title="オーバーライド"></a>オーバーライド<a class="article-anchor" href="#オーバーライド" aria-hidden="true"></a></h2><p>オーバーライドとは親クラスのメソッドを子クラスで定義をし直す(上書きする)ことです。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> String title = Book title;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTitle</span><span class="params">()</span> </span>{</span><br><span class="line">        System.out.println(<span class="string">"Book.printTitle(): "</span> + title);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProgrammingBook</span> <span class="keyword">extends</span> <span class="title">Book</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> String title = Programming book title;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span> <span class="comment">// コンパイルエラーになるのでオーバーライドに失敗すると気付ける</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTitle</span><span class="params">()</span> </span>{</span><br><span class="line">        System.out.println(ProgrammingBook.printTitle():  + title);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        Book book = <span class="keyword">new</span> Book();</span><br><span class="line">        book.printTitle(); <span class="comment">//=> Book.printTitle(): Book title</span></span><br><span class="line"></span><br><span class="line">        ProgrammingBook programmingBook = <span class="keyword">new</span> ProgrammingBook();</span><br><span class="line">        programmingBook.printTitle(); <span class="comment">//=> ProgrammingBook.printTitle(): Programming book title</span></span><br><span class="line"></span><br><span class="line">        Book book2 = <span class="keyword">new</span> ProgrammingBook();</span><br><span class="line">        book2.printTitle();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>隠蔽では変数の型で呼ばれるフィールドが変わりましたが、オーバーライドでは呼ばれるオブジェクトの型でメソッドが決まります。</p>
+<h3 id="オーバーライドのルール" class="article-heading"><a href="#オーバーライドのルール" class="headerlink" title="オーバーライドのルール"></a>オーバーライドのルール<a class="article-anchor" href="#オーバーライドのルール" aria-hidden="true"></a></h3><p>オーバーライドには、次のようなルールがあります。</p>
+<ol>
+<li>オーバーライドは、メソッド名、引数リストがまったく同じメソッドをサブクラスで定義すること</li>
+<li>返り値の型は、スーパークラスと同じものか、もしくはその返り値のサブクラスであれば利用可</li>
+<li>アクセス制御は「<strong>スーパークラスと同じものかそれよりも公開範囲が広ければ利用可</strong>」</li>
+</ol>
+<h3 id="オーバーライドにおける例外処理-throws-について" class="article-heading"><a href="#オーバーライドにおける例外処理-throws-について" class="headerlink" title="オーバーライドにおける例外処理(throws)について"></a>オーバーライドにおける例外処理(throws)について<a class="article-anchor" href="#オーバーライドにおける例外処理-throws-について" aria-hidden="true"></a></h3><p>メソッドをオーバーライドする際に例外処理(throws)を記述する際のルールについてです。</p>
+<ul>
+<li>throwsには、スーパークラスのメソッドがthrowsに指定した例外クラス(サブクラス)が指定できる</li>
+<li>throwsには、RuntimeExceptionクラス(サブクラス)も指定可能</li>
+<li>スーパークラスのメソッドにthrowsがあっても、throwsをしてしなくてもいい</li>
+</ul>
+<h2 id="super参照" class="article-heading">🐡 <a href="#super参照" class="headerlink" title="super参照"></a>super参照<a class="article-anchor" href="#super参照" aria-hidden="true"></a></h2><p>オーバーライドされた元メソッドが<code>private</code>でなければ、<code>super</code>を通じて元メソッドを呼び出すことができます。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>{</span><br><span class="line">  <span class="keyword">final</span> String title = Book title;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTitle</span><span class="params">()</span> </span>{</span><br><span class="line">    System.out.println(book.title:  + <span class="keyword">this</span>.title);</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CookBook</span> <span class="keyword">extends</span> <span class="title">Book</span> </span>{</span><br><span class="line">  <span class="keyword">final</span> String title = Cook book title;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTitle</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">super</span>.printTitle();</span><br><span class="line">    System.out.println(CookBook.printTitle:  + <span class="keyword">super</span>.title);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">    CookBook cookBook = <span class="keyword">new</span> CookBook();</span><br><span class="line">    cookBook.printTitle(); <span class="comment">//=> book title: Cook book title</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="抽象クラス" class="article-heading"> 🐹 <a href="#抽象クラス" class="headerlink" title="抽象クラス"></a>抽象クラス<a class="article-anchor" href="#抽象クラス" aria-hidden="true"></a></h2><p><code>abstract</code>修飾子をつけたクラスを抽象クラスと呼び、インスタンス化ができません。<br>抽象クラスになる条件は次のとおりです。</p>
+<ul>
+<li>抽象メソッドをもつクラス</li>
+<li>interfaceを継承して、interfaceのすべてのメソッドの実装をもたないクラス</li>
+<li>抽象クラスを継承して、すべての抽象メソッドの実装をもたないクラス</li>
+</ul>
+<h2 id="ユーティリティクラス" class="article-heading"> 🐰 <a href="#ユーティリティクラス" class="headerlink" title="ユーティリティクラス"></a>ユーティリティクラス<a class="article-anchor" href="#ユーティリティクラス" aria-hidden="true"></a></h2><p>オブジェクト生成を禁止し、クラスの直接利用のみを行うクラスを「ユーティリティクラス」と呼びます。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Math</span> </span>{ <span class="comment">// final で無用な継承を禁止</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Math</span><span class="params">()</span> </span>{} <span class="comment">// インスタンス化を禁止</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> E = <span class="number">2.7182818284590452354</span>; <span class="comment">// staticをつける</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>意味のまとまりのあるメソッドを一ヵ所にまとめることができる点が、ユーティリティクラスの利点です。</p>
+<h2 id="匿名クラス" class="article-heading">🐝 <a href="#匿名クラス" class="headerlink" title="匿名クラス"></a>匿名クラス<a class="article-anchor" href="#匿名クラス" aria-hidden="true"></a></h2><p>匿名クラスのオブジェクトはメソッドの引数として引き渡すために生成します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">  List<string> list = Arrays.asList(<span class="string">"xyz"</span>, <span class="string">"abc"</span>, <span class="string">"defghi"</span>);</string></span><br><span class="line"></span><br><span class="line">  <span class="comment">// sortメソッドの第2引数に匿名オブジェクトを渡す</span></span><br><span class="line">  Collections.sort(list, <span class="keyword">new</span> Comparator<string>() {</string></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String s1, String s2)</span> </span>{</span><br><span class="line">      <span class="keyword">return</span> s1.length() - s2.length();</span><br><span class="line">    }</span><br><span class="line">  });</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="クラス設計に関する用語" class="article-heading">🐮 <a href="#クラス設計に関する用語" class="headerlink" title="クラス設計に関する用語"></a>クラス設計に関する用語<a class="article-anchor" href="#クラス設計に関する用語" aria-hidden="true"></a></h2><h3 id="DTO：データを運ぶクラス" class="article-heading"><a href="#DTO：データを運ぶクラス" class="headerlink" title="DTO：データを運ぶクラス"></a>DTO：データを運ぶクラス<a class="article-anchor" href="#DTO：データを運ぶクラス" aria-hidden="true"></a></h3><p>DTO(Data Transfer Object)クラスは、データを運ぶ役割を分離してモジュール間の関係を単純化するために使います。</p>
+<h3 id="DAO：DBとの境界を担うクラス" class="article-heading"><a href="#DAO：DBとの境界を担うクラス" class="headerlink" title="DAO：DBとの境界を担うクラス"></a>DAO：DBとの境界を担うクラス<a class="article-anchor" href="#DAO：DBとの境界を担うクラス" aria-hidden="true"></a></h3><p>DAO(Data Access Object)クラスは、データベースとの境界を担うクラスを作ることで役割を分離します。</p>
+<h2 id="補足：JVMがメソッドを探す流れ" class="article-heading"> 😸 <a href="#補足：JVMがメソッドを探す流れ" class="headerlink" title="補足：JVMがメソッドを探す流れ"></a>補足：JVMがメソッドを探す流れ<a class="article-anchor" href="#補足：JVMがメソッドを探す流れ" aria-hidden="true"></a></h2><p>JVMが実行すべきメソッドを探すために使う方法は次の3つです。</p>
+<ul>
+<li>参照 (どのインスタンスのメソッドなのか)</li>
+<li>クラス名 (どのクラスに定義されているstaticなメソッドなのか)</li>
+<li>シグネチャ (メソッド名と引数のセット、オーバーロードがあるため)</li>
+</ul>
+<h2 id="補足：クラス継承で引き継がないもの" class="article-heading"> 🏀 <a href="#補足：クラス継承で引き継がないもの" class="headerlink" title="補足：クラス継承で引き継がないもの"></a>補足：クラス継承で引き継がないもの<a class="article-anchor" href="#補足：クラス継承で引き継がないもの" aria-hidden="true"></a></h2><p>クラス継承で引き継がないのは「コンストラクタ」と「<code>private</code>なフィールドやメソッド」です。</p>
+<h2 id="補足：フィールドはオーバーライドしない" class="article-heading"> 🍮 <a href="#補足：フィールドはオーバーライドしない" class="headerlink" title="補足：フィールドはオーバーライドしない"></a>補足：フィールドはオーバーライドしない<a class="article-anchor" href="#補足：フィールドはオーバーライドしない" aria-hidden="true"></a></h2><ul>
+<li>Javaではメソッドとフィールドは明確に区別されており、オーバーライドできない</li>
+<li>親クラスと小クラスで同名フィールドを定義すると変数の型によってどちらかのフィールドが参照</li>
+<li>アクセスできないフィールドが発生しかねず、バグの温床になるので絶対に行わない</li>
+</ul>
+<h2 id="補足：継承関係のクラスの同名フィールドの優先順位" class="article-heading"> 🚜 <a href="#補足：継承関係のクラスの同名フィールドの優先順位" class="headerlink" title="補足：継承関係のクラスの同名フィールドの優先順位"></a>補足：継承関係のクラスの同名フィールドの優先順位<a class="article-anchor" href="#補足：継承関係のクラスの同名フィールドの優先順位" aria-hidden="true"></a></h2><p>次のようなスーパークラスとサブクラスがあったとします。</p>
+<a href="http://www.amazon.co.jp/gp/product/B01ASGJYIE/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B01ASGJYIE&linkCode=as2&tag=morizyun00-22" target="_blank"><img border="0" src="/img/java-class-super-class-sub-class-diff.png"></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B01ASGJYIE" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+<p><br>出典：徹底攻略Java SE 8 Silver問題集</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>{</span><br><span class="line">  String val = <span class="string">"A"</span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>{</span><br><span class="line">    System.out.print(val);</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>{</span><br><span class="line">  String val = <span class="string">"B"</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">    A a = <span class="keyword">new</span> A();</span><br><span class="line">    A b = <span class="keyword">new</span> B();</span><br><span class="line">    System.out.print(a.val); <span class="comment">// => A</span></span><br><span class="line">    System.out.print(b.val); <span class="comment">// => A</span></span><br><span class="line">    a.print(); <span class="comment">// => A</span></span><br><span class="line">    b.print(); <span class="comment">// => A</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>この場合どちらのフィールドが使われるかは次のルールに従います。</p>
+<ul>
+<li>フィールドを参照した場合は、変数の型で宣言されたほうを使う</li>
+<li>メソッドを呼び出した場合は、メソッド内の指示に従う</li>
+</ul>
+<h2 id="継承関係のあるクラスのコンストラクタ" class="article-heading">🚌 <a href="#継承関係のあるクラスのコンストラクタ" class="headerlink" title="継承関係のあるクラスのコンストラクタ"></a>継承関係のあるクラスのコンストラクタ<a class="article-anchor" href="#継承関係のあるクラスのコンストラクタ" aria-hidden="true"></a></h2><p>継承関係にあるクラスのコンストラクタについてです。次のような継承関係があるとします。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span> </span>{</span><br><span class="line">    System.out.println(<span class="string">"A"</span>);</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">super</span>(); <span class="comment">// コンパイラが自動で埋め込む</span></span><br><span class="line">    System.out.println(<span class="string">"B"</span>);</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>この場合、</p>
+<ul>
+<li>スーパークラスのインスタンスがもつコンストラクタが先に実行されなければいけない</li>
+<li>サブクラスのコンストラクタには、スーパークラスのコンストラクタを呼び出す「<code>super();</code>」がコンパイラによって追加</li>
+</ul>
+<h2 id="参考リンク" class="article-heading">🐠 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://www.amazon.co.jp/gp/product/B00V2WMQNE/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B00V2WMQNE&linkCode=as2&tag=morizyun00-22" target="_blank">改訂2版　パーフェクトJava</a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B00V2WMQNE" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;"></li>
+<li><a href="http://www.amazon.co.jp/gp/product/B01ASGJYIE/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B01ASGJYIE&linkCode=as2&tag=morizyun00-22" target="_blank">徹底攻略Java SE 8 Silver問題集</a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=B01ASGJYIE" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+</li>
+</ul>
+</body></html>
+                <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+                <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2017-08-11T00:55:46.000Z" itemprop="dateModified">最終更新日: 2017-08-11</time>
+                <a href="basic-modifier.html" class="article-footer-prev" title="修飾子"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="basic-method.html" class="article-footer-next" title="メソッド"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">コンテンツ</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#オブジェクトのライフサイクル管理"><span class="toc-text">オブジェクトのライフサイクル管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#クラスの設計指針"><span class="toc-text">クラスの設計指針</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#コンストラクタ"><span class="toc-text">コンストラクタ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#コンストラクタのルール"><span class="toc-text">コンストラクタのルール</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#複数クラスの共通処理"><span class="toc-text">複数クラスの共通処理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拡張継承によるクラスの構成要素の変更"><span class="toc-text">拡張継承によるクラスの構成要素の変更</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#フィールド変数の隠蔽"><span class="toc-text">フィールド変数の隠蔽</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#オーバーライド"><span class="toc-text">オーバーライド</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#オーバーライドのルール"><span class="toc-text">オーバーライドのルール</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#オーバーライドにおける例外処理-throws-について"><span class="toc-text">オーバーライドにおける例外処理(throws)について</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#super参照"><span class="toc-text">super参照</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#抽象クラス"><span class="toc-text">抽象クラス</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ユーティリティクラス"><span class="toc-text">ユーティリティクラス</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匿名クラス"><span class="toc-text">匿名クラス</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#クラス設計に関する用語"><span class="toc-text">クラス設計に関する用語</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DTO：データを運ぶクラス"><span class="toc-text">DTO：データを運ぶクラス</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DAO：DBとの境界を担うクラス"><span class="toc-text">DAO：DBとの境界を担うクラス</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#補足：JVMがメソッドを探す流れ"><span class="toc-text">補足：JVMがメソッドを探す流れ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#補足：クラス継承で引き継がないもの"><span class="toc-text">補足：クラス継承で引き継がないもの</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#補足：フィールドはオーバーライドしない"><span class="toc-text">補足：フィールドはオーバーライドしない</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#補足：継承関係のクラスの同名フィールドの優先順位"><span class="toc-text">補足：継承関係のクラスの同名フィールドの優先順位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#継承関係のあるクラスのコンストラクタ"><span class="toc-text">継承関係のあるクラスのコンストラクタ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考リンク"><span class="toc-text">参考リンク</span></a></li></ol>
+              <a href="#" id="article-toc-top">トップへ</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">概要</strong><a href="index.html" class="sidebar-link">はじめに</a><a href="basic-rule-word.html" class="sidebar-link">基本概念</a><a href="tips-material-for-beginner.html" class="sidebar-link">初心者向け入門資料</a><strong class="sidebar-title">型</strong><a href="type-integer-long-short.html" class="sidebar-link">整数(int, log)</a><a href="type-char.html" class="sidebar-link">文字(char)</a><a href="type-string.html" class="sidebar-link">文字列(String)</a><a href="type-collection-array-list.html" class="sidebar-link">コレクションと配列</a><a href="type-map.html" class="sidebar-link">マップ(Map)</a><a href="type-set.html" class="sidebar-link">セット(Set)</a><a href="type-date.html" class="sidebar-link">日付(Date)</a><a href="type-enum.html" class="sidebar-link">列挙(Enum)</a><a href="type-byte.html" class="sidebar-link">バイト(byte)</a><a href="type-boolean.html" class="sidebar-link">正偽型(boolean)</a><a href="type-primitive-reference.html" class="sidebar-link">プリミティブ型と参照型</a><a href="type-optional.html" class="sidebar-link">Optional型</a><strong class="sidebar-title">文法</strong><a href="basic-modifier.html" class="sidebar-link">修飾子</a><a href="basic-class.html" class="sidebar-link current">クラス</a><a href="basic-method.html" class="sidebar-link">メソッド</a><a href="basic-exception-handling.html" class="sidebar-link">例外処理</a><a href="basic-initialization-block.html" class="sidebar-link">初期化ブロック</a><a href="basic-variable.html" class="sidebar-link">変数</a><a href="basic-interface.html" class="sidebar-link">インタフェースについて</a><a href="basic-refrection.html" class="sidebar-link">リフレクション</a><a href="basic-switch.html" class="sidebar-link">switch文</a><a href="basic-comparable-interface.html" class="sidebar-link">Comparable I/F</a><a href="basic-annotation.html" class="sidebar-link">アノテーション</a><a href="basic-itarator.html" class="sidebar-link">イテレータ(iterator)</a><a href="basic-lamdba-stream-api.html" class="sidebar-link">Stream API/Lambda</a><strong class="sidebar-title">Spring Framework</strong><a href="spring-framework-basic-index.html" class="sidebar-link">概要</a><a href="spring-framework-basic-hello-world.html" class="sidebar-link">Hello World</a><a href="spring-framework-basic-di-dependency-injection.html" class="sidebar-link">DI(依存性の注入)</a><a href="spring-framework-basic-spring-aop.html" class="sidebar-link">アスペクト指向プログラミング</a><a href="spring-framework-basic-data-binding.html" class="sidebar-link">データバインディングと型変換</a><a href="spring-framework-controller-annotation.html" class="sidebar-link">Controllerアノテーション</a><a href="spring-framework-basic-form.html" class="sidebar-link">フォーム利用</a><a href="spring-framework-property-value.html" class="sidebar-link">プロパティ(設定値)管理</a><a href="spring-framework-validation.html" class="sidebar-link">バリデーション</a><strong class="sidebar-title">ライブラリ</strong><a href="library-thymeleaf.html" class="sidebar-link">Thymeleaf(テンプレート)</a><a href="library-lombok.html" class="sidebar-link">Lombok(ボイラープレート)</a><a href="library-jackson.html" class="sidebar-link">Jackson(JSONライブラリ)</a><a href="library-mybatis.html" class="sidebar-link">MyBatis(OR Mapper)</a><a href="library-junit.html" class="sidebar-link">JUnit(ユニットテスト)</a><a href="library-hibernate.html" class="sidebar-link">Hibernate</a><strong class="sidebar-title">デザインパターン</strong><a href="design-pattern-factory-pattern.html" class="sidebar-link">ファクトリパターン</a><a href="design-pattern-singleton-pattern.html" class="sidebar-link">シングルトンパターン</a><a href="design-pattern-template-method-pattern.html" class="sidebar-link">テンプレートメソッドパターン</a><strong class="sidebar-title">Tips</strong><a href="tips-best-practice.html" class="sidebar-link">JavaのBest Practice</a><a href="tips-style-guide.html" class="sidebar-link">Javaのコーディング規約</a><a href="tips-intellij-spring-dev-tool-tips.html" class="sidebar-link">IntelliJ IDEAノウハウ</a><a href="tips-jsp-java-server-page.html" class="sidebar-link">JSPについて</a><a href="tips-etc.html" class="sidebar-link">Java Tips</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">概要</strong><a href="index.html" class="mobile-nav-link">はじめに</a><a href="basic-rule-word.html" class="mobile-nav-link">基本概念</a><a href="tips-material-for-beginner.html" class="mobile-nav-link">初心者向け入門資料</a><strong class="mobile-nav-title">型</strong><a href="type-integer-long-short.html" class="mobile-nav-link">整数(int, log)</a><a href="type-char.html" class="mobile-nav-link">文字(char)</a><a href="type-string.html" class="mobile-nav-link">文字列(String)</a><a href="type-collection-array-list.html" class="mobile-nav-link">コレクションと配列</a><a href="type-map.html" class="mobile-nav-link">マップ(Map)</a><a href="type-set.html" class="mobile-nav-link">セット(Set)</a><a href="type-date.html" class="mobile-nav-link">日付(Date)</a><a href="type-enum.html" class="mobile-nav-link">列挙(Enum)</a><a href="type-byte.html" class="mobile-nav-link">バイト(byte)</a><a href="type-boolean.html" class="mobile-nav-link">正偽型(boolean)</a><a href="type-primitive-reference.html" class="mobile-nav-link">プリミティブ型と参照型</a><a href="type-optional.html" class="mobile-nav-link">Optional型</a><strong class="mobile-nav-title">文法</strong><a href="basic-modifier.html" class="mobile-nav-link">修飾子</a><a href="basic-class.html" class="mobile-nav-link current">クラス</a><a href="basic-method.html" class="mobile-nav-link">メソッド</a><a href="basic-exception-handling.html" class="mobile-nav-link">例外処理</a><a href="basic-initialization-block.html" class="mobile-nav-link">初期化ブロック</a><a href="basic-variable.html" class="mobile-nav-link">変数</a><a href="basic-interface.html" class="mobile-nav-link">インタフェースについて</a><a href="basic-refrection.html" class="mobile-nav-link">リフレクション</a><a href="basic-switch.html" class="mobile-nav-link">switch文</a><a href="basic-comparable-interface.html" class="mobile-nav-link">Comparable I/F</a><a href="basic-annotation.html" class="mobile-nav-link">アノテーション</a><a href="basic-itarator.html" class="mobile-nav-link">イテレータ(iterator)</a><a href="basic-lamdba-stream-api.html" class="mobile-nav-link">Stream API/Lambda</a><strong class="mobile-nav-title">Spring Framework</strong><a href="spring-framework-basic-index.html" class="mobile-nav-link">概要</a><a href="spring-framework-basic-hello-world.html" class="mobile-nav-link">Hello World</a><a href="spring-framework-basic-di-dependency-injection.html" class="mobile-nav-link">DI(依存性の注入)</a><a href="spring-framework-basic-spring-aop.html" class="mobile-nav-link">アスペクト指向プログラミング</a><a href="spring-framework-basic-data-binding.html" class="mobile-nav-link">データバインディングと型変換</a><a href="spring-framework-controller-annotation.html" class="mobile-nav-link">Controllerアノテーション</a><a href="spring-framework-basic-form.html" class="mobile-nav-link">フォーム利用</a><a href="spring-framework-property-value.html" class="mobile-nav-link">プロパティ(設定値)管理</a><a href="spring-framework-validation.html" class="mobile-nav-link">バリデーション</a><strong class="mobile-nav-title">ライブラリ</strong><a href="library-thymeleaf.html" class="mobile-nav-link">Thymeleaf(テンプレート)</a><a href="library-lombok.html" class="mobile-nav-link">Lombok(ボイラープレート)</a><a href="library-jackson.html" class="mobile-nav-link">Jackson(JSONライブラリ)</a><a href="library-mybatis.html" class="mobile-nav-link">MyBatis(OR Mapper)</a><a href="library-junit.html" class="mobile-nav-link">JUnit(ユニットテスト)</a><a href="library-hibernate.html" class="mobile-nav-link">Hibernate</a><strong class="mobile-nav-title">デザインパターン</strong><a href="design-pattern-factory-pattern.html" class="mobile-nav-link">ファクトリパターン</a><a href="design-pattern-singleton-pattern.html" class="mobile-nav-link">シングルトンパターン</a><a href="design-pattern-template-method-pattern.html" class="mobile-nav-link">テンプレートメソッドパターン</a><strong class="mobile-nav-title">Tips</strong><a href="tips-best-practice.html" class="mobile-nav-link">JavaのBest Practice</a><a href="tips-style-guide.html" class="mobile-nav-link">Javaのコーディング規約</a><a href="tips-intellij-spring-dev-tool-tips.html" class="mobile-nav-link">IntelliJ IDEAノウハウ</a><a href="tips-jsp-java-server-page.html" class="mobile-nav-link">JSPについて</a><a href="tips-etc.html" class="mobile-nav-link">Java Tips</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

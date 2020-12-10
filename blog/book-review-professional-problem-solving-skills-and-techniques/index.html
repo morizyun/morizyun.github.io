@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>「問題解決プロフェッショナル」を読みました！[書評] | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/book-review-professional-problem-solving-skills-and-techniques/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="問題解決系の書籍で鉄板の『問題解決プロフェッショナル―思考と技術』を読んだので忘れないように書いていたことをメモしておきます。全般としては、無意識の中でやってきたことが書籍の中で体系化されているのですごく合理的と感じる内容です。 書籍の中にある、  ポジティブ・メンタリティ =&amp;gt; あきらめずに前向きに物ことをとらえる ロジカルシンキング =&amp;gt; 論理的に考える パラダイム転換 =&amp;gt;">
+<meta name="keywords" content="book">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「問題解決プロフェッショナル」を読みました！[書評]">
+<meta property="og:url" content="http://morizyun.github.io/blog/book-review-professional-problem-solving-skills-and-techniques/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="問題解決系の書籍で鉄板の『問題解決プロフェッショナル―思考と技術』を読んだので忘れないように書いていたことをメモしておきます。全般としては、無意識の中でやってきたことが書籍の中で体系化されているのですごく合理的と感じる内容です。 書籍の中にある、  ポジティブ・メンタリティ =&amp;gt; あきらめずに前向きに物ことをとらえる ロジカルシンキング =&amp;gt; 論理的に考える パラダイム転換 =&amp;gt;">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「問題解決プロフェッショナル」を読みました！[書評]">
+<meta name="twitter:description" content="問題解決系の書籍で鉄板の『問題解決プロフェッショナル―思考と技術』を読んだので忘れないように書いていたことをメモしておきます。全般としては、無意識の中でやってきたことが書籍の中で体系化されているのですごく合理的と感じる内容です。 書籍の中にある、  ポジティブ・メンタリティ =&amp;gt; あきらめずに前向きに物ことをとらえる ロジカルシンキング =&amp;gt; 論理的に考える パラダイム転換 =&amp;gt;">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">「問題解決プロフェッショナル」を読みました！[書評]</h1>
+    
+    <a href="/blog/book-review-professional-problem-solving-skills-and-techniques/" class="article-date"><time datetime="2017-01-16T15:00:00.000Z">2017-01-17</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/book-review-professional-problem-solving-skills-and-techniques/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/book-review-professional-problem-solving-skills-and-techniques/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/book-review-professional-problem-solving-skills-and-techniques/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/book-review-professional-problem-solving-skills-and-techniques/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4478005532/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4478005532&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4478005532&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>問題解決系の書籍で鉄板の『<strong><a href="http://www.amazon.co.jp/gp/product/4478005532/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4478005532&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">問題解決プロフェッショナル―思考と技術</a></strong>』<br>を読んだので忘れないように書いていたことをメモしておきます。全般としては、無意識の中でやってきたことが書籍の中で体系化されているのですごく合理的と感じる内容です。</p>
+<p>書籍の中にある、</p>
+<ul>
+<li>ポジティブ・メンタリティ => あきらめずに前向きに物ことをとらえる</li>
+<li>ロジカルシンキング => 論理的に考える</li>
+<li>パラダイム転換 => 従来の枠組みからの転換を目指す</li>
+</ul>
+<p>というベースの考え方を大切にしていきたいです！</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="目次" class="article-heading">🐮 <a href="#目次" class="headerlink" title="目次"></a>目次<a class="article-anchor" href="#目次" aria-hidden="true"></a></h2><ul>
+<li><strong>ゼロベース思考法</strong>、<strong>仮説思考</strong> =>「結果がうまくいく」ために必要な基本思考</li>
+<li><strong>MECE</strong>、<strong>ロジック・ツリー</strong> => 原因追求、解決策を論理的に考えるための基礎的な技術</li>
+<li><strong>ソリューション・システム</strong> => 後述</li>
+</ul>
+<h2 id="ゼロベース思考法" class="article-heading">🐯 <a href="#ゼロベース思考法" class="headerlink" title="ゼロベース思考法"></a>ゼロベース思考法<a class="article-anchor" href="#ゼロベース思考法" aria-hidden="true"></a></h2><ul>
+<li>ゼロベース思考法 = 既成の枠(固定観念)を取り外す</li>
+</ul>
+<h3 id="ポイント" class="article-heading"><a href="#ポイント" class="headerlink" title="ポイント"></a>ポイント<a class="article-anchor" href="#ポイント" aria-hidden="true"></a></h3><ul>
+<li>自分の狭い枠の中で否定に走らず、大きな枠に広げて可能性を求める</li>
+<li>顧客にとっての価値を考え抜く</li>
+</ul>
+<h2 id="仮説思考" class="article-heading">👽 <a href="#仮説思考" class="headerlink" title="仮説思考"></a>仮説思考<a class="article-anchor" href="#仮説思考" aria-hidden="true"></a></h2><ul>
+<li>常にその時点での結論を持ってアクションを起こす</li>
+</ul>
+<h3 id="ポイント-1" class="article-heading"><a href="#ポイント-1" class="headerlink" title="ポイント"></a>ポイント<a class="article-anchor" href="#ポイント-1" aria-hidden="true"></a></h3><ul>
+<li>アクションに結び付く結論を常にもつ<ul>
+<li>まず出した結論に対して、SO WHAT?(だから何なの?)を考え抜いて、「結論の仮説」の仮説をもつ</li>
+</ul>
+</li>
+<li>結論に導く背景の理由やメカニズムを考える => 理由の仮説<ul>
+<li>「結論を述べる。後から理由をきちんと述べる」訓練をする</li>
+<li>この訓練により、「背後の理由やメカニズム」を把握できるにようになる</li>
+</ul>
+</li>
+<li>「ベスト」を考えるよりも「ベター」を実行する => スピードを重視<ul>
+<li>解決できる可能性を必ず頭の片隅に残しながら、ベターな解決策が見えたら実行に移す</li>
+<li>情報収集に時間を使いすぎない => ベターなタイミングで仮説検証を繰り返す</li>
+</ul>
+</li>
+</ul>
+<h2 id="MECE" class="article-heading">🐝 <a href="#MECE" class="headerlink" title="MECE"></a>MECE<a class="article-anchor" href="#MECE" aria-hidden="true"></a></h2><ul>
+<li>Mutually Exclusive Collectively Exhaustive</li>
+<li>それぞれが重複することなく、全体集合としてはモレがない</li>
+</ul>
+<h3 id="MECEの活用ポイント" class="article-heading"><a href="#MECEの活用ポイント" class="headerlink" title="MECEの活用ポイント"></a>MECEの活用ポイント<a class="article-anchor" href="#MECEの活用ポイント" aria-hidden="true"></a></h3><ul>
+<li>モレによって的を外していないか？<ul>
+<li>モレの原因 => 既存の枠へのこだわりが強い、詳細へこだわり過ぎ、切り口の違いでモレを見落とす</li>
+</ul>
+</li>
+<li>ダブリによって効率を阻害していないか？<ul>
+<li>ダブリの原因 => 習慣(固定観念)でダブリが気にならない、混乱を招く、切り口の間違い</li>
+</ul>
+</li>
+<li>MECEで捉え、最後に優先順位をつけているか？<ul>
+<li>優先順位付けができない原因 => すべて重要に見えてしまう、基準があいまいなために選択項目が増えすぎる、資源配分を失敗する</li>
+</ul>
+</li>
+</ul>
+<h3 id="フレームワーク例" class="article-heading"><a href="#フレームワーク例" class="headerlink" title="フレームワーク例"></a>フレームワーク例<a class="article-anchor" href="#フレームワーク例" aria-hidden="true"></a></h3><p>原因追求や解決策を検討するための構造の軸として使えるフレームワークの例。</p>
+<ul>
+<li>3C(Customer, Competitor, Company) + 1C(Channel)<ul>
+<li>顧客、競合、自社、流通チャネルによって市場の広がりをMECEにとらえる</li>
+<li>自社(売上、成長性、ブランド、商品開発力)、顧客(規模、成長性、成熟度、ニーズ)、競合(シェア、河川度、参入難易度)</li>
+</ul>
+</li>
+<li>ビジネス・システム<ul>
+<li>製品・サービスが開発 => 市場に出るまでの付加価値の流れを時系列で整理</li>
+<li>横軸： 自社の強み・弱み、縦軸： 研究、開発、調達、精算、広告、流通、保守</li>
+</ul>
+</li>
+<li>マーケティングの4P<ul>
+<li>マーケティングの4P(Product, Price, Place, Promotion)</li>
+</ul>
+</li>
+<li>こと業ポートフォリオ<ul>
+<li>資源配分を考えるために使う</li>
+<li>X軸に相対マーケットシェア、Y軸に市場成長率をプロット</li>
+</ul>
+</li>
+</ul>
+<h2 id="ロジックツリー" class="article-heading">🍣 <a href="#ロジックツリー" class="headerlink" title="ロジックツリー"></a>ロジックツリー<a class="article-anchor" href="#ロジックツリー" aria-hidden="true"></a></h2><ul>
+<li>主要課題をMECEの考え方にもとづいてツリー状に分解・整理する技術</li>
+<li>限られた時間の中で広がりと深さを押さえて解決策を具体化するのに役立つ</li>
+</ul>
+<h3 id="利点" class="article-heading"><a href="#利点" class="headerlink" title="利点"></a>利点<a class="article-anchor" href="#利点" aria-hidden="true"></a></h3><ul>
+<li>モレやダブリを未然にチェックできる</li>
+<li>原因・解決策を具体的に落とし込める</li>
+<li>各内容の因果関係を明らかにできる</li>
+</ul>
+<h3 id="ロジックツリーで原因を追求" class="article-heading"><a href="#ロジックツリーで原因を追求" class="headerlink" title="ロジックツリーで原因を追求"></a>ロジックツリーで原因を追求<a class="article-anchor" href="#ロジックツリーで原因を追求" aria-hidden="true"></a></h3><p><a href="http://www.amazon.co.jp/gp/product/4478005532/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4478005532&linkCode=as2&tag=morizyun00-22" title="2016-11-27-logic-tree-why1" target="_blank" rel="noopener"><br><img src="/img/2017-01-17-book-review-professional-problem-solving-skills-and-techniques_1.jpg" width="640" height="458" alt="2016-11-27-logic-tree-why1"><br></a></p>
+<ul>
+<li>原因を突きやめるためにWhy?(なぜ?)で深掘りを行う</li>
+</ul>
+<h3 id="ロジックツリーで解決策を具体化" class="article-heading"><a href="#ロジックツリーで解決策を具体化" class="headerlink" title="ロジックツリーで解決策を具体化"></a>ロジックツリーで解決策を具体化<a class="article-anchor" href="#ロジックツリーで解決策を具体化" aria-hidden="true"></a></h3><ul>
+<li>的を外さないこと</li>
+<li>すぐにアクションに結び付くような具体性があること</li>
+</ul>
+<h3 id="ロジックツリーの作り方とコツ" class="article-heading"><a href="#ロジックツリーの作り方とコツ" class="headerlink" title="ロジックツリーの作り方とコツ"></a>ロジックツリーの作り方とコツ<a class="article-anchor" href="#ロジックツリーの作り方とコツ" aria-hidden="true"></a></h3><ul>
+<li>各レベルができるだけMECEか</li>
+<li>ツリーの右側が具体的な原因や解決策になっているか？</li>
+<li>具体的な原因や解決策が因果関係として主要課題にリンクしているか</li>
+</ul>
+<h3 id="作成プロセス" class="article-heading"><a href="#作成プロセス" class="headerlink" title="作成プロセス"></a>作成プロセス<a class="article-anchor" href="#作成プロセス" aria-hidden="true"></a></h3><ul>
+<li>(1) とにかくツリーを書き出す</li>
+<li>(2) 左 => 右に行くにしたがって、 概念的 => 具体的になっているか</li>
+<li>(3) それぞれの段がMECEか、モレがありそうなら「そのほか」を置く</li>
+<li>(4) 既存の枠に入らなければ新しい枠を作る</li>
+<li>(5) 因果のロジックをチェックする</li>
+<li>(6) 自分以外の何人かの人にチェックしてもらう</li>
+</ul>
+<p><img src="/img/2017-01-17-book-review-professional-problem-solving-skills-and-techniques_2.jpg" width="800" height="576"><br><img src="/img/2017-01-17-book-review-professional-problem-solving-skills-and-techniques_3.jpg" width="800" height="576"></p>
+<h3 id="コーザリティ-因果関係-分析" class="article-heading"><a href="#コーザリティ-因果関係-分析" class="headerlink" title="コーザリティ(因果関係)分析"></a>コーザリティ(因果関係)分析<a class="article-anchor" href="#コーザリティ-因果関係-分析" aria-hidden="true"></a></h3><ul>
+<li>表面化している問題(現象)の背景にある根本原因を追求するために、現象と原因を因果関係に整理する分析手法のひとつ</li>
+<li>ビジネスのロジック = 因果関係を考え抜くことに尽きる</li>
+</ul>
+<h2 id="ソリューション・システム-Solution-System" class="article-heading">🚕 <a href="#ソリューション・システム-Solution-System" class="headerlink" title="ソリューション・システム(Solution System)"></a>ソリューション・システム(Solution System)<a class="article-anchor" href="#ソリューション・システム-Solution-System" aria-hidden="true"></a></h2><p>ソリューションシステムとはビジネス上の問題を分析し、具体的な解決策を立案するための問題解決法である。</p>
+<h3 id="実行ステップ" class="article-heading"><a href="#実行ステップ" class="headerlink" title="実行ステップ"></a>実行ステップ<a class="article-anchor" href="#実行ステップ" aria-hidden="true"></a></h3><ul>
+<li>課題設定 =＞ 問題となること象を解決すべき「課題」としてとらえる</li>
+<li>解決策の仮説 => 課題に対する解決策の仮設を作る</li>
+<li>解決策の検証・評価 => 解決策の仮説を検証・評価する</li>
+</ul>
+<p>各ステップの詳細は以下。</p>
+<h3 id="課題設定" class="article-heading"><a href="#課題設定" class="headerlink" title="課題設定"></a>課題設定<a class="article-anchor" href="#課題設定" aria-hidden="true"></a></h3><ul>
+<li>主要課題の設定<ul>
+<li>たとえば何かと比較するなどして、問題となる現象 => 課題をあぶり出す</li>
+</ul>
+</li>
+<li>個別課題の設定<ul>
+<li>主要課題から個別課題にブレークダウンする</li>
+</ul>
+</li>
+</ul>
+<h3 id="解決策の仮説を立てる" class="article-heading"><a href="#解決策の仮説を立てる" class="headerlink" title="解決策の仮説を立てる"></a>解決策の仮説を立てる<a class="article-anchor" href="#解決策の仮説を立てる" aria-hidden="true"></a></h3><ul>
+<li>個別課題に対する解決策の設定<ul>
+<li>個別課題に対してコントロール可能な「個別解決策」を設定する。ゼロベースでブレストする</li>
+</ul>
+</li>
+<li>個別解決策から総合解決策を考える<ul>
+<li>「総合解決策」とは「個別課題」に対するYES/NOの具体的解決策を組み合わせ、経営資源の観点から「個別解決策」との整合性を取ったもの</li>
+</ul>
+</li>
+<li>解決策を検証・評価する<ul>
+<li>「総合解決策」「個別解決策」に対する検証と評価</li>
+</ul>
+</li>
+</ul>
+<h3 id="解決策を検証・評価する" class="article-heading"><a href="#解決策を検証・評価する" class="headerlink" title="解決策を検証・評価する"></a>解決策を検証・評価する<a class="article-anchor" href="#解決策を検証・評価する" aria-hidden="true"></a></h3><ul>
+<li>個別解決策をファクトベースで検証する</li>
+<li>総合解決策の評価<ul>
+<li>ハード面<ul>
+<li>期待効果： 解決策のもたらす効果を売上、利益、成長性の視点から評価</li>
+<li>投入資源： 人・モノ・金の投入資源の量と、企業の制約条件から評価</li>
+<li>リスク： 市場・競合関係の急変による変動や失敗リスクを評価</li>
+<li>展開スピード： 成功の結果を早く出すための、早期立ち上げのスピード評価</li>
+</ul>
+</li>
+<li>ソフト面<ul>
+<li>起業スタイル、理念との整合性</li>
+<li>トップのコミットメント(責任/決意)の確認</li>
+<li>リーダーシップのある実務レベルの推進者の有無</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ソリューションシステム活用の流れ" class="article-heading"><a href="#ソリューションシステム活用の流れ" class="headerlink" title="ソリューションシステム活用の流れ"></a>ソリューションシステム活用の流れ<a class="article-anchor" href="#ソリューションシステム活用の流れ" aria-hidden="true"></a></h3><ul>
+<li>問題となる現象を分析する</li>
+<li>こと業課題の設定<ul>
+<li>問題を洗い出す<ul>
+<li>状況把握</li>
+<li>問題点の列挙</li>
+</ul>
+</li>
+<li>問題となる現象を分析する<ul>
+<li>問題を抽象化したり、フレームワークに当てはめる</li>
+</ul>
+</li>
+<li>こと業課題の設定</li>
+</ul>
+</li>
+<li>解の方向性を探る<ul>
+<li>強みをテコにするか、弱みを補うか、まったく新しい方向性を作り出すかを判断する</li>
+</ul>
+</li>
+<li>仮説を作る<ul>
+<li>インタビューを始める</li>
+<li>情報収集と分析を行う<ul>
+<li>3C + 1C => 市場分析</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>解決策を実行する<ul>
+<li>テスト販売などで仮説検証を行う</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/2017-01-17-book-review-professional-problem-solving-skills-and-techniques_4.jpg" width="800" height="445"></p>
+<h2 id="あとがき" class="article-heading"> 🍮 <a href="#あとがき" class="headerlink" title="あとがき"></a>あとがき<a class="article-anchor" href="#あとがき" aria-hidden="true"></a></h2><p>問題解決で大切なこと。</p>
+<ul>
+<li>とにかくよく考えること</li>
+<li>自己責任において自分の結論(仮説)を実行する</li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>【詳解Objective-C iPhoneアプリケーション開発入門ノート】で再入門iPhoneアプリケーション開発！　 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/objective-c-iphone-app-introduction-note/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="久々にObjective-Cを触り始めました。ほとんど忘れているかなと思ってたんですが、結構覚えていて自分でびっくりしています。前に開発していた時にかなり苦労したので、そのぶん脳にしっかり刻み込まれていたのかもw ということでリハビリで『詳細! Objective-C iPhoneアプリ開発 入門ノート』を読み始めました。この本はサンプルソースがかなり豊富ですので、作りながら覚えていくのに最適な構">
+<meta name="keywords" content="iPhone,objective-c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【詳解Objective-C iPhoneアプリケーション開発入門ノート】で再入門iPhoneアプリケーション開発！　">
+<meta property="og:url" content="http://morizyun.github.io/blog/objective-c-iphone-app-introduction-note/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="久々にObjective-Cを触り始めました。ほとんど忘れているかなと思ってたんですが、結構覚えていて自分でびっくりしています。前に開発していた時にかなり苦労したので、そのぶん脳にしっかり刻み込まれていたのかもw ということでリハビリで『詳細! Objective-C iPhoneアプリ開発 入門ノート』を読み始めました。この本はサンプルソースがかなり豊富ですので、作りながら覚えていくのに最適な構">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【詳解Objective-C iPhoneアプリケーション開発入門ノート】で再入門iPhoneアプリケーション開発！　">
+<meta name="twitter:description" content="久々にObjective-Cを触り始めました。ほとんど忘れているかなと思ってたんですが、結構覚えていて自分でびっくりしています。前に開発していた時にかなり苦労したので、そのぶん脳にしっかり刻み込まれていたのかもw ということでリハビリで『詳細! Objective-C iPhoneアプリ開発 入門ノート』を読み始めました。この本はサンプルソースがかなり豊富ですので、作りながら覚えていくのに最適な構">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">【詳解Objective-C iPhoneアプリケーション開発入門ノート】で再入門iPhoneアプリケーション開発！　</h1>
+    
+    <a href="/blog/objective-c-iphone-app-introduction-note/" class="article-date"><time datetime="2014-04-04T15:00:00.000Z">2014-04-05</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/objective-c-iphone-app-introduction-note/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/objective-c-iphone-app-introduction-note/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/objective-c-iphone-app-introduction-note/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/objective-c-iphone-app-introduction-note/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4800710227/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4800710227&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4800710227&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>久々にObjective-Cを触り始めました。ほとんど忘れているかなと思ってたんですが、結構覚えていて自分でびっくりしています。前に開発していた時にかなり苦労したので、そのぶん脳にしっかり刻み込まれていたのかもw</p>
+<p>ということでリハビリで『<strong><a href="http://www.amazon.co.jp/gp/product/4800710227/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4800710227&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">詳細! Objective-C iPhoneアプリ開発 入門ノート</a></strong>』を読み始めました。この本はサンプルソースがかなり豊富ですので、作りながら覚えていくのに最適な構成です。</p>
+<p>今回は、特に参考になった点を中心にピックアップしていきます。</p>
+<p><strong>(04/05 22:45) ピンチイン・アウトとダブルタップを認識するサンプルを追加</strong></p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="入門者にお勧めなドキュメント" class="article-heading">🐠 <a href="#入門者にお勧めなドキュメント" class="headerlink" title="入門者にお勧めなドキュメント"></a>入門者にお勧めなドキュメント<a class="article-anchor" href="#入門者にお勧めなドキュメント" aria-hidden="true"></a></h2><p><strong><a href="http://www.slideshare.net/cocopon/xcode-12535772" target="_blank" rel="noopener">キーボードで完結！ハイスピード Xcodeコーディング</a></strong><br><br>スライド形式で、わかりやすくショートカットコマンドが分かる。これは初心者に超オススメ！</p>
+<p><strong><a href="http://qiita.com/yuky_az/items/f2c3db2796d0a73dfde2" target="_blank" rel="noopener">Objective-Cでは、インスタンス変数をどこに宣言するのが正しいのか？</a></strong><br><br>Apple的には実装ファイル側に変数を書いてほしいそうですが、ソースの見通し的にはヘッダファイル側に変数を書いたほうが良さそうです。</p>
+<h2 id="Objective-Cの基礎" class="article-heading"> 🎂 <a href="#Objective-Cの基礎" class="headerlink" title="Objective-Cの基礎"></a>Objective-Cの基礎<a class="article-anchor" href="#Objective-Cの基礎" aria-hidden="true"></a></h2><p>便利メソッドとか覚えておきたいメソッドとかを中心に書いてみました！</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">// 便利メソッド</span><br><span class="line">// 1以上のランダムな数を出す</span><br><span class="line">int random = arc4random();</span><br><span class="line">NSLog(@"arc4random() = %d", random); //=> 173176668</span><br><span class="line"></span><br><span class="line">// 小数点の切り上げ</span><br><span class="line">int ceil_num = ceil(0.5);</span><br><span class="line">NSLog(@"ceil() = %d", ceil_num); //=> 1</span><br><span class="line"></span><br><span class="line">// doubleの絶対値</span><br><span class="line">double fabs_num = fabs(-55.2940);</span><br><span class="line">NSLog(@"fabs() = %f", fabs_num); //=> 55.294000</span><br><span class="line"></span><br><span class="line">// 今日の日付</span><br><span class="line">NSDate *today = [NSDate date];</span><br><span class="line">NSLog(@"today = %@", today); //=> 2014-04-02 10:19:34 +0000</span><br><span class="line"></span><br><span class="line">// 文字列</span><br><span class="line">NSString *address = @"東京都文京区本郷1-2-3";</span><br><span class="line">NSLog(@"%@", [address substringFromIndex:6]); //=> 本郷1-2-3</span><br><span class="line">NSLog(@"%@", [address substringToIndex:4]); //=> 東京都文京区</span><br><span class="line"></span><br><span class="line">// 編集可能な文字列型</span><br><span class="line">NSMutableString *str = [NSMutableString string];</span><br><span class="line">[str setString:(@"あいうえお")];</span><br><span class="line">[str insertString:@"def" atIndex:4];</span><br><span class="line">NSLog(@"%@", str); //=> あいうえdefお</span><br><span class="line"></span><br><span class="line">// 整数の配列の合計を求める</span><br><span class="line">NSArray *intlist = @[@16, @5, @25, @54];</span><br><span class="line">NSInteger sum = 0;</span><br><span class="line">for (NSString *num in intlist) {</span><br><span class="line">    sum += [num intValue];</span><br><span class="line">}</span><br><span class="line">NSLog(@"sum = %d", sum); //=> 100</span><br><span class="line"></span><br><span class="line">// 配列の値をソートする</span><br><span class="line">NSArray *fruits = @[@"melon", @"Peach", @"apple", @"orange"];</span><br><span class="line">NSArray *sortedFruits = [fruits sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];</span><br><span class="line">NSLog(@"%@", sortedFruits); //=> apple, melon, orange, Peach</span><br><span class="line"></span><br><span class="line">// 数値の配列をフィルタリングする</span><br><span class="line">NSMutableArray *number_3 = [NSMutableArray arrayWithArray:@[@3, @18, @20, @7, @9, @10]];</span><br><span class="line">NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self >= 10"];</span><br><span class="line">NSLog( @"%@", [number_3 filteredArrayUsingPredicate:predicate] ); // => 18, 20, 10</span><br><span class="line"></span><br><span class="line">// セットを作る => 共通した要素を残す</span><br><span class="line">NSArray *color1 = @[@"blue", @"red", @"yellow", @"white"];</span><br><span class="line">NSArray *color2 = @[@"green", @"white", @"black"];</span><br><span class="line">NSSet *colorSet2 = [NSSet setWithArray:color2];</span><br><span class="line">NSMutableSet *commonColors = [NSMutableSet setWithArray:color1];</span><br><span class="line">[commonColors intersectSet:colorSet2];</span><br><span class="line">NSLog(@"Common = %@", commonColors); //=> white</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="画像タップで背景色を変えるサンプル" class="article-heading"> 🍮 <a href="#画像タップで背景色を変えるサンプル" class="headerlink" title="画像タップで背景色を変えるサンプル"></a>画像タップで背景色を変えるサンプル<a class="article-anchor" href="#画像タップで背景色を変えるサンプル" aria-hidden="true"></a></h2><p>シングルページビューで、画像をタップすると背景色が変わるようなサンプルを作成。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#import <uikit uikit.h></uikit></span></span><br><span class="line"></span><br><span class="line">@interface ViewController : UIViewController</span><br><span class="line">{</span><br><span class="line">    // catのイメージビュー</span><br><span class="line">    UIImageView *cat;</span><br><span class="line">}</span><br><span class="line">// タップで実行するメソッド</span><br><span class="line">-(void) tapCat:(UITapGestureRecognizer *)gesture;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#import "ViewController.h"</span></span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController  {</span><br><span class="line">    BOOL _screen_color;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad</span><br><span class="line">{</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    // イメージを作る</span><br><span class="line">    UIImage *imageData = [UIImage imageNamed:@<span class="string">"cat.jpg"</span>];</span><br><span class="line">    </span><br><span class="line">    // イメージビューを作る</span><br><span class="line">    CGFloat width = imageData.size.width/10;</span><br><span class="line">    CGFloat height = imageData.size.height/10;</span><br><span class="line">    CGRect rect = CGRectMake(0, 0, width, height);</span><br><span class="line">    cat = [[UIImageView alloc] initWithFrame:rect];</span><br><span class="line">    </span><br><span class="line">    // イメージビューにイメージを設定</span><br><span class="line">    cat.image = imageData;</span><br><span class="line">    cat.contentMode = UIViewContentModeScaleAspectFit;</span><br><span class="line">    cat.center = CGPointMake(160, 100);</span><br><span class="line">    </span><br><span class="line">    // イメージビューがインタラクティブ操作を受け付けるようにする</span><br><span class="line">    cat.userInteractionEnabled = YES;</span><br><span class="line">    </span><br><span class="line">    // タップジェスチャーを作る</span><br><span class="line">    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCat:)];</span><br><span class="line">    </span><br><span class="line">    // イメージビューにタップジェスチャーを設定</span><br><span class="line">    [cat addGestureRecognizer:tapGesture];</span><br><span class="line">    </span><br><span class="line">    // イメージビューを表示する</span><br><span class="line">    [self.view addSubview:cat];</span><br><span class="line">    </span><br><span class="line">    _screen_color = YES;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">- (void)didReceiveMemoryWarning</span><br><span class="line">{</span><br><span class="line">    [super didReceiveMemoryWarning];</span><br><span class="line">    // Dispose of any resources that can be recreated.</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">- (void) tapCat:(UITapGestureRecognizer *)gesture</span><br><span class="line">{</span><br><span class="line">    NSLog(@<span class="string">"心をタップされました。"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(_screen_color) {</span><br><span class="line">        self.view.backgroundColor = [UIColor blueColor];</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        self.view.backgroundColor = [UIColor whiteColor];</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    // 色をトグルで変更</span><br><span class="line">    _screen_color ^= YES;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ピンチイン・アウトとダブルタップを認識するアプリケーション" class="article-heading"> 🚜 <a href="#ピンチイン・アウトとダブルタップを認識するアプリケーション" class="headerlink" title="ピンチイン・アウトとダブルタップを認識するアプリケーション"></a>ピンチイン・アウトとダブルタップを認識するアプリケーション<a class="article-anchor" href="#ピンチイン・アウトとダブルタップを認識するアプリケーション" aria-hidden="true"></a></h2><p>中央に画像を置いて、画像のピンチイン・アウトができたり、ダブルタップでの拡大をするためのソース。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#import <uikit uikit.h></uikit></span></span><br><span class="line"></span><br><span class="line">@interface ViewController : UIViewController <uiscrollviewdelegate></uiscrollviewdelegate></span><br><span class="line"></span><br><span class="line">// スクロールビュー</span><br><span class="line">@property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;</span><br><span class="line"></span><br><span class="line">// スクロールビューにおいたイメージビュー</span><br><span class="line">@property (weak, nonatomic) IBOutlet UIImageView *myImageView;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#import "ViewController.h"</span></span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">// 拡大する領域を求めるメソッド</span><br><span class="line">- (CGRect)zoomRectForScale:(<span class="built_in">float</span>)scale withCenter:(CGPoint)center;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad</span><br><span class="line">{</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line"></span><br><span class="line">    // スクロールビューのデリゲート先になる</span><br><span class="line">    _myScrollView.delegate = self;</span><br><span class="line">    </span><br><span class="line">    // ズームの最小/最大を設定する</span><br><span class="line">    _myScrollView.minimumZoomScale = 1;</span><br><span class="line">    _myScrollView.maximumZoomScale = 8;</span><br><span class="line">    </span><br><span class="line">    // スクローラを表示する</span><br><span class="line">    _myScrollView.scrollEnabled = YES;</span><br><span class="line">    _myScrollView.showsHorizontalScrollIndicator = YES;</span><br><span class="line">    _myScrollView.showsVerticalScrollIndicator = YES;</span><br><span class="line">    </span><br><span class="line">    // ダブルタップジェスチャーを作る</span><br><span class="line">    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];</span><br><span class="line">    </span><br><span class="line">    // ダブルタップを認識する設定にする</span><br><span class="line">    doubleTapGesture.numberOfTapsRequired = 2;</span><br><span class="line">    </span><br><span class="line">    // イメージビューにダブルタップジェスチャーを設定する</span><br><span class="line">    _myImageView.userInteractionEnabled = YES;</span><br><span class="line">    [_myImageView addGestureRecognizer:doubleTapGesture];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 拡大写真をピンチイン/ピンチアウトできるようにする</span><br><span class="line">- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView</span><br><span class="line">{</span><br><span class="line">    <span class="built_in">return</span> _myImageView;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 写真がダブルタップされたならば拡大/縮小する</span><br><span class="line">- (void)doubleTap:(UIGestureRecognizer *)gesture {</span><br><span class="line">    // 最大倍率でなければ拡大する</span><br><span class="line">    <span class="keyword">if</span>(_myScrollView.zoomScale < _myScrollView.maximumZoomScale)</span><br><span class="line">    {</span><br><span class="line">        // 現在の3倍の倍率にする</span><br><span class="line">        <span class="built_in">float</span> newScale = _myScrollView.zoomScale * 3;</span><br><span class="line">        </span><br><span class="line">        //拡大する領域を求める</span><br><span class="line">        CGRect zoomRect = [self zoomRectForScale:newScale withCenter:[gesture locationInView:gesture.view]];</span><br><span class="line">        </span><br><span class="line">        // タップした位置を拡大する</span><br><span class="line">        [_myScrollView zoomToRect:zoomRect animated:YES];</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        // 倍率1に戻す</span><br><span class="line">        [_myScrollView setZoomScale:1.0 animated:YES];</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 指定の座標を中心にして拡大する領域を求める</span><br><span class="line">- (CGRect)zoomRectForScale:(<span class="built_in">float</span>)scale withCenter:(CGPoint)center {</span><br><span class="line">    CGRect zoomRect;</span><br><span class="line">    </span><br><span class="line">    // 倍率から拡大する縦横サイズを求める</span><br><span class="line">    zoomRect.size.height = [_myScrollView frame].size.height / scale;</span><br><span class="line">    zoomRect.size.width  = [_myScrollView frame].size.width / scale;</span><br><span class="line">    </span><br><span class="line">    // 座標(左上)を設定する</span><br><span class="line">    zoomRect.origin.x = center.x - (zoomRect.size.width/2.0);</span><br><span class="line">    zoomRect.origin.y = center.y - (zoomRect.size.height/2.0);</span><br><span class="line">    </span><br><span class="line">    // 領域を返す</span><br><span class="line">    <span class="built_in">return</span> zoomRect;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">- (void)didReceiveMemoryWarning</span><br><span class="line">{</span><br><span class="line">    [super didReceiveMemoryWarning];</span><br><span class="line">    // Dispose of any resources that can be recreated.</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="変更来歴" class="article-heading">👽 <a href="#変更来歴" class="headerlink" title="変更来歴"></a>変更来歴<a class="article-anchor" href="#変更来歴" aria-hidden="true"></a></h2><p>(04/04 22:45) タップするサンプルを追加<br><br>(04/05 22:45) ピンチイン・アウトとダブルタップを認識するサンプルを追加<br></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

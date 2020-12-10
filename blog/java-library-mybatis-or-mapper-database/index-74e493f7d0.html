@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>MyBatis / Javaのオブジェクトの永続化支援 | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//java/library-mybatis-5f8de21132.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="「mybatis」はJavaオブジェクトとSQLを紐付ける永続化のためのフレームワークです。SQLベースで実装できるため実行するSQLに柔軟性があり、実行SQLの見通しもよく、メンテナンスしやすさを保てるのが特徴です。">
+<meta name="keywords" content="Java,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis &#x2F; Javaのオブジェクトの永続化支援">
+<meta property="og:url" content="http://morizyun.github.io//blog/java-library-mybatis-or-mapper-database/index-74e493f7d0.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="「mybatis」はJavaオブジェクトとSQLを紐付ける永続化のためのフレームワークです。SQLベースで実装できるため実行するSQLに柔軟性があり、実行SQLの見通しもよく、メンテナンスしやすさを保てるのが特徴です。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis &#x2F; Javaのオブジェクトの永続化支援">
+<meta name="twitter:description" content="「mybatis」はJavaオブジェクトとSQLを紐付ける永続化のためのフレームワークです。SQLベースで実装できるため実行するSQLに柔軟性があり、実行SQLの見通しもよく、メンテナンスしやすさを保てるのが特徴です。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">MyBatis / Javaのオブジェクトの永続化支援</h1>
+    
+    <a href="/blog/java-library-mybatis-or-mapper-database/" class="article-date"><time datetime="2017-06-16T15:00:00.000Z">2017-06-17</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/java-library-mybatis-or-mapper-database/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/java-library-mybatis-or-mapper-database/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/java-library-mybatis-or-mapper-database/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/java-library-mybatis-or-mapper-database/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/B01IEWNLBU/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=B01IEWNLBU&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=B01IEWNLBU&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>「<a href="http://www.mybatis.org/mybatis-3/java-api.html" target="_blank" rel="noopener">mybatis</a>」はJavaオブジェクトとSQLを紐付ける永続化のためのフレームワークです。SQLベースで実装できるため実行するSQLに柔軟性があり、実行SQLの見通しもよく、メンテナンスしやすさを保てるのが特徴です。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="インストール" class="article-heading"> 🎃 <a href="#インストール" class="headerlink" title="インストール"></a>インストール<a class="article-anchor" href="#インストール" aria-hidden="true"></a></h2><p><code>build.gradle</code>に次の内容を追加して<code>gradle build</code>を実行。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">buildscript {</span><br><span class="line">	repositories {</span><br><span class="line">		mavenCentral()</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">apply plugin: 'java'</span><br><span class="line">apply plugin: 'eclipse'</span><br><span class="line"></span><br><span class="line">version = '0.0.1-SNAPSHOT'</span><br><span class="line">sourceCompatibility = 1.8</span><br><span class="line"></span><br><span class="line">repositories {</span><br><span class="line">	mavenCentral()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dependencies {</span><br><span class="line">	compile 'org.mybatis:mybatis:3.4.4'</span><br><span class="line">	compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'</span><br><span class="line">	compileOnly 'org.projectlombok:lombok:1.16.16'</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="DBの準備" class="article-heading"> 🍮 <a href="#DBの準備" class="headerlink" title="DBの準備"></a>DBの準備<a class="article-anchor" href="#DBの準備" aria-hidden="true"></a></h2><h3 id="PostgreSQLのインストール" class="article-heading"><a href="#PostgreSQLのインストール" class="headerlink" title="PostgreSQLのインストール"></a>PostgreSQLのインストール<a class="article-anchor" href="#PostgreSQLのインストール" aria-hidden="true"></a></h3><p>PostgreSQLのインストールは「<a href="//database/postgresql-install-mac-a2932e1a08.html">macOS SierraへのPostgreSQLインストール</a>」を参照ください。</p>
+<h3 id="DBとユーザーの作成" class="article-heading"><a href="#DBとユーザーの作成" class="headerlink" title="DBとユーザーの作成"></a>DBとユーザーの作成<a class="article-anchor" href="#DBとユーザーの作成" aria-hidden="true"></a></h3><p>DBとユーザーを作成します。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">createuser -s mybatis_test -P</span><br><span class="line">createdb mybatis_test -O mybatis_test</span><br></pre></td></tr></tbody></table></figure>
+<p>SQLを実行してテストテーブルを作成します。</p>
+<figure class="highlight sql"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> test_table (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">int</span>,</span><br><span class="line">  <span class="keyword">content</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>)</span><br><span class="line">)</span><br><span class="line">;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> test_table <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'hoge'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> test_table <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">'fuga'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> test_table <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="string">'pugi'</span>);</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="SQLパラメータ-amp-結果をJavaオブジェクトで取得" class="article-heading"> 🎂 <a href="#SQLパラメータ-amp-結果をJavaオブジェクトで取得" class="headerlink" title="SQLパラメータ&結果をJavaオブジェクトで取得"></a>SQLパラメータ&結果をJavaオブジェクトで取得<a class="article-anchor" href="#SQLパラメータ-amp-結果をJavaオブジェクトで取得" aria-hidden="true"></a></h2><p>以下を実現するコードを紹介します。</p>
+<ul>
+<li>SQLのパラメータを渡す</li>
+<li>受け取った結果をJavaオブジェクトに渡す</li>
+</ul>
+<h3 id="フォルダ構成" class="article-heading"><a href="#フォルダ構成" class="headerlink" title="フォルダ構成"></a>フォルダ構成<a class="article-anchor" href="#フォルダ構成" aria-hidden="true"></a></h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">├── build.gradle</span><br><span class="line">└── src</span><br><span class="line">    └── main</span><br><span class="line">        ├── java</span><br><span class="line">        │   └── sample</span><br><span class="line">        │       └── mybatis</span><br><span class="line">        │           ├── MybatisSample.java</span><br><span class="line">        │           ├── TestTable.java</span><br><span class="line">        │           └── TestTableMapper.java</span><br><span class="line">        └── resources</span><br><span class="line">            ├── mybatis-config.xml</span><br><span class="line">            └── sample_mapper.xml</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="設定ファイル" class="article-heading"><a href="#設定ファイル" class="headerlink" title="設定ファイル"></a>設定ファイル<a class="article-anchor" href="#設定ファイル" aria-hidden="true"></a></h3><p>DBとの接続情報を記述した<code>mybatis-config.xml</code>は次のとおりです。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta"><?xml version="1.0" encoding="UTF-8" ?></span></span><br><span class="line"><span class="meta"><!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-config.dtd"></span></span><br><span class="line"><span class="tag"><<span class="name">configuration</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"sample_id"</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"sample_id"</span>></span></span><br><span class="line">            <span class="tag"><<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/></span></span><br><span class="line">            <span class="tag"><<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>></span></span><br><span class="line">                <span class="tag"><<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"org.postgresql.Driver"</span>/></span></span><br><span class="line">                <span class="tag"><<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:postgresql://localhost:5432/mybatis_test"</span>/></span></span><br><span class="line">                <span class="tag"><<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"mybatis_test"</span>/></span></span><br><span class="line">                <span class="tag"><<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"mybatis_test"</span>/></span></span><br><span class="line">            <span class="tag">dataSource</span>></span></span><br><span class="line">        <span class="tag">environment</span>></span><br><span class="line">    <span class="tag">environments</span>></span><br><span class="line">    <span class="tag"><<span class="name">mappers</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"sample_mapper.xml"</span>/></span></span><br><span class="line">    <span class="tag">mappers</span>></span><br><span class="line"><span class="tag">configuration</span>></span><br></pre></td></tr></tbody></table></figure>
+<p><code>sample_mapper.xml</code>へのSQLの定義は次のように行います。パラメータは<code>#{xxx}</code>で定義します。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta"><?xml version="1.0" encoding="UTF-8" ?></span></span><br><span class="line"><span class="meta"><!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"></span></span><br><span class="line"><span class="tag"><<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"sample.mybatis.TestTableMapper"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findBy"</span> <span class="attr">resultType</span>=<span class="string">"sample.mybatis.TestTable"</span>></span></span><br><span class="line">        SELECT</span><br><span class="line">            *</span><br><span class="line">        FROM</span><br><span class="line">            test_table</span><br><span class="line">        WHERE</span><br><span class="line">            id = #{id}</span><br><span class="line">            AND content = #{content}</span><br><span class="line">    <span class="tag">select</span>></span></span><br><span class="line"><span class="tag">mapper</span>></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Mapper" class="article-heading"><a href="#Mapper" class="headerlink" title="Mapper"></a>Mapper<a class="article-anchor" href="#Mapper" aria-hidden="true"></a></h3><p>MyBatisのMapperを使うことで直感的で読みやすく、SQLと紐付けを行うことができます。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Mapper インターフェース</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TestTableMapper</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ステートメントID と同じ名前のメソッドを定義する</span></span><br><span class="line">  <span class="function">List<testtable> <span class="title">findBy</span><span class="params">(@Param(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id, @<span class="title">Param</span><span class="params">(<span class="string">"content"</span>)</span> String content)</testtable></span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="SQLの結果をマッピングするJavaオブジェクト" class="article-heading"><a href="#SQLの結果をマッピングするJavaオブジェクト" class="headerlink" title="SQLの結果をマッピングするJavaオブジェクト"></a>SQLの結果をマッピングするJavaオブジェクト<a class="article-anchor" href="#SQLの結果をマッピングするJavaオブジェクト" aria-hidden="true"></a></h3><p>SQLの結果をマッピングするJavaオブジェクト<code>TestTable.java</code>を定義します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestTable</span> </span>{</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">  <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">TestTable</span><span class="params">(<span class="keyword">int</span> id, String content)</span> </span>{</span><br><span class="line">    <span class="keyword">this</span>.id = id;</span><br><span class="line">    <span class="keyword">this</span>.content = content;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.id;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getContent</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.content;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"TestTable [id="</span> + id + <span class="string">", content="</span> + content + <span class="string">"]"</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="実行コード" class="article-heading"><a href="#実行コード" class="headerlink" title="実行コード"></a>実行コード<a class="article-anchor" href="#実行コード" aria-hidden="true"></a></h3><p>パラメータを渡して、対応するデータを取得するJavaのコードは次のとおりです。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisSample</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    <span class="comment">// 設定ファイルを読み込む</span></span><br><span class="line">    <span class="keyword">try</span> (InputStream in = MybatisSample.class.getResourceAsStream(<span class="string">"/mybatis-config.xml"</span>)) {</span><br><span class="line">      <span class="comment">// 設定ファイルからSQL実行のためSqlSessionFactoryを生成</span></span><br><span class="line">      SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(in);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// SqlSessionFactory => SqlSessionを生成</span></span><br><span class="line">      <span class="keyword">try</span> (SqlSession session = factory.openSession()) {</span><br><span class="line">        TestTableMapper mapper = session.getMapper(TestTableMapper.class);</span><br><span class="line"></span><br><span class="line">        mapper.findBy(<span class="number">1</span>, <span class="string">"hoge"</span>).forEach(System.out::println);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="実行結果" class="article-heading"><a href="#実行結果" class="headerlink" title="実行結果"></a>実行結果<a class="article-anchor" href="#実行結果" aria-hidden="true"></a></h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">TestTable [id=1, values=hoge]</span><br></pre></td></tr></tbody></table></figure>
+<p>SQLへの引数の受け渡しと実行結果をJavaオブジェクトにセットできていることがわかります。</p>
+<h2 id="ifタグで動的にSQLを変更" class="article-heading">🐞 <a href="#ifタグで動的にSQLを変更" class="headerlink" title="ifタグで動的にSQLを変更"></a>ifタグで動的にSQLを変更<a class="article-anchor" href="#ifタグで動的にSQLを変更" aria-hidden="true"></a></h2><p>SQL内に<code><if></if></code>タグでSQLのwhere構文を値を動的に変更できます。</p>
+<figure class="highlight"><table><tbody><tr><td class="code"><pre><span class="line"><?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?><br><span class="line"><!DOCTYPE mapper</span><br><span class="line">        PUBLIC <span class="string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line">        <span class="string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>></span><br><span class="line"><mapper namespace="<span" class="string">"sample.mybatis.TestTableMapper"</mapper></span>></span><br><span class="line">  <select id="<span" class="string">"findBy"</select></span> resultType=<span class="string">"sample.mybatis.TestTable"</span>><br><span class="line">    SELECT</span><br><span class="line">      *</span><br><span class="line">    FROM</span><br><span class="line">      test_table</span><br><span class="line">		<where></where></span><br><span class="line">			<<span class="keyword">if</span> test=<span class="string">"id > 0"</span>></span><br><span class="line">				AND id = #{id}</span><br><span class="line">			</span><br><span class="line">			<<span class="keyword">if</span> test=<span class="string">"values_args != null"</span>></span><br><span class="line">				AND values = #{values_args}</span><br><span class="line">			</span><br><span class="line">		</span><br><span class="line">  </span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="trimタグでUpdate文を変更" class="article-heading"> 🎳 <a href="#trimタグでUpdate文を変更" class="headerlink" title="trimタグでUpdate文を変更"></a>trimタグでUpdate文を変更<a class="article-anchor" href="#trimタグでUpdate文を変更" aria-hidden="true"></a></h2><p>SQL内に<code><trim></trim></code>タグを使うことでUpdate SQL文を動的に置き換えることができます。</p>
+<figure class="highlight"><table><tbody><tr><td class="code"><pre><span class="line"><?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?><br><span class="line"><!DOCTYPE mapper</span><br><span class="line">        PUBLIC <span class="string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line">        <span class="string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>></span><br><span class="line"><mapper namespace="<span" class="string">"sample.mybatis.TestTableMapper"</mapper></span>></span><br><span class="line">	<update id="<span" class="string">"update"</update></span>><br><span class="line">		update test_table</span><br><span class="line">		<trim prefix="<span" class="string">"set"</trim></span> suffixOverrides=<span class="string">","</span>><br><span class="line">			<<span class="keyword">if</span> test=<span class="string">"content != null"</span>></span><br><span class="line">				content = #{content},</span><br><span class="line">			</span><br><span class="line">		</span><br><span class="line">		where id = #{id}</span><br><span class="line">	</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Sequenceを取得してidを設定" class="article-heading">🐮 <a href="#Sequenceを取得してidを設定" class="headerlink" title="Sequenceを取得してidを設定"></a>Sequenceを取得してidを設定<a class="article-anchor" href="#Sequenceを取得してidを設定" aria-hidden="true"></a></h2><p>DBのSequenceからidを取得してからinsert文を実行する場合は<code>sample_mapper.xml</code>を次のように設定します。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line">ample_mapper.xml</span><br><span class="line"><span class="meta"><?xml version="1.0" encoding="UTF-8" ?></span></span><br><span class="line"><span class="meta"><!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"></span></span><br><span class="line"><span class="tag"><<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"sample.mybatis"</span>></span></span><br><span class="line"></span><br><span class="line">  <span class="tag"><<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"create"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">selectKey</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span> <span class="attr">resultType</span>=<span class="string">"_int"</span> <span class="attr">order</span>=<span class="string">"BEFORE"</span>></span></span><br><span class="line">      select test_table_seq.nextval from dual</span><br><span class="line">    <span class="tag">selectKey</span>></span></span><br><span class="line">    insert into test_table (</span><br><span class="line">        id</span><br><span class="line">        ,value</span><br><span class="line">    ) values (</span><br><span class="line">        #{id}</span><br><span class="line">        ,#{value}</span><br><span class="line">    )</span><br><span class="line">  <span class="tag">insert</span>></span><br><span class="line"><span class="tag">mapper</span>></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="生SQLの実行" class="article-heading">🗽 <a href="#生SQLの実行" class="headerlink" title="生SQLの実行"></a>生SQLの実行<a class="article-anchor" href="#生SQLの実行" aria-hidden="true"></a></h2><p><code>@Select</code>などのアノテーションを使うとSQLを直接コードに埋めて実行ができます。Testなどでダミーデータを登録するのに便利です。</p>
+<p><code>Mapper</code>側にメソッドを定義します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TestTableMapper</span> </span>{</span><br><span class="line">  <span class="meta">@Select</span>(<span class="string">"select count(*) from (${sql}) as t"</span>)</span><br><span class="line">  <span class="function">Long <span class="title">count</span><span class="params">(@Param(<span class="string">"sql"</span>)</span> String sql)</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>Mapperの呼び出し側は次のようにSQLを呼び出します。</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisSample</span> </span>{</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    <span class="comment">// 設定ファイルを読み込む</span></span><br><span class="line">    <span class="keyword">try</span> (InputStream in = MybatisSample.class.getResourceAsStream(<span class="string">"/mybatis-config.xml"</span>)) {</span><br><span class="line">      <span class="comment">// 設定ファイルからSQL実行のためSqlSessionFactoryを生成</span></span><br><span class="line">      SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(in);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// SqlSessionFactory => SqlSessionを生成</span></span><br><span class="line">      <span class="keyword">try</span> (SqlSession session = factory.openSession()) {</span><br><span class="line">        TestTableMapper mapper = session.getMapper(TestTableMapper.class);</span><br><span class="line"></span><br><span class="line">        Long count = mapper.countBySql(<span class="string">"select * from test_table"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(count);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
+<p>実行結果は次のとおりで、件数を取得できているのがわかります。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">3</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ResultTypeの設定値" class="article-heading">🗻 <a href="#ResultTypeの設定値" class="headerlink" title="ResultTypeの設定値"></a>ResultTypeの設定値<a class="article-anchor" href="#ResultTypeの設定値" aria-hidden="true"></a></h2><ul>
+<li>プリミティブ型は<code>_int</code>のように<code>_</code>を最初につける</li>
+<li>参照型、オリジナルのクラスを設定してbindすることもできる</li>
+</ul>
+<h2 id="MyBatis関連オブジェクトのスコープ" class="article-heading">🐡 <a href="#MyBatis関連オブジェクトのスコープ" class="headerlink" title="MyBatis関連オブジェクトのスコープ"></a>MyBatis関連オブジェクトのスコープ<a class="article-anchor" href="#MyBatis関連オブジェクトのスコープ" aria-hidden="true"></a></h2><table>
+<thead>
+<tr>
+<th>インスタンス</th>
+<th>概要</th>
+<th>スコープ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SqlSessionFactoryBuilder</code></td>
+<td><code>mybatis-config.xml</code>の設定ファイルを読み込む</td>
+<td>メソッド内だけで使い捨て</td>
+</tr>
+<tr>
+<td><code>SqlSessionFactory</code></td>
+<td><code>SqlSession</code>を生成するメソッド。一度作ったら使いまわす</td>
+<td>アプリケーション内で使いまわす</td>
+</tr>
+<tr>
+<td><code>SqlSession</code></td>
+<td>SQL実行で使う。1連のSQLを実行したらcloseする</td>
+<td>リクエスト間でだけ使いまわす</td>
+</tr>
+</tbody>
+</table>
+<h2 id="実行されるSQLをログ出力" class="article-heading"> 🎉 <a href="#実行されるSQLをログ出力" class="headerlink" title="実行されるSQLをログ出力"></a>実行されるSQLをログ出力<a class="article-anchor" href="#実行されるSQLをログ出力" aria-hidden="true"></a></h2><p>実行するSQLをログに出力する場合は「<a href="https://logback.qos.ch/" target="_blank" rel="noopener">Logback Home</a>」を<code>build.gradle</code>に追加すればDEBUGレベルで出力できます。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">compile 'ch.qos.logback:logback-classic:1.1.3'</span><br></pre></td></tr></tbody></table></figure>
+<p>ログの出力結果は次のようになります。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">07:36:11.111 [main] DEBUG o.a.i.t.jdbc.JdbcTransaction - Setting autocommit to <span class="literal">false</span> on JDBC Connection [org.postgresql.jdbc4.Jdbc4Connection@5f9d02cb]</span><br><span class="line">07:36:11.114 [main] DEBUG sample.mybatis.selectTest - ==>  Preparing: SELECT * FROM test_table WHERE id = ? AND values = ?</span><br><span class="line">07:36:11.186 [main] DEBUG sample.mybatis.selectTest - ==> Parameters: 1(Integer), hoge(String)</span><br><span class="line">07:36:11.283 [main] DEBUG sample.mybatis.selectTest - <== total: 1< span><br><span class="line">---------------</span><br><span class="line">id=1, values=hoge</span><br><span class="line">07:36:11.381 [main] DEBUG o.a.i.t.jdbc.JdbcTransaction - Resetting autocommit to <span class="literal">true</span> on JDBC Connection [org.postgresql.jdbc4.Jdbc4Connection@5f9d02cb]</span><br><span class="line">07:36:11.382 [main] DEBUG o.a.i.t.jdbc.JdbcTransaction - Closing JDBC Connection [org.postgresql.jdbc4.Jdbc4Connection@5f9d02cb]</span><br><span class="line">07:36:11.383 [main] DEBUG o.a.i.d.pooled.PooledDataSource - Returned connection 1604125387 to pool.</span><br></==></span></pre></td></tr></tbody></table></figure>
+<h2 id="スネークケースとキャメルケースの自動マッピング" class="article-heading"> 🐹 <a href="#スネークケースとキャメルケースの自動マッピング" class="headerlink" title="スネークケースとキャメルケースの自動マッピング"></a>スネークケースとキャメルケースの自動マッピング<a class="article-anchor" href="#スネークケースとキャメルケースの自動マッピング" aria-hidden="true"></a></h2><p>テーブルのスネークケースとキャメルケースの自動マッピングを行う場合は<code>mybatis-config.xml</code>に以下を追加します。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag"><<span class="name">configuration</span>></span></span><br><span class="line">  <span class="tag"><<span class="name">settings</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"mapUnderscoreToCamelCase"</span> <span class="attr">value</span>=<span class="string">"true"</span>/></span></span><br><span class="line">  <span class="tag">settings</span>></span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">configuration</span>></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="キャッシュについて" class="article-heading">🚌 <a href="#キャッシュについて" class="headerlink" title="キャッシュについて"></a>キャッシュについて<a class="article-anchor" href="#キャッシュについて" aria-hidden="true"></a></h2><ul>
+<li>検索結果はキャッシュされる。(デフォルトでは1024個のオブジェクトをキャッシュ)</li>
+<li>キャッシュはセッションごとに保持される</li>
+<li>使われていないキャッシュから削除される</li>
+<li><code>insert, update, delete</code>が実行されるとキャッシュがクリア</li>
+</ul>
+<h2 id="補足：-gt-、-lt-はCDATAで囲む" class="article-heading">👽 <a href="#補足：-gt-、-lt-はCDATAで囲む" class="headerlink" title="補足：>、<はCDATAで囲む"></a>補足：<code>></code>、<code><</code>はCDATAで囲む<a class="article-anchor" href="#補足：-gt-、-lt-はCDATAで囲む" aria-hidden="true"></a></h2><p><code>></code>、<code><</code>を使う場合は<code>CDATA</code>で対象のSQLを囲むことで使えます。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><!--[CDATA[</span><br><span class="line">  select</span><br><span class="line">    1</span><br><span class="line">  from</span><br><span class="line">    products</span><br><span class="line">	where</span><br><span class="line">		price > 500</span><br><span class="line">]]--></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="参考リンク" class="article-heading">🐝 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><a href="http://qiita.com/opengl-8080/items/a9b5d4038f19d4813ee6" target="_blank" rel="noopener">MyBatis 使い方メモ - Qiita</a></li>
+<li><a href="http://qiita.com/kumazo/items/72ecdb2923b77aaa0c94" target="_blank" rel="noopener">MyBatis で生SQLを叩きたい - Qiita</a></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

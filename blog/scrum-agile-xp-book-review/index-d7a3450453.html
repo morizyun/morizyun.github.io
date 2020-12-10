@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>SCRUM/アジャイル開発の入門資料を全力でまとめてみた | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io//blog/scrum-agile-xp-book-review/index-d7a3450453.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="build/css/navy.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="『アジャイルサムライ－達人開発者への道－』に続いて、アジャイル開発のバイブル的書籍『SCRUM BOOT CAMP』を読みました。SCRUMの実践的な知識を漫画をおりまぜながら、本当にわかりやすく書いている良本でした。これから何度も読み直して、アジャイルの習得に努めます！ ということで、今回は書籍を読む過程で集めたSCRUMやアジャイル開発に関するスライドやPDF、ブログ記事などをまとめていきます">
+<meta name="keywords" content="Book">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SCRUM&#x2F;アジャイル開発の入門資料を全力でまとめてみた">
+<meta property="og:url" content="http://morizyun.github.io//blog/scrum-agile-xp-book-review/index-d7a3450453.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="『アジャイルサムライ－達人開発者への道－』に続いて、アジャイル開発のバイブル的書籍『SCRUM BOOT CAMP』を読みました。SCRUMの実践的な知識を漫画をおりまぜながら、本当にわかりやすく書いている良本でした。これから何度も読み直して、アジャイルの習得に努めます！ ということで、今回は書籍を読む過程で集めたSCRUMやアジャイル開発に関するスライドやPDF、ブログ記事などをまとめていきます">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SCRUM&#x2F;アジャイル開発の入門資料を全力でまとめてみた">
+<meta name="twitter:description" content="『アジャイルサムライ－達人開発者への道－』に続いて、アジャイル開発のバイブル的書籍『SCRUM BOOT CAMP』を読みました。SCRUMの実践的な知識を漫画をおりまぜながら、本当にわかりやすく書いている良本でした。これから何度も読み直して、アジャイルの習得に努めます！ ということで、今回は書籍を読む過程で集めたSCRUMやアジャイル開発に関するスライドやPDF、ブログ記事などをまとめていきます">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="main-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="main-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="main-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="main-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="main-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="main-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="main-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">SCRUM/アジャイル開発の入門資料を全力でまとめてみた</h1>
+    
+    <a href="/blog/scrum-agile-xp-book-review/" class="article-date"><time datetime="2013-08-31T15:00:00.000Z">2013-09-01</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/scrum-agile-xp-book-review/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/scrum-agile-xp-book-review/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/scrum-agile-xp-book-review/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/scrum-agile-xp-book-review/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798129712&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>『<strong><a href="/blog/agile-samurai-review-book/">アジャイルサムライ－達人開発者への道－</a></strong>』に続いて、アジャイル開発のバイブル的書籍『<strong><a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">SCRUM BOOT CAMP</a></strong>』を読みました。SCRUMの実践的な知識を漫画をおりまぜながら、本当にわかりやすく書いている良本でした。これから何度も読み直して、アジャイルの習得に努めます！</p>
+<p>ということで、今回は書籍を読む過程で集めたSCRUMやアジャイル開発に関するスライドやPDF、ブログ記事などをまとめていきます！</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="アジャイル開発手法特論" class="article-heading">🗽 <a href="#アジャイル開発手法特論" class="headerlink" title="アジャイル開発手法特論"></a>アジャイル開発手法特論<a class="article-anchor" href="#アジャイル開発手法特論" aria-hidden="true"></a></h2><p><iframe src="http://www.slideshare.net/slideshow/embed_code/23062400" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> From <a href="https://www.slideshare.net/MihoNagase/agile-developmentcourseadvanced12" title="Agile-development-course-advanced-1-2" target="_blank">Agile-development-course-advanced-1-2</a></p>
+<p>産業技術大学の2013年2Qの講義『<strong><a href="http://aiit.ac.jp/enpit/curriculum.html" target="_blank" rel="noopener">アジャイル開発手法特論</a></strong>』の資料だそうです。<a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">SCRUM BOOT CAMP</a>の著者の一人である<a href="https://twitter.com/miholovesq" target="_blank" rel="noopener">ながせ☆みほさん</a>の作です。ちなみに<strong><a href="http://miholovesq.hatenablog.com/category/%E8%B3%87%E6%96%99" target="_blank" rel="noopener">ながせさんのブログ</a></strong>上に#6までの資料がアップされています。ほかのスライドもかなりのボリュームで読み応え抜群です！</p>
+<h2 id="スクラムの開発者による資料スクラムGuide" class="article-heading">😀 <a href="#スクラムの開発者による資料スクラムGuide" class="headerlink" title="スクラムの開発者による資料スクラムGuide"></a>スクラムの開発者による資料スクラムGuide<a class="article-anchor" href="#スクラムの開発者による資料スクラムGuide" aria-hidden="true"></a></h2><p><a href="https://www.scrum.org/Scrum-Guides" title="Scrum Guide" target="_blank" rel="noopener"><img src="/img/2013-09-01-scrum-agile-xp-book-review_1.jpg" width="388" height="500" alt="Scrum Guide"></a></p>
+<p>スクラムの生みの親であるKen Schwaberさんと、Jeff Sutherlandさんが書いた資料を<a href="https://twitter.com/kdmsnr" target="_blank" rel="noopener">角征典さん</a>が翻訳した日本語の資料がPDF形式で『<a href="https://www.scrum.org/Scrum-Guides" target="_blank" rel="noopener">Scrum.org</a>』で無料配布されています。</p>
+<p>ページ数はわずか16Pで、内容はスクラムの目的や思想、キーワード、プロセスの進め方の要点を中心に書かれています。角さんのすばらしい翻訳のおかげでとっても読み易いです！</p>
+<h2 id="スクラム基本のキ" class="article-heading"> 🎃 <a href="#スクラム基本のキ" class="headerlink" title="スクラム基本のキ"></a>スクラム基本のキ<a class="article-anchor" href="#スクラム基本のキ" aria-hidden="true"></a></h2><p><iframe src="http://www.slideshare.net/slideshow/embed_code/9849966" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe><br>From <a href="https://www.slideshare.net/kawaguti/20110118-scrum-10-mins" target="_blank" rel="noopener">Scrum基本のキ</a></p>
+<p>こちらの資料は『<strong><a href="/blog/agile-samurai-review-book/">アジャイルサムライ</a></strong>』の著者の一人である西村直人さんのスライドです。スクラムの基本的な要素をわかりやすい言葉と図で説明されています。</p>
+<p>この資料の中で特に印象的だったのは、『<strong>アジャイルは習得が困難。やることの見せ方を変えただけ。手軽にできるようにした分、ケアできないことは別の方法で補完しなければならない</strong>』という部分です。コレも忘れないようにします！</p>
+<h2 id="スクラム入門" class="article-heading">🍣 <a href="#スクラム入門" class="headerlink" title="スクラム入門"></a>スクラム入門<a class="article-anchor" href="#スクラム入門" aria-hidden="true"></a></h2><p><a href="http://www.odd-e.com/resources/scrumintro/scrum_jp.pdf" title="スクラム入門" width="640" height="482" alt="スクラム入門" target="_blank" rel="noopener"><img src="/img/2013-09-01-scrum-agile-xp-book-review_2.jpg" width="640" height="482" alt="fpu_tmp_1378004702.4241_bb74d3"></a></p>
+<p>次に『<strong><a href="http://www.odd-e.com/resources/scrumintro/scrum_jp.pdf" target="_blank" rel="noopener">スクラム入門</a></strong>』の紹介です。これはPDF形式のスライドで、スクラムを実践するにあたって意識すべきポイントや、うまく行かなかった場合の対処ポイントなどの要点がまとめられています。</p>
+<p>個人的には最後に書かれていた『<strong>組織から信頼を得てからしか変化は起こせない。自己改善に専念して、組織に責任を押し付けない。毎月計画とおりにバグなしで納品するチームにならないと信頼を得られない</strong>』という言葉が印象的でした。肝に銘じます！</p>
+<h2 id="スクラム概論" class="article-heading"> 🎳 <a href="#スクラム概論" class="headerlink" title="スクラム概論"></a>スクラム概論<a class="article-anchor" href="#スクラム概論" aria-hidden="true"></a></h2><p><iframe src="http://www.slideshare.net/slideshow/embed_code/8048905" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> From <a href="https://www.slideshare.net/Ryuzee/scrum-8048905" title="Scrum概論" target="_blank">スクラム概論</a></p>
+<p>スクラム概論はマネジメント層の視点で、スクラムを俯瞰的のとらえて説明をしている資料です。大学の講義用の資料ということです。スクラムの導入を考えたり、スクラムを別の視点で捉え直す時に読んでほしい資料です。</p>
+<h2 id="「正しいアジャイル」でなくてもいい" class="article-heading">🐮 <a href="#「正しいアジャイル」でなくてもいい" class="headerlink" title="「正しいアジャイル」でなくてもいい"></a>「正しいアジャイル」でなくてもいい<a class="article-anchor" href="#「正しいアジャイル」でなくてもいい" aria-hidden="true"></a></h2><p><iframe src="http://www.slideshare.net/slideshow/embed_code/21927911" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> From <a href="https://www.slideshare.net/ogin_s57/ss-21927911" title="「正しいアジャイル」でなくてもいい" target="_blank">「正しいアジャイル」でなくてもいい</a></p>
+<p>スライドの題名は少し過激ですが、中身としてはアジャイルの理解度が低いチームに効果的にアジャイルのベストプラクティスを取り入れた事例です。『<strong>開発プロセスは自分たちで進化させるもの。スキルのある開発者がいれば、彼らが学習して新しい開発プロセスを決めればいい。</strong>』という言葉が身にしみました！</p>
+<h2 id="ITで新規こと業として開発したQA-ITの事例" class="article-heading">🐝 <a href="#ITで新規こと業として開発したQA-ITの事例" class="headerlink" title="@ITで新規こと業として開発したQA@ITの事例"></a>@ITで新規こと業として開発したQA@ITの事例<a class="article-anchor" href="#ITで新規こと業として開発したQA-ITの事例" aria-hidden="true"></a></h2><p><iframe src="http://www.slideshare.net/slideshow/embed_code/16617933" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> From <a href="https://www.slideshare.net/knsmr/qait" title="ソーシャルコーディング革命後の開発委託の世界〜QA@ITの事例" target="_blank">ソーシャルコーディング革命後の開発委託の世界〜QA@ITの事例</a></p>
+<p>こちらの資料は少し趣が変わって、@ITで新規こと業として開発したQA@ITをソーシャルコーディングとアジャイルで開発した事例です。アジャイルの要素はさらっと流されていますが、全体としては成功事例としてわかりやすい＆おもしろい事例だと思います！</p>
+<h2 id="ユーザーストーリーとは？" class="article-heading">🚕 <a href="#ユーザーストーリーとは？" class="headerlink" title="ユーザーストーリーとは？"></a>ユーザーストーリーとは？<a class="article-anchor" href="#ユーザーストーリーとは？" aria-hidden="true"></a></h2><p><iframe src="http://www.slideshare.net/slideshow/embed_code/8332120" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> From <a href="https://www.slideshare.net/Ryuzee/ss-8332120" title="ユーザーストーリーとは？" target="_blank">ユーザーストーリーとは？</a> </p>
+<p>アジャイル開発の中の『ユーザーストーリー』に焦点を当てたスライドです。ユーザーストーリーを作る上でのポリシー、ストーリーのサンプルや分割の方法などについて書かれています。特に『<strong>受け入れ基準</strong>』をしっかりと決めることは、End-to-Endのテストを書くためにも重要なことだと注意していきます！</p>
+<h2 id="振り返りとは？" class="article-heading"> 🍄 <a href="#振り返りとは？" class="headerlink" title="振り返りとは？"></a>振り返りとは？<a class="article-anchor" href="#振り返りとは？" aria-hidden="true"></a></h2><p><iframe src="http://www.slideshare.net/slideshow/embed_code/4932855" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> From <a href="https://www.slideshare.net/essence/20100728-4932855" title="第１７回すくすくスクラム　振り返りの基礎はこれだ！" target="_blank">第17回すくすくスクラム　振り返りの基礎はこれだ！</a></p>
+<p>アジャイル開発の中の『振り返り』に焦点を当てたスライド。振り返りでは『K(続けたいこと)、P(問題)、T(試したいこと)』をチーム内で共有して、開発プロセスのさらなる改善をすすます。振り返りをすることの難しさをどうやって解決していくかの方法論があり、すごく勉強になります！</p>
+<h2 id="書籍：SCRUM-BOOT-CAMPの感想" class="article-heading">🗻 <a href="#書籍：SCRUM-BOOT-CAMPの感想" class="headerlink" title="書籍：SCRUM BOOT CAMPの感想"></a>書籍：SCRUM BOOT CAMPの感想<a class="article-anchor" href="#書籍：SCRUM-BOOT-CAMPの感想" aria-hidden="true"></a></h2><p><a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener"><img border="0" src="http://ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4798129712&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;"></a><img src="http://www.assoc-amazon.jp/e/ir?t=morizyun00-22&l=as2&o=9&a=4798129712" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;"><br><a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">SCRUM BOOT CAMP</a>はアジャイル開発の中で発生するいくつかのケーススタディを通して、実践に活かせる知識を学ぶことができます。各章の構成は導入部分に2〜3ページのポップな漫画があり、その後に要点をわかりやすく説明してくれています。</p>
+<h3 id="SCrumの本当の意義" class="article-heading"><a href="#SCrumの本当の意義" class="headerlink" title="SCrumの本当の意義"></a>SCrumの本当の意義<a class="article-anchor" href="#SCrumの本当の意義" aria-hidden="true"></a></h3><p></p><blockquote><br>SCRUMは実践したから開発が上手くいくというものではない。SCRUMは問題点が見つけやすくなり、その問題点の改善をチームで行うことで結果としてソフトウェアの開発が成功するというモデルだ<br></blockquote><br>From <a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">SCRUM BOOT CAMP P.262-263の要約</a><p></p>
+<p>なるほどな、と思わず膝を打ちました。つまり『<strong>開発のプロセスを計測しやすくしていること</strong>』にこそ、SCRUMの本当の価値があるんですね。そして、より大切なのはそのことを理解してチーム一丸となって問題点を洗い出し、積極的にプロセスを改善していくことなんですね！</p>
+<h3 id="プロダクトオーナーとスクラムマスタの重要性" class="article-heading"><a href="#プロダクトオーナーとスクラムマスタの重要性" class="headerlink" title="プロダクトオーナーとスクラムマスタの重要性"></a>プロダクトオーナーとスクラムマスタの重要性<a class="article-anchor" href="#プロダクトオーナーとスクラムマスタの重要性" aria-hidden="true"></a></h3><p></p><blockquote><br>プロダクトオーナーはプロダクトの結果責任を負う。スクラムマスターはアジャイル開発・SCRUMのポリシーをプロダクトオーナーと開発チームに理解してもらう。そして、プロダクトオーナーと開発チームの橋渡しをすること。<br></blockquote><br>From <a href="http://www.amazon.co.jp/gp/product/4798129712/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798129712&linkCode=as2&tag=morizyun00-22" target="_blank" rel="noopener">SCRUM BOOT CAMP P.24-39の要約</a><p></p>
+<p>これを『<strong>本当の意味で実現すること</strong>』は僕の知っている日本の会社組織では相当に難しいと思います。僕の知っているプロダクト的な成功事例はあるベンチャーで、ファウンダーがプロダクトオーナーとスクラムマスタを兼任していた場合です。ただしこれは、SCRUMとしてはNGだそうです。理由は開発チームに無理をさせるから。たしかに開発チームは毎週休日出勤しているっぽいですw</p>
+<h3 id="スプリント完了の定義とレビュー" class="article-heading"><a href="#スプリント完了の定義とレビュー" class="headerlink" title="スプリント完了の定義とレビュー"></a>スプリント完了の定義とレビュー<a class="article-anchor" href="#スプリント完了の定義とレビュー" aria-hidden="true"></a></h3><p><img src="/img/2013-09-01-scrum-agile-xp-book-review_3.jpg" width="640" height="495" alt="スプリント完了の定義"></p>
+<p>上の図はスプリント(開発のスパン)完了の定義を表しています。完了の定義をスクラムチーム内で合意して、スプリントというのゴールを見失わないようにすることが大切なんだと感じました。スプリントの終わりのレビューではソフトウェアの品質と、プロダクトへの期待の2つの視点で成果物を考えることが重要です。</p>
+<h2 id="おまけ：スクラムのインフォグラフィックス" class="article-heading"> 😸 <a href="#おまけ：スクラムのインフォグラフィックス" class="headerlink" title="おまけ：スクラムのインフォグラフィックス"></a>おまけ：スクラムのインフォグラフィックス<a class="article-anchor" href="#おまけ：スクラムのインフォグラフィックス" aria-hidden="true"></a></h2><p><a href="http://www.scrumprimer.org/jp/overview" title="スクラム概要の絵" target="_blank" rel="noopener"><img src="/img/2013-09-01-scrum-agile-xp-book-review_4.jpg" width="640" height="349" alt="スクラム概要の絵"></a></p>
+<p>スクラムのインフォグラフィックスを見付け足ので『<strong><a href="http://www.scrumprimer.org/jp/overview" target="_blank" rel="noopener">スクラム概要の絵へのリンク</a></strong>』を載せておきます。英語版には萌え絵版もあるっぽです。日本語に翻訳したいおww</p>
+<h2 id="参考リンク" class="article-heading"> 🚜 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><p><strong><a href="http://www.ryuzee.com/contents/blog/5707" target="_blank" rel="noopener">Scrumに関する無料の日本語資料のまとめ</a></strong></p>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="//ruby/design-pattern-index-9b183c73c8.html" class="mobile-nav-link">Ruby</a><a href="//docker/about-index-bac3d94263.html" class="mobile-nav-link">Docker</a><a href="//digdag/index-8051f4161f.html" class="mobile-nav-link">Digdag</a><a href="//cs/breadth-first-search-f89255599f.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="//scala/basic-grammer-991dfec1a6.html" class="mobile-nav-link">Scala</a><a href="//javascript/basic-string-7ced2a03c9.html" class="mobile-nav-link">JS</a><a href="//infrastructure/basic-index-557a455059.html" class="mobile-nav-link">インフラ</a><a href="//database/postgresql-basic-architecture-14bd4c81c8.html" class="mobile-nav-link">DB</a><a href="//web/http-index-5721109e6c.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<script src="build/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>

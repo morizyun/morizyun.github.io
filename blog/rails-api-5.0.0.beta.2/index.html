@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Rails 5.0.0.beta2 APIモードについて調べてみた | 酒と涙とRubyとRailsと</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://morizyun.github.io/blog/rails-api-5.0.0.beta.2/index.html">
+  <!-- Alternative links -->
+  
+  <!-- Icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="酒と涙とRubyとRailsと">
+  <!-- Open Graph -->
+  <meta name="description" content="「Using Rails for API-only Applications — Ruby on Rails Guides」を中心に、Rails 5.0.0.beta2 API modeについて少し調べてみたのでそのメモです。">
+<meta name="keywords" content="rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails 5.0.0.beta2 APIモードについて調べてみた">
+<meta property="og:url" content="http://morizyun.github.io/blog/rails-api-5.0.0.beta.2/index.html">
+<meta property="og:site_name" content="酒と涙とRubyとRailsと">
+<meta property="og:description" content="「Using Rails for API-only Applications — Ruby on Rails Guides」を中心に、Rails 5.0.0.beta2 API modeについて少し調べてみたのでそのメモです。">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://morizyun.github.io/img/og_image.png">
+<meta property="og:updated_time" content="2017-08-11T00:55:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rails 5.0.0.beta2 APIモードについて調べてみた">
+<meta name="twitter:description" content="「Using Rails for API-only Applications — Ruby on Rails Guides」を中心に、Rails 5.0.0.beta2 API modeについて少し調べてみたのでそのメモです。">
+<meta name="twitter:image" content="https://morizyun.github.io/img/og_image.png">
+<meta name="twitter:site" content="zyunnosuke">
+<meta property="fb:app_id" content="183897648417956">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36299115-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Github Button -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/" id="logo">酒と泪とRubyとRailsと</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/ruby/design-pattern-index.html" class="main-nav-link">Ruby</a><a href="/docker/about-index.html" class="main-nav-link">Docker</a><a href="/digdag/index.html" class="main-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="main-nav-link">CS</a><a href="/java/" class="main-nav-link">Java</a><a href="/scala/basic-grammer.html" class="main-nav-link">Scala</a><a href="/javascript/basic-string.html" class="main-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="main-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="main-nav-link">DB</a><a href="/web/http-index.html" class="main-nav-link">Web</a><a href="/blog/" class="main-nav-link">Blog</a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <form id="cse-search-box" action="//google.com/cse" style="display: inline-block;">
+          <input type="hidden" name="cx" value="001974309344846181418:wzqpqcmv-zs">
+          <input type="hidden" name="ie" value="UTF-8">
+          <input type="search" id="search-input" name="q" placeholder="検索" style="width: 100px;">
+        </form>
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></label>
+      <select id="lang-select" data-canonical>
+        
+          <option value="ja" selected>日本語</option>
+        
+        <option value="redirect/english_blog">English</option>
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div class="wrapper">
+    <div class="inner">
+      <article class="article post" itemscope itemtype="http://schema.org/Article">
+  <header class="article-header">
+    
+      <h1 class="article-title" itemprop="name">Rails 5.0.0.beta2 APIモードについて調べてみた</h1>
+    
+    <a href="/blog/rails-api-5.0.0.beta.2/" class="article-date"><time datetime="2016-02-07T15:00:00.000Z">2016-02-08</time></a>
+    <div class="sharing social_box">
+  <ul class="social" style="margin-left: 0;margin-top: 10px;">
+    <li class="hatena">
+      <a href="//b.hatena.ne.jp/entry/http://morizyun.github.io/blog/rails-api-5.0.0.beta.2/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    <li class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-url="http://morizyun.github.io/blog/rails-api-5.0.0.beta.2/" data-via="zyunnosuke" data-counturl="http://morizyun.github.io/blog/rails-api-5.0.0.beta.2/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook">
+      <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana" data-href="http://morizyun.github.io/blog/rails-api-5.0.0.beta.2/"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ja_JP/all.js#appId=183897648417956&xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    <li class="feedly">
+      <a href="https://feedly.com/i/discover/sources/search/morizyun.github.io" target="blank"><img id="theButton" src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-small_2x.png" alt="follow" width="66" height="20"></a>
+    </li>
+  </ul>
+</div>
+<br style="clear=both;">
+
+  </header>
+  <div class="article-content" itemprop="articleBody">
+    <!-- <a href="//www.amazon.co.jp/gp/product/4873116864/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116864&linkCode=as2&tag=morizyun00-22" target="_blank">
+        <img border="0" src="//ws.assoc-amazon.jp/widgets/q?_encoding=UTF8&ASIN=4873116864&Format=_SL320_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=morizyun00-22" width="150" style="float: left; margin: 0 20px 20px 0;" >
+    </a> --><html><head><meta name="generator" content="Hexo 3.8.0"></head><body><p>「<strong><a href="http://edgeguides.rubyonrails.org/api_app.html" target="_blank" rel="noopener">Using Rails for API-only Applications — Ruby on Rails Guides</a></strong>」を中心に、Rails 5.0.0.beta2 API modeについて少し調べてみたのでそのメモです。</p>
+<br style="clear:both;"><div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<h2 id="APIアプリケーションのおさらい" class="article-heading">🐠 <a href="#APIアプリケーションのおさらい" class="headerlink" title="APIアプリケーションのおさらい"></a>APIアプリケーションのおさらい<a class="article-anchor" href="#APIアプリケーションのおさらい" aria-hidden="true"></a></h2><p>まず、ここではAPIアプリケーションを「<strong><a href="https://developer.github.com/" target="_blank" rel="noopener">GitHub Developer | GitHub Developer Guide</a></strong>」のように、プログラムがアクセスすることを前提としたWebアプリケーションと考えいます。</p>
+<p>クライアントサイドにNativeアプリケーションがあり、バックエンドにRailsのアプリケーションがJSONのリソースを扱うことを想定しています。</p>
+<h2 id="なぜJSON-APIにRailsを使うのか？" class="article-heading"> 🐰 <a href="#なぜJSON-APIにRailsを使うのか？" class="headerlink" title="なぜJSON APIにRailsを使うのか？"></a>なぜJSON APIにRailsを使うのか？<a class="article-anchor" href="#なぜJSON-APIにRailsを使うのか？" aria-hidden="true"></a></h2><p>Railsが提供しているCoCのベストプラクティスを有効活用して、ビジネスロジックをスピーディかつ柔軟にAPIを構築できる点が、<br>RailsをAPIアプリケーションとして活用するメリットだと考えます。</p>
+<h2 id="Railsを使うメリット" class="article-heading"> 🤔 <a href="#Railsを使うメリット" class="headerlink" title="Railsを使うメリット"></a>Railsを使うメリット<a class="article-anchor" href="#Railsを使うメリット" aria-hidden="true"></a></h2><pre>- リクエストが来るたびに、変更内容を監視して最適なリロードが実行される(開発者のプロダクティビティを落とさない)
+- 開発モードを持ち、開発者のプロダクティビティを向上させる(本番モードのパフォーマンスは落とさない)
+- 環境情報やDBのクエリー、基本的なパフォーマンスなどのログを出力する
+- セキュリティがしっかりしている(IPスプーフィングや、Timing Attack等を防いでくれる)
+- URLパラメータだけでなく、JSONパラメータ等の解釈できる
+- 変更がない場合に304 Not Modifiedを返すConditional GETを使う事ができる(`#stale?`, ETag, Last-Modified)
+- Railsの強力なキャッシュ機能(page, action, fragment caching)を有効活用することができる
+- RESTful JSON APIを構築するのであればResourceful Routingは最適
+- Basic認証、Digest認証、Token認証等の基本的な認証方法をサポートしている
+- シングルコマンドで、controller, model, routes, test stub等々を生成できる強力なジェネレータを持つ
+- 沢山のサードパーティのライブラリが、RailsによるWebアプリの構築をサポートしてくれる
+</pre>
+
+<h2 id="新規のアプリケーションを構築する場合" class="article-heading"> 🍄 <a href="#新規のアプリケーションを構築する場合" class="headerlink" title="新規のアプリケーションを構築する場合"></a>新規のアプリケーションを構築する場合<a class="article-anchor" href="#新規のアプリケーションを構築する場合" aria-hidden="true"></a></h2><p>次のように <code>--api</code> オプションをつけるとAPIモードとして生成されます。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ rails new my_api --api</span><br></pre></td></tr></tbody></table></figure>
+<p>このコマンドによって生成されるRailsアプリケーションには次のような特徴があります。</p>
+<pre>- 通常のWebアプリよりも、Middlewareが少ないので応答性能が向上する
+- ApplicationController => ActionController::APIを継承する
+- GeneratorでのViewやAssetの生成が行われない(フロントエンド側が行うことを想定)
+</pre>
+
+<h2 id="既存のアプリケーションをAPI-Modeにする場合" class="article-heading">🐝 <a href="#既存のアプリケーションをAPI-Modeにする場合" class="headerlink" title="既存のアプリケーションをAPI Modeにする場合"></a>既存のアプリケーションをAPI Modeにする場合<a class="article-anchor" href="#既存のアプリケーションをAPI-Modeにする場合" aria-hidden="true"></a></h2><p>configを次のように修正。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># config/application.rb</span></span><br><span class="line">config.api_only = <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># config/environments/development.rb</span></span><br><span class="line">config.debug_exception_response_format = <span class="symbol">:api</span></span><br></pre></td></tr></tbody></table></figure>
+<p>各controllerを以下のように変更。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationController</span> < ActionController::Base</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># ↓</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationController</span> < ActionController::API</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="APIモードのmiddleware" class="article-heading"> 🚜 <a href="#APIモードのmiddleware" class="headerlink" title="APIモードのmiddleware"></a>APIモードのmiddleware<a class="article-anchor" href="#APIモードのmiddleware" aria-hidden="true"></a></h2><p>次のコマンドを実行するとrailsのmiddlewareをみることができます。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ rails middleware</span><br></pre></td></tr></tbody></table></figure>
+<p>ちなみに、APIモードのmiddlewareは次のとおりです。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">Rack::Sendfile <span class="comment">#=> X-Sendfile header をセットする</span></span><br><span class="line">ActionDispatch::Static <span class="comment">#=> Publicフォルダの静的なファイルを返す</span></span><br><span class="line">ActionDispatch::LoadInterlock <span class="comment">#=> 開発モードでThread safeなコードリロードを行う</span></span><br><span class="line">ActiveSupport::Cache::Strategy::LocalCache::Middleware <span class="comment">#=> メモリキャッシュを行う</span></span><br><span class="line">Rack::Runtime <span class="comment">#=> X-Runtime header をセットする</span></span><br><span class="line">ActionDispatch::RequestId <span class="comment">#=> リクエストごとにユニークな X-Request-Id header をセットする</span></span><br><span class="line">Rails::Rack::Logger <span class="comment">#=> リクエストの開始と終了にログを書き込む</span></span><br><span class="line">ActionDispatch::ShowExceptions <span class="comment">#=> アプリで例外が発生した時にユーザーに例外を返す</span></span><br><span class="line">ActionDispatch::DebugExceptions <span class="comment">#=> localでDegug用例外ページを返す</span></span><br><span class="line">ActionDispatch::RemoteIp <span class="comment">#=> IP spoofing attacksのチェックを行う</span></span><br><span class="line">ActionDispatch::Reloader <span class="comment">#=> 開発中のコードのリロードを行う</span></span><br><span class="line">ActionDispatch::Callbacks <span class="comment">#=> リクエスト前とリクエスト後のコールバックを行う</span></span><br><span class="line">Rack::Head <span class="comment">#=> HEAD リクエストを GETリクエストに変換する</span></span><br><span class="line">Rack::ConditionalGet <span class="comment">#=> 変更がない場合にConditional GET(304 Not Modified)を返す</span></span><br><span class="line">Rack::ETag <span class="comment">#=> ETag header を追加する</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Cache-Middlewareの活用" class="article-heading">🐯 <a href="#Cache-Middlewareの活用" class="headerlink" title="Cache Middlewareの活用"></a>Cache Middlewareの活用<a class="article-anchor" href="#Cache-Middlewareの活用" aria-hidden="true"></a></h2><p>HTTP Cacheの基本的な使い方は、controllerで <code>#stale?</code>を使うだけです。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span></span></span><br><span class="line">  @post = Post.find(params[<span class="symbol">:id</span>])</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span> stale?(<span class="symbol">last_modified:</span> @post.updated_at)</span><br><span class="line">    render <span class="symbol">json:</span> @post</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
+<p>この方法は、<code>If-Modified-Since</code>ヘッダに <a href="mailto:`@post.update" target="_blank" rel="noopener">`@post.update</a>d_at` をセットします。<br>最後の更新から変更がない場合は、「304 Not Modified」を返します。</p>
+<h2 id="Rack-Sendfileの活用" class="article-heading"> 🎂 <a href="#Rack-Sendfileの活用" class="headerlink" title="Rack::Sendfileの活用"></a>Rack::Sendfileの活用<a class="article-anchor" href="#Rack-Sendfileの活用" aria-hidden="true"></a></h2><p><code>Rack::Sendfile</code> は、controllerで <code>#send_file</code> メソッドを利用することで実際にファイルを送付できる。<br>このメソッドを使う場合は以下のような設定を行う必要がある。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># config/environemts/production.rb</span></span><br><span class="line"><span class="comment"># Apache and lighttpd</span></span><br><span class="line">config.action_dispatch.x_sendfile_header = <span class="string">"X-Sendfile"</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># Nginx</span></span><br><span class="line">config.action_dispatch.x_sendfile_header = <span class="string">"X-Accel-Redirect"</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="ActionDispatch-Requestの活用" class="article-heading">🗻 <a href="#ActionDispatch-Requestの活用" class="headerlink" title="ActionDispatch::Requestの活用"></a>ActionDispatch::Requestの活用<a class="article-anchor" href="#ActionDispatch-Requestの活用" aria-hidden="true"></a></h2><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">jQuery.ajax({</span><br><span class="line">  type: <span class="string">'POST'</span>,</span><br><span class="line">  url: <span class="string">'/people'</span>,</span><br><span class="line">  dataType: <span class="string">'json'</span>,</span><br><span class="line">  contentType: <span class="string">'application/json'</span>,</span><br><span class="line">  data: <span class="built_in">JSON</span>.stringify({ <span class="attr">person</span>: { <span class="attr">firstName</span>: <span class="string">"Yehuda"</span>, <span class="attr">lastName</span>: <span class="string">"Katz"</span> } }),</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>{ }</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p>もControllerで次のように正しく解釈される。</p>
+<figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line">{ <span class="symbol">:person</span> => { <span class="symbol">:firstName</span> => <span class="string">"Yehuda"</span>, <span class="symbol">:lastName</span> => <span class="string">"Katz"</span> } }</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="middlewareの追加・削除" class="article-heading">🐮 <a href="#middlewareの追加・削除" class="headerlink" title="middlewareの追加・削除"></a>middlewareの追加・削除<a class="article-anchor" href="#middlewareの追加・削除" aria-hidden="true"></a></h2><figure class="highlight ruby"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># middlewareの追加</span></span><br><span class="line">config.middleware.use Rack::MethodOverride</span><br><span class="line"></span><br><span class="line"><span class="comment"># middlewareの削除</span></span><br><span class="line">config.middleware.delete <span class="symbol">:</span><span class="symbol">:Rack</span><span class="symbol">:</span><span class="symbol">:Sendfile</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="補足-HTTP-ETag" class="article-heading">🐡 <a href="#補足-HTTP-ETag" class="headerlink" title="(補足) HTTP ETag"></a>(補足) HTTP ETag<a class="article-anchor" href="#補足-HTTP-ETag" aria-hidden="true"></a></h2><p>「HTTP ETag」はキャッシュの有効性を検証するためのしくみのひとつ。</p>
+<ul>
+<li><strong><a href="https://en.wikipedia.org/wiki/HTTP_ETag" target="_blank" rel="noopener">HTTP ETag - Wikipedia, the free encyclopedia</a></strong></li>
+</ul>
+<h2 id="参考リンク" class="article-heading">🗽 <a href="#参考リンク" class="headerlink" title="参考リンク"></a>参考リンク<a class="article-anchor" href="#参考リンク" aria-hidden="true"></a></h2><ul>
+<li><strong><a href="http://edgeguides.rubyonrails.org/rails_on_rack.html#internal-middleware-stack" target="_blank" rel="noopener">Rails on Rack — Ruby on Rails Guides</a></strong></li>
+<li><strong><a href="http://edgeguides.rubyonrails.org/api_app.html" target="_blank" rel="noopener">Using Rails for API-only Applications — Ruby on Rails Guides</a></strong></li>
+<li><strong><a href="https://github.com/rails-api/rails-api" target="_blank" rel="noopener">rails-api/rails-api: Rails for API only applications</a></strong></li>
+<li><strong><a href="https://wyeworks.com/blog/2012/4/20/rails-for-api-applications-rails-api-released/" target="_blank" rel="noopener">Rails for API applications (rails-api) released</a></strong></li>
+<li><strong><a href="http://api.rubyonrails.org/classes/ActionController/ConditionalGet.html#method-i-stale-3F" target="_blank" rel="noopener">#slate? - ActionController::ConditionalGet</a></strong></li>
+<li><strong><a href="https://developer.github.com/v3/gists/" target="_blank" rel="noopener">Gists | GitHub Developer Guide</a></strong></li>
+<li><strong><a href="https://ja.wikipedia.org/wiki/Digest%E8%AA%8D%E8%A8%BC" target="_blank" rel="noopener">Digest認証 - Wikipedia</a></strong></li>
+</ul>
+</body></html>
+    <div style="margin: 5px 0 30px 0">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive-auto -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4186413323075068" data-ad-slot="4457377393" data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+    <div>
+    <h2>🖥 VULTRおすすめ</h2>
+
+    <p>
+      「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>」はVPSサーバのサービスです。日本にリージョンがあり、最安は512MBで2.5ドル/月($0.004/時間)で借りることができます。4GBメモリでも月20ドルです。
+      最近は<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>VULTR</b></a>のヘビーユーザーになので、「<a href="https://www.vultr.com/?ref=6808408" target="_blank"><b>ここ</b></a>」から会員登録してもらえるとサービス開発が捗ります！
+    </p>
+    <div><a href="https://www.vultr.com/?ref=6808408"><img src="https://www.vultr.com/media/banner_1.png"></a></div>
+</div>
+
+    <div>
+    <h2>📚 おすすめの書籍</h2>
+    <p>
+        
+            <a href="https://www.amazon.co.jp/gp/product/4863542941/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542941&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542941&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4863542941" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4798059315/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798059315&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4798059315&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4798059315" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4844368907/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4844368907&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4844368907&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4844368907" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/4862464122/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4862464122&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4862464122&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=4862464122" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B0822N5RMS/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0822N5RMS&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0822N5RMS&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B0822N5RMS" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07R8WH6W7/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07R8WH6W7&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07R8WH6W7&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07R8WH6W7" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/B07VKJFXRL/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B07VKJFXRL&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B07VKJFXRL&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=B07VKJFXRL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/477415654X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=477415654X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=477415654X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=477415654X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/483996937X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=483996937X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=483996937X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=483996937X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+            <a href="https://www.amazon.co.jp/gp/product/479815072X/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479815072X&linkCode=as2&tag=morizyun00-22" target="_blank">
+            <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=479815072X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL240_&tag=morizyun00-22" width="120">
+            </a>
+            <img src="https://ir-jp.amazon-adsystem.com/e/ir?t=morizyun00-22&l=am2&o=9&a=479815072X" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;">
+        
+    </p>
+</div>
+
+  </div>
+  
+</article>
+<!-- .replace(/<a id="more"><\/a>/g, '<br style="clear:both;"/>' + partial('partial/google_ads')).replace(/<p>/, '<p>' + partial('partial/asin')) }} -->
+    </div>
+  </div>
+</div>
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2020 <a href="https://morizyun.github.io/about" target="_blank">morizyun</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/zyunnosuke" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://morizyun.github.io/about" class="footer-link"><i class="fa fa-book"></i></a>
+      <a href="https://github.com/morizyun" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+      <a href="https://morizyun.github.io/atom.xml" class="footer-link" target="_blank"><i class="fa fa-rss"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/ruby/design-pattern-index.html" class="mobile-nav-link">Ruby</a><a href="/docker/about-index.html" class="mobile-nav-link">Docker</a><a href="/digdag/index.html" class="mobile-nav-link">Digdag</a><a href="/cs/breadth-first-search.html" class="mobile-nav-link">CS</a><a href="/java/" class="mobile-nav-link">Java</a><a href="/scala/basic-grammer.html" class="mobile-nav-link">Scala</a><a href="/javascript/basic-string.html" class="mobile-nav-link">JS</a><a href="/infrastructure/basic-index.html" class="mobile-nav-link">インフラ</a><a href="/database/postgresql-basic-architecture.html" class="mobile-nav-link">DB</a><a href="/web/http-index.html" class="mobile-nav-link">Web</a><a href="/blog/" class="mobile-nav-link">Blog</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/morizyun" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>日本語</span></span>
+    <select id="mobile-lang-select" data-canonical>
+      
+        <option value="ja" selected>日本語</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/scrollingelement.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+</body>
+</html>
